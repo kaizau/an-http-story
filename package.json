@@ -1,13 +1,14 @@
 {
-  "name": "kz-js13k2020",
+  "name": "remember-me",
   "version": "0.0.1",
-  "description": "Entry for JS13k 2020 WebXR",
+  "description": "Entry for js13kGames 2020 - WebXR",
   "author": {
     "name": "Kai Zau",
     "email": "k@kaizau.com",
     "url": "https://kaizau.com"
   },
-  "repository": "",
+  "repository": "github:kaizau/remember-me",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "start": "vercel dev --listen 8888",
@@ -18,9 +19,9 @@
     "clean": "rimraf public"
   },
   "devDependencies": {
-    "eslint": "^7.6.0",
+    "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.11.0",
-    "jest": "^26.2.2",
+    "jest": "^26.4.1",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
