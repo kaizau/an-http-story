@@ -1,0 +1,12 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "env": {
+    "EXAMPLE_API_VAR": "Example API Variable"
+  },
+  "build": {
+    "env": {
+      "EXAMPLE_BUILD_VAR": "Example Build Variable"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "ignorePatterns": ["build", "dist", "public"],
+  "extends": ["eslint:recommended", "prettier"],
+  "env": {
+    "es2017": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": "warn",
+    "no-duplicate-imports": "error",
+    "no-var": "error",
+    "no-unused-vars": "warn",
+    "prefer-const": "error"
+  }
+}
