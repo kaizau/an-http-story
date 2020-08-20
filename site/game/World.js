@@ -1,14 +1,17 @@
-export default function World(game, state) {
-  const canvas = document.getElementById("canvas");
+export default class World {
+  constructor() {
+    this.canvas = document.getElementById("canvas");
+    this.engine = new BABYLON.Engine(this.canvas, true);
+    window.addEventListener("resize", () => this.engine.resize());
 
-  const engine = new BABYLON.Engine(canvas, true);
+    this.scene = this.createScene();
 
-  window.addEventListener("resize", function onResize() {
-    engine.resize();
-  });
+    // await world.ready to ensure async tasks are completed
+    this.ready = this.enableWebXR();
+  }
 
-  async function createScene() {
-    const scene = new BABYLON.Scene(engine);
+  createScene() {
+    const scene = new BABYLON.Scene(this.engine);
 
     // Debug with Shift+I
     window.addEventListener("keydown", (ev) => {
@@ -28,7 +31,7 @@ export default function World(game, state) {
       scene
     );
     camera.setTarget(BABYLON.Vector3.Zero());
-    camera.attachControl(canvas, true);
+    camera.attachControl(this.canvas, true);
 
     // Set up lighting
     const light = new BABYLON.HemisphericLight(
@@ -42,28 +45,26 @@ export default function World(game, state) {
     const sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene);
     sphere.position.y = 1;
 
-    const env = scene.createDefaultEnvironment();
-
-    // Init Web XR helper
-    if (window.navigator.xr) {
-      await scene.createDefaultXRExperienceAsync({
-        floorMeshes: [env.ground],
-      });
-    } else {
-      console.log("No WebXR support");
-    }
+    this.env = scene.createDefaultEnvironment();
 
     // Init render loop
-    engine.runRenderLoop(function onRender() {
+    this.engine.runRenderLoop(function onRender() {
       scene.render();
     });
 
     return scene;
   }
 
-  return {
-    canvas,
-    engine,
-    scene: createScene(),
-  };
+  async enableWebXR() {
+    if (window.navigator.xr) {
+      await scene.createDefaultXRExperienceAsync({
+        floorMeshes: [this.env.ground],
+      });
+    } else {
+      console.log("No WebXR support");
+    }
+  }
+
+  // TODO Ability to change scenes, change levels
+  loadLevel() {}
 }

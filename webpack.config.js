@@ -11,6 +11,8 @@ module.exports = {
     path: path.resolve(__dirname, "public"),
     filename: "game.[hash].js",
   },
+  devtool: isProd ? false : "eval-cheap-source-map",
+  stats: "minimal",
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({

@@ -4,45 +4,52 @@ import World from "./game/World";
 import Menu from "./game/Menu";
 import levels from "./game/levels";
 
-// All state lives a single redux-y object
+// All state lives in a single object, each key extending EventTarget
 const state = {
   user: new State(),
   levels: new State(),
   settings: new State(),
 };
 
-// DEBUG
-window.state = state;
+class Game {
+  constructor() {
+    this.state = state;
+  }
 
-function Game() {
-  // Must use var to avoid lexical declaration ReferenceError
-  // eslint-disable-next-line no-var
-  var game = {
-    user: new User(game, state),
-    world: new World(game, state),
-    menu: new Menu(game, state),
-    // TODO controls? music? speech?
-    // Or better implemented in World?
+  async init() {
+    game.user = new User(game);
+    game.world = new World(game);
+    game.menu = new Menu(game);
 
-    startLevel(key) {
-      const level = levels[key];
-      if (level) {
-        game.user.save("level", key);
+    // TODO
+    // game.music
+    // game.speech
+    // game.controls
+    // Or are these better implemented in World?
 
-        // TODO Probably async
-        // game.world.load(level);
-      } else {
-        throw new Error(`Invalid level selected: ${key}`);
-      }
-    },
+    await game.world.ready;
+  }
 
-    finishLevel(key, progress) {
-      // TODO Save and display user progress
-    },
-  };
+  async startLevel(key) {
+    const level = levels[key];
+    if (level) {
+      game.user.save("level", key);
+      // game.world.load(level);
+    } else {
+      throw new Error(`Invalid level selected: ${key}`);
+    }
+  }
 
-  return game;
+  finishLevel(key, progress) {
+    // TODO Save and display user progress
+  }
 }
 
 const game = new Game();
-game.startLevel(state.user.level || 1);
+game.init().then(() => {
+  game.startLevel(state.user.level || 1);
+});
+
+// DEBUG
+window.game = game;
+window.state = state;
