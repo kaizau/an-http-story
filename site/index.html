@@ -1,15 +1,28 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
-    <meta name="description" content="" />
+    <title>Remember Me</title>
+    <meta
+      name="description"
+      content="A game about forgetting and remembering, finding and losing."
+    />
     <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
-    <link href="/assets/core.styl" rel="stylesheet" />
-    <script defer src="/assets/core.js"></script>
+    <style>
+      html,
+      body,
+      #canvas {
+        font-family: sans-serif;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+        width: 100%;
+      }
+    </style>
+    <script defer src="<%= babylonSrc %>"></script>
   </head>
   <body>
-    <h1 style="padding: 50px; text-align: center;">Hello, universe!</h1>
+    <canvas id="canvas"></canvas>
   </body>
 </html>

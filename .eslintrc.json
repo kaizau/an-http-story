@@ -1,8 +1,9 @@
 {
-  "ignorePatterns": ["build", "dist", "public"],
+  "ignorePatterns": ["build", "dist", "public", "vendor"],
   "extends": ["eslint:recommended", "prettier"],
   "env": {
-    "es2017": true
+    "es2017": true,
+    "node": true
   },
   "parserOptions": {
     "sourceType": "module"

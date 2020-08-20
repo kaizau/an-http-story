@@ -1,17 +1,23 @@
-import User from "./User";
-import World from "./World";
-import Menu from "./Menu";
-import levels from "./levels";
+import State from "./game/State";
+import User from "./game/User";
+import World from "./game/World";
+import Menu from "./game/Menu";
+import levels from "./game/levels";
 
 // All state lives a single redux-y object
 const state = {
-  user: {},
-  levels: {},
-  settings: {},
+  user: new State(),
+  levels: new State(),
+  settings: new State(),
 };
 
+// DEBUG
+window.state = state;
+
 function Game() {
-  const game = {
+  // Must use var to avoid lexical declaration ReferenceError
+  // eslint-disable-next-line no-var
+  var game = {
     user: new User(game, state),
     world: new World(game, state),
     menu: new Menu(game, state),
@@ -21,10 +27,10 @@ function Game() {
     startLevel(key) {
       const level = levels[key];
       if (level) {
-        user.save("level", key);
+        game.user.save("level", key);
 
         // TODO Probably async
-        game.world.load(level);
+        // game.world.load(level);
       } else {
         throw new Error(`Invalid level selected: ${key}`);
       }
@@ -39,4 +45,4 @@ function Game() {
 }
 
 const game = new Game();
-game.startLevel(user.level || 1);
+game.startLevel(state.user.level || 1);

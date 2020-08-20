@@ -1,7 +1,7 @@
 {
   "name": "remember-me",
   "version": "0.0.1",
-  "description": "Entry for js13kGames 2020 - WebXR",
+  "description": "Entry for js13kGames - 2020 WebXR",
   "author": {
     "name": "Kai Zau",
     "email": "k@kaizau.com",
@@ -10,21 +10,25 @@
   "repository": "github:kaizau/remember-me",
   "license": "MIT",
   "private": true,
+  "browserslist": [
+    "last 2 chrome versions, last 2 ff versions"
+  ],
   "scripts": {
-    "start": "vercel dev --listen 8888",
-    "dev": "npm run clean && parcel --port $PORT 'site/**.html' --out-dir public --no-cache",
-    "build": "npm run clean && parcel build 'site/**.html' --out-dir public --no-source-maps --no-cache",
+    "start": "webpack-dev-server --port 8888",
+    "build": "webpack",
+    "build:prod": "webpack",
     "lint": "prettier --ignore-path .gitignore --write . && eslint --fix .",
-    "test": "jest --watch",
-    "clean": "rimraf public"
+    "test": "jest --watch"
   },
   "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
     "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.11.0",
+    "html-webpack-plugin": "^4.3.0",
     "jest": "^26.4.1",
-    "parcel-bundler": "^1.12.4",
     "prettier": "^2.0.5",
-    "rimraf": "^3.0.2",
-    "stylus": "^0.54.8"
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }

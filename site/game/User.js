@@ -4,18 +4,18 @@ export default function User(game, state) {
       if (window.localStorage) {
         const userData = localStorage.userData;
         try {
-          state.user = JSON.parse(userData);
+          const { level } = JSON.parse(userData);
+          state.user.set({ level });
         } catch (e) {
-          console.log("Could no parse saved userData");
+          // No saved userData
         }
       }
 
       // Set default
       if (typeof state.user.level === "undefined") {
-        state.user = {
-          level: 0,
-          premium: false,
-        };
+        state.user.set({
+          level: 1,
+        });
       }
     },
 

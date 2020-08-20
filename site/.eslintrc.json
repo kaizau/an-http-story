@@ -1,8 +1,10 @@
 {
   "env": {
-    "browser": true
+    "browser": true,
+    "node": false
   },
   "globals": {
-    "process": "readonly"
+    "process": "readonly",
+    "BABYLON": "readonly"
   }
 }
