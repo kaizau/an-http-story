@@ -24,5 +24,9 @@ const level1 = {
   ],
 };
 
+const level2 = {
+  type: "smash",
+};
+
 // Export object for flexible naming
-export default { 1: level1 };
+export default { 1: level1, 2: level2 };

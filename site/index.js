@@ -1,9 +1,8 @@
 import State from "./game/State";
 import User from "./game/User";
 import World from "./game/World";
-import Menu from "./game/Menu";
 import levels from "./game/levels";
-import speak from "./game/speak";
+import debug from "./game/debug";
 
 // All state lives in a single object, each key extending EventTarget
 const state = {
@@ -20,22 +19,16 @@ class Game {
   async init() {
     game.user = new User(game);
     game.world = new World(game);
-    game.menu = new Menu(game);
-
-    // TODO
+    // game.menu
     // game.music
-    // game.speech
     // game.controls
-    // Or are these better implemented in World?
-
-    await game.world.ready;
   }
 
   async startLevel(key) {
     const level = levels[key];
     if (level) {
       game.user.save("level", key);
-      // game.world.load(level);
+      game.world.loadLevel(level);
     } else {
       throw new Error(`Invalid level selected: ${key}`);
     }
@@ -51,10 +44,4 @@ game.init().then(() => {
   game.startLevel(state.user.level || 1);
 });
 
-// DEBUG
-window.game = game;
-window.state = state;
-
-document.body.addEventListener("click", () =>
-  speak("Where am... I... What is this place? Please! Help me find my friends.")
-);
+debug(game, state);

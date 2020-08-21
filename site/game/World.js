@@ -2,29 +2,25 @@ export default class World {
   constructor() {
     this.canvas = document.getElementById("canvas");
     this.engine = new BABYLON.Engine(this.canvas, true);
+
     window.addEventListener("resize", () => this.engine.resize());
 
-    this.scene = this.createScene();
-
-    // await world.ready to ensure async tasks are completed
-    this.ready = this.enableWebXR();
-  }
-
-  createScene() {
-    const scene = new BABYLON.Scene(this.engine);
-
-    // Debug with Shift+I
-    window.addEventListener("keydown", (ev) => {
-      if (ev.shiftKey && ev.keyCode === 73) {
-        if (scene.debugLayer.isVisible()) {
-          scene.debugLayer.hide();
-        } else {
-          scene.debugLayer.show();
-        }
+    this.engine.runRenderLoop(() => {
+      if (this.scene) {
+        this.scene.render();
       }
     });
+  }
 
-    // Set up camera
+  // Each level describes a scene
+  async loadLevel(level) {
+    this.engine.displayLoadingUI();
+    if (this.scene) {
+      this.scene.detachControl();
+      this.scene.dispose();
+    }
+
+    const scene = new BABYLON.Scene(this.engine);
     const camera = new BABYLON.FreeCamera(
       "camera1",
       new BABYLON.Vector3(0, 5, -10),
@@ -32,29 +28,36 @@ export default class World {
     );
     camera.setTarget(BABYLON.Vector3.Zero());
     camera.attachControl(this.canvas, true);
-
-    // Set up lighting
     const light = new BABYLON.HemisphericLight(
       "light1",
       new BABYLON.Vector3(0, 1, 0),
       scene
     );
     light.intensity = 0.7;
+    if (level.type === "chase") {
+      this.createBoxScene(scene, level);
+    } else if (level.type === "smash") {
+      this.createSphereScene(scene, level);
+    }
 
-    // Create geometry
-    const sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene);
-    sphere.position.y = 1;
-
-    this.env = scene.createDefaultEnvironment();
-
-    // Init render loop
-    this.engine.runRenderLoop(function onRender() {
-      scene.render();
-    });
-
-    return scene;
+    await scene.whenReadyAsync();
+    this.engine.hideLoadingUI();
+    this.scene = scene;
   }
 
+  createBoxScene(scene) {
+    const sphere = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
+    sphere.position.y = 1;
+  }
+
+  createSphereScene(scene) {
+    const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {}, scene);
+    sphere.position.y = 1;
+  }
+
+  // TODO
+  // this.env = scene.createDefaultEnvironment();
+  // this.enableWebXR()
   async enableWebXR() {
     if (window.navigator.xr) {
       await this.scene.createDefaultXRExperienceAsync({
@@ -64,7 +67,4 @@ export default class World {
       console.log("No WebXR support");
     }
   }
-
-  // TODO Ability to change scenes, change levels
-  loadLevel() {}
 }
