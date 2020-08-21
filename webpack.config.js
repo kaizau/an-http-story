@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-const isProd = process.env.npm_lifecycle_event === "build:prod";
+const isProd = process.env.npm_lifecycle_event === "finalize";
 
 module.exports = {
   mode: isProd ? "production" : "development",

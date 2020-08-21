@@ -23,7 +23,10 @@ Thumbs.db
 # NPM
 node_modules/
 
-# Vercel
+# Build
 public/
+game.zip
+
+# Vercel
 .env
 .vercel
