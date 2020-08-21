@@ -21,20 +21,13 @@ export default class World {
     }
 
     const scene = new BABYLON.Scene(this.engine);
+    this.createControls(scene);
+    this.createEnvironment(scene);
 
     if (level.type === "chase") {
       this.createBoxScene(scene, level);
-    } else if (level.type === "smash") {
-      this.createSphereScene(scene, level);
-    }
-
-    scene.createDefaultCameraOrLight(true, true, true);
-    const env = scene.createDefaultEnvironment();
-    env.setMainColor(new BABYLON.Color3(0.05, 0.2, 0.4));
-    if (window.navigator.xr) {
-      scene.createDefaultXRExperienceAsync({ useMultiview: true });
     } else {
-      console.log("No WebXR support");
+      this.createSphereScene(scene, level);
     }
 
     await scene.whenReadyAsync();
@@ -42,13 +35,55 @@ export default class World {
     this.scene = scene;
   }
 
+  createEnvironment(scene) {
+    // TODO Diffuse and specular colors
+    const hemi = new BABYLON.HemisphericLight(
+      "ambientLight",
+      new BABYLON.Vector3(-0.5, -3, 0),
+      scene
+    );
+    hemi.intensity = 0.8;
+
+    const directional = new BABYLON.DirectionalLight(
+      "directionalLight",
+      new BABYLON.Vector3(-0.5, -3, -1),
+      scene
+    );
+    directional.intensity = 0.8;
+
+    const shadowGenerator = new BABYLON.ShadowGenerator(96, directional);
+    shadowGenerator.usePoissonSampling = true;
+
+    const env = scene.createDefaultEnvironment();
+    env.setMainColor(new BABYLON.Color3(0.05, 0.2, 0.4));
+  }
+
+  createControls(scene) {
+    scene.createDefaultCamera(true, true, true);
+    scene.activeCamera.useAutoRotationBehavior = true;
+    scene.activeCamera.beta = Math.PI / 3;
+    scene.activeCamera.radius = 6;
+
+    if (window.navigator.xr) {
+      scene.createDefaultXRExperienceAsync({ useMultiview: true });
+    } else {
+      console.log("No WebXR support");
+    }
+  }
+
   createBoxScene(scene) {
-    const sphere = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
-    sphere.position.y = 1;
+    const box = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
+    box.position.y = 1;
+    const light = scene.lights[scene.lights.length - 1];
+    const shadowGenerator = light.getShadowGenerator();
+    shadowGenerator.addShadowCaster(box);
   }
 
   createSphereScene(scene) {
     const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {}, scene);
     sphere.position.y = 1;
+    const light = scene.lights[scene.lights.length - 1];
+    const shadowGenerator = light.getShadowGenerator();
+    shadowGenerator.getShadowMap().renderList.push(sphere);
   }
 }

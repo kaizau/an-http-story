@@ -14,17 +14,11 @@ const state = {
 class Game {
   constructor() {
     this.state = state;
+    this.user = new User(this);
+    this.world = new World(this);
   }
 
-  async init() {
-    game.user = new User(game);
-    game.world = new World(game);
-    // game.menu
-    // game.music
-    // game.controls
-  }
-
-  async startLevel(key) {
+  startLevel(key) {
     const level = levels[key];
     if (level) {
       game.user.save("level", key);
@@ -40,8 +34,6 @@ class Game {
 }
 
 const game = new Game();
-game.init().then(() => {
-  game.startLevel(state.user.level || 1);
-});
+game.startLevel(state.user.level || 1);
 
 debug(game, state);

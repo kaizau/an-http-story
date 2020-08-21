@@ -1,21 +1,36 @@
 import speak from "./speak";
 import levels from "./levels";
 
+let debugBar;
+
 export default function debug(game, state) {
   window.game = game;
   window.state = state;
 
-  // Shift+I
-  window.addEventListener("keydown", (ev) => {
-    if (ev.shiftKey && ev.keyCode === 73 && game.world.scene) {
-      if (game.world.scene.debugLayer.isVisible()) {
-        game.world.scene.debugLayer.hide();
-      } else {
-        game.world.scene.debugLayer.show();
-      }
+  createButton("Debug", () => {
+    if (!game.world.scene) return;
+    if (game.world.scene.debugLayer.isVisible()) {
+      game.world.scene.debugLayer.hide();
+    } else {
+      game.world.scene.debugLayer.show();
     }
   });
 
+  createButton("Test Speech", () => {
+    speak(
+      "Where am... I... What is this place? Please! Help me find my friends."
+    );
+  });
+
+  Object.keys(levels).forEach((key) => {
+    const level = levels[key];
+    createButton(`Level ${key}`, () => {
+      game.world.loadLevel(level);
+    });
+  });
+}
+
+function createDebugBar() {
   const debugBar = document.createElement("div");
   debugBar.style.bottom = "10px";
   debugBar.style.left = "10px";
@@ -24,23 +39,14 @@ export default function debug(game, state) {
   debugBar.style.width = "100%";
   debugBar.style.zIndex = 100;
   document.body.appendChild(debugBar);
+  return debugBar;
+}
 
-  const speechButton = document.createElement("button");
-  speechButton.textContent = "Test Speech";
-  speechButton.addEventListener("click", () => {
-    speak(
-      "Where am... I... What is this place? Please! Help me find my friends."
-    );
-  });
-  debugBar.appendChild(speechButton);
+function createButton(label, handler) {
+  debugBar = debugBar || createDebugBar();
 
-  Object.keys(levels).forEach((key) => {
-    const level = levels[key];
-    const button = document.createElement("button");
-    button.textContent = `Level ${key}`;
-    button.addEventListener("click", () => {
-      game.world.loadLevel(level);
-    });
-    debugBar.appendChild(button);
-  });
+  const button = document.createElement("button");
+  button.textContent = label;
+  button.addEventListener("click", () => handler());
+  debugBar.appendChild(button);
 }
