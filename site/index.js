@@ -3,6 +3,7 @@ import User from "./game/User";
 import World from "./game/World";
 import Menu from "./game/Menu";
 import levels from "./game/levels";
+import speak from "./game/speak";
 
 // All state lives in a single object, each key extending EventTarget
 const state = {
@@ -53,3 +54,7 @@ game.init().then(() => {
 // DEBUG
 window.game = game;
 window.state = state;
+
+document.body.addEventListener("click", () =>
+  speak("Where am... I... What is this place? Please! Help me find my friends.")
+);

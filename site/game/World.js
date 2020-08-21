@@ -57,7 +57,7 @@ export default class World {
 
   async enableWebXR() {
     if (window.navigator.xr) {
-      await scene.createDefaultXRExperienceAsync({
+      await this.scene.createDefaultXRExperienceAsync({
         floorMeshes: [this.env.ground],
       });
     } else {
