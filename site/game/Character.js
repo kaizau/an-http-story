@@ -28,7 +28,7 @@ export default class Character {
     this.mesh.checkCollisions = true;
     this.mesh.applyGravity = true; // TODO Necessary?
     this.mesh.ellipsoid = new Vector3(0.9, 0.45, 0.9); // TODO Adjust
-    this.mesh.speed = new Vector3(0, 0, 0);
+    this.mesh.speed = new Vector3.Zero();
     this.mesh.nextspeed = new Vector3.Zero();
   }
 

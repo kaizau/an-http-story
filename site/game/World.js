@@ -131,7 +131,6 @@ export default class World {
     // characters, etc. Thought that might just be shuffling complexity around.
     const isoCam = defaultCam.clone("isoCam");
     isoCam.name = "isoCam"; // Should be, but isn't, set by clone()
-    // isoCam.cameraDirection = new Vector3(-2, 0, 0);
     scene.activeCamera = isoCam;
     this.isoCam = isoCam;
 
@@ -173,7 +172,8 @@ export default class World {
     const bounds = 30.0; // character max distance
     const cameraDistance = 10;
 
-    // NOTE Refactor this?
+    // NOTE Refactor to use ActionManager?
+    // https://doc.babylonjs.com/how_to/how_to_use_actions
     const keyisdown = {};
     window.addEventListener("keydown", (event) => {
       keyisdown[event.keyCode] = true;
@@ -187,27 +187,27 @@ export default class World {
 
     scene.registerBeforeRender(() => {
       character.nextspeed.x = 0.0;
-      character.nextspeed.z = 0.00001;
+      character.nextspeed.z = 0.0;
 
       // left
       if (keyisdown[37]) {
-        character.nextspeed.x = -v;
+        character.nextspeed.x = 0;
         character.nextspeed.z = v;
       }
       // right
       if (keyisdown[39]) {
-        character.nextspeed.x = v;
+        character.nextspeed.x = 0;
         character.nextspeed.z = -v;
       }
       // up
       if (keyisdown[38]) {
         character.nextspeed.x = v;
-        character.nextspeed.z = v;
+        character.nextspeed.z = 0;
       }
       // down
       if (keyisdown[40]) {
         character.nextspeed.x = -v;
-        character.nextspeed.z = -v;
+        character.nextspeed.z = 0;
       }
 
       character.speed = new Vector3.Lerp(
