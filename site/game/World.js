@@ -229,7 +229,7 @@ export default class World {
       );
 
       // Turn to direction
-      if (character.speed.length() > 0.01) {
+      if (character.speed.length() > 0.001) {
         tempv.copyFrom(character.speed);
 
         const dot = Vector3.Dot(tempv.normalize(), Axis.Z);
@@ -246,9 +246,6 @@ export default class World {
         const ad = Math.abs(character.rotation.y - al);
         if (ad > Math.PI) {
           t = -t;
-        }
-        if (ad < Math.PI / 15) {
-          t = 0;
         }
         character.rotation.y += t;
         if (character.rotation.y > Math.PI * 2) {
