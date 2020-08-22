@@ -22,6 +22,10 @@ export default function debug(game, state) {
     createWorldAxes(game.world.scene, 5);
   });
 
+  createButton("Test Theme", () => {
+    game.world.setTheme(game.world.scene, "awaken");
+  });
+
   createButton("Test Speech", () => {
     speak("Testing speech synthesis... Do I sound acceptable?");
   });

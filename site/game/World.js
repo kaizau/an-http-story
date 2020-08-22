@@ -43,16 +43,12 @@ export default class World {
     // TODO How to enable gravity? No Ammo.js in this instance?
     scene.gravity = new Vector3(0, -9.81, 0);
 
-    const mainColor = new Color3(0.05, 0.2, 0.4);
-    scene.clearColor = mainColor;
-    scene.ambientColor = mainColor;
-
     // TODO Separate ground for VR player and character / tiles
-    const env = scene.createDefaultEnvironment({
+    this.env = scene.createDefaultEnvironment({
       createGround: false,
       skyboxSize: 100,
     });
-    env.setMainColor(mainColor);
+    this.setTheme(scene, "dark");
 
     this.createLighting(scene);
     this.createFloor(scene);
@@ -71,6 +67,20 @@ export default class World {
     await scene.whenReadyAsync();
     this.engine.hideLoadingUI();
     this.scene = scene;
+  }
+
+  setTheme(scene, theme) {
+    let mainColor;
+
+    if (theme === "dark") {
+      mainColor = new Color3(0.01, 0.1, 0.2);
+    } else if (theme === "awaken") {
+      mainColor = new Color3(0.1, 0.3, 0.4);
+    }
+
+    scene.clearColor = mainColor;
+    scene.ambientColor = mainColor;
+    this.env.setMainColor(mainColor);
   }
 
   createLighting(scene) {
