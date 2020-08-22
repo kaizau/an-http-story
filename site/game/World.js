@@ -51,7 +51,6 @@ export default class World {
     this.setTheme(scene, "dark");
 
     this.createLighting(scene);
-    this.createFloor(scene);
 
     // For now, camera and Controls both depend on Character
     this.createCharacter(scene);
@@ -59,6 +58,7 @@ export default class World {
     this.createControls(scene);
 
     if (level.type === "chase") {
+      this.createFloor(scene);
       this.createSphereScene(scene, level);
     } else {
       this.createSphereScene(scene, level);
@@ -158,12 +158,14 @@ export default class World {
           useMultiview: true,
         })
         .then((xr) => {
-          xr.baseExperience.onStateChangedObservable.add((state) => {
+          this.xrHelper = xr.baseExperience;
+          this.xrHelper.onStateChangedObservable.add((state) => {
+            this.activeXR = true;
             if (state === WebXRState.IN_XR) {
               // ... While this line prevents #1
-              xr.baseExperience.camera.setTransformationFromNonVRCamera(
-                defaultCam
-              );
+              this.xrHelper.camera.setTransformationFromNonVRCamera(defaultCam);
+            } else if (state === WebXRState.NOT_IN_XR) {
+              this.activeXR = false;
             }
           });
         });
