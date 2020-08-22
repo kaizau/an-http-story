@@ -247,6 +247,9 @@ export default class World {
         if (ad > Math.PI) {
           t = -t;
         }
+        if (ad < Math.PI / 60) {
+          t = 0;
+        }
         character.rotation.y += t;
         if (character.rotation.y > Math.PI * 2) {
           character.rotation.y -= Math.PI * 2;
