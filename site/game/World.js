@@ -1,5 +1,4 @@
 import Character from "./character";
-
 const {
   Engine,
   Scene,
@@ -27,8 +26,8 @@ export default class World {
     });
   }
 
-  // Each level describes a scene
   async loadLevel(level) {
+    // TODO Custom loading UI
     this.engine.displayLoadingUI();
     if (this.scene) {
       this.scene.detachControl();
@@ -47,7 +46,7 @@ export default class World {
     this.createLighting(scene);
     this.createFloor(scene);
     this.createCharacter(scene);
-    this.createCamera(scene);
+    this.createCameras(scene);
     this.createControls(scene);
 
     if (level.type === "chase") {
@@ -106,26 +105,30 @@ export default class World {
   }
 
   // TODO Reuse VR camera once created
-  createCamera(scene) {
+  createCameras(scene) {
     const character = this.character.mesh;
 
-    const camera = new FollowCamera(
-      "FollowCam",
+    const isoCam = new FollowCamera(
+      "isoCam",
       new Vector3(
         character.position.x,
-        character.position.y + 5,
-        character.position.z - 20
+        character.position.y + 10,
+        character.position.z - 15
       ),
       scene
     );
-    camera.cameraDirection = new Vector3(-1, 0, 0);
-    camera.cameraAcceleration = 0;
-    camera.maxCameraSpeed = 20;
-    camera.attachControl(this.canvas, true);
-    camera.lockedTarget = character;
+    isoCam.cameraDirection = new Vector3(-2, 0, 0);
+    isoCam.cameraAcceleration = 0;
+    isoCam.maxCameraSpeed = 10;
+    isoCam.attachControl(this.canvas, true);
+    isoCam.lockedTarget = character;
 
     if (window.navigator.xr) {
-      scene.createDefaultXRExperienceAsync({ useMultiview: true });
+      scene.createDefaultXRExperienceAsync({
+        disableTeleportation: true,
+        ignoreNativeCameraTransformation: true,
+        useMultiview: true,
+      });
     } else {
       console.log("No WebXR support");
     }
