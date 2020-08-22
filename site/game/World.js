@@ -49,7 +49,7 @@ export default class World {
 
     // TODO Separate ground for VR player and character / tiles
     const env = scene.createDefaultEnvironment({
-      // createGround: false,
+      createGround: false,
       skyboxSize: 100,
     });
     env.setMainColor(mainColor);
@@ -82,7 +82,7 @@ export default class World {
 
     const directional = new DirectionalLight(
       "directionalLight",
-      new Vector3(-0.5, -3, -1),
+      new Vector3(0, -3, 1),
       scene
     );
     directional.intensity = 0.8;
@@ -125,6 +125,8 @@ export default class World {
     defaultCam.attachControl(this.canvas, true);
     defaultCam.lockedTarget = character;
 
+    // NOTE Instead of rotating the camera, we _could_ rotate the ground,
+    // characters, etc. Thought that might just be shuffling complexity around.
     const isoCam = defaultCam.clone("isoCam");
     isoCam.name = "isoCam"; // Should be, but isn't, set by clone()
     isoCam.cameraDirection = new Vector3(-2, 0, 0);
@@ -158,40 +160,48 @@ export default class World {
     }
   }
 
+  // Shamelessly adapted from:
+  // https://playground.babylonjs.com/#4NUAEA
   createControls(scene) {
     const character = this.character.mesh;
 
-    // Keypress events
-    window.keyisdown = {};
-    window.addEventListener("keydown", function (event) {
-      window.keyisdown[event.keyCode] = true;
+    const v = 0.2; // character speed
+    const bounds = 30; // character max distance
+
+    // NOTE Refactor this?
+    const keyisdown = {};
+    window.addEventListener("keydown", (event) => {
+      keyisdown[event.keyCode] = true;
     });
 
-    window.addEventListener("keyup", function (event) {
-      window.keyisdown[event.keyCode] = false;
+    window.addEventListener("keyup", (event) => {
+      keyisdown[event.keyCode] = false;
     });
 
-    window.tempv = new Vector3.Zero();
+    const tempv = new Vector3.Zero();
 
-    scene.registerBeforeRender(function () {
-      // character speed
-      var v = 0.5;
+    scene.registerBeforeRender(() => {
       character.nextspeed.x = 0.0;
       character.nextspeed.z = 0.00001;
-      if (window.keyisdown[37]) {
+
+      // left
+      if (keyisdown[37]) {
         character.nextspeed.x = -v;
+        character.nextspeed.z = v;
+      }
+      // right
+      if (keyisdown[39]) {
+        character.nextspeed.x = v;
         character.nextspeed.z = -v;
       }
-      if (window.keyisdown[39]) {
+      // up
+      if (keyisdown[38]) {
         character.nextspeed.x = v;
         character.nextspeed.z = v;
       }
-      if (window.keyisdown[38]) {
+      // down
+      if (keyisdown[40]) {
         character.nextspeed.x = -v;
-        character.nextspeed.z = v;
-      }
-      if (window.keyisdown[40]) {
-        character.nextspeed.x = v;
         character.nextspeed.z = -v;
       }
 
@@ -202,50 +212,47 @@ export default class World {
       );
 
       // Turn to direction
-      // if (character.speed.length() > 0.01) {
-      //   tempv.copyFrom(character.speed);
-      //   var dot = new Vector3.Dot(tempv.normalize(), Axis.Z);
-      //   var al = Math.acos(dot);
-      //   if (tempv.x < 0.0) {
-      //     al = Math.PI * 2.0 - al;
-      //   }
-      //   if (window.keyisdown[9]) {
-      //     console.log("dot,al:", dot, al);
-      //   }
-      //   if (al > character.rotation.y) {
-      //     var t = Math.PI / 30;
-      //   } else {
-      //     var t = -Math.PI / 30;
-      //   }
-      //   var ad = Math.abs(character.rotation.y - al);
-      //   if (ad > Math.PI) {
-      //     t = -t;
-      //   }
-      //   if (ad < Math.PI / 15) {
-      //     t = 0;
-      //   }
-      //   character.rotation.y += t;
-      //   if (character.rotation.y > Math.PI * 2) {
-      //     character.rotation.y -= Math.PI * 2;
-      //   }
-      //   if (character.rotation.y < 0) {
-      //     character.rotation.y += Math.PI * 2;
-      //   }
-      // }
+      if (character.speed.length() > 0.01) {
+        tempv.copyFrom(character.speed);
+
+        const dot = Vector3.Dot(tempv.normalize(), Axis.Z);
+        let al = Math.acos(dot);
+        if (tempv.x < 0.0) {
+          al = Math.PI * 2.0 - al;
+        }
+        let t;
+        if (al > character.rotation.y) {
+          t = Math.PI / 30;
+        } else {
+          t = -Math.PI / 30;
+        }
+        const ad = Math.abs(character.rotation.y - al);
+        if (ad > Math.PI) {
+          t = -t;
+        }
+        if (ad < Math.PI / 15) {
+          t = 0;
+        }
+        character.rotation.y += t;
+        if (character.rotation.y > Math.PI * 2) {
+          character.rotation.y -= Math.PI * 2;
+        }
+        if (character.rotation.y < 0) {
+          character.rotation.y += Math.PI * 2;
+        }
+      }
 
       character.moveWithCollisions(character.speed);
 
-      if (character.position.x > 60.0) {
-        character.position.x = 60.0;
+      if (character.position.x > bounds) {
+        character.position.x = bounds;
+      } else if (character.position.x < 0 - bounds) {
+        character.position.x = 0 - bounds;
       }
-      if (character.position.x < -60.0) {
-        character.position.x = -60.0;
-      }
-      if (character.position.z > 60.0) {
-        character.position.z = 60.0;
-      }
-      if (character.position.z < -60.0) {
-        character.position.z = -60.0;
+      if (character.position.z > bounds) {
+        character.position.z = bounds;
+      } else if (character.position.z < 0 - bounds) {
+        character.position.z = 0 - bounds;
       }
     });
   }
