@@ -56,6 +56,8 @@ export default class World {
 
     this.createLighting(scene);
     this.createFloor(scene);
+
+    // For now, camera and Controls both depend on Character
     this.createCharacter(scene);
     this.createCameras(scene);
     this.createControls(scene);
@@ -129,8 +131,9 @@ export default class World {
     // characters, etc. Thought that might just be shuffling complexity around.
     const isoCam = defaultCam.clone("isoCam");
     isoCam.name = "isoCam"; // Should be, but isn't, set by clone()
-    isoCam.cameraDirection = new Vector3(-2, 0, 0);
+    // isoCam.cameraDirection = new Vector3(-2, 0, 0);
     scene.activeCamera = isoCam;
+    this.isoCam = isoCam;
 
     if (window.navigator.xr) {
       scene
@@ -164,9 +167,11 @@ export default class World {
   // https://playground.babylonjs.com/#4NUAEA
   createControls(scene) {
     const character = this.character.mesh;
+    const camera = this.isoCam;
 
-    const v = 0.2; // character speed
-    const bounds = 30; // character max distance
+    const v = 0.1; // character speed
+    const bounds = 30.0; // character max distance
+    const cameraDistance = 10;
 
     // NOTE Refactor this?
     const keyisdown = {};
@@ -254,6 +259,10 @@ export default class World {
       } else if (character.position.z < 0 - bounds) {
         character.position.z = 0 - bounds;
       }
+
+      camera.position.x = character.position.x - cameraDistance;
+      camera.position.y = character.position.y + cameraDistance;
+      camera.position.z = character.position.z - cameraDistance;
     });
   }
 
