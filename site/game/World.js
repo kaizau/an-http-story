@@ -10,6 +10,7 @@ const {
   MeshBuilder,
   FollowCamera,
   Axis,
+  WebXRState,
 } = BABYLON;
 
 export default class World {
@@ -104,12 +105,11 @@ export default class World {
     shadowGenerator.addShadowCaster(this.character.mesh);
   }
 
-  // TODO Reuse VR camera once created
   createCameras(scene) {
     const character = this.character.mesh;
 
-    const isoCam = new FollowCamera(
-      "isoCam",
+    const defaultCam = new FollowCamera(
+      "defaultCam",
       new Vector3(
         character.position.x,
         character.position.y + 10,
@@ -117,18 +117,39 @@ export default class World {
       ),
       scene
     );
+    defaultCam.cameraAcceleration = 0;
+    defaultCam.maxCameraSpeed = 20;
+    defaultCam.attachControl(this.canvas, true);
+    defaultCam.lockedTarget = character;
+
+    const isoCam = defaultCam.clone("isoCam");
+    isoCam.name = "isoCam"; // Should be, but isn't, set by clone()
     isoCam.cameraDirection = new Vector3(-2, 0, 0);
-    isoCam.cameraAcceleration = 0;
-    isoCam.maxCameraSpeed = 10;
-    isoCam.attachControl(this.canvas, true);
-    isoCam.lockedTarget = character;
+    scene.activeCamera = isoCam;
 
     if (window.navigator.xr) {
-      scene.createDefaultXRExperienceAsync({
-        disableTeleportation: true,
-        ignoreNativeCameraTransformation: true,
-        useMultiview: true,
-      });
+      scene
+        .createDefaultXRExperienceAsync({
+          // By default, XR wrecks havoc with the camera setup.
+          // 1. Upon entering, xrCam inherits both the position and direction
+          //    of isoCam, which is wrong and hard to reset.
+          // 2. Upon exiting, isoCam's position is set to that of xrCam.
+          //
+          // This option prevents #2
+          ignoreNativeCameraTransformation: true,
+          disableTeleportation: true,
+          useMultiview: true,
+        })
+        .then((xr) => {
+          xr.baseExperience.onStateChangedObservable.add((state) => {
+            if (state === WebXRState.IN_XR) {
+              // ... While this line prevents #1
+              xr.baseExperience.camera.setTransformationFromNonVRCamera(
+                defaultCam
+              );
+            }
+          });
+        });
     } else {
       console.log("No WebXR support");
     }
