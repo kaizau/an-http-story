@@ -1,4 +1,6 @@
 import Character from "./character";
+import FloorFactory from "./floor";
+
 const {
   Engine,
   Scene,
@@ -36,13 +38,21 @@ export default class World {
     }
 
     const scene = new Scene(this.engine);
+
     scene.collisionsEnabled = true;
-    // TODO How to actually enable gravity? No Ammo.js in this instance?
+    // TODO How to enable gravity? No Ammo.js in this instance?
     scene.gravity = new Vector3(0, -9.81, 0);
 
-    // TODO Separate player floor and "platformer" floor
-    const env = scene.createDefaultEnvironment();
-    env.setMainColor(new Color3(0.05, 0.2, 0.4));
+    const mainColor = new Color3(0.05, 0.2, 0.4);
+    scene.clearColor = mainColor;
+    scene.ambientColor = mainColor;
+
+    // TODO Separate ground for VR player and character / tiles
+    const env = scene.createDefaultEnvironment({
+      // createGround: false,
+      skyboxSize: 100,
+    });
+    env.setMainColor(mainColor);
 
     this.createLighting(scene);
     this.createFloor(scene);
@@ -63,11 +73,12 @@ export default class World {
 
   createLighting(scene) {
     // TODO Diffuse and specular colors
-    const hemi = new HemisphericLight(
+    const ambient = new HemisphericLight(
       "ambientLight",
-      new Vector3(-0.5, -3, 0),
+      new Vector3(0, 1, 0),
       scene
     );
+    ambient.intensity = 0.5;
 
     const directional = new DirectionalLight(
       "directionalLight",
@@ -75,6 +86,7 @@ export default class World {
       scene
     );
     directional.intensity = 0.8;
+    directional.position.y = 5;
 
     const shadowGenerator = new ShadowGenerator(96, directional);
     shadowGenerator.usePoissonSampling = true;
@@ -82,21 +94,12 @@ export default class World {
   }
 
   createFloor(scene) {
-    // https://www.babylonjs-playground.com/#21QRSK#15
-    const tile = MeshBuilder.CreateBox(
-      "tile",
-      {
-        height: 0.1,
-        width: 10,
-        depth: 2,
-      },
-      scene
-    );
-    tile.position.y = 0;
-    tile.receiveShadows = true;
-    tile.checkCollisions = true;
+    this.floorFactory = new FloorFactory(scene);
+    const tile = this.floorFactory.createTile();
+    scene.addMesh(tile);
   }
 
+  // TODO Refactor to use factory pattern
   createCharacter(scene) {
     this.character = new Character(this.game);
     scene.addMesh(this.character.mesh);
