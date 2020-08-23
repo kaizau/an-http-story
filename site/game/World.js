@@ -7,7 +7,7 @@ import {
   initXRHelper,
 } from "./Scene";
 import { Character } from "./Character";
-import speak from "./speak";
+import { friendSpeak, foeSpeak } from "./speak";
 import FloorFactory from "./Floor";
 
 const { Engine, Scene } = BABYLON;

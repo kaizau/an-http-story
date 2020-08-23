@@ -1,7 +1,10 @@
-// Some helpful advice:
-// https://talkrapp.com/speechSynthesis.html
+// Some helpful advice: https://talkrapp.com/speechSynthesis.html
+// Voice tester: https://mdn.github.io/web-speech-api/speak-easy-synthesis/
 
-const preferredVoices = [
+let friendVoice;
+let foeVoice;
+
+const friendVoices = [
   // Best, instantly likeable
   {
     name: "Microsoft Mia Online (Natural) - English (United Kingdom)",
@@ -12,11 +15,11 @@ const preferredVoices = [
   // Innocent and child-like
   {
     name: "Google US English",
-    rate: 0.7,
-    pitch: 1.5,
+    rate: 0.8,
+    pitch: 1.0,
   },
 
-  // Acceptable default
+  // Acceptable default (Apple)
   {
     name: "Samantha",
     rate: 0.8,
@@ -29,6 +32,22 @@ const preferredVoices = [
   //   rate: 0.8,
   //   pitch: 1.25,
   // },
+];
+
+const foeVoices = [
+  // Bond villain (Apple)
+  {
+    name: "Daniel",
+    rate: 0.8,
+    pitch: 0.5,
+  },
+
+  // Yet another Bond villain
+  {
+    name: "Google UK English Male",
+    rate: 0.8,
+    pitch: 0.5,
+  },
 
   // A haunted ghost spirit!
   // {
@@ -38,9 +57,7 @@ const preferredVoices = [
   // },
 ];
 
-let voice;
-
-function chooseVoice() {
+function chooseVoices() {
   const allVoices = window.speechSynthesis.getVoices().sort((a, b) => {
     const aname = a.name.toUpperCase();
     const bname = b.name.toUpperCase();
@@ -53,30 +70,46 @@ function chooseVoice() {
     }
   });
 
-  voice = preferredVoices.find((preferred) => {
-    const found = allVoices.find((item) => item.name === preferred.name);
+  friendVoice = friendVoices.find((friend) => {
+    const found = allVoices.find((item) => item.name === friend.name);
     if (found) {
-      preferred.voice = found;
+      friend.voice = found;
+      return found;
+    }
+  });
+
+  foeVoice = foeVoices.find((foe) => {
+    const found = allVoices.find((item) => item.name === foe.name);
+    if (found) {
+      foe.voice = found;
       return found;
     }
   });
 
   // Remove since onvoiceschanged may be called again when voice spoken
-  if (voice) {
+  if (allVoices.length) {
+    console.log(friendVoice.name, foeVoice.name);
     speechSynthesis.onvoiceschanged = null;
   }
 }
 
 if (window.speechSynthesis) {
   if (speechSynthesis.onvoiceschanged !== undefined) {
-    speechSynthesis.onvoiceschanged = chooseVoice;
+    speechSynthesis.onvoiceschanged = chooseVoices;
   }
-  chooseVoice();
+  chooseVoices();
 }
 
-export default function speak(text) {
-  if (!window.speechSynthesis) return;
+export function friendSpeak(text) {
+  speak(text, friendVoice);
+}
 
+export function foeSpeak(text) {
+  speak(text, foeVoice);
+}
+
+function speak(text, voice) {
+  if (!window.speechSynthesis) return;
   const utterance = new SpeechSynthesisUtterance(text);
   if (voice) {
     utterance.voice = voice.voice;

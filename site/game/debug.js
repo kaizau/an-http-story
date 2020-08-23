@@ -1,4 +1,4 @@
-import speak from "./speak";
+import { friendSpeak, foeSpeak } from "./speak";
 import levels from "./levels";
 
 let debugBar;
@@ -23,11 +23,15 @@ export default function debug(game, state) {
   });
 
   createButton("Test Theme", () => {
-    game.world.setTheme(game.world.scene, "awaken");
+    game.world.env.setTheme("awaken");
   });
 
-  createButton("Test Speech", () => {
-    speak("Testing speech synthesis... Do I sound acceptable?");
+  createButton("Friend Speech", () => {
+    friendSpeak("Testing speech synthesis... Do I sound likeable?");
+  });
+
+  createButton("Foe Speech", () => {
+    foeSpeak("Testing speech synthesis... Do I sound evil?");
   });
 
   Object.keys(levels).forEach((key) => {
