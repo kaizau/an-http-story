@@ -1,13 +1,8 @@
 const { MeshBuilder, Mesh, Vector3 } = BABYLON;
 
 export default class Character {
-  constructor(game) {
-    this.game = game;
-    this.createLow();
-  }
-
-  // Just a head
-  createLow() {
+  constructor() {
+    // Just a head
     const body = MeshBuilder.CreateBox("character", {
       height: 1,
       width: 0.25,
@@ -32,21 +27,109 @@ export default class Character {
     this.mesh.nextspeed = new Vector3.Zero();
   }
 
-  // Textures, effects
-  createMedium() {
-    this.createLow();
-  }
+  // Shamelessly adapted from:
+  // https://playground.babylonjs.com/#4NUAEA
+  createControls(scene) {
+    const character = this.character.mesh;
+    const camera = this.isoCam;
 
-  // Head, body, hands
-  createHigh() {
-    this.createLow();
-    this.createMedium();
-  }
+    const v = 0.1; // character speed
+    const bounds = 30.0; // character max distance
+    const cameraDistance = 10;
 
-  // Face?
-  createBest() {
-    this.createLow();
-    this.createMedium();
-    this.createHigh();
+    // NOTE Refactor to use ActionManager?
+    // https://doc.babylonjs.com/how_to/how_to_use_actions
+    const keyisdown = {};
+    window.addEventListener("keydown", (event) => {
+      keyisdown[event.keyCode] = true;
+    });
+
+    window.addEventListener("keyup", (event) => {
+      keyisdown[event.keyCode] = false;
+    });
+
+    const tempv = new Vector3.Zero();
+
+    scene.registerBeforeRender(() => {
+      character.nextspeed.x = 0.0;
+      character.nextspeed.z = 0.0;
+
+      // left
+      if (keyisdown[37]) {
+        character.nextspeed.x = 0;
+        character.nextspeed.z = v;
+      }
+      // right
+      if (keyisdown[39]) {
+        character.nextspeed.x = 0;
+        character.nextspeed.z = -v;
+      }
+      // up
+      if (keyisdown[38]) {
+        character.nextspeed.x = v;
+        character.nextspeed.z = 0;
+      }
+      // down
+      if (keyisdown[40]) {
+        character.nextspeed.x = -v;
+        character.nextspeed.z = 0;
+      }
+
+      character.speed = new Vector3.Lerp(
+        character.speed,
+        character.nextspeed,
+        0.1
+      );
+
+      // Turn to direction
+      if (character.speed.length() > 0.001) {
+        tempv.copyFrom(character.speed);
+
+        const dot = Vector3.Dot(tempv.normalize(), Axis.Z);
+        let al = Math.acos(dot);
+        if (tempv.x < 0.0) {
+          al = Math.PI * 2.0 - al;
+        }
+        let t;
+        if (al > character.rotation.y) {
+          t = Math.PI / 30;
+        } else {
+          t = -Math.PI / 30;
+        }
+        const ad = Math.abs(character.rotation.y - al);
+        if (ad > Math.PI) {
+          t = -t;
+        }
+        if (ad < Math.PI / 60) {
+          t = 0;
+        }
+        character.rotation.y += t;
+        if (character.rotation.y > Math.PI * 2) {
+          character.rotation.y -= Math.PI * 2;
+        }
+        if (character.rotation.y < 0) {
+          character.rotation.y += Math.PI * 2;
+        }
+      }
+
+      // TODO Add character tilt in direction of movement
+
+      character.moveWithCollisions(character.speed);
+
+      if (character.position.x > bounds) {
+        character.position.x = bounds;
+      } else if (character.position.x < 0 - bounds) {
+        character.position.x = 0 - bounds;
+      }
+      if (character.position.z > bounds) {
+        character.position.z = bounds;
+      } else if (character.position.z < 0 - bounds) {
+        character.position.z = 0 - bounds;
+      }
+
+      camera.position.x = character.position.x - cameraDistance;
+      camera.position.y = character.position.y + cameraDistance;
+      camera.position.z = character.position.z - cameraDistance;
+    });
   }
 }

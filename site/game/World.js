@@ -1,5 +1,6 @@
-import Character from "./character";
-import FloorFactory from "./floor";
+import Character from "./Character";
+import { IsoCam, initXRHelper } from "./Cameras";
+import FloorFactory from "./Floor";
 
 const {
   Engine,
@@ -10,13 +11,12 @@ const {
   DirectionalLight,
   ShadowGenerator,
   MeshBuilder,
-  FollowCamera,
   Axis,
-  WebXRState,
 } = BABYLON;
 
 export default class World {
-  constructor() {
+  constructor(game) {
+    this.game = game;
     this.canvas = document.getElementById("canvas");
     this.engine = new Engine(this.canvas, true);
 
@@ -32,14 +32,33 @@ export default class World {
   async loadLevel(level) {
     // TODO Custom loading UI
     this.engine.displayLoadingUI();
-    if (this.scene) {
-      this.scene.detachControl();
-      this.scene.dispose();
+
+    this.scene = new Scene(this.engine);
+    const scene = this.scene;
+
+    this.createEnv(scene);
+    this.setTheme(scene, "dark");
+    this.createLighting(scene);
+
+    this.isoCam = new IsoCam(scene);
+    scene.activeCamera = this.isoCam;
+    this.xrHelper = await initXRHelper(scene, this.isoCam);
+
+    if (level.type === "chase") {
+      this.createFloor(scene);
+      this.createSphereScene(scene, level);
+      // this.createControls(scene);
+    } else {
+      this.createSphereScene(scene, level);
     }
 
-    const scene = new Scene(this.engine);
+    await scene.whenReadyAsync();
+    this.engine.hideLoadingUI();
+    this.scene = scene;
+  }
 
-    scene.collisionsEnabled = true;
+  createEnv(scene) {
+    this.scene.collisionsEnabled = true;
     // TODO How to enable gravity? No Ammo.js in this instance?
     scene.gravity = new Vector3(0, -9.81, 0);
 
@@ -48,25 +67,6 @@ export default class World {
       createGround: false,
       skyboxSize: 100,
     });
-    this.setTheme(scene, "dark");
-
-    this.createLighting(scene);
-
-    // For now, camera and Controls both depend on Character
-    this.createCharacter(scene);
-    this.createCameras(scene);
-    this.createControls(scene);
-
-    if (level.type === "chase") {
-      this.createFloor(scene);
-      this.createSphereScene(scene, level);
-    } else {
-      this.createSphereScene(scene, level);
-    }
-
-    await scene.whenReadyAsync();
-    this.engine.hideLoadingUI();
-    this.scene = scene;
   }
 
   setTheme(scene, theme) {
@@ -118,164 +118,6 @@ export default class World {
     const light = scene.lights[scene.lights.length - 1];
     const shadowGenerator = light.getShadowGenerator();
     shadowGenerator.addShadowCaster(this.character.mesh);
-  }
-
-  createCameras(scene) {
-    const character = this.character.mesh;
-
-    const defaultCam = new FollowCamera(
-      "defaultCam",
-      new Vector3(
-        character.position.x,
-        character.position.y + 10,
-        character.position.z - 15
-      ),
-      scene
-    );
-    defaultCam.cameraAcceleration = 0;
-    defaultCam.maxCameraSpeed = 20;
-    defaultCam.attachControl(this.canvas, true);
-    defaultCam.lockedTarget = character;
-
-    // NOTE Instead of rotating the camera, we _could_ rotate the ground,
-    // characters, etc. Thought that might just be shuffling complexity around.
-    const isoCam = defaultCam.clone("isoCam");
-    isoCam.name = "isoCam"; // Should be, but isn't, set by clone()
-    scene.activeCamera = isoCam;
-    this.isoCam = isoCam;
-
-    if (window.navigator.xr) {
-      scene
-        .createDefaultXRExperienceAsync({
-          // By default, XR wrecks havoc with the camera setup.
-          // 1. Upon entering, xrCam inherits both the position and direction
-          //    of isoCam, which is wrong and hard to reset.
-          // 2. Upon exiting, isoCam's position is set to that of xrCam.
-          //
-          // This option prevents #2
-          ignoreNativeCameraTransformation: true,
-          disableTeleportation: true,
-          useMultiview: true,
-        })
-        .then((xr) => {
-          this.xrHelper = xr.baseExperience;
-          this.xrHelper.onStateChangedObservable.add((state) => {
-            this.activeXR = true;
-            if (state === WebXRState.IN_XR) {
-              // ... While this line prevents #1
-              this.xrHelper.camera.setTransformationFromNonVRCamera(defaultCam);
-            } else if (state === WebXRState.NOT_IN_XR) {
-              this.activeXR = false;
-            }
-          });
-        });
-    } else {
-      console.log("No WebXR support");
-    }
-  }
-
-  // Shamelessly adapted from:
-  // https://playground.babylonjs.com/#4NUAEA
-  createControls(scene) {
-    const character = this.character.mesh;
-    const camera = this.isoCam;
-
-    const v = 0.1; // character speed
-    const bounds = 30.0; // character max distance
-    const cameraDistance = 10;
-
-    // NOTE Refactor to use ActionManager?
-    // https://doc.babylonjs.com/how_to/how_to_use_actions
-    const keyisdown = {};
-    window.addEventListener("keydown", (event) => {
-      keyisdown[event.keyCode] = true;
-    });
-
-    window.addEventListener("keyup", (event) => {
-      keyisdown[event.keyCode] = false;
-    });
-
-    const tempv = new Vector3.Zero();
-
-    scene.registerBeforeRender(() => {
-      character.nextspeed.x = 0.0;
-      character.nextspeed.z = 0.0;
-
-      // left
-      if (keyisdown[37]) {
-        character.nextspeed.x = 0;
-        character.nextspeed.z = v;
-      }
-      // right
-      if (keyisdown[39]) {
-        character.nextspeed.x = 0;
-        character.nextspeed.z = -v;
-      }
-      // up
-      if (keyisdown[38]) {
-        character.nextspeed.x = v;
-        character.nextspeed.z = 0;
-      }
-      // down
-      if (keyisdown[40]) {
-        character.nextspeed.x = -v;
-        character.nextspeed.z = 0;
-      }
-
-      character.speed = new Vector3.Lerp(
-        character.speed,
-        character.nextspeed,
-        0.1
-      );
-
-      // Turn to direction
-      if (character.speed.length() > 0.001) {
-        tempv.copyFrom(character.speed);
-
-        const dot = Vector3.Dot(tempv.normalize(), Axis.Z);
-        let al = Math.acos(dot);
-        if (tempv.x < 0.0) {
-          al = Math.PI * 2.0 - al;
-        }
-        let t;
-        if (al > character.rotation.y) {
-          t = Math.PI / 30;
-        } else {
-          t = -Math.PI / 30;
-        }
-        const ad = Math.abs(character.rotation.y - al);
-        if (ad > Math.PI) {
-          t = -t;
-        }
-        if (ad < Math.PI / 60) {
-          t = 0;
-        }
-        character.rotation.y += t;
-        if (character.rotation.y > Math.PI * 2) {
-          character.rotation.y -= Math.PI * 2;
-        }
-        if (character.rotation.y < 0) {
-          character.rotation.y += Math.PI * 2;
-        }
-      }
-
-      character.moveWithCollisions(character.speed);
-
-      if (character.position.x > bounds) {
-        character.position.x = bounds;
-      } else if (character.position.x < 0 - bounds) {
-        character.position.x = 0 - bounds;
-      }
-      if (character.position.z > bounds) {
-        character.position.z = bounds;
-      } else if (character.position.z < 0 - bounds) {
-        character.position.z = 0 - bounds;
-      }
-
-      camera.position.x = character.position.x - cameraDistance;
-      camera.position.y = character.position.y + cameraDistance;
-      camera.position.z = character.position.z - cameraDistance;
-    });
   }
 
   createSphereScene(scene) {
