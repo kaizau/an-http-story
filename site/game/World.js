@@ -7,9 +7,10 @@ import {
   initXRHelper,
 } from "./Scene";
 import { Character } from "./Character";
+import speak from "./speak";
 import FloorFactory from "./Floor";
 
-const { Engine, Scene, MeshBuilder } = BABYLON;
+const { Engine, Scene } = BABYLON;
 
 export default class World {
   constructor(game) {
@@ -40,22 +41,20 @@ export default class World {
   }
 
   loadLevel(level) {
-    // TODO Custom loading UI
-    // this.engine.displayLoadingUI();
+    this.env.setTheme(level.theme);
+    this.character = new Character(this.scene, this.shadowGenerator);
+    this.character.attachControlsAndCamera(this.isoCam);
 
-    this.env.setTheme(level.theme || "dark");
-    if (level.type === "chase") {
-      this.character = new Character(this.scene, this.shadowGenerator);
-      this.character.attachControlsAndCamera(this.isoCam);
+    level.floor.forEach((row) => {
+      row.forEach((col) => {
+        console.log({ col });
+      });
+    });
 
-      this.createFloor(this.scene);
-      this.createSphereScene(this.scene, level);
-    } else {
-      this.createSphereScene(this.scene, level);
-    }
+    this.createFloor(this.scene);
 
-    // await scene.whenReadyAsync();
-    // this.engine.hideLoadingUI();
+    // Commented out for now. Autoplays each refresh!
+    // level.intro.forEach((intro) => speak(intro));
   }
 
   createFloor(scene) {
@@ -63,30 +62,4 @@ export default class World {
     const tile = this.floorFactory.createTile();
     scene.addMesh(tile);
   }
-
-  createSphereScene(scene) {
-    const sphere = MeshBuilder.CreateSphere("sphere", {}, scene);
-    sphere.position.y = 1;
-    sphere.position.x = 1.5;
-    sphere.position.z = 2;
-    const light = scene.lights[scene.lights.length - 1];
-    const shadowGenerator = light.getShadowGenerator();
-    shadowGenerator.getShadowMap().renderList.push(sphere);
-  }
 }
-
-// Unlikely to fit within 13k limit... :(
-// importMesh(scene) {
-//   SceneLoader.ImportMesh(
-//     "",
-//     "meshes/",
-//     "cat.gltf",
-//     scene,
-//     (meshes, particleSystems, skeletons) => {
-//       const cat = meshes[0];
-//       cat.position.x = 1;
-//       cat.position.z = -0.5;
-//       scene.beginAnimation(skeletons[0], 0, 100, true);
-//     }
-//   );
-// }
