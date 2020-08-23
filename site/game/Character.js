@@ -1,7 +1,9 @@
-const { MeshBuilder, Mesh, Vector3 } = BABYLON;
+const { MeshBuilder, Mesh, Vector3, Axis } = BABYLON;
 
-export default class Character {
-  constructor() {
+export class Character {
+  constructor(scene, shadowGenerator) {
+    this.scene = scene;
+
     // Just a head
     const body = MeshBuilder.CreateBox("character", {
       height: 1,
@@ -25,13 +27,15 @@ export default class Character {
     this.mesh.ellipsoid = new Vector3(0.9, 0.45, 0.9); // TODO Adjust
     this.mesh.speed = new Vector3.Zero();
     this.mesh.nextspeed = new Vector3.Zero();
+
+    scene.addMesh(this.mesh);
+    shadowGenerator.addShadowCaster(this.mesh);
   }
 
   // Shamelessly adapted from:
   // https://playground.babylonjs.com/#4NUAEA
-  createControls(scene) {
-    const character = this.character.mesh;
-    const camera = this.isoCam;
+  attachControlsAndCamera(camera) {
+    const character = this.mesh;
 
     const v = 0.1; // character speed
     const bounds = 30.0; // character max distance
@@ -50,7 +54,7 @@ export default class Character {
 
     const tempv = new Vector3.Zero();
 
-    scene.registerBeforeRender(() => {
+    this.scene.registerBeforeRender(() => {
       character.nextspeed.x = 0.0;
       character.nextspeed.z = 0.0;
 
