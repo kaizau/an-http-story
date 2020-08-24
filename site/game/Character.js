@@ -1,30 +1,45 @@
 const { MeshBuilder, Mesh, Vector3, Axis } = BABYLON;
 
 export class Character {
+  // TODO Better character shape via polyhedron or extrusion
+  // https://www.babylonjs-playground.com/#21QRSK#15
+  //
+  // const body = MeshBuilder.ExtrudeShape("character", {
+  //   shape: [
+  //     new Vector3(0, 0, 0),
+  //     new Vector3(0.1, 0.7, 0),
+  //     new Vector3(0.2, 0, 0),
+  //     new Vector3(0, 0, 0),
+  //   ],
+  //   path: [new Vector3(0, 0, 0), new Vector3(0, 0, 0.1)],
+  //   sideOrientation: Mesh.DOUBLESIDE,
+  //   cap: Mesh.CAP_ALL,
+  //   invertUV: true,
+  // });
+
   constructor(scene, shadowGenerator) {
     this.scene = scene;
 
-    // Just a head
     const body = MeshBuilder.CreateBox("character", {
-      height: 1,
+      height: 0.6,
       width: 0.25,
       depth: 0.15,
     });
-    body.position.y = 0.75;
+    body.position.y = 0.1;
 
-    // TODO Better head shape?
-    // https://www.babylonjs-playground.com/#21QRSK#15
     const head = MeshBuilder.CreateBox("head", {
       height: 0.2,
       width: 0.15,
       depth: 0.1,
     });
-    head.position.y = 1.5;
+    head.parent = body;
+    head.position.y = 0.5;
 
+    this.mesh = body;
     this.mesh = Mesh.MergeMeshes([body, head], true);
     this.mesh.checkCollisions = true;
-    this.mesh.applyGravity = true; // TODO Necessary?
-    this.mesh.ellipsoid = new Vector3(0.9, 0.45, 0.9); // TODO Adjust
+    // this.mesh.applyGravity = true; // TODO Necessary?
+    // this.mesh.ellipsoid = new Vector3(0.9, 0.45, 0.9); // TODO Adjust
     this.mesh.speed = new Vector3.Zero();
     this.mesh.nextspeed = new Vector3.Zero();
 

@@ -6,8 +6,8 @@ import {
   IsoCam,
   initXRHelper,
 } from "./Scene";
+import { Floor, FloorMovable, Wall, WallMovable, Teleporter } from "./Level";
 import { Character } from "./Character";
-import { Floor, FloorMovable, Wall, WallMovable } from "./Level";
 import { friendSpeak, foeSpeak } from "./speak";
 
 const { Engine, Scene } = BABYLON;
@@ -42,30 +42,66 @@ export default class World {
 
   loadLevel(level) {
     this.env.setTheme(level.theme);
-    this.character = new Character(this.scene, this.shadowGenerator);
-    this.character.attachControlsAndCamera(this.isoCam);
 
     // const objects = [];
     // const selectable = [];
     // const movable = [];
     // const controllable = [];
 
-    level.map.forEach((row) => {
-      row.forEach((col) => {
-        console.log({ col });
+    // Start from bottom layer
+    level.map.reverse().forEach((layer, layerIndex) => {
+      const y = -1 + layerIndex;
 
-        const tile = col;
-        if (tile.castsShadows) {
-          // TODO
-        }
+      // And bottom row
+      layer.reverse().forEach((row, rowIndex) => {
+        const x = 0 + rowIndex;
 
-        if (tile.selectable) {
-          if (tile.movable) {
-            if (tile.controllable) {
-              // TODO
-            }
+        row.forEach((item, colIndex) => {
+          const z = 5 - colIndex;
+          const id = `z${z}x${x}`;
+
+          let tile;
+          switch (item) {
+            case " ":
+              break;
+            case "_":
+              tile = new Floor(id);
+              break;
+            case "m":
+              tile = new FloorMovable(id);
+              break;
+            case "^":
+              this.character = new Character(this.scene, this.shadowGenerator);
+              this.character.attachControlsAndCamera(this.isoCam);
+              tile = this.character;
+              break;
+            case "$":
+              tile = new Teleporter(id);
+              break;
           }
-        }
+
+          if (tile) {
+            tile.mesh.position.y += y;
+            tile.mesh.position.z += z;
+            tile.mesh.position.x += x;
+          }
+          //           if (item && item !== " ") {
+          //             console.log(id);
+
+          //             console.log(item, tile);
+          //             if (tile.castsShadows) {
+          //               // TODO
+          //             }
+
+          //             if (tile.selectable) {
+          //               if (tile.movable) {
+          //                 if (tile.controllable) {
+          //                   // TODO
+          //                 }
+          //               }
+          //             }
+          //           }
+        });
       });
     });
 
