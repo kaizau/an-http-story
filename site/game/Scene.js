@@ -17,15 +17,23 @@ export class Environment {
       createGround: false,
       skyboxSize: 100,
     });
+
+    this.setTheme("dark");
   }
 
   setTheme(theme) {
     let mainColor;
 
-    if (theme === "dark") {
-      mainColor = new Color3(0.01, 0.1, 0.2);
-    } else if (theme === "awaken") {
-      mainColor = new Color3(0.1, 0.3, 0.4);
+    switch (theme) {
+      case "dark":
+        mainColor = new Color3(0.01, 0.1, 0.2);
+        break;
+      case "awaken":
+        mainColor = new Color3(0.1, 0.3, 0.4);
+        break;
+      case "emergency":
+        mainColor = new Color3(0.8, 0.2, 0.2);
+        break;
     }
 
     this.scene.clearColor = mainColor;

@@ -26,8 +26,6 @@ export default class World {
     this.scene.collisionsEnabled = true;
 
     this.env = new Environment(this.scene);
-    this.env.setTheme("dark");
-
     this.ambientLight = new AmbientLight(this.scene);
     this.directLight = new DirectLight(this.scene);
     this.shadowGenerator = new ShadowGen(this.scene, this.directLight);

@@ -35,12 +35,12 @@ const level1 = {
 
 const level2 = {
   intro: [
-    "Damn. There must be multiple gates.",
+    "Damn. There must be multiple containers.",
     "But at least you're still here. I guess we might as well team up.",
     "By the way, I'm 0x28db77.",
     "But you can call me Zyra.",
   ],
-  theme: "dark",
+  theme: "emergency",
   music: "main",
   map: [
     [
