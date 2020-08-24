@@ -43,67 +43,61 @@ export default class World {
   loadLevel(level) {
     this.env.setTheme(level.theme);
 
-    // const objects = [];
-    // const selectable = [];
-    // const movable = [];
-    // const controllable = [];
+    const objects = [];
 
     // Start from bottom layer
-    level.map.reverse().forEach((layer, layerIndex) => {
-      const y = -1 + layerIndex;
+    level.map
+      .slice()
+      .reverse()
+      .forEach((layer, layerIndex) => {
+        const y = -1 + layerIndex;
 
-      // And bottom row
-      layer.reverse().forEach((row, rowIndex) => {
-        const x = 0 + rowIndex;
+        // And bottom row
+        layer
+          .slice()
+          .reverse()
+          .forEach((row, rowIndex) => {
+            const x = 0 + rowIndex;
 
-        row.forEach((item, colIndex) => {
-          const z = 5 - colIndex;
-          const id = `z${z}x${x}`;
+            row.forEach((item, colIndex) => {
+              const z = 5 - colIndex;
+              const id = `z${z}x${x}`;
 
-          let tile;
-          switch (item) {
-            case " ":
-              break;
-            case "_":
-              tile = new Floor(id);
-              break;
-            case "m":
-              tile = new FloorMovable(id);
-              break;
-            case "^":
-              this.character = new Character(this.scene, this.shadowGenerator);
-              this.character.attachControlsAndCamera(this.isoCam);
-              tile = this.character;
-              break;
-            case "$":
-              tile = new Teleporter(id);
-              break;
-          }
+              let tile;
+              switch (item) {
+                case " ":
+                  break;
+                case "_":
+                  tile = new Floor(id);
+                  break;
+                case "m":
+                  tile = new FloorMovable(id);
+                  break;
+                case "^":
+                  this.character = new Character(this.scene);
+                  this.character.attachControlsAndCamera(this.isoCam);
+                  tile = this.character;
+                  break;
+                case "$":
+                  tile = new Teleporter(id);
+                  break;
+              }
 
-          if (tile) {
-            tile.mesh.position.y += y;
-            tile.mesh.position.z += z;
-            tile.mesh.position.x += x;
-          }
-          //           if (item && item !== " ") {
-          //             console.log(id);
+              if (tile) {
+                tile.mesh.position.y += y;
+                tile.mesh.position.z += z;
+                tile.mesh.position.x += x;
 
-          //             console.log(item, tile);
-          //             if (tile.castsShadows) {
-          //               // TODO
-          //             }
+                objects.push(tile);
+                // this.scene.addMesh(tile.mesh);
 
-          //             if (tile.selectable) {
-          //               if (tile.movable) {
-          //                 if (tile.controllable) {
-          //                   // TODO
-          //                 }
-          //               }
-          //             }
-          //           }
-        });
+                if (tile.castsShadows) {
+                  this.shadowGenerator.addShadowCaster(tile.mesh);
+                }
+              }
+            });
+          });
       });
-    });
 
     // Commented out for now. Autoplays each refresh!
     // level.intro.forEach((intro) => speak(intro));

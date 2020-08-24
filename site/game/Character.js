@@ -17,8 +17,12 @@ export class Character {
   //   invertUV: true,
   // });
 
-  constructor(scene, shadowGenerator) {
+  constructor(scene) {
     this.scene = scene;
+    this.castsShadows = true;
+    this.selectable = true;
+    this.movable = true;
+    this.controllable = true;
 
     const body = MeshBuilder.CreateBox("character", {
       height: 0.6,
@@ -42,9 +46,6 @@ export class Character {
     // this.mesh.ellipsoid = new Vector3(0.9, 0.45, 0.9); // TODO Adjust
     this.mesh.speed = new Vector3.Zero();
     this.mesh.nextspeed = new Vector3.Zero();
-
-    scene.addMesh(this.mesh);
-    shadowGenerator.addShadowCaster(this.mesh);
   }
 
   // Shamelessly adapted from:
