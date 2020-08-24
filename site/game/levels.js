@@ -1,9 +1,10 @@
 const level1 = {
   intro: [
-    "Uh... Where am I? Where are the others?",
-    "Oh no! I have to get to the client before the request expires.",
-    "You there! Please help me!",
-    "I don't have write permissions here. Can you move that block?",
+    "Ouch... Where am I?",
+    "Where are the others?",
+    "I have to get to the client before the request expires!",
+    "You there... Can you help me?",
+    "I don't have write permissions here. Would you please move that block?",
   ],
   theme: "dark",
   music: "main",
@@ -28,11 +29,42 @@ const level1 = {
     ],
   ],
   outro: [
-    "Thanks!"
+    "Thanks for your help! Bye now!"
   ]
 };
 
 const level2 = {
+  intro: [
+    "Damn. There must be multiple gates.",
+    "But at least you're still here. I guess we might as well team up.",
+    "By the way, I'm 0x28db77.",
+    "But you can call me Zyra.",
+  ],
+  theme: "dark",
+  music: "main",
+  map: [
+    [
+      ["$", " "],
+      [" ", " "],
+      [" ", " "],
+      [" ", " "],
+      ["m", " "],
+      [" ", " "],
+      ["^", " "],
+    ],
+    [
+      ["_", " "],
+      ["_", " "],
+      ["_", " "],
+      ["_", " "],
+      ["_", "_"],
+      [" ", "_"],
+      ["_", "_"],
+    ],
+  ],
+  outro: [
+    "Thanks!"
+  ]
 };
 
 // Export object for flexible naming

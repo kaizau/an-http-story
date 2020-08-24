@@ -43,7 +43,13 @@ export default class World {
   loadLevel(level) {
     this.env.setTheme(level.theme);
 
-    const objects = [];
+    if (this.levelObjects) {
+      this.levelObjects.forEach((obj) => {
+        // TODO ensure objects are GC'ed
+        obj.mesh.dispose();
+      });
+    }
+    this.levelObjects = [];
 
     // Start from bottom layer
     level.map
@@ -88,7 +94,8 @@ export default class World {
                 tile.mesh.position.z += z;
                 tile.mesh.position.x += x;
 
-                objects.push(tile);
+                this.levelObjects.push(tile);
+                // TODO What happens if we don't add meshes to the scene?
                 // this.scene.addMesh(tile.mesh);
 
                 if (tile.castsShadows) {
@@ -100,6 +107,6 @@ export default class World {
       });
 
     // Commented out for now. Autoplays each refresh!
-    // level.intro.forEach((intro) => speak(intro));
+    // level.intro.forEach((intro) => friendSpeak(intro));
   }
 }
