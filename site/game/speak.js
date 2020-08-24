@@ -1,8 +1,8 @@
 // Some helpful advice: https://talkrapp.com/speechSynthesis.html
 // Voice tester: https://mdn.github.io/web-speech-api/speak-easy-synthesis/
 
-let friendVoice;
-let foeVoice;
+export let friendVoice;
+export let foeVoice;
 
 const friendVoices = [
   // Best, instantly likeable
@@ -49,6 +49,14 @@ const foeVoices = [
     pitch: 0.5,
   },
 
+  // Way too friendly, but as a MS fallback
+  {
+    name: "Microsoft Guy Online (Natural) - English (United States)",
+    // name: "Microsoft Yunyang Online (Natural) - Chinese (Mainland)",
+    rate: 1.0,
+    pitch: 0.1,
+  },
+
   // A haunted ghost spirit!
   // {
   //   name: "Moira",
@@ -88,7 +96,6 @@ function chooseVoices() {
 
   // Remove since onvoiceschanged may be called again when voice spoken
   if (allVoices.length) {
-    console.log(friendVoice.name, foeVoice.name);
     speechSynthesis.onvoiceschanged = null;
   }
 }

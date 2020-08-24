@@ -1,4 +1,4 @@
-import { friendSpeak, foeSpeak } from "./speak";
+import { friendSpeak, foeSpeak, friendVoice, foeVoice } from "./speak";
 import levels from "./levels";
 
 let debugBar;
@@ -40,6 +40,10 @@ export default function debug(game, state) {
       game.world.loadLevel(level);
     });
   });
+
+  setTimeout(() => {
+    console.log({ friendVoice, foeVoice });
+  }, 500);
 }
 
 function createDebugBar() {
