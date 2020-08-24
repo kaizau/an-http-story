@@ -7,7 +7,7 @@ const level1 = {
   ],
   theme: "dark",
   music: "main",
-  floor: [
+  map: [
     ["X", " "],
     ["_", " "],
     [" ", "m"],

@@ -7,8 +7,8 @@ import {
   initXRHelper,
 } from "./Scene";
 import { Character } from "./Character";
+import { Floor, FloorMovable, Wall, WallMovable } from "./Level";
 import { friendSpeak, foeSpeak } from "./speak";
-import FloorFactory from "./Floor";
 
 const { Engine, Scene } = BABYLON;
 
@@ -45,21 +45,31 @@ export default class World {
     this.character = new Character(this.scene, this.shadowGenerator);
     this.character.attachControlsAndCamera(this.isoCam);
 
-    level.floor.forEach((row) => {
+    // const objects = [];
+    // const selectable = [];
+    // const movable = [];
+    // const controllable = [];
+
+    level.map.forEach((row) => {
       row.forEach((col) => {
         console.log({ col });
+
+        const tile = col;
+        if (tile.castsShadows) {
+          // TODO
+        }
+
+        if (tile.selectable) {
+          if (tile.movable) {
+            if (tile.controllable) {
+              // TODO
+            }
+          }
+        }
       });
     });
 
-    this.createFloor(this.scene);
-
     // Commented out for now. Autoplays each refresh!
     // level.intro.forEach((intro) => speak(intro));
-  }
-
-  createFloor(scene) {
-    this.floorFactory = new FloorFactory(scene);
-    const tile = this.floorFactory.createTile();
-    scene.addMesh(tile);
   }
 }
