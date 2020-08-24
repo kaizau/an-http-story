@@ -6,10 +6,9 @@ import {
   IsoCam,
   initXRHelper,
 } from "./Scene";
-import { Floor, FloorMovable, Wall, WallMovable, Teleporter } from "./Level";
-import { Character } from "./Character";
+import { Controls } from "./Controls";
+import { LevelBuilder } from "./LevelBuilder";
 import { friendSpeak, foeSpeak } from "./speak";
-
 const { Engine, Scene } = BABYLON;
 
 export default class World {
@@ -32,6 +31,8 @@ export default class World {
 
     this.isoCam = new IsoCam(this.scene);
     this.scene.activeCamera = this.isoCam;
+    this.controls = new Controls(this.scene, this.isoCam);
+    this.builder = new LevelBuilder(this.shadowGenerator);
 
     initXRHelper(this.scene, this.isoCam).then((xrHelper) => {
       this.xrHelper = xrHelper;
@@ -47,62 +48,8 @@ export default class World {
         obj.mesh.dispose();
       });
     }
-    this.levelObjects = [];
-
-    // Start from bottom layer
-    level.map
-      .slice()
-      .reverse()
-      .forEach((layer, layerIndex) => {
-        const y = -1 + layerIndex;
-
-        // And bottom row
-        layer
-          .slice()
-          .reverse()
-          .forEach((row, rowIndex) => {
-            const x = 0 + rowIndex;
-
-            row.forEach((item, colIndex) => {
-              const z = 5 - colIndex;
-              const id = `z${z}x${x}`;
-
-              let tile;
-              switch (item) {
-                case " ":
-                  break;
-                case "_":
-                  tile = new Floor(id);
-                  break;
-                case "m":
-                  tile = new FloorMovable(id);
-                  break;
-                case "^":
-                  this.character = new Character(this.scene);
-                  this.character.attachControlsAndCamera(this.isoCam);
-                  tile = this.character;
-                  break;
-                case "$":
-                  tile = new Teleporter(id);
-                  break;
-              }
-
-              if (tile) {
-                tile.mesh.position.y += y;
-                tile.mesh.position.z += z;
-                tile.mesh.position.x += x;
-
-                this.levelObjects.push(tile);
-                // TODO What happens if we don't add meshes to the scene?
-                // this.scene.addMesh(tile.mesh);
-
-                if (tile.castsShadows) {
-                  this.shadowGenerator.addShadowCaster(tile.mesh);
-                }
-              }
-            });
-          });
-      });
+    this.levelObjects = this.builder.build(level);
+    // TODO attach controls on select?
 
     // Commented out for now. Autoplays each refresh!
     // level.intro.forEach((intro) => friendSpeak(intro));
