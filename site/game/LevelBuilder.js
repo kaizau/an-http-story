@@ -3,12 +3,10 @@ import { Actions } from "./Actions";
 const { Vector3, ActionManager } = BABYLON;
 
 export class LevelBuilder {
-  constructor(scene, shadowGenerator) {
+  constructor(scene, state, shadowGenerator) {
     this.scene = scene;
+    this.state = state;
     this.shadowGenerator = shadowGenerator;
-
-    // TODO Implement real state
-    this.state = {};
     this.actions = new Actions(this.scene, this.state);
   }
 
@@ -36,8 +34,6 @@ export class LevelBuilder {
 
               let item;
               switch (code) {
-                case " ":
-                  break;
                 case "_":
                   item = new Block(id);
                   break;
@@ -84,6 +80,7 @@ export class LevelBuilder {
                 }
 
                 if (item.mainCharacter) {
+                  this.state.mainCharacter = item;
                 }
 
                 if (item.winTrigger) {

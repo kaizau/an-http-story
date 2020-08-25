@@ -1,5 +1,6 @@
 const { MeshBuilder, Mesh } = BABYLON;
 
+// TODO Just return meshes directly?
 export class Character {
   // TODO Better character shape via polyhedron or extrusion
   // https://www.babylonjs-playground.com/#21QRSK#15
@@ -44,6 +45,8 @@ export class Character {
     this.mesh.checkCollisions = true;
     // this.mesh.applyGravity = true; // TODO Necessary?
     // this.mesh.ellipsoid = new Vector3(0.9, 0.45, 0.9); // TODO Adjust
+
+    this.mesh._class = this;
   }
 }
 
@@ -59,6 +62,8 @@ export class Teleporter {
     });
     this.mesh.position.y = -0.4;
     this.mesh.scaling.y = 0.75;
+
+    this.mesh._class = this;
   }
 }
 
@@ -76,6 +81,8 @@ export class Block {
       depth: 1,
     });
     this.mesh.receiveShadows = true;
+
+    this.mesh._class = this;
   }
 }
 

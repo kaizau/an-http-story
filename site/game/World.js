@@ -14,6 +14,8 @@ const { Engine, Scene } = BABYLON;
 export default class World {
   constructor(game) {
     this.game = game;
+    this.state = {}; // TODO Expand on this?
+
     this.canvas = document.getElementById("canvas");
     this.engine = new Engine(this.canvas, true);
     this.engine.runRenderLoop(() => {
@@ -29,28 +31,47 @@ export default class World {
     this.directLight = new DirectLight(this.scene);
     this.shadowGenerator = new ShadowGen(this.scene, this.directLight);
 
-    this.isoCam = new IsoCam(this.scene);
+    this.isoCam = new IsoCam(this.scene, this.state);
     this.scene.activeCamera = this.isoCam;
-    this.controls = new Controls(this.scene, this.isoCam);
-    this.builder = new LevelBuilder(this.scene, this.shadowGenerator);
+
+    this.controls = new Controls(this.scene);
+    this.builder = new LevelBuilder(
+      this.scene,
+      this.state,
+      this.shadowGenerator
+    );
 
     initXRHelper(this.scene, this.isoCam).then((xrHelper) => {
       this.xrHelper = xrHelper;
     });
+
+    this.levelObjects = [];
+    this.movingObjects = [];
+    // this.scene.registerBeforeRender(() => {
+    //   this.movingObjects.forEach((item) => {
+    //     if (item.moveTo) {
+
+    //       item.mesh.speed = new Vector3.Lerp(
+    //         item.mesh.speed,
+    //         item.mesh.nextspeed,
+    //         0.1
+    //       );
+    //       item.mesh.moveWithCollisions(item.mesh.speed);
+    //     }
+    //   });
+    // });
   }
 
   loadLevel(level) {
     this.env.setTheme(level.theme);
 
-    if (this.levelObjects) {
-      this.levelObjects.forEach((obj) => {
-        // TODO ensure objects are GC'ed
-        obj.mesh.dispose();
-      });
-    }
+    this.levelObjects.forEach((obj) => {
+      // TODO ensure objects are GC'ed
+      obj.mesh.dispose();
+    });
+
     this.levelObjects = this.builder.build(level);
-    console.log(this.levelObjects[0]);
-    // TODO attach controls on select?
+    this.movingObjects = this.levelObjects.filter((item) => item.movable);
 
     // Commented out for now. Autoplays each refresh!
     // level.intro.forEach((intro) => friendSpeak(intro));

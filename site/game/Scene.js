@@ -71,9 +71,19 @@ export function ShadowGen(scene, direct) {
   return shadowGenerator;
 }
 
-export function IsoCam(scene) {
+export function IsoCam(scene, state) {
   const isoCam = new FollowCamera("isoCam", new Vector3(-10, 10, -10), scene);
   isoCam.rotation = new Vector3(Math.PI / 6, Math.PI / 4, 0);
+
+  const cameraDistance = 10;
+  scene.registerBeforeRender(() => {
+    if (state.mainCharacter) {
+      isoCam.position.x = state.mainCharacter.mesh.position.x - cameraDistance;
+      isoCam.position.y = state.mainCharacter.mesh.position.y + cameraDistance;
+      isoCam.position.z = state.mainCharacter.mesh.position.z - cameraDistance;
+    }
+  });
+
   return isoCam;
 }
 

@@ -1,9 +1,8 @@
 const { Vector3, Axis } = BABYLON;
 
 export class Controls {
-  constructor(scene, camera) {
+  constructor(scene) {
     this.scene = scene;
-    this.camera = camera;
   }
 
   // Shamelessly adapted from:
@@ -11,7 +10,6 @@ export class Controls {
   attachToMesh(mesh) {
     const v = 0.1; // mesh speed
     const bounds = 30.0; // mesh max distance
-    const cameraDistance = 10;
 
     // NOTE Refactor to use ActionManager?
     // https://doc.babylonjs.com/how_to/how_to_use_actions
@@ -98,10 +96,6 @@ export class Controls {
       } else if (mesh.position.z < 0 - bounds) {
         mesh.position.z = 0 - bounds;
       }
-
-      this.camera.position.x = mesh.position.x - cameraDistance;
-      this.camera.position.y = mesh.position.y + cameraDistance;
-      this.camera.position.z = mesh.position.z - cameraDistance;
     });
   }
 }
