@@ -32,7 +32,7 @@ export default class World {
     this.isoCam = new IsoCam(this.scene);
     this.scene.activeCamera = this.isoCam;
     this.controls = new Controls(this.scene, this.isoCam);
-    this.builder = new LevelBuilder(this.shadowGenerator);
+    this.builder = new LevelBuilder(this.scene, this.shadowGenerator);
 
     initXRHelper(this.scene, this.isoCam).then((xrHelper) => {
       this.xrHelper = xrHelper;
@@ -49,6 +49,7 @@ export default class World {
       });
     }
     this.levelObjects = this.builder.build(level);
+    console.log(this.levelObjects[0]);
     // TODO attach controls on select?
 
     // Commented out for now. Autoplays each refresh!

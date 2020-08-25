@@ -1,9 +1,15 @@
-import { Floor, FloorMovable, Character, Teleporter } from "./LevelComponents";
-const { Vector3 } = BABYLON;
+import { Block, BlockMovable, Character, Teleporter } from "./LevelComponents";
+import { Actions } from "./Actions";
+const { Vector3, ActionManager } = BABYLON;
 
 export class LevelBuilder {
-  constructor(shadowGenerator) {
+  constructor(scene, shadowGenerator) {
+    this.scene = scene;
     this.shadowGenerator = shadowGenerator;
+
+    // TODO Implement real state
+    this.state = {};
+    this.actions = new Actions(this.scene, this.state);
   }
 
   build(level) {
@@ -24,45 +30,63 @@ export class LevelBuilder {
           .forEach((row, rowIndex) => {
             const x = 0 + rowIndex;
 
-            row.forEach((item, colIndex) => {
+            row.forEach((code, colIndex) => {
               const z = 5 - colIndex;
               const id = `z${z}x${x}`;
 
-              let tile;
-              switch (item) {
+              let item;
+              switch (code) {
                 case " ":
                   break;
                 case "_":
-                  tile = new Floor(id);
+                  item = new Block(id);
                   break;
                 case "m":
-                  tile = new FloorMovable(id);
+                  item = new BlockMovable(id);
                   break;
                 case "^":
-                  tile = new Character();
+                  item = new Character();
                   break;
                 case "$":
-                  tile = new Teleporter();
+                  item = new Teleporter();
                   break;
               }
 
-              if (tile) {
-                tile.mesh.position.y += y;
-                tile.mesh.position.z += z;
-                tile.mesh.position.x += x;
+              if (item) {
+                item.mesh.position.y += y;
+                item.mesh.position.z += z;
+                item.mesh.position.x += x;
 
-                levelObjects.push(tile);
+                levelObjects.push(item);
                 // TODO What happens if we don't add meshes to the scene?
-                // this.scene.addMesh(tile.mesh);
+                // this.scene.addMesh(item.mesh);
 
-                // TODO Use movement intents for click / select movement?
-                if (tile.movable) {
-                  tile.mesh.speed = new Vector3.Zero();
-                  tile.mesh.nextspeed = new Vector3.Zero();
+                // TODO Actions better as mixins in LevelComponents instead?
+                if (item.selectable || item.walkable || item.controllable) {
+                  item.mesh.actionManager = new ActionManager(this.scene);
                 }
 
-                if (tile.castsShadows) {
-                  this.shadowGenerator.addShadowCaster(tile.mesh);
+                if (item.selectable) {
+                  this.actions.selectable(item);
+                }
+
+                if (item.walkable) {
+                  this.actions.walkable(item);
+                }
+
+                if (item.movable) {
+                  item.mesh.speed = new Vector3.Zero();
+                  item.mesh.nextspeed = new Vector3.Zero();
+                }
+
+                if (item.castsShadows) {
+                  this.shadowGenerator.addShadowCaster(item.mesh);
+                }
+
+                if (item.mainCharacter) {
+                }
+
+                if (item.winTrigger) {
                 }
               }
             });
