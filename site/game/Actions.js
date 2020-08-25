@@ -1,8 +1,8 @@
 const { ActionManager, ExecuteCodeAction, SwitchBooleanAction } = BABYLON;
 const { OnPickTrigger } = ActionManager;
 
-const easingCubicOut = new BABYLON.CubicEase();
-easingCubicOut.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEOUT);
+const easingQuadOut = new BABYLON.QuadraticEase();
+easingQuadOut.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEOUT);
 
 // TODO Any automatic disposal?
 export class Actions {
@@ -47,7 +47,9 @@ export class Actions {
             xDiff = xDiff > 0 ? Math.min(xDiff, 1) : Math.max(xDiff, -1);
             if (Math.abs(xDiff) > 0 && this.canWalk(current, { x: xDiff })) {
               current.x += xDiff;
-              points.push(current.clone());
+              const point = current.clone();
+              point._movementAxis = "x";
+              points.push(point);
               continue;
             }
 
@@ -55,18 +57,31 @@ export class Actions {
             zDiff = zDiff > 0 ? Math.min(zDiff, 1) : Math.max(zDiff, -1);
             if (Math.abs(zDiff) > 0 && this.canWalk(current, { z: zDiff })) {
               current.z += zDiff;
-              points.push(current.clone());
+              const point = current.clone();
+              point._movementAxis = "z";
+              points.push(point);
             }
           }
-          // console.log(points.slice());
 
           if (points.length > 1) {
-            const keys = points.map((point, index) => {
-              return {
-                frame: index * 10,
-                value: point,
-              };
-            });
+            const animationLength = 15;
+            const keys = points
+              .map((point, index) => {
+                return {
+                  frame: index * animationLength,
+                  value: point,
+                };
+              })
+              // Discard keys with no direction change for smoother animation
+              .filter((key, index, keys) => {
+                const next = keys[index + 1];
+                return (
+                  !next || key.value._movementAxis !== next.value._movementAxis
+                );
+              });
+
+            // TODO Cleanup animations
+            // TODO Rotations
             const moveAnimation = new BABYLON.Animation(
               "move",
               "position",
@@ -75,7 +90,7 @@ export class Actions {
               BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
             );
             moveAnimation.setKeys(keys);
-            moveAnimation.setEasingFunction(easingCubicOut);
+            moveAnimation.setEasingFunction(easingQuadOut);
             selected.mesh.animations.push(moveAnimation);
             this.scene.beginAnimation(
               selected.mesh,
