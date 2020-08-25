@@ -39,23 +39,22 @@ export class Actions {
           let i = 0;
           while (i < 10 && (current.x !== target.x || current.z !== target.z)) {
             i++;
-            const xDiff = target.x - current.x;
-            const zDiff = target.z - current.z;
-
-            if (xDiff > 0 && this.canWalk(current, { x: 1 })) {
-              current.x += 1.0;
-            } else if (xDiff < 0 && this.canWalk(current, { x: -1 })) {
-              current.x -= 1.0;
-            } else if (zDiff > 0 && this.canWalk(current, { z: 1 })) {
-              current.z += 1.0;
-            } else if (zDiff < 0 && this.canWalk(current, { z: -1 })) {
-              current.z -= 1.0;
-            } else {
+            let xDiff = target.x - current.x;
+            xDiff = xDiff > 0 ? Math.min(xDiff, 1) : Math.max(xDiff, -1);
+            if (Math.abs(xDiff) > 0 && this.canWalk(current, { x: xDiff })) {
+              current.x += xDiff;
+              points.push(current.clone());
               continue;
             }
 
-            points.push(current.clone());
+            let zDiff = target.z - current.z;
+            zDiff = zDiff > 0 ? Math.min(zDiff, 1) : Math.max(zDiff, -1);
+            if (Math.abs(zDiff) > 0 && this.canWalk(current, { z: zDiff })) {
+              current.z += zDiff;
+              points.push(current.clone());
+            }
           }
+          // console.log(points.slice());
 
           if (points.length > 1) {
             // TODO Improve with gradual acceleration. Vector3.Lerp the first array?
@@ -81,6 +80,7 @@ export class Actions {
               })
               .flat();
 
+            // console.log(expandedPoints.slice());
             selected.movePath = expandedPoints;
           }
         }
