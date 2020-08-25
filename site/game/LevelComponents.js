@@ -30,7 +30,6 @@ export class Character {
       width: 0.25,
       depth: 0.15,
     });
-    body.position.y = 0.1;
 
     const head = MeshBuilder.CreateBox("head", {
       height: 0.2,

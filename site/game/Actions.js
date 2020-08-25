@@ -18,7 +18,6 @@ export class Actions {
         } else {
           // TODO Show selected HUD info
           this.state.selected = item;
-          console.log("selected", item);
         }
       })
     );
@@ -27,12 +26,11 @@ export class Actions {
   walkable(item) {
     item.mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
-        if (this.state.selected && this.state.selected.controllable) {
-          const current = this.state.selected.mesh.position.clone();
+        const selected = this.state.selected;
+        if (selected && selected.controllable) {
+          const current = selected.mesh.position.clone();
           const target = item.mesh.position.clone();
           target.y = current.y;
-
-          this.state.selected.moveTo = target;
 
           // Draw line between current and target
           const points = [];
@@ -41,37 +39,65 @@ export class Actions {
           let i = 0;
           while (i < 10 && (current.x !== target.x || current.z !== target.z)) {
             i++;
-
             const xDiff = target.x - current.x;
             const zDiff = target.z - current.z;
 
             if (xDiff > 0 && this.canWalk(current, { x: 1 })) {
-              current.x += 1;
+              current.x += 1.0;
             } else if (xDiff < 0 && this.canWalk(current, { x: -1 })) {
-              current.x -= 1;
+              current.x -= 1.0;
             } else if (zDiff > 0 && this.canWalk(current, { z: 1 })) {
-              current.z += 1;
+              current.z += 1.0;
             } else if (zDiff < 0 && this.canWalk(current, { z: -1 })) {
-              current.z -= 1;
+              current.z -= 1.0;
+            } else {
+              continue;
             }
-
-            // TODO ensure not blocked
 
             points.push(current.clone());
           }
 
-          if (this.state.path) {
-            this.state.path.dispose();
+          if (points.length > 1) {
+            // TODO Improve with gradual acceleration. Vector3.Lerp the first array?
+            const frames = 10;
+            const expandedPoints = points
+              .slice()
+              .map((current, index) => {
+                const expanded = [];
+                const next = points[index + 1];
+                if (next) {
+                  const xDiff = (next.x - current.x) / frames;
+                  const zDiff = (next.z - current.z) / frames;
+                  do {
+                    const frame = current.clone();
+                    expanded.push(frame);
+                    current.x += xDiff;
+                    current.z += zDiff;
+                  } while (expanded.length < frames);
+                } else {
+                  expanded.push(current.clone());
+                }
+                return expanded;
+              })
+              .flat();
+
+            selected.movePath = expandedPoints;
           }
-          this.state.path = BABYLON.MeshBuilder.CreateLines(
-            "movePath",
-            { points },
-            this.scene
-          );
-          this.state.path.color = new BABYLON.Color3(1, 0, 0);
         }
       })
     );
+  }
+
+  // TODO breaks when changing directions
+  addPoints(points, current, { x = 0, z = 0 }) {
+    points.push(current.clone());
+    const next = current.clone();
+    const divisions = 10;
+    for (let i = 1; i < divisions; i++) {
+      next.x += x / divisions;
+      next.z += z / divisions;
+      points.push(next.clone());
+    }
   }
 
   canWalk(current, { x = 0, z = 0 }) {

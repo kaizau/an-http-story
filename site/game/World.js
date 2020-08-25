@@ -47,19 +47,15 @@ export default class World {
 
     this.levelObjects = [];
     this.movingObjects = [];
-    // this.scene.registerBeforeRender(() => {
-    //   this.movingObjects.forEach((item) => {
-    //     if (item.moveTo) {
-
-    //       item.mesh.speed = new Vector3.Lerp(
-    //         item.mesh.speed,
-    //         item.mesh.nextspeed,
-    //         0.1
-    //       );
-    //       item.mesh.moveWithCollisions(item.mesh.speed);
-    //     }
-    //   });
-    // });
+    this.scene.registerBeforeRender(() => {
+      this.movingObjects.forEach((item) => {
+        if (item.movePath && item.movePath.length) {
+          const next = item.movePath.shift();
+          item.mesh.position = next;
+          // TODO Apply rotations
+        }
+      });
+    });
   }
 
   loadLevel(level) {
