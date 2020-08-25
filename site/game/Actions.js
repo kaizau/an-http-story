@@ -1,6 +1,9 @@
 const { ActionManager, ExecuteCodeAction, SwitchBooleanAction } = BABYLON;
 const { OnPickTrigger } = ActionManager;
 
+const easingCubicOut = new BABYLON.CubicEase();
+easingCubicOut.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEOUT);
+
 // TODO Any automatic disposal?
 export class Actions {
   constructor(scene, state) {
@@ -28,11 +31,12 @@ export class Actions {
       new ExecuteCodeAction(OnPickTrigger, () => {
         const selected = this.state.selected;
         if (selected && selected.controllable) {
+          // TODO Extract
           const current = selected.mesh.position.clone();
           const target = item.mesh.position.clone();
           target.y = current.y;
 
-          // Draw line between current and target
+          // Basic pathfinding
           const points = [];
           points.push(current.clone());
 
@@ -57,49 +61,67 @@ export class Actions {
           // console.log(points.slice());
 
           if (points.length > 1) {
-            // TODO Improve with gradual acceleration. Vector3.Lerp the first array?
-            const frames = 10;
-            const expandedPoints = points
-              .slice()
-              .map((current, index) => {
-                const expanded = [];
-                const next = points[index + 1];
-                if (next) {
-                  const xDiff = (next.x - current.x) / frames;
-                  const zDiff = (next.z - current.z) / frames;
-                  do {
-                    const frame = current.clone();
-                    expanded.push(frame);
-                    current.x += xDiff;
-                    current.z += zDiff;
-                  } while (expanded.length < frames);
-                } else {
-                  expanded.push(current.clone());
-                }
-                return expanded;
-              })
-              .flat();
-
-            // console.log(expandedPoints.slice());
-            selected.movePath = expandedPoints;
+            const keys = points.map((point, index) => {
+              return {
+                frame: index * 10,
+                value: point,
+              };
+            });
+            const moveAnimation = new BABYLON.Animation(
+              "move",
+              "position",
+              30,
+              BABYLON.Animation.ANIMATIONTYPE_VECTOR3,
+              BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
+            );
+            moveAnimation.setKeys(keys);
+            moveAnimation.setEasingFunction(easingCubicOut);
+            selected.mesh.animations.push(moveAnimation);
+            this.scene.beginAnimation(
+              selected.mesh,
+              0,
+              keys[keys.length - 1].frame
+            );
           }
+
+          // if (points.length > 1) {
+          //   const frames = 10;
+          //   const expandedPoints = points
+          //     .slice()
+          //     .map((current, index) => {
+          //       const expanded = [];
+          //       const next = points[index + 1];
+          //       if (next) {
+          //         // Easing acceleration
+
+          //         if (index === 0) {
+          //           console.log("first");
+          //         }
+
+          //         const xDiff = (next.x - current.x) / frames;
+          //         const zDiff = (next.z - current.z) / frames;
+          //         do {
+          //           const frame = current.clone();
+          //           expanded.push(frame);
+          //           current.x += xDiff;
+          //           current.z += zDiff;
+          //         } while (expanded.length < frames);
+          //       } else {
+          //         expanded.push(current.clone());
+          //       }
+          //       return expanded;
+          //     })
+          //     .flat();
+
+          // console.log(expandedPoints.slice());
+          // selected.movePath = expandedPoints;
+          // }
         }
       })
     );
   }
 
-  // TODO breaks when changing directions
-  addPoints(points, current, { x = 0, z = 0 }) {
-    points.push(current.clone());
-    const next = current.clone();
-    const divisions = 10;
-    for (let i = 1; i < divisions; i++) {
-      next.x += x / divisions;
-      next.z += z / divisions;
-      points.push(next.clone());
-    }
-  }
-
+  // TODO Change name
   canWalk(current, { x = 0, z = 0 }) {
     const origin = current.clone();
     const direction = new BABYLON.Vector3.Zero();
