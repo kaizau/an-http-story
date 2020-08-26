@@ -38,7 +38,9 @@ export class Actions {
 
           // Basic pathfinding
           const points = [];
-          points.push(current.clone());
+          const point = current.clone();
+          point._rotation = selected.mesh.rotation.clone();
+          points.push(point);
 
           let i = 0;
           while (i < 10 && (current.x !== target.x || current.z !== target.z)) {
@@ -49,6 +51,7 @@ export class Actions {
               current.x += xDiff;
               const point = current.clone();
               point._movementAxis = "x";
+              point._movementSign = Math.sign(xDiff);
               points.push(point);
               continue;
             }
@@ -59,16 +62,17 @@ export class Actions {
               current.z += zDiff;
               const point = current.clone();
               point._movementAxis = "z";
+              point._movementSign = Math.sign(zDiff);
               points.push(point);
             }
           }
 
           if (points.length > 1) {
-            const animationLength = 15;
-            const keys = points
+            const movementLength = 15;
+            const movementKeys = points
               .map((point, index) => {
                 return {
-                  frame: index * animationLength,
+                  frame: index * movementLength,
                   value: point,
                 };
               })
@@ -80,8 +84,33 @@ export class Actions {
                 );
               });
 
-            // TODO Cleanup animations
-            // TODO Rotations
+            // Clumsy, non-mathematical rotations
+            const rotationKeys = movementKeys.map((key, i) => {
+              const axis = key.value._movementAxis;
+              const sign = key.value._movementSign;
+              let rotation;
+              if (key.value._rotation) {
+                rotation = key.value._rotation.y;
+              } else if (axis === "x") {
+                if (sign > 0) {
+                  rotation = Math.PI * (3 / 2);
+                } else {
+                  rotation = Math.PI / 2;
+                }
+              } else {
+                if (sign > 0) {
+                  rotation = Math.PI;
+                } else {
+                  rotation = Math.PI * 2;
+                }
+              }
+              return {
+                frame: key.frame,
+                value: new BABYLON.Vector3(0, rotation, 0),
+              };
+            });
+
+            // TODO Cleanup animations after complete?
             const moveAnimation = new BABYLON.Animation(
               "move",
               "position",
@@ -89,13 +118,25 @@ export class Actions {
               BABYLON.Animation.ANIMATIONTYPE_VECTOR3,
               BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
             );
-            moveAnimation.setKeys(keys);
+            moveAnimation.setKeys(movementKeys);
             moveAnimation.setEasingFunction(easingQuadOut);
             selected.mesh.animations.push(moveAnimation);
+
+            const rotationAnimation = new BABYLON.Animation(
+              "rotation",
+              "rotation",
+              30,
+              BABYLON.Animation.ANIMATIONTYPE_VECTOR3,
+              BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
+            );
+            rotationAnimation.setKeys(rotationKeys);
+            rotationAnimation.setEasingFunction(easingQuadOut);
+            selected.mesh.animations.push(rotationAnimation);
+
             this.scene.beginAnimation(
               selected.mesh,
               0,
-              keys[keys.length - 1].frame
+              movementKeys[movementKeys.length - 1].frame
             );
           }
 

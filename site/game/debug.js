@@ -2,11 +2,13 @@ import { friendSpeak, foeSpeak, friendVoice, foeVoice } from "./speak";
 import levels from "./levels";
 
 let debugBar;
-let worldAxes;
+let axes;
 
-export default function debug(game, state) {
+export function initDebug(game, state) {
   window.game = game;
   window.state = state;
+
+  debugBar = createDebugBar();
 
   createButton("Scene Debugger", () => {
     if (!game.world.scene) return;
@@ -17,9 +19,12 @@ export default function debug(game, state) {
     }
   });
 
-  createButton("Show World Axes", () => {
-    if (worldAxes) return;
+  createButton("Show Axes", () => {
+    if (axes) return;
+    axes = true;
     createWorldAxes(game.world.scene, 5);
+    const character = game.world.levelObjects.find((obj) => obj.mainCharacter);
+    showLocalAxes(character.mesh);
   });
 
   createButton("Friend Speech", () => {
@@ -36,10 +41,6 @@ export default function debug(game, state) {
       game.world.loadLevel(level);
     });
   });
-
-  setTimeout(() => {
-    console.log({ friendVoice, foeVoice });
-  }, 500);
 }
 
 function createDebugBar() {
@@ -55,8 +56,6 @@ function createDebugBar() {
 }
 
 function createButton(label, handler) {
-  debugBar = debugBar || createDebugBar();
-
   const button = document.createElement("button");
   button.textContent = label;
   button.addEventListener("click", () => handler());
@@ -64,9 +63,7 @@ function createButton(label, handler) {
 }
 
 function createWorldAxes(scene, size) {
-  worldAxes = true;
-
-  const makeTextPlane = function (text, color, size) {
+  function makeTextPlane(text, color, size) {
     const dynamicTexture = new BABYLON.DynamicTexture(
       "DynamicTexture",
       50,
@@ -89,7 +86,8 @@ function createWorldAxes(scene, size) {
     plane.material.specularColor = new BABYLON.Color3(0, 0, 0);
     plane.material.diffuseTexture = dynamicTexture;
     return plane;
-  };
+  }
+
   const axisX = BABYLON.Mesh.CreateLines(
     "axisX",
     [
@@ -102,8 +100,10 @@ function createWorldAxes(scene, size) {
     scene
   );
   axisX.color = new BABYLON.Color3(1, 0, 0);
+  axisX.isPickable = false;
   const xChar = makeTextPlane("X", "red", size / 10);
   xChar.position = new BABYLON.Vector3(0.9 * size, -0.05 * size, 0);
+
   const axisY = BABYLON.Mesh.CreateLines(
     "axisY",
     [
@@ -116,8 +116,10 @@ function createWorldAxes(scene, size) {
     scene
   );
   axisY.color = new BABYLON.Color3(0, 1, 0);
+  axisY.isPickable = false;
   const yChar = makeTextPlane("Y", "green", size / 10);
   yChar.position = new BABYLON.Vector3(0, 0.9 * size, -0.05 * size);
+
   const axisZ = BABYLON.Mesh.CreateLines(
     "axisZ",
     [
@@ -130,6 +132,44 @@ function createWorldAxes(scene, size) {
     scene
   );
   axisZ.color = new BABYLON.Color3(0, 0, 1);
+  axisZ.isPickable = false;
   const zChar = makeTextPlane("Z", "blue", size / 10);
   zChar.position = new BABYLON.Vector3(0, 0.05 * size, 0.9 * size);
+}
+
+export function showLocalAxes(mesh) {
+  const size = 2;
+  const axisX = BABYLON.Mesh.CreateLines("axisX", [
+    new BABYLON.Vector3.Zero(),
+    new BABYLON.Vector3(size, 0, 0),
+    new BABYLON.Vector3(size * 0.95, 0.05 * size, 0),
+    new BABYLON.Vector3(size, 0, 0),
+    new BABYLON.Vector3(size * 0.95, -0.05 * size, 0),
+  ]);
+  axisX.color = new BABYLON.Color3(1, 0, 0);
+  axisX.isPickable = false;
+
+  const axisY = BABYLON.Mesh.CreateLines("axisY", [
+    new BABYLON.Vector3.Zero(),
+    new BABYLON.Vector3(0, size, 0),
+    new BABYLON.Vector3(-0.05 * size, size * 0.95, 0),
+    new BABYLON.Vector3(0, size, 0),
+    new BABYLON.Vector3(0.05 * size, size * 0.95, 0),
+  ]);
+  axisY.color = new BABYLON.Color3(0, 1, 0);
+  axisY.isPickable = false;
+
+  const axisZ = BABYLON.Mesh.CreateLines("axisZ", [
+    new BABYLON.Vector3.Zero(),
+    new BABYLON.Vector3(0, 0, size),
+    new BABYLON.Vector3(0, -0.05 * size, size * 0.95),
+    new BABYLON.Vector3(0, 0, size),
+    new BABYLON.Vector3(0, 0.05 * size, size * 0.95),
+  ]);
+  axisZ.color = new BABYLON.Color3(0, 0, 1);
+  axisZ.isPickable = false;
+
+  axisX.parent = mesh;
+  axisY.parent = mesh;
+  axisZ.parent = mesh;
 }

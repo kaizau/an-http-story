@@ -2,7 +2,7 @@ import State from "./game/State";
 import User from "./game/User";
 import World from "./game/World";
 import levels from "./game/levels";
-import debug from "./game/debug";
+import { initDebug } from "./game/debug";
 
 // All state lives in a single object, each key extending EventTarget
 const state = {
@@ -36,4 +36,4 @@ class Game {
 const game = new Game();
 game.startLevel(state.user.level || 1);
 
-debug(game, state);
+initDebug(game, state);
