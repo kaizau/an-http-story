@@ -14,13 +14,21 @@ export class Actions {
   selectable(item) {
     item.mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
+        // Unselect
         if (this.state.selected === item) {
+          this.state.selected.mesh.renderOutline = false;
           this.state.selected = null;
-        } else if (this.state.selected) {
-          // TODO Unselect existing
-        } else {
-          // TODO Show selected HUD info
+        }
+        // Replace selected
+        else if (this.state.selected) {
+          this.state.selected.mesh.renderOutline = false;
           this.state.selected = item;
+          this.state.selected.mesh.renderOutline = true;
+        }
+        // New selected
+        else {
+          this.state.selected = item;
+          this.state.selected.mesh.renderOutline = true;
         }
       })
     );
@@ -104,7 +112,6 @@ export class Actions {
                   rotation = 0;
                 }
               }
-              console.log(i, rotation / Math.PI + " * pi");
               return {
                 frame: key.frame,
                 value: new BABYLON.Vector3(0, rotation, 0),

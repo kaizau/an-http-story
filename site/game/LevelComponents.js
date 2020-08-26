@@ -36,8 +36,9 @@ export class Character {
     // this.mesh.ellipsoid = new Vector3(0.9, 0.45, 0.9); // TODO Adjust
 
     const material = new StandardMaterial("characterMaterial");
-    material.diffuseColor = new BABYLON.Color3(0.6, 0.6, 0.9);
+    material.diffuseColor = new Color3(0.6, 0.6, 0.9);
     this.mesh.material = material;
+    this.mesh.outlineColor = new Color3(0, 1, 1);
 
     this.mesh._class = this;
   }
@@ -57,8 +58,9 @@ export class Teleporter {
     this.mesh.scaling.y = 0.75;
 
     const material = new StandardMaterial("teleporterMaterial");
-    material.diffuseColor = new BABYLON.Color3(0.6, 0.6, 0.9);
+    material.diffuseColor = new Color3(0.6, 0.6, 0.9);
     this.mesh.material = material;
+    this.mesh.outlineColor = new Color3(0, 1, 1);
 
     this.mesh._class = this;
   }
