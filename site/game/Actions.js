@@ -101,9 +101,10 @@ export class Actions {
                 if (sign > 0) {
                   rotation = Math.PI;
                 } else {
-                  rotation = Math.PI * 2;
+                  rotation = 0;
                 }
               }
+              console.log(i, rotation / Math.PI + " * pi");
               return {
                 frame: key.frame,
                 value: new BABYLON.Vector3(0, rotation, 0),
