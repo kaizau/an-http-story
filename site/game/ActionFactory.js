@@ -1,5 +1,16 @@
-const { ActionManager, ExecuteCodeAction } = BABYLON;
-const { OnPickTrigger } = ActionManager;
+const {
+  ActionManager,
+  ExecuteCodeAction,
+  PointerDragBehavior,
+  Vector3,
+} = BABYLON;
+const {
+  OnPickTrigger,
+  OnPointerOverTrigger,
+  OnPointerOutTrigger,
+  OnIntersectionEnterTrigger,
+  OnIntersectionExitTrigger,
+} = ActionManager;
 
 const easingQuadOut = new BABYLON.QuadraticEase();
 easingQuadOut.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEOUT);
@@ -17,6 +28,15 @@ export class ActionFactory {
 
   makeSelectable(mesh) {
     this.ensureActionManager(mesh);
+
+    mesh.actionManager.registerAction(
+      new ExecuteCodeAction(OnPointerOverTrigger, () => {})
+    );
+
+    mesh.actionManager.registerAction(
+      new ExecuteCodeAction(OnPointerOutTrigger, () => {})
+    );
+
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
         // Unselect
@@ -48,10 +68,24 @@ export class ActionFactory {
         if (selected && selected.isControllable) {
           const target = mesh.position.clone();
           target.y = selected.position.y;
-          this.moveMesh(selected, target);
+          this._moveMesh(selected, target);
         }
       })
     );
+  }
+
+  makeDraggable(mesh) {
+    const pointerDragBehavior = new PointerDragBehavior({
+      dragPlaneNormal: new Vector3(0, 1, 0),
+    });
+    pointerDragBehavior.onDragStartObservable.add(() => {
+      mesh.renderOutline = true;
+    });
+    pointerDragBehavior.onDragEndObservable.add(() => {
+      // TODO Snap to unit?
+      mesh.renderOutline = false;
+    });
+    mesh.addBehavior(pointerDragBehavior);
   }
 
   makeControllable(mesh) {
@@ -64,7 +98,7 @@ export class ActionFactory {
   // TODO Lose when character touches enemy
   // OnIntersectionEnterTrigger
 
-  moveMesh(mesh, target) {
+  _moveMesh(mesh, target) {
     const current = mesh.position.clone();
 
     // Basic pathfinding
@@ -78,7 +112,7 @@ export class ActionFactory {
       i++;
       let xDiff = target.x - current.x;
       xDiff = xDiff > 0 ? Math.min(xDiff, 1) : Math.max(xDiff, -1);
-      if (Math.abs(xDiff) > 0 && this.canMoveTo(current, { x: xDiff })) {
+      if (Math.abs(xDiff) > 0 && this._canMoveTo(current, { x: xDiff })) {
         current.x += xDiff;
         const point = current.clone();
         point._movementAxis = "x";
@@ -89,7 +123,7 @@ export class ActionFactory {
 
       let zDiff = target.z - current.z;
       zDiff = zDiff > 0 ? Math.min(zDiff, 1) : Math.max(zDiff, -1);
-      if (Math.abs(zDiff) > 0 && this.canMoveTo(current, { z: zDiff })) {
+      if (Math.abs(zDiff) > 0 && this._canMoveTo(current, { z: zDiff })) {
         current.z += zDiff;
         const point = current.clone();
         point._movementAxis = "z";
@@ -170,7 +204,7 @@ export class ActionFactory {
     }
   }
 
-  canMoveTo(current, { x = 0, z = 0 }) {
+  _canMoveTo(current, { x = 0, z = 0 }) {
     const origin = current.clone();
     const direction = new BABYLON.Vector3.Zero();
     direction.x += x;

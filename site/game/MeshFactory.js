@@ -37,6 +37,7 @@ export class MeshFactory {
     material.diffuseColor = new Color3(0.6, 0.6, 0.9);
     mesh.material = material;
 
+    // TODO subtle bobbing up and down animation
     this.shadows.addShadowCaster(mesh);
     this.actionFactory.makeControllable(mesh);
     this.actionFactory.makeSelectable(mesh);
@@ -68,6 +69,7 @@ export class MeshFactory {
       depth: 1,
     });
     mesh.receiveShadows = true;
+    mesh.checkCollisions = true;
 
     this.actionFactory.makeWalkable(mesh);
     return mesh;
@@ -79,10 +81,12 @@ export class MeshFactory {
       width: 1,
       depth: 1,
     });
+    mesh.checkCollisions = true;
     mesh.receiveShadows = true;
+    mesh.outlineColor = new Color3(0, 1, 1);
 
     this.actionFactory.makeWalkable(mesh);
-    this.actionFactory.makeSelectable(mesh);
+    this.actionFactory.makeDraggable(mesh);
     return mesh;
   }
 }
