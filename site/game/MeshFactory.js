@@ -7,7 +7,6 @@ const {
   BoundingInfo,
 } = BABYLON;
 
-// TODO We're not using out of the box collisions. Consider removing.
 export class MeshFactory {
   constructor(scene, state, actionFactory, shadows) {
     this.scene = scene;
@@ -86,31 +85,17 @@ export class MeshFactory {
       depth: 1,
     });
     mesh.receiveShadows = true;
-    setSmallerBoundingBox(mesh);
 
-    // const customCollider = MeshBuilder.CreateBox("blockMovableCollider-" + id, {
-    //   height: 0.9,
-    //   width: 0.9,
-    //   depth: 0.9,
-    // });
-    // // customCollider.isVisible = false;
-
-    // customCollider.parent = mesh;
-    // mesh.customCollider = customCollider;
-    // mesh.visibility = 0.5;
+    // Smaller bounding box to allow fitting into tight spaces
+    const min = mesh.getBoundingInfo().boundingBox.minimum;
+    const max = mesh.getBoundingInfo().boundingBox.maximum;
+    const adjustment = new Vector3(0.1, 0.1, 0.1);
+    min.addInPlace(adjustment);
+    max.subtractInPlace(adjustment);
+    mesh.setBoundingInfo(new BoundingInfo(min, max));
 
     this.actionFactory.makeWalkable(mesh);
     this.actionFactory.makeDraggable(mesh);
     return mesh;
   }
-}
-
-function setSmallerBoundingBox(mesh) {
-  const min = mesh.getBoundingInfo().boundingBox.minimum;
-  const max = mesh.getBoundingInfo().boundingBox.maximum;
-  const adjustment = new Vector3(0.3, 0.3, 0.3);
-  min.addInPlace(adjustment);
-  max.subtractInPlace(adjustment);
-  mesh.setBoundingInfo = new BoundingInfo(min, max);
-  mesh.showBoundingBox = true;
 }

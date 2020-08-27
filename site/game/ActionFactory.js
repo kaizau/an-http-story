@@ -86,7 +86,7 @@ export class ActionFactory {
       mesh.position.x += event.delta.x;
       mesh.position.z += event.delta.z;
       mesh.computeWorldMatrix();
-      if (this._hasCollision(mesh)) {
+      if (this._hasAnyCollision(mesh)) {
         mesh.position.x -= event.delta.x;
         mesh.position.z -= event.delta.z;
         mesh.computeWorldMatrix();
@@ -114,16 +114,13 @@ export class ActionFactory {
     mesh.actionManager = mesh.actionManger || new ActionManager(this.scene);
   }
 
-  // TODO Only test with meshes in camera view? Or on same plane?
-  // scene.getActiveMeshes()?
-  _hasCollision(mesh) {
-    return this.state.levelMeshes.some((otherMesh) => {
-      const intersection = mesh.intersectsMesh(otherMesh);
-      if (intersection && mesh !== otherMesh) {
-        console.log(mesh.name, otherMesh.name, intersection);
-      }
-      return intersection && mesh !== otherMesh;
+  _hasAnyCollision(mesh) {
+    // Only test with meshes in camera view, on same plane
+    const active = this.scene.getActiveMeshes().data;
+    const samePlane = active.filter((otherMesh) => {
+      return mesh !== otherMesh && mesh.position.y === otherMesh.position.y;
     });
+    return samePlane.some((otherMesh) => mesh.intersectsMesh(otherMesh));
   }
 
   _makeHoverable(mesh) {
