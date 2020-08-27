@@ -31,7 +31,6 @@ export class MeshFactory {
 
     const mesh = Mesh.MergeMeshes([body, head], true);
     mesh.checkCollisions = true;
-    mesh.outlineColor = new Color3(0, 1, 1);
 
     const material = new StandardMaterial("characterMaterial");
     material.diffuseColor = new Color3(0.6, 0.6, 0.9);
@@ -52,7 +51,6 @@ export class MeshFactory {
     });
     mesh.position.y = -0.4;
     mesh.scaling.y = 0.75;
-    mesh.outlineColor = new Color3(0, 1, 1);
 
     const material = new StandardMaterial("teleporterMaterial");
     material.diffuseColor = new Color3(0.6, 0.6, 0.9);
@@ -83,7 +81,6 @@ export class MeshFactory {
     });
     mesh.checkCollisions = true;
     mesh.receiveShadows = true;
-    mesh.outlineColor = new Color3(0, 1, 1);
 
     this.actionFactory.makeWalkable(mesh);
     this.actionFactory.makeDraggable(mesh);

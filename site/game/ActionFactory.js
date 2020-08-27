@@ -2,6 +2,7 @@ const {
   ActionManager,
   ExecuteCodeAction,
   PointerDragBehavior,
+  Color3,
   Vector3,
 } = BABYLON;
 const {
@@ -15,6 +16,9 @@ const {
 const easingQuadOut = new BABYLON.QuadraticEase();
 easingQuadOut.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEOUT);
 
+const primaryOutline = new Color3(0, 1, 1);
+const secondaryOutline = new Color3(1, 1, 1);
+
 // TODO Are action managers automatically disposed when meshes are disposed?
 export class ActionFactory {
   constructor(scene, state) {
@@ -22,20 +26,10 @@ export class ActionFactory {
     this.state = state;
   }
 
-  ensureActionManager(mesh) {
-    mesh.actionManager = mesh.actionManger || new ActionManager(this.scene);
-  }
-
   makeSelectable(mesh) {
-    this.ensureActionManager(mesh);
-
-    mesh.actionManager.registerAction(
-      new ExecuteCodeAction(OnPointerOverTrigger, () => {})
-    );
-
-    mesh.actionManager.registerAction(
-      new ExecuteCodeAction(OnPointerOutTrigger, () => {})
-    );
+    mesh.outlineColor = primaryOutline;
+    this._ensureActionManager(mesh);
+    this._makeHoverable(mesh);
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
@@ -61,7 +55,10 @@ export class ActionFactory {
 
   makeWalkable(mesh) {
     mesh.isWalkable = true;
-    this.ensureActionManager(mesh);
+    mesh.outlineColor = secondaryOutline;
+    this._ensureActionManager(mesh);
+    this._makeHoverable(mesh);
+
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
         const selected = this.state.selected;
@@ -75,6 +72,7 @@ export class ActionFactory {
   }
 
   makeDraggable(mesh) {
+    mesh.outlineColor = primaryOutline;
     const pointerDragBehavior = new PointerDragBehavior({
       dragPlaneNormal: new Vector3(0, 1, 0),
     });
@@ -97,6 +95,28 @@ export class ActionFactory {
 
   // TODO Lose when character touches enemy
   // OnIntersectionEnterTrigger
+
+  _ensureActionManager(mesh) {
+    mesh.actionManager = mesh.actionManger || new ActionManager(this.scene);
+  }
+
+  _makeHoverable(mesh) {
+    mesh.actionManager.registerAction(
+      new ExecuteCodeAction(OnPointerOverTrigger, () => {
+        mesh.renderOutline = true;
+        // mesh.material.diffuseColor.scale(1.25);
+      })
+    );
+
+    mesh.actionManager.registerAction(
+      new ExecuteCodeAction(OnPointerOutTrigger, () => {
+        if (this.state.selected !== mesh) {
+          mesh.renderOutline = false;
+        }
+        // mesh.material.diffuseColor.scale(0.8);
+      })
+    );
+  }
 
   _moveMesh(mesh, target) {
     const current = mesh.position.clone();
