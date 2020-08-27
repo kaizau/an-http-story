@@ -89,7 +89,7 @@ export class MeshFactory {
     // Smaller bounding box to allow fitting into tight spaces
     const min = mesh.getBoundingInfo().boundingBox.minimum;
     const max = mesh.getBoundingInfo().boundingBox.maximum;
-    const adjustment = new Vector3(0.1, 0.1, 0.1);
+    const adjustment = new Vector3(0.2, 0.2, 0.2);
     min.addInPlace(adjustment);
     max.subtractInPlace(adjustment);
     mesh.setBoundingInfo(new BoundingInfo(min, max));

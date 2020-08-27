@@ -65,7 +65,7 @@ export class ActionFactory {
         if (selected && selected.isControllable) {
           const target = mesh.position.clone();
           target.y = selected.position.y;
-          this._moveMesh(selected, target);
+          this._walkMeshTo(selected, target);
         }
       })
     );
@@ -93,7 +93,10 @@ export class ActionFactory {
       }
     });
     pointerDragBehavior.onDragEndObservable.add(() => {
-      // TODO Snap / positional quantizing
+      const snap = mesh.position.clone();
+      snap.x = Math.round(snap.x);
+      snap.z = Math.round(snap.z);
+      this._floatMeshTo(mesh, snap);
       this.state.dragged = null;
       mesh.renderOutline = false;
     });
@@ -141,15 +144,38 @@ export class ActionFactory {
     );
   }
 
-  _moveMesh(mesh, target) {
+  _floatMeshTo(mesh, target) {
+    const current = mesh.position.clone();
+    const moveAnimation = new BABYLON.Animation(
+      "float",
+      "position",
+      30,
+      BABYLON.Animation.ANIMATIONTYPE_VECTOR3,
+      BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
+    );
+    const frames = 10;
+    const keys = [
+      {
+        frame: 0,
+        value: current,
+      },
+      { frame: frames, value: target },
+    ];
+    moveAnimation.setKeys(keys);
+    moveAnimation.setEasingFunction(easingQuadOut);
+    mesh.animations.push(moveAnimation);
+    this.scene.beginAnimation(mesh, 0, frames);
+  }
+
+  _walkMeshTo(mesh, target) {
     const current = mesh.position.clone();
 
-    // Basic pathfinding
     const points = [];
     const point = current.clone();
     point._rotation = mesh.rotation.clone();
     points.push(point);
 
+    // Basic pathfinding
     let i = 0;
     while (i < 10 && (current.x !== target.x || current.z !== target.z)) {
       i++;
