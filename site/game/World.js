@@ -25,7 +25,8 @@ export default class World {
     window.addEventListener("resize", () => this.engine.resize());
 
     this.scene = new Scene(this.engine);
-    this.scene.collisionsEnabled = true;
+    // TODO We're not using out of the box collisions. Consider removing.
+    // this.scene.collisionsEnabled = true;
     this.env = new Environment(this.scene);
 
     this.ambientLight = new AmbientLight(this.scene);
@@ -51,21 +52,11 @@ export default class World {
     initXRHelper(this.scene, this.isoCam).then((xrHelper) => {
       this.xrHelper = xrHelper;
     });
-
-    // TODO Better to keep this within levelFactory?
-    this.levelObjects = [];
   }
 
   loadLevel(level) {
     this.env.setTheme(level.theme);
-
-    this.levelObjects.forEach((obj) => {
-      // TODO Ensure all wrapper classes are also GC'ed
-      obj.mesh.dispose();
-    });
-
-    this.levelObjects = this.levelFactory.create(level);
-
+    this.levelFactory.create(level);
     // Commented out for now. Autoplays each refresh!
     // level.intro.forEach((intro) => friendSpeak(intro));
   }

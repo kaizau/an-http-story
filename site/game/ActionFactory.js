@@ -76,11 +76,25 @@ export class ActionFactory {
     const pointerDragBehavior = new PointerDragBehavior({
       dragPlaneNormal: new Vector3(0, 1, 0),
     });
+    pointerDragBehavior.moveAttached = false;
     pointerDragBehavior.onDragStartObservable.add(() => {
+      this.state.dragged = mesh;
       mesh.renderOutline = true;
     });
+    pointerDragBehavior.onDragObservable.add((event) => {
+      mesh.renderOutline = true;
+      mesh.position.x += event.delta.x;
+      mesh.position.z += event.delta.z;
+      mesh.computeWorldMatrix();
+      if (this._hasCollision(mesh)) {
+        mesh.position.x -= event.delta.x;
+        mesh.position.z -= event.delta.z;
+        mesh.computeWorldMatrix();
+      }
+    });
     pointerDragBehavior.onDragEndObservable.add(() => {
-      // TODO Snap to unit?
+      // TODO Snap / positional quantizing
+      this.state.dragged = null;
       mesh.renderOutline = false;
     });
     mesh.addBehavior(pointerDragBehavior);
@@ -100,6 +114,18 @@ export class ActionFactory {
     mesh.actionManager = mesh.actionManger || new ActionManager(this.scene);
   }
 
+  // TODO Only test with meshes in camera view? Or on same plane?
+  // scene.getActiveMeshes()?
+  _hasCollision(mesh) {
+    return this.state.levelMeshes.some((otherMesh) => {
+      const intersection = mesh.intersectsMesh(otherMesh);
+      if (intersection && mesh !== otherMesh) {
+        console.log(mesh.name, otherMesh.name, intersection);
+      }
+      return intersection && mesh !== otherMesh;
+    });
+  }
+
   _makeHoverable(mesh) {
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPointerOverTrigger, () => {
@@ -110,7 +136,7 @@ export class ActionFactory {
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPointerOutTrigger, () => {
-        if (this.state.selected !== mesh) {
+        if (this.state.selected !== mesh && this.state.dragged !== mesh) {
           mesh.renderOutline = false;
         }
         // mesh.material.diffuseColor.scale(0.8);

@@ -3,12 +3,13 @@ export class LevelFactory {
     this.scene = scene;
     this.state = state;
     this.meshFactory = meshFactory;
+
+    this.state.levelMeshes = [];
   }
 
-  // TODO Merge non-movable meshes of same type?
-  // TODO Or use Instances?
+  // TODO Merge non-movable meshes of same type? Or use Instances?
   create(level) {
-    const levelObjects = [];
+    this.reset();
 
     // Start from bottom layer
     level.map
@@ -49,14 +50,16 @@ export class LevelFactory {
                 mesh.position.z += z;
                 mesh.position.x += x;
 
-                levelObjects.push(mesh);
+                this.state.levelMeshes.push(mesh);
                 // TODO What happens if we don't add meshes to the scene?
                 // this.scene.addMesh(mesh);
               }
             });
           });
       });
+  }
 
-    return levelObjects;
+  reset() {
+    this.state.levelMeshes.forEach((mesh) => mesh.dispose());
   }
 }

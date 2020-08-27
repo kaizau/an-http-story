@@ -27,6 +27,12 @@ export function initDebug(game, state) {
     showLocalAxes(character.mesh);
   });
 
+  createButton("Show Bounding Boxes", () => {
+    game.world.state.levelMeshes.forEach((mesh) => {
+      mesh.showBoundingBox = true;
+    });
+  });
+
   createButton("Friend Speech", () => {
     friendSpeak("Testing speech synthesis... Do I sound likeable?");
   });

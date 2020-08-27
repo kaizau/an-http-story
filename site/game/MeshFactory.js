@@ -1,5 +1,13 @@
-const { MeshBuilder, Mesh, StandardMaterial, Color3 } = BABYLON;
+const {
+  MeshBuilder,
+  Mesh,
+  StandardMaterial,
+  Color3,
+  Vector3,
+  BoundingInfo,
+} = BABYLON;
 
+// TODO We're not using out of the box collisions. Consider removing.
 export class MeshFactory {
   constructor(scene, state, actionFactory, shadows) {
     this.scene = scene;
@@ -30,7 +38,6 @@ export class MeshFactory {
     head.rotation.y = Math.PI / 2;
 
     const mesh = Mesh.MergeMeshes([body, head], true);
-    mesh.checkCollisions = true;
 
     const material = new StandardMaterial("characterMaterial");
     material.diffuseColor = new Color3(0.6, 0.6, 0.9);
@@ -67,7 +74,6 @@ export class MeshFactory {
       depth: 1,
     });
     mesh.receiveShadows = true;
-    mesh.checkCollisions = true;
 
     this.actionFactory.makeWalkable(mesh);
     return mesh;
@@ -79,11 +85,32 @@ export class MeshFactory {
       width: 1,
       depth: 1,
     });
-    mesh.checkCollisions = true;
     mesh.receiveShadows = true;
+    setSmallerBoundingBox(mesh);
+
+    // const customCollider = MeshBuilder.CreateBox("blockMovableCollider-" + id, {
+    //   height: 0.9,
+    //   width: 0.9,
+    //   depth: 0.9,
+    // });
+    // // customCollider.isVisible = false;
+
+    // customCollider.parent = mesh;
+    // mesh.customCollider = customCollider;
+    // mesh.visibility = 0.5;
 
     this.actionFactory.makeWalkable(mesh);
     this.actionFactory.makeDraggable(mesh);
     return mesh;
   }
+}
+
+function setSmallerBoundingBox(mesh) {
+  const min = mesh.getBoundingInfo().boundingBox.minimum;
+  const max = mesh.getBoundingInfo().boundingBox.maximum;
+  const adjustment = new Vector3(0.3, 0.3, 0.3);
+  min.addInPlace(adjustment);
+  max.subtractInPlace(adjustment);
+  mesh.setBoundingInfo = new BoundingInfo(min, max);
+  mesh.showBoundingBox = true;
 }
