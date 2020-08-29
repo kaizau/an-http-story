@@ -8,25 +8,26 @@ const canvas = document.querySelector("#canvas");
 const directory = document.querySelector("#directory");
 const start = document.querySelector("#start");
 const message = document.querySelector("#message");
+const music = createMusic();
 
-// TODO Disable for testing
-startGame();
-// const music = createMusic();
-
-start.addEventListener("click", () => {
-  message.textContent = "Preparing download...";
-
-  setTimeout(() => {
-    message.textContent = "Error";
-    music.then((audio) => audio.play());
+if (process.env.DEBUG) {
+  startGame();
+} else {
+  start.addEventListener("click", () => {
+    message.textContent = "Preparing download...";
 
     setTimeout(() => {
-      body.classList.add("zoom");
+      message.textContent = "Error";
+      music.then((audio) => audio.play());
 
-      setTimeout(startGame, 4000);
+      setTimeout(() => {
+        body.classList.add("zoom");
+
+        setTimeout(startGame, 4000);
+      }, 2000);
     }, 2000);
-  }, 2000);
-});
+  });
+}
 
 function startGame() {
   directory.classList.add("hidden");
@@ -34,10 +35,17 @@ function startGame() {
   body.classList.remove("zoom");
 
   const world = new World();
-  initDebug(world);
+
+  if (process.env.DEBUG) {
+    initDebug(world);
+  }
 }
 
 function createMusic() {
+  if (process.env.DEBUG) {
+    return { then() {} };
+  }
+
   const player = new CPlayer();
   player.init(song);
 

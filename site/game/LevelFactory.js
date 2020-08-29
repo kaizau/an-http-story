@@ -30,8 +30,9 @@ export class LevelFactory {
     this.env.setTheme(level.theme);
     this.buildLevel(level);
 
-    // TODO Commented out for now. Autoplays each refresh!
-    // level.intro.forEach((intro) => friendSpeak(intro));
+    if (!process.env.DEBUG) {
+      level.intro.forEach((intro) => friendSpeak(intro));
+    }
 
     // TODO Only allow player control after level is built
     events.emit("levelReady");
