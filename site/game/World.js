@@ -10,6 +10,7 @@ import { ActionFactory } from "./ActionFactory";
 import { MeshFactory } from "./MeshFactory";
 import { LevelFactory } from "./LevelFactory";
 import { friendSpeak, foeSpeak } from "./speak";
+import levels from "./levels";
 const { Engine, Scene } = BABYLON;
 
 export default class World {
@@ -25,15 +26,12 @@ export default class World {
     window.addEventListener("resize", () => this.engine.resize());
 
     this.scene = new Scene(this.engine);
-    // TODO We're not using out of the box collisions. Consider removing.
-    // this.scene.collisionsEnabled = true;
     this.env = new Environment(this.scene);
 
     this.ambientLight = new AmbientLight(this.scene);
     this.directLight = new DirectLight(this.scene);
     this.shadows = new ShadowGen(this.scene, this.directLight);
-
-    this.isoCam = new IsoCam(this.scene, this.state);
+    this.isoCam = new IsoCam(this.scene);
     this.scene.activeCamera = this.isoCam;
 
     this.actionFactory = new ActionFactory(this.scene, this.state);
@@ -54,7 +52,8 @@ export default class World {
     });
   }
 
-  loadLevel(level) {
+  loadLevel(levelId) {
+    const level = levels[levelId];
     this.env.setTheme(level.theme);
     this.levelFactory.create(level);
     // Commented out for now. Autoplays each refresh!

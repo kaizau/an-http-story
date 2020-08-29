@@ -1,34 +1,33 @@
-import { friendSpeak, foeSpeak, friendVoice, foeVoice } from "./speak";
+import { friendSpeak, foeSpeak } from "./speak";
 import levels from "./levels";
 
 let debugBar;
 let axes;
 
-export function initDebug(game, state) {
-  window.game = game;
-  window.state = state;
+export function initDebug(world) {
+  window.world = world;
 
   debugBar = createDebugBar();
 
   createButton("Scene Debugger", () => {
-    if (!game.world.scene) return;
-    if (game.world.scene.debugLayer.isVisible()) {
-      game.world.scene.debugLayer.hide();
+    if (!world.scene) return;
+    if (world.scene.debugLayer.isVisible()) {
+      world.scene.debugLayer.hide();
     } else {
-      game.world.scene.debugLayer.show();
+      world.scene.debugLayer.show();
     }
   });
 
   createButton("Show Axes", () => {
     if (axes) return;
     axes = true;
-    createWorldAxes(game.world.scene, 5);
-    const character = game.world.levelObjects.find((obj) => obj.mainCharacter);
+    createWorldAxes(world.scene, 5);
+    const character = world.levelObjects.find((obj) => obj.mainCharacter);
     showLocalAxes(character.mesh);
   });
 
   createButton("Show Bounding Boxes", () => {
-    game.world.state.levelMeshes.forEach((mesh) => {
+    world.levelFactory.levelMeshes.forEach((mesh) => {
       mesh.showBoundingBox = true;
     });
   });
@@ -44,7 +43,7 @@ export function initDebug(game, state) {
   Object.keys(levels).forEach((key) => {
     const level = levels[key];
     createButton(`Level ${key}`, () => {
-      game.world.loadLevel(level);
+      world.loadLevel(level);
     });
   });
 }

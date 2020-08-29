@@ -72,7 +72,7 @@ export function ShadowGen(scene, direct) {
   return shadowGenerator;
 }
 
-export function IsoCam(scene, state) {
+export function IsoCam(scene) {
   const distance = 6;
   const isoCam = new FollowCamera(
     "isoCam",

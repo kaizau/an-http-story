@@ -4,7 +4,7 @@ export class LevelFactory {
     this.state = state;
     this.meshFactory = meshFactory;
 
-    this.state.levelMeshes = [];
+    this.levelMeshes = [];
     this.state.levelReady = Promise.resolve();
   }
 
@@ -60,7 +60,7 @@ export class LevelFactory {
                 mesh.position.z += z;
                 mesh.position.x += x;
 
-                this.state.levelMeshes.push(mesh);
+                this.levelMeshes.push(mesh);
                 // TODO What happens if we don't add meshes to the scene?
                 // this.scene.addMesh(mesh);
               }
@@ -69,11 +69,11 @@ export class LevelFactory {
       });
 
     // TODO Only allow player control after level is built
-    return this.state.levelMeshes;
+    return this.levelMeshes;
   }
 
   reset() {
     // TODO Animate meshes out of the world
-    this.state.levelMeshes.forEach((mesh) => mesh.dispose());
+    this.levelMeshes.forEach((mesh) => mesh.dispose());
   }
 }

@@ -229,6 +229,8 @@ export class ActionFactory {
         point._movementSign = Math.sign(zDiff);
         points.push(point);
       }
+
+      // TODO Handle slightly indirect paths?
     }
 
     if (points.length > 1) {
