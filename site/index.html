@@ -19,10 +19,42 @@
         padding: 0;
         width: 100%;
       }
+
+      #directory {
+        display: inline-block;
+        padding: 40px;
+      }
+
+      body {
+        transform-origin: 0 0;
+      }
+
+      .zoom {
+        transform: scale(5);
+        transition: all 3s;
+      }
+
+      .zoom #directory {
+        opacity: 0;
+        transform: rotate(1080deg);
+        transition: all 4s;
+      }
+
+      .hidden {
+        display: none;
+      }
     </style>
     <script defer src="<%= babylonSrc %>"></script>
   </head>
   <body>
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas" class="hidden"></canvas>
+    <div id="directory">
+      <h1>Index of 91.227.37.131/uploads</h1>
+      <p><a href="/">Parent Directory</a></p>
+      <p><a href="/">credit-cards/</a></p>
+      <p><a href="/">pwnd-emails/</a></p>
+      <p><a href="#" id="start">CONFIDENTIAL.zip</a></p>
+      <p id="message"></p>
+    </div>
   </body>
 </html>

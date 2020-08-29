@@ -41,6 +41,11 @@ export class MeshFactory {
     material.diffuseColor = new Color3(0.6, 0.6, 0.9);
     mesh.material = material;
 
+    // Larger bounding box to prevent getting "squashed" by movable block
+    const min = new Vector3(-0.25, -0.25, -0.25);
+    const max = new Vector3(0.25, 0.5, 0.25);
+    mesh.setBoundingInfo(new BoundingInfo(min, max));
+
     // TODO subtle bobbing up and down animation
     this.shadows.addShadowCaster(mesh);
     this.actionFactory.makeSelectable(mesh);
@@ -62,7 +67,7 @@ export class MeshFactory {
     material.diffuseColor = new Color3(0.6, 0.6, 0.9);
     mesh.material = material;
 
-    // Larger bounding box
+    // Taller bounding box to allow intersect with player character
     const min = new Vector3(0, 0, 0);
     const max = new Vector3(0.5, 0.5, 0.5);
     mesh.setBoundingInfo(new BoundingInfo(min, max));
@@ -92,7 +97,10 @@ export class MeshFactory {
     });
     mesh.receiveShadows = true;
 
-    // Smaller bounding box to allow fitting into tight spaces
+    // Smaller bounding box to allow fitting into tight spaces.
+    //
+    // TODO Also reduces draggable area, so a better alternative might be to
+    // create a smaller internal box for collisions.
     const min = mesh.getBoundingInfo().boundingBox.minimum;
     const max = mesh.getBoundingInfo().boundingBox.maximum;
     const adjustment = new Vector3(0.15, 0.15, 0.15);
