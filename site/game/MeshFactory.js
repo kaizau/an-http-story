@@ -8,9 +8,8 @@ const {
 } = BABYLON;
 
 export class MeshFactory {
-  constructor(scene, state, actionFactory, shadows) {
+  constructor(scene, actionFactory, shadows) {
     this.scene = scene;
-    this.state = state;
     this.actionFactory = actionFactory;
     this.shadows = shadows;
   }

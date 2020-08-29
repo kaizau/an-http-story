@@ -1,25 +1,43 @@
+import levels from "./levels";
+import events from "./events";
+import { friendSpeak, foeSpeak } from "./speak";
+
 export class LevelFactory {
-  constructor(scene, state, meshFactory) {
+  constructor(scene, state, env, meshFactory) {
     this.scene = scene;
     this.state = state;
+    this.env = env;
     this.meshFactory = meshFactory;
 
     this.levelMeshes = [];
-    this.state.levelReady = Promise.resolve();
+
+    events.on("levelDone", (winState) => {
+      if (winState === "win") {
+        this.load(this.state.currentLevel + 1);
+      } else if (winState === "lose") {
+        // TODO Lose
+        console.log("lose");
+      }
+    });
   }
 
-  // TODO Merge non-movable meshes of same type? Or use Instances?
-  create(level) {
+  load(levelId) {
+    const level = levels[levelId];
+    this.state.currentLevel = levelId;
+    // TODO If final level, trigger ending
+
     this.reset();
-    this.state.winLevel = this.winLevel;
-    this.state.levelReady = this.buildLevel(level);
+    this.env.setTheme(level.theme);
+    this.buildLevel(level);
+
+    // Commented out for now. Autoplays each refresh!
+    // level.intro.forEach((intro) => friendSpeak(intro));
+
+    // TODO Only allow player control after level is built
+    events.emit("levelReady");
   }
 
-  winLevel() {
-    console.log("win");
-  }
-
-  async buildLevel(level) {
+  buildLevel(level) {
     // Start from bottom layer
     level.map
       .slice()
@@ -37,6 +55,7 @@ export class LevelFactory {
             row.forEach((code, colIndex) => {
               const z = 5 - colIndex;
 
+              // TODO Merge non-movable meshes of same type? Or use Instances?
               let mesh;
               switch (code) {
                 case "_":
@@ -67,13 +86,11 @@ export class LevelFactory {
             });
           });
       });
-
-    // TODO Only allow player control after level is built
-    return this.levelMeshes;
   }
 
+  // TODO Animate meshes out of the world
   reset() {
-    // TODO Animate meshes out of the world
+    events.emit("levelReset");
     this.levelMeshes.forEach((mesh) => mesh.dispose());
   }
 }

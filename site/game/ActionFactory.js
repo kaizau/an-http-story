@@ -1,3 +1,4 @@
+import events from "./events";
 const {
   ActionManager,
   ExecuteCodeAction,
@@ -114,7 +115,7 @@ export class ActionFactory {
   makeTeleporter(mesh, id) {
     this._ensureActionManager(mesh);
 
-    this.state.levelReady.then(() => {
+    events.one("levelReady", () => {
       mesh.actionManager.registerAction(
         new ExecuteCodeAction(
           {
@@ -123,7 +124,7 @@ export class ActionFactory {
           },
           () => {
             if (id === "exit") {
-              this.state.winLevel();
+              events.emit("levelDone", "win");
             } else {
               // TODO Find matching teleporter and change position of main
               // character to match
