@@ -5,12 +5,21 @@ export class LevelFactory {
     this.meshFactory = meshFactory;
 
     this.state.levelMeshes = [];
+    this.state.levelReady = Promise.resolve();
   }
 
   // TODO Merge non-movable meshes of same type? Or use Instances?
   create(level) {
     this.reset();
+    this.state.winLevel = this.winLevel;
+    this.state.levelReady = this.buildLevel(level);
+  }
 
+  winLevel() {
+    console.log("win");
+  }
+
+  async buildLevel(level) {
     // Start from bottom layer
     level.map
       .slice()
@@ -27,25 +36,26 @@ export class LevelFactory {
 
             row.forEach((code, colIndex) => {
               const z = 5 - colIndex;
-              const id = `z${z}x${x}`;
 
               let mesh;
               switch (code) {
                 case "_":
-                  mesh = this.meshFactory.createBlock(id);
+                  mesh = this.meshFactory.createBlock();
                   break;
                 case "m":
-                  mesh = this.meshFactory.createBlockMovable(id);
+                  mesh = this.meshFactory.createBlockMovable();
                   break;
                 case "^":
                   mesh = this.meshFactory.createCharacter();
                   break;
                 case "$":
-                  mesh = this.meshFactory.createTeleporter();
+                  mesh = this.meshFactory.createTeleporter("exit");
                   break;
               }
 
               if (mesh) {
+                // TODO Animate meshes into the world
+                // Staggered starts for an "assembly" effect
                 mesh.position.y += y;
                 mesh.position.z += z;
                 mesh.position.x += x;
@@ -57,9 +67,13 @@ export class LevelFactory {
             });
           });
       });
+
+    // TODO Only allow player control after level is built
+    return this.state.levelMeshes;
   }
 
   reset() {
+    // TODO Animate meshes out of the world
     this.state.levelMeshes.forEach((mesh) => mesh.dispose());
   }
 }

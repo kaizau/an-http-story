@@ -107,6 +107,35 @@ export class ActionFactory {
     mesh.isControllable = true;
   }
 
+  makeMainCharacter(mesh) {
+    mesh.isMainCharacter = true;
+    this.state.mainCharacter = mesh;
+  }
+
+  makeTeleporter(mesh, id) {
+    this._ensureActionManager(mesh);
+
+    this.state.levelReady.then(() => {
+      mesh.actionManager.registerAction(
+        new ExecuteCodeAction(
+          {
+            trigger: OnIntersectionEnterTrigger,
+            parameter: this.state.mainCharacter,
+          },
+          () => {
+            if (id === "exit") {
+              this.state.winLevel();
+            } else {
+              // TODO Find matching teleporter and change position of main
+              // character to match
+              console.log("teleport!");
+            }
+          }
+        )
+      );
+    });
+  }
+
   // TODO Win when character enters portal
   // OnIntersectionEnterTrigger
 
@@ -181,7 +210,7 @@ export class ActionFactory {
       i++;
       let xDiff = target.x - current.x;
       xDiff = xDiff > 0 ? Math.min(xDiff, 1) : Math.max(xDiff, -1);
-      if (Math.abs(xDiff) > 0 && this._canMoveTo(current, { x: xDiff })) {
+      if (Math.abs(xDiff) > 0 && this._canWalkTo(current, { x: xDiff })) {
         current.x += xDiff;
         const point = current.clone();
         point._movementAxis = "x";
@@ -192,7 +221,7 @@ export class ActionFactory {
 
       let zDiff = target.z - current.z;
       zDiff = zDiff > 0 ? Math.min(zDiff, 1) : Math.max(zDiff, -1);
-      if (Math.abs(zDiff) > 0 && this._canMoveTo(current, { z: zDiff })) {
+      if (Math.abs(zDiff) > 0 && this._canWalkTo(current, { z: zDiff })) {
         current.z += zDiff;
         const point = current.clone();
         point._movementAxis = "z";
@@ -273,7 +302,7 @@ export class ActionFactory {
     }
   }
 
-  _canMoveTo(current, { x = 0, z = 0 }) {
+  _canWalkTo(current, { x = 0, z = 0 }) {
     const origin = current.clone();
     const direction = new BABYLON.Vector3.Zero();
     direction.x += x;

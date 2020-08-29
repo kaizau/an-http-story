@@ -44,13 +44,14 @@ export class MeshFactory {
 
     // TODO subtle bobbing up and down animation
     this.shadows.addShadowCaster(mesh);
-    this.actionFactory.makeControllable(mesh);
     this.actionFactory.makeSelectable(mesh);
+    this.actionFactory.makeControllable(mesh);
+    this.actionFactory.makeMainCharacter(mesh);
     return mesh;
   }
 
-  createTeleporter() {
-    const mesh = MeshBuilder.CreateTorus("teleporter", {
+  createTeleporter(id) {
+    const mesh = MeshBuilder.CreateTorus("teleporter-" + id, {
       diameter: 0.8,
       thickness: 0.1,
       tessellation: 8,
@@ -62,12 +63,18 @@ export class MeshFactory {
     material.diffuseColor = new Color3(0.6, 0.6, 0.9);
     mesh.material = material;
 
+    // Larger bounding box
+    const min = new Vector3(0, 0, 0);
+    const max = new Vector3(0.5, 0.5, 0.5);
+    mesh.setBoundingInfo(new BoundingInfo(min, max));
+
     this.actionFactory.makeSelectable(mesh);
+    this.actionFactory.makeTeleporter(mesh, id);
     return mesh;
   }
 
-  createBlock(id) {
-    const mesh = MeshBuilder.CreateBox("block-" + id, {
+  createBlock() {
+    const mesh = MeshBuilder.CreateBox("block", {
       height: 1,
       width: 1,
       depth: 1,
@@ -78,8 +85,8 @@ export class MeshFactory {
     return mesh;
   }
 
-  createBlockMovable(id) {
-    const mesh = MeshBuilder.CreateBox("blockMovable-" + id, {
+  createBlockMovable() {
+    const mesh = MeshBuilder.CreateBox("blockMovable", {
       height: 1,
       width: 1,
       depth: 1,
@@ -89,7 +96,7 @@ export class MeshFactory {
     // Smaller bounding box to allow fitting into tight spaces
     const min = mesh.getBoundingInfo().boundingBox.minimum;
     const max = mesh.getBoundingInfo().boundingBox.maximum;
-    const adjustment = new Vector3(0.2, 0.2, 0.2);
+    const adjustment = new Vector3(0.15, 0.15, 0.15);
     min.addInPlace(adjustment);
     max.subtractInPlace(adjustment);
     mesh.setBoundingInfo(new BoundingInfo(min, max));

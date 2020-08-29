@@ -81,13 +81,14 @@ export function IsoCam(scene, state) {
   );
   isoCam.rotation = new Vector3(Math.PI / 6, Math.PI / 4, 0);
 
-  scene.registerBeforeRender(() => {
-    if (state.mainCharacter) {
-      isoCam.position.x = state.mainCharacter.mesh.position.x - distance;
-      isoCam.position.y = state.mainCharacter.mesh.position.y + distance;
-      isoCam.position.z = state.mainCharacter.mesh.position.z - distance;
-    }
-  });
+  // TODO Follow main character? Or independent control?
+  // scene.registerBeforeRender(() => {
+  //   if (state.mainCharacter) {
+  //     isoCam.position.x = state.mainCharacter.mesh.position.x - distance;
+  //     isoCam.position.y = state.mainCharacter.mesh.position.y + distance;
+  //     isoCam.position.z = state.mainCharacter.mesh.position.z - distance;
+  //   }
+  // });
 
   return isoCam;
 }
