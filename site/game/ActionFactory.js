@@ -10,7 +10,6 @@ const {
   OnPointerOverTrigger,
   OnPointerOutTrigger,
   OnIntersectionEnterTrigger,
-  OnIntersectionExitTrigger,
 } = ActionManager;
 
 const easingQuadOut = new BABYLON.QuadraticEase();
@@ -136,9 +135,6 @@ export class ActionFactory {
     });
   }
 
-  // TODO Win when character enters portal
-  // OnIntersectionEnterTrigger
-
   // TODO Lose when character touches enemy
   // OnIntersectionEnterTrigger
 
@@ -150,7 +146,12 @@ export class ActionFactory {
     // Only test with meshes in camera view, on same plane
     const active = this.scene.getActiveMeshes().data;
     const samePlane = active.filter((otherMesh) => {
-      return mesh !== otherMesh && mesh.position.y === otherMesh.position.y;
+      return (
+        mesh.position.y === otherMesh.position.y &&
+        otherMesh !== mesh &&
+        otherMesh.id !== "BackgroundHelper" &&
+        otherMesh.id !== "BackgroundSkybox"
+      );
     });
     return samePlane.some((otherMesh) => mesh.intersectsMesh(otherMesh));
   }
@@ -304,17 +305,19 @@ export class ActionFactory {
 
   _canWalkTo(current, { x = 0, z = 0 }) {
     const origin = current.clone();
+    const destination = current.clone();
     const direction = new BABYLON.Vector3.Zero();
     direction.x += x;
-    origin.x += x;
+    destination.x += x;
     direction.z += z;
-    origin.z += z;
-    const forward = new BABYLON.Ray(origin, direction, 1);
-    const down = new BABYLON.Ray(origin, new BABYLON.Vector3.Down(), 1);
-    // new BABYLON.RayHelper(forward).show(this.scene);
-    // new BABYLON.RayHelper(down).show(this.scene);
-    const forwardPick = this.scene.pickWithRay(forward);
-    const downPick = this.scene.pickWithRay(down);
-    return !forwardPick.hit && downPick.hit && downPick.pickedMesh.isWalkable;
+    destination.z += z;
+    const front = new BABYLON.Ray(origin, direction, 1);
+    const down = new BABYLON.Ray(destination, new BABYLON.Vector3.Down(), 1);
+    const frontPick = this.scene.pickWithRay(
+      front,
+      (mesh) => !mesh.isMainCharacter
+    );
+    const downPick = this.scene.pickWithRay(down, (mesh) => mesh.isWalkable);
+    return !frontPick.hit && downPick.hit;
   }
 }
