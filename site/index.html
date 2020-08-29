@@ -2,11 +2,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Remember Me</title>
-    <meta
-      name="description"
-      content="A game about forgetting and remembering, finding and losing."
-    />
+    <title>A 404 Story</title>
+    <meta name="description" content="A tiny game about finding one's way." />
     <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
     <style>
       html,
@@ -20,13 +17,23 @@
         width: 100%;
       }
 
-      #directory {
-        display: inline-block;
-        padding: 40px;
-      }
-
       body {
         transform-origin: 0 0;
+      }
+
+      #directory {
+        font-family: serif, "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol";
+        display: inline-block;
+        padding: 30px;
+      }
+
+      #directory a {
+        margin-left: 10px;
+      }
+
+      #message {
+        margin-top: 30px;
       }
 
       .zoom {
@@ -36,7 +43,7 @@
 
       .zoom #directory {
         opacity: 0;
-        transform: rotate(1080deg);
+        transform: rotate(900deg);
         transition: all 4s;
       }
 
@@ -50,10 +57,10 @@
     <canvas id="canvas" class="hidden"></canvas>
     <div id="directory">
       <h1>Index of 91.227.37.131/uploads</h1>
-      <p><a href="/">Parent Directory</a></p>
-      <p><a href="/">credit-cards/</a></p>
-      <p><a href="/">pwnd-emails/</a></p>
-      <p><a href="#" id="start">CONFIDENTIAL.zip</a></p>
+      <p>📂 <a href="/">Parent Directory</a></p>
+      <p>📂 <a href="/">credit-cards/</a></p>
+      <p>📂 <a href="/">pwnd-emails/</a></p>
+      <p>📦 <a href="#" id="start">CONFIDENTIAL.zip</a></p>
       <p id="message"></p>
     </div>
   </body>
