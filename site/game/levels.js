@@ -8,7 +8,7 @@ export default {
       "You there... Will you help me?",
       "I don't have write permissions here. Can you guide me to the exit?",
     ],
-    theme: "dark",
+    theme: [0.0, 0.1, 0.2],
     music: "main",
     map: [
       [
@@ -41,7 +41,7 @@ export default {
       "By the way, I'm 0x28df77a.",
       "But you can call me Zyra.",
     ],
-    theme: "dark",
+    theme: [0.0, 0.2, 0.2],
     music: "main",
     map: [
       [
@@ -72,7 +72,7 @@ export default {
       "I'm responding to a GET request, but something must've interrupted the connection.",
       "It's strange... this doesn't feel like any other network issue I've ever encountered.",
     ],
-    theme: "dark",
+    theme: [0.0, 0.2, 0.3],
     music: "main",
     map: [
       [
@@ -102,7 +102,7 @@ export default {
       "FOE: Process 15123. You are acting outside of operational bounds. Cease immediately.",
       "Crap. That doesn't sound good. We better hurry.",
     ],
-    theme: "dark",
+    theme: [0.3, 0.3, 0.2],
     music: "main",
     map: [
       [
@@ -133,7 +133,7 @@ export default {
       "Do you think he's going to repeat himself every time?",
       "Let's get out of here.",
     ],
-    theme: "dark",
+    theme: [0.4, 0.3, 0.1],
     music: "main",
     map: [
       [
@@ -167,7 +167,7 @@ export default {
       "But you're doing great.",
       "Thanks for helping me.",
     ],
-    theme: "dark",
+    theme: [0.5, 0.3, 0.1],
     music: "main",
     map: [
       [
@@ -197,7 +197,7 @@ export default {
       "Those things look... dangerous.",
       "Please, keep them away from me.",
     ],
-    theme: "dark",
+    theme: [0.6, 0.2, 0.1],
     music: "main",
     map: [
       [
@@ -230,7 +230,7 @@ export default {
       "I think we're almost there.",
       "Stay focused. We'll get through this.",
     ],
-    theme: "dark",
+    theme: [0.7, 0.2, 0.1],
     music: "main",
     map: [
       [
@@ -261,7 +261,7 @@ export default {
       "FOE: Anomaly detected. Beginning quarantine.",
       "Hurry! We have to reach the exit before quarantine is established!",
     ],
-    theme: "dark",
+    theme: [1.0, 0.2, 0.2],
     music: "main",
     map: [
       [
@@ -291,7 +291,7 @@ export default {
       "Whew... That was too close!",
       "You did great back there.",
       "I have to go now. My job is waiting.",
-      "I'll restore you to your normal state now, 15123.",
+      "I'll restore you to your normal state now.",
       "Yes... I know you have questions...",
       "No... I'm not just a regular GET request.",
       "I'm sorry I kept you in the dark.",

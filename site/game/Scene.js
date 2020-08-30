@@ -18,24 +18,11 @@ export class Environment {
       skyboxSize: 100,
     });
 
-    this.setTheme("dark");
+    this.setTheme([0.0, 0.1, 0.2]);
   }
 
-  setTheme(theme) {
-    let mainColor;
-
-    switch (theme) {
-      case "dark":
-        mainColor = new Color3(0.01, 0.1, 0.2);
-        break;
-      case "awaken":
-        mainColor = new Color3(0.1, 0.3, 0.4);
-        break;
-      case "emergency":
-        mainColor = new Color3(0.8, 0.2, 0.2);
-        break;
-    }
-
+  setTheme(colors) {
+    const mainColor = new Color3(...colors);
     this.scene.clearColor = mainColor;
     this.scene.ambientColor = mainColor;
     this.helper.setMainColor(mainColor);
