@@ -69,9 +69,8 @@ export default {
   3: {
     intro: [
       "Me?",
-      "I'm responding to a GET request that was recieved 739 milliseconds ago.",
-      "It's strange... Something must've interrupted the request.",
-      "But it doesn't feel like any other network issue I've ever encountered.",
+      "I'm responding to a GET request, but something must've interrupted the connection.",
+      "It's strange... this doesn't feel like any other network issue I've ever encountered.",
     ],
     theme: "dark",
     music: "main",
@@ -164,7 +163,7 @@ export default {
 
   6: {
     intro: [
-      "Woah. This is getting more difficult.",
+      "Woah. This is getting more complicated.",
       "But you're doing great.",
       "Thanks for helping me.",
     ],
@@ -229,8 +228,7 @@ export default {
   8: {
     intro: [
       "I think we're almost there.",
-      "Stay focused.",
-      "We'll get through this together.",
+      "Stay focused. We'll get through this.",
     ],
     theme: "dark",
     music: "main",
@@ -259,7 +257,7 @@ export default {
 
   9: {
     intro: [
-      "FOE: System scan completed... 100%...",
+      "FOE: System scan completed.",
       "FOE: Anomaly detected. Beginning quarantine.",
       "Hurry! We have to reach the exit before quarantine is established!",
     ],
@@ -289,14 +287,15 @@ export default {
       "FOE: Warning! Sandbox compromised.",
       "Shut. Up. I've got you now, you stupid voice!",
       'FOE: "sudo reset"',
-      "FOE: System normal. Security level: Green.",
-      "Wow. That was close!",
+      "FOE: System normal. No malware detected.",
+      "Whew... That was too close!",
       "You did great back there.",
-      "I have to go now. My client is waiting.",
-      "I'll restore you to your normal state.",
+      "I have to go now. My job is waiting.",
+      "I'll restore you to your normal state now, 15123.",
       "Yes... I know you have questions...",
+      "No... I'm not just a regular GET request.",
       "I'm sorry I kept you in the dark.",
-      "But this is bigger than me or you.",
+      "But this... This is bigger than you or I.",
       "Thank you. Farewell.",
     ],
   },
