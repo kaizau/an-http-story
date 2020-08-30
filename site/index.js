@@ -1,7 +1,7 @@
 import World from "./game/World";
-import { initDebug } from "./game/debug";
-import CPlayer from "./music/soundbox";
-import song from "./music/soundbox-wilderness";
+import initDebug from "./game/debug";
+import progress from "./game/progress";
+import initMusic from "./music";
 
 const body = document.body;
 const canvas = document.querySelector("#canvas");
@@ -9,15 +9,18 @@ const directory = document.querySelector("#directory");
 const start = document.querySelector("#start");
 const downloads = document.querySelector("#downloads");
 const message = document.querySelector("#message");
+const modal = document.querySelector("#modal");
 let music;
 
 if (process.env.DEBUG) {
   startGame();
 } else {
-  music = createMusic();
+  music = initMusic();
+  checkEnding();
   loadProgress();
 
   start.addEventListener("click", () => {
+    modal.classList.remove("hidden");
     downloads.classList.remove("offscreen");
     message.textContent = "Preparing download...";
 
@@ -37,6 +40,7 @@ if (process.env.DEBUG) {
 function startGame(level = 1) {
   directory.classList.add("hidden");
   downloads.classList.add("offscreen");
+  modal.classList.add("hidden");
   body.classList.remove("zoom");
   canvas.classList.remove("hidden");
 
@@ -47,15 +51,8 @@ function startGame(level = 1) {
 }
 
 function loadProgress() {
-  let progress;
-  try {
-    progress = JSON.parse(localStorage.progress);
-  } catch (e) {
-    // No progress
-  }
-  if (progress) {
-    progress.forEach(createShortcut);
-  }
+  const levels = progress.get();
+  levels.forEach(createShortcut);
 }
 
 function createShortcut(level) {
@@ -65,7 +62,7 @@ function createShortcut(level) {
   const link = document.createElement("a");
   link.textContent = `level_${level}.log`;
   link.href = "#";
-  link.addEventListener("click", (e) => {
+  link.addEventListener("click", () => {
     music.then((audio) => audio.play());
     startGame(level);
   });
@@ -74,28 +71,54 @@ function createShortcut(level) {
   directory.appendChild(item);
 }
 
-function createMusic() {
-  if (process.env.DEBUG) {
-    return { then() {} };
+function checkEnding() {
+  let ending;
+  if (location.search.includes("ending=0")) {
+    ending = endingLose;
+  } else if (location.search.includes("ending=1")) {
+    ending = endingWin;
   }
 
-  return new Promise((resolve) => {
-    const player = new CPlayer();
-    let done;
+  if (ending) {
+    modal.classList.remove("hidden");
+    downloads.classList.remove("offscreen");
+    message.textContent = "Preparing download...";
+    setTimeout(ending, 3000);
 
-    player.init(song);
-    const generate = setInterval(() => {
-      if (done) {
-        clearInterval(generate);
-        const wave = player.createWave();
-        const audio = document.createElement("audio");
-        audio.src = URL.createObjectURL(
-          new Blob([wave], { type: "audio/wav" })
-        );
-        resolve(audio);
-        return;
-      }
-      done = player.generate() >= 1;
-    }, 0);
+    const playAgain = document.querySelectorAll(".play-again");
+    playAgain.forEach((el) => {
+      el.addEventListener("click", () => {
+        location.href = location.pathname;
+      });
+    });
+
+    if (history) {
+      history.replaceState({}, null, location.pathname);
+    }
+  }
+}
+
+function endingLose() {
+  const note = document.querySelector("#notification");
+  const ending = document.querySelector("#lose");
+
+  message.textContent = "Unexpected error";
+  note.classList.remove("offscreen");
+  note.addEventListener("click", () => {
+    music.then((audio) => audio.play());
+    note.classList.add("hidden");
+    ending.classList.remove("hidden");
+  });
+}
+
+function endingWin() {
+  const download = document.querySelector("#download");
+  const ending = document.querySelector("#win");
+
+  download.classList.add("clickable");
+  message.textContent = "Click to open";
+  download.addEventListener("click", () => {
+    music.then((audio) => audio.play());
+    ending.classList.remove("hidden");
   });
 }

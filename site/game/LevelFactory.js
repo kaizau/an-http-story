@@ -1,4 +1,3 @@
-import levels from "./levels";
 import events from "./events";
 import { friendSpeak, foeSpeak } from "./speak";
 
@@ -10,22 +9,9 @@ export class LevelFactory {
     this.meshFactory = meshFactory;
 
     this.levelMeshes = [];
-
-    events.on("levelDone", (winState) => {
-      if (winState === "win") {
-        this.load(this.state.currentLevel + 1);
-      } else if (winState === "lose") {
-        // TODO Lose
-        console.log("lose");
-      }
-    });
   }
 
-  load(levelId) {
-    const level = levels[levelId];
-    this.state.currentLevel = levelId;
-    // TODO If final level, trigger ending
-
+  load(level) {
     this.reset();
     this.env.setTheme(level.theme);
     this.buildLevel(level);

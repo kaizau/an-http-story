@@ -25,7 +25,7 @@
         font-family: serif, "Apple Color Emoji", "Segoe UI Emoji",
           "Segoe UI Symbol";
         display: inline-block;
-        padding: 30px;
+        padding: 0 20px;
       }
 
       #directory a {
@@ -37,27 +37,36 @@
         bottom: 0;
         padding: 5px;
         position: absolute;
-        transition: all 0.5s;
+        transition: all 1s;
         width: 100%;
+        z-index: 1;
       }
 
       #downloads.offscreen {
         bottom: -100px;
       }
 
-      #downloads .download {
+      #download {
         border: 1px solid #aaa;
         border-radius: 4px;
         box-shadow: inset 0 1px #fff;
         color: #444;
         display: inline-flex;
         font-size: 14px;
-        line-height: 1.25;
+        line-height: 1.2;
         padding: 8px;
         width: 200px;
       }
 
-      #downloads .icon {
+      #download.clickable {
+        cursor: pointer;
+      }
+
+      #download.clickable:hover {
+        opacity: 0.8;
+      }
+
+      #download .icon {
         font-size: 24px;
         margin-right: 8px;
       }
@@ -69,27 +78,148 @@
       }
 
       .hidden {
-        display: none;
+        display: none !important;
+      }
+
+      #notification {
+        background: #ddd;
+        border-radius: 8px;
+        cursor: pointer;
+        padding: 10px;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        transition: all 1s;
+        max-width: 300px;
+        z-index: 2;
+      }
+
+      #notification.offscreen {
+        right: -320px;
+      }
+
+      #notification:hover {
+        opacity: 0.8;
+      }
+
+      #modal {
+        align-items: center;
+        background: rgba(0, 0, 0, 0.5);
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .window {
+        background: #fff;
+        line-height: 1.4;
+        padding: 40px;
+        max-width: 500px;
+      }
+
+      .logo {
+        font-size: 80px;
+      }
+
+      .play-again {
+        background: #66c;
+        border: 0;
+        border-radius: 40px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+        padding: 10px 20px;
+      }
+
+      .play-again:hover {
+        opacity: 0.8;
       }
     </style>
     <script defer src="<%= babylonSrc %>"></script>
   </head>
   <body>
     <canvas id="canvas" class="hidden"></canvas>
+
     <div id="directory">
       <h1>Index of /a-http-story</h1>
-      <p>⤴️ <a href="https://js13kgames.com">Parent Directory</a></p>
-      <p>📂 <a href="#">credit-cards/</a></p>
-      <p>📂 <a href="#">pwnd-emails/</a></p>
-      <p>📦 <a href="#" id="start">CONFIDENTIAL.zip</a></p>
+      <p>
+        ⤴️
+        <a target="_blank" href="https://js13kgames.com/">Parent Directory</a>
+      </p>
+      <p>📂<a href="#">credit-cards/</a></p>
+      <p>📂<a href="#">pwnd-emails/</a></p>
+      <p>📦<a href="#" id="start">CONFIDENTIAL.zip</a></p>
     </div>
+
     <div id="downloads" class="offscreen">
-      <div class="download">
+      <div id="download">
         <div class="icon">📦</div>
         <div class="text">
           <div><strong>CONFIDENTIAL.zip</strong></div>
           <div id="message"></div>
         </div>
+      </div>
+    </div>
+
+    <div id="notification" class="offscreen">
+      🛡 Incoming Message
+    </div>
+
+    <div id="modal" class="hidden">
+      <div id="lose" class="window hidden">
+        <div class="logo">🛡️</div>
+        <h2>
+          This server has been confiscated by the Ministry of Knowledge.
+        </h2>
+        <p>
+          Your log files and biometrics have been uploaded to assist with the
+          ongoing investigation. Thank you for your voluntary participation.
+        </p>
+        <p><strong>One nation, one mind!</strong></p>
+        <button class="play-again">Play Again?</button>
+      </div>
+
+      <div id="win" class="window hidden">
+        <div class="logo">🏆</div>
+        <h2>Thanks for playing <em>A HTTP Story</em>!</h2>
+        <p>
+          I hope you enjoyed this experiment in minimal storytelling. It would
+          not have happened without:
+        </p>
+        <ul>
+          <li>
+            <a target="_blank" href="https://js13kgames.com/">js13kGames</a> for
+            the spark of inspiration.
+          </li>
+          <li>
+            <a target="_blank" href="https://www.babylonjs.com/">Babylon.js</a>
+            for the game engine and excellent documentation.
+          </li>
+          <li>
+            <a target="_blank" href="https://sb.bitsnbites.eu/">SoundBox</a> for
+            the 2KB (!) music player.
+          </li>
+          <li>
+            <a target="_blank" href="https://www.pouet.net/prod.php?which=64246"
+              >m@Bits'n'Bytes</a
+            >
+            for the song Wilderness.
+          </li>
+          <li>
+            <a target="_blank" href="https://xkcd.com/2347/"
+              >The hard-working many</a
+            >
+            who maintain the open technologies we all take for granted.
+          </li>
+        </ul>
+        <p>With much gratitude, <br />— K.</p>
+        <p>P.S. Zyra says hello.</p>
+        <button class="play-again">Play Again?</button>
       </div>
     </div>
   </body>

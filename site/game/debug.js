@@ -4,7 +4,7 @@ import levels from "./levels";
 let debugBar;
 let axes;
 
-export function initDebug(world) {
+export default function initDebug(world) {
   window.world = world;
 
   debugBar = createDebugBar();
@@ -142,7 +142,7 @@ function createWorldAxes(scene, size) {
   zChar.position = new BABYLON.Vector3(0, 0.05 * size, 0.9 * size);
 }
 
-export function showLocalAxes(mesh) {
+function showLocalAxes(mesh) {
   const size = 2;
   const axisX = BABYLON.Mesh.CreateLines("axisX", [
     new BABYLON.Vector3.Zero(),
