@@ -100,7 +100,7 @@ export default {
 
   4: {
     intro: [
-      "FOE: Process 151203. You are acting outside of operational bounds. Cease immediately.",
+      "FOE: Process 15123. You are acting outside of operational bounds. Cease immediately.",
       "Crap. That doesn't sound good. We better hurry.",
     ],
     theme: "dark",
@@ -130,7 +130,7 @@ export default {
 
   5: {
     intro: [
-      "FOE: Process 151203. You are acting outside of operational bounds. Cease immediately.",
+      "FOE: Process 15123. You are acting outside of operational bounds. Cease immediately.",
       "Do you think he's going to repeat himself every time?",
       "Let's get out of here.",
     ],

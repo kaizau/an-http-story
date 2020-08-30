@@ -1,10 +1,11 @@
 import World from "./game/World";
 import initDebug from "./game/debug";
 import progress from "./game/progress";
-import initMusic from "./music";
+import { loadMusic, createMusic } from "./music";
 
 const body = document.body;
 const canvas = document.querySelector("#canvas");
+const loading = document.querySelector("#loading");
 const directory = document.querySelector("#directory");
 const start = document.querySelector("#start");
 const downloads = document.querySelector("#downloads");
@@ -15,7 +16,17 @@ let music;
 if (process.env.DEBUG) {
   startGame();
 } else {
-  music = initMusic();
+  init();
+}
+
+async function init() {
+  music = await loadMusic();
+  if (!music) {
+    loading.classList.remove("hidden");
+    music = await createMusic();
+    loading.classList.add("hidden");
+  }
+  directory.classList.remove("hidden");
   checkEnding();
   loadProgress();
 
@@ -26,7 +37,7 @@ if (process.env.DEBUG) {
 
     setTimeout(() => {
       message.textContent = "Unexpected error";
-      music.then((audio) => audio.play());
+      music.play();
 
       setTimeout(() => {
         body.classList.add("zoom");
@@ -63,7 +74,7 @@ function createShortcut(level) {
   link.textContent = `level_${level}.log`;
   link.href = "#";
   link.addEventListener("click", () => {
-    music.then((audio) => audio.play());
+    music.play();
     startGame(level);
   });
 
@@ -105,7 +116,7 @@ function endingLose() {
   message.textContent = "Unexpected error";
   note.classList.remove("offscreen");
   note.addEventListener("click", () => {
-    music.then((audio) => audio.play());
+    music.play();
     note.classList.add("hidden");
     ending.classList.remove("hidden");
   });
@@ -118,7 +129,7 @@ function endingWin() {
   download.classList.add("clickable");
   message.textContent = "Click to open";
   download.addEventListener("click", () => {
-    music.then((audio) => audio.play());
+    music.play();
     ending.classList.remove("hidden");
   });
 }

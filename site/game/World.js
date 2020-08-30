@@ -68,7 +68,6 @@ export default class World {
   }
 
   load(levelId) {
-    console.log("load", levelId);
     this.state.currentLevel = levelId;
     const level = levels[levelId];
     if (level) {

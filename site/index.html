@@ -21,6 +21,16 @@
         transform-origin: 0 100%;
       }
 
+      .zoom {
+        opacity: 0;
+        transform: scale(5);
+        transition: all 3s;
+      }
+
+      #loading {
+        padding: 20px;
+      }
+
       #directory {
         font-family: serif, "Apple Color Emoji", "Segoe UI Emoji",
           "Segoe UI Symbol";
@@ -68,17 +78,6 @@
 
       #download .icon {
         font-size: 24px;
-        margin-right: 8px;
-      }
-
-      .zoom {
-        opacity: 0;
-        transform: scale(5);
-        transition: all 3s;
-      }
-
-      .hidden {
-        display: none !important;
       }
 
       #notification {
@@ -94,12 +93,12 @@
         z-index: 2;
       }
 
-      #notification.offscreen {
-        right: -320px;
-      }
-
       #notification:hover {
         opacity: 0.8;
+      }
+
+      #notification.offscreen {
+        right: -320px;
       }
 
       #modal {
@@ -139,13 +138,24 @@
       .play-again:hover {
         opacity: 0.8;
       }
+
+      .icon {
+        display: inline-block;
+        margin-right: 8px;
+      }
+
+      .hidden {
+        display: none !important;
+      }
     </style>
     <script defer src="<%= babylonSrc %>"></script>
   </head>
   <body>
     <canvas id="canvas" class="hidden"></canvas>
 
-    <div id="directory">
+    <div id="loading" class="hidden">Reticulating splines...</div>
+
+    <div id="directory" class="hidden">
       <h1>Index of /a-http-story</h1>
       <p>
         ⤴️
@@ -153,21 +163,21 @@
       </p>
       <p>📂<a href="#">credit-cards/</a></p>
       <p>📂<a href="#">pwnd-emails/</a></p>
-      <p>📦<a href="#" id="start">CONFIDENTIAL.zip</a></p>
+      <p>📦<a href="#" id="start">TOP_SECRET.zip</a></p>
     </div>
 
     <div id="downloads" class="offscreen">
       <div id="download">
         <div class="icon">📦</div>
         <div class="text">
-          <div><strong>CONFIDENTIAL.zip</strong></div>
+          <div><strong>TOP_SECRET.zip</strong></div>
           <div id="message"></div>
         </div>
       </div>
     </div>
 
     <div id="notification" class="offscreen">
-      🛡 Incoming Message
+      <span class="icon">🛡</span> Important Message
     </div>
 
     <div id="modal" class="hidden">

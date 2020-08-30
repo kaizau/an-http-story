@@ -1,30 +1,85 @@
 import CPlayer from "./soundbox";
 import song from "./soundbox-wilderness";
 
-export default function initMusic() {
-  if (process.env.DEBUG) {
-    return { then() {} };
+let db;
+
+// TODO Might need some error handling
+export async function loadMusic() {
+  if (!db) db = await getDB();
+
+  const music = await db.get("mainTheme");
+  if (music) {
+    return createPlayer(music);
   }
+}
+
+export async function createMusic() {
+  if (!db) db = await getDB();
 
   return new Promise((resolve) => {
-    const player = new CPlayer();
     let done;
-
+    const player = new CPlayer();
     player.init(song);
+
     const generate = setInterval(() => {
-      if (done) {
+      if (!done) {
+        done = player.generate() >= 1;
+      } else {
         clearInterval(generate);
         const wave = player.createWave();
-        const audio = document.createElement("audio");
-        audio.src = URL.createObjectURL(
-          new Blob([wave], { type: "audio/wav" })
-        );
-        audio.loop = true;
-        audio.volume = 0.5;
-        resolve(audio);
-        return;
+        const blob = new Blob([wave], { type: "audio/wav" });
+
+        db.set("mainTheme", blob);
+        resolve(createPlayer(blob));
       }
-      done = player.generate() >= 1;
     }, 0);
+  });
+}
+
+function createPlayer(music) {
+  const audio = document.createElement("audio");
+  audio.src = URL.createObjectURL(music);
+  audio.loop = true;
+  audio.volume = 0.5;
+  return audio;
+}
+
+class DB {
+  constructor(db) {
+    this.db = db;
+  }
+
+  get(key) {
+    return new Promise((resolve) => {
+      const trans = this.db.transaction(["game"], "readonly");
+      const request = trans.objectStore("game").get(key);
+      request.onsuccess = (e) => {
+        resolve(e.target.result);
+      };
+    });
+  }
+
+  set(key, value) {
+    return new Promise((resolve) => {
+      const trans = this.db.transaction(["game"], "readwrite");
+      const request = trans.objectStore("game").add(value, key);
+      request.onsuccess = (e) => {
+        resolve(e.target.result);
+      };
+    });
+  }
+}
+
+function getDB() {
+  return new Promise((resolve) => {
+    const request = indexedDB.open("game", 2);
+    request.onsuccess = (e) => {
+      const db = e.target.result;
+      resolve(new DB(db));
+    };
+    request.onupgradeneeded = (e) => {
+      const db = e.target.result;
+      db.createObjectStore("game");
+    };
   });
 }
