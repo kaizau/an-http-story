@@ -124,7 +124,7 @@ export class ActionFactory {
           },
           () => {
             if (id === "exit") {
-              events.emit("levelDone", "win");
+              events.emit("levelCompleted");
             } else {
               // TODO Find matching teleporter and change position of main
               // character to match

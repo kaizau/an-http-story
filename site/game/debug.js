@@ -1,4 +1,4 @@
-import { friendSpeak, foeSpeak } from "./speak";
+import { speak } from "./speak";
 import levels from "./levels";
 
 let debugBar;
@@ -32,12 +32,13 @@ export default function initDebug(world) {
     });
   });
 
-  createButton("Friend Speech", () => {
-    friendSpeak("Testing speech synthesis... Do I sound likeable?");
-  });
-
-  createButton("Foe Speech", () => {
-    foeSpeak("Testing speech synthesis... Do I sound evil?");
+  createButton("Test Speech", () => {
+    speak([
+      "Testing speech synthesis... Do I sound likeable?",
+      "FOE: Testing speech synthesis... Do I sound evil?",
+    ]).then(() => {
+      console.log("Done speaking");
+    });
   });
 
   Object.keys(levels).forEach((key) => {

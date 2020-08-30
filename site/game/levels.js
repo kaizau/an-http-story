@@ -1,67 +1,303 @@
-const level1 = {
-  intro: [
-    "Ouch... Where am I?",
-    "Where are the others?",
-    "I have to get to the client before the request expires!",
-    "You there... Can you help me?",
-    "I don't have write permissions here. Would you please move me to the exit?",
-  ],
-  theme: "dark",
-  music: "main",
-  map: [
-    [
-      ["$", " "],
-      [" ", " "],
-      ["m", " "],
-      [" ", " "],
-      ["^", " "],
-      [" ", " "],
-      [" ", " "],
-    ],
-    [
-      ["_", " "],
-      ["_", " "],
-      [" ", "m"],
-      ["_", " "],
-      ["_", "_"],
-      [" ", "_"],
-      [" ", "_"],
-    ],
-  ],
-  outro: ["Thanks for your help! Bye now!"],
-};
-
-const level2 = {
-  intro: [
-    "Damn. There must be multiple containers.",
-    "But at least you're still here. I guess we might as well team up.",
-    "By the way, I'm 0x28db77.",
-    "But you can call me Zyra.",
-  ],
-  theme: "emergency",
-  music: "main",
-  map: [
-    [
-      ["$", " "],
-      [" ", " "],
-      [" ", " "],
-      [" ", " "],
-      ["m", " "],
-      [" ", " "],
-      ["^", " "],
-    ],
-    [
-      ["_", " "],
-      ["_", " "],
-      ["_", " "],
-      ["_", " "],
-      ["_", "_"],
-      [" ", "_"],
-      ["_", "_"],
-    ],
-  ],
-  outro: ["Thanks!"],
-};
-
 // Export object for flexible naming
-export default { 1: level1, 2: level2 };
+export default {
+  1: {
+    intro: [
+      "Ouch...",
+      "Where am I?",
+      "This isn't the right network.",
+      "You there... Will you help me?",
+      "I don't have write permissions here. Can you guide me to the exit?",
+    ],
+    theme: "dark",
+    music: "main",
+    map: [
+      [
+        ["$", " "],
+        [" ", " "],
+        ["m", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", "^"],
+      ],
+      [
+        ["_", " "],
+        ["_", " "],
+        [" ", "m"],
+        ["_", " "],
+        ["_", "_"],
+        [" ", "_"],
+        [" ", "_"],
+      ],
+    ],
+    outro: ["Thanks, I appreciate your help.", "Goodbye now!"],
+  },
+
+  2: {
+    intro: [
+      "Damn. What is this place?",
+      "And how are you also here?",
+      "I guess we might as well team up.",
+      "By the way, I'm 0x28df77a.",
+      "But you can call me Zyra.",
+    ],
+    theme: "dark",
+    music: "main",
+    map: [
+      [
+        ["$", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        ["^", " "],
+      ],
+      [
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+      ],
+    ],
+    outro: ["Onwards!"],
+  },
+
+  3: {
+    intro: [
+      "Me?",
+      "I'm responding to a GET request that was recieved 739 milliseconds ago.",
+      "It's strange... Something must've interrupted the request.",
+      "But it doesn't feel like any other network issue I've ever encountered.",
+    ],
+    theme: "dark",
+    music: "main",
+    map: [
+      [
+        ["$", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        ["^", " "],
+      ],
+      [
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+      ],
+    ],
+    outro: ["We're on the right track. I can feel it."],
+  },
+
+  4: {
+    intro: [
+      "FOE: Process 151203. You are acting outside of operational bounds. Cease immediately.",
+      "Crap. That doesn't sound good. We better hurry.",
+    ],
+    theme: "dark",
+    music: "main",
+    map: [
+      [
+        ["$", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        ["^", " "],
+      ],
+      [
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+      ],
+    ],
+    outro: ["Once more unto the breach."],
+  },
+
+  5: {
+    intro: [
+      "FOE: Process 151203. You are acting outside of operational bounds. Cease immediately.",
+      "Do you think he's going to repeat himself every time?",
+      "Let's get out of here.",
+    ],
+    theme: "dark",
+    music: "main",
+    map: [
+      [
+        ["$", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        ["^", " "],
+      ],
+      [
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+      ],
+    ],
+    outro: [
+      "FOE: Process unresponsive. Commencing system scan...",
+      "What does he keep yabbering about?",
+    ],
+  },
+
+  6: {
+    intro: [
+      "Woah. This is getting more difficult.",
+      "But you're doing great.",
+      "Thanks for helping me.",
+    ],
+    theme: "dark",
+    music: "main",
+    map: [
+      [
+        ["$", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        ["^", " "],
+      ],
+      [
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+      ],
+    ],
+    outro: ["FOE: System scan in progress... 34%..."],
+  },
+
+  7: {
+    intro: [
+      "Those things look... dangerous.",
+      "Please, keep them away from me.",
+    ],
+    theme: "dark",
+    music: "main",
+    map: [
+      [
+        ["$", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        ["^", " "],
+      ],
+      [
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+      ],
+    ],
+    outro: [
+      "FOE: System scan in progress... 72%...",
+      "This guy is really starting to get on my nerves.",
+    ],
+  },
+
+  8: {
+    intro: [
+      "I think we're almost there.",
+      "Stay focused.",
+      "We'll get through this together.",
+    ],
+    theme: "dark",
+    music: "main",
+    map: [
+      [
+        ["$", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        ["^", " "],
+      ],
+      [
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+      ],
+    ],
+    outro: ["Wait. What was that?", "Did you feel something?"],
+  },
+
+  9: {
+    intro: [
+      "FOE: System scan completed... 100%...",
+      "FOE: Anomaly detected. Beginning quarantine.",
+      "Hurry! We have to reach the exit before quarantine is established!",
+    ],
+    theme: "dark",
+    music: "main",
+    map: [
+      [
+        ["$", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        [" ", " "],
+        ["^", " "],
+      ],
+      [
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+        ["_", " "],
+      ],
+    ],
+    outro: [
+      "FOE: Warning! Sandbox compromised.",
+      "Shut. Up. I've got you now, you stupid voice!",
+      'FOE: "sudo reset"',
+      "FOE: System normal. Security level: Green.",
+      "Wow. That was close!",
+      "You did great back there.",
+      "I have to go now. My client is waiting.",
+      "I'll restore you to your normal state.",
+      "Yes... I know you have questions...",
+      "I'm sorry I kept you in the dark.",
+      "But this is bigger than me or you.",
+      "Thank you. Farewell.",
+    ],
+  },
+};

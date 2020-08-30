@@ -1,5 +1,5 @@
 import events from "./events";
-import { friendSpeak, foeSpeak } from "./speak";
+import { speak } from "./speak";
 
 export class LevelFactory {
   constructor(scene, state, env, meshFactory) {
@@ -8,16 +8,24 @@ export class LevelFactory {
     this.env = env;
     this.meshFactory = meshFactory;
 
+    this.level = {};
     this.levelMeshes = [];
+
+    events.on("levelCompleted", () => {
+      speak(this.level.outro).then(() => {
+        events.emit("levelNext");
+      });
+    });
   }
 
   load(level) {
     this.reset();
+    this.level = level;
     this.env.setTheme(level.theme);
-    this.buildLevel(level);
+    this.levelMeshes = this.buildLevel(level);
 
     if (!process.env.DEBUG) {
-      level.intro.forEach((intro) => friendSpeak(intro));
+      speak(level.intro);
     }
 
     // TODO Only allow player control after level is built
@@ -25,6 +33,8 @@ export class LevelFactory {
   }
 
   buildLevel(level) {
+    const levelMeshes = [];
+
     // Start from bottom layer
     level.map
       .slice()
@@ -66,13 +76,15 @@ export class LevelFactory {
                 mesh.position.z += z;
                 mesh.position.x += x;
 
-                this.levelMeshes.push(mesh);
+                levelMeshes.push(mesh);
                 // TODO What happens if we don't add meshes to the scene?
                 // this.scene.addMesh(mesh);
               }
             });
           });
       });
+
+    return levelMeshes;
   }
 
   // TODO Animate meshes out of the world

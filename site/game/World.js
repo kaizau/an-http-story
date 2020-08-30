@@ -55,19 +55,20 @@ export default class World {
       this.load(initialLevel);
     });
 
-    events.on("levelDone", (winState) => {
-      if (winState === "win") {
-        progress.add(this.state.currentLevel);
+    events.on("levelNext", () => {
+      progress.add(this.state.currentLevel);
 
-        // TODO Load different level depending on teleporter metadata?
-        this.load(this.state.currentLevel + 1);
-      } else if (winState === "lose") {
-        this.lose();
-      }
+      // TODO Load different level depending on teleporter metadata?
+      this.load(parseInt(this.state.currentLevel) + 1);
+    });
+
+    events.on("levelLost", () => {
+      this.lose();
     });
   }
 
   load(levelId) {
+    console.log("load", levelId);
     this.state.currentLevel = levelId;
     const level = levels[levelId];
     if (level) {
@@ -82,10 +83,10 @@ export default class World {
   }
 
   win() {
-    location.href = "?ending=1";
+    location.href = location.pathname + "?ending=1";
   }
 
   lose() {
-    location.href = "?ending=0";
+    location.href = location.pathname + "?ending=0";
   }
 }

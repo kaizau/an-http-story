@@ -28,6 +28,9 @@ export default {
   },
 
   emit(event, ...args) {
+    if (!process.env.PRODUCTION) {
+      console.log("EVENT", event, ...args);
+    }
     if (events[event]) {
       events[event].forEach((handler) => handler(...args));
     }

@@ -1,8 +1,8 @@
 // Some helpful advice: https://talkrapp.com/speechSynthesis.html
 // Voice tester: https://mdn.github.io/web-speech-api/speak-easy-synthesis/
 
-export let friendVoice;
-export let foeVoice;
+let friendVoice;
+let foeVoice;
 
 const friendVoices = [
   // Best, instantly likeable
@@ -107,21 +107,29 @@ if (window.speechSynthesis) {
   chooseVoices();
 }
 
-export function friendSpeak(text) {
-  speak(text, friendVoice);
-}
+function Line(text) {
+  let voice = friendVoice;
+  if (text.slice(0, 5) === "FOE: ") {
+    text = text.slice(5);
+    voice = foeVoice;
+  }
 
-export function foeSpeak(text) {
-  speak(text, foeVoice);
-}
-
-function speak(text, voice) {
-  if (!window.speechSynthesis) return;
   const utterance = new SpeechSynthesisUtterance(text);
   if (voice) {
     utterance.voice = voice.voice;
     utterance.pitch = voice.pitch;
     utterance.rate = voice.rate;
   }
-  window.speechSynthesis.speak(utterance);
+  return utterance;
+}
+
+export function speak(lines = []) {
+  if (!window.speechSynthesis || !lines.length) return Promise.resolve();
+
+  return new Promise((resolve) => {
+    const dialogue = lines.map((line) => new Line(line));
+    const lastLine = dialogue[dialogue.length - 1];
+    lastLine.onend = () => resolve();
+    dialogue.forEach((line) => window.speechSynthesis.speak(line));
+  });
 }
