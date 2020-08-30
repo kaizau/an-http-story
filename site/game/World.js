@@ -12,8 +12,7 @@ import { LevelFactory } from "./LevelFactory";
 const { Engine, Scene } = BABYLON;
 
 export default class World {
-  constructor(game) {
-    this.game = game;
+  constructor(initialLevel) {
     this.state = {};
 
     this.canvas = document.getElementById("canvas");
@@ -50,7 +49,7 @@ export default class World {
     });
 
     this.scene.executeWhenReady(() => {
-      this.levelFactory.load(1);
+      this.levelFactory.load(initialLevel);
     });
   }
 }

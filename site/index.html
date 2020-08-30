@@ -2,8 +2,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>A 404 Story</title>
-    <meta name="description" content="A tiny game about finding one's way." />
+    <title>A HTTP Story</title>
+    <meta name="description" content="A game about finding one's way." />
     <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
     <style>
       html,
@@ -18,7 +18,7 @@
       }
 
       body {
-        transform-origin: 0 0;
+        transform-origin: 0 100%;
       }
 
       #directory {
@@ -32,19 +32,40 @@
         margin-left: 10px;
       }
 
-      #message {
-        margin-top: 30px;
+      #downloads {
+        background: #ddd;
+        bottom: 0;
+        padding: 5px;
+        position: absolute;
+        transition: all 0.5s;
+        width: 100%;
+      }
+
+      #downloads.offscreen {
+        bottom: -100px;
+      }
+
+      #downloads .download {
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        box-shadow: inset 0 1px #fff;
+        color: #444;
+        display: inline-flex;
+        font-size: 14px;
+        line-height: 1.25;
+        padding: 8px;
+        width: 200px;
+      }
+
+      #downloads .icon {
+        font-size: 24px;
+        margin-right: 8px;
       }
 
       .zoom {
+        opacity: 0;
         transform: scale(5);
         transition: all 3s;
-      }
-
-      .zoom #directory {
-        opacity: 0;
-        transform: rotate(900deg);
-        transition: all 4s;
       }
 
       .hidden {
@@ -56,12 +77,20 @@
   <body>
     <canvas id="canvas" class="hidden"></canvas>
     <div id="directory">
-      <h1>Index of 91.227.37.131/uploads</h1>
-      <p>⤴️ <a href="#">Parent Directory</a></p>
+      <h1>Index of /a-http-story</h1>
+      <p>⤴️ <a href="https://js13kgames.com">Parent Directory</a></p>
       <p>📂 <a href="#">credit-cards/</a></p>
       <p>📂 <a href="#">pwnd-emails/</a></p>
       <p>📦 <a href="#" id="start">CONFIDENTIAL.zip</a></p>
-      <p id="message"></p>
+    </div>
+    <div id="downloads" class="offscreen">
+      <div class="download">
+        <div class="icon">📦</div>
+        <div class="text">
+          <div><strong>CONFIDENTIAL.zip</strong></div>
+          <div id="message"></div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

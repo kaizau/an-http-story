@@ -7,17 +7,22 @@ const body = document.body;
 const canvas = document.querySelector("#canvas");
 const directory = document.querySelector("#directory");
 const start = document.querySelector("#start");
+const downloads = document.querySelector("#downloads");
 const message = document.querySelector("#message");
-const music = createMusic();
+let music;
 
 if (process.env.DEBUG) {
   startGame();
 } else {
+  music = createMusic();
+  loadProgress();
+
   start.addEventListener("click", () => {
+    downloads.classList.remove("offscreen");
     message.textContent = "Preparing download...";
 
     setTimeout(() => {
-      message.textContent = "Error";
+      message.textContent = "Unexpected error";
       music.then((audio) => audio.play());
 
       setTimeout(() => {
@@ -25,20 +30,48 @@ if (process.env.DEBUG) {
 
         setTimeout(startGame, 4000);
       }, 2000);
-    }, 2000);
+    }, 3000);
   });
 }
 
-function startGame() {
+function startGame(level = 1) {
   directory.classList.add("hidden");
-  canvas.classList.remove("hidden");
+  downloads.classList.add("offscreen");
   body.classList.remove("zoom");
+  canvas.classList.remove("hidden");
 
-  const world = new World();
-
+  const world = new World(level);
   if (process.env.DEBUG) {
     initDebug(world);
   }
+}
+
+function loadProgress() {
+  let progress;
+  try {
+    progress = JSON.parse(localStorage.progress);
+  } catch (e) {
+    // No progress
+  }
+  if (progress) {
+    progress.forEach(createShortcut);
+  }
+}
+
+function createShortcut(level) {
+  const item = document.createElement("p");
+  item.textContent = "📄 ";
+
+  const link = document.createElement("a");
+  link.textContent = `level_${level}.log`;
+  link.href = "#";
+  link.addEventListener("click", (e) => {
+    music.then((audio) => audio.play());
+    startGame(level);
+  });
+
+  item.appendChild(link);
+  directory.appendChild(item);
 }
 
 function createMusic() {
@@ -46,11 +79,11 @@ function createMusic() {
     return { then() {} };
   }
 
-  const player = new CPlayer();
-  player.init(song);
-
   return new Promise((resolve) => {
+    const player = new CPlayer();
     let done;
+
+    player.init(song);
     const generate = setInterval(() => {
       if (done) {
         clearInterval(generate);
@@ -62,7 +95,6 @@ function createMusic() {
         resolve(audio);
         return;
       }
-
       done = player.generate() >= 1;
     }, 0);
   });
