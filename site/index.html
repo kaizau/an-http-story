@@ -8,16 +8,18 @@
     <style>
       html,
       body,
+      #page,
       #canvas {
-        font-family: sans-serif;
         height: 100%;
         margin: 0;
-        overflow: hidden;
         padding: 0;
         width: 100%;
       }
 
-      body {
+      #page {
+        font-family: sans-serif;
+        overflow: hidden;
+        position: relative;
         transform-origin: 0 100%;
       }
 
@@ -34,8 +36,9 @@
       #directory {
         font-family: serif, "Apple Color Emoji", "Segoe UI Emoji",
           "Segoe UI Symbol";
-        display: inline-block;
+        height: 100%;
         padding: 0 20px;
+        overflow: auto;
       }
 
       #directory a {
@@ -47,13 +50,14 @@
         bottom: 0;
         padding: 5px;
         position: absolute;
+        transform: translateY(0);
         transition: all 1s;
         width: 100%;
         z-index: 1;
       }
 
       #downloads.offscreen {
-        bottom: -100px;
+        transform: translateY(100px);
       }
 
       #download {
@@ -88,6 +92,7 @@
         position: absolute;
         right: 20px;
         top: 20px;
+        transform: translateX(0);
         transition: all 1s;
         max-width: 300px;
         z-index: 2;
@@ -98,7 +103,7 @@
       }
 
       #notification.offscreen {
-        right: -320px;
+        transform: translateX(320px);
       }
 
       #modal {
@@ -118,6 +123,7 @@
         line-height: 1.4;
         padding: 40px;
         max-width: 500px;
+        z-index: 2;
       }
 
       .logo {
@@ -153,83 +159,89 @@
   <body>
     <canvas id="canvas" class="hidden"></canvas>
 
-    <div id="loading" class="hidden">Reticulating splines...</div>
+    <div id="page">
+      <div id="loading" class="hidden">Reticulating splines...</div>
 
-    <div id="directory" class="hidden">
-      <h1>Index of /a-http-story</h1>
-      <p>
-        ⤴️
-        <a target="_blank" href="https://js13kgames.com/">Parent Directory</a>
-      </p>
-      <p>📂<a href="#">credit-cards/</a></p>
-      <p>📂<a href="#">pwnd-emails/</a></p>
-      <p>📦<a href="#" id="start">TOP_SECRET.zip</a></p>
-    </div>
+      <div id="directory" class="hidden">
+        <h1>Index of /a-http-story</h1>
+        <p>
+          ⤴️
+          <a target="_blank" href="https://js13kgames.com/">Parent Directory</a>
+        </p>
+        <p>📂<a href="#">credit-cards/</a></p>
+        <p>📂<a href="#">pwnd-emails/</a></p>
+        <p>📦<a href="#" id="start">TOP_SECRET.zip</a></p>
+      </div>
 
-    <div id="downloads" class="offscreen">
-      <div id="download">
-        <div class="icon">📦</div>
-        <div class="text">
-          <div><strong>TOP_SECRET.zip</strong></div>
-          <div id="message"></div>
+      <div id="downloads" class="offscreen">
+        <div id="download">
+          <div class="icon">📦</div>
+          <div class="text">
+            <div><strong>TOP_SECRET.zip</strong></div>
+            <div id="message"></div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div id="notification" class="offscreen">
-      <span class="icon">🛡</span> Important Message
-    </div>
-
-    <div id="modal" class="hidden">
-      <div id="lose" class="window hidden">
-        <div class="logo">🛡️</div>
-        <h2>
-          This server has been confiscated by the Ministry of Knowledge.
-        </h2>
-        <p>
-          Your log files and biometrics have been uploaded to assist with the
-          ongoing investigation. Thank you for your voluntary participation.
-        </p>
-        <p><strong>One nation, one mind!</strong></p>
-        <button class="play-again">Play Again?</button>
+      <div id="notification" class="offscreen">
+        <span class="icon">🛡</span> Important Message
       </div>
 
-      <div id="win" class="window hidden">
-        <div class="logo">🏆</div>
-        <h2>Thanks for playing <em>A HTTP Story</em>!</h2>
-        <p>
-          I hope you enjoyed this experiment in minimal storytelling. It would
-          not have happened without:
-        </p>
-        <ul>
-          <li>
-            <a target="_blank" href="https://js13kgames.com/">js13kGames</a> for
-            the spark of inspiration.
-          </li>
-          <li>
-            <a target="_blank" href="https://www.babylonjs.com/">Babylon.js</a>
-            for the game engine and excellent documentation.
-          </li>
-          <li>
-            <a target="_blank" href="https://sb.bitsnbites.eu/">SoundBox</a> for
-            the 2KB (!) music player.
-          </li>
-          <li>
-            <a target="_blank" href="https://www.pouet.net/prod.php?which=64246"
-              >m@Bits'n'Bytes</a
-            >
-            for the song Wilderness.
-          </li>
-          <li>
-            <a target="_blank" href="https://xkcd.com/2347/"
-              >The hard-working many</a
-            >
-            who maintain the open technologies we all take for granted.
-          </li>
-        </ul>
-        <p>With much gratitude, <br />— K.</p>
-        <p>P.S. Zyra says hello.</p>
-        <button class="play-again">Play Again?</button>
+      <div id="modal" class="hidden">
+        <div id="lose" class="window hidden">
+          <div class="logo">🛡️</div>
+          <h2>
+            This server has been confiscated by the Ministry of Knowledge.
+          </h2>
+          <p>
+            Your log files and biometrics have been uploaded to assist with the
+            ongoing investigation. Thank you for your voluntary participation.
+          </p>
+          <p><strong>One nation, one mind!</strong></p>
+          <button class="play-again">Play Again?</button>
+        </div>
+
+        <div id="win" class="window hidden">
+          <div class="logo">🏆</div>
+          <h2>Thanks for playing <em>A HTTP Story</em>!</h2>
+          <p>
+            I hope you enjoyed this experiment in minimal storytelling. It would
+            not have happened without:
+          </p>
+          <ul>
+            <li>
+              <a target="_blank" href="https://js13kgames.com/">js13kGames</a>
+              for the spark of inspiration.
+            </li>
+            <li>
+              <a target="_blank" href="https://www.babylonjs.com/"
+                >Babylon.js</a
+              >
+              for the game engine and excellent documentation.
+            </li>
+            <li>
+              <a target="_blank" href="https://sb.bitsnbites.eu/">SoundBox</a>
+              for the 2KB (!) music player.
+            </li>
+            <li>
+              <a
+                target="_blank"
+                href="https://www.pouet.net/prod.php?which=64246"
+                >m@Bits'n'Bytes</a
+              >
+              for the song Wilderness.
+            </li>
+            <li>
+              <a target="_blank" href="https://xkcd.com/2347/"
+                >The hard-working many</a
+              >
+              who maintain the open technologies we all take for granted.
+            </li>
+          </ul>
+          <p>With much gratitude, <br />— K.</p>
+          <p>P.S. Zyra says hello.</p>
+          <button class="play-again">Play Again?</button>
+        </div>
       </div>
     </div>
   </body>

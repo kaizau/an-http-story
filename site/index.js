@@ -3,8 +3,8 @@ import initDebug from "./game/debug";
 import progress from "./game/progress";
 import { loadMusic, createMusic } from "./music";
 
-const body = document.body;
 const canvas = document.querySelector("#canvas");
+const page = document.querySelector("#page");
 const loading = document.querySelector("#loading");
 const directory = document.querySelector("#directory");
 const start = document.querySelector("#start");
@@ -40,7 +40,7 @@ async function init() {
       music.play();
 
       setTimeout(() => {
-        body.classList.add("zoom");
+        page.classList.add("zoom");
 
         setTimeout(startGame, 4000);
       }, 2000);
@@ -52,7 +52,7 @@ function startGame(level = 1) {
   directory.classList.add("hidden");
   downloads.classList.add("offscreen");
   modal.classList.add("hidden");
-  body.classList.remove("zoom");
+  page.classList.remove("zoom");
   canvas.classList.remove("hidden");
 
   const world = new World(level);
