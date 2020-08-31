@@ -26,7 +26,7 @@ export default class World {
     window.addEventListener("resize", () => this.engine.resize());
 
     this.scene = new Scene(this.engine);
-    this.env = new Environment(this.scene);
+    this.envHelper = new Environment(this.scene);
 
     this.ambientLight = new AmbientLight(this.scene);
     this.directLight = new DirectLight(this.scene);
@@ -44,7 +44,7 @@ export default class World {
     this.levelFactory = new LevelFactory(
       this.scene,
       this.state,
-      this.env,
+      this.envHelper,
       this.meshFactory
     );
 

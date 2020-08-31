@@ -105,6 +105,8 @@ if (window.speechSynthesis) {
     speechSynthesis.onvoiceschanged = chooseVoices;
   }
   chooseVoices();
+} else {
+  console.log("No SpeechSynthesis support");
 }
 
 function Line(text) {

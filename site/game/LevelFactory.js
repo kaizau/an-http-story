@@ -2,10 +2,10 @@ import events from "./events";
 import { speak } from "./speak";
 
 export class LevelFactory {
-  constructor(scene, state, env, meshFactory) {
+  constructor(scene, state, envHelper, meshFactory) {
     this.scene = scene;
     this.state = state;
-    this.env = env;
+    this.envHelper = envHelper;
     this.meshFactory = meshFactory;
 
     this.level = {};
@@ -21,7 +21,7 @@ export class LevelFactory {
   load(level) {
     this.reset();
     this.level = level;
-    this.env.setTheme(level.theme);
+    this.envHelper.setTheme(level.theme);
     this.levelMeshes = this.buildLevel(level);
 
     speak(level.intro);

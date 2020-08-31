@@ -14,7 +14,6 @@ export class Environment {
 
     // TODO Separate ground for VR player and character / tiles
     this.helper = scene.createDefaultEnvironment({
-      createGround: true,
       skyboxSize: 100,
     });
 
@@ -54,6 +53,7 @@ export function DirectLight(scene) {
   return direct;
 }
 
+// TODO scene is unused
 export function ShadowGen(scene, direct) {
   const shadowGenerator = new ShadowGenerator(96, direct);
   shadowGenerator.usePoissonSampling = true;
@@ -97,7 +97,7 @@ export function IsoCam(scene) {
   return isoCam;
 }
 
-export async function initXRHelper(scene, isoCam) {
+export function initXRHelper(scene, envHelper) {
   if (window.navigator.xr) {
     const xrTemplateCam = new UniversalCamera(
       "xrTemplateCam",
@@ -117,7 +117,7 @@ export async function initXRHelper(scene, isoCam) {
         // This option prevents #2
         ignoreNativeCameraTransformation: true,
         disableTeleportation: true,
-        useMultiview: true,
+        // useMultiview: true,
       })
       .then((xr) => {
         const xrHelper = xr.baseExperience;
@@ -137,5 +137,6 @@ export async function initXRHelper(scene, isoCam) {
       });
   } else {
     console.log("No WebXR support");
+    return Promise.resolve();
   }
 }
