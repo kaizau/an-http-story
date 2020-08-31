@@ -49,10 +49,10 @@ async function init() {
 }
 
 function startGame(level = 1) {
-  directory.classList.add("hidden");
+  page.classList.add("hidden");
+  page.classList.remove("zoom");
   downloads.classList.add("offscreen");
   modal.classList.add("hidden");
-  page.classList.remove("zoom");
   canvas.classList.remove("hidden");
 
   const world = new World(level);
