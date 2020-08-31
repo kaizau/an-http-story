@@ -4,7 +4,7 @@ const {
   HemisphericLight,
   DirectionalLight,
   ShadowGenerator,
-  FollowCamera,
+  UniversalCamera,
   WebXRState,
 } = BABYLON;
 
@@ -14,9 +14,11 @@ export class Environment {
 
     // TODO Separate ground for VR player and character / tiles
     this.helper = scene.createDefaultEnvironment({
-      createGround: false,
+      createGround: true,
       skyboxSize: 100,
     });
+
+    this.helper.ground.position.y = -3;
 
     this.setTheme([0.0, 0.1, 0.2]);
   }
@@ -60,34 +62,49 @@ export function ShadowGen(scene, direct) {
 }
 
 export function IsoCam(scene) {
-  const distance = 6;
-  const isoCam = new FollowCamera(
+  const offset = 5;
+  const maxDistance = 10;
+  const isoCam = new UniversalCamera(
     "isoCam",
-    new Vector3(0 - distance, distance, 0 - distance),
+    new Vector3(0 - offset, offset, 0 - offset),
     scene
   );
   isoCam.rotation = new Vector3(Math.PI / 6, Math.PI / 4, 0);
+  isoCam.speed = 0.5;
+  isoCam.inputs.removeByType("FreeCameraMouseInput");
+  isoCam.keysUp = [38, 87];
+  isoCam.keysDown = [40, 83];
+  isoCam.keysLeft = [37, 65];
+  isoCam.keysRight = [39, 68];
 
-  // TODO Follow main character? Or independent control?
-  // scene.registerBeforeRender(() => {
-  //   if (state.mainCharacter) {
-  //     isoCam.position.x = state.mainCharacter.mesh.position.x - distance;
-  //     isoCam.position.y = state.mainCharacter.mesh.position.y + distance;
-  //     isoCam.position.z = state.mainCharacter.mesh.position.z - distance;
-  //   }
-  // });
+  scene.onBeforeRenderObservable.add(() => {
+    // Keep on isometric plane
+    isoCam.position.y = offset;
+
+    // Maximum distance
+    if (isoCam.position.x > maxDistance - offset) {
+      isoCam.position.x = maxDistance - offset;
+    } else if (isoCam.position.x < 0 - maxDistance - offset) {
+      isoCam.position.x = 0 - maxDistance - offset;
+    }
+    if (isoCam.position.z > maxDistance - offset) {
+      isoCam.position.z = maxDistance - offset;
+    } else if (isoCam.position.z < 0 - maxDistance - offset) {
+      isoCam.position.z = 0 - maxDistance - offset;
+    }
+  });
 
   return isoCam;
 }
 
 export async function initXRHelper(scene, isoCam) {
   if (window.navigator.xr) {
-    const defaultCam = new FollowCamera(
-      "defaultCam",
-      new Vector3(0, 10, -10),
+    const xrTemplateCam = new UniversalCamera(
+      "xrTemplateCam",
+      new Vector3(0, 4, -4),
       scene
     );
-    defaultCam.rotation = new Vector3(Math.PI / 6, 0, 0);
+    xrTemplateCam.rotation = new Vector3(Math.PI / 6, 0, 0);
 
     return scene
       .createDefaultXRExperienceAsync({
@@ -107,9 +124,15 @@ export async function initXRHelper(scene, isoCam) {
         xrHelper.onStateChangedObservable.add((state) => {
           if (state === WebXRState.IN_XR) {
             // ... While this line prevents #1
-            xrHelper.camera.setTransformationFromNonVRCamera(defaultCam);
+            xrHelper.camera.setTransformationFromNonVRCamera(xrTemplateCam);
           }
         });
+
+        // Set camera height
+        xrHelper.onInitialXRPoseSetObservable.add((xrCamera) => {
+          xrCamera.y = 1;
+        });
+
         return xrHelper;
       });
   } else {

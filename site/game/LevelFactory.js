@@ -24,9 +24,7 @@ export class LevelFactory {
     this.env.setTheme(level.theme);
     this.levelMeshes = this.buildLevel(level);
 
-    if (!process.env.DEBUG) {
-      speak(level.intro);
-    }
+    speak(level.intro);
 
     // TODO Only allow player control after level is built
     events.emit("levelReady");

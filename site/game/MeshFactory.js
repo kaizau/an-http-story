@@ -85,6 +85,7 @@ export class MeshFactory {
     });
     mesh.receiveShadows = true;
 
+    this.shadows.addShadowCaster(mesh);
     this.actionFactory.makeWalkable(mesh);
     return mesh;
   }
@@ -108,6 +109,7 @@ export class MeshFactory {
     max.subtractInPlace(adjustment);
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
+    this.shadows.addShadowCaster(mesh);
     this.actionFactory.makeWalkable(mesh);
     this.actionFactory.makeDraggable(mesh);
     return mesh;

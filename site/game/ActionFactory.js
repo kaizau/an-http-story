@@ -151,6 +151,7 @@ export class ActionFactory {
         mesh.position.y === otherMesh.position.y &&
         otherMesh !== mesh &&
         otherMesh.id !== "BackgroundHelper" &&
+        otherMesh.id !== "BackgroundPlane" &&
         otherMesh.id !== "BackgroundSkybox"
       );
     });

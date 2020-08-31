@@ -124,7 +124,9 @@ function Line(text) {
 }
 
 export function speak(lines = []) {
-  if (!window.speechSynthesis || !lines.length) return Promise.resolve();
+  if (!window.speechSynthesis || !lines.length || process.env.DEBUG) {
+    return Promise.resolve();
+  }
 
   return new Promise((resolve) => {
     const dialogue = lines.map((line) => new Line(line));

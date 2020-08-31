@@ -22,8 +22,7 @@ export default function initDebug(world) {
     if (axes) return;
     axes = true;
     createWorldAxes(world.scene, 5);
-    const character = world.levelObjects.find((obj) => obj.mainCharacter);
-    showLocalAxes(character.mesh);
+    showLocalAxes(world.state.mainCharacter);
   });
 
   createButton("Show Bounding Boxes", () => {
@@ -42,9 +41,8 @@ export default function initDebug(world) {
   });
 
   Object.keys(levels).forEach((key) => {
-    const level = levels[key];
     createButton(`Level ${key}`, () => {
-      world.loadLevel(level);
+      world.load(key);
     });
   });
 }

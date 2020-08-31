@@ -33,6 +33,7 @@ export default class World {
     this.shadows = new ShadowGen(this.scene, this.directLight);
     this.isoCam = new IsoCam(this.scene);
     this.scene.activeCamera = this.isoCam;
+    this.isoCam.attachControl(this.canvas);
 
     this.actionFactory = new ActionFactory(this.scene, this.state);
     this.meshFactory = new MeshFactory(
