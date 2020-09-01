@@ -1,4 +1,4 @@
-import "../../vendor/zzfx.micro";
+import "../vendor/zzfx.micro";
 
 // https://killedbyapixel.github.io/ZzFX/
 const sounds = {

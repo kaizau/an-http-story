@@ -28,7 +28,7 @@ export default {
   },
 
   emit(event, ...args) {
-    if (!process.env.PRODUCTION) {
+    if (process.env.DEBUG) {
       console.log("EVENT", event, ...args);
     }
     if (events[event]) {

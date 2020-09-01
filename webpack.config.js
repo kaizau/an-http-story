@@ -1,21 +1,38 @@
 const path = require("path");
 const { EnvironmentPlugin } = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = (cliEnv) => {
-  const env = { DEBUG: false, PRODUCTION: true };
-  Object.assign(env, cliEnv);
+module.exports = (env) => {
+  let mode = "production";
+  let debug = false;
+  let useLocalBabylon = false;
+  let minifyAssets = true;
+  switch (env.TARGET) {
+    case "local":
+      mode = "development";
+      debug = true;
+      minifyAssets = false;
+      useLocalBabylon = true;
+      break;
+    case "production":
+      useLocalBabylon = true;
+      break;
+    case "finalize":
+      break;
+  }
+  env.DEBUG = debug;
 
-  return {
-    mode: env.PRODUCTION ? "production" : "development",
+  const config = {
+    mode,
     entry: "./site/index.js",
     output: {
       path: path.resolve(__dirname, "public"),
-      filename: "game.[hash].js",
+      filename: "game.[hash:8].js",
     },
-    devtool: env.PRODUCTION ? false : "eval-cheap-source-map",
     stats: "minimal",
+    devtool: debug ? "eval-cheap-source-map" : false,
     plugins: [
       new CleanWebpackPlugin(),
       new EnvironmentPlugin(env),
@@ -24,11 +41,11 @@ module.exports = (cliEnv) => {
         scriptLoading: "defer",
         template: path.resolve(__dirname, "site/index.html"),
         templateParameters: {
-          babylonSrc: env.PRODUCTION
-            ? "https://js13kgames.com/webxr-src/2020/babylon.js"
-            : "../vendor/babylon.js",
+          babylonSrc: useLocalBabylon
+            ? "babylon.js"
+            : "https://js13kgames.com/webxr-src/2020/babylon.js",
         },
-        minify: env.PRODUCTION
+        minify: minifyAssets
           ? {
               collapseWhitespace: true,
               minifyCSS: true,
@@ -42,4 +59,14 @@ module.exports = (cliEnv) => {
       }),
     ],
   };
+
+  if (useLocalBabylon) {
+    config.plugins.push(
+      new CopyWebpackPlugin({
+        patterns: [{ from: "site/vendor/babylon.js", to: "babylon.js" }],
+      })
+    );
+  }
+
+  return config;
 };
