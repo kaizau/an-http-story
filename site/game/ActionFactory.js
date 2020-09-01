@@ -1,11 +1,15 @@
 import events from "./events";
 const {
   ActionManager,
+  QuadraticEase,
+  EasingFunction,
   ExecuteCodeAction,
   PointerDragBehavior,
+  Animation,
   Color3,
   Vector3,
-} = BABYLON;
+  Ray,
+} = window.BABYLON;
 const {
   OnPickTrigger,
   OnPointerOverTrigger,
@@ -13,8 +17,8 @@ const {
   OnIntersectionEnterTrigger,
 } = ActionManager;
 
-const easingQuadOut = new BABYLON.QuadraticEase();
-easingQuadOut.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEOUT);
+const easingQuadOut = new QuadraticEase();
+easingQuadOut.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
 
 const primaryOutline = new Color3(0, 1, 1);
 const secondaryOutline = new Color3(1, 1, 1);
@@ -178,12 +182,12 @@ export class ActionFactory {
 
   _floatMeshTo(mesh, target) {
     const current = mesh.position.clone();
-    const moveAnimation = new BABYLON.Animation(
+    const moveAnimation = new Animation(
       "float",
       "position",
       30,
-      BABYLON.Animation.ANIMATIONTYPE_VECTOR3,
-      BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
+      Animation.ANIMATIONTYPE_VECTOR3,
+      Animation.ANIMATIONLOOPMODE_CONSTANT
     );
     const frames = 10;
     const keys = [
@@ -272,28 +276,28 @@ export class ActionFactory {
         }
         return {
           frame: key.frame,
-          value: new BABYLON.Vector3(0, rotation, 0),
+          value: new Vector3(0, rotation, 0),
         };
       });
 
       // TODO Cleanup animations after complete?
-      const moveAnimation = new BABYLON.Animation(
+      const moveAnimation = new Animation(
         "move",
         "position",
         30,
-        BABYLON.Animation.ANIMATIONTYPE_VECTOR3,
-        BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
+        Animation.ANIMATIONTYPE_VECTOR3,
+        Animation.ANIMATIONLOOPMODE_CONSTANT
       );
       moveAnimation.setKeys(movementKeys);
       moveAnimation.setEasingFunction(easingQuadOut);
       mesh.animations.push(moveAnimation);
 
-      const rotationAnimation = new BABYLON.Animation(
+      const rotationAnimation = new Animation(
         "rotation",
         "rotation",
         30,
-        BABYLON.Animation.ANIMATIONTYPE_VECTOR3,
-        BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
+        Animation.ANIMATIONTYPE_VECTOR3,
+        Animation.ANIMATIONLOOPMODE_CONSTANT
       );
       rotationAnimation.setKeys(rotationKeys);
       rotationAnimation.setEasingFunction(easingQuadOut);
@@ -310,13 +314,13 @@ export class ActionFactory {
   _canWalkTo(current, { x = 0, z = 0 }) {
     const origin = current.clone();
     const destination = current.clone();
-    const direction = new BABYLON.Vector3.Zero();
+    const direction = new Vector3.Zero();
     direction.x += x;
     destination.x += x;
     direction.z += z;
     destination.z += z;
-    const front = new BABYLON.Ray(origin, direction, 1);
-    const down = new BABYLON.Ray(destination, new BABYLON.Vector3.Down(), 1);
+    const front = new Ray(origin, direction, 1);
+    const down = new Ray(destination, new Vector3.Down(), 1);
     const frontPick = this.scene.pickWithRay(
       front,
       (mesh) => !mesh.isMainCharacter

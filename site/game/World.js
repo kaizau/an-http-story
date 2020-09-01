@@ -12,7 +12,7 @@ import { LevelFactory } from "./LevelFactory";
 import levels from "./levels";
 import events from "./events";
 import progress from "./progress";
-const { Engine, Scene } = BABYLON;
+const { Engine, Scene } = window.BABYLON;
 
 export default class World {
   constructor(initialLevel) {

@@ -3,12 +3,14 @@ const { EnvironmentPlugin } = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ClosurePlugin = require("closure-webpack-plugin");
 
 module.exports = (env) => {
   let mode = "production";
   let debug = false;
   let useLocalBabylon = false;
   let minifyAssets = true;
+  let useClosure = false;
   switch (env.TARGET) {
     case "local":
       mode = "development";
@@ -20,6 +22,9 @@ module.exports = (env) => {
       useLocalBabylon = true;
       break;
     case "finalize":
+      break;
+    case "finalize-closure":
+      useClosure = true;
       break;
   }
   env.DEBUG = debug;
@@ -66,6 +71,22 @@ module.exports = (env) => {
         patterns: [{ from: "site/vendor/babylon.js", to: "babylon.js" }],
       })
     );
+  }
+
+  if (useClosure) {
+    config.optimization = {
+      concatenateModules: false,
+      minimizer: [
+        new ClosurePlugin(
+          { mode: "STANDARD" },
+          {
+            compilation_level: "ADVANCED",
+            warningLevel: "VERBOSE",
+            languageOut: "ECMASCRIPT_2017",
+          }
+        ),
+      ],
+    };
   }
 
   return config;

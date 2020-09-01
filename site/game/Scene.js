@@ -6,7 +6,7 @@ const {
   ShadowGenerator,
   UniversalCamera,
   WebXRState,
-} = BABYLON;
+} = window.BABYLON;
 
 export class Environment {
   constructor(scene) {

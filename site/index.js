@@ -1,5 +1,5 @@
 import World from "./game/World";
-import initDebug from "./game/debug";
+// import initDebug from "./game/debug";
 import progress from "./game/progress";
 import { loadMusic, createMusic } from "./music";
 
@@ -56,9 +56,9 @@ function startGame(level = 1) {
   canvas.classList.remove("hidden");
 
   const world = new World(level);
-  if (process.env.DEBUG) {
-    initDebug(world);
-  }
+  // if (process.env.DEBUG) {
+  //   initDebug(world);
+  // }
 }
 
 function loadProgress() {
@@ -104,7 +104,7 @@ function checkEnding() {
     });
 
     if (history) {
-      history.replaceState({}, null, location.pathname);
+      history.replaceState({}, "", location.pathname);
     }
   }
 }

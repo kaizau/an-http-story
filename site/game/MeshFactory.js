@@ -5,7 +5,7 @@ const {
   Color3,
   Vector3,
   BoundingInfo,
-} = BABYLON;
+} = window.BABYLON;
 
 export class MeshFactory {
   constructor(scene, actionFactory, shadows) {

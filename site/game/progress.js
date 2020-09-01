@@ -2,7 +2,7 @@ export default {
   get() {
     let progress;
     try {
-      progress = JSON.parse(localStorage.progress);
+      progress = JSON.parse(window.localStorage.progress);
     } catch (e) {
       // No progress
     }
@@ -15,7 +15,7 @@ export default {
     if (!progress.includes(id)) {
       progress.push(id);
       progress.sort();
-      localStorage.progress = JSON.stringify(progress);
+      window.localStorage.progress = JSON.stringify(progress);
     }
   },
 };
