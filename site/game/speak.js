@@ -1,3 +1,5 @@
+import { playSound } from "./sounds";
+
 // Some helpful advice: https://talkrapp.com/speechSynthesis.html
 // Voice tester: https://mdn.github.io/web-speech-api/speak-easy-synthesis/
 
@@ -116,6 +118,7 @@ function Line(text) {
     voice = foeVoice;
   }
 
+  // TODO Each line is a promise
   const utterance = new SpeechSynthesisUtterance(text);
   if (voice) {
     utterance.voice = voice.voice;
@@ -126,7 +129,11 @@ function Line(text) {
 }
 
 export function speak(lines = []) {
-  if (!window.speechSynthesis || !lines.length || process.env.DEBUG) {
+  if (!lines.length) {
+    return Promise.resolve();
+  }
+  if (!window.speechSynthesis || process.env.DEBUG) {
+    zzfx(...friendSound);
     return Promise.resolve();
   }
 

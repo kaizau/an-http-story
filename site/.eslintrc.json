@@ -4,7 +4,8 @@
     "node": false
   },
   "globals": {
+    "BABYLON": "readonly",
     "process": "readonly",
-    "BABYLON": "readonly"
+    "zzfx": "readonly"
   }
 }
