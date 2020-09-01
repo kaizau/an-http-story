@@ -119,6 +119,9 @@ function Line(text) {
   }
 
   // TODO Each line is a promise
+  // TODO Show each line on screen
+  // TODO Allow dismissing messages
+  // TODO Sound effect if no speechSynthesis
   const utterance = new SpeechSynthesisUtterance(text);
   if (voice) {
     utterance.voice = voice.voice;
@@ -133,8 +136,7 @@ export function speak(lines = []) {
     return Promise.resolve();
   }
   if (!window.speechSynthesis || process.env.DEBUG) {
-    zzfx(...friendSound);
-    return Promise.resolve();
+    return playSound("friend");
   }
 
   return new Promise((resolve) => {

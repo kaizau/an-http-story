@@ -101,7 +101,7 @@ export function initXRHelper(scene, envHelper) {
   if (window.navigator.xr) {
     const xrTemplateCam = new UniversalCamera(
       "xrTemplateCam",
-      new Vector3(0, 4, -4),
+      new Vector3(0, 2, -2),
       scene
     );
     xrTemplateCam.rotation = new Vector3(Math.PI / 6, 0, 0);
@@ -130,7 +130,7 @@ export function initXRHelper(scene, envHelper) {
 
         // Set camera height
         xrHelper.onInitialXRPoseSetObservable.add((xrCamera) => {
-          xrCamera.y = 1;
+          xrCamera.y = 2;
         });
 
         return xrHelper;

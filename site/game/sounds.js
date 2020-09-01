@@ -51,24 +51,24 @@ const sounds = {
   friend: [
     ,
     ,
-    187,
-    0.39,
-    0.27,
-    0.54,
+    1127,
+    ,
+    0.06,
+    0.2,
     1,
-    0.17,
-    1.7,
-    1.9,
-    -7,
+    0.69,
+    ,
+    ,
+    412,
+    0.06,
+    0.07,
+    ,
+    ,
+    ,
     0.08,
-    0.29,
-    ,
-    ,
-    ,
+    0.68,
     0.03,
-    0.59,
-    0.01,
-    0.39,
+    0.18,
   ],
 
   foe: [, , 771, , 0.4, 0.57, , 2.93, , , , , , , , 0.9, , 0.86, 0.05],
@@ -77,8 +77,15 @@ const sounds = {
 };
 
 export function playSound(name) {
-  const sound = sounds[name];
-  if (sound) {
-    return zzfx(sound);
-  }
+  return new Promise((resolve) => {
+    const sound = sounds[name];
+    if (sound) {
+      const audio = zzfx(...sound);
+      audio.onended = () => {
+        setTimeout(resolve, 500);
+      };
+    } else {
+      resolve();
+    }
+  });
 }
