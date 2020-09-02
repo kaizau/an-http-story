@@ -16,7 +16,7 @@ A huge thank you to...
 - [Babylon.js](https://www.babylonjs.com/) for the game engine, detailed
   documentation, and absurdly useful code sandbox.
 - [SoundBox](https://sb.bitsnbites.eu/) for the tiny music player.
-- [m@Bits'n'Bytes](https://github.com/kaizau/a-http-story) for the epic
+- [m@Bits'n'Bytes](https://www.pouet.net/prod.php?which=64246) for the epic
   sountrack _Wilderness_.
 - [zzFX](https://killedbyapixel.github.io/ZzFX/) for sound effects.
 
