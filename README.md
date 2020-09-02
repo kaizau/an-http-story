@@ -1,30 +1,24 @@
-# Vercel Starter Template
+# A HTTP Story
 
-- [**Vercel**](https://vercel.com/docs) for hosting.
-- [**Parcel**](https://parceljs.org/getting_started.html) for static assets.
-- [**Express**](https://expressjs.com/) for serverless endpoints.
-- [**Jest**](https://jestjs.io/docs/en/getting-started) for testing.
-- [**ESLint**](https://eslint.org/docs/user-guide/getting-started) for linting.
-- [**Prettier**](https://prettier.io/docs/en/index.html) for formatting.
+> A game about finding one's way...
 
-## Installation
+My entry for the 2020 js13KGames competition, WebXR category.
 
-Expects globally-installed [`degit`](https://github.com/Rich-Harris/degit#readme) and [`vercel`](https://vercel.com/download).
+Best experienced on...
 
-1. Copy template with `degit kaizau/template-vercel`
-2. Install dependencies with `npm i`
-3. Configure Vercel domain, git integration, ENV variables
-4. Sync ENV variables with `vercel env pull`
-5. Trigger initial deploy with `vercel`
+Controls...
 
-## Usage
+## Credits 🙏
 
-```sh
-npm start     # local server at localhost:8888
-npm test      # watch /tests
-```
+A huge thank you to...
 
-## Notes
+- [js13kGames](https://js13kgames.com/) for the spark of inspiration.
+- [Babylon.js](https://www.babylonjs.com/) for the game engine, detailed
+  documentation, and absurdly useful code sandbox.
+- [SoundBox](https://sb.bitsnbites.eu/) for the tiny music player.
+- [m@Bits'n'Bytes](https://github.com/kaizau/a-http-story) for the epic
+  sountrack _Wilderness_.
+- [zzFX](https://killedbyapixel.github.io/ZzFX/) for sound effects.
 
-- Parcel [module resolution](https://parceljs.org/module_resolution.html) automatically handles "/" and "~" paths.
-- When in doubt, follow [sane defaults](https://github.com/elsewhencode/project-guidelines).
+And [the hard-working many](https://xkcd.com/2347/) who maintain all the open
+technologies we take for granted.
