@@ -11,8 +11,7 @@ import { MeshFactory } from "./MeshFactory";
 import { LevelFactory } from "./LevelFactory";
 import { Dialogue } from "./Dialogue";
 import levels from "./levels";
-import events from "./events";
-import progress from "./progress";
+import { events, progress } from "./utils";
 const { Engine, Scene } = window.BABYLON;
 
 export default class World {

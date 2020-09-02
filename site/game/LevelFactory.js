@@ -1,5 +1,5 @@
-import events from "./events";
 import { playSound } from "./sounds";
+import { events } from "./utils";
 const { Animation, QuadraticEase, EasingFunction } = window.BABYLON;
 
 const easeOutQuad = new QuadraticEase();

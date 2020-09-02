@@ -1,6 +1,6 @@
 import { friendVoice, foeVoice } from "./voices";
 import { playSound } from "./sounds";
-import { delay } from "./util";
+import { delay } from "./utils";
 
 const { Layer, DynamicTexture } = window.BABYLON;
 
