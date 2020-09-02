@@ -1,5 +1,9 @@
 import events from "./events";
 import { speak } from "./speak";
+const { Animation, QuadraticEase, EasingFunction } = window.BABYLON;
+
+const easeOutQuad = new QuadraticEase();
+easeOutQuad.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
 
 export class LevelFactory {
   constructor(scene, state, envHelper, meshFactory) {
@@ -18,11 +22,11 @@ export class LevelFactory {
     });
   }
 
-  load(level) {
+  async load(level) {
     this.reset();
     this.level = level;
     this.envHelper.setTheme(level.theme);
-    this.levelMeshes = this.buildLevel(level);
+    this.levelMeshes = await this.buildLevel(level);
 
     speak(level.intro);
 
@@ -30,8 +34,9 @@ export class LevelFactory {
     events.emit("levelReady");
   }
 
-  buildLevel(level) {
+  async buildLevel(level) {
     const levelMeshes = [];
+    const meshesReady = [];
 
     // Start from bottom layer
     level.map
@@ -68,20 +73,41 @@ export class LevelFactory {
               }
 
               if (mesh) {
-                // TODO Animate meshes into the world
-                // Staggered starts for an "assembly" effect
-                mesh.position.y += y;
-                mesh.position.z += z;
-                mesh.position.x += x;
+                meshesReady.push(
+                  new Promise((resolve) => {
+                    const targetY = mesh.position.y + y;
+                    mesh.position.y += 10;
+                    mesh.position.z += z;
+                    mesh.position.x += x;
+
+                    const random = Math.round(Math.random() * 1000);
+                    setTimeout(() => {
+                      Animation.CreateAndStartAnimation(
+                        "assemble",
+                        mesh,
+                        "position.y",
+                        30,
+                        30,
+                        10,
+                        targetY,
+                        Animation.ANIMATIONLOOPMODE_CONSTANT,
+                        easeOutQuad,
+                        resolve
+                      );
+                    }, random);
+                  })
+                );
 
                 levelMeshes.push(mesh);
-                // TODO What happens if we don't add meshes to the scene?
+
+                // TODO Do we need to explicitly add meshes to the scene?
                 // this.scene.addMesh(mesh);
               }
             });
           });
       });
 
+    await Promise.all(meshesReady);
     return levelMeshes;
   }
 

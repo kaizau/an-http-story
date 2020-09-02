@@ -98,7 +98,7 @@ export function IsoCam(scene) {
   return isoCam;
 }
 
-export function initXRHelper(scene, envHelper) {
+export function initXRHelper(scene) {
   if (window.navigator.xr) {
     const xrTemplateCam = new UniversalCamera(
       "xrTemplateCam",
@@ -131,7 +131,7 @@ export function initXRHelper(scene, envHelper) {
 
         // Set camera height
         xrHelper.onInitialXRPoseSetObservable.add((xrCamera) => {
-          xrCamera.y = 2;
+          xrCamera.y = 3;
         });
 
         return xrHelper;

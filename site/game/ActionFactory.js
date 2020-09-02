@@ -17,8 +17,8 @@ const {
   OnIntersectionEnterTrigger,
 } = ActionManager;
 
-const easingQuadOut = new QuadraticEase();
-easingQuadOut.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
+const easeOutQuad = new QuadraticEase();
+easeOutQuad.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
 
 const primaryOutline = new Color3(0, 1, 1);
 const secondaryOutline = new Color3(1, 1, 1);
@@ -196,6 +196,7 @@ export class ActionFactory {
     return samePlane.some((otherMesh) => mesh.intersectsMesh(otherMesh));
   }
 
+  // TODO Use animation helper
   _floatMeshTo(mesh, target) {
     const current = mesh.position.clone();
     const moveAnimation = new Animation(
@@ -214,7 +215,7 @@ export class ActionFactory {
       { frame: frames, value: target },
     ];
     moveAnimation.setKeys(keys);
-    moveAnimation.setEasingFunction(easingQuadOut);
+    moveAnimation.setEasingFunction(easeOutQuad);
     mesh.animations.push(moveAnimation);
     this.scene.beginAnimation(mesh, 0, frames);
   }
@@ -305,9 +306,10 @@ export class ActionFactory {
         Animation.ANIMATIONLOOPMODE_CONSTANT
       );
       moveAnimation.setKeys(movementKeys);
-      moveAnimation.setEasingFunction(easingQuadOut);
+      moveAnimation.setEasingFunction(easeOutQuad);
       mesh.animations.push(moveAnimation);
 
+      // TODO complete rotation in 1 tile
       const rotationAnimation = new Animation(
         "rotation",
         "rotation",
@@ -316,7 +318,7 @@ export class ActionFactory {
         Animation.ANIMATIONLOOPMODE_CONSTANT
       );
       rotationAnimation.setKeys(rotationKeys);
-      rotationAnimation.setEasingFunction(easingQuadOut);
+      rotationAnimation.setEasingFunction(easeOutQuad);
       mesh.animations.push(rotationAnimation);
 
       this.scene.beginAnimation(

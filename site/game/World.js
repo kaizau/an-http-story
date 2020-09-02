@@ -48,7 +48,7 @@ export default class World {
       this.meshFactory
     );
 
-    initXRHelper(this.scene, this.isoCam).then((xrHelper) => {
+    initXRHelper(this.scene).then((xrHelper) => {
       this.xrHelper = xrHelper;
     });
 
