@@ -31,6 +31,7 @@ export class ActionFactory {
     this.state = state;
   }
 
+  // TODO Implement as event?
   makeSelectable(mesh) {
     mesh.outlineColor = primaryOutline;
     this._ensureActionManager(mesh);
@@ -38,6 +39,8 @@ export class ActionFactory {
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
+        if (!this.state.playerControl) return;
+
         // Unselect
         if (this.state.selected === mesh) {
           this.state.selected.renderOutline = false;
@@ -66,6 +69,8 @@ export class ActionFactory {
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
+        if (!this.state.playerControl) return;
+
         const selected = this.state.selected;
         if (selected && selected.isControllable) {
           const target = mesh.position.clone();

@@ -1,5 +1,6 @@
 import events from "./events";
 import { speak } from "./speak";
+import { playSound } from "./sounds";
 const { Animation, QuadraticEase, EasingFunction } = window.BABYLON;
 
 const easeOutQuad = new QuadraticEase();
@@ -15,10 +16,15 @@ export class LevelFactory {
     this.level = {};
     this.levelMeshes = [];
 
-    events.on("levelCompleted", () => {
-      speak(this.level.outro).then(() => {
-        events.emit("levelNext");
-      });
+    events.on("levelCompleted", async () => {
+      this.state.playerControl = false;
+      if (this.state.selected) {
+        this.state.selected.renderOutline = false;
+      }
+      this.state.selected = null;
+
+      await speak(this.level.outro);
+      events.emit("levelNext");
     });
   }
 
@@ -30,7 +36,7 @@ export class LevelFactory {
 
     speak(level.intro);
 
-    // TODO Only allow player control after level is built
+    this.state.playerControl = true;
     events.emit("levelReady");
   }
 
@@ -116,6 +122,9 @@ export class LevelFactory {
         new Promise((resolve) => {
           const random = Math.round(Math.random() * 1000);
           setTimeout(() => {
+            if (mesh.isMainCharacter) {
+              playSound("teleport");
+            }
             Animation.CreateAndStartAnimation(
               "disassemble",
               mesh,
