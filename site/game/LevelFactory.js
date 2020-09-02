@@ -1,5 +1,17 @@
 import { playSound } from "./sounds";
 import { events } from "./utils";
+import {
+  ZYRA,
+  TELE,
+  BLCK,
+  MVBK,
+  EYEB,
+  LASR,
+  GATE,
+  TELA,
+  TELB,
+  TELC,
+} from "./levels";
 const { Animation, QuadraticEase, EasingFunction } = window.BABYLON;
 
 const easeOutQuad = new QuadraticEase();
@@ -62,16 +74,16 @@ export class LevelFactory {
 
               let mesh;
               switch (code) {
-                case "_":
+                case BLCK:
                   mesh = this.meshFactory.createBlock();
                   break;
-                case "m":
+                case MVBK:
                   mesh = this.meshFactory.createBlockMovable();
                   break;
-                case "^":
+                case ZYRA:
                   mesh = this.meshFactory.createCharacter();
                   break;
-                case "$":
+                case TELE:
                   mesh = this.meshFactory.createTeleporter("exit");
                   break;
               }

@@ -1,4 +1,4 @@
-import levels from "./levels";
+import { levels } from "./levels";
 
 let debugBar;
 let axes;

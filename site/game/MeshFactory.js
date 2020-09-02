@@ -24,6 +24,56 @@ export class MeshFactory {
     this.createBlockTemplate();
   }
 
+  createBlockTemplate() {
+    const mesh = MeshBuilder.CreateBox("block", {
+      height: 1,
+      width: 1,
+      depth: 1,
+    });
+    mesh.receiveShadows = true;
+    mesh.material = new StandardMaterial("blockMaterial");
+    mesh.material.diffuseColor = new Color3(0.9, 0.9, 0.9);
+    mesh.isVisible = false;
+
+    // Supposedly good for perf
+    // mesh.convertToUnIndexedMesh();
+
+    this.blockTemplate = mesh;
+  }
+
+  createBlock() {
+    const mesh = this.blockTemplate.createInstance();
+    this.shadows.addShadowCaster(mesh);
+    this.actionFactory.makeWalkable(mesh);
+    return mesh;
+  }
+
+  createBlockMovable() {
+    const mesh = MeshBuilder.CreateBox("blockMovable", {
+      height: 1,
+      width: 1,
+      depth: 1,
+    });
+    mesh.receiveShadows = true;
+    mesh.material = this.secondaryMaterial;
+
+    // Smaller bounding box to allow fitting into tight spaces.
+    //
+    // TODO Also reduces draggable area, so a better alternative might be to
+    // create a smaller internal box for collisions.
+    const min = mesh.getBoundingInfo().boundingBox.minimum;
+    const max = mesh.getBoundingInfo().boundingBox.maximum;
+    const adjustment = new Vector3(0.15, 0.15, 0.15);
+    min.addInPlace(adjustment);
+    max.subtractInPlace(adjustment);
+    mesh.setBoundingInfo(new BoundingInfo(min, max));
+
+    this.shadows.addShadowCaster(mesh);
+    this.actionFactory.makeWalkable(mesh);
+    this.actionFactory.makeDraggable(mesh);
+    return mesh;
+  }
+
   createCharacter() {
     const body = MeshBuilder.CreatePolyhedron("character", {
       type: 0,
@@ -78,56 +128,6 @@ export class MeshFactory {
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
     this.actionFactory.makeTeleporter(mesh, id);
-    return mesh;
-  }
-
-  createBlockTemplate() {
-    const mesh = MeshBuilder.CreateBox("block", {
-      height: 1,
-      width: 1,
-      depth: 1,
-    });
-    mesh.receiveShadows = true;
-    mesh.material = new StandardMaterial("blockMaterial");
-    mesh.material.diffuseColor = new Color3(0.9, 0.9, 0.9);
-    mesh.isVisible = false;
-
-    // Supposedly good for perf
-    // mesh.convertToUnIndexedMesh();
-
-    this.blockTemplate = mesh;
-  }
-
-  createBlock() {
-    const mesh = this.blockTemplate.createInstance();
-    this.shadows.addShadowCaster(mesh);
-    this.actionFactory.makeWalkable(mesh);
-    return mesh;
-  }
-
-  createBlockMovable() {
-    const mesh = MeshBuilder.CreateBox("blockMovable", {
-      height: 1,
-      width: 1,
-      depth: 1,
-    });
-    mesh.receiveShadows = true;
-    mesh.material = this.secondaryMaterial;
-
-    // Smaller bounding box to allow fitting into tight spaces.
-    //
-    // TODO Also reduces draggable area, so a better alternative might be to
-    // create a smaller internal box for collisions.
-    const min = mesh.getBoundingInfo().boundingBox.minimum;
-    const max = mesh.getBoundingInfo().boundingBox.maximum;
-    const adjustment = new Vector3(0.15, 0.15, 0.15);
-    min.addInPlace(adjustment);
-    max.subtractInPlace(adjustment);
-    mesh.setBoundingInfo(new BoundingInfo(min, max));
-
-    this.shadows.addShadowCaster(mesh);
-    this.actionFactory.makeWalkable(mesh);
-    this.actionFactory.makeDraggable(mesh);
     return mesh;
   }
 }

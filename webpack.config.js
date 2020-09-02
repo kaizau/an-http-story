@@ -31,7 +31,6 @@ module.exports = (env) => {
       break;
     case "finalize-closure":
       useClosure = true;
-      useAnalyzer = true;
       break;
   }
   env.DEBUG = debug;

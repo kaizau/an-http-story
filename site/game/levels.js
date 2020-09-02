@@ -1,5 +1,18 @@
+// let BLNK;
+export const ZYRA = 0;
+export const TELE = 1;
+export const BLCK = 2;
+export const MVBK = 3;
+export const EYEB = 4;
+export const LASR = 5;
+export const GATE = 6;
+export const TELA = 7;
+export const TELB = 8;
+export const TELC = 9;
+
 // Export object for flexible naming
-export default {
+// prettier-ignore
+export const levels = {
   1: {
     intro: [
       "Ouch...",
@@ -9,25 +22,24 @@ export default {
       "I don't have write permissions here. Can you guide me to the exit?",
     ],
     theme: [0.0, 0.1, 0.2],
-    music: "main",
     map: [
       [
-        ["$", " "],
-        [" ", " "],
-        ["m", " "],
-        [" ", " "],
-        [" ", " "],
-        [" ", " "],
-        [" ", "^"],
+        [TELE,    ],
+        [    ,    ],
+        [MVBK,    ],
+        [    ,    ],
+        [    ,    ],
+        [    ,    ],
+        [    ,ZYRA],
       ],
       [
-        ["_", " "],
-        ["_", " "],
-        [" ", "m"],
-        ["_", " "],
-        ["_", "_"],
-        [" ", "_"],
-        [" ", "_"],
+        [BLCK,    ],
+        [BLCK,    ],
+        [    ,MVBK],
+        [BLCK,    ],
+        [BLCK,BLCK],
+        [    ,BLCK],
+        [    ,BLCK],
       ],
     ],
     outro: ["Thanks, I appreciate your help.", "Goodbye now!"],
@@ -42,7 +54,6 @@ export default {
       "But you can call me Zyra.",
     ],
     theme: [0.0, 0.2, 0.2],
-    music: "main",
     map: [
       [
         ["$", " "],
@@ -73,7 +84,6 @@ export default {
       "It's strange... this doesn't feel like any other network issue I've ever encountered.",
     ],
     theme: [0.0, 0.2, 0.3],
-    music: "main",
     map: [
       [
         ["$", " "],
@@ -103,7 +113,6 @@ export default {
       "Crap. That doesn't sound good. We better hurry.",
     ],
     theme: [0.3, 0.3, 0.2],
-    music: "main",
     map: [
       [
         ["$", " "],
@@ -134,7 +143,6 @@ export default {
       "Let's get out of here.",
     ],
     theme: [0.4, 0.3, 0.1],
-    music: "main",
     map: [
       [
         ["$", " "],
@@ -168,7 +176,6 @@ export default {
       "Thanks for helping me.",
     ],
     theme: [0.5, 0.3, 0.1],
-    music: "main",
     map: [
       [
         ["$", " "],
@@ -198,7 +205,6 @@ export default {
       "Please, keep them away from me.",
     ],
     theme: [0.6, 0.2, 0.1],
-    music: "main",
     map: [
       [
         ["$", " "],
@@ -231,7 +237,6 @@ export default {
       "Stay focused. We'll get through this.",
     ],
     theme: [0.7, 0.2, 0.1],
-    music: "main",
     map: [
       [
         ["$", " "],
@@ -262,7 +267,6 @@ export default {
       "Hurry! We have to reach the exit before quarantine is established!",
     ],
     theme: [1.0, 0.2, 0.2],
-    music: "main",
     map: [
       [
         ["$", " "],
@@ -296,8 +300,8 @@ export default {
       "No... I'm not just a bundle of documents.",
       "I'm sorry I kept you in the dark.",
       "But this... This is bigger than you or I.",
-      "This data needs to reach its destination.",
-      "Thank you. I'm grateful for your help. Farewell.",
+      "Thank you. I'm grateful for your help.",
+      "Farewell.",
     ],
   },
 };

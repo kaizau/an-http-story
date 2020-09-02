@@ -10,7 +10,7 @@ import { ActionFactory } from "./ActionFactory";
 import { MeshFactory } from "./MeshFactory";
 import { LevelFactory } from "./LevelFactory";
 import { Dialogue } from "./Dialogue";
-import levels from "./levels";
+import { levels } from "./levels";
 import { events, progress } from "./utils";
 const { Engine, Scene } = window.BABYLON;
 

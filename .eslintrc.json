@@ -13,6 +13,7 @@
     "no-duplicate-imports": "error",
     "no-var": "error",
     "no-unused-vars": "warn",
-    "prefer-const": "error"
+    "prefer-const": "error",
+    "no-sparse-arrays": "off"
   }
 }
