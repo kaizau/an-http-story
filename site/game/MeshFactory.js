@@ -12,6 +12,16 @@ export class MeshFactory {
     this.scene = scene;
     this.actionFactory = actionFactory;
     this.shadows = shadows;
+
+    this.primaryMaterial = new StandardMaterial("primaryMaterial");
+    this.primaryMaterial.diffuseColor = new Color3(0.6, 0.6, 0.9);
+    this.primaryMaterial.freeze();
+
+    this.secondaryMaterial = new StandardMaterial("secondaryMaterial");
+    this.secondaryMaterial.diffuseColor = new Color3(0.9, 0.9, 0.6);
+    this.secondaryMaterial.freeze();
+
+    this.createBlockTemplate();
   }
 
   createCharacter() {
@@ -36,10 +46,7 @@ export class MeshFactory {
     head.rotation.y = Math.PI / 2;
 
     const mesh = Mesh.MergeMeshes([body, head], true);
-
-    const material = new StandardMaterial("characterMaterial");
-    material.diffuseColor = new Color3(0.6, 0.6, 0.9);
-    mesh.material = material;
+    mesh.material = this.primaryMaterial;
 
     // Larger bounding box to prevent getting "squashed" by movable block
     const min = new Vector3(-0.25, -0.25, -0.25);
@@ -63,9 +70,7 @@ export class MeshFactory {
     mesh.position.y = -0.4;
     mesh.scaling.y = 0.75;
 
-    const material = new StandardMaterial("teleporterMaterial");
-    material.diffuseColor = new Color3(0.6, 0.6, 0.9);
-    mesh.material = material;
+    mesh.material = this.primaryMaterial;
 
     // Taller bounding box to allow intersect with player character
     const min = new Vector3(0, 0, 0);
@@ -77,14 +82,25 @@ export class MeshFactory {
     return mesh;
   }
 
-  createBlock() {
+  createBlockTemplate() {
     const mesh = MeshBuilder.CreateBox("block", {
       height: 1,
       width: 1,
       depth: 1,
     });
     mesh.receiveShadows = true;
+    mesh.material = new StandardMaterial("blockMaterial");
+    mesh.material.diffuseColor = new Color3(0.9, 0.9, 0.9);
+    mesh.isVisible = false;
 
+    // Supposedly good for perf
+    // mesh.convertToUnIndexedMesh();
+
+    this.blockTemplate = mesh;
+  }
+
+  createBlock() {
+    const mesh = this.blockTemplate.createInstance();
     this.shadows.addShadowCaster(mesh);
     this.actionFactory.makeWalkable(mesh);
     return mesh;
@@ -97,6 +113,7 @@ export class MeshFactory {
       depth: 1,
     });
     mesh.receiveShadows = true;
+    mesh.material = this.secondaryMaterial;
 
     // Smaller bounding box to allow fitting into tight spaces.
     //

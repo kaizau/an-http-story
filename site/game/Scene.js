@@ -118,7 +118,7 @@ export function initXRHelper(scene) {
         // This option prevents #2
         ignoreNativeCameraTransformation: true,
         disableTeleportation: true,
-        // useMultiview: true,
+        useMultiview: true,
       })
       .then((xr) => {
         const xrHelper = xr.baseExperience;
