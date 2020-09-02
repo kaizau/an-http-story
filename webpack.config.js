@@ -78,10 +78,9 @@ module.exports = (env) => {
       concatenateModules: false,
       minimizer: [
         new ClosurePlugin(
-          { mode: "STANDARD" },
+          { mode: "AGGRESSIVE_BUNDLE" },
           {
             compilation_level: "ADVANCED",
-            warningLevel: "VERBOSE",
             languageOut: "ECMASCRIPT_2017",
           }
         ),
