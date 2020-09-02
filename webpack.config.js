@@ -4,6 +4,8 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ClosurePlugin = require("closure-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 module.exports = (env) => {
   let mode = "production";
@@ -11,6 +13,7 @@ module.exports = (env) => {
   let useLocalBabylon = false;
   let minifyAssets = true;
   let useClosure = false;
+  let useAnalyzer = false;
   switch (env.TARGET) {
     case "local":
       mode = "development";
@@ -21,10 +24,14 @@ module.exports = (env) => {
     case "production":
       useLocalBabylon = true;
       break;
+    case "analyze":
+      useAnalyzer = true;
+      break;
     case "finalize":
       break;
     case "finalize-closure":
       useClosure = true;
+      useAnalyzer = true;
       break;
   }
   env.DEBUG = debug;
@@ -71,6 +78,10 @@ module.exports = (env) => {
         patterns: [{ from: "site/vendor/babylon.js", to: "babylon.js" }],
       })
     );
+  }
+
+  if (useAnalyzer) {
+    config.plugins.push(new BundleAnalyzerPlugin());
   }
 
   if (useClosure) {
