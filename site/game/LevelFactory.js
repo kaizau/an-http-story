@@ -1,5 +1,4 @@
 import events from "./events";
-import { speak } from "./speak";
 import { playSound } from "./sounds";
 const { Animation, QuadraticEase, EasingFunction } = window.BABYLON;
 
@@ -7,11 +6,12 @@ const easeOutQuad = new QuadraticEase();
 easeOutQuad.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
 
 export class LevelFactory {
-  constructor(scene, state, envHelper, meshFactory) {
+  constructor(scene, state, envHelper, meshFactory, dialogue) {
     this.scene = scene;
     this.state = state;
     this.envHelper = envHelper;
     this.meshFactory = meshFactory;
+    this.dialogue = dialogue;
 
     this.level = {};
     this.levelMeshes = [];
@@ -23,7 +23,8 @@ export class LevelFactory {
       }
       this.state.selected = null;
 
-      await speak(this.level.outro);
+      await this.dialogue.load(this.level.outro);
+
       events.emit("levelNext");
     });
   }
@@ -34,7 +35,7 @@ export class LevelFactory {
     this.envHelper.setTheme(level.theme);
     this.levelMeshes = await this.buildLevel(level);
 
-    speak(level.intro);
+    await this.dialogue.load(level.intro);
 
     this.state.playerControl = true;
     events.emit("levelReady");

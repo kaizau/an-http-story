@@ -1,10 +1,8 @@
-import { playSound } from "./sounds";
-
 // Some helpful advice: https://talkrapp.com/speechSynthesis.html
 // Voice tester: https://mdn.github.io/web-speech-api/speak-easy-synthesis/
 
-let friendVoice;
-let foeVoice;
+export let friendVoice;
+export let foeVoice;
 
 const friendVoices = [
   // Best, instantly likeable
@@ -109,40 +107,4 @@ if (window.speechSynthesis) {
   chooseVoices();
 } else {
   console.log("No SpeechSynthesis support");
-}
-
-function Line(text) {
-  let voice = friendVoice;
-  if (text.slice(0, 5) === "FOE: ") {
-    text = text.slice(5);
-    voice = foeVoice;
-  }
-
-  // TODO Each line is a promise
-  // TODO Show each line on screen
-  // TODO Allow dismissing messages
-  // TODO Sound effect if no speechSynthesis
-  const utterance = new SpeechSynthesisUtterance(text);
-  if (voice) {
-    utterance.voice = voice.voice;
-    utterance.pitch = voice.pitch;
-    utterance.rate = voice.rate;
-  }
-  return utterance;
-}
-
-export function speak(lines = []) {
-  if (!lines.length) {
-    return Promise.resolve();
-  }
-  if (!window.speechSynthesis || process.env.DEBUG) {
-    return playSound("friend");
-  }
-
-  return new Promise((resolve) => {
-    const dialogue = lines.map((line) => new Line(line));
-    const lastLine = dialogue[dialogue.length - 1];
-    lastLine.onend = () => resolve();
-    dialogue.forEach((line) => window.speechSynthesis.speak(line));
-  });
 }

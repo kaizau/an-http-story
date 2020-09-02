@@ -9,6 +9,7 @@ import {
 import { ActionFactory } from "./ActionFactory";
 import { MeshFactory } from "./MeshFactory";
 import { LevelFactory } from "./LevelFactory";
+import { Dialogue } from "./Dialogue";
 import levels from "./levels";
 import events from "./events";
 import progress from "./progress";
@@ -27,6 +28,7 @@ export default class World {
 
     this.scene = new Scene(this.engine);
     this.envHelper = new Environment(this.scene);
+    this.dialogue = new Dialogue(this.scene);
 
     this.ambientLight = new AmbientLight(this.scene);
     this.directLight = new DirectLight(this.scene);
@@ -45,7 +47,8 @@ export default class World {
       this.scene,
       this.state,
       this.envHelper,
-      this.meshFactory
+      this.meshFactory,
+      this.dialogue
     );
 
     initXRHelper(this.scene).then((xrHelper) => {

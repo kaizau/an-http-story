@@ -1,4 +1,3 @@
-import { speak } from "./speak";
 import levels from "./levels";
 
 let debugBar;
@@ -28,15 +27,6 @@ export default function initDebug(world) {
   createButton("Show Bounding Boxes", () => {
     world.levelFactory.levelMeshes.forEach((mesh) => {
       mesh.showBoundingBox = true;
-    });
-  });
-
-  createButton("Test Speech", () => {
-    speak([
-      "Testing speech synthesis... Do I sound likeable?",
-      "FOE: Testing speech synthesis... Do I sound evil?",
-    ]).then(() => {
-      console.log("Done speaking");
     });
   });
 
