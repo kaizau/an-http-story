@@ -60,7 +60,6 @@ export class LevelFactory {
             row.forEach((code, colIndex) => {
               const z = 5 - colIndex;
 
-              // TODO Merge non-movable meshes of same type? Or use Instances?
               let mesh;
               switch (code) {
                 case "_":
