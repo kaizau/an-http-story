@@ -23,7 +23,7 @@ export class LevelFactory {
   }
 
   async load(level) {
-    this.reset();
+    await this.reset();
     this.level = level;
     this.envHelper.setTheme(level.theme);
     this.levelMeshes = await this.buildLevel(level);
@@ -34,8 +34,7 @@ export class LevelFactory {
     events.emit("levelReady");
   }
 
-  async buildLevel(level) {
-    const levelMeshes = [];
+  buildLevel(level) {
     const meshesReady = [];
 
     // Start from bottom layer
@@ -92,13 +91,11 @@ export class LevelFactory {
                         targetY,
                         Animation.ANIMATIONLOOPMODE_CONSTANT,
                         easeOutQuad,
-                        resolve
+                        () => resolve(mesh)
                       );
                     }, random);
                   })
                 );
-
-                levelMeshes.push(mesh);
 
                 // TODO Do we need to explicitly add meshes to the scene?
                 // this.scene.addMesh(mesh);
@@ -107,13 +104,39 @@ export class LevelFactory {
           });
       });
 
-    await Promise.all(meshesReady);
-    return levelMeshes;
+    return Promise.all(meshesReady);
   }
 
-  // TODO Animate meshes out of the world
   reset() {
     events.emit("levelReset");
-    this.levelMeshes.forEach((mesh) => mesh.dispose());
+    const meshesReady = [];
+
+    this.levelMeshes.forEach((mesh) => {
+      meshesReady.push(
+        new Promise((resolve) => {
+          const random = Math.round(Math.random() * 1000);
+          setTimeout(() => {
+            Animation.CreateAndStartAnimation(
+              "disassemble",
+              mesh,
+              "position.y",
+              30,
+              30,
+              mesh.position.y,
+              mesh.position.y + 10,
+              Animation.ANIMATIONLOOPMODE_CONSTANT,
+              easeOutQuad,
+              () => {
+                mesh.dispose();
+                resolve();
+              }
+            );
+          }, random);
+        })
+      );
+    });
+
+    this.levelMeshes = [];
+    return Promise.all(meshesReady);
   }
 }

@@ -138,6 +138,8 @@ export class ActionFactory {
           },
           () => {
             if (id === "exit") {
+              if (mesh.teleporterActivated) return;
+              mesh.teleporterActivated = true;
               events.emit("levelCompleted");
             } else {
               // TODO Find matching teleporter and change position of main
@@ -196,28 +198,18 @@ export class ActionFactory {
     return samePlane.some((otherMesh) => mesh.intersectsMesh(otherMesh));
   }
 
-  // TODO Use animation helper
   _floatMeshTo(mesh, target) {
-    const current = mesh.position.clone();
-    const moveAnimation = new Animation(
+    Animation.CreateAndStartAnimation(
       "float",
+      mesh,
       "position",
       30,
-      Animation.ANIMATIONTYPE_VECTOR3,
-      Animation.ANIMATIONLOOPMODE_CONSTANT
+      10,
+      mesh.position.clone(),
+      target,
+      Animation.ANIMATIONLOOPMODE_CONSTANT,
+      easeOutQuad
     );
-    const frames = 10;
-    const keys = [
-      {
-        frame: 0,
-        value: current,
-      },
-      { frame: frames, value: target },
-    ];
-    moveAnimation.setKeys(keys);
-    moveAnimation.setEasingFunction(easeOutQuad);
-    mesh.animations.push(moveAnimation);
-    this.scene.beginAnimation(mesh, 0, frames);
   }
 
   _walkMeshTo(mesh, target) {
