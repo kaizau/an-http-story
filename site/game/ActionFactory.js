@@ -22,6 +22,7 @@ easingQuadOut.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
 
 const primaryOutline = new Color3(0, 1, 1);
 const secondaryOutline = new Color3(1, 1, 1);
+const errorOutline = new Color3(1, 1, 0);
 
 // TODO Are action managers automatically disposed when meshes are disposed?
 export class ActionFactory {
@@ -33,7 +34,7 @@ export class ActionFactory {
   makeSelectable(mesh) {
     mesh.outlineColor = primaryOutline;
     this._ensureActionManager(mesh);
-    this._makeHoverable(mesh);
+    this.makeHoverable(mesh);
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
@@ -61,7 +62,7 @@ export class ActionFactory {
     mesh.isWalkable = true;
     mesh.outlineColor = secondaryOutline;
     this._ensureActionManager(mesh);
-    this._makeHoverable(mesh);
+    this.makeHoverable(mesh);
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
@@ -82,10 +83,18 @@ export class ActionFactory {
     });
     pointerDragBehavior.moveAttached = false;
     pointerDragBehavior.onDragStartObservable.add(() => {
-      this.state.dragged = mesh;
+      if (this._hasCharacterOnTop(mesh)) {
+        mesh.outlineColor = errorOutline;
+        mesh.renderOutline = true;
+        return;
+      }
+
       mesh.renderOutline = true;
+      this.state.dragged = mesh;
     });
     pointerDragBehavior.onDragObservable.add((event) => {
+      if (this._hasCharacterOnTop(mesh)) return;
+
       mesh.renderOutline = true;
       mesh.position.x += event.delta.x;
       mesh.position.z += event.delta.z;
@@ -97,6 +106,7 @@ export class ActionFactory {
       }
     });
     pointerDragBehavior.onDragEndObservable.add(() => {
+      mesh.outlineColor = primaryOutline;
       const snap = mesh.position.clone();
       snap.x = Math.round(snap.x);
       snap.z = Math.round(snap.z);
@@ -140,29 +150,7 @@ export class ActionFactory {
     });
   }
 
-  // TODO Lose when character touches enemy
-  // OnIntersectionEnterTrigger
-
-  _ensureActionManager(mesh) {
-    mesh.actionManager = mesh.actionManger || new ActionManager(this.scene);
-  }
-
-  _hasAnyCollision(mesh) {
-    // Only test with meshes in camera view, on same plane
-    const active = this.scene.getActiveMeshes().data;
-    const samePlane = active.filter((otherMesh) => {
-      return (
-        mesh.position.y === otherMesh.position.y &&
-        otherMesh !== mesh &&
-        otherMesh.id !== "BackgroundHelper" &&
-        otherMesh.id !== "BackgroundPlane" &&
-        otherMesh.id !== "BackgroundSkybox"
-      );
-    });
-    return samePlane.some((otherMesh) => mesh.intersectsMesh(otherMesh));
-  }
-
-  _makeHoverable(mesh) {
+  makeHoverable(mesh) {
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPointerOverTrigger, () => {
         mesh.renderOutline = true;
@@ -178,6 +166,34 @@ export class ActionFactory {
         // mesh.material.diffuseColor.scale(0.8);
       })
     );
+  }
+
+  // TODO Lose when character touches enemy
+  // OnIntersectionEnterTrigger
+
+  _ensureActionManager(mesh) {
+    mesh.actionManager = mesh.actionManger || new ActionManager(this.scene);
+  }
+
+  _hasCharacterOnTop(mesh) {
+    const top = new Ray(mesh.position.clone(), new Vector3.Up(), 1);
+    const topPick = this.scene.pickWithRay(top, (mesh) => mesh.isMainCharacter);
+    return topPick.hit;
+  }
+
+  _hasAnyCollision(mesh) {
+    // Only test with meshes in camera view, on same plane
+    const active = this.scene.getActiveMeshes().data;
+    const samePlane = active.filter((otherMesh) => {
+      return (
+        mesh.position.y === otherMesh.position.y &&
+        otherMesh !== mesh &&
+        otherMesh.id !== "BackgroundHelper" &&
+        otherMesh.id !== "BackgroundPlane" &&
+        otherMesh.id !== "BackgroundSkybox"
+      );
+    });
+    return samePlane.some((otherMesh) => mesh.intersectsMesh(otherMesh));
   }
 
   _floatMeshTo(mesh, target) {
