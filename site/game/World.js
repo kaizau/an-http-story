@@ -84,7 +84,8 @@ export default class World {
     }
   }
 
-  win() {
+  async win() {
+    await this.levelFactory.reset();
     location.href = location.pathname + "?ending=1";
   }
 

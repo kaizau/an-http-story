@@ -77,7 +77,6 @@ export class MeshFactory {
     const max = new Vector3(0.5, 0.5, 0.5);
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
-    this.actionFactory.makeSelectable(mesh);
     this.actionFactory.makeTeleporter(mesh, id);
     return mesh;
   }

@@ -61,6 +61,7 @@ export function ShadowGen(scene, direct) {
   return shadowGenerator;
 }
 
+// TODO maxZ for performance?
 export function IsoCam(scene) {
   const offset = 5;
   const maxDistance = 10;

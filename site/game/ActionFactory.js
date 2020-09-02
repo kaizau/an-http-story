@@ -20,6 +20,7 @@ const {
 const easeOutQuad = new QuadraticEase();
 easeOutQuad.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
 
+// TODO Instead of outlines, maybe glow or mesh.renderOverlay?
 const primaryOutline = new Color3(0, 1, 1);
 const secondaryOutline = new Color3(1, 1, 1);
 const errorOutline = new Color3(1, 1, 0);
