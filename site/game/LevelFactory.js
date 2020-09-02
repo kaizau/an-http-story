@@ -35,9 +35,9 @@ export class LevelFactory {
     this.envHelper.setTheme(level.theme);
     this.levelMeshes = await this.buildLevel(level);
 
+    this.state.playerControl = true;
     await this.dialogue.load(level.intro);
 
-    this.state.playerControl = true;
     events.emit("levelReady");
   }
 
