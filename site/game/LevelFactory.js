@@ -85,7 +85,10 @@ export class LevelFactory {
                     mesh.position.z += z;
                     mesh.position.x += x;
 
-                    const random = Math.round(Math.random() * 1000);
+                    let random = Math.round(Math.random() * 600);
+                    if (mesh.isMainCharacter || mesh.isTeleporter) {
+                      random += 600;
+                    }
                     setTimeout(() => {
                       Animation.CreateAndStartAnimation(
                         "assemble",
@@ -120,7 +123,10 @@ export class LevelFactory {
     this.levelMeshes.forEach((mesh) => {
       meshesReady.push(
         new Promise((resolve) => {
-          const random = Math.round(Math.random() * 1000);
+          let random = Math.round(Math.random() * 600);
+          if (!mesh.isMainCharacter && !mesh.isTeleporter) {
+            random += 600;
+          }
           setTimeout(() => {
             if (mesh.isMainCharacter) {
               playSound("teleport");

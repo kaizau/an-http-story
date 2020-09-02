@@ -133,6 +133,7 @@ export class ActionFactory {
 
   makeTeleporter(mesh, id) {
     this._ensureActionManager(mesh);
+    mesh.isTeleporter = true;
 
     events.one("levelReady", () => {
       mesh.actionManager.registerAction(
