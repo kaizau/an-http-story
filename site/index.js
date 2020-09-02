@@ -1,7 +1,14 @@
 import World from "./game/World";
-// import initDebug from "./game/debug";
+import initDebug from "./game/debug";
 import progress from "./game/progress";
 import { loadMusic, createMusic } from "./music";
+
+const loadingMessages = [
+  "Rebooting universe simulation",
+  "Fine tuning cosmological constant",
+  "Reticulating splines",
+  "Calibrating flux capacitor",
+];
 
 const canvas = document.querySelector("#canvas");
 const page = document.querySelector("#page");
@@ -22,6 +29,7 @@ if (process.env.DEBUG) {
 async function init() {
   music = await loadMusic();
   if (!music) {
+    showLoading();
     loading.classList.remove("hidden");
     music = await createMusic();
     loading.classList.add("hidden");
@@ -48,6 +56,13 @@ async function init() {
   });
 }
 
+function showLoading() {
+  if (loadingMessages.length) {
+    loading.textContent = loadingMessages.pop() + "...";
+    setTimeout(showLoading, 1500);
+  }
+}
+
 function startGame(level = 1) {
   page.classList.add("hidden");
   page.classList.remove("zoom");
@@ -56,9 +71,9 @@ function startGame(level = 1) {
   canvas.classList.remove("hidden");
 
   const world = new World(level);
-  // if (process.env.DEBUG) {
-  //   initDebug(world);
-  // }
+  if (process.env.DEBUG) {
+    initDebug(world);
+  }
 }
 
 function loadProgress() {
