@@ -80,6 +80,9 @@ export class LevelFactory {
                 case MVBK:
                   mesh = this.meshFactory.createBlockMovable();
                   break;
+                case EYEB:
+                  mesh = this.meshFactory.createEyeball();
+                  break;
                 case ZYRA:
                   mesh = this.meshFactory.createCharacter();
                   break;
@@ -102,7 +105,7 @@ export class LevelFactory {
                     }
                     setTimeout(() => {
                       Animation.CreateAndStartAnimation(
-                        "assemble",
+                        "enter",
                         mesh,
                         "position.y",
                         30,
@@ -143,7 +146,7 @@ export class LevelFactory {
               playSound("teleport");
             }
             Animation.CreateAndStartAnimation(
-              "disassemble",
+              "exit",
               mesh,
               "position.y",
               30,

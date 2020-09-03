@@ -1,4 +1,3 @@
-// let BLNK;
 export const ZYRA = 0;
 export const TELE = 1;
 export const BLCK = 2;
@@ -27,7 +26,7 @@ export const levels = {
         [TELE,    ],
         [    ,    ],
         [MVBK,    ],
-        [    ,    ],
+        [EYEB,    ],
         [    ,    ],
         [    ,    ],
         [    ,ZYRA],

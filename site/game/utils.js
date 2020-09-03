@@ -30,9 +30,10 @@ export const progress = {
 
 // Event Bus
 const _events = Object.create(null);
+window._events = _events;
 export const events = {
   on(event, handler) {
-    _events[event] = events[event] || [];
+    _events[event] = _events[event] || [];
     _events[event].push(handler);
   },
 
@@ -40,7 +41,7 @@ export const events = {
     if (_events[event]) {
       const index = _events[event].indexOf(handler);
       if (index > -1) {
-        _events[event].splice(index, 1);
+        delete _events[event][index];
       }
     }
   },
@@ -58,7 +59,7 @@ export const events = {
       console.log("EVENT", event, ...args);
     }
     if (_events[event]) {
-      _events[event].forEach((handler) => handler(...args));
+      _events[event].forEach((handler) => handler && handler(...args));
     }
   },
 };

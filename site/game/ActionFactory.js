@@ -1,4 +1,6 @@
-import { events } from "./utils";
+import { playSound } from "./sounds";
+import { delay, events } from "./utils";
+
 const {
   ActionManager,
   QuadraticEase,
@@ -159,6 +161,58 @@ export class ActionFactory {
     });
   }
 
+  makeEnemy(mesh) {
+    this._ensureActionManager(mesh);
+    mesh.isEnemy = true;
+
+    events.one("levelReady", () => {
+      mesh.actionManager.registerAction(
+        new ExecuteCodeAction(
+          {
+            trigger: OnIntersectionEnterTrigger,
+            parameter: this.state.mainCharacter,
+          },
+          () => {
+            this.state.playerControl = false;
+            playSound("die");
+
+            const initial = mesh.scaling.clone();
+            const target = new Vector3(2.5, 2.5, 2.5);
+            Animation.CreateAndStartAnimation(
+              "swallow",
+              mesh,
+              "scaling",
+              30,
+              10,
+              initial,
+              target,
+              Animation.ANIMATIONLOOPMODE_CONSTANT,
+              easeOutQuad,
+              async () => {
+                this.state.mainCharacter.dispose();
+                await delay(500);
+                Animation.CreateAndStartAnimation(
+                  "poof",
+                  mesh,
+                  "scaling",
+                  30,
+                  10,
+                  target,
+                  new Vector3(0, 0, 0),
+                  Animation.ANIMATIONLOOPMODE_CONSTANT,
+                  easeOutQuad,
+                  () => {
+                    events.emit("levelLost");
+                  }
+                );
+              }
+            );
+          }
+        )
+      );
+    });
+  }
+
   makeHoverable(mesh) {
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPointerOverTrigger, () => {
@@ -176,9 +230,6 @@ export class ActionFactory {
       })
     );
   }
-
-  // TODO Lose when character touches enemy
-  // OnIntersectionEnterTrigger
 
   _ensureActionManager(mesh) {
     mesh.actionManager = mesh.actionManger || new ActionManager(this.scene);
@@ -340,7 +391,7 @@ export class ActionFactory {
     const down = new Ray(destination, new Vector3.Down(), 1);
     const frontPick = this.scene.pickWithRay(
       front,
-      (mesh) => !mesh.isMainCharacter
+      (mesh) => !mesh.isMainCharacter && !mesh.isEnemy
     );
     const downPick = this.scene.pickWithRay(down, (mesh) => mesh.isWalkable);
     return !frontPick.hit && downPick.hit;

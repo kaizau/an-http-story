@@ -3,6 +3,7 @@ const {
   Mesh,
   StandardMaterial,
   Color3,
+  Color4,
   Vector3,
   BoundingInfo,
 } = window.BABYLON;
@@ -14,11 +15,11 @@ export class MeshFactory {
     this.shadows = shadows;
 
     this.primaryMaterial = new StandardMaterial("primaryMaterial");
-    this.primaryMaterial.diffuseColor = new Color3(0.6, 0.6, 0.9);
+    this.primaryMaterial.diffuseColor = new Color3(0.6, 0.6, 1);
     this.primaryMaterial.freeze();
 
     this.secondaryMaterial = new StandardMaterial("secondaryMaterial");
-    this.secondaryMaterial.diffuseColor = new Color3(0.9, 0.9, 0.6);
+    this.secondaryMaterial.diffuseColor = new Color3(0.6, 0.8, 0.9);
     this.secondaryMaterial.freeze();
 
     this.createBlockTemplate();
@@ -71,6 +72,24 @@ export class MeshFactory {
     this.shadows.addShadowCaster(mesh);
     this.actionFactory.makeWalkable(mesh);
     this.actionFactory.makeDraggable(mesh);
+    return mesh;
+  }
+
+  createEyeball() {
+    const faceColors = new Array(26);
+    faceColors[24] = new Color4(1, 0, 0, 1);
+    const mesh = MeshBuilder.CreatePolyhedron("eyeball", {
+      type: 4,
+      size: 0.25,
+      faceColors,
+    });
+    mesh.rotation.x = Math.PI / -9;
+    mesh.rotation.y = Math.PI / -9;
+    mesh.rotation.z = Math.PI / 18;
+    mesh.bakeCurrentTransformIntoVertices();
+
+    this.shadows.addShadowCaster(mesh);
+    this.actionFactory.makeEnemy(mesh);
     return mesh;
   }
 

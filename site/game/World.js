@@ -86,10 +86,12 @@ export default class World {
 
   async win() {
     await this.levelFactory.reset();
+    // TODO Fade to white
     location.href = location.pathname + "?ending=1";
   }
 
   lose() {
+    // TODO Fade to white
     location.href = location.pathname + "?ending=0";
   }
 }
