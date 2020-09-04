@@ -101,20 +101,31 @@ export class MeshMixins {
       mesh.renderOutline = true;
       mesh.position.x += event.delta.x;
       mesh.position.z += event.delta.z;
-      mesh.computeWorldMatrix();
+      // mesh.computeWorldMatrix();
       if (this._hasAnyCollision(mesh)) {
-        mesh.position.x -= event.delta.x;
-        mesh.position.z -= event.delta.z;
-        mesh.computeWorldMatrix();
+        mesh.outlineColor = errorOutline;
+        // NOTE Now possible to drag through other meshes
+        // mesh.position.x -= event.delta.x;
+        // mesh.position.z -= event.delta.z;
+        // mesh.computeWorldMatrix();
+      } else {
+        mesh.outlineColor = primaryOutline;
+        this.state.draggedLastSafePosition = mesh.position.clone();
       }
     });
     pointerDragBehavior.onDragEndObservable.add(() => {
       mesh.outlineColor = primaryOutline;
-      const snap = mesh.position.clone();
+      let snap;
+      if (this._hasAnyCollision(mesh)) {
+        snap = this.state.draggedLastSafePosition;
+      } else {
+        snap = mesh.position.clone();
+      }
       snap.x = Math.round(snap.x);
       snap.z = Math.round(snap.z);
       this.animationMixins.floatTo(mesh, snap);
       this.state.dragged = null;
+      this.state.draggedLastSafePosition = null;
       mesh.renderOutline = false;
     });
     mesh.addBehavior(pointerDragBehavior);
