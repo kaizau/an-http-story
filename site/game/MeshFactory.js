@@ -1,3 +1,4 @@
+import { TLX } from "./levels";
 const {
   MeshBuilder,
   Mesh,
@@ -139,8 +140,9 @@ export class MeshFactory {
     });
     mesh.position.y = -0.4;
     mesh.scaling.y = 0.75;
+    mesh.bakeCurrentTransformIntoVertices();
 
-    mesh.material = this.primaryMaterial;
+    mesh.material = id === TLX ? this.primaryMaterial : this.secondaryMaterial;
 
     // Taller bounding box to allow intersect with player character
     const min = new Vector3(0, 0, 0);

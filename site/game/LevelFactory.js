@@ -1,6 +1,20 @@
-import { playSound } from "./sounds";
 import { events } from "./utils";
-import { ZYR, TLX, ___, __M, EYE, EY1, EY2, EY3, EY4 } from "./levels";
+import {
+  ZYR,
+  TLX,
+  TLA,
+  TLB,
+  TLC,
+  ___,
+  __M,
+  EYE,
+  EY1,
+  EY2,
+  EY3,
+  EY4,
+  LSX,
+  LSZ,
+} from "./levels";
 const { Vector3 } = window.BABYLON;
 
 export class LevelFactory {
@@ -11,10 +25,6 @@ export class LevelFactory {
     this.meshFactory = meshFactory;
     this.animationMixins = animationMixins;
     this.dialogue = dialogue;
-
-    this.level = {};
-    this.levelMeshes = [];
-    this.state.eyePatrolPath = {};
 
     events.on("levelCompleted", async () => {
       this.state.playerControl = false;
@@ -41,7 +51,7 @@ export class LevelFactory {
   }
 
   buildLevel(level) {
-    const meshesReady = [];
+    const meshes = [];
 
     // Start from bottom layer
     level.map
@@ -79,31 +89,22 @@ export class LevelFactory {
                     this.state.eyePatrolPath[y] || {};
                   this.state.eyePatrolPath[y][code] = new Vector3(x, y, z);
                   break;
+                case TLX:
+                case TLA:
+                case TLB:
+                case TLC:
+                  mesh = this.meshFactory.createTeleporter(code);
+                  break;
                 case ZYR:
                   mesh = this.meshFactory.createCharacter();
-                  break;
-                case TLX:
-                  mesh = this.meshFactory.createTeleporter("exit");
                   break;
               }
 
               if (mesh) {
-                meshesReady.push(
-                  new Promise((resolve) => {
-                    const targetY = mesh.position.y + y;
-                    mesh.position.y += 10;
-                    mesh.position.z += z;
-                    mesh.position.x += x;
-
-                    const delay = (y + 1) * 600;
-                    const random = Math.round(Math.random() * 600 + delay);
-                    setTimeout(() => {
-                      this.animationMixins.enterScene(mesh, targetY, () => {
-                        resolve(mesh);
-                      });
-                    }, random);
-                  })
-                );
+                mesh.position.y += y;
+                mesh.position.z += z;
+                mesh.position.x += x;
+                meshes.push(mesh);
 
                 // TODO Do we need to explicitly add meshes to the scene?
                 // this.scene.addMesh(mesh);
@@ -112,6 +113,22 @@ export class LevelFactory {
           });
       });
 
+    const yRange = meshes.map((mesh) => mesh.position.y);
+    const yMin = Math.min(...yRange);
+    const meshesReady = meshes.map((mesh) => {
+      return new Promise((resolve) => {
+        const yTarget = mesh.position.y;
+        const delay = (mesh.position.y - yMin) * 600;
+        const random = Math.round(Math.random() * 600 + delay);
+        mesh.position.y += 10;
+        setTimeout(() => {
+          this.animationMixins.enterScene(mesh, yTarget, () => {
+            resolve(mesh);
+          });
+        }, random);
+      });
+    });
+
     return Promise.all(meshesReady);
   }
 
@@ -119,27 +136,29 @@ export class LevelFactory {
     events.emit("levelReset");
     const meshesReady = [];
 
-    this.levelMeshes.forEach((mesh) => {
-      meshesReady.push(
-        new Promise((resolve) => {
-          let random = Math.round(Math.random() * 600);
-          if (!mesh.isMainCharacter && !mesh.isTeleporter) {
-            random += 600;
-          }
-          setTimeout(() => {
-            if (mesh.isMainCharacter) {
-              playSound("teleport");
-            }
-            this.animationMixins.exitScene(mesh, () => {
-              mesh.dispose();
-              resolve();
-            });
-          }, random);
-        })
-      );
-    });
+    if (this.levelMeshes) {
+      const yRange = this.levelMeshes.map((mesh) => mesh.position.y);
+      const yMax = Math.max(...yRange);
+
+      this.levelMeshes.forEach((mesh) => {
+        meshesReady.push(
+          new Promise((resolve) => {
+            const delay = (yMax - mesh.position.y) * 600;
+            const random = Math.round(Math.random() * 600 + delay);
+
+            setTimeout(() => {
+              this.animationMixins.exitScene(mesh, () => {
+                mesh.dispose();
+                resolve();
+              });
+            }, random);
+          })
+        );
+      });
+    }
 
     this.levelMeshes = [];
+    this.state.teleporters = [];
     this.state.eyePatrolPath = {};
     return Promise.all(meshesReady);
   }

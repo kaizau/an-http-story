@@ -1,3 +1,4 @@
+import { playSound } from "./sounds";
 import { delay } from "./utils";
 const {
   Animation,
@@ -18,15 +19,15 @@ export class AnimationMixins {
     this.scene = scene;
   }
 
-  enterScene(mesh, targetY, onEnd) {
+  enterScene(mesh, yTarget, onEnd) {
     Animation.CreateAndStartAnimation(
       "enter",
       mesh,
       "position.y",
       30,
       30,
-      10,
-      targetY,
+      yTarget + 10,
+      yTarget,
       Animation.ANIMATIONLOOPMODE_CONSTANT,
       easeOutQuad,
       onEnd
@@ -34,6 +35,10 @@ export class AnimationMixins {
   }
 
   exitScene(mesh, onEnd) {
+    this.scene.stopAnimation(mesh);
+    if (mesh.isMainCharacter) {
+      playSound("teleport");
+    }
     Animation.CreateAndStartAnimation(
       "exit",
       mesh,

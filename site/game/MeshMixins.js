@@ -1,5 +1,6 @@
 import { playSound } from "./sounds";
 import { delay, events } from "./utils";
+import { TLX, TLA, TLB, TLC } from "./levels";
 const {
   ActionManager,
   ExecuteCodeAction,
@@ -131,23 +132,41 @@ export class MeshMixins {
   makeTeleporter(mesh, id) {
     this._ensureActionManager(mesh);
     mesh.isTeleporter = true;
+    this.state.teleporters.push(mesh);
 
     events.one("levelReady", () => {
+      const main = this.state.mainCharacter;
+
       mesh.actionManager.registerAction(
         new ExecuteCodeAction(
           {
             trigger: OnIntersectionEnterTrigger,
-            parameter: this.state.mainCharacter,
+            parameter: main,
           },
-          () => {
-            if (id === "exit") {
+          async () => {
+            if (id === TLX) {
               if (mesh.teleporterActivated) return;
               mesh.teleporterActivated = true;
               events.emit("levelCompleted");
             } else {
-              // TODO Find matching teleporter and change position of main
-              // character to match
-              console.log("teleport!");
+              if (mesh.teleporterActivated) return;
+              mesh.teleporterActivated = true;
+
+              const paired = this.state.teleporters.find((otherMesh) => {
+                return (
+                  mesh !== otherMesh && otherMesh.name === "teleporter-" + id
+                );
+              });
+              paired.teleporterActivated = true;
+
+              await delay(250); // Allow character to reach center
+              this.animationMixins.exitScene(main, () => {
+                const yTarget = paired.position.y;
+                main.position.x = paired.position.x;
+                main.position.y = paired.position.y + 10;
+                main.position.z = paired.position.z;
+                this.animationMixins.enterScene(main, yTarget);
+              });
             }
           }
         )
