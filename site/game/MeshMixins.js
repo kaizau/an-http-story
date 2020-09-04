@@ -30,7 +30,7 @@ const secondaryOutline = new Color3(1, 1, 1);
 const errorOutline = new Color3(1, 1, 0);
 
 // TODO Are action managers automatically disposed when meshes are disposed?
-export class ActionFactory {
+export class MeshMixins {
   constructor(scene, state) {
     this.scene = scene;
     this.state = state;

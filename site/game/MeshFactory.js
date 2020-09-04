@@ -1,3 +1,4 @@
+import { MeshMixins } from "./MeshMixins";
 const {
   MeshBuilder,
   Mesh,
@@ -9,9 +10,9 @@ const {
 } = window.BABYLON;
 
 export class MeshFactory {
-  constructor(scene, actionFactory, shadows) {
+  constructor(scene, state, shadows) {
     this.scene = scene;
-    this.actionFactory = actionFactory;
+    this.meshMixins = new MeshMixins(scene, state);
     this.shadows = shadows;
 
     this.primaryMaterial = new StandardMaterial("primaryMaterial");
@@ -45,7 +46,7 @@ export class MeshFactory {
   createBlock() {
     const mesh = this.blockTemplate.createInstance();
     this.shadows.addShadowCaster(mesh);
-    this.actionFactory.makeWalkable(mesh);
+    this.meshMixins.makeWalkable(mesh);
     return mesh;
   }
 
@@ -70,8 +71,8 @@ export class MeshFactory {
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
     this.shadows.addShadowCaster(mesh);
-    this.actionFactory.makeWalkable(mesh);
-    this.actionFactory.makeDraggable(mesh);
+    this.meshMixins.makeWalkable(mesh);
+    this.meshMixins.makeDraggable(mesh);
     return mesh;
   }
 
@@ -89,8 +90,8 @@ export class MeshFactory {
     mesh.bakeCurrentTransformIntoVertices();
 
     this.shadows.addShadowCaster(mesh);
-    this.actionFactory.makeEnemy(mesh);
-    this.actionFactory.makePatrolling(mesh);
+    this.meshMixins.makeEnemy(mesh);
+    this.meshMixins.makePatrolling(mesh);
     return mesh;
   }
 
@@ -125,9 +126,9 @@ export class MeshFactory {
 
     // TODO subtle bobbing up and down animation
     this.shadows.addShadowCaster(mesh);
-    this.actionFactory.makeSelectable(mesh);
-    this.actionFactory.makeControllable(mesh);
-    this.actionFactory.makeMainCharacter(mesh);
+    this.meshMixins.makeSelectable(mesh);
+    this.meshMixins.makeControllable(mesh);
+    this.meshMixins.makeMainCharacter(mesh);
     return mesh;
   }
 
@@ -147,7 +148,7 @@ export class MeshFactory {
     const max = new Vector3(0.5, 0.5, 0.5);
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
-    this.actionFactory.makeTeleporter(mesh, id);
+    this.meshMixins.makeTeleporter(mesh, id);
     return mesh;
   }
 }

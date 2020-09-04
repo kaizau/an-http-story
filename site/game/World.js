@@ -6,7 +6,6 @@ import {
   IsoCam,
   initXRHelper,
 } from "./Scene";
-import { ActionFactory } from "./ActionFactory";
 import { MeshFactory } from "./MeshFactory";
 import { LevelFactory } from "./LevelFactory";
 import { Dialogue } from "./Dialogue";
@@ -36,12 +35,7 @@ export default class World {
     this.scene.activeCamera = this.isoCam;
     this.isoCam.attachControl(this.canvas);
 
-    this.actionFactory = new ActionFactory(this.scene, this.state);
-    this.meshFactory = new MeshFactory(
-      this.scene,
-      this.actionFactory,
-      this.shadows
-    );
+    this.meshFactory = new MeshFactory(this.scene, this.state, this.shadows);
     this.levelFactory = new LevelFactory(
       this.scene,
       this.state,
