@@ -52,6 +52,7 @@ module.exports = (env) => {
         scriptLoading: "defer",
         template: path.resolve(__dirname, "site/index.html"),
         templateParameters: {
+          debugScript: debug ? "<script defer src='debug.js'></script>" : "",
           babylonSrc: useLocalBabylon
             ? "babylon.js"
             : "https://js13kgames.com/webxr-src/2020/babylon.js",
@@ -71,12 +72,15 @@ module.exports = (env) => {
     ],
   };
 
-  if (useLocalBabylon) {
-    config.plugins.push(
-      new CopyWebpackPlugin({
-        patterns: [{ from: "site/vendor/babylon.js", to: "babylon.js" }],
-      })
-    );
+  if (debug || useLocalBabylon) {
+    const patterns = [];
+    if (useLocalBabylon) {
+      patterns.push({ from: "site/vendor/babylon.js", to: "babylon.js" });
+    }
+    if (debug) {
+      patterns.push({ from: "site/debug.js", to: "debug.js" });
+    }
+    config.plugins.push(new CopyWebpackPlugin({ patterns }));
   }
 
   if (useAnalyzer) {
@@ -90,6 +94,7 @@ module.exports = (env) => {
         new ClosurePlugin(
           { mode: "AGGRESSIVE_BUNDLE" },
           {
+            externs: [path.resolve(__dirname, "closure.externs.js")],
             compilation_level: "ADVANCED",
             languageOut: "ECMASCRIPT_2017",
           }

@@ -26,6 +26,9 @@ export class LevelFactory {
     this.animationMixins = animationMixins;
     this.dialogue = dialogue;
 
+    this.level = {};
+    this.levelMeshes = [];
+
     events.on("levelCompleted", async () => {
       this.state.playerControl = false;
       if (this.state.selected) {
@@ -134,28 +137,22 @@ export class LevelFactory {
 
   reset() {
     events.emit("levelReset");
-    const meshesReady = [];
 
-    if (this.levelMeshes) {
-      const yRange = this.levelMeshes.map((mesh) => mesh.position.y);
-      const yMax = Math.max(...yRange);
+    const yRange = this.levelMeshes.map((mesh) => mesh.position.y);
+    const yMax = Math.max(...yRange);
+    const meshesReady = this.levelMeshes.map((mesh) => {
+      return new Promise((resolve) => {
+        const delay = (yMax - mesh.position.y) * 600;
+        const random = Math.round(Math.random() * 600 + delay);
 
-      this.levelMeshes.forEach((mesh) => {
-        meshesReady.push(
-          new Promise((resolve) => {
-            const delay = (yMax - mesh.position.y) * 600;
-            const random = Math.round(Math.random() * 600 + delay);
-
-            setTimeout(() => {
-              this.animationMixins.exitScene(mesh, () => {
-                mesh.dispose();
-                resolve();
-              });
-            }, random);
-          })
-        );
+        setTimeout(() => {
+          this.animationMixins.exitScene(mesh, () => {
+            mesh.dispose();
+            resolve();
+          });
+        }, random);
       });
-    }
+    });
 
     this.levelMeshes = [];
     this.state.teleporters = [];

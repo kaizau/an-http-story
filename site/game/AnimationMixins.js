@@ -279,7 +279,7 @@ export class AnimationMixins {
       }
       previous = next;
     });
-    rotationKeys.sort((a, b) => a.frame > b.frame);
+    rotationKeys.sort((a, b) => a.frame - b.frame);
 
     node.dispose();
 

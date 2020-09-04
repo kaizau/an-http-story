@@ -1,10 +1,10 @@
-import { levels } from "./levels";
-
 let debugBar;
 let axes;
 
-export default function initDebug(world) {
-  window.world = world;
+setTimeout(initDebug, 3000);
+
+function initDebug() {
+  const world = window.world;
 
   debugBar = createDebugBar();
 
@@ -30,21 +30,22 @@ export default function initDebug(world) {
     });
   });
 
-  Object.keys(levels).forEach((key) => {
-    createButton(`Level ${key}`, () => {
-      world.load(key);
+  for (let level = 1; level <= 8; level++) {
+    createButton(`Level ${level}`, () => {
+      world.load(level);
     });
-  });
+  }
 }
 
 function createDebugBar() {
   const debugBar = document.createElement("div");
-  debugBar.style.bottom = "10px";
-  debugBar.style.left = "10px";
+  debugBar.style.bottom = "0";
+  debugBar.style.left = "0";
   debugBar.style.padding = "10px";
   debugBar.style.position = "absolute";
   debugBar.style.width = "100%";
   debugBar.style.zIndex = 100;
+  debugBar.style.boxSizing = "border-box";
   document.body.appendChild(debugBar);
   return debugBar;
 }
