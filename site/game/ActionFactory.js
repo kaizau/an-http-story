@@ -264,8 +264,17 @@ export class ActionFactory {
           value: rotationKeys[1].value,
         };
 
-        // TODO Add more keys when different
-        console.log(rotationKeys);
+        previous = null;
+        rotationKeys.slice().forEach((next, index) => {
+          if (previous && next.frame - previous.frame > 20) {
+            rotationKeys.splice(index, 0, {
+              frame: previous.frame + 20,
+              value: next.value.clone(),
+            });
+          }
+          previous = next;
+        });
+        rotationKeys.sort((a, b) => a.frame > b.frame);
 
         const animation = new Animation(
           "patrol",
