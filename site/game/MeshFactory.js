@@ -75,7 +75,7 @@ export class MeshFactory {
     return mesh;
   }
 
-  createEyeball() {
+  createEye() {
     const faceColors = new Array(26);
     faceColors[24] = new Color4(1, 0, 0, 1);
     const mesh = MeshBuilder.CreatePolyhedron("eyeball", {
@@ -90,6 +90,7 @@ export class MeshFactory {
 
     this.shadows.addShadowCaster(mesh);
     this.actionFactory.makeEnemy(mesh);
+    this.actionFactory.makePatrolling(mesh);
     return mesh;
   }
 

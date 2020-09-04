@@ -201,7 +201,8 @@ export class ActionFactory {
                   new Vector3(0, 0, 0),
                   Animation.ANIMATIONLOOPMODE_CONSTANT,
                   easeOutQuad,
-                  () => {
+                  async () => {
+                    await delay(500);
                     events.emit("levelLost");
                   }
                 );
@@ -213,7 +214,49 @@ export class ActionFactory {
     });
   }
 
+  makePatrolling(mesh) {
+    events.one("levelReady", () => {
+      const y = mesh.position.y;
+      const path = this.state.eyePatrolPath[y];
+      if (path) {
+        const speed = 15;
+        const points = Object.values(path);
+        points.push(mesh.position.clone());
+        const keys = [];
+        let previous = {
+          frame: 0,
+          value: mesh.position.clone(),
+        };
+        keys.push(previous);
+        points.forEach((value) => {
+          const distance = previous.value.subtract(value).length();
+          const current = {
+            frame: previous.frame + speed * distance,
+            value,
+          };
+          previous = current;
+          keys.push(current);
+        });
+
+        const animation = new Animation(
+          "patrol",
+          "position",
+          30,
+          Animation.ANIMATIONTYPE_VECTOR3,
+          Animation.ANIMATIONLOOPMODE_CYCLE
+        );
+        animation.setKeys(keys);
+        // animation.setEasingFunction(easeOutQuad);
+        mesh.animations.push(animation);
+
+        this.scene.beginAnimation(mesh, 0, keys[keys.length - 1].frame, true);
+      }
+    });
+  }
+
   makeHoverable(mesh) {
+    this._ensureActionManager(mesh);
+
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPointerOverTrigger, () => {
         mesh.renderOutline = true;

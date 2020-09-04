@@ -1,18 +1,7 @@
 import { playSound } from "./sounds";
 import { events } from "./utils";
-import {
-  ZYRA,
-  TELE,
-  BLCK,
-  MVBK,
-  EYEB,
-  LASR,
-  GATE,
-  TELA,
-  TELB,
-  TELC,
-} from "./levels";
-const { Animation, QuadraticEase, EasingFunction } = window.BABYLON;
+import { ZYR, TLX, ___, __M, EYE, EY1, EY2, EY3, EY4 } from "./levels";
+const { Animation, QuadraticEase, EasingFunction, Vector3 } = window.BABYLON;
 
 const easeOutQuad = new QuadraticEase();
 easeOutQuad.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
@@ -27,6 +16,7 @@ export class LevelFactory {
 
     this.level = {};
     this.levelMeshes = [];
+    this.state.eyePatrolPath = {};
 
     events.on("levelCompleted", async () => {
       this.state.playerControl = false;
@@ -74,19 +64,27 @@ export class LevelFactory {
 
               let mesh;
               switch (code) {
-                case BLCK:
+                case ___:
                   mesh = this.meshFactory.createBlock();
                   break;
-                case MVBK:
+                case __M:
                   mesh = this.meshFactory.createBlockMovable();
                   break;
-                case EYEB:
-                  mesh = this.meshFactory.createEyeball();
+                case EYE:
+                  mesh = this.meshFactory.createEye();
                   break;
-                case ZYRA:
+                case EY1:
+                case EY2:
+                case EY3:
+                case EY4:
+                  this.state.eyePatrolPath[y] =
+                    this.state.eyePatrolPath[y] || {};
+                  this.state.eyePatrolPath[y][code] = new Vector3(x, y, z);
+                  break;
+                case ZYR:
                   mesh = this.meshFactory.createCharacter();
                   break;
-                case TELE:
+                case TLX:
                   mesh = this.meshFactory.createTeleporter("exit");
                   break;
               }
@@ -166,6 +164,7 @@ export class LevelFactory {
     });
 
     this.levelMeshes = [];
+    this.state.eyePatrolPath = {};
     return Promise.all(meshesReady);
   }
 }
