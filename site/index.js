@@ -1,6 +1,6 @@
 import World from "./game/World";
 import { progress } from "./game/utils";
-import { loadMusic, createMusic } from "./music";
+import { loadMusic, createMusic } from "./music/player";
 
 const loadingMessages = [
   "Rebooting universe simulation",

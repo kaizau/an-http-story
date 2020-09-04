@@ -3,9 +3,12 @@ const { EnvironmentPlugin } = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ClosurePlugin = require("closure-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
+
+// NOTE ClosureWebpackPlugin doesn't work with debug flags, as of 4 Sep 2020.
+// https://github.com/webpack-contrib/closure-webpack-plugin/issues/118
+// const ClosurePlugin = require("closure-webpack-plugin");
 
 module.exports = (env) => {
   let mode = "production";
@@ -94,20 +97,21 @@ module.exports = (env) => {
   if (useClosure) {
     config.optimization = {
       concatenateModules: false,
-      minimizer: [
-        new ClosurePlugin(
-          { mode: "AGGRESSIVE_BUNDLE" },
-          {
-            // formatting: "PRETTY_PRINT",
-            // debug: true,
-            renaming: false,
+      minimize: false,
+      // minimizer: [
+      //   new ClosurePlugin(
+      //     { mode: "AGGRESSIVE_BUNDLE" },
+      //     {
+      //       formatting: "PRETTY_PRINT",
+      //       debug: true,
+      //       renaming: false,
 
-            externs: [path.resolve(__dirname, "closure.externs.js")],
-            compilation_level: "ADVANCED",
-            languageOut: "ECMASCRIPT_2017",
-          }
-        ),
-      ],
+      //       externs: [path.resolve(__dirname, "closure.externs.js")],
+      //       compilation_level: "ADVANCED",
+      //       languageOut: "ECMASCRIPT_2017",
+      //     }
+      //   ),
+      // ],
     };
   }
 

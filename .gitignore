@@ -25,6 +25,7 @@ node_modules/
 
 # Build
 public/
+public-closure/
 game.zip
 
 # Vercel
