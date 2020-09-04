@@ -12,10 +12,8 @@ import {
   EY2,
   EY3,
   EY4,
-  LSX,
-  LSZ,
 } from "./levels";
-const { Vector3 } = window.BABYLON;
+const { Vector3 } = BABYLON;
 
 export class LevelFactory {
   constructor(scene, state, envHelper, meshFactory, animationMixins, dialogue) {
@@ -26,7 +24,7 @@ export class LevelFactory {
     this.animationMixins = animationMixins;
     this.dialogue = dialogue;
 
-    this.level = {};
+    this.level = { intro: [], outro: [] };
     this.levelMeshes = [];
 
     events.on("levelCompleted", async () => {

@@ -1,5 +1,4 @@
 import World from "./game/World";
-// import initDebug from "./game/debug";
 import { progress } from "./game/utils";
 import { loadMusic, createMusic } from "./music";
 

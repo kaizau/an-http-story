@@ -1,6 +1,6 @@
 import { playSound } from "./sounds";
 import { delay, events } from "./utils";
-import { TLX, TLA, TLB, TLC } from "./levels";
+import { TLX } from "./levels";
 const {
   ActionManager,
   ExecuteCodeAction,
@@ -8,7 +8,7 @@ const {
   Color3,
   Vector3,
   Ray,
-} = window.BABYLON;
+} = BABYLON;
 const {
   OnPickTrigger,
   OnPointerOverTrigger,

@@ -13,7 +13,7 @@ import { LevelFactory } from "./LevelFactory";
 import { Dialogue } from "./Dialogue";
 import { levels } from "./levels";
 import { events, progress } from "./utils";
-const { Engine, Scene } = window.BABYLON;
+const { Engine, Scene } = BABYLON;
 
 export default class World {
   constructor(initialLevel) {
@@ -58,6 +58,8 @@ export default class World {
       this.dialogue
     );
 
+    this.xrHelper = {};
+
     initXRHelper(this.scene).then((xrHelper) => {
       this.xrHelper = xrHelper;
     });
@@ -67,10 +69,8 @@ export default class World {
     });
 
     events.on("levelNext", () => {
-      progress.add(this.state.currentLevel);
-
       // TODO Load different level depending on teleporter metadata?
-      this.load(parseInt(this.state.currentLevel) + 1);
+      this.load(parseInt(this.state.currentLevel, 10) + 1);
     });
 
     events.on("levelLost", () => {
@@ -80,6 +80,7 @@ export default class World {
 
   load(levelId) {
     this.state.currentLevel = levelId;
+    progress.add(this.state.currentLevel);
     const level = levels[levelId];
     if (level) {
       this.levelFactory.load(level);

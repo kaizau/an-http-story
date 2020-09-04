@@ -23,9 +23,12 @@
  *
  */
 
+/* eslint-disable */
+
 "use strict";
 
-var CPlayer = function () {
+export default function CPlayer() {
+
   //--------------------------------------------------------------------------
   // Private methods
   //--------------------------------------------------------------------------
@@ -397,5 +400,3 @@ var CPlayer = function () {
     return d;
   };
 };
-
-export default CPlayer;

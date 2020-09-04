@@ -7,13 +7,15 @@ const {
   Color4,
   Vector3,
   BoundingInfo,
-} = window.BABYLON;
+} = BABYLON;
 
 export class MeshFactory {
   constructor(scene, state, meshMixins, shadows) {
     this.scene = scene;
     this.meshMixins = meshMixins;
     this.shadows = shadows;
+
+    this.blockTemplate = {};
 
     this.materialA = new StandardMaterial("materialA");
     this.materialA.diffuseColor = new Color3(0.6, 0.6, 1);

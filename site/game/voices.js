@@ -80,23 +80,19 @@ function chooseVoices() {
 
   friendVoice = friendVoices.find((friend) => {
     const found = allVoices.find((item) => item.name === friend.name);
-    if (found) {
-      friend.voice = found;
-      return found;
-    }
+    if (found) friend.voice = found;
+    return !!found;
   });
 
   foeVoice = foeVoices.find((foe) => {
     const found = allVoices.find((item) => item.name === foe.name);
-    if (found) {
-      foe.voice = found;
-      return found;
-    }
+    if (found) foe.voice = found;
+    return !!found;
   });
 
   // Remove since onvoiceschanged may be called again when voice spoken
   if (allVoices.length) {
-    speechSynthesis.onvoiceschanged = null;
+    delete speechSynthesis.onvoiceschanged;
   }
 }
 

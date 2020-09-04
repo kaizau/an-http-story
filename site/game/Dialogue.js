@@ -2,7 +2,7 @@ import { friendVoice, foeVoice } from "./voices";
 import { playSound } from "./sounds";
 import { delay } from "./utils";
 
-const { Layer, DynamicTexture } = window.BABYLON;
+const { Layer, DynamicTexture } = BABYLON;
 
 export class Dialogue {
   constructor(scene) {

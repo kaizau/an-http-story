@@ -24,6 +24,10 @@ module.exports = (env) => {
     case "production":
       useLocalBabylon = true;
       break;
+    case "production-closure":
+      useClosure = true;
+      useLocalBabylon = true;
+      break;
     case "analyze":
       useAnalyzer = true;
       break;
@@ -94,6 +98,10 @@ module.exports = (env) => {
         new ClosurePlugin(
           { mode: "AGGRESSIVE_BUNDLE" },
           {
+            // formatting: "PRETTY_PRINT",
+            // debug: true,
+            renaming: false,
+
             externs: [path.resolve(__dirname, "closure.externs.js")],
             compilation_level: "ADVANCED",
             languageOut: "ECMASCRIPT_2017",

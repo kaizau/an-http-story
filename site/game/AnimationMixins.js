@@ -8,7 +8,7 @@ const {
   Ray,
   Vector3,
   WORLD,
-} = window.BABYLON;
+} = BABYLON;
 
 const easeOutQuad = new QuadraticEase();
 easeOutQuad.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);

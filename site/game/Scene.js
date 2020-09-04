@@ -6,7 +6,7 @@ const {
   ShadowGenerator,
   UniversalCamera,
   WebXRState,
-} = window.BABYLON;
+} = BABYLON;
 
 export class Environment {
   constructor(scene) {
@@ -132,7 +132,7 @@ export function initXRHelper(scene) {
 
         // Set camera height
         xrHelper.onInitialXRPoseSetObservable.add((xrCamera) => {
-          xrCamera.y = 3;
+          xrCamera.y = 5;
         });
 
         return xrHelper;

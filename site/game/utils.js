@@ -18,12 +18,12 @@ export const progress = {
   },
 
   add(levelId) {
-    const progress = this.get();
+    const data = progress.get();
     const id = levelId.toString();
-    if (!progress.includes(id)) {
-      progress.push(id);
-      progress.sort();
-      window.localStorage.progress = JSON.stringify(progress);
+    if (!data.includes(id)) {
+      data.push(id);
+      data.sort();
+      window.localStorage.progress = JSON.stringify(data);
     }
   },
 };
@@ -41,7 +41,7 @@ export const events = {
     if (_events[event]) {
       const index = _events[event].indexOf(handler);
       if (index > -1) {
-        delete _events[event][index];
+        _events[event].splice(index, 1);
       }
     }
   },
@@ -49,9 +49,9 @@ export const events = {
   one(event, handler) {
     const oneHandler = (...args) => {
       handler(...args);
-      this.off(event, oneHandler);
+      events.off(event, oneHandler);
     };
-    this.on(event, oneHandler);
+    events.on(event, oneHandler);
   },
 
   emit(event, ...args) {
@@ -59,7 +59,7 @@ export const events = {
       console.log("EVENT", event, ...args);
     }
     if (_events[event]) {
-      _events[event].forEach((handler) => handler && handler(...args));
+      _events[event].slice().forEach((handler) => handler && handler(...args));
     }
   },
 };
