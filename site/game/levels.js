@@ -42,11 +42,11 @@ export const levels = {
     map: [
       [
         [TLX,   ],
-        [   ,EY3],
-        [EYE,   ],
         [   ,   ],
         [   ,   ],
-        [EY1,EY2],
+        [   ,   ],
+        [   ,   ],
+        [   ,   ],
         [   ,ZYR],
       ],
       [

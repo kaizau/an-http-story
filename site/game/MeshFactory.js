@@ -1,4 +1,3 @@
-import { MeshMixins } from "./MeshMixins";
 const {
   MeshBuilder,
   Mesh,
@@ -10,9 +9,9 @@ const {
 } = window.BABYLON;
 
 export class MeshFactory {
-  constructor(scene, state, shadows) {
+  constructor(scene, state, meshMixins, shadows) {
     this.scene = scene;
-    this.meshMixins = new MeshMixins(scene, state);
+    this.meshMixins = meshMixins;
     this.shadows = shadows;
 
     this.primaryMaterial = new StandardMaterial("primaryMaterial");

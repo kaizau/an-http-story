@@ -1,17 +1,15 @@
 import { playSound } from "./sounds";
 import { events } from "./utils";
 import { ZYR, TLX, ___, __M, EYE, EY1, EY2, EY3, EY4 } from "./levels";
-const { Animation, QuadraticEase, EasingFunction, Vector3 } = window.BABYLON;
-
-const easeOutQuad = new QuadraticEase();
-easeOutQuad.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
+const { Vector3 } = window.BABYLON;
 
 export class LevelFactory {
-  constructor(scene, state, envHelper, meshFactory, dialogue) {
+  constructor(scene, state, envHelper, meshFactory, animationMixins, dialogue) {
     this.scene = scene;
     this.state = state;
     this.envHelper = envHelper;
     this.meshFactory = meshFactory;
+    this.animationMixins = animationMixins;
     this.dialogue = dialogue;
 
     this.level = {};
@@ -100,18 +98,9 @@ export class LevelFactory {
                     const delay = (y + 1) * 600;
                     const random = Math.round(Math.random() * 600 + delay);
                     setTimeout(() => {
-                      Animation.CreateAndStartAnimation(
-                        "enter",
-                        mesh,
-                        "position.y",
-                        30,
-                        30,
-                        10,
-                        targetY,
-                        Animation.ANIMATIONLOOPMODE_CONSTANT,
-                        easeOutQuad,
-                        () => resolve(mesh)
-                      );
+                      this.animationMixins.enterScene(mesh, targetY, () => {
+                        resolve(mesh);
+                      });
                     }, random);
                   })
                 );
@@ -141,21 +130,10 @@ export class LevelFactory {
             if (mesh.isMainCharacter) {
               playSound("teleport");
             }
-            Animation.CreateAndStartAnimation(
-              "exit",
-              mesh,
-              "position.y",
-              30,
-              30,
-              mesh.position.y,
-              mesh.position.y + 10,
-              Animation.ANIMATIONLOOPMODE_CONSTANT,
-              easeOutQuad,
-              () => {
-                mesh.dispose();
-                resolve();
-              }
-            );
+            this.animationMixins.exitScene(mesh, () => {
+              mesh.dispose();
+              resolve();
+            });
           }, random);
         })
       );

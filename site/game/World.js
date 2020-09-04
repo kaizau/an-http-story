@@ -6,6 +6,8 @@ import {
   IsoCam,
   initXRHelper,
 } from "./Scene";
+import { AnimationMixins } from "./AnimationMixins";
+import { MeshMixins } from "./MeshMixins";
 import { MeshFactory } from "./MeshFactory";
 import { LevelFactory } from "./LevelFactory";
 import { Dialogue } from "./Dialogue";
@@ -35,12 +37,24 @@ export default class World {
     this.scene.activeCamera = this.isoCam;
     this.isoCam.attachControl(this.canvas);
 
-    this.meshFactory = new MeshFactory(this.scene, this.state, this.shadows);
+    this.animationMixins = new AnimationMixins(this.scene);
+    this.meshMixins = new MeshMixins(
+      this.scene,
+      this.state,
+      this.animationMixins
+    );
+    this.meshFactory = new MeshFactory(
+      this.scene,
+      this.state,
+      this.meshMixins,
+      this.shadows
+    );
     this.levelFactory = new LevelFactory(
       this.scene,
       this.state,
       this.envHelper,
       this.meshFactory,
+      this.animationMixins,
       this.dialogue
     );
 
