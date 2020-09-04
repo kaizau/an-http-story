@@ -7,10 +7,12 @@ const {
   EasingFunction,
   ExecuteCodeAction,
   PointerDragBehavior,
+  TransformNode,
   Animation,
   Color3,
   Vector3,
   Ray,
+  WORLD,
 } = window.BABYLON;
 const {
   OnPickTrigger,
@@ -229,7 +231,7 @@ export class ActionFactory {
         };
         keys.push(previous);
         points.forEach((value) => {
-          const distance = previous.value.subtract(value).length();
+          const distance = Math.round(previous.value.subtract(value).length());
           const current = {
             frame: previous.frame + speed * distance,
             value,
@@ -237,6 +239,27 @@ export class ActionFactory {
           previous = current;
           keys.push(current);
         });
+
+        previous = null;
+        const node = new TransformNode();
+        const rotationKeys = keys.map((current) => {
+          const key = {};
+          if (previous) {
+            node.position = previous.value;
+            const lookAt = node.lookAt(current.value, Math.PI, 0, 0, WORLD);
+            if (lookAt.rotation.y > Math.PI) {
+              lookAt.rotation.y = lookAt.rotation.y - Math.PI * 2;
+            }
+            key.frame = current.frame;
+            key.value = lookAt.rotation.clone();
+          }
+          previous = current;
+          return key;
+        });
+        rotationKeys[0] = {
+          frame: 0,
+          value: rotationKeys[1].value,
+        };
 
         const animation = new Animation(
           "patrol",
@@ -246,8 +269,17 @@ export class ActionFactory {
           Animation.ANIMATIONLOOPMODE_CYCLE
         );
         animation.setKeys(keys);
-        // animation.setEasingFunction(easeOutQuad);
         mesh.animations.push(animation);
+
+        const rotationAnimation = new Animation(
+          "patrolRotation",
+          "rotation",
+          30,
+          Animation.ANIMATIONTYPE_VECTOR3,
+          Animation.ANIMATIONLOOPMODE_CYCLE
+        );
+        rotationAnimation.setKeys(rotationKeys);
+        mesh.animations.push(rotationAnimation);
 
         this.scene.beginAnimation(mesh, 0, keys[keys.length - 1].frame, true);
       }
