@@ -13,7 +13,6 @@ const {
 const easeOutQuad = new QuadraticEase();
 easeOutQuad.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
 
-// TODO Do we need to dispose animations after complete?
 export class AnimationMixins {
   constructor(scene) {
     this.scene = scene;
@@ -117,7 +116,7 @@ export class AnimationMixins {
       if (Math.abs(xDiff) > 0 && this._canWalkTo(current, { x: xDiff })) {
         current.x += xDiff;
         const point = current.clone();
-        point._movementAxis = "x";
+        point._walkAxis = "x";
         points.push(point);
         continue;
       }
@@ -127,38 +126,38 @@ export class AnimationMixins {
       if (Math.abs(zDiff) > 0 && this._canWalkTo(current, { z: zDiff })) {
         current.z += zDiff;
         const point = current.clone();
-        point._movementAxis = "z";
+        point._walkAxis = "z";
         points.push(point);
       }
     }
 
     if (points.length > 1) {
-      const movementLength = 15;
-      const movementKeys = points
+      const walkLength = 15;
+      const walkKeys = points
         .map((point, index) => {
           return {
-            frame: index * movementLength,
+            frame: index * walkLength,
             value: point,
           };
         })
         // Discard keys with no direction change for smoother animation
         .filter((key, index, keys) => {
           const next = keys[index + 1];
-          return !next || key.value._movementAxis !== next.value._movementAxis;
+          return !next || key.value._walkAxis !== next.value._walkAxis;
         });
 
-      const rotationKeys = this._calcRotationKeys(movementKeys, mesh);
+      const rotationKeys = this._calcRotationKeys(walkKeys, mesh);
 
-      const moveAnimation = new Animation(
+      const walkAnimation = new Animation(
         "walk",
         "position",
         30,
         Animation.ANIMATIONTYPE_VECTOR3,
         Animation.ANIMATIONLOOPMODE_CONSTANT
       );
-      moveAnimation.setKeys(movementKeys);
-      moveAnimation.setEasingFunction(easeOutQuad);
-      mesh.animations.push(moveAnimation);
+      walkAnimation.setKeys(walkKeys);
+      walkAnimation.setEasingFunction(easeOutQuad);
+      mesh.animations.push(walkAnimation);
 
       const rotationAnimation = new Animation(
         "walkRotation",
@@ -174,7 +173,15 @@ export class AnimationMixins {
       this.scene.beginAnimation(
         mesh,
         0,
-        movementKeys[movementKeys.length - 1].frame
+        walkKeys[walkKeys.length - 1].frame,
+        false,
+        1,
+        () => {
+          const walkIndex = mesh.animations.indexOf(walkAnimation);
+          mesh.animations.splice(walkIndex, 1);
+          const rotationIndex = mesh.animations.indexOf(rotationAnimation);
+          mesh.animations.splice(rotationIndex, 1);
+        }
       );
     }
   }
@@ -225,6 +232,7 @@ export class AnimationMixins {
   }
 
   // Determine rotations from keyframe positions
+  // TODO Research mesh.calcRotatePOV
   _calcRotationKeys(keys, mesh) {
     const rotationKeys = [];
     const node = new TransformNode();

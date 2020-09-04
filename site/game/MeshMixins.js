@@ -149,6 +149,7 @@ export class MeshMixins {
               mesh.teleporterActivated = true;
               events.emit("levelCompleted");
             } else {
+              // TODO Currently single use only
               if (mesh.teleporterActivated) return;
               mesh.teleporterActivated = true;
 
