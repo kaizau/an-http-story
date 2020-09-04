@@ -178,6 +178,8 @@ export class ActionFactory {
             this.state.playerControl = false;
             playSound("die");
 
+            this.scene.stopAnimation(mesh);
+
             const initial = mesh.scaling.clone();
             const target = new Vector3(2.5, 2.5, 2.5);
             Animation.CreateAndStartAnimation(
@@ -191,6 +193,7 @@ export class ActionFactory {
               Animation.ANIMATIONLOOPMODE_CONSTANT,
               easeOutQuad,
               async () => {
+                this.scene.stopAnimation(this.state.mainCharacter);
                 this.state.mainCharacter.dispose();
                 await delay(500);
                 Animation.CreateAndStartAnimation(
@@ -221,7 +224,7 @@ export class ActionFactory {
       const y = mesh.position.y;
       const path = this.state.eyePatrolPath[y];
       if (path) {
-        const speed = 15;
+        const speed = 20;
         const points = Object.values(path);
         points.push(mesh.position.clone());
         const keys = [];
@@ -260,6 +263,9 @@ export class ActionFactory {
           frame: 0,
           value: rotationKeys[1].value,
         };
+
+        // TODO Add more keys when different
+        console.log(rotationKeys);
 
         const animation = new Animation(
           "patrol",

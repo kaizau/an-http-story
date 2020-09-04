@@ -97,10 +97,8 @@ export class LevelFactory {
                     mesh.position.z += z;
                     mesh.position.x += x;
 
-                    let random = Math.round(Math.random() * 600);
-                    if (mesh.isMainCharacter || mesh.isTeleporter) {
-                      random += 600;
-                    }
+                    const delay = (y + 1) * 600;
+                    const random = Math.round(Math.random() * 600 + delay);
                     setTimeout(() => {
                       Animation.CreateAndStartAnimation(
                         "enter",
