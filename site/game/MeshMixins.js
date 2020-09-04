@@ -184,6 +184,8 @@ export class MeshMixins {
   }
 
   makePatrolling(mesh) {
+    mesh.isPatrolling = true;
+
     events.one("levelReady", () => {
       const y = mesh.position.y;
       const path = this.state.eyePatrolPath[y];

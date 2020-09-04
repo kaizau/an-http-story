@@ -12,6 +12,7 @@ const {
 const easeOutQuad = new QuadraticEase();
 easeOutQuad.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
 
+// TODO Do we need to dispose animations after complete?
 export class AnimationMixins {
   constructor(scene) {
     this.scene = scene;
@@ -99,11 +100,10 @@ export class AnimationMixins {
     const current = mesh.position.clone();
 
     const points = [];
-    const point = current.clone();
-    point._rotation = mesh.rotation.clone();
-    points.push(point);
+    points.push(current.clone());
 
     // Basic pathfinding
+    // TODO Handle slightly indirect paths?
     let i = 0;
     while (i < 10 && (current.x !== target.x || current.z !== target.z)) {
       i++;
@@ -113,7 +113,6 @@ export class AnimationMixins {
         current.x += xDiff;
         const point = current.clone();
         point._movementAxis = "x";
-        point._movementSign = Math.sign(xDiff);
         points.push(point);
         continue;
       }
@@ -124,11 +123,8 @@ export class AnimationMixins {
         current.z += zDiff;
         const point = current.clone();
         point._movementAxis = "z";
-        point._movementSign = Math.sign(zDiff);
         points.push(point);
       }
-
-      // TODO Handle slightly indirect paths?
     }
 
     if (points.length > 1) {
@@ -146,9 +142,8 @@ export class AnimationMixins {
           return !next || key.value._movementAxis !== next.value._movementAxis;
         });
 
-      const rotationKeys = this._calcRotationKeys(movementKeys);
+      const rotationKeys = this._calcRotationKeys(movementKeys, mesh);
 
-      // TODO Cleanup animations after complete?
       const moveAnimation = new Animation(
         "walk",
         "position",
@@ -199,7 +194,7 @@ export class AnimationMixins {
       keys.push(current);
     });
 
-    const rotationKeys = this._calcRotationKeys(keys);
+    const rotationKeys = this._calcRotationKeys(keys, mesh);
 
     const animation = new Animation(
       "patrol",
@@ -224,32 +219,41 @@ export class AnimationMixins {
     this.scene.beginAnimation(mesh, 0, keys[keys.length - 1].frame, true);
   }
 
-  _calcRotationKeys(keys) {
-    let previous;
+  // Determine rotations from keyframe positions
+  _calcRotationKeys(keys, mesh) {
+    const rotationKeys = [];
     const node = new TransformNode();
 
-    // Determine rotational direction
-    const rotationKeys = keys.map((current) => {
-      const key = {};
+    // Start oriented in the initial direction to ensure smooth loop
+    // Note, our meshes point "backwards", so the 2nd param is required
+    if (mesh.isPatrolling) {
+      mesh.lookAt(keys[1].value, Math.PI, 0, 0, WORLD);
+    }
+
+    rotationKeys.push({
+      frame: 0,
+      value: mesh.rotation.clone(),
+    });
+
+    let previous;
+    keys.forEach((current) => {
       if (previous) {
         node.position = previous.value;
         const lookAt = node.lookAt(current.value, Math.PI, 0, 0, WORLD);
-        // TODO There's potentially a better way to determine which "side" to
-        // take a rotation on. May want to take into account the direction of
-        // travel?
         if (lookAt.rotation.y > Math.PI) {
-          lookAt.rotation.y = lookAt.rotation.y - Math.PI * 2;
+          lookAt.rotation.y -= Math.PI * 2;
+        } else if (lookAt.rotation.y < 0 - Math.PI) {
+          lookAt.rotation.y += Math.PI * 2;
         }
-        key.frame = current.frame;
-        key.value = lookAt.rotation.clone();
+        rotationKeys.push({
+          frame: current.frame,
+          value: lookAt.rotation.clone(),
+        });
+        // TODO Does node.lookAt create a new node, or return the old one?
+        // lookAt.dispose();
       }
       previous = current;
-      return key;
     });
-    rotationKeys[0] = {
-      frame: 0,
-      value: rotationKeys[1].value,
-    };
 
     // If waypoints are far away, add addition keys for faster rotation
     previous = null;
