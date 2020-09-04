@@ -1,4 +1,4 @@
-import { TLX } from "./levels";
+import { TLX, TLA, TLB, TLC } from "./levels";
 const {
   MeshBuilder,
   Mesh,
@@ -15,13 +15,25 @@ export class MeshFactory {
     this.meshMixins = meshMixins;
     this.shadows = shadows;
 
-    this.primaryMaterial = new StandardMaterial("primaryMaterial");
-    this.primaryMaterial.diffuseColor = new Color3(0.6, 0.6, 1);
-    this.primaryMaterial.freeze();
+    this.materialA = new StandardMaterial("materialA");
+    this.materialA.diffuseColor = new Color3(0.6, 0.6, 1);
+    this.materialA.freeze();
 
-    this.secondaryMaterial = new StandardMaterial("secondaryMaterial");
-    this.secondaryMaterial.diffuseColor = new Color3(0.6, 0.8, 0.9);
-    this.secondaryMaterial.freeze();
+    this.materialB = new StandardMaterial("materialB");
+    this.materialB.diffuseColor = new Color3(0.6, 0.8, 1);
+    this.materialB.freeze();
+
+    this.materialC = new StandardMaterial("materialC");
+    this.materialC.diffuseColor = new Color3(1, 1, 0.6);
+    this.materialC.freeze();
+
+    this.materialD = new StandardMaterial("materialD");
+    this.materialD.diffuseColor = new Color3(0.7, 1, 0.7);
+    this.materialD.freeze();
+
+    this.materialE = new StandardMaterial("materialE");
+    this.materialE.diffuseColor = new Color3(1, 0.7, 0.7);
+    this.materialE.freeze();
 
     this.createBlockTemplate();
   }
@@ -57,7 +69,7 @@ export class MeshFactory {
       depth: 1,
     });
     mesh.receiveShadows = true;
-    mesh.material = this.secondaryMaterial;
+    mesh.material = this.materialB;
 
     // Smaller bounding box to allow fitting into tight spaces.
     //
@@ -117,7 +129,7 @@ export class MeshFactory {
     head.rotation.y = Math.PI / 2;
 
     const mesh = Mesh.MergeMeshes([body, head], true);
-    mesh.material = this.primaryMaterial;
+    mesh.material = this.materialA;
 
     // Larger bounding box to prevent getting "squashed" by movable block
     const min = new Vector3(-0.25, -0.25, -0.25);
@@ -142,7 +154,20 @@ export class MeshFactory {
     mesh.scaling.y = 0.75;
     mesh.bakeCurrentTransformIntoVertices();
 
-    mesh.material = id === TLX ? this.primaryMaterial : this.secondaryMaterial;
+    switch (id) {
+      case TLX:
+        mesh.material = this.materialA;
+        break;
+      case TLA:
+        mesh.material = this.materialC;
+        break;
+      case TLB:
+        mesh.material = this.materialD;
+        break;
+      case TLC:
+        mesh.material = this.materialE;
+        break;
+    }
 
     // Taller bounding box to allow intersect with player character
     const min = new Vector3(0, 0, 0);
