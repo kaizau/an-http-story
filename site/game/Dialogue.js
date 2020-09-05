@@ -1,7 +1,6 @@
 import { friendVoice, foeVoice } from "./voices";
 import { playSound } from "./sounds";
 import { delay } from "./utils";
-
 const {
   MeshBuilder,
   StandardMaterial,
@@ -10,23 +9,26 @@ const {
   Vector3,
 } = BABYLON;
 
+const layerHeight = 1;
+const layerWidth = 10;
+const textRes = 128;
+
 export class Dialogue {
   constructor(scene) {
     this.scene = scene;
-    this.layerHeight = 2;
-    this.layerWidth = 10;
     this.layer = MeshBuilder.CreatePlane("dialogue", {
-      height: 5,
-      width: 10,
+      height: layerHeight,
+      width: layerWidth,
     });
-    this.layer.position = new Vector3(5, 0, 8);
+    this.layer.position = new Vector3(5, 1, 8);
+    this.layer.isPickable = false;
 
     this.texture = new DynamicTexture("dialogue", {
-      height: 256,
-      width: 512,
+      height: layerHeight * textRes,
+      width: layerWidth * textRes,
     });
     this.texture.hasAlpha = true;
-    this.show("");
+    this.show(""); // Required to add to material
 
     const material = new StandardMaterial("dialogue");
     material.diffuseTexture = this.texture;
@@ -72,16 +74,18 @@ export class Dialogue {
     this.texture.drawText(
       text,
       0,
-      20,
-      "18px monospace",
-      "white",
+      36,
+      "36px monospace",
+      // "#000",
+      // "#fff"
+      "#fff",
       "transparent"
     );
   }
 
   clear() {
     const ctx = this.texture.getContext();
-    ctx.clearRect(0, 0, 512, 256);
+    ctx.clearRect(0, 0, layerWidth * textRes, layerHeight * textRes);
     this.texture.update();
   }
 

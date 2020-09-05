@@ -74,9 +74,9 @@ export function IsoCam(scene) {
     new Vector3(0 - offset, offset, 0 - offset),
     scene
   );
-  isoCam.rotation = new Vector3(Math.PI / 6, Math.PI / 4, 0);
+  isoCam.rotation = new Vector3(Math.PI / 6, Math.PI / 6, 0);
+  isoCam.position = new Vector3(-1, offset, -3);
   isoCam.speed = 0.5;
-  isoCam.invertRotation = true;
   isoCam.inputs.removeByType("FreeCameraMouseInput");
   isoCam.keysUp = [38, 87];
   isoCam.keysDown = [40, 83];
