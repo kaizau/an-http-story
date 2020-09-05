@@ -30,7 +30,6 @@ export const progress = {
 
 // Event Bus
 const _events = Object.create(null);
-window._events = _events;
 export const events = {
   on(event, handler) {
     _events[event] = _events[event] || [];

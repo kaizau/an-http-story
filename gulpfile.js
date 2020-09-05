@@ -1,6 +1,7 @@
 const fs = require("fs");
 const { src, dest, series, watch } = require("gulp");
 const sourcemaps = require("gulp-sourcemaps");
+const replace = require("gulp-replace");
 const archiver = require("archiver");
 const del = require("del");
 const closureCompiler = require("google-closure-compiler").gulp();
@@ -10,19 +11,16 @@ const closureCompiler = require("google-closure-compiler").gulp();
 //
 
 const externs = ["externs.generated.js", "externs.bespoke.js"];
+const compilerDefaults = {
+  externs,
+  js_output_file: "game.js",
+  compilation_level: "ADVANCED_OPTIMIZATIONS",
+  language_in: "ECMASCRIPT_2019",
+  language_out: "ECMASCRIPT_2019",
+};
 
 function compile(options = {}) {
-  const compilerOptions = Object.assign(
-    {
-      externs,
-      js_output_file: "game.js",
-      compilation_level: "ADVANCED_OPTIMIZATIONS",
-      language_in: "ECMASCRIPT_2019",
-      language_out: "ECMASCRIPT_2019",
-    },
-    options
-  );
-
+  const compilerOptions = Object.assign({}, compilerDefaults, options);
   if (options.debug) {
     return src("public/game.js", { base: "." })
       .pipe(sourcemaps.init())
@@ -50,9 +48,64 @@ function compileWatch() {
   return watch(externs, { ignoreInitial: false }, compileDebug);
 }
 
-exports.default = series(clean, copyIndex, copyBabylon, compileWatch);
+exports.compileDev = series(
+  cleanPublicClosure,
+  copyIndex,
+  copyBabylon,
+  compileWatch
+);
 
-exports.compileProd = series(clean, copyIndex, compile);
+exports.compileProd = series(cleanPublicClosure, copyIndex, compile);
+
+//
+// Attempt to bundle with Closure instead of Webpack
+//
+
+function bundle(options = {}) {
+  const compilerOptions = Object.assign({}, compilerDefaults, options);
+  compilerOptions.module_resolution = "NODE";
+  const source = [
+    "site/index.js",
+    "site/vendor/zzfx.micro.js",
+    "site/music/player.js",
+    "site/music/soundbox.js",
+    "site/music/wilderness.js",
+    "site/game/*.js",
+  ];
+  if (options.debug) {
+    return src(source, { base: "." })
+      .pipe(sourcemaps.init())
+      .pipe(replace("process.env.DEBUG", false))
+      .pipe(closureCompiler(compilerOptions))
+      .pipe(sourcemaps.write("."))
+      .pipe(dest("public-closure"));
+  } else {
+    return src(source, { base: "." })
+      .pipe(replace("process.env.DEBUG", false))
+      .pipe(closureCompiler(compilerOptions))
+      .pipe(dest("public-closure"));
+  }
+}
+
+function bundleDebug() {
+  return bundle({
+    debug: true,
+    formatting: "PRETTY_PRINT",
+  });
+}
+
+function bundleWatch() {
+  return watch(externs, { ignoreInitial: false }, bundleDebug);
+}
+
+exports.bundleDev = series(
+  cleanPublicClosure,
+  copyIndex,
+  copyBabylon,
+  bundleWatch
+);
+
+exports.bundleProd = series(cleanPublicClosure, copyIndex, bundle);
 
 //
 // Zip
@@ -78,22 +131,22 @@ function zipWebpack() {
   return zip("public/", "dist/game.zip");
 }
 
-function cleanClosure() {
+function cleanDistClosure() {
   return del("dist/game-closure.zip");
 }
 
-function cleanWebpack() {
+function cleanDistWebpack() {
   return del("dist/game.zip");
 }
 
-exports.zipClosure = series(cleanClosure, zipClosure);
-exports.zipWebpack = series(cleanWebpack, zipWebpack);
+exports.zipClosure = series(cleanDistClosure, zipClosure);
+exports.zipWebpack = series(cleanDistWebpack, zipWebpack);
 
 //
 // Utility
 //
 
-function clean() {
+function cleanPublicClosure() {
   return del("public-closure/**");
 }
 
