@@ -31,6 +31,8 @@ export class Dialogue {
     this.show(""); // Required to add to material
 
     const material = new StandardMaterial("dialogue");
+    material.specularColor = Color3.Black();
+    material.emissiveColor = Color3.White();
     material.diffuseTexture = this.texture;
     this.layer.material = material;
 

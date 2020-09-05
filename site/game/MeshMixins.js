@@ -251,7 +251,7 @@ export class MeshMixins {
   }
 
   _hasCharacterOnTop(mesh) {
-    const top = new Ray(mesh.position.clone(), new Vector3.Up(), 1);
+    const top = new Ray(mesh.position.clone(), new Vector3(0, 1, 0), 1);
     const topPick = this.scene.pickWithRay(top, (mesh) => mesh.isMainCharacter);
     return topPick.hit;
   }
