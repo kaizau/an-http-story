@@ -4,7 +4,6 @@ import song from "./wilderness-slim";
 
 let db;
 
-// TODO Might need some error handling
 export async function loadMusic() {
   if (!db) db = await getDB();
 
@@ -73,7 +72,7 @@ class DB {
 
 function getDB() {
   return new Promise((resolve) => {
-    const request = indexedDB.open("game", 2);
+    const request = indexedDB.open("AHS", 1);
     request.onsuccess = (e) => {
       const db = e.target.result;
       resolve(new DB(db));
@@ -82,5 +81,8 @@ function getDB() {
       const db = e.target.result;
       db.createObjectStore("game");
     };
+    // request.onerror = (e) => {
+    //   console.log(e);
+    // };
   });
 }

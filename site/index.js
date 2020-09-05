@@ -9,14 +9,15 @@ const loadingMessages = [
   "Calibrating flux capacitor",
 ];
 
-const canvas = document.querySelector("#canvas");
-const page = document.querySelector("#page");
-const loading = document.querySelector("#loading");
-const directory = document.querySelector("#directory");
-const start = document.querySelector("#start");
-const downloads = document.querySelector("#downloads");
-const message = document.querySelector("#message");
-const modal = document.querySelector("#modal");
+const qs = (q) => document.querySelector(q);
+const canvas = qs(".cv");
+const page = qs(".pg");
+const loading = qs(".ld");
+const directory = qs(".dr");
+const start = qs(".st");
+const downloadBar = qs(".db");
+const message = qs(".ms");
+const modal = qs(".md");
 let music;
 
 init();
@@ -31,17 +32,17 @@ async function init() {
   music = await loadMusic();
   if (!music) {
     showLoading();
-    loading.classList.remove("hidden");
+    loading.classList.remove("h");
     music = await createMusic();
-    loading.classList.add("hidden");
+    loading.classList.add("h");
   }
-  directory.classList.remove("hidden");
+  directory.classList.remove("h");
   checkEnding();
   loadProgress();
 
   start.addEventListener("click", () => {
-    modal.classList.remove("hidden");
-    downloads.classList.remove("offscreen");
+    modal.classList.remove("h");
+    downloadBar.classList.remove("o");
     message.textContent = "Preparing download...";
 
     setTimeout(() => {
@@ -49,7 +50,7 @@ async function init() {
       music.play();
 
       setTimeout(() => {
-        page.classList.add("zoom");
+        page.classList.add("z");
 
         setTimeout(startGame, 4000);
       }, 2000);
@@ -66,11 +67,11 @@ function showLoading() {
 
 /** @suppress {uselessCode} */
 function startGame(level = 1) {
-  page.classList.add("hidden");
-  page.classList.remove("zoom");
-  downloads.classList.add("offscreen");
-  modal.classList.add("hidden");
-  canvas.classList.remove("hidden");
+  page.classList.add("h");
+  page.classList.remove("z");
+  downloadBar.classList.add("o");
+  modal.classList.add("h");
+  canvas.classList.remove("h");
 
   const world = new World(level);
 
@@ -100,6 +101,10 @@ function createShortcut(level) {
   directory.appendChild(item);
 }
 
+//
+// Endings
+//
+
 function checkEnding() {
   let ending;
   if (location.search.includes("ending=0")) {
@@ -109,12 +114,12 @@ function checkEnding() {
   }
 
   if (ending) {
-    modal.classList.remove("hidden");
-    downloads.classList.remove("offscreen");
+    modal.classList.remove("h");
+    downloadBar.classList.remove("o");
     message.textContent = "Preparing download...";
     setTimeout(ending, 3000);
 
-    const playAgain = document.querySelectorAll(".play-again");
+    const playAgain = document.querySelectorAll(".pa");
     playAgain.forEach((el) => {
       el.addEventListener("click", () => {
         location.href = location.pathname;
@@ -128,26 +133,26 @@ function checkEnding() {
 }
 
 function endingLose() {
-  const note = document.querySelector("#notification");
-  const ending = document.querySelector("#lose");
+  const note = qs(".nt");
+  const ending = qs(".ls");
 
   message.textContent = "Unexpected error";
-  note.classList.remove("offscreen");
+  note.classList.remove("o");
   note.addEventListener("click", () => {
     music.play();
-    note.classList.add("hidden");
-    ending.classList.remove("hidden");
+    note.classList.add("h");
+    ending.classList.remove("h");
   });
 }
 
 function endingWin() {
-  const download = document.querySelector("#download");
-  const ending = document.querySelector("#win");
+  const download = qs(".dl");
+  const ending = qs(".wn");
 
-  download.classList.add("clickable");
+  download.classList.add("c");
   message.textContent = "Click to open";
   download.addEventListener("click", () => {
     music.play();
-    ending.classList.remove("hidden");
+    ending.classList.remove("h");
   });
 }

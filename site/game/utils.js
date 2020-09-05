@@ -10,7 +10,7 @@ export const progress = {
   get() {
     let progress;
     try {
-      progress = JSON.parse(window.localStorage.progress);
+      progress = JSON.parse(localStorage.AHS);
     } catch (e) {
       // No progress
     }
@@ -23,7 +23,7 @@ export const progress = {
     if (!data.includes(id)) {
       data.push(id);
       data.sort();
-      window.localStorage.progress = JSON.stringify(data);
+      localStorage.AHS = JSON.stringify(data);
     }
   },
 };

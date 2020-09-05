@@ -19,7 +19,7 @@ export default class World {
   constructor(initialLevel) {
     this.state = {};
 
-    this.canvas = document.getElementById("canvas");
+    this.canvas = document.querySelector(".cv");
     this.engine = new Engine(this.canvas, true);
     this.engine.runRenderLoop(() => {
       if (this.scene) this.scene.render();
