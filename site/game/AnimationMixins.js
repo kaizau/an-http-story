@@ -7,7 +7,7 @@ const {
   TransformNode,
   Ray,
   Vector3,
-  WORLD,
+  Space,
 } = BABYLON;
 
 const easeOutQuad = new QuadraticEase();
@@ -240,7 +240,7 @@ export class AnimationMixins {
     // Start oriented in the initial direction to ensure smooth loop
     // Note, our meshes point "backwards", so the 2nd param is required
     if (mesh.isPatrolling) {
-      mesh.lookAt(keys[1].value, Math.PI, 0, 0, WORLD);
+      mesh.lookAt(keys[1].value, Math.PI, 0, 0, Space.WORLD);
     }
 
     rotationKeys.push({
@@ -252,7 +252,7 @@ export class AnimationMixins {
     keys.forEach((current) => {
       if (previous) {
         node.position = previous.value;
-        const lookAt = node.lookAt(current.value, Math.PI, 0, 0, WORLD);
+        const lookAt = node.lookAt(current.value, Math.PI, 0, 0, Space.WORLD);
         if (lookAt.rotation.y > Math.PI) {
           lookAt.rotation.y -= Math.PI * 2;
         } else if (lookAt.rotation.y < 0 - Math.PI) {

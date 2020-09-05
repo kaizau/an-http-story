@@ -1,5 +1,5 @@
 {
-  "name": "remember-me",
+  "name": "a-http-story",
   "version": "0.0.1",
   "description": "Entry for js13kGames - 2020 WebXR",
   "author": {
@@ -7,7 +7,7 @@
     "email": "k@kaizau.com",
     "url": "https://kaizau.com"
   },
-  "repository": "github:kaizau/remember-me",
+  "repository": "github:kaizau/a-http-story",
   "license": "MIT",
   "private": true,
   "browserslist": [
@@ -19,7 +19,7 @@
     "start-closure": "webpack --env.TARGET=production-closure && gulp compileDev",
     "build": "webpack --env.TARGET=production",
     "build-closure": "webpack --env.TARGET=production-closure",
-    "bundle-closure": "webpack --env.TARGET=production-closure && gulp bundleDev",
+    "bundle": "webpack --env.TARGET=production-closure && gulp bundleDev",
     "finalize": "webpack --env.TARGET=finalize && gulp zipWebpack",
     "finalize-closure": "webpack --env.TARGET=finalize-closure && gulp compileProd && gulp zipClosure",
     "finalize-bundle": "webpack --env.TARGET=finalize-closure && gulp bundleProd && gulp zipClosure",

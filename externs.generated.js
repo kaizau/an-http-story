@@ -3,5358 +3,5027 @@ const BABYLON = {};
 BABYLON.Debug = {}
 
 /** @constructor */
-BABYLON.AbstractScene = function () {
-  this.rootNodes = {};
-  this.cameras = {};
-  this.lights = {};
-  this.meshes = {};
-  this.skeletons = {};
-  this.particleSystems = {};
-  this.animations = {};
-  this.animationGroups = {};
-  this.multiMaterials = {};
-  this.materials = {};
-  this.morphTargetManagers = {};
-  this.geometries = {};
-  this.transformNodes = {};
-  this.actionManagers = {};
-  this.textures = {};
-  this.environmentTexture = null;
-  this.getNodes = function () {};
-  this.removeEffectLayer = function () {};
-  this.addEffectLayer = function () {};
-  this.getGlowLayerByName = function () {};
-  this.getHighlightLayerByName = function () {};
-  this.getLensFlareSystemByName = function () {};
-  this.getLensFlareSystemByID = function () {};
-  this.removeLensFlareSystem = function () {};
-  this.addLensFlareSystem = function () {};
-  this.removeReflectionProbe = function () {};
-  this.addReflectionProbe = function () {};
-  this.AddParser = function () {};
-  this.GetParser = function () {};
-  this.AddIndividualParser = function () {};
-  this.GetIndividualParser = function () {};
-  this.Parse = function () {};
-};
+BABYLON.AbstractScene = function () {}
+BABYLON.AbstractScene.rootNodes = {};
+BABYLON.AbstractScene.cameras = {};
+BABYLON.AbstractScene.lights = {};
+BABYLON.AbstractScene.meshes = {};
+BABYLON.AbstractScene.skeletons = {};
+BABYLON.AbstractScene.particleSystems = {};
+BABYLON.AbstractScene.animations = {};
+BABYLON.AbstractScene.animationGroups = {};
+BABYLON.AbstractScene.multiMaterials = {};
+BABYLON.AbstractScene.materials = {};
+BABYLON.AbstractScene.morphTargetManagers = {};
+BABYLON.AbstractScene.geometries = {};
+BABYLON.AbstractScene.transformNodes = {};
+BABYLON.AbstractScene.actionManagers = {};
+BABYLON.AbstractScene.textures = {};
+BABYLON.AbstractScene.environmentTexture = null;
+BABYLON.AbstractScene.prototype.getNodes = function () {};
+BABYLON.AbstractScene.prototype.removeEffectLayer = function () {};
+BABYLON.AbstractScene.prototype.addEffectLayer = function () {};
+BABYLON.AbstractScene.prototype.getGlowLayerByName = function () {};
+BABYLON.AbstractScene.prototype.getHighlightLayerByName = function () {};
+BABYLON.AbstractScene.prototype.getLensFlareSystemByName = function () {};
+BABYLON.AbstractScene.prototype.getLensFlareSystemByID = function () {};
+BABYLON.AbstractScene.prototype.removeLensFlareSystem = function () {};
+BABYLON.AbstractScene.prototype.addLensFlareSystem = function () {};
+BABYLON.AbstractScene.prototype.removeReflectionProbe = function () {};
+BABYLON.AbstractScene.prototype.addReflectionProbe = function () {};
+
 
 /** @constructor */
-BABYLON.AbstractActionManager = function () {
-  this.hoverCursor = "";
-  this.actions = {};
-  this.isRecursive = false;
-  this.HasTriggers = false;
-  this.HasPickTriggers = false;
-  this.HasSpecificTrigger = function () {};
-  this.Triggers = {};
-};
+BABYLON.AbstractActionManager = function () {}
+BABYLON.AbstractActionManager.hoverCursor = "";
+BABYLON.AbstractActionManager.actions = {};
+BABYLON.AbstractActionManager.isRecursive = false;
+
 
 /** @constructor */
-BABYLON.Action = function () {
-};
+BABYLON.Action = function () {}
+
 
 /** @constructor */
-BABYLON.ActionEvent = function () {
-  // this.source = undefined;
-  // this.pointerX = undefined;
-  // this.pointerY = undefined;
-  // this.meshUnderPointer = undefined;
-  // this.sourceEvent = undefined;
-  // this.additionalData = undefined;
-  this.CreateNew = function () {};
-  this.CreateNewFromSprite = function () {};
-  this.CreateNewFromScene = function () {};
-  this.CreateNewFromPrimitive = function () {};
-};
+BABYLON.ActionEvent = function () {}
+// BABYLON.ActionEvent.source = undefined;
+// BABYLON.ActionEvent.pointerX = undefined;
+// BABYLON.ActionEvent.pointerY = undefined;
+// BABYLON.ActionEvent.meshUnderPointer = undefined;
+// BABYLON.ActionEvent.sourceEvent = undefined;
+// BABYLON.ActionEvent.additionalData = undefined;
+
 
 /** @constructor */
-BABYLON.ActionManager = function () {
-  this.Parse = function () {};
-  this.GetTriggerName = function () {};
-  this.NothingTrigger = 0;
-  this.OnPickTrigger = 1;
-  this.OnLeftPickTrigger = 2;
-  this.OnRightPickTrigger = 3;
-  this.OnCenterPickTrigger = 4;
-  this.OnPickDownTrigger = 5;
-  this.OnDoublePickTrigger = 6;
-  this.OnPickUpTrigger = 7;
-  this.OnPickOutTrigger = 16;
-  this.OnLongPressTrigger = 8;
-  this.OnPointerOverTrigger = 9;
-  this.OnPointerOutTrigger = 10;
-  this.OnEveryFrameTrigger = 11;
-  this.OnIntersectionEnterTrigger = 12;
-  this.OnIntersectionExitTrigger = 13;
-  this.OnKeyDownTrigger = 14;
-  this.OnKeyUpTrigger = 15;
-  this.HasTriggers = false;
-  this.HasPickTriggers = false;
-  this.HasSpecificTrigger = function () {};
-  this.Triggers = {};
-};
+BABYLON.ActionManager = function () {}
+BABYLON.ActionManager.Parse = function () {};
+BABYLON.ActionManager.GetTriggerName = function () {};
+BABYLON.ActionManager.NothingTrigger = 0;
+BABYLON.ActionManager.OnPickTrigger = 1;
+BABYLON.ActionManager.OnLeftPickTrigger = 2;
+BABYLON.ActionManager.OnRightPickTrigger = 3;
+BABYLON.ActionManager.OnCenterPickTrigger = 4;
+BABYLON.ActionManager.OnPickDownTrigger = 5;
+BABYLON.ActionManager.OnDoublePickTrigger = 6;
+BABYLON.ActionManager.OnPickUpTrigger = 7;
+BABYLON.ActionManager.OnPickOutTrigger = 16;
+BABYLON.ActionManager.OnLongPressTrigger = 8;
+BABYLON.ActionManager.OnPointerOverTrigger = 9;
+BABYLON.ActionManager.OnPointerOutTrigger = 10;
+BABYLON.ActionManager.OnEveryFrameTrigger = 11;
+BABYLON.ActionManager.OnIntersectionEnterTrigger = 12;
+BABYLON.ActionManager.OnIntersectionExitTrigger = 13;
+BABYLON.ActionManager.OnKeyDownTrigger = 14;
+BABYLON.ActionManager.OnKeyUpTrigger = 15;
+BABYLON.ActionManager.prototype.HasTriggers = false;
+BABYLON.ActionManager.prototype.HasPickTriggers = false;
+BABYLON.ActionManager.prototype.HasSpecificTrigger = function () {};
+BABYLON.ActionManager.prototype.Triggers = {};
+
 
 /** @constructor */
-BABYLON.Condition = function () {
-  this.isValid = function () {};
-  this.serialize = function () {};
-};
+BABYLON.Condition = function () {}
+BABYLON.Condition.prototype.isValid = function () {};
+BABYLON.Condition.prototype.serialize = function () {};
+
 
 /** @constructor */
-BABYLON.ValueCondition = function () {
-  this.IsEqual = 0;
-  this.IsDifferent = 1;
-  this.IsGreater = 2;
-  this.IsLesser = 3;
-  this.GetOperatorName = function () {};
-};
+BABYLON.ValueCondition = function () {}
+BABYLON.ValueCondition.IsEqual = 0;
+BABYLON.ValueCondition.IsDifferent = 1;
+BABYLON.ValueCondition.IsGreater = 2;
+BABYLON.ValueCondition.IsLesser = 3;
+BABYLON.ValueCondition.GetOperatorName = function () {};
+
 
 /** @constructor */
-BABYLON.PredicateCondition = function () {
-  // this.predicate = undefined;
-  this.constructor = function () {};
-  this.isValid = function () {};
-  this.serialize = function () {};
-};
+BABYLON.PredicateCondition = function () {}
+// BABYLON.PredicateCondition.predicate = undefined;
+BABYLON.PredicateCondition.prototype.constructor = function () {};
+BABYLON.PredicateCondition.prototype.isValid = function () {};
+BABYLON.PredicateCondition.prototype.serialize = function () {};
+
 
 /** @constructor */
-BABYLON.StateCondition = function () {
-  // this.value = undefined;
-  this.constructor = function () {};
-  this.isValid = function () {};
-  this.serialize = function () {};
-};
+BABYLON.StateCondition = function () {}
+// BABYLON.StateCondition.value = undefined;
+BABYLON.StateCondition.prototype.constructor = function () {};
+BABYLON.StateCondition.prototype.isValid = function () {};
+BABYLON.StateCondition.prototype.serialize = function () {};
+
 
 /** @constructor */
-BABYLON.SwitchBooleanAction = function () {
-};
+BABYLON.SwitchBooleanAction = function () {}
+
 
 /** @constructor */
-BABYLON.SetStateAction = function () {
-};
+BABYLON.SetStateAction = function () {}
+
 
 /** @constructor */
-BABYLON.SetValueAction = function () {
-};
+BABYLON.SetValueAction = function () {}
+
 
 /** @constructor */
-BABYLON.IncrementValueAction = function () {
-};
+BABYLON.IncrementValueAction = function () {}
+
 
 /** @constructor */
-BABYLON.PlayAnimationAction = function () {
-};
+BABYLON.PlayAnimationAction = function () {}
+
 
 /** @constructor */
-BABYLON.StopAnimationAction = function () {
-};
+BABYLON.StopAnimationAction = function () {}
+
 
 /** @constructor */
-BABYLON.DoNothingAction = function () {
-  this.triggerOptions = 0;
-  this.onBeforeExecuteObservable = {};
-  this.trigger = 0;
-  this.constructor = function () {};
-  this.execute = function () {};
-  this.serialize = function () {};
-  this.getTriggerParameter = function () {};
-  this.skipToNextActiveAction = function () {};
-  this.then = function () {};
-};
+BABYLON.DoNothingAction = function () {}
+BABYLON.DoNothingAction.triggerOptions = 0;
+BABYLON.DoNothingAction.onBeforeExecuteObservable = {};
+BABYLON.DoNothingAction.trigger = 0;
+BABYLON.DoNothingAction.prototype.constructor = function () {};
+BABYLON.DoNothingAction.prototype.execute = function () {};
+BABYLON.DoNothingAction.prototype.serialize = function () {};
+BABYLON.DoNothingAction.prototype.getTriggerParameter = function () {};
+BABYLON.DoNothingAction.prototype.skipToNextActiveAction = function () {};
+BABYLON.DoNothingAction.prototype.then = function () {};
+
 
 /** @constructor */
-BABYLON.CombineAction = function () {
-};
+BABYLON.CombineAction = function () {}
+
 
 /** @constructor */
-BABYLON.ExecuteCodeAction = function () {
-};
+BABYLON.ExecuteCodeAction = function () {}
+
 
 /** @constructor */
-BABYLON.SetParentAction = function () {
-};
+BABYLON.SetParentAction = function () {}
+
 
 /** @constructor */
-BABYLON.PlaySoundAction = function () {
-};
+BABYLON.PlaySoundAction = function () {}
+
 
 /** @constructor */
-BABYLON.StopSoundAction = function () {
-};
+BABYLON.StopSoundAction = function () {}
+
 
 /** @constructor */
-BABYLON.InterpolateValueAction = function () {
-};
+BABYLON.InterpolateValueAction = function () {}
+
 
 /** @constructor */
-BABYLON.Animatable = function () {
-};
+BABYLON.Animatable = function () {}
+
 
 /** @constructor */
-BABYLON.Animation = function () {
-  this.CreateAnimation = function () {};
-  this.CreateAndStartAnimation = function () {};
-  this.CreateAndStartHierarchyAnimation = function () {};
-  this.CreateMergeAndStartAnimation = function () {};
-  this.TransitionTo = function () {};
-  this.Parse = function () {};
-  this.AppendSerializedAnimations = function () {};
-  this.AllowMatricesInterpolation = false;
-  this.AllowMatrixDecomposeForInterpolation = true;
-  this.ANIMATIONTYPE_FLOAT = 0;
-  this.ANIMATIONTYPE_VECTOR3 = 1;
-  this.ANIMATIONTYPE_QUATERNION = 2;
-  this.ANIMATIONTYPE_MATRIX = 3;
-  this.ANIMATIONTYPE_COLOR3 = 4;
-  this.ANIMATIONTYPE_COLOR4 = 7;
-  this.ANIMATIONTYPE_VECTOR2 = 5;
-  this.ANIMATIONTYPE_SIZE = 6;
-  this.ANIMATIONLOOPMODE_RELATIVE = 0;
-  this.ANIMATIONLOOPMODE_CYCLE = 1;
-  this.ANIMATIONLOOPMODE_CONSTANT = 2;
-};
+BABYLON.Animation = function () {}
+BABYLON.Animation.CreateAnimation = function () {};
+BABYLON.Animation.CreateAndStartAnimation = function () {};
+BABYLON.Animation.CreateAndStartHierarchyAnimation = function () {};
+BABYLON.Animation.CreateMergeAndStartAnimation = function () {};
+BABYLON.Animation.TransitionTo = function () {};
+BABYLON.Animation.Parse = function () {};
+BABYLON.Animation.AppendSerializedAnimations = function () {};
+BABYLON.Animation.AllowMatricesInterpolation = false;
+BABYLON.Animation.AllowMatrixDecomposeForInterpolation = true;
+BABYLON.Animation.ANIMATIONTYPE_FLOAT = 0;
+BABYLON.Animation.ANIMATIONTYPE_VECTOR3 = 1;
+BABYLON.Animation.ANIMATIONTYPE_QUATERNION = 2;
+BABYLON.Animation.ANIMATIONTYPE_MATRIX = 3;
+BABYLON.Animation.ANIMATIONTYPE_COLOR3 = 4;
+BABYLON.Animation.ANIMATIONTYPE_COLOR4 = 7;
+BABYLON.Animation.ANIMATIONTYPE_VECTOR2 = 5;
+BABYLON.Animation.ANIMATIONTYPE_SIZE = 6;
+BABYLON.Animation.ANIMATIONLOOPMODE_RELATIVE = 0;
+BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE = 1;
+BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT = 2;
+
 
 /** @constructor */
-BABYLON.TargetedAnimation = function () {
-  this.serialize = function () {};
-};
+BABYLON.TargetedAnimation = function () {}
+BABYLON.TargetedAnimation.prototype.serialize = function () {};
+
 
 /** @constructor */
-BABYLON.AnimationGroup = function () {
-  this.Parse = function () {};
-};
+BABYLON.AnimationGroup = function () {}
+BABYLON.AnimationGroup.Parse = function () {};
+
 
 /** @constructor */
-BABYLON.AnimationPropertiesOverride = function () {
-  this.enableBlending = false;
-  this.blendingSpeed = 0.01;
-  this.loopMode = 1;
-};
+BABYLON.AnimationPropertiesOverride = function () {}
+BABYLON.AnimationPropertiesOverride.enableBlending = false;
+BABYLON.AnimationPropertiesOverride.blendingSpeed = 0.01;
+BABYLON.AnimationPropertiesOverride.loopMode = 1;
+
 
 /** @constructor */
-BABYLON.EasingFunction = function () {
-  this.setEasingMode = function () {};
-  this.getEasingMode = function () {};
-  this.easeInCore = function () {};
-  this.ease = function () {};
-  this.EASINGMODE_EASEIN = 0;
-  this.EASINGMODE_EASEOUT = 1;
-  this.EASINGMODE_EASEINOUT = 2;
-};
+BABYLON.EasingFunction = function () {}
+BABYLON.EasingFunction.prototype.setEasingMode = function () {};
+BABYLON.EasingFunction.prototype.getEasingMode = function () {};
+BABYLON.EasingFunction.prototype.easeInCore = function () {};
+BABYLON.EasingFunction.prototype.ease = function () {};
+
 
 /** @constructor */
-BABYLON.CircleEase = function () {
-  this.constructor = function () {};
-  this.easeInCore = function () {};
-  this.setEasingMode = function () {};
-  this.getEasingMode = function () {};
-  this.ease = function () {};
-  this.EASINGMODE_EASEIN = 0;
-  this.EASINGMODE_EASEOUT = 1;
-  this.EASINGMODE_EASEINOUT = 2;
-};
+BABYLON.CircleEase = function () {}
+BABYLON.CircleEase.prototype.constructor = function () {};
+BABYLON.CircleEase.prototype.easeInCore = function () {};
+BABYLON.CircleEase.prototype.setEasingMode = function () {};
+BABYLON.CircleEase.prototype.getEasingMode = function () {};
+BABYLON.CircleEase.prototype.ease = function () {};
+
 
 /** @constructor */
-BABYLON.BackEase = function () {
-  this.amplitude = 1;
-  this.constructor = function () {};
-  this.easeInCore = function () {};
-  this.setEasingMode = function () {};
-  this.getEasingMode = function () {};
-  this.ease = function () {};
-  this.EASINGMODE_EASEIN = 0;
-  this.EASINGMODE_EASEOUT = 1;
-  this.EASINGMODE_EASEINOUT = 2;
-};
+BABYLON.BackEase = function () {}
+BABYLON.BackEase.amplitude = 1;
+BABYLON.BackEase.prototype.constructor = function () {};
+BABYLON.BackEase.prototype.easeInCore = function () {};
+BABYLON.BackEase.prototype.setEasingMode = function () {};
+BABYLON.BackEase.prototype.getEasingMode = function () {};
+BABYLON.BackEase.prototype.ease = function () {};
+
 
 /** @constructor */
-BABYLON.BounceEase = function () {
-  this.bounces = 3;
-  this.bounciness = 2;
-  this.constructor = function () {};
-  this.easeInCore = function () {};
-  this.setEasingMode = function () {};
-  this.getEasingMode = function () {};
-  this.ease = function () {};
-  this.EASINGMODE_EASEIN = 0;
-  this.EASINGMODE_EASEOUT = 1;
-  this.EASINGMODE_EASEINOUT = 2;
-};
+BABYLON.BounceEase = function () {}
+BABYLON.BounceEase.bounces = 3;
+BABYLON.BounceEase.bounciness = 2;
+BABYLON.BounceEase.prototype.constructor = function () {};
+BABYLON.BounceEase.prototype.easeInCore = function () {};
+BABYLON.BounceEase.prototype.setEasingMode = function () {};
+BABYLON.BounceEase.prototype.getEasingMode = function () {};
+BABYLON.BounceEase.prototype.ease = function () {};
+
 
 /** @constructor */
-BABYLON.CubicEase = function () {
-  this.constructor = function () {};
-  this.easeInCore = function () {};
-  this.setEasingMode = function () {};
-  this.getEasingMode = function () {};
-  this.ease = function () {};
-  this.EASINGMODE_EASEIN = 0;
-  this.EASINGMODE_EASEOUT = 1;
-  this.EASINGMODE_EASEINOUT = 2;
-};
+BABYLON.CubicEase = function () {}
+BABYLON.CubicEase.prototype.constructor = function () {};
+BABYLON.CubicEase.prototype.easeInCore = function () {};
+BABYLON.CubicEase.prototype.setEasingMode = function () {};
+BABYLON.CubicEase.prototype.getEasingMode = function () {};
+BABYLON.CubicEase.prototype.ease = function () {};
+
 
 /** @constructor */
-BABYLON.ElasticEase = function () {
-  this.oscillations = 3;
-  this.springiness = 3;
-  this.constructor = function () {};
-  this.easeInCore = function () {};
-  this.setEasingMode = function () {};
-  this.getEasingMode = function () {};
-  this.ease = function () {};
-  this.EASINGMODE_EASEIN = 0;
-  this.EASINGMODE_EASEOUT = 1;
-  this.EASINGMODE_EASEINOUT = 2;
-};
+BABYLON.ElasticEase = function () {}
+BABYLON.ElasticEase.oscillations = 3;
+BABYLON.ElasticEase.springiness = 3;
+BABYLON.ElasticEase.prototype.constructor = function () {};
+BABYLON.ElasticEase.prototype.easeInCore = function () {};
+BABYLON.ElasticEase.prototype.setEasingMode = function () {};
+BABYLON.ElasticEase.prototype.getEasingMode = function () {};
+BABYLON.ElasticEase.prototype.ease = function () {};
+
 
 /** @constructor */
-BABYLON.ExponentialEase = function () {
-  this.exponent = 2;
-  this.constructor = function () {};
-  this.easeInCore = function () {};
-  this.setEasingMode = function () {};
-  this.getEasingMode = function () {};
-  this.ease = function () {};
-  this.EASINGMODE_EASEIN = 0;
-  this.EASINGMODE_EASEOUT = 1;
-  this.EASINGMODE_EASEINOUT = 2;
-};
+BABYLON.ExponentialEase = function () {}
+BABYLON.ExponentialEase.exponent = 2;
+BABYLON.ExponentialEase.prototype.constructor = function () {};
+BABYLON.ExponentialEase.prototype.easeInCore = function () {};
+BABYLON.ExponentialEase.prototype.setEasingMode = function () {};
+BABYLON.ExponentialEase.prototype.getEasingMode = function () {};
+BABYLON.ExponentialEase.prototype.ease = function () {};
+
 
 /** @constructor */
-BABYLON.PowerEase = function () {
-  this.power = 2;
-  this.constructor = function () {};
-  this.easeInCore = function () {};
-  this.setEasingMode = function () {};
-  this.getEasingMode = function () {};
-  this.ease = function () {};
-  this.EASINGMODE_EASEIN = 0;
-  this.EASINGMODE_EASEOUT = 1;
-  this.EASINGMODE_EASEINOUT = 2;
-};
+BABYLON.PowerEase = function () {}
+BABYLON.PowerEase.power = 2;
+BABYLON.PowerEase.prototype.constructor = function () {};
+BABYLON.PowerEase.prototype.easeInCore = function () {};
+BABYLON.PowerEase.prototype.setEasingMode = function () {};
+BABYLON.PowerEase.prototype.getEasingMode = function () {};
+BABYLON.PowerEase.prototype.ease = function () {};
+
 
 /** @constructor */
-BABYLON.QuadraticEase = function () {
-  this.constructor = function () {};
-  this.easeInCore = function () {};
-  this.setEasingMode = function () {};
-  this.getEasingMode = function () {};
-  this.ease = function () {};
-  this.EASINGMODE_EASEIN = 0;
-  this.EASINGMODE_EASEOUT = 1;
-  this.EASINGMODE_EASEINOUT = 2;
-};
+BABYLON.QuadraticEase = function () {}
+BABYLON.QuadraticEase.prototype.constructor = function () {};
+BABYLON.QuadraticEase.prototype.easeInCore = function () {};
+BABYLON.QuadraticEase.prototype.setEasingMode = function () {};
+BABYLON.QuadraticEase.prototype.getEasingMode = function () {};
+BABYLON.QuadraticEase.prototype.ease = function () {};
+
 
 /** @constructor */
-BABYLON.QuarticEase = function () {
-  this.constructor = function () {};
-  this.easeInCore = function () {};
-  this.setEasingMode = function () {};
-  this.getEasingMode = function () {};
-  this.ease = function () {};
-  this.EASINGMODE_EASEIN = 0;
-  this.EASINGMODE_EASEOUT = 1;
-  this.EASINGMODE_EASEINOUT = 2;
-};
+BABYLON.QuarticEase = function () {}
+BABYLON.QuarticEase.prototype.constructor = function () {};
+BABYLON.QuarticEase.prototype.easeInCore = function () {};
+BABYLON.QuarticEase.prototype.setEasingMode = function () {};
+BABYLON.QuarticEase.prototype.getEasingMode = function () {};
+BABYLON.QuarticEase.prototype.ease = function () {};
+
 
 /** @constructor */
-BABYLON.QuinticEase = function () {
-  this.constructor = function () {};
-  this.easeInCore = function () {};
-  this.setEasingMode = function () {};
-  this.getEasingMode = function () {};
-  this.ease = function () {};
-  this.EASINGMODE_EASEIN = 0;
-  this.EASINGMODE_EASEOUT = 1;
-  this.EASINGMODE_EASEINOUT = 2;
-};
+BABYLON.QuinticEase = function () {}
+BABYLON.QuinticEase.prototype.constructor = function () {};
+BABYLON.QuinticEase.prototype.easeInCore = function () {};
+BABYLON.QuinticEase.prototype.setEasingMode = function () {};
+BABYLON.QuinticEase.prototype.getEasingMode = function () {};
+BABYLON.QuinticEase.prototype.ease = function () {};
+
 
 /** @constructor */
-BABYLON.SineEase = function () {
-  this.constructor = function () {};
-  this.easeInCore = function () {};
-  this.setEasingMode = function () {};
-  this.getEasingMode = function () {};
-  this.ease = function () {};
-  this.EASINGMODE_EASEIN = 0;
-  this.EASINGMODE_EASEOUT = 1;
-  this.EASINGMODE_EASEINOUT = 2;
-};
+BABYLON.SineEase = function () {}
+BABYLON.SineEase.prototype.constructor = function () {};
+BABYLON.SineEase.prototype.easeInCore = function () {};
+BABYLON.SineEase.prototype.setEasingMode = function () {};
+BABYLON.SineEase.prototype.getEasingMode = function () {};
+BABYLON.SineEase.prototype.ease = function () {};
+
 
 /** @constructor */
-BABYLON.BezierCurveEase = function () {
-  this.x1 = 0;
-  this.y1 = 0;
-  this.x2 = 1;
-  this.y2 = 1;
-  this.constructor = function () {};
-  this.easeInCore = function () {};
-  this.setEasingMode = function () {};
-  this.getEasingMode = function () {};
-  this.ease = function () {};
-  this.EASINGMODE_EASEIN = 0;
-  this.EASINGMODE_EASEOUT = 1;
-  this.EASINGMODE_EASEINOUT = 2;
-};
+BABYLON.BezierCurveEase = function () {}
+BABYLON.BezierCurveEase.x1 = 0;
+BABYLON.BezierCurveEase.y1 = 0;
+BABYLON.BezierCurveEase.x2 = 1;
+BABYLON.BezierCurveEase.y2 = 1;
+BABYLON.BezierCurveEase.prototype.constructor = function () {};
+BABYLON.BezierCurveEase.prototype.easeInCore = function () {};
+BABYLON.BezierCurveEase.prototype.setEasingMode = function () {};
+BABYLON.BezierCurveEase.prototype.getEasingMode = function () {};
+BABYLON.BezierCurveEase.prototype.ease = function () {};
+
 
 /** @constructor */
-BABYLON.RuntimeAnimation = function () {
-};
+BABYLON.RuntimeAnimation = function () {}
+
 
 /** @constructor */
-BABYLON.AnimationEvent = function () {
-  // this.frame = undefined;
-  // this.action = undefined;
-  // this.onlyOnce = undefined;
-  this.isDone = false;
-};
+BABYLON.AnimationEvent = function () {}
+// BABYLON.AnimationEvent.frame = undefined;
+// BABYLON.AnimationEvent.action = undefined;
+// BABYLON.AnimationEvent.onlyOnce = undefined;
+BABYLON.AnimationEvent.isDone = false;
+
 
 BABYLON.AnimationKeyInterpolation = {}
 
 /** @constructor */
-BABYLON.AnimationRange = function () {
-  // this.name = undefined;
-  // this.from = undefined;
-  // this.to = undefined;
-  this.clone = function () {};
-};
+BABYLON.AnimationRange = function () {}
+// BABYLON.AnimationRange.name = undefined;
+// BABYLON.AnimationRange.from = undefined;
+// BABYLON.AnimationRange.to = undefined;
+BABYLON.AnimationRange.prototype.clone = function () {};
+
 
 /** @constructor */
-BABYLON.KeepAssets = function () {
-  this.rootNodes = {};
-  this.cameras = {};
-  this.lights = {};
-  this.meshes = {};
-  this.skeletons = {};
-  this.particleSystems = {};
-  this.animations = {};
-  this.animationGroups = {};
-  this.multiMaterials = {};
-  this.materials = {};
-  this.morphTargetManagers = {};
-  this.geometries = {};
-  this.transformNodes = {};
-  this.actionManagers = {};
-  this.textures = {};
-  this.environmentTexture = null;
-  this.constructor = function () {};
-  this.getNodes = function () {};
-  this.removeEffectLayer = function () {};
-  this.addEffectLayer = function () {};
-  this.getGlowLayerByName = function () {};
-  this.getHighlightLayerByName = function () {};
-  this.getLensFlareSystemByName = function () {};
-  this.getLensFlareSystemByID = function () {};
-  this.removeLensFlareSystem = function () {};
-  this.addLensFlareSystem = function () {};
-  this.removeReflectionProbe = function () {};
-  this.addReflectionProbe = function () {};
-  this.AddParser = function () {};
-  this.GetParser = function () {};
-  this.AddIndividualParser = function () {};
-  this.GetIndividualParser = function () {};
-  this.Parse = function () {};
-};
+BABYLON.KeepAssets = function () {}
+BABYLON.KeepAssets.rootNodes = {};
+BABYLON.KeepAssets.cameras = {};
+BABYLON.KeepAssets.lights = {};
+BABYLON.KeepAssets.meshes = {};
+BABYLON.KeepAssets.skeletons = {};
+BABYLON.KeepAssets.particleSystems = {};
+BABYLON.KeepAssets.animations = {};
+BABYLON.KeepAssets.animationGroups = {};
+BABYLON.KeepAssets.multiMaterials = {};
+BABYLON.KeepAssets.materials = {};
+BABYLON.KeepAssets.morphTargetManagers = {};
+BABYLON.KeepAssets.geometries = {};
+BABYLON.KeepAssets.transformNodes = {};
+BABYLON.KeepAssets.actionManagers = {};
+BABYLON.KeepAssets.textures = {};
+BABYLON.KeepAssets.environmentTexture = null;
+BABYLON.KeepAssets.prototype.constructor = function () {};
+BABYLON.KeepAssets.prototype.getNodes = function () {};
+BABYLON.KeepAssets.prototype.removeEffectLayer = function () {};
+BABYLON.KeepAssets.prototype.addEffectLayer = function () {};
+BABYLON.KeepAssets.prototype.getGlowLayerByName = function () {};
+BABYLON.KeepAssets.prototype.getHighlightLayerByName = function () {};
+BABYLON.KeepAssets.prototype.getLensFlareSystemByName = function () {};
+BABYLON.KeepAssets.prototype.getLensFlareSystemByID = function () {};
+BABYLON.KeepAssets.prototype.removeLensFlareSystem = function () {};
+BABYLON.KeepAssets.prototype.addLensFlareSystem = function () {};
+BABYLON.KeepAssets.prototype.removeReflectionProbe = function () {};
+BABYLON.KeepAssets.prototype.addReflectionProbe = function () {};
+
 
 /** @constructor */
-BABYLON.InstantiatedEntries = function () {
-  this.rootNodes = {};
-  this.skeletons = {};
-  this.animationGroups = {};
-};
+BABYLON.InstantiatedEntries = function () {}
+BABYLON.InstantiatedEntries.rootNodes = {};
+BABYLON.InstantiatedEntries.skeletons = {};
+BABYLON.InstantiatedEntries.animationGroups = {};
+
 
 /** @constructor */
-BABYLON.AssetContainer = function () {
-  this.AddParser = function () {};
-  this.GetParser = function () {};
-  this.AddIndividualParser = function () {};
-  this.GetIndividualParser = function () {};
-  this.Parse = function () {};
-};
+BABYLON.AssetContainer = function () {}
+BABYLON.AssetContainer.prototype.AddParser = function () {};
+BABYLON.AssetContainer.prototype.GetParser = function () {};
+BABYLON.AssetContainer.prototype.AddIndividualParser = function () {};
+BABYLON.AssetContainer.prototype.GetIndividualParser = function () {};
+BABYLON.AssetContainer.prototype.Parse = function () {};
+
 
 /** @constructor */
-BABYLON.Analyser = function () {
-};
+BABYLON.Analyser = function () {}
+
 
 /** @constructor */
-BABYLON.AudioEngine = function () {
-  this.canUseWebAudio = false;
-  this.WarnedWebAudioUnsupported = false;
-  this.isMP3supported = false;
-  this.isOGGsupported = false;
-  this.unlocked = true;
-  this.useCustomUnlockedButton = false;
-  this.onAudioUnlockedObservable = {};
-  this.onAudioLockedObservable = {};
-  this.audioContext = null;
-  this.lock = function () {};
-  this.unlock = function () {};
-  this.dispose = function () {};
-  this.getGlobalVolume = function () {};
-  this.setGlobalVolume = function () {};
-  this.connectToAnalyser = function () {};
-};
+BABYLON.AudioEngine = function () {}
+BABYLON.AudioEngine.canUseWebAudio = false;
+BABYLON.AudioEngine.WarnedWebAudioUnsupported = false;
+BABYLON.AudioEngine.isMP3supported = false;
+BABYLON.AudioEngine.isOGGsupported = false;
+BABYLON.AudioEngine.unlocked = true;
+BABYLON.AudioEngine.useCustomUnlockedButton = false;
+BABYLON.AudioEngine.onAudioUnlockedObservable = {};
+BABYLON.AudioEngine.onAudioLockedObservable = {};
+// BABYLON.AudioEngine.prototype.audioContext = undefined;
+BABYLON.AudioEngine.prototype.lock = function () {};
+BABYLON.AudioEngine.prototype.unlock = function () {};
+BABYLON.AudioEngine.prototype.dispose = function () {};
+BABYLON.AudioEngine.prototype.getGlobalVolume = function () {};
+BABYLON.AudioEngine.prototype.setGlobalVolume = function () {};
+BABYLON.AudioEngine.prototype.connectToAnalyser = function () {};
+
 
 /** @constructor */
-BABYLON.AudioSceneComponent = function () {
-};
+BABYLON.AudioSceneComponent = function () {}
+
 
 /** @constructor */
-BABYLON.Sound = function () {
-  this.Parse = function () {};
-};
+BABYLON.Sound = function () {}
+BABYLON.Sound.Parse = function () {};
+
 
 /** @constructor */
-BABYLON.SoundTrack = function () {
-};
+BABYLON.SoundTrack = function () {}
+
 
 /** @constructor */
-BABYLON.WeightedSound = function () {
-};
+BABYLON.WeightedSound = function () {}
+
 
 /** @constructor */
-BABYLON.AutoRotationBehavior = function () {
-  this.name = "AutoRotation";
-  this.zoomStopsAnimation = false;
-  this.idleRotationSpeed = 0.05;
-  this.idleRotationWaitTime = 2000;
-  this.idleRotationSpinupTime = 2000;
-  this.rotationInProgress = false;
-  this.init = function () {};
-  this.attach = function () {};
-  this.detach = function () {};
-};
+BABYLON.AutoRotationBehavior = function () {}
+BABYLON.AutoRotationBehavior.prototype.name = "AutoRotation";
+// BABYLON.AutoRotationBehavior.prototype.zoomStopsAnimation = undefined;
+// BABYLON.AutoRotationBehavior.prototype.idleRotationSpeed = undefined;
+// BABYLON.AutoRotationBehavior.prototype.idleRotationWaitTime = undefined;
+// BABYLON.AutoRotationBehavior.prototype.idleRotationSpinupTime = undefined;
+BABYLON.AutoRotationBehavior.prototype.rotationInProgress = false;
+BABYLON.AutoRotationBehavior.prototype.init = function () {};
+BABYLON.AutoRotationBehavior.prototype.attach = function () {};
+BABYLON.AutoRotationBehavior.prototype.detach = function () {};
+
 
 /** @constructor */
-BABYLON.BouncingBehavior = function () {
-  this.transitionDuration = 450;
-  this.lowerRadiusTransitionRange = 2;
-  this.upperRadiusTransitionRange = -2;
-  this.name = "Bouncing";
-  this.autoTransitionRange = false;
-  this.init = function () {};
-  this.attach = function () {};
-  this.detach = function () {};
-  this.stopAllAnimations = function () {};
-  this.EasingFunction = {};
-  this.EasingMode = 1;
-};
+BABYLON.BouncingBehavior = function () {}
+BABYLON.BouncingBehavior.transitionDuration = 450;
+BABYLON.BouncingBehavior.lowerRadiusTransitionRange = 2;
+BABYLON.BouncingBehavior.upperRadiusTransitionRange = -2;
+BABYLON.BouncingBehavior.prototype.name = "Bouncing";
+// BABYLON.BouncingBehavior.prototype.autoTransitionRange = undefined;
+BABYLON.BouncingBehavior.prototype.init = function () {};
+BABYLON.BouncingBehavior.prototype.attach = function () {};
+BABYLON.BouncingBehavior.prototype.detach = function () {};
+BABYLON.BouncingBehavior.prototype.stopAllAnimations = function () {};
+
 
 /** @constructor */
-BABYLON.FramingBehavior = function () {
-  this.autoCorrectCameraLimitsAndSensibility = true;
-  this.name = "Framing";
-  this.mode = 1;
-  this.radiusScale = 1;
-  this.positionScale = 0.5;
-  this.defaultElevation = 0.3;
-  this.elevationReturnTime = 1500;
-  this.elevationReturnWaitTime = 1000;
-  this.zoomStopsAnimation = false;
-  this.framingTime = 1500;
-  this.init = function () {};
-  this.attach = function () {};
-  this.detach = function () {};
-  this.zoomOnMesh = function () {};
-  this.zoomOnMeshHierarchy = function () {};
-  this.zoomOnMeshesHierarchy = function () {};
-  this.zoomOnBoundingInfo = function () {};
-  this.stopAllAnimations = function () {};
-  this.isUserIsMoving = false;
-  this.EasingFunction = {};
-  this.EasingMode = 2;
-  this.IgnoreBoundsSizeMode = 0;
-  this.FitFrustumSidesMode = 1;
-};
+BABYLON.FramingBehavior = function () {}
+BABYLON.FramingBehavior.autoCorrectCameraLimitsAndSensibility = true;
+BABYLON.FramingBehavior.prototype.name = "Framing";
+// BABYLON.FramingBehavior.prototype.mode = undefined;
+// BABYLON.FramingBehavior.prototype.radiusScale = undefined;
+// BABYLON.FramingBehavior.prototype.positionScale = undefined;
+// BABYLON.FramingBehavior.prototype.defaultElevation = undefined;
+// BABYLON.FramingBehavior.prototype.elevationReturnTime = undefined;
+// BABYLON.FramingBehavior.prototype.elevationReturnWaitTime = undefined;
+// BABYLON.FramingBehavior.prototype.zoomStopsAnimation = undefined;
+// BABYLON.FramingBehavior.prototype.framingTime = undefined;
+BABYLON.FramingBehavior.prototype.init = function () {};
+BABYLON.FramingBehavior.prototype.attach = function () {};
+BABYLON.FramingBehavior.prototype.detach = function () {};
+BABYLON.FramingBehavior.prototype.zoomOnMesh = function () {};
+BABYLON.FramingBehavior.prototype.zoomOnMeshHierarchy = function () {};
+BABYLON.FramingBehavior.prototype.zoomOnMeshesHierarchy = function () {};
+BABYLON.FramingBehavior.prototype.zoomOnBoundingInfo = function () {};
+BABYLON.FramingBehavior.prototype.stopAllAnimations = function () {};
+BABYLON.FramingBehavior.prototype.isUserIsMoving = false;
+
 
 /** @constructor */
-BABYLON.AttachToBoxBehavior = function () {
-  // this.ui = undefined;
-  this.name = "AttachToBoxBehavior";
-  this.distanceAwayFromFace = 0.15;
-  this.distanceAwayFromBottomOfFace = 0.15;
-  this.init = function () {};
-  this.attach = function () {};
-  this.detach = function () {};
-};
+BABYLON.AttachToBoxBehavior = function () {}
+// BABYLON.AttachToBoxBehavior.ui = undefined;
+BABYLON.AttachToBoxBehavior.name = "AttachToBoxBehavior";
+BABYLON.AttachToBoxBehavior.distanceAwayFromFace = 0.15;
+BABYLON.AttachToBoxBehavior.distanceAwayFromBottomOfFace = 0.15;
+BABYLON.AttachToBoxBehavior.prototype.init = function () {};
+BABYLON.AttachToBoxBehavior.prototype.attach = function () {};
+BABYLON.AttachToBoxBehavior.prototype.detach = function () {};
+
 
 /** @constructor */
-BABYLON.FadeInOutBehavior = function () {
-  this.delay = 0;
-  this.fadeInTime = 300;
-  this.name = "FadeInOut";
-  this.init = function () {};
-  this.attach = function () {};
-  this.detach = function () {};
-  this.fadeIn = function () {};
-};
+BABYLON.FadeInOutBehavior = function () {}
+BABYLON.FadeInOutBehavior.delay = 0;
+BABYLON.FadeInOutBehavior.fadeInTime = 300;
+BABYLON.FadeInOutBehavior.prototype.name = "FadeInOut";
+BABYLON.FadeInOutBehavior.prototype.init = function () {};
+BABYLON.FadeInOutBehavior.prototype.attach = function () {};
+BABYLON.FadeInOutBehavior.prototype.detach = function () {};
+BABYLON.FadeInOutBehavior.prototype.fadeIn = function () {};
+
 
 /** @constructor */
-BABYLON.MultiPointerScaleBehavior = function () {
-  this.name = "MultiPointerScale";
-  this.init = function () {};
-  this.attach = function () {};
-  this.detach = function () {};
-};
+BABYLON.MultiPointerScaleBehavior = function () {}
+BABYLON.MultiPointerScaleBehavior.prototype.name = "MultiPointerScale";
+BABYLON.MultiPointerScaleBehavior.prototype.init = function () {};
+BABYLON.MultiPointerScaleBehavior.prototype.attach = function () {};
+BABYLON.MultiPointerScaleBehavior.prototype.detach = function () {};
+
 
 /** @constructor */
-BABYLON.PointerDragBehavior = function () {
-  this.maxDragAngle = 0;
-  this.currentDraggingPointerID = -1;
-  this.dragging = false;
-  this.dragDeltaRatio = 0.2;
-  this.updateDragPlane = true;
-  this.onDragObservable = {};
-  this.onDragStartObservable = {};
-  this.onDragEndObservable = {};
-  this.moveAttached = true;
-  this.enabled = true;
-  this.startAndReleaseDragOnPointerEvents = true;
-  this.detachCameraControls = true;
-  this.useObjectOrientationForDragging = true;
-  this.validateDrag = function () {};
-  this.options = {};
-  this.name = "PointerDrag";
-  this.init = function () {};
-  this.attach = function () {};
-  this.releaseDrag = function () {};
-  this.startDrag = function () {};
-  this.detach = function () {};
-};
+BABYLON.PointerDragBehavior = function () {}
+BABYLON.PointerDragBehavior.maxDragAngle = 0;
+BABYLON.PointerDragBehavior.currentDraggingPointerID = -1;
+BABYLON.PointerDragBehavior.dragging = false;
+BABYLON.PointerDragBehavior.dragDeltaRatio = 0.2;
+BABYLON.PointerDragBehavior.updateDragPlane = true;
+BABYLON.PointerDragBehavior.onDragObservable = {};
+BABYLON.PointerDragBehavior.onDragStartObservable = {};
+BABYLON.PointerDragBehavior.onDragEndObservable = {};
+BABYLON.PointerDragBehavior.moveAttached = true;
+BABYLON.PointerDragBehavior.enabled = true;
+BABYLON.PointerDragBehavior.startAndReleaseDragOnPointerEvents = true;
+BABYLON.PointerDragBehavior.detachCameraControls = true;
+BABYLON.PointerDragBehavior.useObjectOrientationForDragging = true;
+BABYLON.PointerDragBehavior.validateDrag = function () {};
+// BABYLON.PointerDragBehavior.prototype.options = undefined;
+BABYLON.PointerDragBehavior.prototype.name = "PointerDrag";
+BABYLON.PointerDragBehavior.prototype.init = function () {};
+BABYLON.PointerDragBehavior.prototype.attach = function () {};
+BABYLON.PointerDragBehavior.prototype.releaseDrag = function () {};
+BABYLON.PointerDragBehavior.prototype.startDrag = function () {};
+BABYLON.PointerDragBehavior.prototype.detach = function () {};
+
 
 /** @constructor */
-BABYLON.SixDofDragBehavior = function () {
-  this.zDragFactor = 3;
-  this.rotateDraggedObject = true;
-  this.dragging = false;
-  this.dragDeltaRatio = 0.2;
-  this.currentDraggingPointerID = -1;
-  this.detachCameraControls = true;
-  this.onDragStartObservable = {};
-  this.onDragEndObservable = {};
-  this.name = "SixDofDrag";
-  this.init = function () {};
-  this.attach = function () {};
-  this.detach = function () {};
-};
+BABYLON.SixDofDragBehavior = function () {}
+BABYLON.SixDofDragBehavior.zDragFactor = 3;
+BABYLON.SixDofDragBehavior.rotateDraggedObject = true;
+BABYLON.SixDofDragBehavior.dragging = false;
+BABYLON.SixDofDragBehavior.dragDeltaRatio = 0.2;
+BABYLON.SixDofDragBehavior.currentDraggingPointerID = -1;
+BABYLON.SixDofDragBehavior.detachCameraControls = true;
+BABYLON.SixDofDragBehavior.onDragStartObservable = {};
+BABYLON.SixDofDragBehavior.onDragEndObservable = {};
+BABYLON.SixDofDragBehavior.prototype.name = "SixDofDrag";
+BABYLON.SixDofDragBehavior.prototype.init = function () {};
+BABYLON.SixDofDragBehavior.prototype.attach = function () {};
+BABYLON.SixDofDragBehavior.prototype.detach = function () {};
+
 
 /** @constructor */
-BABYLON.Bone = function () {
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.Bone = function () {}
+BABYLON.Bone.prototype.AddNodeConstructor = function () {};
+BABYLON.Bone.prototype.Construct = function () {};
+BABYLON.Bone.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.BoneIKController = function () {
-};
+BABYLON.BoneIKController = function () {}
+
 
 /** @constructor */
-BABYLON.BoneLookController = function () {
-};
+BABYLON.BoneLookController = function () {}
+
 
 /** @constructor */
-BABYLON.Skeleton = function () {
-  this.Parse = function () {};
-};
+BABYLON.Skeleton = function () {}
+BABYLON.Skeleton.Parse = function () {};
+
 
 BABYLON.CameraInputTypes = {}
 
 /** @constructor */
-BABYLON.CameraInputsManager = function () {
-  this.attached = {};
-  // this.camera = undefined;
-  this.checkInputs = function () {};
-  this.add = function () {};
-  this.remove = function () {};
-  this.removeByType = function () {};
-  this.attachInput = function () {};
-  this.attachElement = function () {};
-  this.detachElement = function () {};
-  this.rebuildInputCheck = function () {};
-  this.clear = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-};
+BABYLON.CameraInputsManager = function () {}
+BABYLON.CameraInputsManager.attached = {};
+// BABYLON.CameraInputsManager.camera = undefined;
+BABYLON.CameraInputsManager.checkInputs = function () {};
+BABYLON.CameraInputsManager.prototype.add = function () {};
+BABYLON.CameraInputsManager.prototype.remove = function () {};
+BABYLON.CameraInputsManager.prototype.removeByType = function () {};
+BABYLON.CameraInputsManager.prototype.attachInput = function () {};
+BABYLON.CameraInputsManager.prototype.attachElement = function () {};
+BABYLON.CameraInputsManager.prototype.detachElement = function () {};
+BABYLON.CameraInputsManager.prototype.rebuildInputCheck = function () {};
+BABYLON.CameraInputsManager.prototype.clear = function () {};
+BABYLON.CameraInputsManager.prototype.serialize = function () {};
+BABYLON.CameraInputsManager.prototype.parse = function () {};
+
 
 /** @constructor */
-BABYLON.Camera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.Camera = function () {}
+BABYLON.Camera.GetConstructorFromName = function () {};
+BABYLON.Camera.Parse = function () {};
+BABYLON.Camera.PERSPECTIVE_CAMERA = 0;
+BABYLON.Camera.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.Camera.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.Camera.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.Camera.RIG_MODE_NONE = 0;
+BABYLON.Camera.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.Camera.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.Camera.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.Camera.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.Camera.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.Camera.RIG_MODE_VR = 20;
+BABYLON.Camera.RIG_MODE_WEBVR = 21;
+BABYLON.Camera.RIG_MODE_CUSTOM = 22;
+BABYLON.Camera.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.Camera.prototype.AddNodeConstructor = function () {};
+BABYLON.Camera.prototype.Construct = function () {};
+BABYLON.Camera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.TargetCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.TargetCamera = function () {}
+BABYLON.TargetCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.TargetCamera.prototype.Parse = function () {};
+BABYLON.TargetCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.TargetCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.TargetCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.TargetCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.TargetCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.TargetCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.TargetCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.TargetCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.TargetCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.TargetCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.TargetCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.TargetCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.TargetCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.TargetCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.TargetCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.TargetCamera.prototype.Construct = function () {};
+BABYLON.TargetCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.FreeCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.FreeCamera = function () {}
+BABYLON.FreeCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.FreeCamera.prototype.Parse = function () {};
+BABYLON.FreeCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.FreeCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.FreeCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.FreeCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.FreeCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.FreeCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.FreeCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.FreeCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.FreeCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.FreeCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.FreeCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.FreeCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.FreeCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.FreeCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.FreeCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.FreeCamera.prototype.Construct = function () {};
+BABYLON.FreeCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.FreeCameraInputsManager = function () {
-  this.attached = {};
-  // this.camera = undefined;
-  this.checkInputs = function () {};
-  this.constructor = function () {};
-  this.addKeyboard = function () {};
-  this.addMouse = function () {};
-  this.removeMouse = function () {};
-  this.addTouch = function () {};
-  this.clear = function () {};
-  this.addDeviceOrientation = function () {};
-  this.addVirtualJoystick = function () {};
-  this.addGamepad = function () {};
-  this.add = function () {};
-  this.remove = function () {};
-  this.removeByType = function () {};
-  this.attachInput = function () {};
-  this.attachElement = function () {};
-  this.detachElement = function () {};
-  this.rebuildInputCheck = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-};
+BABYLON.FreeCameraInputsManager = function () {}
+BABYLON.FreeCameraInputsManager.attached = {};
+// BABYLON.FreeCameraInputsManager.camera = undefined;
+BABYLON.FreeCameraInputsManager.checkInputs = function () {};
+BABYLON.FreeCameraInputsManager.prototype.constructor = function () {};
+BABYLON.FreeCameraInputsManager.prototype.addKeyboard = function () {};
+BABYLON.FreeCameraInputsManager.prototype.addMouse = function () {};
+BABYLON.FreeCameraInputsManager.prototype.removeMouse = function () {};
+BABYLON.FreeCameraInputsManager.prototype.addTouch = function () {};
+BABYLON.FreeCameraInputsManager.prototype.clear = function () {};
+BABYLON.FreeCameraInputsManager.prototype.addDeviceOrientation = function () {};
+BABYLON.FreeCameraInputsManager.prototype.addVirtualJoystick = function () {};
+BABYLON.FreeCameraInputsManager.prototype.addGamepad = function () {};
+BABYLON.FreeCameraInputsManager.prototype.add = function () {};
+BABYLON.FreeCameraInputsManager.prototype.remove = function () {};
+BABYLON.FreeCameraInputsManager.prototype.removeByType = function () {};
+BABYLON.FreeCameraInputsManager.prototype.attachInput = function () {};
+BABYLON.FreeCameraInputsManager.prototype.attachElement = function () {};
+BABYLON.FreeCameraInputsManager.prototype.detachElement = function () {};
+BABYLON.FreeCameraInputsManager.prototype.rebuildInputCheck = function () {};
+BABYLON.FreeCameraInputsManager.prototype.serialize = function () {};
+BABYLON.FreeCameraInputsManager.prototype.parse = function () {};
+
 
 /** @constructor */
-BABYLON.TouchCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.TouchCamera = function () {}
+BABYLON.TouchCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.TouchCamera.prototype.Parse = function () {};
+BABYLON.TouchCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.TouchCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.TouchCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.TouchCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.TouchCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.TouchCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.TouchCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.TouchCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.TouchCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.TouchCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.TouchCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.TouchCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.TouchCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.TouchCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.TouchCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.TouchCamera.prototype.Construct = function () {};
+BABYLON.TouchCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.ArcRotateCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.ArcRotateCamera = function () {}
+BABYLON.ArcRotateCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.ArcRotateCamera.prototype.Parse = function () {};
+BABYLON.ArcRotateCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.ArcRotateCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.ArcRotateCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.ArcRotateCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.ArcRotateCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.ArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.ArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.ArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.ArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.ArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.ArcRotateCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.ArcRotateCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.ArcRotateCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.ArcRotateCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.ArcRotateCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.ArcRotateCamera.prototype.Construct = function () {};
+BABYLON.ArcRotateCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.ArcRotateCameraInputsManager = function () {
-  this.attached = {};
-  // this.camera = undefined;
-  this.checkInputs = function () {};
-  this.constructor = function () {};
-  this.addMouseWheel = function () {};
-  this.addPointers = function () {};
-  this.addKeyboard = function () {};
-  this.addVRDeviceOrientation = function () {};
-  this.addGamepad = function () {};
-  this.add = function () {};
-  this.remove = function () {};
-  this.removeByType = function () {};
-  this.attachInput = function () {};
-  this.attachElement = function () {};
-  this.detachElement = function () {};
-  this.rebuildInputCheck = function () {};
-  this.clear = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-};
+BABYLON.ArcRotateCameraInputsManager = function () {}
+BABYLON.ArcRotateCameraInputsManager.attached = {};
+// BABYLON.ArcRotateCameraInputsManager.camera = undefined;
+BABYLON.ArcRotateCameraInputsManager.checkInputs = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.constructor = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.addMouseWheel = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.addPointers = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.addKeyboard = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.addVRDeviceOrientation = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.addGamepad = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.add = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.remove = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.removeByType = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.attachInput = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.attachElement = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.detachElement = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.rebuildInputCheck = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.clear = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.serialize = function () {};
+BABYLON.ArcRotateCameraInputsManager.prototype.parse = function () {};
+
 
 /** @constructor */
-BABYLON.DeviceOrientationCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.DeviceOrientationCamera = function () {}
+BABYLON.DeviceOrientationCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.DeviceOrientationCamera.prototype.Parse = function () {};
+BABYLON.DeviceOrientationCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.DeviceOrientationCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.DeviceOrientationCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.DeviceOrientationCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.DeviceOrientationCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.DeviceOrientationCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.DeviceOrientationCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.DeviceOrientationCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.DeviceOrientationCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.DeviceOrientationCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.DeviceOrientationCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.DeviceOrientationCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.DeviceOrientationCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.DeviceOrientationCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.DeviceOrientationCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.DeviceOrientationCamera.prototype.Construct = function () {};
+BABYLON.DeviceOrientationCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.FlyCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.FlyCamera = function () {}
+BABYLON.FlyCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.FlyCamera.prototype.Parse = function () {};
+BABYLON.FlyCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.FlyCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.FlyCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.FlyCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.FlyCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.FlyCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.FlyCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.FlyCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.FlyCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.FlyCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.FlyCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.FlyCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.FlyCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.FlyCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.FlyCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.FlyCamera.prototype.Construct = function () {};
+BABYLON.FlyCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.FlyCameraInputsManager = function () {
-  this.attached = {};
-  // this.camera = undefined;
-  this.checkInputs = function () {};
-  this.constructor = function () {};
-  this.addKeyboard = function () {};
-  this.addMouse = function () {};
-  this.add = function () {};
-  this.remove = function () {};
-  this.removeByType = function () {};
-  this.attachInput = function () {};
-  this.attachElement = function () {};
-  this.detachElement = function () {};
-  this.rebuildInputCheck = function () {};
-  this.clear = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-};
+BABYLON.FlyCameraInputsManager = function () {}
+BABYLON.FlyCameraInputsManager.attached = {};
+// BABYLON.FlyCameraInputsManager.camera = undefined;
+BABYLON.FlyCameraInputsManager.checkInputs = function () {};
+BABYLON.FlyCameraInputsManager.prototype.constructor = function () {};
+BABYLON.FlyCameraInputsManager.prototype.addKeyboard = function () {};
+BABYLON.FlyCameraInputsManager.prototype.addMouse = function () {};
+BABYLON.FlyCameraInputsManager.prototype.add = function () {};
+BABYLON.FlyCameraInputsManager.prototype.remove = function () {};
+BABYLON.FlyCameraInputsManager.prototype.removeByType = function () {};
+BABYLON.FlyCameraInputsManager.prototype.attachInput = function () {};
+BABYLON.FlyCameraInputsManager.prototype.attachElement = function () {};
+BABYLON.FlyCameraInputsManager.prototype.detachElement = function () {};
+BABYLON.FlyCameraInputsManager.prototype.rebuildInputCheck = function () {};
+BABYLON.FlyCameraInputsManager.prototype.clear = function () {};
+BABYLON.FlyCameraInputsManager.prototype.serialize = function () {};
+BABYLON.FlyCameraInputsManager.prototype.parse = function () {};
+
 
 /** @constructor */
-BABYLON.FollowCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.FollowCamera = function () {}
+BABYLON.FollowCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.FollowCamera.prototype.Parse = function () {};
+BABYLON.FollowCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.FollowCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.FollowCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.FollowCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.FollowCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.FollowCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.FollowCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.FollowCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.FollowCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.FollowCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.FollowCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.FollowCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.FollowCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.FollowCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.FollowCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.FollowCamera.prototype.Construct = function () {};
+BABYLON.FollowCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.ArcFollowCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.ArcFollowCamera = function () {}
+BABYLON.ArcFollowCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.ArcFollowCamera.prototype.Parse = function () {};
+BABYLON.ArcFollowCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.ArcFollowCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.ArcFollowCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.ArcFollowCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.ArcFollowCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.ArcFollowCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.ArcFollowCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.ArcFollowCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.ArcFollowCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.ArcFollowCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.ArcFollowCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.ArcFollowCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.ArcFollowCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.ArcFollowCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.ArcFollowCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.ArcFollowCamera.prototype.Construct = function () {};
+BABYLON.ArcFollowCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.FollowCameraInputsManager = function () {
-  this.attached = {};
-  // this.camera = undefined;
-  this.checkInputs = function () {};
-  this.constructor = function () {};
-  this.addKeyboard = function () {};
-  this.addMouseWheel = function () {};
-  this.addPointers = function () {};
-  this.addVRDeviceOrientation = function () {};
-  this.add = function () {};
-  this.remove = function () {};
-  this.removeByType = function () {};
-  this.attachInput = function () {};
-  this.attachElement = function () {};
-  this.detachElement = function () {};
-  this.rebuildInputCheck = function () {};
-  this.clear = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-};
+BABYLON.FollowCameraInputsManager = function () {}
+BABYLON.FollowCameraInputsManager.attached = {};
+// BABYLON.FollowCameraInputsManager.camera = undefined;
+BABYLON.FollowCameraInputsManager.checkInputs = function () {};
+BABYLON.FollowCameraInputsManager.prototype.constructor = function () {};
+BABYLON.FollowCameraInputsManager.prototype.addKeyboard = function () {};
+BABYLON.FollowCameraInputsManager.prototype.addMouseWheel = function () {};
+BABYLON.FollowCameraInputsManager.prototype.addPointers = function () {};
+BABYLON.FollowCameraInputsManager.prototype.addVRDeviceOrientation = function () {};
+BABYLON.FollowCameraInputsManager.prototype.add = function () {};
+BABYLON.FollowCameraInputsManager.prototype.remove = function () {};
+BABYLON.FollowCameraInputsManager.prototype.removeByType = function () {};
+BABYLON.FollowCameraInputsManager.prototype.attachInput = function () {};
+BABYLON.FollowCameraInputsManager.prototype.attachElement = function () {};
+BABYLON.FollowCameraInputsManager.prototype.detachElement = function () {};
+BABYLON.FollowCameraInputsManager.prototype.rebuildInputCheck = function () {};
+BABYLON.FollowCameraInputsManager.prototype.clear = function () {};
+BABYLON.FollowCameraInputsManager.prototype.serialize = function () {};
+BABYLON.FollowCameraInputsManager.prototype.parse = function () {};
+
 
 /** @constructor */
-BABYLON.GamepadCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.GamepadCamera = function () {}
+BABYLON.GamepadCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.GamepadCamera.prototype.Parse = function () {};
+BABYLON.GamepadCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.GamepadCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.GamepadCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.GamepadCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.GamepadCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.GamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.GamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.GamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.GamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.GamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.GamepadCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.GamepadCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.GamepadCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.GamepadCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.GamepadCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.GamepadCamera.prototype.Construct = function () {};
+BABYLON.GamepadCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.UniversalCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.UniversalCamera = function () {}
+BABYLON.UniversalCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.UniversalCamera.prototype.Parse = function () {};
+BABYLON.UniversalCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.UniversalCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.UniversalCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.UniversalCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.UniversalCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.UniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.UniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.UniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.UniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.UniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.UniversalCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.UniversalCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.UniversalCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.UniversalCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.UniversalCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.UniversalCamera.prototype.Construct = function () {};
+BABYLON.UniversalCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.VirtualJoysticksCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.VirtualJoysticksCamera = function () {}
+BABYLON.VirtualJoysticksCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.VirtualJoysticksCamera.prototype.Parse = function () {};
+BABYLON.VirtualJoysticksCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.VirtualJoysticksCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.VirtualJoysticksCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.VirtualJoysticksCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.VirtualJoysticksCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.VirtualJoysticksCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.VirtualJoysticksCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.VirtualJoysticksCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.VirtualJoysticksCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.VirtualJoysticksCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.VirtualJoysticksCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.VirtualJoysticksCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.VirtualJoysticksCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.VirtualJoysticksCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.VirtualJoysticksCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.VirtualJoysticksCamera.prototype.Construct = function () {};
+BABYLON.VirtualJoysticksCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.ArcRotateCameraGamepadInput = function () {
-  this.gamepadRotationSensibility = 80;
-  this.gamepadMoveSensibility = 40;
-  this.invertYAxis = false;
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.checkInputs = function () {};
-  this.getClassName = function () {};
-  this.getSimpleName = function () {};
-};
+BABYLON.ArcRotateCameraGamepadInput = function () {}
+BABYLON.ArcRotateCameraGamepadInput.gamepadRotationSensibility = 80;
+BABYLON.ArcRotateCameraGamepadInput.gamepadMoveSensibility = 40;
+BABYLON.ArcRotateCameraGamepadInput.prototype.invertYAxis = true;
+BABYLON.ArcRotateCameraGamepadInput.prototype.attachControl = function () {};
+BABYLON.ArcRotateCameraGamepadInput.prototype.detachControl = function () {};
+BABYLON.ArcRotateCameraGamepadInput.prototype.checkInputs = function () {};
+BABYLON.ArcRotateCameraGamepadInput.prototype.getClassName = function () {};
+BABYLON.ArcRotateCameraGamepadInput.prototype.getSimpleName = function () {};
+
 
 /** @constructor */
-BABYLON.ArcRotateCameraKeyboardMoveInput = function () {
-  this.keysUp = {};
-  this.keysDown = {};
-  this.keysLeft = {};
-  this.keysRight = {};
-  this.keysReset = {};
-  this.panningSensibility = 50;
-  this.zoomingSensibility = 25;
-  this.useAltToZoom = true;
-  this.angularSpeed = 0.01;
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.checkInputs = function () {};
-  this.getClassName = function () {};
-  this.getSimpleName = function () {};
-};
+BABYLON.ArcRotateCameraKeyboardMoveInput = function () {}
+BABYLON.ArcRotateCameraKeyboardMoveInput.keysUp = {};
+BABYLON.ArcRotateCameraKeyboardMoveInput.keysDown = {};
+BABYLON.ArcRotateCameraKeyboardMoveInput.keysLeft = {};
+BABYLON.ArcRotateCameraKeyboardMoveInput.keysRight = {};
+BABYLON.ArcRotateCameraKeyboardMoveInput.keysReset = {};
+BABYLON.ArcRotateCameraKeyboardMoveInput.panningSensibility = 50;
+BABYLON.ArcRotateCameraKeyboardMoveInput.zoomingSensibility = 25;
+BABYLON.ArcRotateCameraKeyboardMoveInput.useAltToZoom = true;
+BABYLON.ArcRotateCameraKeyboardMoveInput.angularSpeed = 0.01;
+BABYLON.ArcRotateCameraKeyboardMoveInput.prototype.attachControl = function () {};
+BABYLON.ArcRotateCameraKeyboardMoveInput.prototype.detachControl = function () {};
+BABYLON.ArcRotateCameraKeyboardMoveInput.prototype.checkInputs = function () {};
+BABYLON.ArcRotateCameraKeyboardMoveInput.prototype.getClassName = function () {};
+BABYLON.ArcRotateCameraKeyboardMoveInput.prototype.getSimpleName = function () {};
+
 
 /** @constructor */
-BABYLON.ArcRotateCameraMouseWheelInput = function () {
-  this.wheelPrecision = 3;
-  this.wheelDeltaPercentage = 0;
-  this.computeDeltaFromMouseWheelLegacyEvent = function () {};
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.getClassName = function () {};
-  this.getSimpleName = function () {};
-};
+BABYLON.ArcRotateCameraMouseWheelInput = function () {}
+BABYLON.ArcRotateCameraMouseWheelInput.wheelPrecision = 3;
+BABYLON.ArcRotateCameraMouseWheelInput.wheelDeltaPercentage = 0;
+BABYLON.ArcRotateCameraMouseWheelInput.prototype.computeDeltaFromMouseWheelLegacyEvent = function () {};
+BABYLON.ArcRotateCameraMouseWheelInput.prototype.attachControl = function () {};
+BABYLON.ArcRotateCameraMouseWheelInput.prototype.detachControl = function () {};
+BABYLON.ArcRotateCameraMouseWheelInput.prototype.getClassName = function () {};
+BABYLON.ArcRotateCameraMouseWheelInput.prototype.getSimpleName = function () {};
+
 
 /** @constructor */
-BABYLON.ArcRotateCameraPointersInput = function () {
-  this.buttons = {};
-  this.angularSensibilityX = 1000;
-  this.angularSensibilityY = 1000;
-  this.pinchPrecision = 12;
-  this.pinchDeltaPercentage = 0;
-  this.useNaturalPinchZoom = false;
-  this.panningSensibility = 1000;
-  this.multiTouchPanning = true;
-  this.multiTouchPanAndZoom = true;
-  this.pinchInwards = true;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.onTouch = function () {};
-  this.onDoubleTap = function () {};
-  this.onMultiTouch = function () {};
-  this.onButtonDown = function () {};
-  this.onButtonUp = function () {};
-  this.onLostFocus = function () {};
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.getSimpleName = function () {};
-  this.onContextMenu = function () {};
-};
+BABYLON.ArcRotateCameraPointersInput = function () {}
+BABYLON.ArcRotateCameraPointersInput.buttons = {};
+BABYLON.ArcRotateCameraPointersInput.angularSensibilityX = 1000;
+BABYLON.ArcRotateCameraPointersInput.angularSensibilityY = 1000;
+BABYLON.ArcRotateCameraPointersInput.pinchPrecision = 12;
+BABYLON.ArcRotateCameraPointersInput.pinchDeltaPercentage = 0;
+BABYLON.ArcRotateCameraPointersInput.useNaturalPinchZoom = false;
+BABYLON.ArcRotateCameraPointersInput.panningSensibility = 1000;
+BABYLON.ArcRotateCameraPointersInput.multiTouchPanning = true;
+BABYLON.ArcRotateCameraPointersInput.multiTouchPanAndZoom = true;
+BABYLON.ArcRotateCameraPointersInput.pinchInwards = true;
+BABYLON.ArcRotateCameraPointersInput.prototype.constructor = function () {};
+BABYLON.ArcRotateCameraPointersInput.prototype.getClassName = function () {};
+BABYLON.ArcRotateCameraPointersInput.prototype.onTouch = function () {};
+BABYLON.ArcRotateCameraPointersInput.prototype.onDoubleTap = function () {};
+BABYLON.ArcRotateCameraPointersInput.prototype.onMultiTouch = function () {};
+BABYLON.ArcRotateCameraPointersInput.prototype.onButtonDown = function () {};
+BABYLON.ArcRotateCameraPointersInput.prototype.onButtonUp = function () {};
+BABYLON.ArcRotateCameraPointersInput.prototype.onLostFocus = function () {};
+BABYLON.ArcRotateCameraPointersInput.prototype.attachControl = function () {};
+BABYLON.ArcRotateCameraPointersInput.prototype.detachControl = function () {};
+BABYLON.ArcRotateCameraPointersInput.prototype.getSimpleName = function () {};
+BABYLON.ArcRotateCameraPointersInput.prototype.onContextMenu = function () {};
+
 
 /** @constructor */
-BABYLON.ArcRotateCameraVRDeviceOrientationInput = function () {
-  this.alphaCorrection = 1;
-  this.gammaCorrection = 1;
-  this.attachControl = function () {};
-  this.checkInputs = function () {};
-  this.detachControl = function () {};
-  this.getClassName = function () {};
-  this.getSimpleName = function () {};
-};
+BABYLON.ArcRotateCameraVRDeviceOrientationInput = function () {}
+BABYLON.ArcRotateCameraVRDeviceOrientationInput.alphaCorrection = 1;
+BABYLON.ArcRotateCameraVRDeviceOrientationInput.gammaCorrection = 1;
+BABYLON.ArcRotateCameraVRDeviceOrientationInput.prototype.attachControl = function () {};
+BABYLON.ArcRotateCameraVRDeviceOrientationInput.prototype.checkInputs = function () {};
+BABYLON.ArcRotateCameraVRDeviceOrientationInput.prototype.detachControl = function () {};
+BABYLON.ArcRotateCameraVRDeviceOrientationInput.prototype.getClassName = function () {};
+BABYLON.ArcRotateCameraVRDeviceOrientationInput.prototype.getSimpleName = function () {};
+
 
 /** @constructor */
-BABYLON.FlyCameraKeyboardInput = function () {
-  this.keysForward = {};
-  this.keysBackward = {};
-  this.keysUp = {};
-  this.keysDown = {};
-  this.keysRight = {};
-  this.keysLeft = {};
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.getClassName = function () {};
-  this.getSimpleName = function () {};
-  this.checkInputs = function () {};
-};
+BABYLON.FlyCameraKeyboardInput = function () {}
+BABYLON.FlyCameraKeyboardInput.keysForward = {};
+BABYLON.FlyCameraKeyboardInput.keysBackward = {};
+BABYLON.FlyCameraKeyboardInput.keysUp = {};
+BABYLON.FlyCameraKeyboardInput.keysDown = {};
+BABYLON.FlyCameraKeyboardInput.keysRight = {};
+BABYLON.FlyCameraKeyboardInput.keysLeft = {};
+BABYLON.FlyCameraKeyboardInput.prototype.attachControl = function () {};
+BABYLON.FlyCameraKeyboardInput.prototype.detachControl = function () {};
+BABYLON.FlyCameraKeyboardInput.prototype.getClassName = function () {};
+BABYLON.FlyCameraKeyboardInput.prototype.getSimpleName = function () {};
+BABYLON.FlyCameraKeyboardInput.prototype.checkInputs = function () {};
+
 
 /** @constructor */
-BABYLON.FlyCameraMouseInput = function () {
-  this.buttons = {};
-  this.buttonsYaw = {};
-  this.buttonsPitch = {};
-  this.buttonsRoll = {};
-  this.activeButton = -1;
-  this.angularSensibility = 1000;
-  this.previousPosition = null;
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.getClassName = function () {};
-  this.getSimpleName = function () {};
-  this.rotateCamera = function () {};
-};
+BABYLON.FlyCameraMouseInput = function () {}
+BABYLON.FlyCameraMouseInput.buttons = {};
+BABYLON.FlyCameraMouseInput.buttonsYaw = {};
+BABYLON.FlyCameraMouseInput.buttonsPitch = {};
+BABYLON.FlyCameraMouseInput.buttonsRoll = {};
+BABYLON.FlyCameraMouseInput.activeButton = -1;
+BABYLON.FlyCameraMouseInput.angularSensibility = 1000;
+BABYLON.FlyCameraMouseInput.previousPosition = null;
+BABYLON.FlyCameraMouseInput.prototype.attachControl = function () {};
+BABYLON.FlyCameraMouseInput.prototype.detachControl = function () {};
+BABYLON.FlyCameraMouseInput.prototype.getClassName = function () {};
+BABYLON.FlyCameraMouseInput.prototype.getSimpleName = function () {};
+BABYLON.FlyCameraMouseInput.prototype.rotateCamera = function () {};
+
 
 /** @constructor */
-BABYLON.FollowCameraKeyboardMoveInput = function () {
-  this.keysHeightOffsetIncr = {};
-  this.keysHeightOffsetDecr = {};
-  this.keysHeightOffsetModifierAlt = false;
-  this.keysHeightOffsetModifierCtrl = false;
-  this.keysHeightOffsetModifierShift = false;
-  this.keysRotationOffsetIncr = {};
-  this.keysRotationOffsetDecr = {};
-  this.keysRotationOffsetModifierAlt = false;
-  this.keysRotationOffsetModifierCtrl = false;
-  this.keysRotationOffsetModifierShift = false;
-  this.keysRadiusIncr = {};
-  this.keysRadiusDecr = {};
-  this.keysRadiusModifierAlt = true;
-  this.keysRadiusModifierCtrl = false;
-  this.keysRadiusModifierShift = false;
-  this.heightSensibility = 1;
-  this.rotationSensibility = 1;
-  this.radiusSensibility = 1;
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.checkInputs = function () {};
-  this.getClassName = function () {};
-  this.getSimpleName = function () {};
-};
+BABYLON.FollowCameraKeyboardMoveInput = function () {}
+BABYLON.FollowCameraKeyboardMoveInput.keysHeightOffsetIncr = {};
+BABYLON.FollowCameraKeyboardMoveInput.keysHeightOffsetDecr = {};
+BABYLON.FollowCameraKeyboardMoveInput.keysHeightOffsetModifierAlt = false;
+BABYLON.FollowCameraKeyboardMoveInput.keysHeightOffsetModifierCtrl = false;
+BABYLON.FollowCameraKeyboardMoveInput.keysHeightOffsetModifierShift = false;
+BABYLON.FollowCameraKeyboardMoveInput.keysRotationOffsetIncr = {};
+BABYLON.FollowCameraKeyboardMoveInput.keysRotationOffsetDecr = {};
+BABYLON.FollowCameraKeyboardMoveInput.keysRotationOffsetModifierAlt = false;
+BABYLON.FollowCameraKeyboardMoveInput.keysRotationOffsetModifierCtrl = false;
+BABYLON.FollowCameraKeyboardMoveInput.keysRotationOffsetModifierShift = false;
+BABYLON.FollowCameraKeyboardMoveInput.keysRadiusIncr = {};
+BABYLON.FollowCameraKeyboardMoveInput.keysRadiusDecr = {};
+BABYLON.FollowCameraKeyboardMoveInput.keysRadiusModifierAlt = true;
+BABYLON.FollowCameraKeyboardMoveInput.keysRadiusModifierCtrl = false;
+BABYLON.FollowCameraKeyboardMoveInput.keysRadiusModifierShift = false;
+BABYLON.FollowCameraKeyboardMoveInput.heightSensibility = 1;
+BABYLON.FollowCameraKeyboardMoveInput.rotationSensibility = 1;
+BABYLON.FollowCameraKeyboardMoveInput.radiusSensibility = 1;
+BABYLON.FollowCameraKeyboardMoveInput.prototype.attachControl = function () {};
+BABYLON.FollowCameraKeyboardMoveInput.prototype.detachControl = function () {};
+BABYLON.FollowCameraKeyboardMoveInput.prototype.checkInputs = function () {};
+BABYLON.FollowCameraKeyboardMoveInput.prototype.getClassName = function () {};
+BABYLON.FollowCameraKeyboardMoveInput.prototype.getSimpleName = function () {};
+
 
 /** @constructor */
-BABYLON.FollowCameraMouseWheelInput = function () {
-  this.axisControlRadius = true;
-  this.axisControlHeight = false;
-  this.axisControlRotation = false;
-  this.wheelPrecision = 3;
-  this.wheelDeltaPercentage = 0;
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.getClassName = function () {};
-  this.getSimpleName = function () {};
-};
+BABYLON.FollowCameraMouseWheelInput = function () {}
+BABYLON.FollowCameraMouseWheelInput.axisControlRadius = true;
+BABYLON.FollowCameraMouseWheelInput.axisControlHeight = false;
+BABYLON.FollowCameraMouseWheelInput.axisControlRotation = false;
+BABYLON.FollowCameraMouseWheelInput.wheelPrecision = 3;
+BABYLON.FollowCameraMouseWheelInput.wheelDeltaPercentage = 0;
+BABYLON.FollowCameraMouseWheelInput.prototype.attachControl = function () {};
+BABYLON.FollowCameraMouseWheelInput.prototype.detachControl = function () {};
+BABYLON.FollowCameraMouseWheelInput.prototype.getClassName = function () {};
+BABYLON.FollowCameraMouseWheelInput.prototype.getSimpleName = function () {};
+
 
 /** @constructor */
-BABYLON.FollowCameraPointersInput = function () {
-  this.buttons = {};
-  this.angularSensibilityX = 1;
-  this.angularSensibilityY = 1;
-  this.pinchPrecision = 10000;
-  this.pinchDeltaPercentage = 0;
-  this.axisXControlRadius = false;
-  this.axisXControlHeight = false;
-  this.axisXControlRotation = true;
-  this.axisYControlRadius = false;
-  this.axisYControlHeight = true;
-  this.axisYControlRotation = false;
-  this.axisPinchControlRadius = true;
-  this.axisPinchControlHeight = false;
-  this.axisPinchControlRotation = false;
-  this.warningEnable = true;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.onTouch = function () {};
-  this.onMultiTouch = function () {};
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.getSimpleName = function () {};
-  this.onDoubleTap = function () {};
-  this.onContextMenu = function () {};
-  this.onButtonDown = function () {};
-  this.onButtonUp = function () {};
-  this.onLostFocus = function () {};
-};
+BABYLON.FollowCameraPointersInput = function () {}
+BABYLON.FollowCameraPointersInput.buttons = {};
+BABYLON.FollowCameraPointersInput.angularSensibilityX = 1;
+BABYLON.FollowCameraPointersInput.angularSensibilityY = 1;
+BABYLON.FollowCameraPointersInput.pinchPrecision = 10000;
+BABYLON.FollowCameraPointersInput.pinchDeltaPercentage = 0;
+BABYLON.FollowCameraPointersInput.axisXControlRadius = false;
+BABYLON.FollowCameraPointersInput.axisXControlHeight = false;
+BABYLON.FollowCameraPointersInput.axisXControlRotation = true;
+BABYLON.FollowCameraPointersInput.axisYControlRadius = false;
+BABYLON.FollowCameraPointersInput.axisYControlHeight = true;
+BABYLON.FollowCameraPointersInput.axisYControlRotation = false;
+BABYLON.FollowCameraPointersInput.axisPinchControlRadius = true;
+BABYLON.FollowCameraPointersInput.axisPinchControlHeight = false;
+BABYLON.FollowCameraPointersInput.axisPinchControlRotation = false;
+BABYLON.FollowCameraPointersInput.warningEnable = true;
+BABYLON.FollowCameraPointersInput.prototype.constructor = function () {};
+BABYLON.FollowCameraPointersInput.prototype.getClassName = function () {};
+BABYLON.FollowCameraPointersInput.prototype.onTouch = function () {};
+BABYLON.FollowCameraPointersInput.prototype.onMultiTouch = function () {};
+BABYLON.FollowCameraPointersInput.prototype.attachControl = function () {};
+BABYLON.FollowCameraPointersInput.prototype.detachControl = function () {};
+BABYLON.FollowCameraPointersInput.prototype.getSimpleName = function () {};
+BABYLON.FollowCameraPointersInput.prototype.onDoubleTap = function () {};
+BABYLON.FollowCameraPointersInput.prototype.onContextMenu = function () {};
+BABYLON.FollowCameraPointersInput.prototype.onButtonDown = function () {};
+BABYLON.FollowCameraPointersInput.prototype.onButtonUp = function () {};
+BABYLON.FollowCameraPointersInput.prototype.onLostFocus = function () {};
+
 
 /** @constructor */
-BABYLON.FreeCameraDeviceOrientationInput = function () {
-  // this.camera = undefined;
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.checkInputs = function () {};
-  this.getClassName = function () {};
-  this.getSimpleName = function () {};
-  this.WaitForOrientationChangeAsync = function () {};
-};
+BABYLON.FreeCameraDeviceOrientationInput = function () {}
+// BABYLON.FreeCameraDeviceOrientationInput.prototype.camera = undefined;
+BABYLON.FreeCameraDeviceOrientationInput.prototype.attachControl = function () {};
+BABYLON.FreeCameraDeviceOrientationInput.prototype.detachControl = function () {};
+BABYLON.FreeCameraDeviceOrientationInput.prototype.checkInputs = function () {};
+BABYLON.FreeCameraDeviceOrientationInput.prototype.getClassName = function () {};
+BABYLON.FreeCameraDeviceOrientationInput.prototype.getSimpleName = function () {};
+
 
 /** @constructor */
-BABYLON.FreeCameraGamepadInput = function () {
-  this.gamepadAngularSensibility = 200;
-  this.gamepadMoveSensibility = 40;
-  this.invertYAxis = false;
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.checkInputs = function () {};
-  this.getClassName = function () {};
-  this.getSimpleName = function () {};
-};
+BABYLON.FreeCameraGamepadInput = function () {}
+BABYLON.FreeCameraGamepadInput.gamepadAngularSensibility = 200;
+BABYLON.FreeCameraGamepadInput.gamepadMoveSensibility = 40;
+BABYLON.FreeCameraGamepadInput.prototype.invertYAxis = true;
+BABYLON.FreeCameraGamepadInput.prototype.attachControl = function () {};
+BABYLON.FreeCameraGamepadInput.prototype.detachControl = function () {};
+BABYLON.FreeCameraGamepadInput.prototype.checkInputs = function () {};
+BABYLON.FreeCameraGamepadInput.prototype.getClassName = function () {};
+BABYLON.FreeCameraGamepadInput.prototype.getSimpleName = function () {};
+
 
 /** @constructor */
-BABYLON.FreeCameraKeyboardMoveInput = function () {
-  this.keysUp = {};
-  this.keysDown = {};
-  this.keysLeft = {};
-  this.keysRight = {};
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.checkInputs = function () {};
-  this.getClassName = function () {};
-  this.getSimpleName = function () {};
-};
+BABYLON.FreeCameraKeyboardMoveInput = function () {}
+BABYLON.FreeCameraKeyboardMoveInput.keysUp = {};
+BABYLON.FreeCameraKeyboardMoveInput.keysDown = {};
+BABYLON.FreeCameraKeyboardMoveInput.keysLeft = {};
+BABYLON.FreeCameraKeyboardMoveInput.keysRight = {};
+BABYLON.FreeCameraKeyboardMoveInput.prototype.attachControl = function () {};
+BABYLON.FreeCameraKeyboardMoveInput.prototype.detachControl = function () {};
+BABYLON.FreeCameraKeyboardMoveInput.prototype.checkInputs = function () {};
+BABYLON.FreeCameraKeyboardMoveInput.prototype.getClassName = function () {};
+BABYLON.FreeCameraKeyboardMoveInput.prototype.getSimpleName = function () {};
+
 
 /** @constructor */
-BABYLON.FreeCameraMouseInput = function () {
-  this.touchEnabled = true;
-  this.buttons = {};
-  this.angularSensibility = 2000;
-  this.previousPosition = null;
-  this.onPointerMovedObservable = {};
-  this.attachControl = function () {};
-  this.onContextMenu = function () {};
-  this.detachControl = function () {};
-  this.getClassName = function () {};
-  this.getSimpleName = function () {};
-};
+BABYLON.FreeCameraMouseInput = function () {}
+BABYLON.FreeCameraMouseInput.touchEnabled = true;
+BABYLON.FreeCameraMouseInput.buttons = {};
+BABYLON.FreeCameraMouseInput.angularSensibility = 2000;
+BABYLON.FreeCameraMouseInput.previousPosition = null;
+BABYLON.FreeCameraMouseInput.onPointerMovedObservable = {};
+BABYLON.FreeCameraMouseInput.prototype.attachControl = function () {};
+BABYLON.FreeCameraMouseInput.prototype.onContextMenu = function () {};
+BABYLON.FreeCameraMouseInput.prototype.detachControl = function () {};
+BABYLON.FreeCameraMouseInput.prototype.getClassName = function () {};
+BABYLON.FreeCameraMouseInput.prototype.getSimpleName = function () {};
+
 
 /** @constructor */
-BABYLON.FreeCameraTouchInput = function () {
-  this.touchAngularSensibility = 200000;
-  this.touchMoveSensibility = 250;
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.checkInputs = function () {};
-  this.getClassName = function () {};
-  this.getSimpleName = function () {};
-};
+BABYLON.FreeCameraTouchInput = function () {}
+BABYLON.FreeCameraTouchInput.touchAngularSensibility = 200000;
+BABYLON.FreeCameraTouchInput.touchMoveSensibility = 250;
+BABYLON.FreeCameraTouchInput.prototype.attachControl = function () {};
+BABYLON.FreeCameraTouchInput.prototype.detachControl = function () {};
+BABYLON.FreeCameraTouchInput.prototype.checkInputs = function () {};
+BABYLON.FreeCameraTouchInput.prototype.getClassName = function () {};
+BABYLON.FreeCameraTouchInput.prototype.getSimpleName = function () {};
+
 
 /** @constructor */
-BABYLON.FreeCameraVirtualJoystickInput = function () {
-  this.getLeftJoystick = function () {};
-  this.getRightJoystick = function () {};
-  this.checkInputs = function () {};
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.getClassName = function () {};
-  this.getSimpleName = function () {};
-};
+BABYLON.FreeCameraVirtualJoystickInput = function () {}
+BABYLON.FreeCameraVirtualJoystickInput.prototype.getLeftJoystick = function () {};
+BABYLON.FreeCameraVirtualJoystickInput.prototype.getRightJoystick = function () {};
+BABYLON.FreeCameraVirtualJoystickInput.prototype.checkInputs = function () {};
+BABYLON.FreeCameraVirtualJoystickInput.prototype.attachControl = function () {};
+BABYLON.FreeCameraVirtualJoystickInput.prototype.detachControl = function () {};
+BABYLON.FreeCameraVirtualJoystickInput.prototype.getClassName = function () {};
+BABYLON.FreeCameraVirtualJoystickInput.prototype.getSimpleName = function () {};
+
 
 /** @constructor */
-BABYLON.AnaglyphArcRotateCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.AnaglyphArcRotateCamera = function () {}
+BABYLON.AnaglyphArcRotateCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.AnaglyphArcRotateCamera.prototype.Parse = function () {};
+BABYLON.AnaglyphArcRotateCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.AnaglyphArcRotateCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.AnaglyphArcRotateCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.AnaglyphArcRotateCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.AnaglyphArcRotateCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.AnaglyphArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.AnaglyphArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.AnaglyphArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.AnaglyphArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.AnaglyphArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.AnaglyphArcRotateCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.AnaglyphArcRotateCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.AnaglyphArcRotateCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.AnaglyphArcRotateCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.AnaglyphArcRotateCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.AnaglyphArcRotateCamera.prototype.Construct = function () {};
+BABYLON.AnaglyphArcRotateCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.AnaglyphFreeCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.AnaglyphFreeCamera = function () {}
+BABYLON.AnaglyphFreeCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.AnaglyphFreeCamera.prototype.Parse = function () {};
+BABYLON.AnaglyphFreeCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.AnaglyphFreeCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.AnaglyphFreeCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.AnaglyphFreeCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.AnaglyphFreeCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.AnaglyphFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.AnaglyphFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.AnaglyphFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.AnaglyphFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.AnaglyphFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.AnaglyphFreeCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.AnaglyphFreeCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.AnaglyphFreeCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.AnaglyphFreeCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.AnaglyphFreeCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.AnaglyphFreeCamera.prototype.Construct = function () {};
+BABYLON.AnaglyphFreeCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.AnaglyphGamepadCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.AnaglyphGamepadCamera = function () {}
+BABYLON.AnaglyphGamepadCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.AnaglyphGamepadCamera.prototype.Parse = function () {};
+BABYLON.AnaglyphGamepadCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.AnaglyphGamepadCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.AnaglyphGamepadCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.AnaglyphGamepadCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.AnaglyphGamepadCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.AnaglyphGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.AnaglyphGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.AnaglyphGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.AnaglyphGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.AnaglyphGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.AnaglyphGamepadCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.AnaglyphGamepadCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.AnaglyphGamepadCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.AnaglyphGamepadCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.AnaglyphGamepadCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.AnaglyphGamepadCamera.prototype.Construct = function () {};
+BABYLON.AnaglyphGamepadCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.AnaglyphUniversalCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.AnaglyphUniversalCamera = function () {}
+BABYLON.AnaglyphUniversalCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.AnaglyphUniversalCamera.prototype.Parse = function () {};
+BABYLON.AnaglyphUniversalCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.AnaglyphUniversalCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.AnaglyphUniversalCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.AnaglyphUniversalCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.AnaglyphUniversalCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.AnaglyphUniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.AnaglyphUniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.AnaglyphUniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.AnaglyphUniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.AnaglyphUniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.AnaglyphUniversalCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.AnaglyphUniversalCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.AnaglyphUniversalCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.AnaglyphUniversalCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.AnaglyphUniversalCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.AnaglyphUniversalCamera.prototype.Construct = function () {};
+BABYLON.AnaglyphUniversalCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.StereoscopicArcRotateCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.StereoscopicArcRotateCamera = function () {}
+BABYLON.StereoscopicArcRotateCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.StereoscopicArcRotateCamera.prototype.Parse = function () {};
+BABYLON.StereoscopicArcRotateCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.StereoscopicArcRotateCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.StereoscopicArcRotateCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.StereoscopicArcRotateCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.StereoscopicArcRotateCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.StereoscopicArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.StereoscopicArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.StereoscopicArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.StereoscopicArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.StereoscopicArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.StereoscopicArcRotateCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.StereoscopicArcRotateCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.StereoscopicArcRotateCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.StereoscopicArcRotateCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.StereoscopicArcRotateCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.StereoscopicArcRotateCamera.prototype.Construct = function () {};
+BABYLON.StereoscopicArcRotateCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.StereoscopicFreeCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.StereoscopicFreeCamera = function () {}
+BABYLON.StereoscopicFreeCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.StereoscopicFreeCamera.prototype.Parse = function () {};
+BABYLON.StereoscopicFreeCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.StereoscopicFreeCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.StereoscopicFreeCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.StereoscopicFreeCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.StereoscopicFreeCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.StereoscopicFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.StereoscopicFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.StereoscopicFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.StereoscopicFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.StereoscopicFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.StereoscopicFreeCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.StereoscopicFreeCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.StereoscopicFreeCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.StereoscopicFreeCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.StereoscopicFreeCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.StereoscopicFreeCamera.prototype.Construct = function () {};
+BABYLON.StereoscopicFreeCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.StereoscopicGamepadCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.StereoscopicGamepadCamera = function () {}
+BABYLON.StereoscopicGamepadCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.StereoscopicGamepadCamera.prototype.Parse = function () {};
+BABYLON.StereoscopicGamepadCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.StereoscopicGamepadCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.StereoscopicGamepadCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.StereoscopicGamepadCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.StereoscopicGamepadCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.StereoscopicGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.StereoscopicGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.StereoscopicGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.StereoscopicGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.StereoscopicGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.StereoscopicGamepadCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.StereoscopicGamepadCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.StereoscopicGamepadCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.StereoscopicGamepadCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.StereoscopicGamepadCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.StereoscopicGamepadCamera.prototype.Construct = function () {};
+BABYLON.StereoscopicGamepadCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.StereoscopicUniversalCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.StereoscopicUniversalCamera = function () {}
+BABYLON.StereoscopicUniversalCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.StereoscopicUniversalCamera.prototype.Parse = function () {};
+BABYLON.StereoscopicUniversalCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.StereoscopicUniversalCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.StereoscopicUniversalCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.StereoscopicUniversalCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.StereoscopicUniversalCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.StereoscopicUniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.StereoscopicUniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.StereoscopicUniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.StereoscopicUniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.StereoscopicUniversalCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.StereoscopicUniversalCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.StereoscopicUniversalCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.StereoscopicUniversalCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.StereoscopicUniversalCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.StereoscopicUniversalCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.StereoscopicUniversalCamera.prototype.Construct = function () {};
+BABYLON.StereoscopicUniversalCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.VRCameraMetrics = function () {
-  this.compensateDistortion = true;
-  this.multiviewEnabled = false;
-  this.aspectRatio = NaN;
-  this.aspectRatioFov = NaN;
-  this.leftHMatrix = {};
-  this.rightHMatrix = {};
-  this.leftPreViewMatrix = {};
-  this.rightPreViewMatrix = {};
-  this.GetDefault = function () {};
-};
+BABYLON.VRCameraMetrics = function () {}
+BABYLON.VRCameraMetrics.compensateDistortion = true;
+BABYLON.VRCameraMetrics.multiviewEnabled = false;
+BABYLON.VRCameraMetrics.prototype.aspectRatio = NaN;
+BABYLON.VRCameraMetrics.prototype.aspectRatioFov = NaN;
+BABYLON.VRCameraMetrics.prototype.leftHMatrix = {};
+BABYLON.VRCameraMetrics.prototype.rightHMatrix = {};
+BABYLON.VRCameraMetrics.prototype.leftPreViewMatrix = {};
+BABYLON.VRCameraMetrics.prototype.rightPreViewMatrix = {};
+
 
 /** @constructor */
-BABYLON.VRDeviceOrientationArcRotateCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.VRDeviceOrientationArcRotateCamera = function () {}
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.Parse = function () {};
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.Construct = function () {};
+BABYLON.VRDeviceOrientationArcRotateCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.VRDeviceOrientationFreeCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.VRDeviceOrientationFreeCamera = function () {}
+BABYLON.VRDeviceOrientationFreeCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.VRDeviceOrientationFreeCamera.prototype.Parse = function () {};
+BABYLON.VRDeviceOrientationFreeCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.VRDeviceOrientationFreeCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.VRDeviceOrientationFreeCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.VRDeviceOrientationFreeCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.VRDeviceOrientationFreeCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.VRDeviceOrientationFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.VRDeviceOrientationFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.VRDeviceOrientationFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.VRDeviceOrientationFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.VRDeviceOrientationFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.VRDeviceOrientationFreeCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.VRDeviceOrientationFreeCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.VRDeviceOrientationFreeCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.VRDeviceOrientationFreeCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.VRDeviceOrientationFreeCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.VRDeviceOrientationFreeCamera.prototype.Construct = function () {};
+BABYLON.VRDeviceOrientationFreeCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.VRDeviceOrientationGamepadCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.VRDeviceOrientationGamepadCamera = function () {}
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.Parse = function () {};
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.Construct = function () {};
+BABYLON.VRDeviceOrientationGamepadCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.OnAfterEnteringVRObservableEvent = function () {
-};
+BABYLON.OnAfterEnteringVRObservableEvent = function () {}
+
 
 /** @constructor */
-BABYLON.VRExperienceHelper = function () {
-  this.TELEPORTATIONMODE_CONSTANTTIME = 0;
-  this.TELEPORTATIONMODE_CONSTANTSPEED = 1;
-};
+BABYLON.VRExperienceHelper = function () {}
+BABYLON.VRExperienceHelper.TELEPORTATIONMODE_CONSTANTTIME = 0;
+BABYLON.VRExperienceHelper.TELEPORTATIONMODE_CONSTANTSPEED = 1;
+
 
 /** @constructor */
-BABYLON.WebVRFreeCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.WebVRFreeCamera = function () {}
+BABYLON.WebVRFreeCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.WebVRFreeCamera.prototype.Parse = function () {};
+BABYLON.WebVRFreeCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.WebVRFreeCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.WebVRFreeCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.WebVRFreeCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.WebVRFreeCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.WebVRFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.WebVRFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.WebVRFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.WebVRFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.WebVRFreeCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.WebVRFreeCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.WebVRFreeCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.WebVRFreeCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.WebVRFreeCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.WebVRFreeCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.WebVRFreeCamera.prototype.Construct = function () {};
+BABYLON.WebVRFreeCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.Collider = function () {
-  this.collisionMask = -1;
-  this.slidePlaneNormal = {};
-};
+BABYLON.Collider = function () {}
+// BABYLON.Collider.prototype.collisionMask = undefined;
+// BABYLON.Collider.prototype.slidePlaneNormal = undefined;
+
 
 /** @constructor */
-BABYLON.DefaultCollisionCoordinator = function () {
-  this.getNewPosition = function () {};
-  this.createCollider = function () {};
-  this.init = function () {};
-};
+BABYLON.DefaultCollisionCoordinator = function () {}
+BABYLON.DefaultCollisionCoordinator.prototype.getNewPosition = function () {};
+BABYLON.DefaultCollisionCoordinator.prototype.createCollider = function () {};
+BABYLON.DefaultCollisionCoordinator.prototype.init = function () {};
+
 
 /** @constructor */
-BABYLON.PickingInfo = function () {
-  this.hit = false;
-  this.distance = 0;
-  this.pickedPoint = null;
-  this.pickedMesh = null;
-  this.bu = 0;
-  this.bv = 0;
-  this.faceId = -1;
-  this.subMeshId = 0;
-  this.pickedSprite = null;
-  this.originMesh = null;
-  this.ray = null;
-  this.getNormal = function () {};
-  this.getTextureCoordinates = function () {};
-};
+BABYLON.PickingInfo = function () {}
+BABYLON.PickingInfo.hit = false;
+BABYLON.PickingInfo.distance = 0;
+BABYLON.PickingInfo.pickedPoint = null;
+BABYLON.PickingInfo.pickedMesh = null;
+BABYLON.PickingInfo.bu = 0;
+BABYLON.PickingInfo.bv = 0;
+BABYLON.PickingInfo.faceId = -1;
+BABYLON.PickingInfo.subMeshId = 0;
+BABYLON.PickingInfo.pickedSprite = null;
+BABYLON.PickingInfo.originMesh = null;
+BABYLON.PickingInfo.ray = null;
+BABYLON.PickingInfo.prototype.getNormal = function () {};
+BABYLON.PickingInfo.prototype.getTextureCoordinates = function () {};
+
 
 /** @constructor */
-BABYLON.IntersectionInfo = function () {
-  // this.bu = undefined;
-  // this.bv = undefined;
-  // this.distance = undefined;
-  this.faceId = 0;
-  this.subMeshId = 0;
-};
+BABYLON.IntersectionInfo = function () {}
+// BABYLON.IntersectionInfo.bu = undefined;
+// BABYLON.IntersectionInfo.bv = undefined;
+// BABYLON.IntersectionInfo.distance = undefined;
+BABYLON.IntersectionInfo.faceId = 0;
+BABYLON.IntersectionInfo.subMeshId = 0;
+
 
 /** @constructor */
-BABYLON.BoundingBox = function () {
-  this.Intersects = function () {};
-  this.IntersectsSphere = function () {};
-  this.IsCompletelyInFrustum = function () {};
-  this.IsInFrustum = function () {};
-  this.TmpVector3 = {};
-};
+BABYLON.BoundingBox = function () {}
+BABYLON.BoundingBox.Intersects = function () {};
+BABYLON.BoundingBox.IntersectsSphere = function () {};
+BABYLON.BoundingBox.IsCompletelyInFrustum = function () {};
+BABYLON.BoundingBox.IsInFrustum = function () {};
+BABYLON.BoundingBox.TmpVector3 = {};
+
 
 /** @constructor */
-BABYLON.BoundingInfo = function () {
-  this.TmpVector3 = {};
-};
+BABYLON.BoundingInfo = function () {}
+BABYLON.BoundingInfo.TmpVector3 = {};
+
 
 /** @constructor */
-BABYLON.BoundingSphere = function () {
-  this.Intersects = function () {};
-  this.TmpVector3 = {};
-};
+BABYLON.BoundingSphere = function () {}
+BABYLON.BoundingSphere.Intersects = function () {};
+BABYLON.BoundingSphere.TmpVector3 = {};
+
 
 /** @constructor */
-BABYLON.Ray = function () {
-  // this.origin = undefined;
-  // this.direction = undefined;
-  this.length = 1.7976931348623157e+308;
-  this.intersectsBoxMinMax = function () {};
-  this.intersectsBox = function () {};
-  this.intersectsSphere = function () {};
-  this.intersectsTriangle = function () {};
-  this.intersectsPlane = function () {};
-  this.intersectsAxis = function () {};
-  this.intersectsMesh = function () {};
-  this.intersectsMeshes = function () {};
-  this.intersectionSegment = function () {};
-  this.update = function () {};
-  this.unprojectRayToRef = function () {};
-  this.Zero = function () {};
-  this.CreateNew = function () {};
-  this.CreateNewFromTo = function () {};
-  this.Transform = function () {};
-  this.TransformToRef = function () {};
-  this.TmpVector3 = {};
-  this.smallnum = 1e-8;
-  this.rayl = 1000000000;
-};
+BABYLON.Ray = function () {}
+// BABYLON.Ray.origin = undefined;
+// BABYLON.Ray.direction = undefined;
+BABYLON.Ray.length = 1.7976931348623157e+308;
+BABYLON.Ray.prototype.intersectsBoxMinMax = function () {};
+BABYLON.Ray.prototype.intersectsBox = function () {};
+BABYLON.Ray.prototype.intersectsSphere = function () {};
+BABYLON.Ray.prototype.intersectsTriangle = function () {};
+BABYLON.Ray.prototype.intersectsPlane = function () {};
+BABYLON.Ray.prototype.intersectsAxis = function () {};
+BABYLON.Ray.prototype.intersectsMesh = function () {};
+BABYLON.Ray.prototype.intersectsMeshes = function () {};
+BABYLON.Ray.prototype.intersectionSegment = function () {};
+BABYLON.Ray.prototype.update = function () {};
+BABYLON.Ray.prototype.unprojectRayToRef = function () {};
+
 
 /** @constructor */
-BABYLON.Octree = function () {
-  this.maxDepth = 2;
-  this.dynamicContent = {};
-  this.update = function () {};
-  this.addMesh = function () {};
-  this.removeMesh = function () {};
-  this.select = function () {};
-  this.intersects = function () {};
-  this.intersectsRay = function () {};
-  this.CreationFuncForMeshes = function () {};
-  this.CreationFuncForSubMeshes = function () {};
-};
+BABYLON.Octree = function () {}
+BABYLON.Octree.maxDepth = 2;
+BABYLON.Octree.dynamicContent = {};
+BABYLON.Octree.prototype.update = function () {};
+BABYLON.Octree.prototype.addMesh = function () {};
+BABYLON.Octree.prototype.removeMesh = function () {};
+BABYLON.Octree.prototype.select = function () {};
+BABYLON.Octree.prototype.intersects = function () {};
+BABYLON.Octree.prototype.intersectsRay = function () {};
+
 
 /** @constructor */
-BABYLON.OctreeBlock = function () {
-};
+BABYLON.OctreeBlock = function () {}
+
 
 /** @constructor */
-BABYLON.OctreeSceneComponent = function () {
-};
+BABYLON.OctreeSceneComponent = function () {}
+
 
 /** @constructor */
-BABYLON.AxesViewer = function () {
-};
+BABYLON.AxesViewer = function () {}
+
 
 /** @constructor */
-BABYLON.BoneAxesViewer = function () {
-};
+BABYLON.BoneAxesViewer = function () {}
+
 
 BABYLON.DebugLayerTab = {}
 
 /** @constructor */
-BABYLON.DebugLayer = function () {
-  this.InspectorURL = "https://unpkg.com/babylonjs-inspector@4.1.0/babylon.inspector.bundle.js";
-};
+BABYLON.DebugLayer = function () {}
+BABYLON.DebugLayer.InspectorURL = "https://unpkg.com/babylonjs-inspector@4.1.0/babylon.inspector.bundle.js";
+
 
 /** @constructor */
-BABYLON.PhysicsViewer = function () {
-};
+BABYLON.PhysicsViewer = function () {}
+
 
 /** @constructor */
-BABYLON.RayHelper = function () {
-  // this.ray = undefined;
-  this.show = function () {};
-  this.hide = function () {};
-  this.attachToMesh = function () {};
-  this.detachFromMesh = function () {};
-  this.dispose = function () {};
-  this.CreateAndShow = function () {};
-};
+BABYLON.RayHelper = function () {}
+// BABYLON.RayHelper.ray = undefined;
+BABYLON.RayHelper.prototype.show = function () {};
+BABYLON.RayHelper.prototype.hide = function () {};
+BABYLON.RayHelper.prototype.attachToMesh = function () {};
+BABYLON.RayHelper.prototype.detachFromMesh = function () {};
+BABYLON.RayHelper.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.SkeletonViewer = function () {
-};
+BABYLON.SkeletonViewer = function () {}
+
 
 /** @constructor */
-BABYLON.Constants = function () {
-  this.ALPHA_DISABLE = 0;
-  this.ALPHA_ADD = 1;
-  this.ALPHA_COMBINE = 2;
-  this.ALPHA_SUBTRACT = 3;
-  this.ALPHA_MULTIPLY = 4;
-  this.ALPHA_MAXIMIZED = 5;
-  this.ALPHA_ONEONE = 6;
-  this.ALPHA_PREMULTIPLIED = 7;
-  this.ALPHA_PREMULTIPLIED_PORTERDUFF = 8;
-  this.ALPHA_INTERPOLATE = 9;
-  this.ALPHA_SCREENMODE = 10;
-  this.ALPHA_ONEONE_ONEONE = 11;
-  this.ALPHA_ALPHATOCOLOR = 12;
-  this.ALPHA_REVERSEONEMINUS = 13;
-  this.ALPHA_SRC_DSTONEMINUSSRCALPHA = 14;
-  this.ALPHA_ONEONE_ONEZERO = 15;
-  this.ALPHA_EXCLUSION = 16;
-  this.ALPHA_EQUATION_ADD = 0;
-  this.ALPHA_EQUATION_SUBSTRACT = 1;
-  this.ALPHA_EQUATION_REVERSE_SUBTRACT = 2;
-  this.ALPHA_EQUATION_MAX = 3;
-  this.ALPHA_EQUATION_MIN = 4;
-  this.ALPHA_EQUATION_DARKEN = 5;
-  this.DELAYLOADSTATE_NONE = 0;
-  this.DELAYLOADSTATE_LOADED = 1;
-  this.DELAYLOADSTATE_LOADING = 2;
-  this.DELAYLOADSTATE_NOTLOADED = 4;
-  this.NEVER = 512;
-  this.ALWAYS = 519;
-  this.LESS = 513;
-  this.EQUAL = 514;
-  this.LEQUAL = 515;
-  this.GREATER = 516;
-  this.GEQUAL = 518;
-  this.NOTEQUAL = 517;
-  this.KEEP = 7680;
-  this.REPLACE = 7681;
-  this.INCR = 7682;
-  this.DECR = 7683;
-  this.INVERT = 5386;
-  this.INCR_WRAP = 34055;
-  this.DECR_WRAP = 34056;
-  this.TEXTURE_CLAMP_ADDRESSMODE = 0;
-  this.TEXTURE_WRAP_ADDRESSMODE = 1;
-  this.TEXTURE_MIRROR_ADDRESSMODE = 2;
-  this.TEXTUREFORMAT_ALPHA = 0;
-  this.TEXTUREFORMAT_LUMINANCE = 1;
-  this.TEXTUREFORMAT_LUMINANCE_ALPHA = 2;
-  this.TEXTUREFORMAT_RGB = 4;
-  this.TEXTUREFORMAT_RGBA = 5;
-  this.TEXTUREFORMAT_RED = 6;
-  this.TEXTUREFORMAT_R = 6;
-  this.TEXTUREFORMAT_RG = 7;
-  this.TEXTUREFORMAT_RED_INTEGER = 8;
-  this.TEXTUREFORMAT_R_INTEGER = 8;
-  this.TEXTUREFORMAT_RG_INTEGER = 9;
-  this.TEXTUREFORMAT_RGB_INTEGER = 10;
-  this.TEXTUREFORMAT_RGBA_INTEGER = 11;
-  this.TEXTURETYPE_UNSIGNED_BYTE = 0;
-  this.TEXTURETYPE_UNSIGNED_INT = 0;
-  this.TEXTURETYPE_FLOAT = 1;
-  this.TEXTURETYPE_HALF_FLOAT = 2;
-  this.TEXTURETYPE_BYTE = 3;
-  this.TEXTURETYPE_SHORT = 4;
-  this.TEXTURETYPE_UNSIGNED_SHORT = 5;
-  this.TEXTURETYPE_INT = 6;
-  this.TEXTURETYPE_UNSIGNED_INTEGER = 7;
-  this.TEXTURETYPE_UNSIGNED_SHORT_4_4_4_4 = 8;
-  this.TEXTURETYPE_UNSIGNED_SHORT_5_5_5_1 = 9;
-  this.TEXTURETYPE_UNSIGNED_SHORT_5_6_5 = 10;
-  this.TEXTURETYPE_UNSIGNED_INT_2_10_10_10_REV = 11;
-  this.TEXTURETYPE_UNSIGNED_INT_24_8 = 12;
-  this.TEXTURETYPE_UNSIGNED_INT_10F_11F_11F_REV = 13;
-  this.TEXTURETYPE_UNSIGNED_INT_5_9_9_9_REV = 14;
-  this.TEXTURETYPE_FLOAT_32_UNSIGNED_INT_24_8_REV = 15;
-  this.TEXTURE_NEAREST_SAMPLINGMODE = 1;
-  this.TEXTURE_NEAREST_NEAREST = 1;
-  this.TEXTURE_BILINEAR_SAMPLINGMODE = 2;
-  this.TEXTURE_LINEAR_LINEAR = 2;
-  this.TEXTURE_TRILINEAR_SAMPLINGMODE = 3;
-  this.TEXTURE_LINEAR_LINEAR_MIPLINEAR = 3;
-  this.TEXTURE_NEAREST_NEAREST_MIPNEAREST = 4;
-  this.TEXTURE_NEAREST_LINEAR_MIPNEAREST = 5;
-  this.TEXTURE_NEAREST_LINEAR_MIPLINEAR = 6;
-  this.TEXTURE_NEAREST_LINEAR = 7;
-  this.TEXTURE_NEAREST_NEAREST_MIPLINEAR = 8;
-  this.TEXTURE_LINEAR_NEAREST_MIPNEAREST = 9;
-  this.TEXTURE_LINEAR_NEAREST_MIPLINEAR = 10;
-  this.TEXTURE_LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TEXTURE_LINEAR_NEAREST = 12;
-  this.TEXTURE_EXPLICIT_MODE = 0;
-  this.TEXTURE_SPHERICAL_MODE = 1;
-  this.TEXTURE_PLANAR_MODE = 2;
-  this.TEXTURE_CUBIC_MODE = 3;
-  this.TEXTURE_PROJECTION_MODE = 4;
-  this.TEXTURE_SKYBOX_MODE = 5;
-  this.TEXTURE_INVCUBIC_MODE = 6;
-  this.TEXTURE_EQUIRECTANGULAR_MODE = 7;
-  this.TEXTURE_FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.TEXTURE_FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.SCALEMODE_FLOOR = 1;
-  this.SCALEMODE_NEAREST = 2;
-  this.SCALEMODE_CEILING = 3;
-  this.MATERIAL_TextureDirtyFlag = 1;
-  this.MATERIAL_LightDirtyFlag = 2;
-  this.MATERIAL_FresnelDirtyFlag = 4;
-  this.MATERIAL_AttributesDirtyFlag = 8;
-  this.MATERIAL_MiscDirtyFlag = 16;
-  this.MATERIAL_AllDirtyFlag = 31;
-  this.MATERIAL_TriangleFillMode = 0;
-  this.MATERIAL_WireFrameFillMode = 1;
-  this.MATERIAL_PointFillMode = 2;
-  this.MATERIAL_PointListDrawMode = 3;
-  this.MATERIAL_LineListDrawMode = 4;
-  this.MATERIAL_LineLoopDrawMode = 5;
-  this.MATERIAL_LineStripDrawMode = 6;
-  this.MATERIAL_TriangleStripDrawMode = 7;
-  this.MATERIAL_TriangleFanDrawMode = 8;
-  this.MATERIAL_ClockWiseSideOrientation = 0;
-  this.MATERIAL_CounterClockWiseSideOrientation = 1;
-  this.ACTION_NothingTrigger = 0;
-  this.ACTION_OnPickTrigger = 1;
-  this.ACTION_OnLeftPickTrigger = 2;
-  this.ACTION_OnRightPickTrigger = 3;
-  this.ACTION_OnCenterPickTrigger = 4;
-  this.ACTION_OnPickDownTrigger = 5;
-  this.ACTION_OnDoublePickTrigger = 6;
-  this.ACTION_OnPickUpTrigger = 7;
-  this.ACTION_OnPickOutTrigger = 16;
-  this.ACTION_OnLongPressTrigger = 8;
-  this.ACTION_OnPointerOverTrigger = 9;
-  this.ACTION_OnPointerOutTrigger = 10;
-  this.ACTION_OnEveryFrameTrigger = 11;
-  this.ACTION_OnIntersectionEnterTrigger = 12;
-  this.ACTION_OnIntersectionExitTrigger = 13;
-  this.ACTION_OnKeyDownTrigger = 14;
-  this.ACTION_OnKeyUpTrigger = 15;
-  this.PARTICLES_BILLBOARDMODE_Y = 2;
-  this.PARTICLES_BILLBOARDMODE_ALL = 7;
-  this.PARTICLES_BILLBOARDMODE_STRETCHED = 8;
-  this.MESHES_CULLINGSTRATEGY_STANDARD = 0;
-  this.MESHES_CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
-  this.MESHES_CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
-  this.MESHES_CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
-  this.SCENELOADER_NO_LOGGING = 0;
-  this.SCENELOADER_MINIMAL_LOGGING = 1;
-  this.SCENELOADER_SUMMARY_LOGGING = 2;
-  this.SCENELOADER_DETAILED_LOGGING = 3;
-};
+BABYLON.Constants = function () {}
+
 
 /** @constructor */
-BABYLON.ThinEngine = function () {
-  this.forcePOTTextures = false;
-  this.isFullscreen = false;
-  this.cullBackFaces = true;
-  this.renderEvenInBackground = true;
-  this.preventCacheWipeBetweenFrames = false;
-  this.validateShaderPrograms = false;
-  this.useReverseDepthBuffer = false;
-  this.disableUniformBuffers = false;
-  this.onContextLostObservable = {};
-  this.onContextRestoredObservable = {};
-  this.disableVertexArrayObjects = false;
-  this.premultipliedAlpha = true;
-  this.onBeforeTextureInitObservable = {};
-  this.enableUnpackFlipYCached = true;
-  this.NpmPackage = "babylonjs@4.1.0";
-  this.Version = "4.1.0";
-  this.ShadersRepository = "src/Shaders/";
-  this.isSupported = function () {};
-  this.CeilingPOT = function () {};
-  this.FloorPOT = function () {};
-  this.NearestPOT = function () {};
-  this.GetExponentOfTwo = function () {};
-  this.QueueNewFrame = function () {};
-  this.ExceptionList = {};
-  this.CollisionsEpsilon = 0.001;
-};
+BABYLON.ThinEngine = function () {}
+BABYLON.ThinEngine.forcePOTTextures = false;
+BABYLON.ThinEngine.isFullscreen = false;
+BABYLON.ThinEngine.cullBackFaces = true;
+BABYLON.ThinEngine.renderEvenInBackground = true;
+BABYLON.ThinEngine.preventCacheWipeBetweenFrames = false;
+BABYLON.ThinEngine.validateShaderPrograms = false;
+BABYLON.ThinEngine.useReverseDepthBuffer = false;
+BABYLON.ThinEngine.disableUniformBuffers = false;
+BABYLON.ThinEngine.onContextLostObservable = {};
+BABYLON.ThinEngine.onContextRestoredObservable = {};
+BABYLON.ThinEngine.disableVertexArrayObjects = false;
+BABYLON.ThinEngine.premultipliedAlpha = true;
+BABYLON.ThinEngine.onBeforeTextureInitObservable = {};
+BABYLON.ThinEngine.enableUnpackFlipYCached = true;
+// BABYLON.ThinEngine.prototype.description = undefined;
+BABYLON.ThinEngine.prototype.supportsUniformBuffers = false;
+// BABYLON.ThinEngine.prototype.needPOTTextures = undefined;
+// BABYLON.ThinEngine.prototype.doNotHandleContextLost = undefined;
+// BABYLON.ThinEngine.prototype.framebufferDimensionsObject = undefined;
+// BABYLON.ThinEngine.prototype.texturesSupported = undefined;
+// BABYLON.ThinEngine.prototype.textureFormatInUse = undefined;
+// BABYLON.ThinEngine.prototype.currentViewport = undefined;
+// BABYLON.ThinEngine.prototype.emptyTexture = undefined;
+// BABYLON.ThinEngine.prototype.emptyTexture3D = undefined;
+// BABYLON.ThinEngine.prototype.emptyTexture2DArray = undefined;
+// BABYLON.ThinEngine.prototype.emptyCubeTexture = undefined;
+BABYLON.ThinEngine.prototype.areAllEffectsReady = function () {};
+// BABYLON.ThinEngine.prototype.webGLVersion = undefined;
+BABYLON.ThinEngine.prototype.getClassName = function () {};
+// BABYLON.ThinEngine.prototype.isStencilEnable = undefined;
+BABYLON.ThinEngine.prototype.resetTextureCache = function () {};
+BABYLON.ThinEngine.prototype.getGlInfo = function () {};
+BABYLON.ThinEngine.prototype.setHardwareScalingLevel = function () {};
+BABYLON.ThinEngine.prototype.getHardwareScalingLevel = function () {};
+BABYLON.ThinEngine.prototype.getLoadedTexturesCache = function () {};
+BABYLON.ThinEngine.prototype.getCaps = function () {};
+BABYLON.ThinEngine.prototype.stopRenderLoop = function () {};
+BABYLON.ThinEngine.prototype.getRenderingCanvas = function () {};
+BABYLON.ThinEngine.prototype.getHostWindow = function () {};
+BABYLON.ThinEngine.prototype.getRenderWidth = function () {};
+BABYLON.ThinEngine.prototype.getRenderHeight = function () {};
+BABYLON.ThinEngine.prototype.runRenderLoop = function () {};
+BABYLON.ThinEngine.prototype.clear = function () {};
+BABYLON.ThinEngine.prototype.setViewport = function () {};
+BABYLON.ThinEngine.prototype.beginFrame = function () {};
+BABYLON.ThinEngine.prototype.endFrame = function () {};
+BABYLON.ThinEngine.prototype.resize = function () {};
+BABYLON.ThinEngine.prototype.setSize = function () {};
+BABYLON.ThinEngine.prototype.bindFramebuffer = function () {};
+BABYLON.ThinEngine.prototype.unBindFramebuffer = function () {};
+BABYLON.ThinEngine.prototype.flushFramebuffer = function () {};
+BABYLON.ThinEngine.prototype.restoreDefaultFramebuffer = function () {};
+BABYLON.ThinEngine.prototype.createVertexBuffer = function () {};
+BABYLON.ThinEngine.prototype.createDynamicVertexBuffer = function () {};
+BABYLON.ThinEngine.prototype.createIndexBuffer = function () {};
+BABYLON.ThinEngine.prototype.bindArrayBuffer = function () {};
+BABYLON.ThinEngine.prototype.bindUniformBlock = function () {};
+BABYLON.ThinEngine.prototype.bindIndexBuffer = function () {};
+BABYLON.ThinEngine.prototype.bindBuffer = function () {};
+BABYLON.ThinEngine.prototype.updateArrayBuffer = function () {};
+BABYLON.ThinEngine.prototype.recordVertexArrayObject = function () {};
+BABYLON.ThinEngine.prototype.bindVertexArrayObject = function () {};
+BABYLON.ThinEngine.prototype.bindBuffersDirectly = function () {};
+BABYLON.ThinEngine.prototype.bindBuffers = function () {};
+BABYLON.ThinEngine.prototype.unbindInstanceAttributes = function () {};
+BABYLON.ThinEngine.prototype.releaseVertexArrayObject = function () {};
+BABYLON.ThinEngine.prototype.updateAndBindInstancesBuffer = function () {};
+BABYLON.ThinEngine.prototype.bindInstancesBuffer = function () {};
+BABYLON.ThinEngine.prototype.disableInstanceAttributeByName = function () {};
+BABYLON.ThinEngine.prototype.disableInstanceAttribute = function () {};
+BABYLON.ThinEngine.prototype.disableAttributeByIndex = function () {};
+BABYLON.ThinEngine.prototype.draw = function () {};
+BABYLON.ThinEngine.prototype.drawPointClouds = function () {};
+BABYLON.ThinEngine.prototype.drawUnIndexed = function () {};
+BABYLON.ThinEngine.prototype.drawElementsType = function () {};
+BABYLON.ThinEngine.prototype.drawArraysType = function () {};
+BABYLON.ThinEngine.prototype.createEffect = function () {};
+BABYLON.ThinEngine.prototype.createRawShaderProgram = function () {};
+BABYLON.ThinEngine.prototype.createShaderProgram = function () {};
+BABYLON.ThinEngine.prototype.createPipelineContext = function () {};
+BABYLON.ThinEngine.prototype.getUniforms = function () {};
+BABYLON.ThinEngine.prototype.getAttributes = function () {};
+BABYLON.ThinEngine.prototype.enableEffect = function () {};
+BABYLON.ThinEngine.prototype.setInt = function () {};
+BABYLON.ThinEngine.prototype.setIntArray = function () {};
+BABYLON.ThinEngine.prototype.setIntArray2 = function () {};
+BABYLON.ThinEngine.prototype.setIntArray3 = function () {};
+BABYLON.ThinEngine.prototype.setIntArray4 = function () {};
+BABYLON.ThinEngine.prototype.setArray = function () {};
+BABYLON.ThinEngine.prototype.setArray2 = function () {};
+BABYLON.ThinEngine.prototype.setArray3 = function () {};
+BABYLON.ThinEngine.prototype.setArray4 = function () {};
+BABYLON.ThinEngine.prototype.setMatrices = function () {};
+BABYLON.ThinEngine.prototype.setMatrix3x3 = function () {};
+BABYLON.ThinEngine.prototype.setMatrix2x2 = function () {};
+BABYLON.ThinEngine.prototype.setFloat = function () {};
+BABYLON.ThinEngine.prototype.setFloat2 = function () {};
+BABYLON.ThinEngine.prototype.setFloat3 = function () {};
+BABYLON.ThinEngine.prototype.setFloat4 = function () {};
+BABYLON.ThinEngine.prototype.applyStates = function () {};
+BABYLON.ThinEngine.prototype.setColorWrite = function () {};
+BABYLON.ThinEngine.prototype.getColorWrite = function () {};
+// BABYLON.ThinEngine.prototype.depthCullingState = undefined;
+// BABYLON.ThinEngine.prototype.alphaState = undefined;
+// BABYLON.ThinEngine.prototype.stencilState = undefined;
+BABYLON.ThinEngine.prototype.clearInternalTexturesCache = function () {};
+BABYLON.ThinEngine.prototype.wipeCaches = function () {};
+BABYLON.ThinEngine.prototype.createTexture = function () {};
+BABYLON.ThinEngine.prototype.createRawTexture = function () {};
+BABYLON.ThinEngine.prototype.createRawCubeTexture = function () {};
+BABYLON.ThinEngine.prototype.createRawTexture3D = function () {};
+BABYLON.ThinEngine.prototype.createRawTexture2DArray = function () {};
+BABYLON.ThinEngine.prototype.updateTextureSamplingMode = function () {};
+BABYLON.ThinEngine.prototype.updateTextureWrappingMode = function () {};
+BABYLON.ThinEngine.prototype.updateTextureData = function () {};
+BABYLON.ThinEngine.prototype.bindSamplers = function () {};
+BABYLON.ThinEngine.prototype.unbindAllTextures = function () {};
+BABYLON.ThinEngine.prototype.setTexture = function () {};
+BABYLON.ThinEngine.prototype.setTextureArray = function () {};
+BABYLON.ThinEngine.prototype.unbindAllAttributes = function () {};
+BABYLON.ThinEngine.prototype.releaseEffects = function () {};
+BABYLON.ThinEngine.prototype.dispose = function () {};
+BABYLON.ThinEngine.prototype.attachContextLostEvent = function () {};
+BABYLON.ThinEngine.prototype.attachContextRestoredEvent = function () {};
+BABYLON.ThinEngine.prototype.getError = function () {};
+BABYLON.ThinEngine.prototype.readPixels = function () {};
+BABYLON.ThinEngine.prototype.getHostDocument = function () {};
+BABYLON.ThinEngine.prototype.setAlphaConstants = function () {};
+BABYLON.ThinEngine.prototype.setAlphaMode = function () {};
+BABYLON.ThinEngine.prototype.getAlphaMode = function () {};
+BABYLON.ThinEngine.prototype.setAlphaEquation = function () {};
+BABYLON.ThinEngine.prototype.getAlphaEquation = function () {};
+BABYLON.ThinEngine.prototype.createUniformBuffer = function () {};
+BABYLON.ThinEngine.prototype.createDynamicUniformBuffer = function () {};
+BABYLON.ThinEngine.prototype.updateUniformBuffer = function () {};
+BABYLON.ThinEngine.prototype.bindUniformBuffer = function () {};
+BABYLON.ThinEngine.prototype.bindUniformBufferBase = function () {};
+BABYLON.ThinEngine.prototype.createRenderTargetTexture = function () {};
+BABYLON.ThinEngine.prototype.createDepthStencilTexture = function () {};
+BABYLON.ThinEngine.prototype.createRenderTargetCubeTexture = function () {};
+BABYLON.ThinEngine.prototype.createDynamicTexture = function () {};
+BABYLON.ThinEngine.prototype.updateDynamicTexture = function () {};
+BABYLON.ThinEngine.prototype.createCubeTexture = function () {};
+BABYLON.ThinEngine.prototype.createPrefilteredCubeTexture = function () {};
+BABYLON.ThinEngine.prototype.updateVideoTexture = function () {};
+BABYLON.ThinEngine.prototype.unBindMultiColorAttachmentFramebuffer = function () {};
+BABYLON.ThinEngine.prototype.createMultipleRenderTarget = function () {};
+BABYLON.ThinEngine.prototype.updateMultipleRenderTargetTextureSampleCount = function () {};
+
 
 /** @constructor */
-BABYLON.Engine = function () {
-  this.forcePOTTextures = false;
-  this.isFullscreen = false;
-  this.cullBackFaces = true;
-  this.renderEvenInBackground = true;
-  this.preventCacheWipeBetweenFrames = false;
-  this.validateShaderPrograms = false;
-  this.useReverseDepthBuffer = false;
-  this.disableUniformBuffers = false;
-  this.onContextLostObservable = {};
-  this.onContextRestoredObservable = {};
-  this.disableVertexArrayObjects = false;
-  this.premultipliedAlpha = true;
-  this.onBeforeTextureInitObservable = {};
-  this.enableUnpackFlipYCached = true;
-  this.enableOfflineSupport = false;
-  this.disableManifestCheck = false;
-  this.scenes = {};
-  this.onNewSceneAddedObservable = {};
-  this.postProcesses = {};
-  this.isPointerLock = false;
-  this.onResizeObservable = {};
-  this.onCanvasBlurObservable = {};
-  this.onCanvasFocusObservable = {};
-  this.onCanvasPointerOutObservable = {};
-  this.onBeginFrameObservable = {};
-  this.customAnimationFrameRequester = null;
-  this.onEndFrameObservable = {};
-  this.onBeforeShaderCompilationObservable = {};
-  this.onAfterShaderCompilationObservable = {};
-  this.canvasTabIndex = 1;
-  this.disablePerformanceMonitorInBackground = false;
-  this.constructor = function () {};
-  this.performanceMonitor = {};
-  this.getInputElement = function () {};
-  this.getAspectRatio = function () {};
-  this.getScreenAspectRatio = function () {};
-  this.getRenderingCanvasClientRect = function () {};
-  this.getInputElementClientRect = function () {};
-  this.isDeterministicLockStep = function () {};
-  this.getLockstepMaxSteps = function () {};
-  this.getTimeStep = function () {};
-  this.generateMipMapsForCubemap = function () {};
-  this.setState = function () {};
-  this.setZOffset = function () {};
-  this.getZOffset = function () {};
-  this.setDepthBuffer = function () {};
-  this.getDepthWrite = function () {};
-  this.setDepthWrite = function () {};
-  this.getStencilBuffer = function () {};
-  this.setStencilBuffer = function () {};
-  this.getStencilMask = function () {};
-  this.setStencilMask = function () {};
-  this.getStencilFunction = function () {};
-  this.getStencilFunctionReference = function () {};
-  this.getStencilFunctionMask = function () {};
-  this.setStencilFunction = function () {};
-  this.setStencilFunctionReference = function () {};
-  this.setStencilFunctionMask = function () {};
-  this.getStencilOperationFail = function () {};
-  this.getStencilOperationDepthFail = function () {};
-  this.getStencilOperationPass = function () {};
-  this.setStencilOperationFail = function () {};
-  this.setStencilOperationDepthFail = function () {};
-  this.setStencilOperationPass = function () {};
-  this.setDitheringState = function () {};
-  this.setRasterizerState = function () {};
-  this.getDepthFunction = function () {};
-  this.setDepthFunction = function () {};
-  this.setDepthFunctionToGreater = function () {};
-  this.setDepthFunctionToGreaterOrEqual = function () {};
-  this.setDepthFunctionToLess = function () {};
-  this.setDepthFunctionToLessOrEqual = function () {};
-  this.cacheStencilState = function () {};
-  this.restoreStencilState = function () {};
-  this.setDirectViewport = function () {};
-  this.scissorClear = function () {};
-  this.enableScissor = function () {};
-  this.disableScissor = function () {};
-  this.initWebVR = function () {};
-  this.disableVR = function () {};
-  this.isVRPresenting = function () {};
-  this.getVertexShaderSource = function () {};
-  this.getFragmentShaderSource = function () {};
-  this.setDepthStencilTexture = function () {};
-  this.setTextureFromPostProcess = function () {};
-  this.setTextureFromPostProcessOutput = function () {};
-  this.switchFullscreen = function () {};
-  this.enterFullscreen = function () {};
-  this.exitFullscreen = function () {};
-  this.enterPointerlock = function () {};
-  this.exitPointerlock = function () {};
-  this.beginFrame = function () {};
-  this.endFrame = function () {};
-  this.resize = function () {};
-  this.setSize = function () {};
-  this.updateDynamicVertexBuffer = function () {};
-  this.createShaderProgram = function () {};
-  this.getFps = function () {};
-  this.getDeltaTime = function () {};
-  this.updateDynamicIndexBuffer = function () {};
-  this.updateRenderTargetTextureSampleCount = function () {};
-  this.updateTextureComparisonFunction = function () {};
-  this.createInstancesBuffer = function () {};
-  this.deleteInstancesBuffer = function () {};
-  this.dispose = function () {};
-  this.displayLoadingUI = function () {};
-  this.hideLoadingUI = function () {};
-  // this.loadingScreen = undefined;
-  // this.loadingUIText = undefined;
-  // this.loadingUIBackgroundColor = undefined;
-  this.updateRawTexture = function () {};
-  this.createRawTexture = function () {};
-  this.createRawCubeTexture = function () {};
-  this.updateRawCubeTexture = function () {};
-  this.createRawCubeTextureFromUrl = function () {};
-  this.createRawTexture2DArray = function () {};
-  this.createRawTexture3D = function () {};
-  this.updateRawTexture2DArray = function () {};
-  this.updateRawTexture3D = function () {};
-  this.createMultiviewRenderTargetTexture = function () {};
-  this.bindMultiviewFramebuffer = function () {};
-  // this.isInVRExclusivePointerMode = undefined;
-  this.isVRDevicePresent = function () {};
-  this.getVRDevice = function () {};
-  this.initWebVRAsync = function () {};
-  this.enableVR = function () {};
-  this.createQuery = function () {};
-  this.deleteQuery = function () {};
-  this.isQueryResultAvailable = function () {};
-  this.getQueryResult = function () {};
-  this.beginOcclusionQuery = function () {};
-  this.endOcclusionQuery = function () {};
-  this.startTimeQuery = function () {};
-  this.endTimeQuery = function () {};
-  this.createTransformFeedback = function () {};
-  this.deleteTransformFeedback = function () {};
-  this.bindTransformFeedback = function () {};
-  this.beginTransformFeedback = function () {};
-  this.endTransformFeedback = function () {};
-  this.setTranformFeedbackVaryings = function () {};
-  this.bindTransformFeedbackBuffer = function () {};
-  this.registerView = function () {};
-  this.unRegisterView = function () {};
-  this.createEffectForParticles = function () {};
-  this.NpmPackage = "babylonjs@4.1.0";
-  this.Version = "4.1.0";
-  this.Instances = {};
-  this.LastCreatedEngine = null;
-  this.LastCreatedScene = null;
-  this.MarkAllMaterialsAsDirty = function () {};
-  this.DefaultLoadingScreenFactory = function () {};
-  this.ALPHA_DISABLE = 0;
-  this.ALPHA_ADD = 1;
-  this.ALPHA_COMBINE = 2;
-  this.ALPHA_SUBTRACT = 3;
-  this.ALPHA_MULTIPLY = 4;
-  this.ALPHA_MAXIMIZED = 5;
-  this.ALPHA_ONEONE = 6;
-  this.ALPHA_PREMULTIPLIED = 7;
-  this.ALPHA_PREMULTIPLIED_PORTERDUFF = 8;
-  this.ALPHA_INTERPOLATE = 9;
-  this.ALPHA_SCREENMODE = 10;
-  this.DELAYLOADSTATE_NONE = 0;
-  this.DELAYLOADSTATE_LOADED = 1;
-  this.DELAYLOADSTATE_LOADING = 2;
-  this.DELAYLOADSTATE_NOTLOADED = 4;
-  this.NEVER = 512;
-  this.ALWAYS = 519;
-  this.LESS = 513;
-  this.EQUAL = 514;
-  this.LEQUAL = 515;
-  this.GREATER = 516;
-  this.GEQUAL = 518;
-  this.NOTEQUAL = 517;
-  this.KEEP = 7680;
-  this.REPLACE = 7681;
-  this.INCR = 7682;
-  this.DECR = 7683;
-  this.INVERT = 5386;
-  this.INCR_WRAP = 34055;
-  this.DECR_WRAP = 34056;
-  this.TEXTURE_CLAMP_ADDRESSMODE = 0;
-  this.TEXTURE_WRAP_ADDRESSMODE = 1;
-  this.TEXTURE_MIRROR_ADDRESSMODE = 2;
-  this.TEXTUREFORMAT_ALPHA = 0;
-  this.TEXTUREFORMAT_LUMINANCE = 1;
-  this.TEXTUREFORMAT_LUMINANCE_ALPHA = 2;
-  this.TEXTUREFORMAT_RGB = 4;
-  this.TEXTUREFORMAT_RGBA = 5;
-  this.TEXTUREFORMAT_RED = 6;
-  this.TEXTUREFORMAT_R = 6;
-  this.TEXTUREFORMAT_RG = 7;
-  this.TEXTUREFORMAT_RED_INTEGER = 8;
-  this.TEXTUREFORMAT_R_INTEGER = 8;
-  this.TEXTUREFORMAT_RG_INTEGER = 9;
-  this.TEXTUREFORMAT_RGB_INTEGER = 10;
-  this.TEXTUREFORMAT_RGBA_INTEGER = 11;
-  this.TEXTURETYPE_UNSIGNED_BYTE = 0;
-  this.TEXTURETYPE_UNSIGNED_INT = 0;
-  this.TEXTURETYPE_FLOAT = 1;
-  this.TEXTURETYPE_HALF_FLOAT = 2;
-  this.TEXTURETYPE_BYTE = 3;
-  this.TEXTURETYPE_SHORT = 4;
-  this.TEXTURETYPE_UNSIGNED_SHORT = 5;
-  this.TEXTURETYPE_INT = 6;
-  this.TEXTURETYPE_UNSIGNED_INTEGER = 7;
-  this.TEXTURETYPE_UNSIGNED_SHORT_4_4_4_4 = 8;
-  this.TEXTURETYPE_UNSIGNED_SHORT_5_5_5_1 = 9;
-  this.TEXTURETYPE_UNSIGNED_SHORT_5_6_5 = 10;
-  this.TEXTURETYPE_UNSIGNED_INT_2_10_10_10_REV = 11;
-  this.TEXTURETYPE_UNSIGNED_INT_24_8 = 12;
-  this.TEXTURETYPE_UNSIGNED_INT_10F_11F_11F_REV = 13;
-  this.TEXTURETYPE_UNSIGNED_INT_5_9_9_9_REV = 14;
-  this.TEXTURETYPE_FLOAT_32_UNSIGNED_INT_24_8_REV = 15;
-  this.TEXTURE_NEAREST_SAMPLINGMODE = 1;
-  this.TEXTURE_BILINEAR_SAMPLINGMODE = 2;
-  this.TEXTURE_TRILINEAR_SAMPLINGMODE = 3;
-  this.TEXTURE_NEAREST_NEAREST_MIPLINEAR = 8;
-  this.TEXTURE_LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TEXTURE_LINEAR_LINEAR_MIPLINEAR = 3;
-  this.TEXTURE_NEAREST_NEAREST_MIPNEAREST = 4;
-  this.TEXTURE_NEAREST_LINEAR_MIPNEAREST = 5;
-  this.TEXTURE_NEAREST_LINEAR_MIPLINEAR = 6;
-  this.TEXTURE_NEAREST_LINEAR = 7;
-  this.TEXTURE_NEAREST_NEAREST = 1;
-  this.TEXTURE_LINEAR_NEAREST_MIPNEAREST = 9;
-  this.TEXTURE_LINEAR_NEAREST_MIPLINEAR = 10;
-  this.TEXTURE_LINEAR_LINEAR = 2;
-  this.TEXTURE_LINEAR_NEAREST = 12;
-  this.TEXTURE_EXPLICIT_MODE = 0;
-  this.TEXTURE_SPHERICAL_MODE = 1;
-  this.TEXTURE_PLANAR_MODE = 2;
-  this.TEXTURE_CUBIC_MODE = 3;
-  this.TEXTURE_PROJECTION_MODE = 4;
-  this.TEXTURE_SKYBOX_MODE = 5;
-  this.TEXTURE_INVCUBIC_MODE = 6;
-  this.TEXTURE_EQUIRECTANGULAR_MODE = 7;
-  this.TEXTURE_FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.TEXTURE_FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.SCALEMODE_FLOOR = 1;
-  this.SCALEMODE_NEAREST = 2;
-  this.SCALEMODE_CEILING = 3;
-  this.AudioEngineFactory = function () {};
-  this.OfflineProviderFactory = function () {};
-  this.ShadersRepository = "src/Shaders/";
-  this.isSupported = function () {};
-  this.CeilingPOT = function () {};
-  this.FloorPOT = function () {};
-  this.NearestPOT = function () {};
-  this.GetExponentOfTwo = function () {};
-  this.QueueNewFrame = function () {};
-  this.ExceptionList = {};
-  this.CollisionsEpsilon = 0.001;
-};
+BABYLON.Engine = function () {}
+BABYLON.Engine.forcePOTTextures = false;
+BABYLON.Engine.isFullscreen = false;
+BABYLON.Engine.cullBackFaces = true;
+BABYLON.Engine.renderEvenInBackground = true;
+BABYLON.Engine.preventCacheWipeBetweenFrames = false;
+BABYLON.Engine.validateShaderPrograms = false;
+BABYLON.Engine.useReverseDepthBuffer = false;
+BABYLON.Engine.disableUniformBuffers = false;
+BABYLON.Engine.onContextLostObservable = {};
+BABYLON.Engine.onContextRestoredObservable = {};
+BABYLON.Engine.disableVertexArrayObjects = false;
+BABYLON.Engine.premultipliedAlpha = true;
+BABYLON.Engine.onBeforeTextureInitObservable = {};
+BABYLON.Engine.enableUnpackFlipYCached = true;
+BABYLON.Engine.enableOfflineSupport = false;
+BABYLON.Engine.disableManifestCheck = false;
+BABYLON.Engine.scenes = {};
+BABYLON.Engine.onNewSceneAddedObservable = {};
+BABYLON.Engine.postProcesses = {};
+BABYLON.Engine.isPointerLock = false;
+BABYLON.Engine.onResizeObservable = {};
+BABYLON.Engine.onCanvasBlurObservable = {};
+BABYLON.Engine.onCanvasFocusObservable = {};
+BABYLON.Engine.onCanvasPointerOutObservable = {};
+BABYLON.Engine.onBeginFrameObservable = {};
+BABYLON.Engine.customAnimationFrameRequester = null;
+BABYLON.Engine.onEndFrameObservable = {};
+BABYLON.Engine.onBeforeShaderCompilationObservable = {};
+BABYLON.Engine.onAfterShaderCompilationObservable = {};
+BABYLON.Engine.canvasTabIndex = 1;
+BABYLON.Engine.disablePerformanceMonitorInBackground = false;
+BABYLON.Engine.prototype.constructor = function () {};
+// BABYLON.Engine.prototype.performanceMonitor = undefined;
+BABYLON.Engine.prototype.getInputElement = function () {};
+BABYLON.Engine.prototype.getAspectRatio = function () {};
+BABYLON.Engine.prototype.getScreenAspectRatio = function () {};
+BABYLON.Engine.prototype.getRenderingCanvasClientRect = function () {};
+BABYLON.Engine.prototype.getInputElementClientRect = function () {};
+BABYLON.Engine.prototype.isDeterministicLockStep = function () {};
+BABYLON.Engine.prototype.getLockstepMaxSteps = function () {};
+BABYLON.Engine.prototype.getTimeStep = function () {};
+BABYLON.Engine.prototype.generateMipMapsForCubemap = function () {};
+BABYLON.Engine.prototype.setState = function () {};
+BABYLON.Engine.prototype.setZOffset = function () {};
+BABYLON.Engine.prototype.getZOffset = function () {};
+BABYLON.Engine.prototype.setDepthBuffer = function () {};
+BABYLON.Engine.prototype.getDepthWrite = function () {};
+BABYLON.Engine.prototype.setDepthWrite = function () {};
+BABYLON.Engine.prototype.getStencilBuffer = function () {};
+BABYLON.Engine.prototype.setStencilBuffer = function () {};
+BABYLON.Engine.prototype.getStencilMask = function () {};
+BABYLON.Engine.prototype.setStencilMask = function () {};
+BABYLON.Engine.prototype.getStencilFunction = function () {};
+BABYLON.Engine.prototype.getStencilFunctionReference = function () {};
+BABYLON.Engine.prototype.getStencilFunctionMask = function () {};
+BABYLON.Engine.prototype.setStencilFunction = function () {};
+BABYLON.Engine.prototype.setStencilFunctionReference = function () {};
+BABYLON.Engine.prototype.setStencilFunctionMask = function () {};
+BABYLON.Engine.prototype.getStencilOperationFail = function () {};
+BABYLON.Engine.prototype.getStencilOperationDepthFail = function () {};
+BABYLON.Engine.prototype.getStencilOperationPass = function () {};
+BABYLON.Engine.prototype.setStencilOperationFail = function () {};
+BABYLON.Engine.prototype.setStencilOperationDepthFail = function () {};
+BABYLON.Engine.prototype.setStencilOperationPass = function () {};
+BABYLON.Engine.prototype.setDitheringState = function () {};
+BABYLON.Engine.prototype.setRasterizerState = function () {};
+BABYLON.Engine.prototype.getDepthFunction = function () {};
+BABYLON.Engine.prototype.setDepthFunction = function () {};
+BABYLON.Engine.prototype.setDepthFunctionToGreater = function () {};
+BABYLON.Engine.prototype.setDepthFunctionToGreaterOrEqual = function () {};
+BABYLON.Engine.prototype.setDepthFunctionToLess = function () {};
+BABYLON.Engine.prototype.setDepthFunctionToLessOrEqual = function () {};
+BABYLON.Engine.prototype.cacheStencilState = function () {};
+BABYLON.Engine.prototype.restoreStencilState = function () {};
+BABYLON.Engine.prototype.setDirectViewport = function () {};
+BABYLON.Engine.prototype.scissorClear = function () {};
+BABYLON.Engine.prototype.enableScissor = function () {};
+BABYLON.Engine.prototype.disableScissor = function () {};
+BABYLON.Engine.prototype.initWebVR = function () {};
+BABYLON.Engine.prototype.disableVR = function () {};
+BABYLON.Engine.prototype.isVRPresenting = function () {};
+BABYLON.Engine.prototype.getVertexShaderSource = function () {};
+BABYLON.Engine.prototype.getFragmentShaderSource = function () {};
+BABYLON.Engine.prototype.setDepthStencilTexture = function () {};
+BABYLON.Engine.prototype.setTextureFromPostProcess = function () {};
+BABYLON.Engine.prototype.setTextureFromPostProcessOutput = function () {};
+BABYLON.Engine.prototype.switchFullscreen = function () {};
+BABYLON.Engine.prototype.enterFullscreen = function () {};
+BABYLON.Engine.prototype.exitFullscreen = function () {};
+BABYLON.Engine.prototype.enterPointerlock = function () {};
+BABYLON.Engine.prototype.exitPointerlock = function () {};
+BABYLON.Engine.prototype.beginFrame = function () {};
+BABYLON.Engine.prototype.endFrame = function () {};
+BABYLON.Engine.prototype.resize = function () {};
+BABYLON.Engine.prototype.setSize = function () {};
+BABYLON.Engine.prototype.updateDynamicVertexBuffer = function () {};
+BABYLON.Engine.prototype.createShaderProgram = function () {};
+BABYLON.Engine.prototype.getFps = function () {};
+BABYLON.Engine.prototype.getDeltaTime = function () {};
+BABYLON.Engine.prototype.updateDynamicIndexBuffer = function () {};
+BABYLON.Engine.prototype.updateRenderTargetTextureSampleCount = function () {};
+BABYLON.Engine.prototype.updateTextureComparisonFunction = function () {};
+BABYLON.Engine.prototype.createInstancesBuffer = function () {};
+BABYLON.Engine.prototype.deleteInstancesBuffer = function () {};
+BABYLON.Engine.prototype.dispose = function () {};
+BABYLON.Engine.prototype.displayLoadingUI = function () {};
+BABYLON.Engine.prototype.hideLoadingUI = function () {};
+// BABYLON.Engine.prototype.loadingScreen = undefined;
+// BABYLON.Engine.prototype.loadingUIText = undefined;
+// BABYLON.Engine.prototype.loadingUIBackgroundColor = undefined;
+BABYLON.Engine.prototype.updateRawTexture = function () {};
+BABYLON.Engine.prototype.createRawTexture = function () {};
+BABYLON.Engine.prototype.createRawCubeTexture = function () {};
+BABYLON.Engine.prototype.updateRawCubeTexture = function () {};
+BABYLON.Engine.prototype.createRawCubeTextureFromUrl = function () {};
+BABYLON.Engine.prototype.createRawTexture2DArray = function () {};
+BABYLON.Engine.prototype.createRawTexture3D = function () {};
+BABYLON.Engine.prototype.updateRawTexture2DArray = function () {};
+BABYLON.Engine.prototype.updateRawTexture3D = function () {};
+BABYLON.Engine.prototype.createMultiviewRenderTargetTexture = function () {};
+BABYLON.Engine.prototype.bindMultiviewFramebuffer = function () {};
+// BABYLON.Engine.prototype.isInVRExclusivePointerMode = undefined;
+BABYLON.Engine.prototype.isVRDevicePresent = function () {};
+BABYLON.Engine.prototype.getVRDevice = function () {};
+BABYLON.Engine.prototype.initWebVRAsync = function () {};
+BABYLON.Engine.prototype.enableVR = function () {};
+BABYLON.Engine.prototype.createQuery = function () {};
+BABYLON.Engine.prototype.deleteQuery = function () {};
+BABYLON.Engine.prototype.isQueryResultAvailable = function () {};
+BABYLON.Engine.prototype.getQueryResult = function () {};
+BABYLON.Engine.prototype.beginOcclusionQuery = function () {};
+BABYLON.Engine.prototype.endOcclusionQuery = function () {};
+BABYLON.Engine.prototype.startTimeQuery = function () {};
+BABYLON.Engine.prototype.endTimeQuery = function () {};
+BABYLON.Engine.prototype.createTransformFeedback = function () {};
+BABYLON.Engine.prototype.deleteTransformFeedback = function () {};
+BABYLON.Engine.prototype.bindTransformFeedback = function () {};
+BABYLON.Engine.prototype.beginTransformFeedback = function () {};
+BABYLON.Engine.prototype.endTransformFeedback = function () {};
+BABYLON.Engine.prototype.setTranformFeedbackVaryings = function () {};
+BABYLON.Engine.prototype.bindTransformFeedbackBuffer = function () {};
+BABYLON.Engine.prototype.registerView = function () {};
+BABYLON.Engine.prototype.unRegisterView = function () {};
+BABYLON.Engine.prototype.createEffectForParticles = function () {};
+// BABYLON.Engine.prototype.description = undefined;
+BABYLON.Engine.prototype.supportsUniformBuffers = false;
+// BABYLON.Engine.prototype.needPOTTextures = undefined;
+// BABYLON.Engine.prototype.doNotHandleContextLost = undefined;
+// BABYLON.Engine.prototype.framebufferDimensionsObject = undefined;
+// BABYLON.Engine.prototype.texturesSupported = undefined;
+// BABYLON.Engine.prototype.textureFormatInUse = undefined;
+// BABYLON.Engine.prototype.currentViewport = undefined;
+// BABYLON.Engine.prototype.emptyTexture = undefined;
+// BABYLON.Engine.prototype.emptyTexture3D = undefined;
+// BABYLON.Engine.prototype.emptyTexture2DArray = undefined;
+// BABYLON.Engine.prototype.emptyCubeTexture = undefined;
+BABYLON.Engine.prototype.areAllEffectsReady = function () {};
+// BABYLON.Engine.prototype.webGLVersion = undefined;
+BABYLON.Engine.prototype.getClassName = function () {};
+// BABYLON.Engine.prototype.isStencilEnable = undefined;
+BABYLON.Engine.prototype.resetTextureCache = function () {};
+BABYLON.Engine.prototype.getGlInfo = function () {};
+BABYLON.Engine.prototype.setHardwareScalingLevel = function () {};
+BABYLON.Engine.prototype.getHardwareScalingLevel = function () {};
+BABYLON.Engine.prototype.getLoadedTexturesCache = function () {};
+BABYLON.Engine.prototype.getCaps = function () {};
+BABYLON.Engine.prototype.stopRenderLoop = function () {};
+BABYLON.Engine.prototype.getRenderingCanvas = function () {};
+BABYLON.Engine.prototype.getHostWindow = function () {};
+BABYLON.Engine.prototype.getRenderWidth = function () {};
+BABYLON.Engine.prototype.getRenderHeight = function () {};
+BABYLON.Engine.prototype.runRenderLoop = function () {};
+BABYLON.Engine.prototype.clear = function () {};
+BABYLON.Engine.prototype.setViewport = function () {};
+BABYLON.Engine.prototype.bindFramebuffer = function () {};
+BABYLON.Engine.prototype.unBindFramebuffer = function () {};
+BABYLON.Engine.prototype.flushFramebuffer = function () {};
+BABYLON.Engine.prototype.restoreDefaultFramebuffer = function () {};
+BABYLON.Engine.prototype.createVertexBuffer = function () {};
+BABYLON.Engine.prototype.createDynamicVertexBuffer = function () {};
+BABYLON.Engine.prototype.createIndexBuffer = function () {};
+BABYLON.Engine.prototype.bindArrayBuffer = function () {};
+BABYLON.Engine.prototype.bindUniformBlock = function () {};
+BABYLON.Engine.prototype.bindIndexBuffer = function () {};
+BABYLON.Engine.prototype.bindBuffer = function () {};
+BABYLON.Engine.prototype.updateArrayBuffer = function () {};
+BABYLON.Engine.prototype.recordVertexArrayObject = function () {};
+BABYLON.Engine.prototype.bindVertexArrayObject = function () {};
+BABYLON.Engine.prototype.bindBuffersDirectly = function () {};
+BABYLON.Engine.prototype.bindBuffers = function () {};
+BABYLON.Engine.prototype.unbindInstanceAttributes = function () {};
+BABYLON.Engine.prototype.releaseVertexArrayObject = function () {};
+BABYLON.Engine.prototype.updateAndBindInstancesBuffer = function () {};
+BABYLON.Engine.prototype.bindInstancesBuffer = function () {};
+BABYLON.Engine.prototype.disableInstanceAttributeByName = function () {};
+BABYLON.Engine.prototype.disableInstanceAttribute = function () {};
+BABYLON.Engine.prototype.disableAttributeByIndex = function () {};
+BABYLON.Engine.prototype.draw = function () {};
+BABYLON.Engine.prototype.drawPointClouds = function () {};
+BABYLON.Engine.prototype.drawUnIndexed = function () {};
+BABYLON.Engine.prototype.drawElementsType = function () {};
+BABYLON.Engine.prototype.drawArraysType = function () {};
+BABYLON.Engine.prototype.createEffect = function () {};
+BABYLON.Engine.prototype.createRawShaderProgram = function () {};
+BABYLON.Engine.prototype.createPipelineContext = function () {};
+BABYLON.Engine.prototype.getUniforms = function () {};
+BABYLON.Engine.prototype.getAttributes = function () {};
+BABYLON.Engine.prototype.enableEffect = function () {};
+BABYLON.Engine.prototype.setInt = function () {};
+BABYLON.Engine.prototype.setIntArray = function () {};
+BABYLON.Engine.prototype.setIntArray2 = function () {};
+BABYLON.Engine.prototype.setIntArray3 = function () {};
+BABYLON.Engine.prototype.setIntArray4 = function () {};
+BABYLON.Engine.prototype.setArray = function () {};
+BABYLON.Engine.prototype.setArray2 = function () {};
+BABYLON.Engine.prototype.setArray3 = function () {};
+BABYLON.Engine.prototype.setArray4 = function () {};
+BABYLON.Engine.prototype.setMatrices = function () {};
+BABYLON.Engine.prototype.setMatrix3x3 = function () {};
+BABYLON.Engine.prototype.setMatrix2x2 = function () {};
+BABYLON.Engine.prototype.setFloat = function () {};
+BABYLON.Engine.prototype.setFloat2 = function () {};
+BABYLON.Engine.prototype.setFloat3 = function () {};
+BABYLON.Engine.prototype.setFloat4 = function () {};
+BABYLON.Engine.prototype.applyStates = function () {};
+BABYLON.Engine.prototype.setColorWrite = function () {};
+BABYLON.Engine.prototype.getColorWrite = function () {};
+// BABYLON.Engine.prototype.depthCullingState = undefined;
+// BABYLON.Engine.prototype.alphaState = undefined;
+// BABYLON.Engine.prototype.stencilState = undefined;
+BABYLON.Engine.prototype.clearInternalTexturesCache = function () {};
+BABYLON.Engine.prototype.wipeCaches = function () {};
+BABYLON.Engine.prototype.createTexture = function () {};
+BABYLON.Engine.prototype.updateTextureSamplingMode = function () {};
+BABYLON.Engine.prototype.updateTextureWrappingMode = function () {};
+BABYLON.Engine.prototype.updateTextureData = function () {};
+BABYLON.Engine.prototype.bindSamplers = function () {};
+BABYLON.Engine.prototype.unbindAllTextures = function () {};
+BABYLON.Engine.prototype.setTexture = function () {};
+BABYLON.Engine.prototype.setTextureArray = function () {};
+BABYLON.Engine.prototype.unbindAllAttributes = function () {};
+BABYLON.Engine.prototype.releaseEffects = function () {};
+BABYLON.Engine.prototype.attachContextLostEvent = function () {};
+BABYLON.Engine.prototype.attachContextRestoredEvent = function () {};
+BABYLON.Engine.prototype.getError = function () {};
+BABYLON.Engine.prototype.readPixels = function () {};
+BABYLON.Engine.prototype.getHostDocument = function () {};
+BABYLON.Engine.prototype.setAlphaConstants = function () {};
+BABYLON.Engine.prototype.setAlphaMode = function () {};
+BABYLON.Engine.prototype.getAlphaMode = function () {};
+BABYLON.Engine.prototype.setAlphaEquation = function () {};
+BABYLON.Engine.prototype.getAlphaEquation = function () {};
+BABYLON.Engine.prototype.createUniformBuffer = function () {};
+BABYLON.Engine.prototype.createDynamicUniformBuffer = function () {};
+BABYLON.Engine.prototype.updateUniformBuffer = function () {};
+BABYLON.Engine.prototype.bindUniformBuffer = function () {};
+BABYLON.Engine.prototype.bindUniformBufferBase = function () {};
+BABYLON.Engine.prototype.createRenderTargetTexture = function () {};
+BABYLON.Engine.prototype.createDepthStencilTexture = function () {};
+BABYLON.Engine.prototype.createRenderTargetCubeTexture = function () {};
+BABYLON.Engine.prototype.createDynamicTexture = function () {};
+BABYLON.Engine.prototype.updateDynamicTexture = function () {};
+BABYLON.Engine.prototype.createCubeTexture = function () {};
+BABYLON.Engine.prototype.createPrefilteredCubeTexture = function () {};
+BABYLON.Engine.prototype.updateVideoTexture = function () {};
+BABYLON.Engine.prototype.unBindMultiColorAttachmentFramebuffer = function () {};
+BABYLON.Engine.prototype.createMultipleRenderTarget = function () {};
+BABYLON.Engine.prototype.updateMultipleRenderTargetTextureSampleCount = function () {};
+
 
 /** @constructor */
-BABYLON.EngineStore = function () {
-  this.LastCreatedEngine = null;
-  this.LastCreatedScene = null;
-  this.Instances = {};
-  this.UseFallbackTexture = true;
-  this.FallbackTexture = "data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QBmRXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAAExAAIAAAAQAAAATgAAAAAAAABgAAAAAQAAAGAAAAABcGFpbnQubmV0IDQuMC41AP/bAEMABAIDAwMCBAMDAwQEBAQFCQYFBQUFCwgIBgkNCw0NDQsMDA4QFBEODxMPDAwSGBITFRYXFxcOERkbGRYaFBYXFv/bAEMBBAQEBQUFCgYGChYPDA8WFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFv/AABEIAQABAAMBIgACEQEDEQH/xAAfAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBAAAAX0BAgMABBEFEiExQQYTUWEHInEUMoGRoQgjQrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/APH6KKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FCiiigD6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++gooooA+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gUKKKKAPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76CiiigD5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BQooooA+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/voKKKKAPl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FCiiigD6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++gooooA+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gUKKKKAPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76CiiigD5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BQooooA+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/voKKKKAPl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FCiiigD6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++gooooA+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gUKKKKAPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76P//Z";
-};
+BABYLON.EngineStore = function () {}
+
 
 /** @constructor */
-BABYLON.NullEngineOptions = function () {
-  this.renderWidth = 512;
-  this.renderHeight = 256;
-  this.textureSize = 512;
-  this.deterministicLockstep = false;
-  this.lockstepMaxSteps = 4;
-};
+BABYLON.NullEngineOptions = function () {}
+BABYLON.NullEngineOptions.renderWidth = 512;
+BABYLON.NullEngineOptions.renderHeight = 256;
+BABYLON.NullEngineOptions.textureSize = 512;
+BABYLON.NullEngineOptions.deterministicLockstep = false;
+BABYLON.NullEngineOptions.lockstepMaxSteps = 4;
+
 
 /** @constructor */
-BABYLON.NullEngine = function () {
-  this.forcePOTTextures = false;
-  this.isFullscreen = false;
-  this.cullBackFaces = true;
-  this.renderEvenInBackground = true;
-  this.preventCacheWipeBetweenFrames = false;
-  this.validateShaderPrograms = false;
-  this.useReverseDepthBuffer = false;
-  this.disableUniformBuffers = false;
-  this.onContextLostObservable = {};
-  this.onContextRestoredObservable = {};
-  this.disableVertexArrayObjects = false;
-  this.premultipliedAlpha = true;
-  this.onBeforeTextureInitObservable = {};
-  this.enableUnpackFlipYCached = true;
-  this.enableOfflineSupport = false;
-  this.disableManifestCheck = false;
-  this.scenes = {};
-  this.onNewSceneAddedObservable = {};
-  this.postProcesses = {};
-  this.isPointerLock = false;
-  this.onResizeObservable = {};
-  this.onCanvasBlurObservable = {};
-  this.onCanvasFocusObservable = {};
-  this.onCanvasPointerOutObservable = {};
-  this.onBeginFrameObservable = {};
-  this.customAnimationFrameRequester = null;
-  this.onEndFrameObservable = {};
-  this.onBeforeShaderCompilationObservable = {};
-  this.onAfterShaderCompilationObservable = {};
-  this.canvasTabIndex = 1;
-  this.disablePerformanceMonitorInBackground = false;
-  this.constructor = function () {};
-  this.isDeterministicLockStep = function () {};
-  this.getLockstepMaxSteps = function () {};
-  this.getHardwareScalingLevel = function () {};
-  this.createVertexBuffer = function () {};
-  this.createIndexBuffer = function () {};
-  this.clear = function () {};
-  this.getRenderWidth = function () {};
-  this.getRenderHeight = function () {};
-  this.setViewport = function () {};
-  this.createShaderProgram = function () {};
-  this.getUniforms = function () {};
-  this.getAttributes = function () {};
-  this.bindSamplers = function () {};
-  this.enableEffect = function () {};
-  this.setState = function () {};
-  this.setIntArray = function () {};
-  this.setIntArray2 = function () {};
-  this.setIntArray3 = function () {};
-  this.setIntArray4 = function () {};
-  this.setFloatArray = function () {};
-  this.setFloatArray2 = function () {};
-  this.setFloatArray3 = function () {};
-  this.setFloatArray4 = function () {};
-  this.setArray = function () {};
-  this.setArray2 = function () {};
-  this.setArray3 = function () {};
-  this.setArray4 = function () {};
-  this.setMatrices = function () {};
-  this.setMatrix3x3 = function () {};
-  this.setMatrix2x2 = function () {};
-  this.setFloat = function () {};
-  this.setFloat2 = function () {};
-  this.setFloat3 = function () {};
-  this.setBool = function () {};
-  this.setFloat4 = function () {};
-  this.setAlphaMode = function () {};
-  this.bindBuffers = function () {};
-  this.wipeCaches = function () {};
-  this.draw = function () {};
-  this.drawElementsType = function () {};
-  this.drawArraysType = function () {};
-  this.createTexture = function () {};
-  this.createRenderTargetTexture = function () {};
-  this.updateTextureSamplingMode = function () {};
-  this.bindFramebuffer = function () {};
-  this.unBindFramebuffer = function () {};
-  this.createDynamicVertexBuffer = function () {};
-  this.updateDynamicTexture = function () {};
-  this.areAllEffectsReady = function () {};
-  this.getError = function () {};
-  this.updateDynamicIndexBuffer = function () {};
-  this.updateDynamicVertexBuffer = function () {};
-  this.releaseEffects = function () {};
-  this.displayLoadingUI = function () {};
-  this.hideLoadingUI = function () {};
-  this.performanceMonitor = {};
-  this.getInputElement = function () {};
-  this.getAspectRatio = function () {};
-  this.getScreenAspectRatio = function () {};
-  this.getRenderingCanvasClientRect = function () {};
-  this.getInputElementClientRect = function () {};
-  this.getTimeStep = function () {};
-  this.generateMipMapsForCubemap = function () {};
-  this.setZOffset = function () {};
-  this.getZOffset = function () {};
-  this.setDepthBuffer = function () {};
-  this.getDepthWrite = function () {};
-  this.setDepthWrite = function () {};
-  this.getStencilBuffer = function () {};
-  this.setStencilBuffer = function () {};
-  this.getStencilMask = function () {};
-  this.setStencilMask = function () {};
-  this.getStencilFunction = function () {};
-  this.getStencilFunctionReference = function () {};
-  this.getStencilFunctionMask = function () {};
-  this.setStencilFunction = function () {};
-  this.setStencilFunctionReference = function () {};
-  this.setStencilFunctionMask = function () {};
-  this.getStencilOperationFail = function () {};
-  this.getStencilOperationDepthFail = function () {};
-  this.getStencilOperationPass = function () {};
-  this.setStencilOperationFail = function () {};
-  this.setStencilOperationDepthFail = function () {};
-  this.setStencilOperationPass = function () {};
-  this.setDitheringState = function () {};
-  this.setRasterizerState = function () {};
-  this.getDepthFunction = function () {};
-  this.setDepthFunction = function () {};
-  this.setDepthFunctionToGreater = function () {};
-  this.setDepthFunctionToGreaterOrEqual = function () {};
-  this.setDepthFunctionToLess = function () {};
-  this.setDepthFunctionToLessOrEqual = function () {};
-  this.cacheStencilState = function () {};
-  this.restoreStencilState = function () {};
-  this.setDirectViewport = function () {};
-  this.scissorClear = function () {};
-  this.enableScissor = function () {};
-  this.disableScissor = function () {};
-  this.initWebVR = function () {};
-  this.disableVR = function () {};
-  this.isVRPresenting = function () {};
-  this.getVertexShaderSource = function () {};
-  this.getFragmentShaderSource = function () {};
-  this.setDepthStencilTexture = function () {};
-  this.setTextureFromPostProcess = function () {};
-  this.setTextureFromPostProcessOutput = function () {};
-  this.switchFullscreen = function () {};
-  this.enterFullscreen = function () {};
-  this.exitFullscreen = function () {};
-  this.enterPointerlock = function () {};
-  this.exitPointerlock = function () {};
-  this.beginFrame = function () {};
-  this.endFrame = function () {};
-  this.resize = function () {};
-  this.setSize = function () {};
-  this.getFps = function () {};
-  this.getDeltaTime = function () {};
-  this.updateRenderTargetTextureSampleCount = function () {};
-  this.updateTextureComparisonFunction = function () {};
-  this.createInstancesBuffer = function () {};
-  this.deleteInstancesBuffer = function () {};
-  this.dispose = function () {};
-  // this.loadingScreen = undefined;
-  // this.loadingUIText = undefined;
-  // this.loadingUIBackgroundColor = undefined;
-  this.updateRawTexture = function () {};
-  this.createRawTexture = function () {};
-  this.createRawCubeTexture = function () {};
-  this.updateRawCubeTexture = function () {};
-  this.createRawCubeTextureFromUrl = function () {};
-  this.createRawTexture2DArray = function () {};
-  this.createRawTexture3D = function () {};
-  this.updateRawTexture2DArray = function () {};
-  this.updateRawTexture3D = function () {};
-  this.createMultiviewRenderTargetTexture = function () {};
-  this.bindMultiviewFramebuffer = function () {};
-  // this.isInVRExclusivePointerMode = undefined;
-  this.isVRDevicePresent = function () {};
-  this.getVRDevice = function () {};
-  this.initWebVRAsync = function () {};
-  this.enableVR = function () {};
-  this.createQuery = function () {};
-  this.deleteQuery = function () {};
-  this.isQueryResultAvailable = function () {};
-  this.getQueryResult = function () {};
-  this.beginOcclusionQuery = function () {};
-  this.endOcclusionQuery = function () {};
-  this.startTimeQuery = function () {};
-  this.endTimeQuery = function () {};
-  this.createTransformFeedback = function () {};
-  this.deleteTransformFeedback = function () {};
-  this.bindTransformFeedback = function () {};
-  this.beginTransformFeedback = function () {};
-  this.endTransformFeedback = function () {};
-  this.setTranformFeedbackVaryings = function () {};
-  this.bindTransformFeedbackBuffer = function () {};
-  this.registerView = function () {};
-  this.unRegisterView = function () {};
-  this.createEffectForParticles = function () {};
-  this.description = "WebGL1";
-  this.supportsUniformBuffers = false;
-  this.needPOTTextures = true;
-  this.doNotHandleContextLost = false;
-  // this.framebufferDimensionsObject = undefined;
-  this.texturesSupported = {};
-  // this.textureFormatInUse = undefined;
-  // this.currentViewport = undefined;
-  this.NpmPackage = "babylonjs@4.1.0";
-  this.Version = "4.1.0";
-  this.Instances = {};
-  this.LastCreatedEngine = {};
-  this.LastCreatedScene = null;
-  this.MarkAllMaterialsAsDirty = function () {};
-  this.DefaultLoadingScreenFactory = function () {};
-  this.ALPHA_DISABLE = 0;
-  this.ALPHA_ADD = 1;
-  this.ALPHA_COMBINE = 2;
-  this.ALPHA_SUBTRACT = 3;
-  this.ALPHA_MULTIPLY = 4;
-  this.ALPHA_MAXIMIZED = 5;
-  this.ALPHA_ONEONE = 6;
-  this.ALPHA_PREMULTIPLIED = 7;
-  this.ALPHA_PREMULTIPLIED_PORTERDUFF = 8;
-  this.ALPHA_INTERPOLATE = 9;
-  this.ALPHA_SCREENMODE = 10;
-  this.DELAYLOADSTATE_NONE = 0;
-  this.DELAYLOADSTATE_LOADED = 1;
-  this.DELAYLOADSTATE_LOADING = 2;
-  this.DELAYLOADSTATE_NOTLOADED = 4;
-  this.NEVER = 512;
-  this.ALWAYS = 519;
-  this.LESS = 513;
-  this.EQUAL = 514;
-  this.LEQUAL = 515;
-  this.GREATER = 516;
-  this.GEQUAL = 518;
-  this.NOTEQUAL = 517;
-  this.KEEP = 7680;
-  this.REPLACE = 7681;
-  this.INCR = 7682;
-  this.DECR = 7683;
-  this.INVERT = 5386;
-  this.INCR_WRAP = 34055;
-  this.DECR_WRAP = 34056;
-  this.TEXTURE_CLAMP_ADDRESSMODE = 0;
-  this.TEXTURE_WRAP_ADDRESSMODE = 1;
-  this.TEXTURE_MIRROR_ADDRESSMODE = 2;
-  this.TEXTUREFORMAT_ALPHA = 0;
-  this.TEXTUREFORMAT_LUMINANCE = 1;
-  this.TEXTUREFORMAT_LUMINANCE_ALPHA = 2;
-  this.TEXTUREFORMAT_RGB = 4;
-  this.TEXTUREFORMAT_RGBA = 5;
-  this.TEXTUREFORMAT_RED = 6;
-  this.TEXTUREFORMAT_R = 6;
-  this.TEXTUREFORMAT_RG = 7;
-  this.TEXTUREFORMAT_RED_INTEGER = 8;
-  this.TEXTUREFORMAT_R_INTEGER = 8;
-  this.TEXTUREFORMAT_RG_INTEGER = 9;
-  this.TEXTUREFORMAT_RGB_INTEGER = 10;
-  this.TEXTUREFORMAT_RGBA_INTEGER = 11;
-  this.TEXTURETYPE_UNSIGNED_BYTE = 0;
-  this.TEXTURETYPE_UNSIGNED_INT = 0;
-  this.TEXTURETYPE_FLOAT = 1;
-  this.TEXTURETYPE_HALF_FLOAT = 2;
-  this.TEXTURETYPE_BYTE = 3;
-  this.TEXTURETYPE_SHORT = 4;
-  this.TEXTURETYPE_UNSIGNED_SHORT = 5;
-  this.TEXTURETYPE_INT = 6;
-  this.TEXTURETYPE_UNSIGNED_INTEGER = 7;
-  this.TEXTURETYPE_UNSIGNED_SHORT_4_4_4_4 = 8;
-  this.TEXTURETYPE_UNSIGNED_SHORT_5_5_5_1 = 9;
-  this.TEXTURETYPE_UNSIGNED_SHORT_5_6_5 = 10;
-  this.TEXTURETYPE_UNSIGNED_INT_2_10_10_10_REV = 11;
-  this.TEXTURETYPE_UNSIGNED_INT_24_8 = 12;
-  this.TEXTURETYPE_UNSIGNED_INT_10F_11F_11F_REV = 13;
-  this.TEXTURETYPE_UNSIGNED_INT_5_9_9_9_REV = 14;
-  this.TEXTURETYPE_FLOAT_32_UNSIGNED_INT_24_8_REV = 15;
-  this.TEXTURE_NEAREST_SAMPLINGMODE = 1;
-  this.TEXTURE_BILINEAR_SAMPLINGMODE = 2;
-  this.TEXTURE_TRILINEAR_SAMPLINGMODE = 3;
-  this.TEXTURE_NEAREST_NEAREST_MIPLINEAR = 8;
-  this.TEXTURE_LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TEXTURE_LINEAR_LINEAR_MIPLINEAR = 3;
-  this.TEXTURE_NEAREST_NEAREST_MIPNEAREST = 4;
-  this.TEXTURE_NEAREST_LINEAR_MIPNEAREST = 5;
-  this.TEXTURE_NEAREST_LINEAR_MIPLINEAR = 6;
-  this.TEXTURE_NEAREST_LINEAR = 7;
-  this.TEXTURE_NEAREST_NEAREST = 1;
-  this.TEXTURE_LINEAR_NEAREST_MIPNEAREST = 9;
-  this.TEXTURE_LINEAR_NEAREST_MIPLINEAR = 10;
-  this.TEXTURE_LINEAR_LINEAR = 2;
-  this.TEXTURE_LINEAR_NEAREST = 12;
-  this.TEXTURE_EXPLICIT_MODE = 0;
-  this.TEXTURE_SPHERICAL_MODE = 1;
-  this.TEXTURE_PLANAR_MODE = 2;
-  this.TEXTURE_CUBIC_MODE = 3;
-  this.TEXTURE_PROJECTION_MODE = 4;
-  this.TEXTURE_SKYBOX_MODE = 5;
-  this.TEXTURE_INVCUBIC_MODE = 6;
-  this.TEXTURE_EQUIRECTANGULAR_MODE = 7;
-  this.TEXTURE_FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.TEXTURE_FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.SCALEMODE_FLOOR = 1;
-  this.SCALEMODE_NEAREST = 2;
-  this.SCALEMODE_CEILING = 3;
-  this.AudioEngineFactory = function () {};
-  this.OfflineProviderFactory = function () {};
-  this.ShadersRepository = "src/Shaders/";
-  this.isSupported = function () {};
-  this.CeilingPOT = function () {};
-  this.FloorPOT = function () {};
-  this.NearestPOT = function () {};
-  this.GetExponentOfTwo = function () {};
-  this.QueueNewFrame = function () {};
-  this.ExceptionList = {};
-  this.CollisionsEpsilon = 0.001;
-};
+BABYLON.NullEngine = function () {}
+BABYLON.NullEngine.forcePOTTextures = false;
+BABYLON.NullEngine.isFullscreen = false;
+BABYLON.NullEngine.cullBackFaces = true;
+BABYLON.NullEngine.renderEvenInBackground = true;
+BABYLON.NullEngine.preventCacheWipeBetweenFrames = false;
+BABYLON.NullEngine.validateShaderPrograms = false;
+BABYLON.NullEngine.useReverseDepthBuffer = false;
+BABYLON.NullEngine.disableUniformBuffers = false;
+BABYLON.NullEngine.onContextLostObservable = {};
+BABYLON.NullEngine.onContextRestoredObservable = {};
+BABYLON.NullEngine.disableVertexArrayObjects = false;
+BABYLON.NullEngine.premultipliedAlpha = true;
+BABYLON.NullEngine.onBeforeTextureInitObservable = {};
+BABYLON.NullEngine.enableUnpackFlipYCached = true;
+BABYLON.NullEngine.enableOfflineSupport = false;
+BABYLON.NullEngine.disableManifestCheck = false;
+BABYLON.NullEngine.scenes = {};
+BABYLON.NullEngine.onNewSceneAddedObservable = {};
+BABYLON.NullEngine.postProcesses = {};
+BABYLON.NullEngine.isPointerLock = false;
+BABYLON.NullEngine.onResizeObservable = {};
+BABYLON.NullEngine.onCanvasBlurObservable = {};
+BABYLON.NullEngine.onCanvasFocusObservable = {};
+BABYLON.NullEngine.onCanvasPointerOutObservable = {};
+BABYLON.NullEngine.onBeginFrameObservable = {};
+BABYLON.NullEngine.customAnimationFrameRequester = null;
+BABYLON.NullEngine.onEndFrameObservable = {};
+BABYLON.NullEngine.onBeforeShaderCompilationObservable = {};
+BABYLON.NullEngine.onAfterShaderCompilationObservable = {};
+BABYLON.NullEngine.canvasTabIndex = 1;
+BABYLON.NullEngine.disablePerformanceMonitorInBackground = false;
+BABYLON.NullEngine.prototype.constructor = function () {};
+BABYLON.NullEngine.prototype.isDeterministicLockStep = function () {};
+BABYLON.NullEngine.prototype.getLockstepMaxSteps = function () {};
+BABYLON.NullEngine.prototype.getHardwareScalingLevel = function () {};
+BABYLON.NullEngine.prototype.createVertexBuffer = function () {};
+BABYLON.NullEngine.prototype.createIndexBuffer = function () {};
+BABYLON.NullEngine.prototype.clear = function () {};
+BABYLON.NullEngine.prototype.getRenderWidth = function () {};
+BABYLON.NullEngine.prototype.getRenderHeight = function () {};
+BABYLON.NullEngine.prototype.setViewport = function () {};
+BABYLON.NullEngine.prototype.createShaderProgram = function () {};
+BABYLON.NullEngine.prototype.getUniforms = function () {};
+BABYLON.NullEngine.prototype.getAttributes = function () {};
+BABYLON.NullEngine.prototype.bindSamplers = function () {};
+BABYLON.NullEngine.prototype.enableEffect = function () {};
+BABYLON.NullEngine.prototype.setState = function () {};
+BABYLON.NullEngine.prototype.setIntArray = function () {};
+BABYLON.NullEngine.prototype.setIntArray2 = function () {};
+BABYLON.NullEngine.prototype.setIntArray3 = function () {};
+BABYLON.NullEngine.prototype.setIntArray4 = function () {};
+BABYLON.NullEngine.prototype.setFloatArray = function () {};
+BABYLON.NullEngine.prototype.setFloatArray2 = function () {};
+BABYLON.NullEngine.prototype.setFloatArray3 = function () {};
+BABYLON.NullEngine.prototype.setFloatArray4 = function () {};
+BABYLON.NullEngine.prototype.setArray = function () {};
+BABYLON.NullEngine.prototype.setArray2 = function () {};
+BABYLON.NullEngine.prototype.setArray3 = function () {};
+BABYLON.NullEngine.prototype.setArray4 = function () {};
+BABYLON.NullEngine.prototype.setMatrices = function () {};
+BABYLON.NullEngine.prototype.setMatrix3x3 = function () {};
+BABYLON.NullEngine.prototype.setMatrix2x2 = function () {};
+BABYLON.NullEngine.prototype.setFloat = function () {};
+BABYLON.NullEngine.prototype.setFloat2 = function () {};
+BABYLON.NullEngine.prototype.setFloat3 = function () {};
+BABYLON.NullEngine.prototype.setBool = function () {};
+BABYLON.NullEngine.prototype.setFloat4 = function () {};
+BABYLON.NullEngine.prototype.setAlphaMode = function () {};
+BABYLON.NullEngine.prototype.bindBuffers = function () {};
+BABYLON.NullEngine.prototype.wipeCaches = function () {};
+BABYLON.NullEngine.prototype.draw = function () {};
+BABYLON.NullEngine.prototype.drawElementsType = function () {};
+BABYLON.NullEngine.prototype.drawArraysType = function () {};
+BABYLON.NullEngine.prototype.createTexture = function () {};
+BABYLON.NullEngine.prototype.createRenderTargetTexture = function () {};
+BABYLON.NullEngine.prototype.updateTextureSamplingMode = function () {};
+BABYLON.NullEngine.prototype.bindFramebuffer = function () {};
+BABYLON.NullEngine.prototype.unBindFramebuffer = function () {};
+BABYLON.NullEngine.prototype.createDynamicVertexBuffer = function () {};
+BABYLON.NullEngine.prototype.updateDynamicTexture = function () {};
+BABYLON.NullEngine.prototype.areAllEffectsReady = function () {};
+BABYLON.NullEngine.prototype.getError = function () {};
+BABYLON.NullEngine.prototype.updateDynamicIndexBuffer = function () {};
+BABYLON.NullEngine.prototype.updateDynamicVertexBuffer = function () {};
+BABYLON.NullEngine.prototype.releaseEffects = function () {};
+BABYLON.NullEngine.prototype.displayLoadingUI = function () {};
+BABYLON.NullEngine.prototype.hideLoadingUI = function () {};
+// BABYLON.NullEngine.prototype.performanceMonitor = undefined;
+BABYLON.NullEngine.prototype.getInputElement = function () {};
+BABYLON.NullEngine.prototype.getAspectRatio = function () {};
+BABYLON.NullEngine.prototype.getScreenAspectRatio = function () {};
+BABYLON.NullEngine.prototype.getRenderingCanvasClientRect = function () {};
+BABYLON.NullEngine.prototype.getInputElementClientRect = function () {};
+BABYLON.NullEngine.prototype.getTimeStep = function () {};
+BABYLON.NullEngine.prototype.generateMipMapsForCubemap = function () {};
+BABYLON.NullEngine.prototype.setZOffset = function () {};
+BABYLON.NullEngine.prototype.getZOffset = function () {};
+BABYLON.NullEngine.prototype.setDepthBuffer = function () {};
+BABYLON.NullEngine.prototype.getDepthWrite = function () {};
+BABYLON.NullEngine.prototype.setDepthWrite = function () {};
+BABYLON.NullEngine.prototype.getStencilBuffer = function () {};
+BABYLON.NullEngine.prototype.setStencilBuffer = function () {};
+BABYLON.NullEngine.prototype.getStencilMask = function () {};
+BABYLON.NullEngine.prototype.setStencilMask = function () {};
+BABYLON.NullEngine.prototype.getStencilFunction = function () {};
+BABYLON.NullEngine.prototype.getStencilFunctionReference = function () {};
+BABYLON.NullEngine.prototype.getStencilFunctionMask = function () {};
+BABYLON.NullEngine.prototype.setStencilFunction = function () {};
+BABYLON.NullEngine.prototype.setStencilFunctionReference = function () {};
+BABYLON.NullEngine.prototype.setStencilFunctionMask = function () {};
+BABYLON.NullEngine.prototype.getStencilOperationFail = function () {};
+BABYLON.NullEngine.prototype.getStencilOperationDepthFail = function () {};
+BABYLON.NullEngine.prototype.getStencilOperationPass = function () {};
+BABYLON.NullEngine.prototype.setStencilOperationFail = function () {};
+BABYLON.NullEngine.prototype.setStencilOperationDepthFail = function () {};
+BABYLON.NullEngine.prototype.setStencilOperationPass = function () {};
+BABYLON.NullEngine.prototype.setDitheringState = function () {};
+BABYLON.NullEngine.prototype.setRasterizerState = function () {};
+BABYLON.NullEngine.prototype.getDepthFunction = function () {};
+BABYLON.NullEngine.prototype.setDepthFunction = function () {};
+BABYLON.NullEngine.prototype.setDepthFunctionToGreater = function () {};
+BABYLON.NullEngine.prototype.setDepthFunctionToGreaterOrEqual = function () {};
+BABYLON.NullEngine.prototype.setDepthFunctionToLess = function () {};
+BABYLON.NullEngine.prototype.setDepthFunctionToLessOrEqual = function () {};
+BABYLON.NullEngine.prototype.cacheStencilState = function () {};
+BABYLON.NullEngine.prototype.restoreStencilState = function () {};
+BABYLON.NullEngine.prototype.setDirectViewport = function () {};
+BABYLON.NullEngine.prototype.scissorClear = function () {};
+BABYLON.NullEngine.prototype.enableScissor = function () {};
+BABYLON.NullEngine.prototype.disableScissor = function () {};
+BABYLON.NullEngine.prototype.initWebVR = function () {};
+BABYLON.NullEngine.prototype.disableVR = function () {};
+BABYLON.NullEngine.prototype.isVRPresenting = function () {};
+BABYLON.NullEngine.prototype.getVertexShaderSource = function () {};
+BABYLON.NullEngine.prototype.getFragmentShaderSource = function () {};
+BABYLON.NullEngine.prototype.setDepthStencilTexture = function () {};
+BABYLON.NullEngine.prototype.setTextureFromPostProcess = function () {};
+BABYLON.NullEngine.prototype.setTextureFromPostProcessOutput = function () {};
+BABYLON.NullEngine.prototype.switchFullscreen = function () {};
+BABYLON.NullEngine.prototype.enterFullscreen = function () {};
+BABYLON.NullEngine.prototype.exitFullscreen = function () {};
+BABYLON.NullEngine.prototype.enterPointerlock = function () {};
+BABYLON.NullEngine.prototype.exitPointerlock = function () {};
+BABYLON.NullEngine.prototype.beginFrame = function () {};
+BABYLON.NullEngine.prototype.endFrame = function () {};
+BABYLON.NullEngine.prototype.resize = function () {};
+BABYLON.NullEngine.prototype.setSize = function () {};
+BABYLON.NullEngine.prototype.getFps = function () {};
+BABYLON.NullEngine.prototype.getDeltaTime = function () {};
+BABYLON.NullEngine.prototype.updateRenderTargetTextureSampleCount = function () {};
+BABYLON.NullEngine.prototype.updateTextureComparisonFunction = function () {};
+BABYLON.NullEngine.prototype.createInstancesBuffer = function () {};
+BABYLON.NullEngine.prototype.deleteInstancesBuffer = function () {};
+BABYLON.NullEngine.prototype.dispose = function () {};
+// BABYLON.NullEngine.prototype.loadingScreen = undefined;
+// BABYLON.NullEngine.prototype.loadingUIText = undefined;
+// BABYLON.NullEngine.prototype.loadingUIBackgroundColor = undefined;
+BABYLON.NullEngine.prototype.updateRawTexture = function () {};
+BABYLON.NullEngine.prototype.createRawTexture = function () {};
+BABYLON.NullEngine.prototype.createRawCubeTexture = function () {};
+BABYLON.NullEngine.prototype.updateRawCubeTexture = function () {};
+BABYLON.NullEngine.prototype.createRawCubeTextureFromUrl = function () {};
+BABYLON.NullEngine.prototype.createRawTexture2DArray = function () {};
+BABYLON.NullEngine.prototype.createRawTexture3D = function () {};
+BABYLON.NullEngine.prototype.updateRawTexture2DArray = function () {};
+BABYLON.NullEngine.prototype.updateRawTexture3D = function () {};
+BABYLON.NullEngine.prototype.createMultiviewRenderTargetTexture = function () {};
+BABYLON.NullEngine.prototype.bindMultiviewFramebuffer = function () {};
+// BABYLON.NullEngine.prototype.isInVRExclusivePointerMode = undefined;
+BABYLON.NullEngine.prototype.isVRDevicePresent = function () {};
+BABYLON.NullEngine.prototype.getVRDevice = function () {};
+BABYLON.NullEngine.prototype.initWebVRAsync = function () {};
+BABYLON.NullEngine.prototype.enableVR = function () {};
+BABYLON.NullEngine.prototype.createQuery = function () {};
+BABYLON.NullEngine.prototype.deleteQuery = function () {};
+BABYLON.NullEngine.prototype.isQueryResultAvailable = function () {};
+BABYLON.NullEngine.prototype.getQueryResult = function () {};
+BABYLON.NullEngine.prototype.beginOcclusionQuery = function () {};
+BABYLON.NullEngine.prototype.endOcclusionQuery = function () {};
+BABYLON.NullEngine.prototype.startTimeQuery = function () {};
+BABYLON.NullEngine.prototype.endTimeQuery = function () {};
+BABYLON.NullEngine.prototype.createTransformFeedback = function () {};
+BABYLON.NullEngine.prototype.deleteTransformFeedback = function () {};
+BABYLON.NullEngine.prototype.bindTransformFeedback = function () {};
+BABYLON.NullEngine.prototype.beginTransformFeedback = function () {};
+BABYLON.NullEngine.prototype.endTransformFeedback = function () {};
+BABYLON.NullEngine.prototype.setTranformFeedbackVaryings = function () {};
+BABYLON.NullEngine.prototype.bindTransformFeedbackBuffer = function () {};
+BABYLON.NullEngine.prototype.registerView = function () {};
+BABYLON.NullEngine.prototype.unRegisterView = function () {};
+BABYLON.NullEngine.prototype.createEffectForParticles = function () {};
+// BABYLON.NullEngine.prototype.description = undefined;
+BABYLON.NullEngine.prototype.supportsUniformBuffers = false;
+// BABYLON.NullEngine.prototype.needPOTTextures = undefined;
+// BABYLON.NullEngine.prototype.doNotHandleContextLost = undefined;
+// BABYLON.NullEngine.prototype.framebufferDimensionsObject = undefined;
+// BABYLON.NullEngine.prototype.texturesSupported = undefined;
+// BABYLON.NullEngine.prototype.textureFormatInUse = undefined;
+// BABYLON.NullEngine.prototype.currentViewport = undefined;
+// BABYLON.NullEngine.prototype.emptyTexture = undefined;
+// BABYLON.NullEngine.prototype.emptyTexture3D = undefined;
+// BABYLON.NullEngine.prototype.emptyTexture2DArray = undefined;
+// BABYLON.NullEngine.prototype.emptyCubeTexture = undefined;
+// BABYLON.NullEngine.prototype.webGLVersion = undefined;
+BABYLON.NullEngine.prototype.getClassName = function () {};
+// BABYLON.NullEngine.prototype.isStencilEnable = undefined;
+BABYLON.NullEngine.prototype.resetTextureCache = function () {};
+BABYLON.NullEngine.prototype.getGlInfo = function () {};
+BABYLON.NullEngine.prototype.setHardwareScalingLevel = function () {};
+BABYLON.NullEngine.prototype.getLoadedTexturesCache = function () {};
+BABYLON.NullEngine.prototype.getCaps = function () {};
+BABYLON.NullEngine.prototype.stopRenderLoop = function () {};
+BABYLON.NullEngine.prototype.getRenderingCanvas = function () {};
+BABYLON.NullEngine.prototype.getHostWindow = function () {};
+BABYLON.NullEngine.prototype.runRenderLoop = function () {};
+BABYLON.NullEngine.prototype.flushFramebuffer = function () {};
+BABYLON.NullEngine.prototype.restoreDefaultFramebuffer = function () {};
+BABYLON.NullEngine.prototype.bindArrayBuffer = function () {};
+BABYLON.NullEngine.prototype.bindUniformBlock = function () {};
+BABYLON.NullEngine.prototype.bindIndexBuffer = function () {};
+BABYLON.NullEngine.prototype.bindBuffer = function () {};
+BABYLON.NullEngine.prototype.updateArrayBuffer = function () {};
+BABYLON.NullEngine.prototype.recordVertexArrayObject = function () {};
+BABYLON.NullEngine.prototype.bindVertexArrayObject = function () {};
+BABYLON.NullEngine.prototype.bindBuffersDirectly = function () {};
+BABYLON.NullEngine.prototype.unbindInstanceAttributes = function () {};
+BABYLON.NullEngine.prototype.releaseVertexArrayObject = function () {};
+BABYLON.NullEngine.prototype.updateAndBindInstancesBuffer = function () {};
+BABYLON.NullEngine.prototype.bindInstancesBuffer = function () {};
+BABYLON.NullEngine.prototype.disableInstanceAttributeByName = function () {};
+BABYLON.NullEngine.prototype.disableInstanceAttribute = function () {};
+BABYLON.NullEngine.prototype.disableAttributeByIndex = function () {};
+BABYLON.NullEngine.prototype.drawPointClouds = function () {};
+BABYLON.NullEngine.prototype.drawUnIndexed = function () {};
+BABYLON.NullEngine.prototype.createEffect = function () {};
+BABYLON.NullEngine.prototype.createRawShaderProgram = function () {};
+BABYLON.NullEngine.prototype.createPipelineContext = function () {};
+BABYLON.NullEngine.prototype.setInt = function () {};
+BABYLON.NullEngine.prototype.applyStates = function () {};
+BABYLON.NullEngine.prototype.setColorWrite = function () {};
+BABYLON.NullEngine.prototype.getColorWrite = function () {};
+// BABYLON.NullEngine.prototype.depthCullingState = undefined;
+// BABYLON.NullEngine.prototype.alphaState = undefined;
+// BABYLON.NullEngine.prototype.stencilState = undefined;
+BABYLON.NullEngine.prototype.clearInternalTexturesCache = function () {};
+BABYLON.NullEngine.prototype.updateTextureWrappingMode = function () {};
+BABYLON.NullEngine.prototype.updateTextureData = function () {};
+BABYLON.NullEngine.prototype.unbindAllTextures = function () {};
+BABYLON.NullEngine.prototype.setTexture = function () {};
+BABYLON.NullEngine.prototype.setTextureArray = function () {};
+BABYLON.NullEngine.prototype.unbindAllAttributes = function () {};
+BABYLON.NullEngine.prototype.attachContextLostEvent = function () {};
+BABYLON.NullEngine.prototype.attachContextRestoredEvent = function () {};
+BABYLON.NullEngine.prototype.readPixels = function () {};
+BABYLON.NullEngine.prototype.getHostDocument = function () {};
+BABYLON.NullEngine.prototype.setAlphaConstants = function () {};
+BABYLON.NullEngine.prototype.getAlphaMode = function () {};
+BABYLON.NullEngine.prototype.setAlphaEquation = function () {};
+BABYLON.NullEngine.prototype.getAlphaEquation = function () {};
+BABYLON.NullEngine.prototype.createUniformBuffer = function () {};
+BABYLON.NullEngine.prototype.createDynamicUniformBuffer = function () {};
+BABYLON.NullEngine.prototype.updateUniformBuffer = function () {};
+BABYLON.NullEngine.prototype.bindUniformBuffer = function () {};
+BABYLON.NullEngine.prototype.bindUniformBufferBase = function () {};
+BABYLON.NullEngine.prototype.createDepthStencilTexture = function () {};
+BABYLON.NullEngine.prototype.createRenderTargetCubeTexture = function () {};
+BABYLON.NullEngine.prototype.createDynamicTexture = function () {};
+BABYLON.NullEngine.prototype.createCubeTexture = function () {};
+BABYLON.NullEngine.prototype.createPrefilteredCubeTexture = function () {};
+BABYLON.NullEngine.prototype.updateVideoTexture = function () {};
+BABYLON.NullEngine.prototype.unBindMultiColorAttachmentFramebuffer = function () {};
+BABYLON.NullEngine.prototype.createMultipleRenderTarget = function () {};
+BABYLON.NullEngine.prototype.updateMultipleRenderTargetTextureSampleCount = function () {};
+
 
 /** @constructor */
-BABYLON.WebGLPipelineContext = function () {
-  this.vertexCompilationError = null;
-  this.fragmentCompilationError = null;
-  this.programLinkError = null;
-  this.programValidationError = null;
-  // this.isAsync = undefined;
-  this.isReady = false;
-};
+BABYLON.WebGLPipelineContext = function () {}
+BABYLON.WebGLPipelineContext.vertexCompilationError = null;
+BABYLON.WebGLPipelineContext.fragmentCompilationError = null;
+BABYLON.WebGLPipelineContext.programLinkError = null;
+BABYLON.WebGLPipelineContext.programValidationError = null;
+// BABYLON.WebGLPipelineContext.prototype.isAsync = undefined;
+BABYLON.WebGLPipelineContext.prototype.isReady = false;
+
 
 /** @constructor */
-BABYLON.WebGL2ShaderProcessor = function () {
-  this.attributeProcessor = function () {};
-  this.varyingProcessor = function () {};
-  this.postProcessor = function () {};
-};
+BABYLON.WebGL2ShaderProcessor = function () {}
+BABYLON.WebGL2ShaderProcessor.prototype.attributeProcessor = function () {};
+BABYLON.WebGL2ShaderProcessor.prototype.varyingProcessor = function () {};
+BABYLON.WebGL2ShaderProcessor.prototype.postProcessor = function () {};
+
 
 /** @constructor */
-BABYLON.NativeEngine = function () {
-  this.NpmPackage = "babylonjs@4.1.0";
-  this.Version = "4.1.0";
-  this.Instances = {};
-  this.LastCreatedEngine = {};
-  this.LastCreatedScene = null;
-  this.MarkAllMaterialsAsDirty = function () {};
-  this.DefaultLoadingScreenFactory = function () {};
-  this.ALPHA_DISABLE = 0;
-  this.ALPHA_ADD = 1;
-  this.ALPHA_COMBINE = 2;
-  this.ALPHA_SUBTRACT = 3;
-  this.ALPHA_MULTIPLY = 4;
-  this.ALPHA_MAXIMIZED = 5;
-  this.ALPHA_ONEONE = 6;
-  this.ALPHA_PREMULTIPLIED = 7;
-  this.ALPHA_PREMULTIPLIED_PORTERDUFF = 8;
-  this.ALPHA_INTERPOLATE = 9;
-  this.ALPHA_SCREENMODE = 10;
-  this.DELAYLOADSTATE_NONE = 0;
-  this.DELAYLOADSTATE_LOADED = 1;
-  this.DELAYLOADSTATE_LOADING = 2;
-  this.DELAYLOADSTATE_NOTLOADED = 4;
-  this.NEVER = 512;
-  this.ALWAYS = 519;
-  this.LESS = 513;
-  this.EQUAL = 514;
-  this.LEQUAL = 515;
-  this.GREATER = 516;
-  this.GEQUAL = 518;
-  this.NOTEQUAL = 517;
-  this.KEEP = 7680;
-  this.REPLACE = 7681;
-  this.INCR = 7682;
-  this.DECR = 7683;
-  this.INVERT = 5386;
-  this.INCR_WRAP = 34055;
-  this.DECR_WRAP = 34056;
-  this.TEXTURE_CLAMP_ADDRESSMODE = 0;
-  this.TEXTURE_WRAP_ADDRESSMODE = 1;
-  this.TEXTURE_MIRROR_ADDRESSMODE = 2;
-  this.TEXTUREFORMAT_ALPHA = 0;
-  this.TEXTUREFORMAT_LUMINANCE = 1;
-  this.TEXTUREFORMAT_LUMINANCE_ALPHA = 2;
-  this.TEXTUREFORMAT_RGB = 4;
-  this.TEXTUREFORMAT_RGBA = 5;
-  this.TEXTUREFORMAT_RED = 6;
-  this.TEXTUREFORMAT_R = 6;
-  this.TEXTUREFORMAT_RG = 7;
-  this.TEXTUREFORMAT_RED_INTEGER = 8;
-  this.TEXTUREFORMAT_R_INTEGER = 8;
-  this.TEXTUREFORMAT_RG_INTEGER = 9;
-  this.TEXTUREFORMAT_RGB_INTEGER = 10;
-  this.TEXTUREFORMAT_RGBA_INTEGER = 11;
-  this.TEXTURETYPE_UNSIGNED_BYTE = 0;
-  this.TEXTURETYPE_UNSIGNED_INT = 0;
-  this.TEXTURETYPE_FLOAT = 1;
-  this.TEXTURETYPE_HALF_FLOAT = 2;
-  this.TEXTURETYPE_BYTE = 3;
-  this.TEXTURETYPE_SHORT = 4;
-  this.TEXTURETYPE_UNSIGNED_SHORT = 5;
-  this.TEXTURETYPE_INT = 6;
-  this.TEXTURETYPE_UNSIGNED_INTEGER = 7;
-  this.TEXTURETYPE_UNSIGNED_SHORT_4_4_4_4 = 8;
-  this.TEXTURETYPE_UNSIGNED_SHORT_5_5_5_1 = 9;
-  this.TEXTURETYPE_UNSIGNED_SHORT_5_6_5 = 10;
-  this.TEXTURETYPE_UNSIGNED_INT_2_10_10_10_REV = 11;
-  this.TEXTURETYPE_UNSIGNED_INT_24_8 = 12;
-  this.TEXTURETYPE_UNSIGNED_INT_10F_11F_11F_REV = 13;
-  this.TEXTURETYPE_UNSIGNED_INT_5_9_9_9_REV = 14;
-  this.TEXTURETYPE_FLOAT_32_UNSIGNED_INT_24_8_REV = 15;
-  this.TEXTURE_NEAREST_SAMPLINGMODE = 1;
-  this.TEXTURE_BILINEAR_SAMPLINGMODE = 2;
-  this.TEXTURE_TRILINEAR_SAMPLINGMODE = 3;
-  this.TEXTURE_NEAREST_NEAREST_MIPLINEAR = 8;
-  this.TEXTURE_LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TEXTURE_LINEAR_LINEAR_MIPLINEAR = 3;
-  this.TEXTURE_NEAREST_NEAREST_MIPNEAREST = 4;
-  this.TEXTURE_NEAREST_LINEAR_MIPNEAREST = 5;
-  this.TEXTURE_NEAREST_LINEAR_MIPLINEAR = 6;
-  this.TEXTURE_NEAREST_LINEAR = 7;
-  this.TEXTURE_NEAREST_NEAREST = 1;
-  this.TEXTURE_LINEAR_NEAREST_MIPNEAREST = 9;
-  this.TEXTURE_LINEAR_NEAREST_MIPLINEAR = 10;
-  this.TEXTURE_LINEAR_LINEAR = 2;
-  this.TEXTURE_LINEAR_NEAREST = 12;
-  this.TEXTURE_EXPLICIT_MODE = 0;
-  this.TEXTURE_SPHERICAL_MODE = 1;
-  this.TEXTURE_PLANAR_MODE = 2;
-  this.TEXTURE_CUBIC_MODE = 3;
-  this.TEXTURE_PROJECTION_MODE = 4;
-  this.TEXTURE_SKYBOX_MODE = 5;
-  this.TEXTURE_INVCUBIC_MODE = 6;
-  this.TEXTURE_EQUIRECTANGULAR_MODE = 7;
-  this.TEXTURE_FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.TEXTURE_FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.SCALEMODE_FLOOR = 1;
-  this.SCALEMODE_NEAREST = 2;
-  this.SCALEMODE_CEILING = 3;
-  this.AudioEngineFactory = function () {};
-  this.OfflineProviderFactory = function () {};
-  this.ShadersRepository = "src/Shaders/";
-  this.isSupported = function () {};
-  this.CeilingPOT = function () {};
-  this.FloorPOT = function () {};
-  this.NearestPOT = function () {};
-  this.GetExponentOfTwo = function () {};
-  this.QueueNewFrame = function () {};
-  this.ExceptionList = {};
-  this.CollisionsEpsilon = 0.001;
-};
+BABYLON.NativeEngine = function () {}
+BABYLON.NativeEngine.prototype.NpmPackage = "babylonjs@4.1.0";
+BABYLON.NativeEngine.prototype.Version = "4.1.0";
+BABYLON.NativeEngine.prototype.Instances = {};
+BABYLON.NativeEngine.prototype.LastCreatedEngine = {};
+BABYLON.NativeEngine.prototype.LastCreatedScene = null;
+BABYLON.NativeEngine.prototype.MarkAllMaterialsAsDirty = function () {};
+BABYLON.NativeEngine.prototype.DefaultLoadingScreenFactory = function () {};
+BABYLON.NativeEngine.prototype.ALPHA_DISABLE = 0;
+BABYLON.NativeEngine.prototype.ALPHA_ADD = 1;
+BABYLON.NativeEngine.prototype.ALPHA_COMBINE = 2;
+BABYLON.NativeEngine.prototype.ALPHA_SUBTRACT = 3;
+BABYLON.NativeEngine.prototype.ALPHA_MULTIPLY = 4;
+BABYLON.NativeEngine.prototype.ALPHA_MAXIMIZED = 5;
+BABYLON.NativeEngine.prototype.ALPHA_ONEONE = 6;
+BABYLON.NativeEngine.prototype.ALPHA_PREMULTIPLIED = 7;
+BABYLON.NativeEngine.prototype.ALPHA_PREMULTIPLIED_PORTERDUFF = 8;
+BABYLON.NativeEngine.prototype.ALPHA_INTERPOLATE = 9;
+BABYLON.NativeEngine.prototype.ALPHA_SCREENMODE = 10;
+BABYLON.NativeEngine.prototype.DELAYLOADSTATE_NONE = 0;
+BABYLON.NativeEngine.prototype.DELAYLOADSTATE_LOADED = 1;
+BABYLON.NativeEngine.prototype.DELAYLOADSTATE_LOADING = 2;
+BABYLON.NativeEngine.prototype.DELAYLOADSTATE_NOTLOADED = 4;
+BABYLON.NativeEngine.prototype.NEVER = 512;
+BABYLON.NativeEngine.prototype.ALWAYS = 519;
+BABYLON.NativeEngine.prototype.LESS = 513;
+BABYLON.NativeEngine.prototype.EQUAL = 514;
+BABYLON.NativeEngine.prototype.LEQUAL = 515;
+BABYLON.NativeEngine.prototype.GREATER = 516;
+BABYLON.NativeEngine.prototype.GEQUAL = 518;
+BABYLON.NativeEngine.prototype.NOTEQUAL = 517;
+BABYLON.NativeEngine.prototype.KEEP = 7680;
+BABYLON.NativeEngine.prototype.REPLACE = 7681;
+BABYLON.NativeEngine.prototype.INCR = 7682;
+BABYLON.NativeEngine.prototype.DECR = 7683;
+BABYLON.NativeEngine.prototype.INVERT = 5386;
+BABYLON.NativeEngine.prototype.INCR_WRAP = 34055;
+BABYLON.NativeEngine.prototype.DECR_WRAP = 34056;
+BABYLON.NativeEngine.prototype.TEXTURE_CLAMP_ADDRESSMODE = 0;
+BABYLON.NativeEngine.prototype.TEXTURE_WRAP_ADDRESSMODE = 1;
+BABYLON.NativeEngine.prototype.TEXTURE_MIRROR_ADDRESSMODE = 2;
+BABYLON.NativeEngine.prototype.TEXTUREFORMAT_ALPHA = 0;
+BABYLON.NativeEngine.prototype.TEXTUREFORMAT_LUMINANCE = 1;
+BABYLON.NativeEngine.prototype.TEXTUREFORMAT_LUMINANCE_ALPHA = 2;
+BABYLON.NativeEngine.prototype.TEXTUREFORMAT_RGB = 4;
+BABYLON.NativeEngine.prototype.TEXTUREFORMAT_RGBA = 5;
+BABYLON.NativeEngine.prototype.TEXTUREFORMAT_RED = 6;
+BABYLON.NativeEngine.prototype.TEXTUREFORMAT_R = 6;
+BABYLON.NativeEngine.prototype.TEXTUREFORMAT_RG = 7;
+BABYLON.NativeEngine.prototype.TEXTUREFORMAT_RED_INTEGER = 8;
+BABYLON.NativeEngine.prototype.TEXTUREFORMAT_R_INTEGER = 8;
+BABYLON.NativeEngine.prototype.TEXTUREFORMAT_RG_INTEGER = 9;
+BABYLON.NativeEngine.prototype.TEXTUREFORMAT_RGB_INTEGER = 10;
+BABYLON.NativeEngine.prototype.TEXTUREFORMAT_RGBA_INTEGER = 11;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_UNSIGNED_BYTE = 0;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_UNSIGNED_INT = 0;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_FLOAT = 1;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_HALF_FLOAT = 2;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_BYTE = 3;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_SHORT = 4;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_UNSIGNED_SHORT = 5;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_INT = 6;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_UNSIGNED_INTEGER = 7;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_UNSIGNED_SHORT_4_4_4_4 = 8;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_UNSIGNED_SHORT_5_5_5_1 = 9;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_UNSIGNED_SHORT_5_6_5 = 10;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_UNSIGNED_INT_2_10_10_10_REV = 11;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_UNSIGNED_INT_24_8 = 12;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_UNSIGNED_INT_10F_11F_11F_REV = 13;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_UNSIGNED_INT_5_9_9_9_REV = 14;
+BABYLON.NativeEngine.prototype.TEXTURETYPE_FLOAT_32_UNSIGNED_INT_24_8_REV = 15;
+BABYLON.NativeEngine.prototype.TEXTURE_NEAREST_SAMPLINGMODE = 1;
+BABYLON.NativeEngine.prototype.TEXTURE_BILINEAR_SAMPLINGMODE = 2;
+BABYLON.NativeEngine.prototype.TEXTURE_TRILINEAR_SAMPLINGMODE = 3;
+BABYLON.NativeEngine.prototype.TEXTURE_NEAREST_NEAREST_MIPLINEAR = 8;
+BABYLON.NativeEngine.prototype.TEXTURE_LINEAR_LINEAR_MIPNEAREST = 11;
+BABYLON.NativeEngine.prototype.TEXTURE_LINEAR_LINEAR_MIPLINEAR = 3;
+BABYLON.NativeEngine.prototype.TEXTURE_NEAREST_NEAREST_MIPNEAREST = 4;
+BABYLON.NativeEngine.prototype.TEXTURE_NEAREST_LINEAR_MIPNEAREST = 5;
+BABYLON.NativeEngine.prototype.TEXTURE_NEAREST_LINEAR_MIPLINEAR = 6;
+BABYLON.NativeEngine.prototype.TEXTURE_NEAREST_LINEAR = 7;
+BABYLON.NativeEngine.prototype.TEXTURE_NEAREST_NEAREST = 1;
+BABYLON.NativeEngine.prototype.TEXTURE_LINEAR_NEAREST_MIPNEAREST = 9;
+BABYLON.NativeEngine.prototype.TEXTURE_LINEAR_NEAREST_MIPLINEAR = 10;
+BABYLON.NativeEngine.prototype.TEXTURE_LINEAR_LINEAR = 2;
+BABYLON.NativeEngine.prototype.TEXTURE_LINEAR_NEAREST = 12;
+BABYLON.NativeEngine.prototype.TEXTURE_EXPLICIT_MODE = 0;
+BABYLON.NativeEngine.prototype.TEXTURE_SPHERICAL_MODE = 1;
+BABYLON.NativeEngine.prototype.TEXTURE_PLANAR_MODE = 2;
+BABYLON.NativeEngine.prototype.TEXTURE_CUBIC_MODE = 3;
+BABYLON.NativeEngine.prototype.TEXTURE_PROJECTION_MODE = 4;
+BABYLON.NativeEngine.prototype.TEXTURE_SKYBOX_MODE = 5;
+BABYLON.NativeEngine.prototype.TEXTURE_INVCUBIC_MODE = 6;
+BABYLON.NativeEngine.prototype.TEXTURE_EQUIRECTANGULAR_MODE = 7;
+BABYLON.NativeEngine.prototype.TEXTURE_FIXED_EQUIRECTANGULAR_MODE = 8;
+BABYLON.NativeEngine.prototype.TEXTURE_FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
+BABYLON.NativeEngine.prototype.SCALEMODE_FLOOR = 1;
+BABYLON.NativeEngine.prototype.SCALEMODE_NEAREST = 2;
+BABYLON.NativeEngine.prototype.SCALEMODE_CEILING = 3;
+BABYLON.NativeEngine.prototype.AudioEngineFactory = function () {};
+BABYLON.NativeEngine.prototype.OfflineProviderFactory = function () {};
+BABYLON.NativeEngine.prototype.ShadersRepository = "src/Shaders/";
+BABYLON.NativeEngine.prototype.isSupported = function () {};
+BABYLON.NativeEngine.prototype.CeilingPOT = function () {};
+BABYLON.NativeEngine.prototype.FloorPOT = function () {};
+BABYLON.NativeEngine.prototype.NearestPOT = function () {};
+BABYLON.NativeEngine.prototype.GetExponentOfTwo = function () {};
+BABYLON.NativeEngine.prototype.QueueNewFrame = function () {};
+BABYLON.NativeEngine.prototype.ExceptionList = {};
+BABYLON.NativeEngine.prototype.CollisionsEpsilon = 0.001;
+
 
 /** @constructor */
-BABYLON.EngineView = function () {
-};
+BABYLON.EngineView = function () {}
+
 
 /** @constructor */
-BABYLON.KeyboardEventTypes = function () {
-  this.KEYDOWN = 1;
-  this.KEYUP = 2;
-};
+BABYLON.KeyboardEventTypes = function () {}
+
 
 /** @constructor */
-BABYLON.KeyboardInfo = function () {
-  // this.type = undefined;
-  // this.event = undefined;
-};
+BABYLON.KeyboardInfo = function () {}
+// BABYLON.KeyboardInfo.type = undefined;
+// BABYLON.KeyboardInfo.event = undefined;
+
 
 /** @constructor */
-BABYLON.KeyboardInfoPre = function () {
-  // this.type = undefined;
-  // this.event = undefined;
-  this.skipOnPointerObservable = false;
-  this.constructor = function () {};
-};
+BABYLON.KeyboardInfoPre = function () {}
+// BABYLON.KeyboardInfoPre.type = undefined;
+// BABYLON.KeyboardInfoPre.event = undefined;
+BABYLON.KeyboardInfoPre.skipOnPointerObservable = false;
+BABYLON.KeyboardInfoPre.prototype.constructor = function () {};
+
 
 /** @constructor */
-BABYLON.PointerEventTypes = function () {
-  this.POINTERDOWN = 1;
-  this.POINTERUP = 2;
-  this.POINTERMOVE = 4;
-  this.POINTERWHEEL = 8;
-  this.POINTERPICK = 16;
-  this.POINTERTAP = 32;
-  this.POINTERDOUBLETAP = 64;
-};
+BABYLON.PointerEventTypes = function () {}
+
 
 /** @constructor */
-BABYLON.PointerInfoBase = function () {
-  // this.type = undefined;
-  // this.event = undefined;
-};
+BABYLON.PointerInfoBase = function () {}
+// BABYLON.PointerInfoBase.type = undefined;
+// BABYLON.PointerInfoBase.event = undefined;
+
 
 /** @constructor */
-BABYLON.PointerInfoPre = function () {
-  // this.type = undefined;
-  // this.event = undefined;
-  this.ray = null;
-  this.skipOnPointerObservable = false;
-  this.localPosition = {};
-  this.constructor = function () {};
-};
+BABYLON.PointerInfoPre = function () {}
+// BABYLON.PointerInfoPre.type = undefined;
+// BABYLON.PointerInfoPre.event = undefined;
+BABYLON.PointerInfoPre.ray = null;
+BABYLON.PointerInfoPre.skipOnPointerObservable = false;
+BABYLON.PointerInfoPre.localPosition = {};
+BABYLON.PointerInfoPre.prototype.constructor = function () {};
+
 
 /** @constructor */
-BABYLON.PointerInfo = function () {
-  // this.type = undefined;
-  // this.event = undefined;
-  // this.pickInfo = undefined;
-  this.constructor = function () {};
-};
+BABYLON.PointerInfo = function () {}
+// BABYLON.PointerInfo.type = undefined;
+// BABYLON.PointerInfo.event = undefined;
+// BABYLON.PointerInfo.pickInfo = undefined;
+BABYLON.PointerInfo.prototype.constructor = function () {};
+
 
 /** @constructor */
-BABYLON.ClipboardEventTypes = function () {
-  this.COPY = 1;
-  this.CUT = 2;
-  this.PASTE = 3;
-};
+BABYLON.ClipboardEventTypes = function () {}
+
 
 /** @constructor */
-BABYLON.ClipboardInfo = function () {
-  // this.type = undefined;
-  // this.event = undefined;
-  this.GetTypeFromCharacter = function () {};
-};
+BABYLON.ClipboardInfo = function () {}
+// BABYLON.ClipboardInfo.type = undefined;
+// BABYLON.ClipboardInfo.event = undefined;
+
 
 /** @constructor */
-BABYLON.StickValues = function () {
-  // this.x = undefined;
-  // this.y = undefined;
-};
+BABYLON.StickValues = function () {}
+// BABYLON.StickValues.x = undefined;
+// BABYLON.StickValues.y = undefined;
+
 
 /** @constructor */
-BABYLON.Gamepad = function () {
-  this.GAMEPAD = 0;
-  this.GENERIC = 1;
-  this.XBOX = 2;
-  this.POSE_ENABLED = 3;
-  this.DUALSHOCK = 4;
-};
+BABYLON.Gamepad = function () {}
+BABYLON.Gamepad.GAMEPAD = 0;
+BABYLON.Gamepad.GENERIC = 1;
+BABYLON.Gamepad.XBOX = 2;
+BABYLON.Gamepad.POSE_ENABLED = 3;
+BABYLON.Gamepad.DUALSHOCK = 4;
+
 
 /** @constructor */
-BABYLON.GenericPad = function () {
-  this.GAMEPAD = 0;
-  this.GENERIC = 1;
-  this.XBOX = 2;
-  this.POSE_ENABLED = 3;
-  this.DUALSHOCK = 4;
-};
+BABYLON.GenericPad = function () {}
+BABYLON.GenericPad.prototype.GAMEPAD = 0;
+BABYLON.GenericPad.prototype.GENERIC = 1;
+BABYLON.GenericPad.prototype.XBOX = 2;
+BABYLON.GenericPad.prototype.POSE_ENABLED = 3;
+BABYLON.GenericPad.prototype.DUALSHOCK = 4;
+
 
 /** @constructor */
-BABYLON.GamepadManager = function () {
-  this.onGamepadDisconnectedObservable = {};
-  this.onGamepadConnectedObservable = {};
-  this.gamepads = {};
-  this.getGamepadByType = function () {};
-  this.dispose = function () {};
-};
+BABYLON.GamepadManager = function () {}
+BABYLON.GamepadManager.onGamepadDisconnectedObservable = {};
+BABYLON.GamepadManager.onGamepadConnectedObservable = {};
+// BABYLON.GamepadManager.prototype.gamepads = undefined;
+BABYLON.GamepadManager.prototype.getGamepadByType = function () {};
+BABYLON.GamepadManager.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.GamepadSystemSceneComponent = function () {
-  this.name = "Gamepad";
-  // this.scene = undefined;
-  this.register = function () {};
-  this.rebuild = function () {};
-  this.dispose = function () {};
-};
+BABYLON.GamepadSystemSceneComponent = function () {}
+BABYLON.GamepadSystemSceneComponent.name = "Gamepad";
+// BABYLON.GamepadSystemSceneComponent.scene = undefined;
+BABYLON.GamepadSystemSceneComponent.prototype.register = function () {};
+BABYLON.GamepadSystemSceneComponent.prototype.rebuild = function () {};
+BABYLON.GamepadSystemSceneComponent.prototype.dispose = function () {};
+
 
 BABYLON.Xbox360Button = {}
 
 BABYLON.Xbox360Dpad = {}
 
 /** @constructor */
-BABYLON.Xbox360Pad = function () {
-  this.GAMEPAD = 0;
-  this.GENERIC = 1;
-  this.XBOX = 2;
-  this.POSE_ENABLED = 3;
-  this.DUALSHOCK = 4;
-};
+BABYLON.Xbox360Pad = function () {}
+BABYLON.Xbox360Pad.prototype.GAMEPAD = 0;
+BABYLON.Xbox360Pad.prototype.GENERIC = 1;
+BABYLON.Xbox360Pad.prototype.XBOX = 2;
+BABYLON.Xbox360Pad.prototype.POSE_ENABLED = 3;
+BABYLON.Xbox360Pad.prototype.DUALSHOCK = 4;
+
 
 BABYLON.DualShockButton = {}
 
 BABYLON.DualShockDpad = {}
 
 /** @constructor */
-BABYLON.DualShockPad = function () {
-  this.GAMEPAD = 0;
-  this.GENERIC = 1;
-  this.XBOX = 2;
-  this.POSE_ENABLED = 3;
-  this.DUALSHOCK = 4;
-};
+BABYLON.DualShockPad = function () {}
+BABYLON.DualShockPad.prototype.GAMEPAD = 0;
+BABYLON.DualShockPad.prototype.GENERIC = 1;
+BABYLON.DualShockPad.prototype.XBOX = 2;
+BABYLON.DualShockPad.prototype.POSE_ENABLED = 3;
+BABYLON.DualShockPad.prototype.DUALSHOCK = 4;
+
 
 /** @constructor */
-BABYLON.DaydreamController = function () {
-  this.MODEL_BASE_URL = "https://controllers.babylonjs.com/generic/";
-  this.MODEL_FILENAME = "generic.babylon";
-  this.GAMEPAD_ID_PREFIX = "Daydream";
-  this.POINTING_POSE = "POINTING_POSE";
-  this.GAMEPAD = 0;
-  this.GENERIC = 1;
-  this.XBOX = 2;
-  this.POSE_ENABLED = 3;
-  this.DUALSHOCK = 4;
-};
+BABYLON.DaydreamController = function () {}
+BABYLON.DaydreamController.MODEL_BASE_URL = "https://controllers.babylonjs.com/generic/";
+BABYLON.DaydreamController.MODEL_FILENAME = "generic.babylon";
+BABYLON.DaydreamController.GAMEPAD_ID_PREFIX = "Daydream";
+BABYLON.DaydreamController.prototype.POINTING_POSE = "POINTING_POSE";
+BABYLON.DaydreamController.prototype.GAMEPAD = 0;
+BABYLON.DaydreamController.prototype.GENERIC = 1;
+BABYLON.DaydreamController.prototype.XBOX = 2;
+BABYLON.DaydreamController.prototype.POSE_ENABLED = 3;
+BABYLON.DaydreamController.prototype.DUALSHOCK = 4;
+
 
 /** @constructor */
-BABYLON.GearVRController = function () {
-  this.MODEL_BASE_URL = "https://controllers.babylonjs.com/generic/";
-  this.MODEL_FILENAME = "generic.babylon";
-  this.GAMEPAD_ID_PREFIX = "Gear VR";
-  this.POINTING_POSE = "POINTING_POSE";
-  this.GAMEPAD = 0;
-  this.GENERIC = 1;
-  this.XBOX = 2;
-  this.POSE_ENABLED = 3;
-  this.DUALSHOCK = 4;
-};
+BABYLON.GearVRController = function () {}
+BABYLON.GearVRController.MODEL_BASE_URL = "https://controllers.babylonjs.com/generic/";
+BABYLON.GearVRController.MODEL_FILENAME = "generic.babylon";
+BABYLON.GearVRController.GAMEPAD_ID_PREFIX = "Gear VR";
+BABYLON.GearVRController.prototype.POINTING_POSE = "POINTING_POSE";
+BABYLON.GearVRController.prototype.GAMEPAD = 0;
+BABYLON.GearVRController.prototype.GENERIC = 1;
+BABYLON.GearVRController.prototype.XBOX = 2;
+BABYLON.GearVRController.prototype.POSE_ENABLED = 3;
+BABYLON.GearVRController.prototype.DUALSHOCK = 4;
+
 
 /** @constructor */
-BABYLON.GenericController = function () {
-  this.MODEL_BASE_URL = "https://controllers.babylonjs.com/generic/";
-  this.MODEL_FILENAME = "generic.babylon";
-  this.POINTING_POSE = "POINTING_POSE";
-  this.GAMEPAD = 0;
-  this.GENERIC = 1;
-  this.XBOX = 2;
-  this.POSE_ENABLED = 3;
-  this.DUALSHOCK = 4;
-};
+BABYLON.GenericController = function () {}
+BABYLON.GenericController.MODEL_BASE_URL = "https://controllers.babylonjs.com/generic/";
+BABYLON.GenericController.MODEL_FILENAME = "generic.babylon";
+BABYLON.GenericController.prototype.POINTING_POSE = "POINTING_POSE";
+BABYLON.GenericController.prototype.GAMEPAD = 0;
+BABYLON.GenericController.prototype.GENERIC = 1;
+BABYLON.GenericController.prototype.XBOX = 2;
+BABYLON.GenericController.prototype.POSE_ENABLED = 3;
+BABYLON.GenericController.prototype.DUALSHOCK = 4;
+
 
 /** @constructor */
-BABYLON.OculusTouchController = function () {
-  this.MODEL_BASE_URL = "https://controllers.babylonjs.com/oculus/";
-  this.MODEL_LEFT_FILENAME = "left.babylon";
-  this.MODEL_RIGHT_FILENAME = "right.babylon";
-  this.QUEST_MODEL_BASE_URL = "https://controllers.babylonjs.com/oculusQuest/";
-  this.POINTING_POSE = "POINTING_POSE";
-  this.GAMEPAD = 0;
-  this.GENERIC = 1;
-  this.XBOX = 2;
-  this.POSE_ENABLED = 3;
-  this.DUALSHOCK = 4;
-};
+BABYLON.OculusTouchController = function () {}
+BABYLON.OculusTouchController.MODEL_BASE_URL = "https://controllers.babylonjs.com/oculus/";
+BABYLON.OculusTouchController.MODEL_LEFT_FILENAME = "left.babylon";
+BABYLON.OculusTouchController.MODEL_RIGHT_FILENAME = "right.babylon";
+BABYLON.OculusTouchController.QUEST_MODEL_BASE_URL = "https://controllers.babylonjs.com/oculusQuest/";
+BABYLON.OculusTouchController.prototype.POINTING_POSE = "POINTING_POSE";
+BABYLON.OculusTouchController.prototype.GAMEPAD = 0;
+BABYLON.OculusTouchController.prototype.GENERIC = 1;
+BABYLON.OculusTouchController.prototype.XBOX = 2;
+BABYLON.OculusTouchController.prototype.POSE_ENABLED = 3;
+BABYLON.OculusTouchController.prototype.DUALSHOCK = 4;
+
 
 BABYLON.PoseEnabledControllerType = {}
 
 /** @constructor */
-BABYLON.PoseEnabledControllerHelper = function () {
-  this.InitiateController = function () {};
-};
+BABYLON.PoseEnabledControllerHelper = function () {}
+
 
 /** @constructor */
-BABYLON.PoseEnabledController = function () {
-  this.POINTING_POSE = "POINTING_POSE";
-  this.GAMEPAD = 0;
-  this.GENERIC = 1;
-  this.XBOX = 2;
-  this.POSE_ENABLED = 3;
-  this.DUALSHOCK = 4;
-};
+BABYLON.PoseEnabledController = function () {}
+BABYLON.PoseEnabledController.POINTING_POSE = "POINTING_POSE";
+BABYLON.PoseEnabledController.prototype.GAMEPAD = 0;
+BABYLON.PoseEnabledController.prototype.GENERIC = 1;
+BABYLON.PoseEnabledController.prototype.XBOX = 2;
+BABYLON.PoseEnabledController.prototype.POSE_ENABLED = 3;
+BABYLON.PoseEnabledController.prototype.DUALSHOCK = 4;
+
 
 /** @constructor */
-BABYLON.ViveController = function () {
-  this.MODEL_BASE_URL = "https://controllers.babylonjs.com/vive/";
-  this.MODEL_FILENAME = "wand.babylon";
-  this.POINTING_POSE = "POINTING_POSE";
-  this.GAMEPAD = 0;
-  this.GENERIC = 1;
-  this.XBOX = 2;
-  this.POSE_ENABLED = 3;
-  this.DUALSHOCK = 4;
-};
+BABYLON.ViveController = function () {}
+BABYLON.ViveController.MODEL_BASE_URL = "https://controllers.babylonjs.com/vive/";
+BABYLON.ViveController.MODEL_FILENAME = "wand.babylon";
+BABYLON.ViveController.prototype.POINTING_POSE = "POINTING_POSE";
+BABYLON.ViveController.prototype.GAMEPAD = 0;
+BABYLON.ViveController.prototype.GENERIC = 1;
+BABYLON.ViveController.prototype.XBOX = 2;
+BABYLON.ViveController.prototype.POSE_ENABLED = 3;
+BABYLON.ViveController.prototype.DUALSHOCK = 4;
+
 
 /** @constructor */
-BABYLON.WebVRController = function () {
-  this.POINTING_POSE = "POINTING_POSE";
-  this.GAMEPAD = 0;
-  this.GENERIC = 1;
-  this.XBOX = 2;
-  this.POSE_ENABLED = 3;
-  this.DUALSHOCK = 4;
-};
+BABYLON.WebVRController = function () {}
+BABYLON.WebVRController.prototype.POINTING_POSE = "POINTING_POSE";
+BABYLON.WebVRController.prototype.GAMEPAD = 0;
+BABYLON.WebVRController.prototype.GENERIC = 1;
+BABYLON.WebVRController.prototype.XBOX = 2;
+BABYLON.WebVRController.prototype.POSE_ENABLED = 3;
+BABYLON.WebVRController.prototype.DUALSHOCK = 4;
+
 
 /** @constructor */
-BABYLON.WindowsMotionController = function () {
-  this.MODEL_BASE_URL = "https://controllers.babylonjs.com/microsoft/";
-  this.MODEL_LEFT_FILENAME = "left.glb";
-  this.MODEL_RIGHT_FILENAME = "right.glb";
-  this.GAMEPAD_ID_PREFIX = "Spatial Controller (Spatial Interaction Source) ";
-  this.GAMEPAD_ID_PATTERN = {};
-  this.POINTING_POSE = "POINTING_POSE";
-  this.GAMEPAD = 0;
-  this.GENERIC = 1;
-  this.XBOX = 2;
-  this.POSE_ENABLED = 3;
-  this.DUALSHOCK = 4;
-};
+BABYLON.WindowsMotionController = function () {}
+BABYLON.WindowsMotionController.MODEL_BASE_URL = "https://controllers.babylonjs.com/microsoft/";
+BABYLON.WindowsMotionController.MODEL_LEFT_FILENAME = "left.glb";
+BABYLON.WindowsMotionController.MODEL_RIGHT_FILENAME = "right.glb";
+BABYLON.WindowsMotionController.GAMEPAD_ID_PREFIX = "Spatial Controller (Spatial Interaction Source) ";
+BABYLON.WindowsMotionController.GAMEPAD_ID_PATTERN = {};
+BABYLON.WindowsMotionController.prototype.POINTING_POSE = "POINTING_POSE";
+BABYLON.WindowsMotionController.prototype.GAMEPAD = 0;
+BABYLON.WindowsMotionController.prototype.GENERIC = 1;
+BABYLON.WindowsMotionController.prototype.XBOX = 2;
+BABYLON.WindowsMotionController.prototype.POSE_ENABLED = 3;
+BABYLON.WindowsMotionController.prototype.DUALSHOCK = 4;
+
 
 /** @constructor */
-BABYLON.XRWindowsMotionController = function () {
-  this.MODEL_BASE_URL = "https://controllers.babylonjs.com/microsoft/";
-  this.MODEL_LEFT_FILENAME = "left.glb";
-  this.MODEL_RIGHT_FILENAME = "right.glb";
-  this.GAMEPAD_ID_PREFIX = "Spatial Controller (Spatial Interaction Source) ";
-  this.GAMEPAD_ID_PATTERN = {};
-  this.POINTING_POSE = "POINTING_POSE";
-  this.GAMEPAD = 0;
-  this.GENERIC = 1;
-  this.XBOX = 2;
-  this.POSE_ENABLED = 3;
-  this.DUALSHOCK = 4;
-};
+BABYLON.XRWindowsMotionController = function () {}
+BABYLON.XRWindowsMotionController.prototype.MODEL_BASE_URL = "https://controllers.babylonjs.com/microsoft/";
+BABYLON.XRWindowsMotionController.prototype.MODEL_LEFT_FILENAME = "left.glb";
+BABYLON.XRWindowsMotionController.prototype.MODEL_RIGHT_FILENAME = "right.glb";
+BABYLON.XRWindowsMotionController.prototype.GAMEPAD_ID_PREFIX = "Spatial Controller (Spatial Interaction Source) ";
+BABYLON.XRWindowsMotionController.prototype.GAMEPAD_ID_PATTERN = {};
+BABYLON.XRWindowsMotionController.prototype.POINTING_POSE = "POINTING_POSE";
+BABYLON.XRWindowsMotionController.prototype.GAMEPAD = 0;
+BABYLON.XRWindowsMotionController.prototype.GENERIC = 1;
+BABYLON.XRWindowsMotionController.prototype.XBOX = 2;
+BABYLON.XRWindowsMotionController.prototype.POSE_ENABLED = 3;
+BABYLON.XRWindowsMotionController.prototype.DUALSHOCK = 4;
+
 
 /** @constructor */
-BABYLON.AxisDragGizmo = function () {
-};
+BABYLON.AxisDragGizmo = function () {}
+
 
 /** @constructor */
-BABYLON.AxisScaleGizmo = function () {
-};
+BABYLON.AxisScaleGizmo = function () {}
+
 
 /** @constructor */
-BABYLON.BoundingBoxGizmo = function () {
-  this.MakeNotPickableAndWrapInBoundingBox = function () {};
-};
+BABYLON.BoundingBoxGizmo = function () {}
+BABYLON.BoundingBoxGizmo.MakeNotPickableAndWrapInBoundingBox = function () {};
+
 
 /** @constructor */
-BABYLON.Gizmo = function () {
-};
+BABYLON.Gizmo = function () {}
+
 
 /** @constructor */
-BABYLON.GizmoManager = function () {
-};
+BABYLON.GizmoManager = function () {}
+
 
 /** @constructor */
-BABYLON.PlaneRotationGizmo = function () {
-};
+BABYLON.PlaneRotationGizmo = function () {}
+
 
 /** @constructor */
-BABYLON.PositionGizmo = function () {
-};
+BABYLON.PositionGizmo = function () {}
+
 
 /** @constructor */
-BABYLON.RotationGizmo = function () {
-};
+BABYLON.RotationGizmo = function () {}
+
 
 /** @constructor */
-BABYLON.ScaleGizmo = function () {
-};
+BABYLON.ScaleGizmo = function () {}
+
 
 /** @constructor */
-BABYLON.LightGizmo = function () {
-};
+BABYLON.LightGizmo = function () {}
+
 
 /** @constructor */
-BABYLON.PlaneDragGizmo = function () {
-};
+BABYLON.PlaneDragGizmo = function () {}
+
 
 /** @constructor */
-BABYLON.EnvironmentHelper = function () {
-};
+BABYLON.EnvironmentHelper = function () {}
+
 
 /** @constructor */
-BABYLON.PhotoDome = function () {
-  this.MODE_MONOSCOPIC = 0;
-  this.MODE_TOPBOTTOM = 1;
-  this.MODE_SIDEBYSIDE = 2;
-  this.Parse = function () {};
-  this.BILLBOARDMODE_NONE = 0;
-  this.BILLBOARDMODE_X = 1;
-  this.BILLBOARDMODE_Y = 2;
-  this.BILLBOARDMODE_Z = 4;
-  this.BILLBOARDMODE_ALL = 7;
-  this.BILLBOARDMODE_USE_POSITION = 128;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.PhotoDome = function () {}
+BABYLON.PhotoDome.MODE_MONOSCOPIC = 0;
+BABYLON.PhotoDome.MODE_TOPBOTTOM = 1;
+BABYLON.PhotoDome.MODE_SIDEBYSIDE = 2;
+BABYLON.PhotoDome.prototype.Parse = function () {};
+BABYLON.PhotoDome.prototype.BILLBOARDMODE_NONE = 0;
+BABYLON.PhotoDome.prototype.BILLBOARDMODE_X = 1;
+BABYLON.PhotoDome.prototype.BILLBOARDMODE_Y = 2;
+BABYLON.PhotoDome.prototype.BILLBOARDMODE_Z = 4;
+BABYLON.PhotoDome.prototype.BILLBOARDMODE_ALL = 7;
+BABYLON.PhotoDome.prototype.BILLBOARDMODE_USE_POSITION = 128;
+BABYLON.PhotoDome.prototype.AddNodeConstructor = function () {};
+BABYLON.PhotoDome.prototype.Construct = function () {};
+BABYLON.PhotoDome.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.VideoDome = function () {
-  this.MODE_MONOSCOPIC = 0;
-  this.MODE_TOPBOTTOM = 1;
-  this.MODE_SIDEBYSIDE = 2;
-  this.Parse = function () {};
-  this.BILLBOARDMODE_NONE = 0;
-  this.BILLBOARDMODE_X = 1;
-  this.BILLBOARDMODE_Y = 2;
-  this.BILLBOARDMODE_Z = 4;
-  this.BILLBOARDMODE_ALL = 7;
-  this.BILLBOARDMODE_USE_POSITION = 128;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.VideoDome = function () {}
+BABYLON.VideoDome.MODE_MONOSCOPIC = 0;
+BABYLON.VideoDome.MODE_TOPBOTTOM = 1;
+BABYLON.VideoDome.MODE_SIDEBYSIDE = 2;
+BABYLON.VideoDome.prototype.Parse = function () {};
+BABYLON.VideoDome.prototype.BILLBOARDMODE_NONE = 0;
+BABYLON.VideoDome.prototype.BILLBOARDMODE_X = 1;
+BABYLON.VideoDome.prototype.BILLBOARDMODE_Y = 2;
+BABYLON.VideoDome.prototype.BILLBOARDMODE_Z = 4;
+BABYLON.VideoDome.prototype.BILLBOARDMODE_ALL = 7;
+BABYLON.VideoDome.prototype.BILLBOARDMODE_USE_POSITION = 128;
+BABYLON.VideoDome.prototype.AddNodeConstructor = function () {};
+BABYLON.VideoDome.prototype.Construct = function () {};
+BABYLON.VideoDome.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.EngineInstrumentation = function () {
-  // this.engine = undefined;
-  this.gpuFrameTimeCounter = {};
-  this.captureGPUFrameTime = false;
-  this.shaderCompilationTimeCounter = {};
-  this.captureShaderCompilationTime = false;
-  this.dispose = function () {};
-};
+BABYLON.EngineInstrumentation = function () {}
+// BABYLON.EngineInstrumentation.engine = undefined;
+// BABYLON.EngineInstrumentation.prototype.gpuFrameTimeCounter = undefined;
+// BABYLON.EngineInstrumentation.prototype.captureGPUFrameTime = undefined;
+// BABYLON.EngineInstrumentation.prototype.shaderCompilationTimeCounter = undefined;
+// BABYLON.EngineInstrumentation.prototype.captureShaderCompilationTime = undefined;
+BABYLON.EngineInstrumentation.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.SceneInstrumentation = function () {
-};
+BABYLON.SceneInstrumentation = function () {}
+
 
 /** @constructor */
-BABYLON.EffectLayer = function () {
-  this.Parse = function () {};
-};
+BABYLON.EffectLayer = function () {}
+BABYLON.EffectLayer.Parse = function () {};
+
 
 /** @constructor */
-BABYLON.EffectLayerSceneComponent = function () {
-};
+BABYLON.EffectLayerSceneComponent = function () {}
+
 
 /** @constructor */
-BABYLON.GlowLayer = function () {
-  this.Parse = function () {};
-  this.EffectName = "GlowLayer";
-  this.DefaultBlurKernelSize = 32;
-  this.DefaultTextureRatio = 0.5;
-};
+BABYLON.GlowLayer = function () {}
+BABYLON.GlowLayer.Parse = function () {};
+BABYLON.GlowLayer.EffectName = "GlowLayer";
+BABYLON.GlowLayer.DefaultBlurKernelSize = 32;
+BABYLON.GlowLayer.DefaultTextureRatio = 0.5;
+
 
 /** @constructor */
-BABYLON.HighlightLayer = function () {
-  this.Parse = function () {};
-  this.EffectName = "HighlightLayer";
-  this.NeutralColor = {};
-  this.GlowingMeshStencilReference = 2;
-  this.NormalMeshStencilReference = 1;
-};
+BABYLON.HighlightLayer = function () {}
+BABYLON.HighlightLayer.Parse = function () {};
+BABYLON.HighlightLayer.EffectName = "HighlightLayer";
+BABYLON.HighlightLayer.NeutralColor = {};
+BABYLON.HighlightLayer.GlowingMeshStencilReference = 2;
+BABYLON.HighlightLayer.NormalMeshStencilReference = 1;
+
 
 /** @constructor */
-BABYLON.Layer = function () {
-};
+BABYLON.Layer = function () {}
+
 
 /** @constructor */
-BABYLON.LayerSceneComponent = function () {
-};
+BABYLON.LayerSceneComponent = function () {}
+
 
 /** @constructor */
-BABYLON.LensFlare = function () {
-  this.AddFlare = function () {};
-};
+BABYLON.LensFlare = function () {}
+BABYLON.LensFlare.AddFlare = function () {};
+
 
 /** @constructor */
-BABYLON.LensFlareSystem = function () {
-  this.Parse = function () {};
-};
+BABYLON.LensFlareSystem = function () {}
+BABYLON.LensFlareSystem.Parse = function () {};
+
 
 /** @constructor */
-BABYLON.LensFlareSystemSceneComponent = function () {
-};
+BABYLON.LensFlareSystemSceneComponent = function () {}
+
 
 /** @constructor */
-BABYLON.Light = function () {
-  this.CompareLightsPriority = function () {};
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.FALLOFF_DEFAULT = 0;
-  this.FALLOFF_PHYSICAL = 1;
-  this.FALLOFF_GLTF = 2;
-  this.FALLOFF_STANDARD = 3;
-  this.LIGHTMAP_DEFAULT = 0;
-  this.LIGHTMAP_SPECULAR = 1;
-  this.LIGHTMAP_SHADOWSONLY = 2;
-  this.INTENSITYMODE_AUTOMATIC = 0;
-  this.INTENSITYMODE_LUMINOUSPOWER = 1;
-  this.INTENSITYMODE_LUMINOUSINTENSITY = 2;
-  this.INTENSITYMODE_ILLUMINANCE = 3;
-  this.INTENSITYMODE_LUMINANCE = 4;
-  this.LIGHTTYPEID_POINTLIGHT = 0;
-  this.LIGHTTYPEID_DIRECTIONALLIGHT = 1;
-  this.LIGHTTYPEID_SPOTLIGHT = 2;
-  this.LIGHTTYPEID_HEMISPHERICLIGHT = 3;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.Light = function () {}
+BABYLON.Light.CompareLightsPriority = function () {};
+BABYLON.Light.GetConstructorFromName = function () {};
+BABYLON.Light.Parse = function () {};
+BABYLON.Light.FALLOFF_DEFAULT = 0;
+BABYLON.Light.FALLOFF_PHYSICAL = 1;
+BABYLON.Light.FALLOFF_GLTF = 2;
+BABYLON.Light.FALLOFF_STANDARD = 3;
+BABYLON.Light.LIGHTMAP_DEFAULT = 0;
+BABYLON.Light.LIGHTMAP_SPECULAR = 1;
+BABYLON.Light.LIGHTMAP_SHADOWSONLY = 2;
+BABYLON.Light.INTENSITYMODE_AUTOMATIC = 0;
+BABYLON.Light.INTENSITYMODE_LUMINOUSPOWER = 1;
+BABYLON.Light.INTENSITYMODE_LUMINOUSINTENSITY = 2;
+BABYLON.Light.INTENSITYMODE_ILLUMINANCE = 3;
+BABYLON.Light.INTENSITYMODE_LUMINANCE = 4;
+BABYLON.Light.LIGHTTYPEID_POINTLIGHT = 0;
+BABYLON.Light.LIGHTTYPEID_DIRECTIONALLIGHT = 1;
+BABYLON.Light.LIGHTTYPEID_SPOTLIGHT = 2;
+BABYLON.Light.LIGHTTYPEID_HEMISPHERICLIGHT = 3;
+BABYLON.Light.prototype.AddNodeConstructor = function () {};
+BABYLON.Light.prototype.Construct = function () {};
+BABYLON.Light.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.ShadowLight = function () {
-  this.CompareLightsPriority = function () {};
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.FALLOFF_DEFAULT = 0;
-  this.FALLOFF_PHYSICAL = 1;
-  this.FALLOFF_GLTF = 2;
-  this.FALLOFF_STANDARD = 3;
-  this.LIGHTMAP_DEFAULT = 0;
-  this.LIGHTMAP_SPECULAR = 1;
-  this.LIGHTMAP_SHADOWSONLY = 2;
-  this.INTENSITYMODE_AUTOMATIC = 0;
-  this.INTENSITYMODE_LUMINOUSPOWER = 1;
-  this.INTENSITYMODE_LUMINOUSINTENSITY = 2;
-  this.INTENSITYMODE_ILLUMINANCE = 3;
-  this.INTENSITYMODE_LUMINANCE = 4;
-  this.LIGHTTYPEID_POINTLIGHT = 0;
-  this.LIGHTTYPEID_DIRECTIONALLIGHT = 1;
-  this.LIGHTTYPEID_SPOTLIGHT = 2;
-  this.LIGHTTYPEID_HEMISPHERICLIGHT = 3;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.ShadowLight = function () {}
+BABYLON.ShadowLight.prototype.CompareLightsPriority = function () {};
+BABYLON.ShadowLight.prototype.GetConstructorFromName = function () {};
+BABYLON.ShadowLight.prototype.Parse = function () {};
+BABYLON.ShadowLight.prototype.FALLOFF_DEFAULT = 0;
+BABYLON.ShadowLight.prototype.FALLOFF_PHYSICAL = 1;
+BABYLON.ShadowLight.prototype.FALLOFF_GLTF = 2;
+BABYLON.ShadowLight.prototype.FALLOFF_STANDARD = 3;
+BABYLON.ShadowLight.prototype.LIGHTMAP_DEFAULT = 0;
+BABYLON.ShadowLight.prototype.LIGHTMAP_SPECULAR = 1;
+BABYLON.ShadowLight.prototype.LIGHTMAP_SHADOWSONLY = 2;
+BABYLON.ShadowLight.prototype.INTENSITYMODE_AUTOMATIC = 0;
+BABYLON.ShadowLight.prototype.INTENSITYMODE_LUMINOUSPOWER = 1;
+BABYLON.ShadowLight.prototype.INTENSITYMODE_LUMINOUSINTENSITY = 2;
+BABYLON.ShadowLight.prototype.INTENSITYMODE_ILLUMINANCE = 3;
+BABYLON.ShadowLight.prototype.INTENSITYMODE_LUMINANCE = 4;
+BABYLON.ShadowLight.prototype.LIGHTTYPEID_POINTLIGHT = 0;
+BABYLON.ShadowLight.prototype.LIGHTTYPEID_DIRECTIONALLIGHT = 1;
+BABYLON.ShadowLight.prototype.LIGHTTYPEID_SPOTLIGHT = 2;
+BABYLON.ShadowLight.prototype.LIGHTTYPEID_HEMISPHERICLIGHT = 3;
+BABYLON.ShadowLight.prototype.AddNodeConstructor = function () {};
+BABYLON.ShadowLight.prototype.Construct = function () {};
+BABYLON.ShadowLight.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.DirectionalLight = function () {
-  this.CompareLightsPriority = function () {};
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.FALLOFF_DEFAULT = 0;
-  this.FALLOFF_PHYSICAL = 1;
-  this.FALLOFF_GLTF = 2;
-  this.FALLOFF_STANDARD = 3;
-  this.LIGHTMAP_DEFAULT = 0;
-  this.LIGHTMAP_SPECULAR = 1;
-  this.LIGHTMAP_SHADOWSONLY = 2;
-  this.INTENSITYMODE_AUTOMATIC = 0;
-  this.INTENSITYMODE_LUMINOUSPOWER = 1;
-  this.INTENSITYMODE_LUMINOUSINTENSITY = 2;
-  this.INTENSITYMODE_ILLUMINANCE = 3;
-  this.INTENSITYMODE_LUMINANCE = 4;
-  this.LIGHTTYPEID_POINTLIGHT = 0;
-  this.LIGHTTYPEID_DIRECTIONALLIGHT = 1;
-  this.LIGHTTYPEID_SPOTLIGHT = 2;
-  this.LIGHTTYPEID_HEMISPHERICLIGHT = 3;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.DirectionalLight = function () {}
+BABYLON.DirectionalLight.prototype.CompareLightsPriority = function () {};
+BABYLON.DirectionalLight.prototype.GetConstructorFromName = function () {};
+BABYLON.DirectionalLight.prototype.Parse = function () {};
+BABYLON.DirectionalLight.prototype.FALLOFF_DEFAULT = 0;
+BABYLON.DirectionalLight.prototype.FALLOFF_PHYSICAL = 1;
+BABYLON.DirectionalLight.prototype.FALLOFF_GLTF = 2;
+BABYLON.DirectionalLight.prototype.FALLOFF_STANDARD = 3;
+BABYLON.DirectionalLight.prototype.LIGHTMAP_DEFAULT = 0;
+BABYLON.DirectionalLight.prototype.LIGHTMAP_SPECULAR = 1;
+BABYLON.DirectionalLight.prototype.LIGHTMAP_SHADOWSONLY = 2;
+BABYLON.DirectionalLight.prototype.INTENSITYMODE_AUTOMATIC = 0;
+BABYLON.DirectionalLight.prototype.INTENSITYMODE_LUMINOUSPOWER = 1;
+BABYLON.DirectionalLight.prototype.INTENSITYMODE_LUMINOUSINTENSITY = 2;
+BABYLON.DirectionalLight.prototype.INTENSITYMODE_ILLUMINANCE = 3;
+BABYLON.DirectionalLight.prototype.INTENSITYMODE_LUMINANCE = 4;
+BABYLON.DirectionalLight.prototype.LIGHTTYPEID_POINTLIGHT = 0;
+BABYLON.DirectionalLight.prototype.LIGHTTYPEID_DIRECTIONALLIGHT = 1;
+BABYLON.DirectionalLight.prototype.LIGHTTYPEID_SPOTLIGHT = 2;
+BABYLON.DirectionalLight.prototype.LIGHTTYPEID_HEMISPHERICLIGHT = 3;
+BABYLON.DirectionalLight.prototype.AddNodeConstructor = function () {};
+BABYLON.DirectionalLight.prototype.Construct = function () {};
+BABYLON.DirectionalLight.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.HemisphericLight = function () {
-  this.CompareLightsPriority = function () {};
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.FALLOFF_DEFAULT = 0;
-  this.FALLOFF_PHYSICAL = 1;
-  this.FALLOFF_GLTF = 2;
-  this.FALLOFF_STANDARD = 3;
-  this.LIGHTMAP_DEFAULT = 0;
-  this.LIGHTMAP_SPECULAR = 1;
-  this.LIGHTMAP_SHADOWSONLY = 2;
-  this.INTENSITYMODE_AUTOMATIC = 0;
-  this.INTENSITYMODE_LUMINOUSPOWER = 1;
-  this.INTENSITYMODE_LUMINOUSINTENSITY = 2;
-  this.INTENSITYMODE_ILLUMINANCE = 3;
-  this.INTENSITYMODE_LUMINANCE = 4;
-  this.LIGHTTYPEID_POINTLIGHT = 0;
-  this.LIGHTTYPEID_DIRECTIONALLIGHT = 1;
-  this.LIGHTTYPEID_SPOTLIGHT = 2;
-  this.LIGHTTYPEID_HEMISPHERICLIGHT = 3;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.HemisphericLight = function () {}
+BABYLON.HemisphericLight.prototype.CompareLightsPriority = function () {};
+BABYLON.HemisphericLight.prototype.GetConstructorFromName = function () {};
+BABYLON.HemisphericLight.prototype.Parse = function () {};
+BABYLON.HemisphericLight.prototype.FALLOFF_DEFAULT = 0;
+BABYLON.HemisphericLight.prototype.FALLOFF_PHYSICAL = 1;
+BABYLON.HemisphericLight.prototype.FALLOFF_GLTF = 2;
+BABYLON.HemisphericLight.prototype.FALLOFF_STANDARD = 3;
+BABYLON.HemisphericLight.prototype.LIGHTMAP_DEFAULT = 0;
+BABYLON.HemisphericLight.prototype.LIGHTMAP_SPECULAR = 1;
+BABYLON.HemisphericLight.prototype.LIGHTMAP_SHADOWSONLY = 2;
+BABYLON.HemisphericLight.prototype.INTENSITYMODE_AUTOMATIC = 0;
+BABYLON.HemisphericLight.prototype.INTENSITYMODE_LUMINOUSPOWER = 1;
+BABYLON.HemisphericLight.prototype.INTENSITYMODE_LUMINOUSINTENSITY = 2;
+BABYLON.HemisphericLight.prototype.INTENSITYMODE_ILLUMINANCE = 3;
+BABYLON.HemisphericLight.prototype.INTENSITYMODE_LUMINANCE = 4;
+BABYLON.HemisphericLight.prototype.LIGHTTYPEID_POINTLIGHT = 0;
+BABYLON.HemisphericLight.prototype.LIGHTTYPEID_DIRECTIONALLIGHT = 1;
+BABYLON.HemisphericLight.prototype.LIGHTTYPEID_SPOTLIGHT = 2;
+BABYLON.HemisphericLight.prototype.LIGHTTYPEID_HEMISPHERICLIGHT = 3;
+BABYLON.HemisphericLight.prototype.AddNodeConstructor = function () {};
+BABYLON.HemisphericLight.prototype.Construct = function () {};
+BABYLON.HemisphericLight.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.PointLight = function () {
-  this.CompareLightsPriority = function () {};
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.FALLOFF_DEFAULT = 0;
-  this.FALLOFF_PHYSICAL = 1;
-  this.FALLOFF_GLTF = 2;
-  this.FALLOFF_STANDARD = 3;
-  this.LIGHTMAP_DEFAULT = 0;
-  this.LIGHTMAP_SPECULAR = 1;
-  this.LIGHTMAP_SHADOWSONLY = 2;
-  this.INTENSITYMODE_AUTOMATIC = 0;
-  this.INTENSITYMODE_LUMINOUSPOWER = 1;
-  this.INTENSITYMODE_LUMINOUSINTENSITY = 2;
-  this.INTENSITYMODE_ILLUMINANCE = 3;
-  this.INTENSITYMODE_LUMINANCE = 4;
-  this.LIGHTTYPEID_POINTLIGHT = 0;
-  this.LIGHTTYPEID_DIRECTIONALLIGHT = 1;
-  this.LIGHTTYPEID_SPOTLIGHT = 2;
-  this.LIGHTTYPEID_HEMISPHERICLIGHT = 3;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.PointLight = function () {}
+BABYLON.PointLight.prototype.CompareLightsPriority = function () {};
+BABYLON.PointLight.prototype.GetConstructorFromName = function () {};
+BABYLON.PointLight.prototype.Parse = function () {};
+BABYLON.PointLight.prototype.FALLOFF_DEFAULT = 0;
+BABYLON.PointLight.prototype.FALLOFF_PHYSICAL = 1;
+BABYLON.PointLight.prototype.FALLOFF_GLTF = 2;
+BABYLON.PointLight.prototype.FALLOFF_STANDARD = 3;
+BABYLON.PointLight.prototype.LIGHTMAP_DEFAULT = 0;
+BABYLON.PointLight.prototype.LIGHTMAP_SPECULAR = 1;
+BABYLON.PointLight.prototype.LIGHTMAP_SHADOWSONLY = 2;
+BABYLON.PointLight.prototype.INTENSITYMODE_AUTOMATIC = 0;
+BABYLON.PointLight.prototype.INTENSITYMODE_LUMINOUSPOWER = 1;
+BABYLON.PointLight.prototype.INTENSITYMODE_LUMINOUSINTENSITY = 2;
+BABYLON.PointLight.prototype.INTENSITYMODE_ILLUMINANCE = 3;
+BABYLON.PointLight.prototype.INTENSITYMODE_LUMINANCE = 4;
+BABYLON.PointLight.prototype.LIGHTTYPEID_POINTLIGHT = 0;
+BABYLON.PointLight.prototype.LIGHTTYPEID_DIRECTIONALLIGHT = 1;
+BABYLON.PointLight.prototype.LIGHTTYPEID_SPOTLIGHT = 2;
+BABYLON.PointLight.prototype.LIGHTTYPEID_HEMISPHERICLIGHT = 3;
+BABYLON.PointLight.prototype.AddNodeConstructor = function () {};
+BABYLON.PointLight.prototype.Construct = function () {};
+BABYLON.PointLight.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.SpotLight = function () {
-  this.CompareLightsPriority = function () {};
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.FALLOFF_DEFAULT = 0;
-  this.FALLOFF_PHYSICAL = 1;
-  this.FALLOFF_GLTF = 2;
-  this.FALLOFF_STANDARD = 3;
-  this.LIGHTMAP_DEFAULT = 0;
-  this.LIGHTMAP_SPECULAR = 1;
-  this.LIGHTMAP_SHADOWSONLY = 2;
-  this.INTENSITYMODE_AUTOMATIC = 0;
-  this.INTENSITYMODE_LUMINOUSPOWER = 1;
-  this.INTENSITYMODE_LUMINOUSINTENSITY = 2;
-  this.INTENSITYMODE_ILLUMINANCE = 3;
-  this.INTENSITYMODE_LUMINANCE = 4;
-  this.LIGHTTYPEID_POINTLIGHT = 0;
-  this.LIGHTTYPEID_DIRECTIONALLIGHT = 1;
-  this.LIGHTTYPEID_SPOTLIGHT = 2;
-  this.LIGHTTYPEID_HEMISPHERICLIGHT = 3;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.SpotLight = function () {}
+BABYLON.SpotLight.prototype.CompareLightsPriority = function () {};
+BABYLON.SpotLight.prototype.GetConstructorFromName = function () {};
+BABYLON.SpotLight.prototype.Parse = function () {};
+BABYLON.SpotLight.prototype.FALLOFF_DEFAULT = 0;
+BABYLON.SpotLight.prototype.FALLOFF_PHYSICAL = 1;
+BABYLON.SpotLight.prototype.FALLOFF_GLTF = 2;
+BABYLON.SpotLight.prototype.FALLOFF_STANDARD = 3;
+BABYLON.SpotLight.prototype.LIGHTMAP_DEFAULT = 0;
+BABYLON.SpotLight.prototype.LIGHTMAP_SPECULAR = 1;
+BABYLON.SpotLight.prototype.LIGHTMAP_SHADOWSONLY = 2;
+BABYLON.SpotLight.prototype.INTENSITYMODE_AUTOMATIC = 0;
+BABYLON.SpotLight.prototype.INTENSITYMODE_LUMINOUSPOWER = 1;
+BABYLON.SpotLight.prototype.INTENSITYMODE_LUMINOUSINTENSITY = 2;
+BABYLON.SpotLight.prototype.INTENSITYMODE_ILLUMINANCE = 3;
+BABYLON.SpotLight.prototype.INTENSITYMODE_LUMINANCE = 4;
+BABYLON.SpotLight.prototype.LIGHTTYPEID_POINTLIGHT = 0;
+BABYLON.SpotLight.prototype.LIGHTTYPEID_DIRECTIONALLIGHT = 1;
+BABYLON.SpotLight.prototype.LIGHTTYPEID_SPOTLIGHT = 2;
+BABYLON.SpotLight.prototype.LIGHTTYPEID_HEMISPHERICLIGHT = 3;
+BABYLON.SpotLight.prototype.AddNodeConstructor = function () {};
+BABYLON.SpotLight.prototype.Construct = function () {};
+BABYLON.SpotLight.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.ShadowGenerator = function () {
-  this.Parse = function () {};
-  this.CLASSNAME = "ShadowGenerator";
-  this.FILTER_NONE = 0;
-  this.FILTER_EXPONENTIALSHADOWMAP = 1;
-  this.FILTER_POISSONSAMPLING = 2;
-  this.FILTER_BLUREXPONENTIALSHADOWMAP = 3;
-  this.FILTER_CLOSEEXPONENTIALSHADOWMAP = 4;
-  this.FILTER_BLURCLOSEEXPONENTIALSHADOWMAP = 5;
-  this.FILTER_PCF = 6;
-  this.FILTER_PCSS = 7;
-  this.QUALITY_HIGH = 0;
-  this.QUALITY_MEDIUM = 1;
-  this.QUALITY_LOW = 2;
-};
+BABYLON.ShadowGenerator = function () {}
+BABYLON.ShadowGenerator.Parse = function () {};
+BABYLON.ShadowGenerator.CLASSNAME = "ShadowGenerator";
+BABYLON.ShadowGenerator.FILTER_NONE = 0;
+BABYLON.ShadowGenerator.FILTER_EXPONENTIALSHADOWMAP = 1;
+BABYLON.ShadowGenerator.FILTER_POISSONSAMPLING = 2;
+BABYLON.ShadowGenerator.FILTER_BLUREXPONENTIALSHADOWMAP = 3;
+BABYLON.ShadowGenerator.FILTER_CLOSEEXPONENTIALSHADOWMAP = 4;
+BABYLON.ShadowGenerator.FILTER_BLURCLOSEEXPONENTIALSHADOWMAP = 5;
+BABYLON.ShadowGenerator.FILTER_PCF = 6;
+BABYLON.ShadowGenerator.FILTER_PCSS = 7;
+BABYLON.ShadowGenerator.QUALITY_HIGH = 0;
+BABYLON.ShadowGenerator.QUALITY_MEDIUM = 1;
+BABYLON.ShadowGenerator.QUALITY_LOW = 2;
+
 
 /** @constructor */
-BABYLON.CascadedShadowGenerator = function () {
-  this.Parse = function () {};
-  this.frustumCornersNDCSpace = {};
-  this.CLASSNAME = "CascadedShadowGenerator";
-  this.DEFAULT_CASCADES_COUNT = 4;
-  this.MIN_CASCADES_COUNT = 2;
-  this.MAX_CASCADES_COUNT = 4;
-  this.FILTER_NONE = 0;
-  this.FILTER_EXPONENTIALSHADOWMAP = 1;
-  this.FILTER_POISSONSAMPLING = 2;
-  this.FILTER_BLUREXPONENTIALSHADOWMAP = 3;
-  this.FILTER_CLOSEEXPONENTIALSHADOWMAP = 4;
-  this.FILTER_BLURCLOSEEXPONENTIALSHADOWMAP = 5;
-  this.FILTER_PCF = 6;
-  this.FILTER_PCSS = 7;
-  this.QUALITY_HIGH = 0;
-  this.QUALITY_MEDIUM = 1;
-  this.QUALITY_LOW = 2;
-};
+BABYLON.CascadedShadowGenerator = function () {}
+BABYLON.CascadedShadowGenerator.Parse = function () {};
+BABYLON.CascadedShadowGenerator.frustumCornersNDCSpace = {};
+BABYLON.CascadedShadowGenerator.CLASSNAME = "CascadedShadowGenerator";
+BABYLON.CascadedShadowGenerator.DEFAULT_CASCADES_COUNT = 4;
+BABYLON.CascadedShadowGenerator.MIN_CASCADES_COUNT = 2;
+BABYLON.CascadedShadowGenerator.MAX_CASCADES_COUNT = 4;
+BABYLON.CascadedShadowGenerator.prototype.FILTER_NONE = 0;
+BABYLON.CascadedShadowGenerator.prototype.FILTER_EXPONENTIALSHADOWMAP = 1;
+BABYLON.CascadedShadowGenerator.prototype.FILTER_POISSONSAMPLING = 2;
+BABYLON.CascadedShadowGenerator.prototype.FILTER_BLUREXPONENTIALSHADOWMAP = 3;
+BABYLON.CascadedShadowGenerator.prototype.FILTER_CLOSEEXPONENTIALSHADOWMAP = 4;
+BABYLON.CascadedShadowGenerator.prototype.FILTER_BLURCLOSEEXPONENTIALSHADOWMAP = 5;
+BABYLON.CascadedShadowGenerator.prototype.FILTER_PCF = 6;
+BABYLON.CascadedShadowGenerator.prototype.FILTER_PCSS = 7;
+BABYLON.CascadedShadowGenerator.prototype.QUALITY_HIGH = 0;
+BABYLON.CascadedShadowGenerator.prototype.QUALITY_MEDIUM = 1;
+BABYLON.CascadedShadowGenerator.prototype.QUALITY_LOW = 2;
+
 
 /** @constructor */
-BABYLON.ShadowGeneratorSceneComponent = function () {
-  this.name = "ShadowGenerator";
-  // this.scene = undefined;
-  this.register = function () {};
-  this.rebuild = function () {};
-  this.serialize = function () {};
-  this.addFromContainer = function () {};
-  this.removeFromContainer = function () {};
-  this.dispose = function () {};
-};
+BABYLON.ShadowGeneratorSceneComponent = function () {}
+BABYLON.ShadowGeneratorSceneComponent.name = "ShadowGenerator";
+// BABYLON.ShadowGeneratorSceneComponent.scene = undefined;
+BABYLON.ShadowGeneratorSceneComponent.prototype.register = function () {};
+BABYLON.ShadowGeneratorSceneComponent.prototype.rebuild = function () {};
+BABYLON.ShadowGeneratorSceneComponent.prototype.serialize = function () {};
+BABYLON.ShadowGeneratorSceneComponent.prototype.addFromContainer = function () {};
+BABYLON.ShadowGeneratorSceneComponent.prototype.removeFromContainer = function () {};
+BABYLON.ShadowGeneratorSceneComponent.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.DefaultLoadingScreen = function () {
-  this.displayLoadingUI = function () {};
-  this.hideLoadingUI = function () {};
-  this.loadingUIText = "";
-  this.loadingUIBackgroundColor = "black";
-  this.DefaultLogoUrl = "";
-  this.DefaultSpinnerUrl = "";
-};
+BABYLON.DefaultLoadingScreen = function () {}
+BABYLON.DefaultLoadingScreen.prototype.displayLoadingUI = function () {};
+BABYLON.DefaultLoadingScreen.prototype.hideLoadingUI = function () {};
+// BABYLON.DefaultLoadingScreen.prototype.loadingUIText = undefined;
+// BABYLON.DefaultLoadingScreen.prototype.loadingUIBackgroundColor = undefined;
+
 
 /** @constructor */
-BABYLON.SceneLoaderProgressEvent = function () {
-  // this.lengthComputable = undefined;
-  // this.loaded = undefined;
-  // this.total = undefined;
-  this.FromProgressEvent = function () {};
-};
+BABYLON.SceneLoaderProgressEvent = function () {}
+// BABYLON.SceneLoaderProgressEvent.lengthComputable = undefined;
+// BABYLON.SceneLoaderProgressEvent.loaded = undefined;
+// BABYLON.SceneLoaderProgressEvent.total = undefined;
+
 
 BABYLON.SceneLoaderAnimationGroupLoadingMode = {}
 
 /** @constructor */
-BABYLON.SceneLoader = function () {
-  this.ForceFullSceneLoadingForIncremental = false;
-  this.ShowLoadingScreen = true;
-  this.loggingLevel = 0;
-  this.CleanBoneMatrixWeights = false;
-  this.GetPluginForExtension = function () {};
-  this.IsPluginForExtensionAvailable = function () {};
-  this.RegisterPlugin = function () {};
-  this.ImportMesh = function () {};
-  this.ImportMeshAsync = function () {};
-  this.Load = function () {};
-  this.LoadAsync = function () {};
-  this.Append = function () {};
-  this.AppendAsync = function () {};
-  this.LoadAssetContainer = function () {};
-  this.LoadAssetContainerAsync = function () {};
-  this.ImportAnimations = function () {};
-  this.ImportAnimationsAsync = function () {};
-  this.NO_LOGGING = 0;
-  this.MINIMAL_LOGGING = 1;
-  this.SUMMARY_LOGGING = 2;
-  this.DETAILED_LOGGING = 3;
-  this.OnPluginActivatedObservable = {};
-};
+BABYLON.SceneLoader = function () {}
+
 
 /** @constructor */
-BABYLON.SceneLoaderFlags = function () {
-  this.ForceFullSceneLoadingForIncremental = false;
-  this.ShowLoadingScreen = true;
-  this.loggingLevel = 0;
-  this.CleanBoneMatrixWeights = false;
-};
+BABYLON.SceneLoaderFlags = function () {}
+
 
 /** @constructor */
-BABYLON.BabylonFileLoaderConfiguration = function () {
-  // this.LoaderInjectedPhysicsEngine = undefined;
-};
+BABYLON.BabylonFileLoaderConfiguration = function () {}
+
 
 /** @constructor */
-BABYLON.ColorCurves = function () {
-  this.globalHue = 30;
-  this.globalDensity = 0;
-  this.globalSaturation = 0;
-  this.globalExposure = 0;
-  this.highlightsHue = 30;
-  this.highlightsDensity = 0;
-  this.highlightsSaturation = 0;
-  this.highlightsExposure = 0;
-  this.midtonesHue = 30;
-  this.midtonesDensity = 0;
-  this.midtonesSaturation = 0;
-  this.midtonesExposure = 0;
-  this.shadowsHue = 30;
-  this.shadowsDensity = 0;
-  this.shadowsSaturation = 0;
-  this.shadowsExposure = 0;
-  this.getClassName = function () {};
-  this.getColorGradingDataToRef = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.Bind = function () {};
-  this.PrepareUniforms = function () {};
-  this.applyColorGradingSliderNonlinear = function () {};
-  this.fromHSBToRef = function () {};
-  this.clamp = function () {};
-  this.Parse = function () {};
-};
+BABYLON.ColorCurves = function () {}
+// BABYLON.ColorCurves.prototype.globalHue = undefined;
+// BABYLON.ColorCurves.prototype.globalDensity = undefined;
+// BABYLON.ColorCurves.prototype.globalSaturation = undefined;
+// BABYLON.ColorCurves.prototype.globalExposure = undefined;
+// BABYLON.ColorCurves.prototype.highlightsHue = undefined;
+// BABYLON.ColorCurves.prototype.highlightsDensity = undefined;
+// BABYLON.ColorCurves.prototype.highlightsSaturation = undefined;
+// BABYLON.ColorCurves.prototype.highlightsExposure = undefined;
+// BABYLON.ColorCurves.prototype.midtonesHue = undefined;
+// BABYLON.ColorCurves.prototype.midtonesDensity = undefined;
+// BABYLON.ColorCurves.prototype.midtonesSaturation = undefined;
+// BABYLON.ColorCurves.prototype.midtonesExposure = undefined;
+// BABYLON.ColorCurves.prototype.shadowsHue = undefined;
+// BABYLON.ColorCurves.prototype.shadowsDensity = undefined;
+// BABYLON.ColorCurves.prototype.shadowsSaturation = undefined;
+// BABYLON.ColorCurves.prototype.shadowsExposure = undefined;
+BABYLON.ColorCurves.prototype.getClassName = function () {};
+BABYLON.ColorCurves.prototype.getColorGradingDataToRef = function () {};
+BABYLON.ColorCurves.prototype.clone = function () {};
+BABYLON.ColorCurves.prototype.serialize = function () {};
+
 
 /** @constructor */
-BABYLON.EffectFallbacks = function () {
-  this.unBindMesh = function () {};
-  this.addFallback = function () {};
-  this.addCPUSkinningFallback = function () {};
-  this.hasMoreFallbacks = false;
-  this.reduce = function () {};
-};
+BABYLON.EffectFallbacks = function () {}
+BABYLON.EffectFallbacks.prototype.unBindMesh = function () {};
+BABYLON.EffectFallbacks.prototype.addFallback = function () {};
+BABYLON.EffectFallbacks.prototype.addCPUSkinningFallback = function () {};
+BABYLON.EffectFallbacks.prototype.hasMoreFallbacks = false;
+BABYLON.EffectFallbacks.prototype.reduce = function () {};
+
 
 /** @constructor */
-BABYLON.Effect = function () {
-  this.RegisterShader = function () {};
-  this.ResetCache = function () {};
-  this.ShadersRepository = "src/Shaders/";
-  this.ShadersStore = {};
-  this.IncludesShadersStore = {};
-};
+BABYLON.Effect = function () {}
+BABYLON.Effect.RegisterShader = function () {};
+BABYLON.Effect.ResetCache = function () {};
+BABYLON.Effect.ShadersRepository = "src/Shaders/";
+BABYLON.Effect.ShadersStore = {};
+BABYLON.Effect.IncludesShadersStore = {};
+
 
 /** @constructor */
-BABYLON.FresnelParameters = function () {
-  this.leftColor = {};
-  this.rightColor = {};
-  this.bias = 0;
-  this.power = 1;
-  this.isEnabled = true;
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.Parse = function () {};
-};
+BABYLON.FresnelParameters = function () {}
+BABYLON.FresnelParameters.leftColor = {};
+BABYLON.FresnelParameters.rightColor = {};
+BABYLON.FresnelParameters.bias = 0;
+BABYLON.FresnelParameters.power = 1;
+// BABYLON.FresnelParameters.prototype.isEnabled = undefined;
+BABYLON.FresnelParameters.prototype.clone = function () {};
+BABYLON.FresnelParameters.prototype.serialize = function () {};
+
 
 /** @constructor */
-BABYLON.ImageProcessingConfigurationDefines = function () {
-  this.IMAGEPROCESSING = false;
-  this.VIGNETTE = false;
-  this.VIGNETTEBLENDMODEMULTIPLY = false;
-  this.VIGNETTEBLENDMODEOPAQUE = false;
-  this.TONEMAPPING = false;
-  this.TONEMAPPING_ACES = false;
-  this.CONTRAST = false;
-  this.COLORCURVES = false;
-  this.COLORGRADING = false;
-  this.COLORGRADING3D = false;
-  this.SAMPLER3DGREENDEPTH = false;
-  this.SAMPLER3DBGRMAP = false;
-  this.IMAGEPROCESSINGPOSTPROCESS = false;
-  this.EXPOSURE = false;
-  this.constructor = function () {};
-  this.isDirty = true;
-  this.markAsProcessed = function () {};
-  this.markAsUnprocessed = function () {};
-  this.markAllAsDirty = function () {};
-  this.markAsImageProcessingDirty = function () {};
-  this.markAsLightDirty = function () {};
-  this.markAsAttributesDirty = function () {};
-  this.markAsTexturesDirty = function () {};
-  this.markAsFresnelDirty = function () {};
-  this.markAsMiscDirty = function () {};
-  this.rebuild = function () {};
-  this.isEqual = function () {};
-  this.cloneTo = function () {};
-  this.reset = function () {};
-  this.toString = function () {};
-};
+BABYLON.ImageProcessingConfigurationDefines = function () {}
+BABYLON.ImageProcessingConfigurationDefines.IMAGEPROCESSING = false;
+BABYLON.ImageProcessingConfigurationDefines.VIGNETTE = false;
+BABYLON.ImageProcessingConfigurationDefines.VIGNETTEBLENDMODEMULTIPLY = false;
+BABYLON.ImageProcessingConfigurationDefines.VIGNETTEBLENDMODEOPAQUE = false;
+BABYLON.ImageProcessingConfigurationDefines.TONEMAPPING = false;
+BABYLON.ImageProcessingConfigurationDefines.TONEMAPPING_ACES = false;
+BABYLON.ImageProcessingConfigurationDefines.CONTRAST = false;
+BABYLON.ImageProcessingConfigurationDefines.COLORCURVES = false;
+BABYLON.ImageProcessingConfigurationDefines.COLORGRADING = false;
+BABYLON.ImageProcessingConfigurationDefines.COLORGRADING3D = false;
+BABYLON.ImageProcessingConfigurationDefines.SAMPLER3DGREENDEPTH = false;
+BABYLON.ImageProcessingConfigurationDefines.SAMPLER3DBGRMAP = false;
+BABYLON.ImageProcessingConfigurationDefines.IMAGEPROCESSINGPOSTPROCESS = false;
+BABYLON.ImageProcessingConfigurationDefines.EXPOSURE = false;
+BABYLON.ImageProcessingConfigurationDefines.prototype.constructor = function () {};
+// BABYLON.ImageProcessingConfigurationDefines.prototype.isDirty = undefined;
+BABYLON.ImageProcessingConfigurationDefines.prototype.markAsProcessed = function () {};
+BABYLON.ImageProcessingConfigurationDefines.prototype.markAsUnprocessed = function () {};
+BABYLON.ImageProcessingConfigurationDefines.prototype.markAllAsDirty = function () {};
+BABYLON.ImageProcessingConfigurationDefines.prototype.markAsImageProcessingDirty = function () {};
+BABYLON.ImageProcessingConfigurationDefines.prototype.markAsLightDirty = function () {};
+BABYLON.ImageProcessingConfigurationDefines.prototype.markAsAttributesDirty = function () {};
+BABYLON.ImageProcessingConfigurationDefines.prototype.markAsTexturesDirty = function () {};
+BABYLON.ImageProcessingConfigurationDefines.prototype.markAsFresnelDirty = function () {};
+BABYLON.ImageProcessingConfigurationDefines.prototype.markAsMiscDirty = function () {};
+BABYLON.ImageProcessingConfigurationDefines.prototype.rebuild = function () {};
+BABYLON.ImageProcessingConfigurationDefines.prototype.isEqual = function () {};
+BABYLON.ImageProcessingConfigurationDefines.prototype.cloneTo = function () {};
+BABYLON.ImageProcessingConfigurationDefines.prototype.reset = function () {};
+BABYLON.ImageProcessingConfigurationDefines.prototype.toString = function () {};
+
 
 /** @constructor */
-BABYLON.ImageProcessingConfiguration = function () {
-  this.colorCurves = {};
-  this.vignetteStretch = 0;
-  this.vignetteCentreX = 0;
-  this.vignetteCentreY = 0;
-  this.vignetteWeight = 1.5;
-  this.vignetteColor = {};
-  this.vignetteCameraFov = 0.5;
-  this.onUpdateParameters = {};
-  this.colorCurvesEnabled = false;
-  // this.colorGradingTexture = undefined;
-  this.colorGradingEnabled = false;
-  this.colorGradingWithGreenDepth = true;
-  this.colorGradingBGR = true;
-  this.exposure = 1;
-  this.toneMappingEnabled = false;
-  this.toneMappingType = 0;
-  this.contrast = 1;
-  this.vignetteBlendMode = 0;
-  this.vignetteEnabled = false;
-  this.applyByPostProcess = false;
-  this.isEnabled = true;
-  this.getClassName = function () {};
-  this.prepareDefines = function () {};
-  this.isReady = function () {};
-  this.bind = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.PrepareUniforms = function () {};
-  this.PrepareSamplers = function () {};
-  this.Parse = function () {};
-  this.VIGNETTEMODE_MULTIPLY = 0;
-  this.VIGNETTEMODE_OPAQUE = 1;
-  this.TONEMAPPING_STANDARD = 0;
-  this.TONEMAPPING_ACES = 1;
-};
+BABYLON.ImageProcessingConfiguration = function () {}
+BABYLON.ImageProcessingConfiguration.colorCurves = {};
+BABYLON.ImageProcessingConfiguration.vignetteStretch = 0;
+BABYLON.ImageProcessingConfiguration.vignetteCentreX = 0;
+BABYLON.ImageProcessingConfiguration.vignetteCentreY = 0;
+BABYLON.ImageProcessingConfiguration.vignetteWeight = 1.5;
+BABYLON.ImageProcessingConfiguration.vignetteColor = {};
+BABYLON.ImageProcessingConfiguration.vignetteCameraFov = 0.5;
+BABYLON.ImageProcessingConfiguration.onUpdateParameters = {};
+// BABYLON.ImageProcessingConfiguration.prototype.colorCurvesEnabled = undefined;
+// BABYLON.ImageProcessingConfiguration.prototype.colorGradingTexture = undefined;
+// BABYLON.ImageProcessingConfiguration.prototype.colorGradingEnabled = undefined;
+// BABYLON.ImageProcessingConfiguration.prototype.colorGradingWithGreenDepth = undefined;
+// BABYLON.ImageProcessingConfiguration.prototype.colorGradingBGR = undefined;
+// BABYLON.ImageProcessingConfiguration.prototype.exposure = undefined;
+// BABYLON.ImageProcessingConfiguration.prototype.toneMappingEnabled = undefined;
+// BABYLON.ImageProcessingConfiguration.prototype.toneMappingType = undefined;
+// BABYLON.ImageProcessingConfiguration.prototype.contrast = undefined;
+// BABYLON.ImageProcessingConfiguration.prototype.vignetteBlendMode = undefined;
+// BABYLON.ImageProcessingConfiguration.prototype.vignetteEnabled = undefined;
+// BABYLON.ImageProcessingConfiguration.prototype.applyByPostProcess = undefined;
+// BABYLON.ImageProcessingConfiguration.prototype.isEnabled = undefined;
+BABYLON.ImageProcessingConfiguration.prototype.getClassName = function () {};
+BABYLON.ImageProcessingConfiguration.prototype.prepareDefines = function () {};
+BABYLON.ImageProcessingConfiguration.prototype.isReady = function () {};
+BABYLON.ImageProcessingConfiguration.prototype.bind = function () {};
+BABYLON.ImageProcessingConfiguration.prototype.clone = function () {};
+BABYLON.ImageProcessingConfiguration.prototype.serialize = function () {};
+
 
 /** @constructor */
-BABYLON.Material = function () {
-  this.Parse = function () {};
-  this.TriangleFillMode = 0;
-  this.WireFrameFillMode = 1;
-  this.PointFillMode = 2;
-  this.PointListDrawMode = 3;
-  this.LineListDrawMode = 4;
-  this.LineLoopDrawMode = 5;
-  this.LineStripDrawMode = 6;
-  this.TriangleStripDrawMode = 7;
-  this.TriangleFanDrawMode = 8;
-  this.ClockWiseSideOrientation = 0;
-  this.CounterClockWiseSideOrientation = 1;
-  this.TextureDirtyFlag = 1;
-  this.LightDirtyFlag = 2;
-  this.FresnelDirtyFlag = 4;
-  this.AttributesDirtyFlag = 8;
-  this.MiscDirtyFlag = 16;
-  this.AllDirtyFlag = 31;
-};
+BABYLON.Material = function () {}
+BABYLON.Material.Parse = function () {};
+BABYLON.Material.TriangleFillMode = 0;
+BABYLON.Material.WireFrameFillMode = 1;
+BABYLON.Material.PointFillMode = 2;
+BABYLON.Material.PointListDrawMode = 3;
+BABYLON.Material.LineListDrawMode = 4;
+BABYLON.Material.LineLoopDrawMode = 5;
+BABYLON.Material.LineStripDrawMode = 6;
+BABYLON.Material.TriangleStripDrawMode = 7;
+BABYLON.Material.TriangleFanDrawMode = 8;
+BABYLON.Material.ClockWiseSideOrientation = 0;
+BABYLON.Material.CounterClockWiseSideOrientation = 1;
+BABYLON.Material.TextureDirtyFlag = 1;
+BABYLON.Material.LightDirtyFlag = 2;
+BABYLON.Material.FresnelDirtyFlag = 4;
+BABYLON.Material.AttributesDirtyFlag = 8;
+BABYLON.Material.MiscDirtyFlag = 16;
+BABYLON.Material.AllDirtyFlag = 31;
+
 
 /** @constructor */
-BABYLON.MaterialDefines = function () {
-  this.isDirty = true;
-  this.markAsProcessed = function () {};
-  this.markAsUnprocessed = function () {};
-  this.markAllAsDirty = function () {};
-  this.markAsImageProcessingDirty = function () {};
-  this.markAsLightDirty = function () {};
-  this.markAsAttributesDirty = function () {};
-  this.markAsTexturesDirty = function () {};
-  this.markAsFresnelDirty = function () {};
-  this.markAsMiscDirty = function () {};
-  this.rebuild = function () {};
-  this.isEqual = function () {};
-  this.cloneTo = function () {};
-  this.reset = function () {};
-  this.toString = function () {};
-};
+BABYLON.MaterialDefines = function () {}
+// BABYLON.MaterialDefines.prototype.isDirty = undefined;
+BABYLON.MaterialDefines.prototype.markAsProcessed = function () {};
+BABYLON.MaterialDefines.prototype.markAsUnprocessed = function () {};
+BABYLON.MaterialDefines.prototype.markAllAsDirty = function () {};
+BABYLON.MaterialDefines.prototype.markAsImageProcessingDirty = function () {};
+BABYLON.MaterialDefines.prototype.markAsLightDirty = function () {};
+BABYLON.MaterialDefines.prototype.markAsAttributesDirty = function () {};
+BABYLON.MaterialDefines.prototype.markAsTexturesDirty = function () {};
+BABYLON.MaterialDefines.prototype.markAsFresnelDirty = function () {};
+BABYLON.MaterialDefines.prototype.markAsMiscDirty = function () {};
+BABYLON.MaterialDefines.prototype.rebuild = function () {};
+BABYLON.MaterialDefines.prototype.isEqual = function () {};
+BABYLON.MaterialDefines.prototype.cloneTo = function () {};
+BABYLON.MaterialDefines.prototype.reset = function () {};
+BABYLON.MaterialDefines.prototype.toString = function () {};
+
 
 /** @constructor */
-BABYLON.MaterialHelper = function () {
-  this.BindEyePosition = function () {};
-  this.PrepareDefinesForMergedUV = function () {};
-  this.BindTextureMatrix = function () {};
-  this.GetFogState = function () {};
-  this.PrepareDefinesForMisc = function () {};
-  this.PrepareDefinesForFrameBoundValues = function () {};
-  this.PrepareDefinesForBones = function () {};
-  this.PrepareDefinesForMorphTargets = function () {};
-  this.PrepareDefinesForAttributes = function () {};
-  this.PrepareDefinesForMultiview = function () {};
-  this.PrepareDefinesForLight = function () {};
-  this.PrepareDefinesForLights = function () {};
-  this.PrepareUniformsAndSamplersForLight = function () {};
-  this.PrepareUniformsAndSamplersList = function () {};
-  this.HandleFallbacksForShadows = function () {};
-  this.PrepareAttributesForMorphTargetsInfluencers = function () {};
-  this.PrepareAttributesForMorphTargets = function () {};
-  this.PrepareAttributesForBones = function () {};
-  this.PrepareAttributesForInstances = function () {};
-  this.PushAttributesForInstances = function () {};
-  this.BindLightProperties = function () {};
-  this.BindLight = function () {};
-  this.BindLights = function () {};
-  this.BindFogParameters = function () {};
-  this.BindBonesParameters = function () {};
-  this.BindMorphTargetParameters = function () {};
-  this.BindLogDepth = function () {};
-  this.BindClipPlane = function () {};
-};
+BABYLON.MaterialHelper = function () {}
+
 
 /** @constructor */
-BABYLON.MultiMaterial = function () {
-  this.ParseMultiMaterial = function () {};
-  this.Parse = function () {};
-  this.TriangleFillMode = 0;
-  this.WireFrameFillMode = 1;
-  this.PointFillMode = 2;
-  this.PointListDrawMode = 3;
-  this.LineListDrawMode = 4;
-  this.LineLoopDrawMode = 5;
-  this.LineStripDrawMode = 6;
-  this.TriangleStripDrawMode = 7;
-  this.TriangleFanDrawMode = 8;
-  this.ClockWiseSideOrientation = 0;
-  this.CounterClockWiseSideOrientation = 1;
-  this.TextureDirtyFlag = 1;
-  this.LightDirtyFlag = 2;
-  this.FresnelDirtyFlag = 4;
-  this.AttributesDirtyFlag = 8;
-  this.MiscDirtyFlag = 16;
-  this.AllDirtyFlag = 31;
-};
+BABYLON.MultiMaterial = function () {}
+BABYLON.MultiMaterial.ParseMultiMaterial = function () {};
+BABYLON.MultiMaterial.prototype.Parse = function () {};
+BABYLON.MultiMaterial.prototype.TriangleFillMode = 0;
+BABYLON.MultiMaterial.prototype.WireFrameFillMode = 1;
+BABYLON.MultiMaterial.prototype.PointFillMode = 2;
+BABYLON.MultiMaterial.prototype.PointListDrawMode = 3;
+BABYLON.MultiMaterial.prototype.LineListDrawMode = 4;
+BABYLON.MultiMaterial.prototype.LineLoopDrawMode = 5;
+BABYLON.MultiMaterial.prototype.LineStripDrawMode = 6;
+BABYLON.MultiMaterial.prototype.TriangleStripDrawMode = 7;
+BABYLON.MultiMaterial.prototype.TriangleFanDrawMode = 8;
+BABYLON.MultiMaterial.prototype.ClockWiseSideOrientation = 0;
+BABYLON.MultiMaterial.prototype.CounterClockWiseSideOrientation = 1;
+BABYLON.MultiMaterial.prototype.TextureDirtyFlag = 1;
+BABYLON.MultiMaterial.prototype.LightDirtyFlag = 2;
+BABYLON.MultiMaterial.prototype.FresnelDirtyFlag = 4;
+BABYLON.MultiMaterial.prototype.AttributesDirtyFlag = 8;
+BABYLON.MultiMaterial.prototype.MiscDirtyFlag = 16;
+BABYLON.MultiMaterial.prototype.AllDirtyFlag = 31;
+
 
 /** @constructor */
-BABYLON.PBRMaterial = function () {
-  this.Parse = function () {};
-  this.PBRMATERIAL_OPAQUE = 0;
-  this.PBRMATERIAL_ALPHATEST = 1;
-  this.PBRMATERIAL_ALPHABLEND = 2;
-  this.PBRMATERIAL_ALPHATESTANDBLEND = 3;
-  this.DEFAULT_AO_ON_ANALYTICAL_LIGHTS = 0;
-  this.LIGHTFALLOFF_PHYSICAL = 0;
-  this.LIGHTFALLOFF_GLTF = 1;
-  this.LIGHTFALLOFF_STANDARD = 2;
-  this.TriangleFillMode = 0;
-  this.WireFrameFillMode = 1;
-  this.PointFillMode = 2;
-  this.PointListDrawMode = 3;
-  this.LineListDrawMode = 4;
-  this.LineLoopDrawMode = 5;
-  this.LineStripDrawMode = 6;
-  this.TriangleStripDrawMode = 7;
-  this.TriangleFanDrawMode = 8;
-  this.ClockWiseSideOrientation = 0;
-  this.CounterClockWiseSideOrientation = 1;
-  this.TextureDirtyFlag = 1;
-  this.LightDirtyFlag = 2;
-  this.FresnelDirtyFlag = 4;
-  this.AttributesDirtyFlag = 8;
-  this.MiscDirtyFlag = 16;
-  this.AllDirtyFlag = 31;
-};
+BABYLON.PBRMaterial = function () {}
+BABYLON.PBRMaterial.Parse = function () {};
+BABYLON.PBRMaterial.PBRMATERIAL_OPAQUE = 0;
+BABYLON.PBRMaterial.PBRMATERIAL_ALPHATEST = 1;
+BABYLON.PBRMaterial.PBRMATERIAL_ALPHABLEND = 2;
+BABYLON.PBRMaterial.PBRMATERIAL_ALPHATESTANDBLEND = 3;
+BABYLON.PBRMaterial.DEFAULT_AO_ON_ANALYTICAL_LIGHTS = 0;
+BABYLON.PBRMaterial.prototype.LIGHTFALLOFF_PHYSICAL = 0;
+BABYLON.PBRMaterial.prototype.LIGHTFALLOFF_GLTF = 1;
+BABYLON.PBRMaterial.prototype.LIGHTFALLOFF_STANDARD = 2;
+BABYLON.PBRMaterial.prototype.TriangleFillMode = 0;
+BABYLON.PBRMaterial.prototype.WireFrameFillMode = 1;
+BABYLON.PBRMaterial.prototype.PointFillMode = 2;
+BABYLON.PBRMaterial.prototype.PointListDrawMode = 3;
+BABYLON.PBRMaterial.prototype.LineListDrawMode = 4;
+BABYLON.PBRMaterial.prototype.LineLoopDrawMode = 5;
+BABYLON.PBRMaterial.prototype.LineStripDrawMode = 6;
+BABYLON.PBRMaterial.prototype.TriangleStripDrawMode = 7;
+BABYLON.PBRMaterial.prototype.TriangleFanDrawMode = 8;
+BABYLON.PBRMaterial.prototype.ClockWiseSideOrientation = 0;
+BABYLON.PBRMaterial.prototype.CounterClockWiseSideOrientation = 1;
+BABYLON.PBRMaterial.prototype.TextureDirtyFlag = 1;
+BABYLON.PBRMaterial.prototype.LightDirtyFlag = 2;
+BABYLON.PBRMaterial.prototype.FresnelDirtyFlag = 4;
+BABYLON.PBRMaterial.prototype.AttributesDirtyFlag = 8;
+BABYLON.PBRMaterial.prototype.MiscDirtyFlag = 16;
+BABYLON.PBRMaterial.prototype.AllDirtyFlag = 31;
+
 
 /** @constructor */
-BABYLON.PushMaterial = function () {
-  this.Parse = function () {};
-  this.TriangleFillMode = 0;
-  this.WireFrameFillMode = 1;
-  this.PointFillMode = 2;
-  this.PointListDrawMode = 3;
-  this.LineListDrawMode = 4;
-  this.LineLoopDrawMode = 5;
-  this.LineStripDrawMode = 6;
-  this.TriangleStripDrawMode = 7;
-  this.TriangleFanDrawMode = 8;
-  this.ClockWiseSideOrientation = 0;
-  this.CounterClockWiseSideOrientation = 1;
-  this.TextureDirtyFlag = 1;
-  this.LightDirtyFlag = 2;
-  this.FresnelDirtyFlag = 4;
-  this.AttributesDirtyFlag = 8;
-  this.MiscDirtyFlag = 16;
-  this.AllDirtyFlag = 31;
-};
+BABYLON.PushMaterial = function () {}
+BABYLON.PushMaterial.prototype.Parse = function () {};
+BABYLON.PushMaterial.prototype.TriangleFillMode = 0;
+BABYLON.PushMaterial.prototype.WireFrameFillMode = 1;
+BABYLON.PushMaterial.prototype.PointFillMode = 2;
+BABYLON.PushMaterial.prototype.PointListDrawMode = 3;
+BABYLON.PushMaterial.prototype.LineListDrawMode = 4;
+BABYLON.PushMaterial.prototype.LineLoopDrawMode = 5;
+BABYLON.PushMaterial.prototype.LineStripDrawMode = 6;
+BABYLON.PushMaterial.prototype.TriangleStripDrawMode = 7;
+BABYLON.PushMaterial.prototype.TriangleFanDrawMode = 8;
+BABYLON.PushMaterial.prototype.ClockWiseSideOrientation = 0;
+BABYLON.PushMaterial.prototype.CounterClockWiseSideOrientation = 1;
+BABYLON.PushMaterial.prototype.TextureDirtyFlag = 1;
+BABYLON.PushMaterial.prototype.LightDirtyFlag = 2;
+BABYLON.PushMaterial.prototype.FresnelDirtyFlag = 4;
+BABYLON.PushMaterial.prototype.AttributesDirtyFlag = 8;
+BABYLON.PushMaterial.prototype.MiscDirtyFlag = 16;
+BABYLON.PushMaterial.prototype.AllDirtyFlag = 31;
+
 
 /** @constructor */
-BABYLON.ShaderMaterial = function () {
-  this.Parse = function () {};
-  this.TriangleFillMode = 0;
-  this.WireFrameFillMode = 1;
-  this.PointFillMode = 2;
-  this.PointListDrawMode = 3;
-  this.LineListDrawMode = 4;
-  this.LineLoopDrawMode = 5;
-  this.LineStripDrawMode = 6;
-  this.TriangleStripDrawMode = 7;
-  this.TriangleFanDrawMode = 8;
-  this.ClockWiseSideOrientation = 0;
-  this.CounterClockWiseSideOrientation = 1;
-  this.TextureDirtyFlag = 1;
-  this.LightDirtyFlag = 2;
-  this.FresnelDirtyFlag = 4;
-  this.AttributesDirtyFlag = 8;
-  this.MiscDirtyFlag = 16;
-  this.AllDirtyFlag = 31;
-};
+BABYLON.ShaderMaterial = function () {}
+BABYLON.ShaderMaterial.Parse = function () {};
+BABYLON.ShaderMaterial.prototype.TriangleFillMode = 0;
+BABYLON.ShaderMaterial.prototype.WireFrameFillMode = 1;
+BABYLON.ShaderMaterial.prototype.PointFillMode = 2;
+BABYLON.ShaderMaterial.prototype.PointListDrawMode = 3;
+BABYLON.ShaderMaterial.prototype.LineListDrawMode = 4;
+BABYLON.ShaderMaterial.prototype.LineLoopDrawMode = 5;
+BABYLON.ShaderMaterial.prototype.LineStripDrawMode = 6;
+BABYLON.ShaderMaterial.prototype.TriangleStripDrawMode = 7;
+BABYLON.ShaderMaterial.prototype.TriangleFanDrawMode = 8;
+BABYLON.ShaderMaterial.prototype.ClockWiseSideOrientation = 0;
+BABYLON.ShaderMaterial.prototype.CounterClockWiseSideOrientation = 1;
+BABYLON.ShaderMaterial.prototype.TextureDirtyFlag = 1;
+BABYLON.ShaderMaterial.prototype.LightDirtyFlag = 2;
+BABYLON.ShaderMaterial.prototype.FresnelDirtyFlag = 4;
+BABYLON.ShaderMaterial.prototype.AttributesDirtyFlag = 8;
+BABYLON.ShaderMaterial.prototype.MiscDirtyFlag = 16;
+BABYLON.ShaderMaterial.prototype.AllDirtyFlag = 31;
+
 
 /** @constructor */
-BABYLON.StandardMaterialDefines = function () {
-  this.MAINUV1 = false;
-  this.MAINUV2 = false;
-  this.DIFFUSE = false;
-  this.DIFFUSEDIRECTUV = 0;
-  this.AMBIENT = false;
-  this.AMBIENTDIRECTUV = 0;
-  this.OPACITY = false;
-  this.OPACITYDIRECTUV = 0;
-  this.OPACITYRGB = false;
-  this.REFLECTION = false;
-  this.EMISSIVE = false;
-  this.EMISSIVEDIRECTUV = 0;
-  this.SPECULAR = false;
-  this.SPECULARDIRECTUV = 0;
-  this.BUMP = false;
-  this.BUMPDIRECTUV = 0;
-  this.PARALLAX = false;
-  this.PARALLAXOCCLUSION = false;
-  this.SPECULAROVERALPHA = false;
-  this.CLIPPLANE = false;
-  this.CLIPPLANE2 = false;
-  this.CLIPPLANE3 = false;
-  this.CLIPPLANE4 = false;
-  this.CLIPPLANE5 = false;
-  this.CLIPPLANE6 = false;
-  this.ALPHATEST = false;
-  this.DEPTHPREPASS = false;
-  this.ALPHAFROMDIFFUSE = false;
-  this.POINTSIZE = false;
-  this.FOG = false;
-  this.SPECULARTERM = false;
-  this.DIFFUSEFRESNEL = false;
-  this.OPACITYFRESNEL = false;
-  this.REFLECTIONFRESNEL = false;
-  this.REFRACTIONFRESNEL = false;
-  this.EMISSIVEFRESNEL = false;
-  this.FRESNEL = false;
-  this.NORMAL = false;
-  this.UV1 = false;
-  this.UV2 = false;
-  this.VERTEXCOLOR = false;
-  this.VERTEXALPHA = false;
-  this.NUM_BONE_INFLUENCERS = 0;
-  this.BonesPerMesh = 0;
-  this.BONETEXTURE = false;
-  this.INSTANCES = false;
-  this.GLOSSINESS = false;
-  this.ROUGHNESS = false;
-  this.EMISSIVEASILLUMINATION = false;
-  this.LINKEMISSIVEWITHDIFFUSE = false;
-  this.REFLECTIONFRESNELFROMSPECULAR = false;
-  this.LIGHTMAP = false;
-  this.LIGHTMAPDIRECTUV = 0;
-  this.OBJECTSPACE_NORMALMAP = false;
-  this.USELIGHTMAPASSHADOWMAP = false;
-  this.REFLECTIONMAP_3D = false;
-  this.REFLECTIONMAP_SPHERICAL = false;
-  this.REFLECTIONMAP_PLANAR = false;
-  this.REFLECTIONMAP_CUBIC = false;
-  this.USE_LOCAL_REFLECTIONMAP_CUBIC = false;
-  this.REFLECTIONMAP_PROJECTION = false;
-  this.REFLECTIONMAP_SKYBOX = false;
-  this.REFLECTIONMAP_EXPLICIT = false;
-  this.REFLECTIONMAP_EQUIRECTANGULAR = false;
-  this.REFLECTIONMAP_EQUIRECTANGULAR_FIXED = false;
-  this.REFLECTIONMAP_MIRROREDEQUIRECTANGULAR_FIXED = false;
-  this.INVERTCUBICMAP = false;
-  this.LOGARITHMICDEPTH = false;
-  this.REFRACTION = false;
-  this.REFRACTIONMAP_3D = false;
-  this.REFLECTIONOVERALPHA = false;
-  this.TWOSIDEDLIGHTING = false;
-  this.SHADOWFLOAT = false;
-  this.MORPHTARGETS = false;
-  this.MORPHTARGETS_NORMAL = false;
-  this.MORPHTARGETS_TANGENT = false;
-  this.MORPHTARGETS_UV = false;
-  this.NUM_MORPH_INFLUENCERS = 0;
-  this.NONUNIFORMSCALING = false;
-  this.PREMULTIPLYALPHA = false;
-  this.IMAGEPROCESSING = false;
-  this.VIGNETTE = false;
-  this.VIGNETTEBLENDMODEMULTIPLY = false;
-  this.VIGNETTEBLENDMODEOPAQUE = false;
-  this.TONEMAPPING = false;
-  this.TONEMAPPING_ACES = false;
-  this.CONTRAST = false;
-  this.COLORCURVES = false;
-  this.COLORGRADING = false;
-  this.COLORGRADING3D = false;
-  this.SAMPLER3DGREENDEPTH = false;
-  this.SAMPLER3DBGRMAP = false;
-  this.IMAGEPROCESSINGPOSTPROCESS = false;
-  this.MULTIVIEW = false;
-  this.IS_REFLECTION_LINEAR = false;
-  this.IS_REFRACTION_LINEAR = false;
-  this.EXPOSURE = false;
-  this.constructor = function () {};
-  this.setReflectionMode = function () {};
-  this.isDirty = true;
-  this.markAsProcessed = function () {};
-  this.markAsUnprocessed = function () {};
-  this.markAllAsDirty = function () {};
-  this.markAsImageProcessingDirty = function () {};
-  this.markAsLightDirty = function () {};
-  this.markAsAttributesDirty = function () {};
-  this.markAsTexturesDirty = function () {};
-  this.markAsFresnelDirty = function () {};
-  this.markAsMiscDirty = function () {};
-  this.rebuild = function () {};
-  this.isEqual = function () {};
-  this.cloneTo = function () {};
-  this.reset = function () {};
-  this.toString = function () {};
-};
+BABYLON.StandardMaterialDefines = function () {}
+BABYLON.StandardMaterialDefines.MAINUV1 = false;
+BABYLON.StandardMaterialDefines.MAINUV2 = false;
+BABYLON.StandardMaterialDefines.DIFFUSE = false;
+BABYLON.StandardMaterialDefines.DIFFUSEDIRECTUV = 0;
+BABYLON.StandardMaterialDefines.AMBIENT = false;
+BABYLON.StandardMaterialDefines.AMBIENTDIRECTUV = 0;
+BABYLON.StandardMaterialDefines.OPACITY = false;
+BABYLON.StandardMaterialDefines.OPACITYDIRECTUV = 0;
+BABYLON.StandardMaterialDefines.OPACITYRGB = false;
+BABYLON.StandardMaterialDefines.REFLECTION = false;
+BABYLON.StandardMaterialDefines.EMISSIVE = false;
+BABYLON.StandardMaterialDefines.EMISSIVEDIRECTUV = 0;
+BABYLON.StandardMaterialDefines.SPECULAR = false;
+BABYLON.StandardMaterialDefines.SPECULARDIRECTUV = 0;
+BABYLON.StandardMaterialDefines.BUMP = false;
+BABYLON.StandardMaterialDefines.BUMPDIRECTUV = 0;
+BABYLON.StandardMaterialDefines.PARALLAX = false;
+BABYLON.StandardMaterialDefines.PARALLAXOCCLUSION = false;
+BABYLON.StandardMaterialDefines.SPECULAROVERALPHA = false;
+BABYLON.StandardMaterialDefines.CLIPPLANE = false;
+BABYLON.StandardMaterialDefines.CLIPPLANE2 = false;
+BABYLON.StandardMaterialDefines.CLIPPLANE3 = false;
+BABYLON.StandardMaterialDefines.CLIPPLANE4 = false;
+BABYLON.StandardMaterialDefines.CLIPPLANE5 = false;
+BABYLON.StandardMaterialDefines.CLIPPLANE6 = false;
+BABYLON.StandardMaterialDefines.ALPHATEST = false;
+BABYLON.StandardMaterialDefines.DEPTHPREPASS = false;
+BABYLON.StandardMaterialDefines.ALPHAFROMDIFFUSE = false;
+BABYLON.StandardMaterialDefines.POINTSIZE = false;
+BABYLON.StandardMaterialDefines.FOG = false;
+BABYLON.StandardMaterialDefines.SPECULARTERM = false;
+BABYLON.StandardMaterialDefines.DIFFUSEFRESNEL = false;
+BABYLON.StandardMaterialDefines.OPACITYFRESNEL = false;
+BABYLON.StandardMaterialDefines.REFLECTIONFRESNEL = false;
+BABYLON.StandardMaterialDefines.REFRACTIONFRESNEL = false;
+BABYLON.StandardMaterialDefines.EMISSIVEFRESNEL = false;
+BABYLON.StandardMaterialDefines.FRESNEL = false;
+BABYLON.StandardMaterialDefines.NORMAL = false;
+BABYLON.StandardMaterialDefines.UV1 = false;
+BABYLON.StandardMaterialDefines.UV2 = false;
+BABYLON.StandardMaterialDefines.VERTEXCOLOR = false;
+BABYLON.StandardMaterialDefines.VERTEXALPHA = false;
+BABYLON.StandardMaterialDefines.NUM_BONE_INFLUENCERS = 0;
+BABYLON.StandardMaterialDefines.BonesPerMesh = 0;
+BABYLON.StandardMaterialDefines.BONETEXTURE = false;
+BABYLON.StandardMaterialDefines.INSTANCES = false;
+BABYLON.StandardMaterialDefines.GLOSSINESS = false;
+BABYLON.StandardMaterialDefines.ROUGHNESS = false;
+BABYLON.StandardMaterialDefines.EMISSIVEASILLUMINATION = false;
+BABYLON.StandardMaterialDefines.LINKEMISSIVEWITHDIFFUSE = false;
+BABYLON.StandardMaterialDefines.REFLECTIONFRESNELFROMSPECULAR = false;
+BABYLON.StandardMaterialDefines.LIGHTMAP = false;
+BABYLON.StandardMaterialDefines.LIGHTMAPDIRECTUV = 0;
+BABYLON.StandardMaterialDefines.OBJECTSPACE_NORMALMAP = false;
+BABYLON.StandardMaterialDefines.USELIGHTMAPASSHADOWMAP = false;
+BABYLON.StandardMaterialDefines.REFLECTIONMAP_3D = false;
+BABYLON.StandardMaterialDefines.REFLECTIONMAP_SPHERICAL = false;
+BABYLON.StandardMaterialDefines.REFLECTIONMAP_PLANAR = false;
+BABYLON.StandardMaterialDefines.REFLECTIONMAP_CUBIC = false;
+BABYLON.StandardMaterialDefines.USE_LOCAL_REFLECTIONMAP_CUBIC = false;
+BABYLON.StandardMaterialDefines.REFLECTIONMAP_PROJECTION = false;
+BABYLON.StandardMaterialDefines.REFLECTIONMAP_SKYBOX = false;
+BABYLON.StandardMaterialDefines.REFLECTIONMAP_EXPLICIT = false;
+BABYLON.StandardMaterialDefines.REFLECTIONMAP_EQUIRECTANGULAR = false;
+BABYLON.StandardMaterialDefines.REFLECTIONMAP_EQUIRECTANGULAR_FIXED = false;
+BABYLON.StandardMaterialDefines.REFLECTIONMAP_MIRROREDEQUIRECTANGULAR_FIXED = false;
+BABYLON.StandardMaterialDefines.INVERTCUBICMAP = false;
+BABYLON.StandardMaterialDefines.LOGARITHMICDEPTH = false;
+BABYLON.StandardMaterialDefines.REFRACTION = false;
+BABYLON.StandardMaterialDefines.REFRACTIONMAP_3D = false;
+BABYLON.StandardMaterialDefines.REFLECTIONOVERALPHA = false;
+BABYLON.StandardMaterialDefines.TWOSIDEDLIGHTING = false;
+BABYLON.StandardMaterialDefines.SHADOWFLOAT = false;
+BABYLON.StandardMaterialDefines.MORPHTARGETS = false;
+BABYLON.StandardMaterialDefines.MORPHTARGETS_NORMAL = false;
+BABYLON.StandardMaterialDefines.MORPHTARGETS_TANGENT = false;
+BABYLON.StandardMaterialDefines.MORPHTARGETS_UV = false;
+BABYLON.StandardMaterialDefines.NUM_MORPH_INFLUENCERS = 0;
+BABYLON.StandardMaterialDefines.NONUNIFORMSCALING = false;
+BABYLON.StandardMaterialDefines.PREMULTIPLYALPHA = false;
+BABYLON.StandardMaterialDefines.IMAGEPROCESSING = false;
+BABYLON.StandardMaterialDefines.VIGNETTE = false;
+BABYLON.StandardMaterialDefines.VIGNETTEBLENDMODEMULTIPLY = false;
+BABYLON.StandardMaterialDefines.VIGNETTEBLENDMODEOPAQUE = false;
+BABYLON.StandardMaterialDefines.TONEMAPPING = false;
+BABYLON.StandardMaterialDefines.TONEMAPPING_ACES = false;
+BABYLON.StandardMaterialDefines.CONTRAST = false;
+BABYLON.StandardMaterialDefines.COLORCURVES = false;
+BABYLON.StandardMaterialDefines.COLORGRADING = false;
+BABYLON.StandardMaterialDefines.COLORGRADING3D = false;
+BABYLON.StandardMaterialDefines.SAMPLER3DGREENDEPTH = false;
+BABYLON.StandardMaterialDefines.SAMPLER3DBGRMAP = false;
+BABYLON.StandardMaterialDefines.IMAGEPROCESSINGPOSTPROCESS = false;
+BABYLON.StandardMaterialDefines.MULTIVIEW = false;
+BABYLON.StandardMaterialDefines.IS_REFLECTION_LINEAR = false;
+BABYLON.StandardMaterialDefines.IS_REFRACTION_LINEAR = false;
+BABYLON.StandardMaterialDefines.EXPOSURE = false;
+BABYLON.StandardMaterialDefines.prototype.constructor = function () {};
+BABYLON.StandardMaterialDefines.prototype.setReflectionMode = function () {};
+// BABYLON.StandardMaterialDefines.prototype.isDirty = undefined;
+BABYLON.StandardMaterialDefines.prototype.markAsProcessed = function () {};
+BABYLON.StandardMaterialDefines.prototype.markAsUnprocessed = function () {};
+BABYLON.StandardMaterialDefines.prototype.markAllAsDirty = function () {};
+BABYLON.StandardMaterialDefines.prototype.markAsImageProcessingDirty = function () {};
+BABYLON.StandardMaterialDefines.prototype.markAsLightDirty = function () {};
+BABYLON.StandardMaterialDefines.prototype.markAsAttributesDirty = function () {};
+BABYLON.StandardMaterialDefines.prototype.markAsTexturesDirty = function () {};
+BABYLON.StandardMaterialDefines.prototype.markAsFresnelDirty = function () {};
+BABYLON.StandardMaterialDefines.prototype.markAsMiscDirty = function () {};
+BABYLON.StandardMaterialDefines.prototype.rebuild = function () {};
+BABYLON.StandardMaterialDefines.prototype.isEqual = function () {};
+BABYLON.StandardMaterialDefines.prototype.cloneTo = function () {};
+BABYLON.StandardMaterialDefines.prototype.reset = function () {};
+BABYLON.StandardMaterialDefines.prototype.toString = function () {};
+
 
 /** @constructor */
-BABYLON.StandardMaterial = function () {
-  this.Parse = function () {};
-  this.DiffuseTextureEnabled = true;
-  this.AmbientTextureEnabled = true;
-  this.OpacityTextureEnabled = true;
-  this.ReflectionTextureEnabled = true;
-  this.EmissiveTextureEnabled = true;
-  this.SpecularTextureEnabled = true;
-  this.BumpTextureEnabled = true;
-  this.LightmapTextureEnabled = true;
-  this.RefractionTextureEnabled = true;
-  this.ColorGradingTextureEnabled = true;
-  this.FresnelEnabled = true;
-  this.TriangleFillMode = 0;
-  this.WireFrameFillMode = 1;
-  this.PointFillMode = 2;
-  this.PointListDrawMode = 3;
-  this.LineListDrawMode = 4;
-  this.LineLoopDrawMode = 5;
-  this.LineStripDrawMode = 6;
-  this.TriangleStripDrawMode = 7;
-  this.TriangleFanDrawMode = 8;
-  this.ClockWiseSideOrientation = 0;
-  this.CounterClockWiseSideOrientation = 1;
-  this.TextureDirtyFlag = 1;
-  this.LightDirtyFlag = 2;
-  this.FresnelDirtyFlag = 4;
-  this.AttributesDirtyFlag = 8;
-  this.MiscDirtyFlag = 16;
-  this.AllDirtyFlag = 31;
-};
+BABYLON.StandardMaterial = function () {}
+BABYLON.StandardMaterial.Parse = function () {};
+BABYLON.StandardMaterial.DiffuseTextureEnabled = true;
+BABYLON.StandardMaterial.AmbientTextureEnabled = true;
+BABYLON.StandardMaterial.OpacityTextureEnabled = true;
+BABYLON.StandardMaterial.ReflectionTextureEnabled = true;
+BABYLON.StandardMaterial.EmissiveTextureEnabled = true;
+BABYLON.StandardMaterial.SpecularTextureEnabled = true;
+BABYLON.StandardMaterial.BumpTextureEnabled = true;
+BABYLON.StandardMaterial.LightmapTextureEnabled = true;
+BABYLON.StandardMaterial.RefractionTextureEnabled = true;
+BABYLON.StandardMaterial.ColorGradingTextureEnabled = true;
+BABYLON.StandardMaterial.FresnelEnabled = true;
+BABYLON.StandardMaterial.prototype.TriangleFillMode = 0;
+BABYLON.StandardMaterial.prototype.WireFrameFillMode = 1;
+BABYLON.StandardMaterial.prototype.PointFillMode = 2;
+BABYLON.StandardMaterial.prototype.PointListDrawMode = 3;
+BABYLON.StandardMaterial.prototype.LineListDrawMode = 4;
+BABYLON.StandardMaterial.prototype.LineLoopDrawMode = 5;
+BABYLON.StandardMaterial.prototype.LineStripDrawMode = 6;
+BABYLON.StandardMaterial.prototype.TriangleStripDrawMode = 7;
+BABYLON.StandardMaterial.prototype.TriangleFanDrawMode = 8;
+BABYLON.StandardMaterial.prototype.ClockWiseSideOrientation = 0;
+BABYLON.StandardMaterial.prototype.CounterClockWiseSideOrientation = 1;
+BABYLON.StandardMaterial.prototype.TextureDirtyFlag = 1;
+BABYLON.StandardMaterial.prototype.LightDirtyFlag = 2;
+BABYLON.StandardMaterial.prototype.FresnelDirtyFlag = 4;
+BABYLON.StandardMaterial.prototype.AttributesDirtyFlag = 8;
+BABYLON.StandardMaterial.prototype.MiscDirtyFlag = 16;
+BABYLON.StandardMaterial.prototype.AllDirtyFlag = 31;
+
 
 /** @constructor */
-BABYLON.BaseTexture = function () {
-  this.metadata = null;
-  this.reservedDataStore = null;
-  this.getAlphaFromRGB = false;
-  this.level = 1;
-  this.coordinatesIndex = 0;
-  this.wrapU = 1;
-  this.wrapV = 1;
-  this.wrapR = 1;
-  this.anisotropicFilteringLevel = 4;
-  this.invertZ = false;
-  this.lodLevelInAlpha = false;
-  this.isRenderTarget = false;
-  this.animations = {};
-  this.onDisposeObservable = {};
-  this.delayLoadState = 0;
-  this.hasAlpha = false;
-  this.coordinatesMode = 0;
-  this.isCube = false;
-  this.is3D = false;
-  this.is2DArray = false;
-  this.isRGBD = false;
-  this.noMipmap = false;
-  this.lodGenerationOffset = 0;
-  this.lodGenerationScale = 0;
-  this.linearSpecularLOD = false;
-  this.irradianceTexture = null;
-  this.uid = "7cb90573-4f21-4808-9569-65119798a5c2";
-  this.toString = function () {};
-  this.getClassName = function () {};
-  // this.onDispose = undefined;
-  this.isBlocking = true;
-  this.getScene = function () {};
-  this.getTextureMatrix = function () {};
-  this.getReflectionTextureMatrix = function () {};
-  this.getInternalTexture = function () {};
-  this.isReadyOrNotBlocking = function () {};
-  this.isReady = function () {};
-  this.getSize = function () {};
-  this.getBaseSize = function () {};
-  this.updateSamplingMode = function () {};
-  this.scale = function () {};
-  this.canRescale = false;
-  this.delayLoad = function () {};
-  this.clone = function () {};
-  this.textureType = 0;
-  this.textureFormat = 5;
-  this.readPixels = function () {};
-  this.releaseInternalTexture = function () {};
-  this.dispose = function () {};
-  this.serialize = function () {};
-  this.gammaSpace = true;
-  this.sphericalPolynomial = null;
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.BaseTexture = function () {}
+BABYLON.BaseTexture.metadata = null;
+BABYLON.BaseTexture.reservedDataStore = null;
+BABYLON.BaseTexture.getAlphaFromRGB = false;
+BABYLON.BaseTexture.level = 1;
+BABYLON.BaseTexture.coordinatesIndex = 0;
+BABYLON.BaseTexture.wrapU = 1;
+BABYLON.BaseTexture.wrapV = 1;
+BABYLON.BaseTexture.wrapR = 1;
+BABYLON.BaseTexture.anisotropicFilteringLevel = 4;
+BABYLON.BaseTexture.invertZ = false;
+BABYLON.BaseTexture.lodLevelInAlpha = false;
+BABYLON.BaseTexture.isRenderTarget = false;
+BABYLON.BaseTexture.animations = {};
+BABYLON.BaseTexture.onDisposeObservable = {};
+BABYLON.BaseTexture.delayLoadState = 0;
+// BABYLON.BaseTexture.prototype.hasAlpha = undefined;
+// BABYLON.BaseTexture.prototype.coordinatesMode = undefined;
+BABYLON.BaseTexture.prototype.isCube = false;
+BABYLON.BaseTexture.prototype.is3D = false;
+BABYLON.BaseTexture.prototype.is2DArray = false;
+BABYLON.BaseTexture.prototype.isRGBD = false;
+BABYLON.BaseTexture.prototype.noMipmap = false;
+BABYLON.BaseTexture.prototype.lodGenerationOffset = 0;
+BABYLON.BaseTexture.prototype.lodGenerationScale = 0;
+BABYLON.BaseTexture.prototype.linearSpecularLOD = false;
+BABYLON.BaseTexture.prototype.irradianceTexture = null;
+BABYLON.BaseTexture.prototype.uid = "0fa69376-1fcf-422f-b5d9-12134e2ced93";
+BABYLON.BaseTexture.prototype.toString = function () {};
+BABYLON.BaseTexture.prototype.getClassName = function () {};
+// BABYLON.BaseTexture.prototype.onDispose = undefined;
+BABYLON.BaseTexture.prototype.isBlocking = true;
+BABYLON.BaseTexture.prototype.getScene = function () {};
+BABYLON.BaseTexture.prototype.getTextureMatrix = function () {};
+BABYLON.BaseTexture.prototype.getReflectionTextureMatrix = function () {};
+BABYLON.BaseTexture.prototype.getInternalTexture = function () {};
+BABYLON.BaseTexture.prototype.isReadyOrNotBlocking = function () {};
+BABYLON.BaseTexture.prototype.isReady = function () {};
+BABYLON.BaseTexture.prototype.getSize = function () {};
+BABYLON.BaseTexture.prototype.getBaseSize = function () {};
+BABYLON.BaseTexture.prototype.updateSamplingMode = function () {};
+BABYLON.BaseTexture.prototype.scale = function () {};
+BABYLON.BaseTexture.prototype.canRescale = false;
+BABYLON.BaseTexture.prototype.delayLoad = function () {};
+BABYLON.BaseTexture.prototype.clone = function () {};
+BABYLON.BaseTexture.prototype.textureType = 0;
+BABYLON.BaseTexture.prototype.textureFormat = 5;
+BABYLON.BaseTexture.prototype.readPixels = function () {};
+BABYLON.BaseTexture.prototype.releaseInternalTexture = function () {};
+BABYLON.BaseTexture.prototype.dispose = function () {};
+BABYLON.BaseTexture.prototype.serialize = function () {};
+// BABYLON.BaseTexture.prototype.gammaSpace = undefined;
+BABYLON.BaseTexture.prototype.sphericalPolynomial = null;
+
 
 /** @constructor */
-BABYLON.CubeTexture = function () {
-  this.metadata = null;
-  this.reservedDataStore = null;
-  this.getAlphaFromRGB = false;
-  this.level = 1;
-  this.coordinatesIndex = 0;
-  this.wrapU = 1;
-  this.wrapV = 1;
-  this.wrapR = 1;
-  this.anisotropicFilteringLevel = 4;
-  this.invertZ = false;
-  this.lodLevelInAlpha = false;
-  this.isRenderTarget = false;
-  this.animations = {};
-  this.onDisposeObservable = {};
-  this.delayLoadState = 0;
-  this.onLoadObservable = {};
-  this.boundingBoxPosition = {};
-  // this.name = undefined;
-  // this.url = undefined;
-  this.constructor = function () {};
-  // this.boundingBoxSize = undefined;
-  this.rotationY = 0;
-  this.noMipmap = false;
-  this.isPrefiltered = false;
-  this.getClassName = function () {};
-  this.updateURL = function () {};
-  this.delayLoad = function () {};
-  this.getReflectionTextureMatrix = function () {};
-  this.setReflectionTextureMatrix = function () {};
-  this.clone = function () {};
-  this.hasAlpha = false;
-  this.coordinatesMode = 3;
-  this.isCube = false;
-  this.is3D = false;
-  this.is2DArray = false;
-  this.isRGBD = false;
-  this.lodGenerationOffset = 0;
-  this.lodGenerationScale = 0;
-  this.linearSpecularLOD = false;
-  this.irradianceTexture = null;
-  this.uid = "027541ef-c49a-477b-b801-4c6cd0e022a6";
-  this.toString = function () {};
-  // this.onDispose = undefined;
-  this.isBlocking = true;
-  this.getScene = function () {};
-  this.getTextureMatrix = function () {};
-  this.getInternalTexture = function () {};
-  this.isReadyOrNotBlocking = function () {};
-  this.isReady = function () {};
-  this.getSize = function () {};
-  this.getBaseSize = function () {};
-  this.updateSamplingMode = function () {};
-  this.scale = function () {};
-  this.canRescale = false;
-  this.textureType = 0;
-  this.textureFormat = 5;
-  this.readPixels = function () {};
-  this.releaseInternalTexture = function () {};
-  this.dispose = function () {};
-  this.serialize = function () {};
-  this.gammaSpace = true;
-  this.sphericalPolynomial = null;
-  this.CreateFromImages = function () {};
-  this.CreateFromPrefilteredData = function () {};
-  this.Parse = function () {};
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.CubeTexture = function () {}
+BABYLON.CubeTexture.metadata = null;
+BABYLON.CubeTexture.reservedDataStore = null;
+BABYLON.CubeTexture.getAlphaFromRGB = false;
+BABYLON.CubeTexture.level = 1;
+BABYLON.CubeTexture.coordinatesIndex = 0;
+BABYLON.CubeTexture.wrapU = 1;
+BABYLON.CubeTexture.wrapV = 1;
+BABYLON.CubeTexture.wrapR = 1;
+BABYLON.CubeTexture.anisotropicFilteringLevel = 4;
+BABYLON.CubeTexture.invertZ = false;
+BABYLON.CubeTexture.lodLevelInAlpha = false;
+BABYLON.CubeTexture.isRenderTarget = false;
+BABYLON.CubeTexture.animations = {};
+BABYLON.CubeTexture.onDisposeObservable = {};
+BABYLON.CubeTexture.delayLoadState = 0;
+BABYLON.CubeTexture.onLoadObservable = {};
+BABYLON.CubeTexture.boundingBoxPosition = {};
+// BABYLON.CubeTexture.name = undefined;
+// BABYLON.CubeTexture.url = undefined;
+BABYLON.CubeTexture.prototype.constructor = function () {};
+// BABYLON.CubeTexture.prototype.boundingBoxSize = undefined;
+// BABYLON.CubeTexture.prototype.rotationY = undefined;
+// BABYLON.CubeTexture.prototype.noMipmap = undefined;
+// BABYLON.CubeTexture.prototype.isPrefiltered = undefined;
+BABYLON.CubeTexture.prototype.getClassName = function () {};
+BABYLON.CubeTexture.prototype.updateURL = function () {};
+BABYLON.CubeTexture.prototype.delayLoad = function () {};
+BABYLON.CubeTexture.prototype.getReflectionTextureMatrix = function () {};
+BABYLON.CubeTexture.prototype.setReflectionTextureMatrix = function () {};
+BABYLON.CubeTexture.prototype.clone = function () {};
+// BABYLON.CubeTexture.prototype.hasAlpha = undefined;
+// BABYLON.CubeTexture.prototype.coordinatesMode = undefined;
+BABYLON.CubeTexture.prototype.isCube = false;
+BABYLON.CubeTexture.prototype.is3D = false;
+BABYLON.CubeTexture.prototype.is2DArray = false;
+BABYLON.CubeTexture.prototype.isRGBD = false;
+BABYLON.CubeTexture.prototype.lodGenerationOffset = 0;
+BABYLON.CubeTexture.prototype.lodGenerationScale = 0;
+BABYLON.CubeTexture.prototype.linearSpecularLOD = false;
+BABYLON.CubeTexture.prototype.irradianceTexture = null;
+BABYLON.CubeTexture.prototype.uid = "0fa69376-1fcf-422f-b5d9-12134e2ced93";
+BABYLON.CubeTexture.prototype.toString = function () {};
+// BABYLON.CubeTexture.prototype.onDispose = undefined;
+BABYLON.CubeTexture.prototype.isBlocking = true;
+BABYLON.CubeTexture.prototype.getScene = function () {};
+BABYLON.CubeTexture.prototype.getTextureMatrix = function () {};
+BABYLON.CubeTexture.prototype.getInternalTexture = function () {};
+BABYLON.CubeTexture.prototype.isReadyOrNotBlocking = function () {};
+BABYLON.CubeTexture.prototype.isReady = function () {};
+BABYLON.CubeTexture.prototype.getSize = function () {};
+BABYLON.CubeTexture.prototype.getBaseSize = function () {};
+BABYLON.CubeTexture.prototype.updateSamplingMode = function () {};
+BABYLON.CubeTexture.prototype.scale = function () {};
+BABYLON.CubeTexture.prototype.canRescale = false;
+BABYLON.CubeTexture.prototype.textureType = 0;
+BABYLON.CubeTexture.prototype.textureFormat = 5;
+BABYLON.CubeTexture.prototype.readPixels = function () {};
+BABYLON.CubeTexture.prototype.releaseInternalTexture = function () {};
+BABYLON.CubeTexture.prototype.dispose = function () {};
+BABYLON.CubeTexture.prototype.serialize = function () {};
+// BABYLON.CubeTexture.prototype.gammaSpace = undefined;
+BABYLON.CubeTexture.prototype.sphericalPolynomial = null;
+
 
 /** @constructor */
-BABYLON.DynamicTexture = function () {
-  this.Parse = function () {};
-  this.CreateFromBase64String = function () {};
-  this.LoadFromDataString = function () {};
-  this.SerializeBuffers = true;
-  this.NEAREST_SAMPLINGMODE = 1;
-  this.NEAREST_NEAREST_MIPLINEAR = 8;
-  this.BILINEAR_SAMPLINGMODE = 2;
-  this.LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TRILINEAR_SAMPLINGMODE = 3;
-  this.LINEAR_LINEAR_MIPLINEAR = 3;
-  this.NEAREST_NEAREST_MIPNEAREST = 4;
-  this.NEAREST_LINEAR_MIPNEAREST = 5;
-  this.NEAREST_LINEAR_MIPLINEAR = 6;
-  this.NEAREST_LINEAR = 7;
-  this.NEAREST_NEAREST = 1;
-  this.LINEAR_NEAREST_MIPNEAREST = 9;
-  this.LINEAR_NEAREST_MIPLINEAR = 10;
-  this.LINEAR_LINEAR = 2;
-  this.LINEAR_NEAREST = 12;
-  this.EXPLICIT_MODE = 0;
-  this.SPHERICAL_MODE = 1;
-  this.PLANAR_MODE = 2;
-  this.CUBIC_MODE = 3;
-  this.PROJECTION_MODE = 4;
-  this.SKYBOX_MODE = 5;
-  this.INVCUBIC_MODE = 6;
-  this.EQUIRECTANGULAR_MODE = 7;
-  this.FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.CLAMP_ADDRESSMODE = 0;
-  this.WRAP_ADDRESSMODE = 1;
-  this.MIRROR_ADDRESSMODE = 2;
-  this.UseSerializedUrlIfAny = false;
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.DynamicTexture = function () {}
+BABYLON.DynamicTexture.prototype.Parse = function () {};
+BABYLON.DynamicTexture.prototype.CreateFromBase64String = function () {};
+BABYLON.DynamicTexture.prototype.LoadFromDataString = function () {};
+BABYLON.DynamicTexture.prototype.SerializeBuffers = true;
+BABYLON.DynamicTexture.prototype.NEAREST_SAMPLINGMODE = 1;
+BABYLON.DynamicTexture.prototype.NEAREST_NEAREST_MIPLINEAR = 8;
+BABYLON.DynamicTexture.prototype.BILINEAR_SAMPLINGMODE = 2;
+BABYLON.DynamicTexture.prototype.LINEAR_LINEAR_MIPNEAREST = 11;
+BABYLON.DynamicTexture.prototype.TRILINEAR_SAMPLINGMODE = 3;
+BABYLON.DynamicTexture.prototype.LINEAR_LINEAR_MIPLINEAR = 3;
+BABYLON.DynamicTexture.prototype.NEAREST_NEAREST_MIPNEAREST = 4;
+BABYLON.DynamicTexture.prototype.NEAREST_LINEAR_MIPNEAREST = 5;
+BABYLON.DynamicTexture.prototype.NEAREST_LINEAR_MIPLINEAR = 6;
+BABYLON.DynamicTexture.prototype.NEAREST_LINEAR = 7;
+BABYLON.DynamicTexture.prototype.NEAREST_NEAREST = 1;
+BABYLON.DynamicTexture.prototype.LINEAR_NEAREST_MIPNEAREST = 9;
+BABYLON.DynamicTexture.prototype.LINEAR_NEAREST_MIPLINEAR = 10;
+BABYLON.DynamicTexture.prototype.LINEAR_LINEAR = 2;
+BABYLON.DynamicTexture.prototype.LINEAR_NEAREST = 12;
+BABYLON.DynamicTexture.prototype.EXPLICIT_MODE = 0;
+BABYLON.DynamicTexture.prototype.SPHERICAL_MODE = 1;
+BABYLON.DynamicTexture.prototype.PLANAR_MODE = 2;
+BABYLON.DynamicTexture.prototype.CUBIC_MODE = 3;
+BABYLON.DynamicTexture.prototype.PROJECTION_MODE = 4;
+BABYLON.DynamicTexture.prototype.SKYBOX_MODE = 5;
+BABYLON.DynamicTexture.prototype.INVCUBIC_MODE = 6;
+BABYLON.DynamicTexture.prototype.EQUIRECTANGULAR_MODE = 7;
+BABYLON.DynamicTexture.prototype.FIXED_EQUIRECTANGULAR_MODE = 8;
+BABYLON.DynamicTexture.prototype.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
+BABYLON.DynamicTexture.prototype.CLAMP_ADDRESSMODE = 0;
+BABYLON.DynamicTexture.prototype.WRAP_ADDRESSMODE = 1;
+BABYLON.DynamicTexture.prototype.MIRROR_ADDRESSMODE = 2;
+BABYLON.DynamicTexture.prototype.UseSerializedUrlIfAny = false;
+BABYLON.DynamicTexture.prototype.WhenAllReady = function () {};
+BABYLON.DynamicTexture.prototype.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
+
 
 /** @constructor */
-BABYLON.EquiRectangularCubeTexture = function () {
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.EquiRectangularCubeTexture = function () {}
+BABYLON.EquiRectangularCubeTexture.prototype.WhenAllReady = function () {};
+BABYLON.EquiRectangularCubeTexture.prototype.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
+
 
 /** @constructor */
-BABYLON.HDRCubeTexture = function () {
-  this.metadata = null;
-  this.reservedDataStore = null;
-  this.getAlphaFromRGB = false;
-  this.level = 1;
-  this.coordinatesIndex = 0;
-  this.wrapU = 1;
-  this.wrapV = 1;
-  this.wrapR = 1;
-  this.anisotropicFilteringLevel = 4;
-  this.invertZ = false;
-  this.lodLevelInAlpha = false;
-  this.isRenderTarget = false;
-  this.animations = {};
-  this.onDisposeObservable = {};
-  this.delayLoadState = 0;
-  this.boundingBoxPosition = {};
-  this.constructor = function () {};
-  this.isBlocking = true;
-  this.rotationY = 0;
-  // this.boundingBoxSize = undefined;
-  this.getClassName = function () {};
-  this.loadTexture = function () {};
-  this.clone = function () {};
-  this.delayLoad = function () {};
-  this.getReflectionTextureMatrix = function () {};
-  this.setReflectionTextureMatrix = function () {};
-  this.serialize = function () {};
-  this.hasAlpha = false;
-  this.coordinatesMode = 3;
-  this.isCube = false;
-  this.is3D = false;
-  this.is2DArray = false;
-  this.isRGBD = false;
-  this.noMipmap = false;
-  this.lodGenerationOffset = 0;
-  this.lodGenerationScale = 0;
-  this.linearSpecularLOD = false;
-  this.irradianceTexture = null;
-  this.uid = "b33724c1-78b5-473b-9bd8-8ec3271a8589";
-  this.toString = function () {};
-  // this.onDispose = undefined;
-  this.getScene = function () {};
-  this.getTextureMatrix = function () {};
-  this.getInternalTexture = function () {};
-  this.isReadyOrNotBlocking = function () {};
-  this.isReady = function () {};
-  this.getSize = function () {};
-  this.getBaseSize = function () {};
-  this.updateSamplingMode = function () {};
-  this.scale = function () {};
-  this.canRescale = false;
-  this.textureType = 0;
-  this.textureFormat = 5;
-  this.readPixels = function () {};
-  this.releaseInternalTexture = function () {};
-  this.dispose = function () {};
-  this.gammaSpace = true;
-  this.sphericalPolynomial = null;
-  this.Parse = function () {};
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.HDRCubeTexture = function () {}
+BABYLON.HDRCubeTexture.metadata = null;
+BABYLON.HDRCubeTexture.reservedDataStore = null;
+BABYLON.HDRCubeTexture.getAlphaFromRGB = false;
+BABYLON.HDRCubeTexture.level = 1;
+BABYLON.HDRCubeTexture.coordinatesIndex = 0;
+BABYLON.HDRCubeTexture.wrapU = 1;
+BABYLON.HDRCubeTexture.wrapV = 1;
+BABYLON.HDRCubeTexture.wrapR = 1;
+BABYLON.HDRCubeTexture.anisotropicFilteringLevel = 4;
+BABYLON.HDRCubeTexture.invertZ = false;
+BABYLON.HDRCubeTexture.lodLevelInAlpha = false;
+BABYLON.HDRCubeTexture.isRenderTarget = false;
+BABYLON.HDRCubeTexture.animations = {};
+BABYLON.HDRCubeTexture.onDisposeObservable = {};
+BABYLON.HDRCubeTexture.delayLoadState = 0;
+BABYLON.HDRCubeTexture.boundingBoxPosition = {};
+BABYLON.HDRCubeTexture.prototype.constructor = function () {};
+// BABYLON.HDRCubeTexture.prototype.isBlocking = undefined;
+// BABYLON.HDRCubeTexture.prototype.rotationY = undefined;
+// BABYLON.HDRCubeTexture.prototype.boundingBoxSize = undefined;
+BABYLON.HDRCubeTexture.prototype.getClassName = function () {};
+BABYLON.HDRCubeTexture.prototype.loadTexture = function () {};
+BABYLON.HDRCubeTexture.prototype.clone = function () {};
+BABYLON.HDRCubeTexture.prototype.delayLoad = function () {};
+BABYLON.HDRCubeTexture.prototype.getReflectionTextureMatrix = function () {};
+BABYLON.HDRCubeTexture.prototype.setReflectionTextureMatrix = function () {};
+BABYLON.HDRCubeTexture.prototype.serialize = function () {};
+// BABYLON.HDRCubeTexture.prototype.hasAlpha = undefined;
+// BABYLON.HDRCubeTexture.prototype.coordinatesMode = undefined;
+BABYLON.HDRCubeTexture.prototype.isCube = false;
+BABYLON.HDRCubeTexture.prototype.is3D = false;
+BABYLON.HDRCubeTexture.prototype.is2DArray = false;
+BABYLON.HDRCubeTexture.prototype.isRGBD = false;
+BABYLON.HDRCubeTexture.prototype.noMipmap = false;
+BABYLON.HDRCubeTexture.prototype.lodGenerationOffset = 0;
+BABYLON.HDRCubeTexture.prototype.lodGenerationScale = 0;
+BABYLON.HDRCubeTexture.prototype.linearSpecularLOD = false;
+BABYLON.HDRCubeTexture.prototype.irradianceTexture = null;
+BABYLON.HDRCubeTexture.prototype.uid = "0fa69376-1fcf-422f-b5d9-12134e2ced93";
+BABYLON.HDRCubeTexture.prototype.toString = function () {};
+// BABYLON.HDRCubeTexture.prototype.onDispose = undefined;
+BABYLON.HDRCubeTexture.prototype.getScene = function () {};
+BABYLON.HDRCubeTexture.prototype.getTextureMatrix = function () {};
+BABYLON.HDRCubeTexture.prototype.getInternalTexture = function () {};
+BABYLON.HDRCubeTexture.prototype.isReadyOrNotBlocking = function () {};
+BABYLON.HDRCubeTexture.prototype.isReady = function () {};
+BABYLON.HDRCubeTexture.prototype.getSize = function () {};
+BABYLON.HDRCubeTexture.prototype.getBaseSize = function () {};
+BABYLON.HDRCubeTexture.prototype.updateSamplingMode = function () {};
+BABYLON.HDRCubeTexture.prototype.scale = function () {};
+BABYLON.HDRCubeTexture.prototype.canRescale = false;
+BABYLON.HDRCubeTexture.prototype.textureType = 0;
+BABYLON.HDRCubeTexture.prototype.textureFormat = 5;
+BABYLON.HDRCubeTexture.prototype.readPixels = function () {};
+BABYLON.HDRCubeTexture.prototype.releaseInternalTexture = function () {};
+BABYLON.HDRCubeTexture.prototype.dispose = function () {};
+// BABYLON.HDRCubeTexture.prototype.gammaSpace = undefined;
+BABYLON.HDRCubeTexture.prototype.sphericalPolynomial = null;
+
 
 BABYLON.InternalTextureSource = {}
 
 /** @constructor */
-BABYLON.InternalTexture = function () {
-};
+BABYLON.InternalTexture = function () {}
+
 
 /** @constructor */
-BABYLON.MirrorTexture = function () {
-  this.REFRESHRATE_RENDER_ONCE = 0;
-  this.REFRESHRATE_RENDER_ONEVERYFRAME = 1;
-  this.REFRESHRATE_RENDER_ONEVERYTWOFRAMES = 2;
-  this.Parse = function () {};
-  this.CreateFromBase64String = function () {};
-  this.LoadFromDataString = function () {};
-  this.SerializeBuffers = true;
-  this.NEAREST_SAMPLINGMODE = 1;
-  this.NEAREST_NEAREST_MIPLINEAR = 8;
-  this.BILINEAR_SAMPLINGMODE = 2;
-  this.LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TRILINEAR_SAMPLINGMODE = 3;
-  this.LINEAR_LINEAR_MIPLINEAR = 3;
-  this.NEAREST_NEAREST_MIPNEAREST = 4;
-  this.NEAREST_LINEAR_MIPNEAREST = 5;
-  this.NEAREST_LINEAR_MIPLINEAR = 6;
-  this.NEAREST_LINEAR = 7;
-  this.NEAREST_NEAREST = 1;
-  this.LINEAR_NEAREST_MIPNEAREST = 9;
-  this.LINEAR_NEAREST_MIPLINEAR = 10;
-  this.LINEAR_LINEAR = 2;
-  this.LINEAR_NEAREST = 12;
-  this.EXPLICIT_MODE = 0;
-  this.SPHERICAL_MODE = 1;
-  this.PLANAR_MODE = 2;
-  this.CUBIC_MODE = 3;
-  this.PROJECTION_MODE = 4;
-  this.SKYBOX_MODE = 5;
-  this.INVCUBIC_MODE = 6;
-  this.EQUIRECTANGULAR_MODE = 7;
-  this.FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.CLAMP_ADDRESSMODE = 0;
-  this.WRAP_ADDRESSMODE = 1;
-  this.MIRROR_ADDRESSMODE = 2;
-  this.UseSerializedUrlIfAny = false;
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.MirrorTexture = function () {}
+BABYLON.MirrorTexture.prototype.REFRESHRATE_RENDER_ONCE = 0;
+BABYLON.MirrorTexture.prototype.REFRESHRATE_RENDER_ONEVERYFRAME = 1;
+BABYLON.MirrorTexture.prototype.REFRESHRATE_RENDER_ONEVERYTWOFRAMES = 2;
+BABYLON.MirrorTexture.prototype.Parse = function () {};
+BABYLON.MirrorTexture.prototype.CreateFromBase64String = function () {};
+BABYLON.MirrorTexture.prototype.LoadFromDataString = function () {};
+BABYLON.MirrorTexture.prototype.SerializeBuffers = true;
+BABYLON.MirrorTexture.prototype.NEAREST_SAMPLINGMODE = 1;
+BABYLON.MirrorTexture.prototype.NEAREST_NEAREST_MIPLINEAR = 8;
+BABYLON.MirrorTexture.prototype.BILINEAR_SAMPLINGMODE = 2;
+BABYLON.MirrorTexture.prototype.LINEAR_LINEAR_MIPNEAREST = 11;
+BABYLON.MirrorTexture.prototype.TRILINEAR_SAMPLINGMODE = 3;
+BABYLON.MirrorTexture.prototype.LINEAR_LINEAR_MIPLINEAR = 3;
+BABYLON.MirrorTexture.prototype.NEAREST_NEAREST_MIPNEAREST = 4;
+BABYLON.MirrorTexture.prototype.NEAREST_LINEAR_MIPNEAREST = 5;
+BABYLON.MirrorTexture.prototype.NEAREST_LINEAR_MIPLINEAR = 6;
+BABYLON.MirrorTexture.prototype.NEAREST_LINEAR = 7;
+BABYLON.MirrorTexture.prototype.NEAREST_NEAREST = 1;
+BABYLON.MirrorTexture.prototype.LINEAR_NEAREST_MIPNEAREST = 9;
+BABYLON.MirrorTexture.prototype.LINEAR_NEAREST_MIPLINEAR = 10;
+BABYLON.MirrorTexture.prototype.LINEAR_LINEAR = 2;
+BABYLON.MirrorTexture.prototype.LINEAR_NEAREST = 12;
+BABYLON.MirrorTexture.prototype.EXPLICIT_MODE = 0;
+BABYLON.MirrorTexture.prototype.SPHERICAL_MODE = 1;
+BABYLON.MirrorTexture.prototype.PLANAR_MODE = 2;
+BABYLON.MirrorTexture.prototype.CUBIC_MODE = 3;
+BABYLON.MirrorTexture.prototype.PROJECTION_MODE = 4;
+BABYLON.MirrorTexture.prototype.SKYBOX_MODE = 5;
+BABYLON.MirrorTexture.prototype.INVCUBIC_MODE = 6;
+BABYLON.MirrorTexture.prototype.EQUIRECTANGULAR_MODE = 7;
+BABYLON.MirrorTexture.prototype.FIXED_EQUIRECTANGULAR_MODE = 8;
+BABYLON.MirrorTexture.prototype.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
+BABYLON.MirrorTexture.prototype.CLAMP_ADDRESSMODE = 0;
+BABYLON.MirrorTexture.prototype.WRAP_ADDRESSMODE = 1;
+BABYLON.MirrorTexture.prototype.MIRROR_ADDRESSMODE = 2;
+BABYLON.MirrorTexture.prototype.UseSerializedUrlIfAny = false;
+BABYLON.MirrorTexture.prototype.WhenAllReady = function () {};
+BABYLON.MirrorTexture.prototype.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
+
 
 /** @constructor */
-BABYLON.MultiRenderTarget = function () {
-  this.REFRESHRATE_RENDER_ONCE = 0;
-  this.REFRESHRATE_RENDER_ONEVERYFRAME = 1;
-  this.REFRESHRATE_RENDER_ONEVERYTWOFRAMES = 2;
-  this.Parse = function () {};
-  this.CreateFromBase64String = function () {};
-  this.LoadFromDataString = function () {};
-  this.SerializeBuffers = true;
-  this.NEAREST_SAMPLINGMODE = 1;
-  this.NEAREST_NEAREST_MIPLINEAR = 8;
-  this.BILINEAR_SAMPLINGMODE = 2;
-  this.LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TRILINEAR_SAMPLINGMODE = 3;
-  this.LINEAR_LINEAR_MIPLINEAR = 3;
-  this.NEAREST_NEAREST_MIPNEAREST = 4;
-  this.NEAREST_LINEAR_MIPNEAREST = 5;
-  this.NEAREST_LINEAR_MIPLINEAR = 6;
-  this.NEAREST_LINEAR = 7;
-  this.NEAREST_NEAREST = 1;
-  this.LINEAR_NEAREST_MIPNEAREST = 9;
-  this.LINEAR_NEAREST_MIPLINEAR = 10;
-  this.LINEAR_LINEAR = 2;
-  this.LINEAR_NEAREST = 12;
-  this.EXPLICIT_MODE = 0;
-  this.SPHERICAL_MODE = 1;
-  this.PLANAR_MODE = 2;
-  this.CUBIC_MODE = 3;
-  this.PROJECTION_MODE = 4;
-  this.SKYBOX_MODE = 5;
-  this.INVCUBIC_MODE = 6;
-  this.EQUIRECTANGULAR_MODE = 7;
-  this.FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.CLAMP_ADDRESSMODE = 0;
-  this.WRAP_ADDRESSMODE = 1;
-  this.MIRROR_ADDRESSMODE = 2;
-  this.UseSerializedUrlIfAny = false;
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.MultiRenderTarget = function () {}
+BABYLON.MultiRenderTarget.prototype.REFRESHRATE_RENDER_ONCE = 0;
+BABYLON.MultiRenderTarget.prototype.REFRESHRATE_RENDER_ONEVERYFRAME = 1;
+BABYLON.MultiRenderTarget.prototype.REFRESHRATE_RENDER_ONEVERYTWOFRAMES = 2;
+BABYLON.MultiRenderTarget.prototype.Parse = function () {};
+BABYLON.MultiRenderTarget.prototype.CreateFromBase64String = function () {};
+BABYLON.MultiRenderTarget.prototype.LoadFromDataString = function () {};
+BABYLON.MultiRenderTarget.prototype.SerializeBuffers = true;
+BABYLON.MultiRenderTarget.prototype.NEAREST_SAMPLINGMODE = 1;
+BABYLON.MultiRenderTarget.prototype.NEAREST_NEAREST_MIPLINEAR = 8;
+BABYLON.MultiRenderTarget.prototype.BILINEAR_SAMPLINGMODE = 2;
+BABYLON.MultiRenderTarget.prototype.LINEAR_LINEAR_MIPNEAREST = 11;
+BABYLON.MultiRenderTarget.prototype.TRILINEAR_SAMPLINGMODE = 3;
+BABYLON.MultiRenderTarget.prototype.LINEAR_LINEAR_MIPLINEAR = 3;
+BABYLON.MultiRenderTarget.prototype.NEAREST_NEAREST_MIPNEAREST = 4;
+BABYLON.MultiRenderTarget.prototype.NEAREST_LINEAR_MIPNEAREST = 5;
+BABYLON.MultiRenderTarget.prototype.NEAREST_LINEAR_MIPLINEAR = 6;
+BABYLON.MultiRenderTarget.prototype.NEAREST_LINEAR = 7;
+BABYLON.MultiRenderTarget.prototype.NEAREST_NEAREST = 1;
+BABYLON.MultiRenderTarget.prototype.LINEAR_NEAREST_MIPNEAREST = 9;
+BABYLON.MultiRenderTarget.prototype.LINEAR_NEAREST_MIPLINEAR = 10;
+BABYLON.MultiRenderTarget.prototype.LINEAR_LINEAR = 2;
+BABYLON.MultiRenderTarget.prototype.LINEAR_NEAREST = 12;
+BABYLON.MultiRenderTarget.prototype.EXPLICIT_MODE = 0;
+BABYLON.MultiRenderTarget.prototype.SPHERICAL_MODE = 1;
+BABYLON.MultiRenderTarget.prototype.PLANAR_MODE = 2;
+BABYLON.MultiRenderTarget.prototype.CUBIC_MODE = 3;
+BABYLON.MultiRenderTarget.prototype.PROJECTION_MODE = 4;
+BABYLON.MultiRenderTarget.prototype.SKYBOX_MODE = 5;
+BABYLON.MultiRenderTarget.prototype.INVCUBIC_MODE = 6;
+BABYLON.MultiRenderTarget.prototype.EQUIRECTANGULAR_MODE = 7;
+BABYLON.MultiRenderTarget.prototype.FIXED_EQUIRECTANGULAR_MODE = 8;
+BABYLON.MultiRenderTarget.prototype.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
+BABYLON.MultiRenderTarget.prototype.CLAMP_ADDRESSMODE = 0;
+BABYLON.MultiRenderTarget.prototype.WRAP_ADDRESSMODE = 1;
+BABYLON.MultiRenderTarget.prototype.MIRROR_ADDRESSMODE = 2;
+BABYLON.MultiRenderTarget.prototype.UseSerializedUrlIfAny = false;
+BABYLON.MultiRenderTarget.prototype.WhenAllReady = function () {};
+BABYLON.MultiRenderTarget.prototype.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
+
 
 /** @constructor */
-BABYLON.RawTexture = function () {
-  this.CreateLuminanceTexture = function () {};
-  this.CreateLuminanceAlphaTexture = function () {};
-  this.CreateAlphaTexture = function () {};
-  this.CreateRGBTexture = function () {};
-  this.CreateRGBATexture = function () {};
-  this.CreateRTexture = function () {};
-  this.Parse = function () {};
-  this.CreateFromBase64String = function () {};
-  this.LoadFromDataString = function () {};
-  this.SerializeBuffers = true;
-  this.NEAREST_SAMPLINGMODE = 1;
-  this.NEAREST_NEAREST_MIPLINEAR = 8;
-  this.BILINEAR_SAMPLINGMODE = 2;
-  this.LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TRILINEAR_SAMPLINGMODE = 3;
-  this.LINEAR_LINEAR_MIPLINEAR = 3;
-  this.NEAREST_NEAREST_MIPNEAREST = 4;
-  this.NEAREST_LINEAR_MIPNEAREST = 5;
-  this.NEAREST_LINEAR_MIPLINEAR = 6;
-  this.NEAREST_LINEAR = 7;
-  this.NEAREST_NEAREST = 1;
-  this.LINEAR_NEAREST_MIPNEAREST = 9;
-  this.LINEAR_NEAREST_MIPLINEAR = 10;
-  this.LINEAR_LINEAR = 2;
-  this.LINEAR_NEAREST = 12;
-  this.EXPLICIT_MODE = 0;
-  this.SPHERICAL_MODE = 1;
-  this.PLANAR_MODE = 2;
-  this.CUBIC_MODE = 3;
-  this.PROJECTION_MODE = 4;
-  this.SKYBOX_MODE = 5;
-  this.INVCUBIC_MODE = 6;
-  this.EQUIRECTANGULAR_MODE = 7;
-  this.FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.CLAMP_ADDRESSMODE = 0;
-  this.WRAP_ADDRESSMODE = 1;
-  this.MIRROR_ADDRESSMODE = 2;
-  this.UseSerializedUrlIfAny = false;
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.RawTexture = function () {}
+BABYLON.RawTexture.CreateLuminanceTexture = function () {};
+BABYLON.RawTexture.CreateLuminanceAlphaTexture = function () {};
+BABYLON.RawTexture.CreateAlphaTexture = function () {};
+BABYLON.RawTexture.CreateRGBTexture = function () {};
+BABYLON.RawTexture.CreateRGBATexture = function () {};
+BABYLON.RawTexture.CreateRTexture = function () {};
+BABYLON.RawTexture.prototype.Parse = function () {};
+BABYLON.RawTexture.prototype.CreateFromBase64String = function () {};
+BABYLON.RawTexture.prototype.LoadFromDataString = function () {};
+BABYLON.RawTexture.prototype.SerializeBuffers = true;
+BABYLON.RawTexture.prototype.NEAREST_SAMPLINGMODE = 1;
+BABYLON.RawTexture.prototype.NEAREST_NEAREST_MIPLINEAR = 8;
+BABYLON.RawTexture.prototype.BILINEAR_SAMPLINGMODE = 2;
+BABYLON.RawTexture.prototype.LINEAR_LINEAR_MIPNEAREST = 11;
+BABYLON.RawTexture.prototype.TRILINEAR_SAMPLINGMODE = 3;
+BABYLON.RawTexture.prototype.LINEAR_LINEAR_MIPLINEAR = 3;
+BABYLON.RawTexture.prototype.NEAREST_NEAREST_MIPNEAREST = 4;
+BABYLON.RawTexture.prototype.NEAREST_LINEAR_MIPNEAREST = 5;
+BABYLON.RawTexture.prototype.NEAREST_LINEAR_MIPLINEAR = 6;
+BABYLON.RawTexture.prototype.NEAREST_LINEAR = 7;
+BABYLON.RawTexture.prototype.NEAREST_NEAREST = 1;
+BABYLON.RawTexture.prototype.LINEAR_NEAREST_MIPNEAREST = 9;
+BABYLON.RawTexture.prototype.LINEAR_NEAREST_MIPLINEAR = 10;
+BABYLON.RawTexture.prototype.LINEAR_LINEAR = 2;
+BABYLON.RawTexture.prototype.LINEAR_NEAREST = 12;
+BABYLON.RawTexture.prototype.EXPLICIT_MODE = 0;
+BABYLON.RawTexture.prototype.SPHERICAL_MODE = 1;
+BABYLON.RawTexture.prototype.PLANAR_MODE = 2;
+BABYLON.RawTexture.prototype.CUBIC_MODE = 3;
+BABYLON.RawTexture.prototype.PROJECTION_MODE = 4;
+BABYLON.RawTexture.prototype.SKYBOX_MODE = 5;
+BABYLON.RawTexture.prototype.INVCUBIC_MODE = 6;
+BABYLON.RawTexture.prototype.EQUIRECTANGULAR_MODE = 7;
+BABYLON.RawTexture.prototype.FIXED_EQUIRECTANGULAR_MODE = 8;
+BABYLON.RawTexture.prototype.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
+BABYLON.RawTexture.prototype.CLAMP_ADDRESSMODE = 0;
+BABYLON.RawTexture.prototype.WRAP_ADDRESSMODE = 1;
+BABYLON.RawTexture.prototype.MIRROR_ADDRESSMODE = 2;
+BABYLON.RawTexture.prototype.UseSerializedUrlIfAny = false;
+BABYLON.RawTexture.prototype.WhenAllReady = function () {};
+BABYLON.RawTexture.prototype.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
+
 
 /** @constructor */
-BABYLON.RenderTargetTexture = function () {
-  this.metadata = null;
-  this.reservedDataStore = null;
-  this.getAlphaFromRGB = false;
-  this.level = 1;
-  this.coordinatesIndex = 0;
-  this.wrapU = 1;
-  this.wrapV = 1;
-  this.wrapR = 1;
-  this.anisotropicFilteringLevel = 4;
-  this.invertZ = false;
-  this.lodLevelInAlpha = false;
-  this.isRenderTarget = false;
-  this.animations = {};
-  this.onDisposeObservable = {};
-  this.delayLoadState = 0;
-  this.url = null;
-  this.uOffset = 0;
-  this.vOffset = 0;
-  this.uScale = 1;
-  this.vScale = 1;
-  this.uAng = 0;
-  this.vAng = 0;
-  this.wAng = 0;
-  this.uRotationCenter = 0.5;
-  this.vRotationCenter = 0.5;
-  this.wRotationCenter = 0.5;
-  this.inspectableCustomProperties = null;
-  this.onLoadObservable = {};
-  this.name = "";
-  this.renderParticles = true;
-  this.renderSprites = false;
-  this.ignoreCameraViewport = false;
-  this.onBeforeBindObservable = {};
-  this.onAfterUnbindObservable = {};
-  this.onBeforeRenderObservable = {};
-  this.onAfterRenderObservable = {};
-  this.onClearObservable = {};
-  this.onResizeObservable = {};
-  this.boundingBoxPosition = {};
-  this.constructor = function () {};
-  // this.renderList = undefined;
-  // this.onAfterUnbind = undefined;
-  // this.onBeforeRender = undefined;
-  // this.onAfterRender = undefined;
-  // this.onClear = undefined;
-  // this.renderTargetOptions = undefined;
-  // this.boundingBoxSize = undefined;
-  this.depthStencilTexture = null;
-  this.createDepthStencilTexture = function () {};
-  this.samples = 1;
-  this.resetRefreshCounter = function () {};
-  this.refreshRate = 1;
-  this.addPostProcess = function () {};
-  this.clearPostProcesses = function () {};
-  this.removePostProcess = function () {};
-  this.getRenderSize = function () {};
-  this.getRenderWidth = function () {};
-  this.getRenderHeight = function () {};
-  this.getRenderLayers = function () {};
-  this.canRescale = true;
-  this.scale = function () {};
-  this.getReflectionTextureMatrix = function () {};
-  this.resize = function () {};
-  this.render = function () {};
-  this.unbindFrameBuffer = function () {};
-  this.renderToTarget = function () {};
-  this.setRenderingOrder = function () {};
-  this.setRenderingAutoClearDepthStencil = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.disposeFramebufferObjects = function () {};
-  this.dispose = function () {};
-  this.freeRenderingGroups = function () {};
-  this.getViewCount = function () {};
-  this.noMipmap = true;
-  this.isBlocking = true;
-  this.samplingMode = 3;
-  this.invertY = true;
-  this.updateURL = function () {};
-  this.delayLoad = function () {};
-  this.getTextureMatrix = function () {};
-  this.getClassName = function () {};
-  this.hasAlpha = false;
-  this.coordinatesMode = 4;
-  this.isCube = false;
-  this.is3D = false;
-  this.is2DArray = false;
-  this.isRGBD = false;
-  this.lodGenerationOffset = 0;
-  this.lodGenerationScale = 0;
-  this.linearSpecularLOD = false;
-  this.irradianceTexture = null;
-  this.uid = "a1e40ede-7b56-4d20-8ca2-d8329a866931";
-  this.toString = function () {};
-  // this.onDispose = undefined;
-  this.getScene = function () {};
-  this.getInternalTexture = function () {};
-  this.isReadyOrNotBlocking = function () {};
-  this.isReady = function () {};
-  this.getSize = function () {};
-  this.getBaseSize = function () {};
-  this.updateSamplingMode = function () {};
-  this.textureType = 0;
-  this.textureFormat = 5;
-  this.readPixels = function () {};
-  this.releaseInternalTexture = function () {};
-  this.gammaSpace = true;
-  this.sphericalPolynomial = null;
-  this.REFRESHRATE_RENDER_ONCE = 0;
-  this.REFRESHRATE_RENDER_ONEVERYFRAME = 1;
-  this.REFRESHRATE_RENDER_ONEVERYTWOFRAMES = 2;
-  this.Parse = function () {};
-  this.CreateFromBase64String = function () {};
-  this.LoadFromDataString = function () {};
-  this.SerializeBuffers = true;
-  this.NEAREST_SAMPLINGMODE = 1;
-  this.NEAREST_NEAREST_MIPLINEAR = 8;
-  this.BILINEAR_SAMPLINGMODE = 2;
-  this.LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TRILINEAR_SAMPLINGMODE = 3;
-  this.LINEAR_LINEAR_MIPLINEAR = 3;
-  this.NEAREST_NEAREST_MIPNEAREST = 4;
-  this.NEAREST_LINEAR_MIPNEAREST = 5;
-  this.NEAREST_LINEAR_MIPLINEAR = 6;
-  this.NEAREST_LINEAR = 7;
-  this.NEAREST_NEAREST = 1;
-  this.LINEAR_NEAREST_MIPNEAREST = 9;
-  this.LINEAR_NEAREST_MIPLINEAR = 10;
-  this.LINEAR_LINEAR = 2;
-  this.LINEAR_NEAREST = 12;
-  this.EXPLICIT_MODE = 0;
-  this.SPHERICAL_MODE = 1;
-  this.PLANAR_MODE = 2;
-  this.CUBIC_MODE = 3;
-  this.PROJECTION_MODE = 4;
-  this.SKYBOX_MODE = 5;
-  this.INVCUBIC_MODE = 6;
-  this.EQUIRECTANGULAR_MODE = 7;
-  this.FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.CLAMP_ADDRESSMODE = 0;
-  this.WRAP_ADDRESSMODE = 1;
-  this.MIRROR_ADDRESSMODE = 2;
-  this.UseSerializedUrlIfAny = false;
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.RenderTargetTexture = function () {}
+BABYLON.RenderTargetTexture.metadata = null;
+BABYLON.RenderTargetTexture.reservedDataStore = null;
+BABYLON.RenderTargetTexture.getAlphaFromRGB = false;
+BABYLON.RenderTargetTexture.level = 1;
+BABYLON.RenderTargetTexture.coordinatesIndex = 0;
+BABYLON.RenderTargetTexture.wrapU = 1;
+BABYLON.RenderTargetTexture.wrapV = 1;
+BABYLON.RenderTargetTexture.wrapR = 1;
+BABYLON.RenderTargetTexture.anisotropicFilteringLevel = 4;
+BABYLON.RenderTargetTexture.invertZ = false;
+BABYLON.RenderTargetTexture.lodLevelInAlpha = false;
+BABYLON.RenderTargetTexture.isRenderTarget = false;
+BABYLON.RenderTargetTexture.animations = {};
+BABYLON.RenderTargetTexture.onDisposeObservable = {};
+BABYLON.RenderTargetTexture.delayLoadState = 0;
+BABYLON.RenderTargetTexture.url = null;
+BABYLON.RenderTargetTexture.uOffset = 0;
+BABYLON.RenderTargetTexture.vOffset = 0;
+BABYLON.RenderTargetTexture.uScale = 1;
+BABYLON.RenderTargetTexture.vScale = 1;
+BABYLON.RenderTargetTexture.uAng = 0;
+BABYLON.RenderTargetTexture.vAng = 0;
+BABYLON.RenderTargetTexture.wAng = 0;
+BABYLON.RenderTargetTexture.uRotationCenter = 0.5;
+BABYLON.RenderTargetTexture.vRotationCenter = 0.5;
+BABYLON.RenderTargetTexture.wRotationCenter = 0.5;
+BABYLON.RenderTargetTexture.inspectableCustomProperties = null;
+BABYLON.RenderTargetTexture.onLoadObservable = {};
+BABYLON.RenderTargetTexture.name = "";
+BABYLON.RenderTargetTexture.renderParticles = true;
+BABYLON.RenderTargetTexture.renderSprites = false;
+BABYLON.RenderTargetTexture.ignoreCameraViewport = false;
+BABYLON.RenderTargetTexture.onBeforeBindObservable = {};
+BABYLON.RenderTargetTexture.onAfterUnbindObservable = {};
+BABYLON.RenderTargetTexture.onBeforeRenderObservable = {};
+BABYLON.RenderTargetTexture.onAfterRenderObservable = {};
+BABYLON.RenderTargetTexture.onClearObservable = {};
+BABYLON.RenderTargetTexture.onResizeObservable = {};
+BABYLON.RenderTargetTexture.boundingBoxPosition = {};
+BABYLON.RenderTargetTexture.prototype.constructor = function () {};
+// BABYLON.RenderTargetTexture.prototype.renderList = undefined;
+// BABYLON.RenderTargetTexture.prototype.onAfterUnbind = undefined;
+// BABYLON.RenderTargetTexture.prototype.onBeforeRender = undefined;
+// BABYLON.RenderTargetTexture.prototype.onAfterRender = undefined;
+// BABYLON.RenderTargetTexture.prototype.onClear = undefined;
+// BABYLON.RenderTargetTexture.prototype.renderTargetOptions = undefined;
+// BABYLON.RenderTargetTexture.prototype.boundingBoxSize = undefined;
+BABYLON.RenderTargetTexture.prototype.depthStencilTexture = null;
+BABYLON.RenderTargetTexture.prototype.createDepthStencilTexture = function () {};
+// BABYLON.RenderTargetTexture.prototype.samples = undefined;
+BABYLON.RenderTargetTexture.prototype.resetRefreshCounter = function () {};
+// BABYLON.RenderTargetTexture.prototype.refreshRate = undefined;
+BABYLON.RenderTargetTexture.prototype.addPostProcess = function () {};
+BABYLON.RenderTargetTexture.prototype.clearPostProcesses = function () {};
+BABYLON.RenderTargetTexture.prototype.removePostProcess = function () {};
+BABYLON.RenderTargetTexture.prototype.getRenderSize = function () {};
+BABYLON.RenderTargetTexture.prototype.getRenderWidth = function () {};
+BABYLON.RenderTargetTexture.prototype.getRenderHeight = function () {};
+BABYLON.RenderTargetTexture.prototype.getRenderLayers = function () {};
+BABYLON.RenderTargetTexture.prototype.canRescale = true;
+BABYLON.RenderTargetTexture.prototype.scale = function () {};
+BABYLON.RenderTargetTexture.prototype.getReflectionTextureMatrix = function () {};
+BABYLON.RenderTargetTexture.prototype.resize = function () {};
+BABYLON.RenderTargetTexture.prototype.render = function () {};
+BABYLON.RenderTargetTexture.prototype.unbindFrameBuffer = function () {};
+BABYLON.RenderTargetTexture.prototype.renderToTarget = function () {};
+BABYLON.RenderTargetTexture.prototype.setRenderingOrder = function () {};
+BABYLON.RenderTargetTexture.prototype.setRenderingAutoClearDepthStencil = function () {};
+BABYLON.RenderTargetTexture.prototype.clone = function () {};
+BABYLON.RenderTargetTexture.prototype.serialize = function () {};
+BABYLON.RenderTargetTexture.prototype.disposeFramebufferObjects = function () {};
+BABYLON.RenderTargetTexture.prototype.dispose = function () {};
+BABYLON.RenderTargetTexture.prototype.freeRenderingGroups = function () {};
+BABYLON.RenderTargetTexture.prototype.getViewCount = function () {};
+// BABYLON.RenderTargetTexture.prototype.noMipmap = undefined;
+// BABYLON.RenderTargetTexture.prototype.isBlocking = undefined;
+// BABYLON.RenderTargetTexture.prototype.samplingMode = undefined;
+// BABYLON.RenderTargetTexture.prototype.invertY = undefined;
+BABYLON.RenderTargetTexture.prototype.updateURL = function () {};
+BABYLON.RenderTargetTexture.prototype.delayLoad = function () {};
+BABYLON.RenderTargetTexture.prototype.getTextureMatrix = function () {};
+BABYLON.RenderTargetTexture.prototype.getClassName = function () {};
+// BABYLON.RenderTargetTexture.prototype.hasAlpha = undefined;
+// BABYLON.RenderTargetTexture.prototype.coordinatesMode = undefined;
+BABYLON.RenderTargetTexture.prototype.isCube = false;
+BABYLON.RenderTargetTexture.prototype.is3D = false;
+BABYLON.RenderTargetTexture.prototype.is2DArray = false;
+BABYLON.RenderTargetTexture.prototype.isRGBD = false;
+BABYLON.RenderTargetTexture.prototype.lodGenerationOffset = 0;
+BABYLON.RenderTargetTexture.prototype.lodGenerationScale = 0;
+BABYLON.RenderTargetTexture.prototype.linearSpecularLOD = false;
+BABYLON.RenderTargetTexture.prototype.irradianceTexture = null;
+BABYLON.RenderTargetTexture.prototype.uid = "0fa69376-1fcf-422f-b5d9-12134e2ced93";
+BABYLON.RenderTargetTexture.prototype.toString = function () {};
+// BABYLON.RenderTargetTexture.prototype.onDispose = undefined;
+BABYLON.RenderTargetTexture.prototype.getScene = function () {};
+BABYLON.RenderTargetTexture.prototype.getInternalTexture = function () {};
+BABYLON.RenderTargetTexture.prototype.isReadyOrNotBlocking = function () {};
+BABYLON.RenderTargetTexture.prototype.isReady = function () {};
+BABYLON.RenderTargetTexture.prototype.getSize = function () {};
+BABYLON.RenderTargetTexture.prototype.getBaseSize = function () {};
+BABYLON.RenderTargetTexture.prototype.updateSamplingMode = function () {};
+BABYLON.RenderTargetTexture.prototype.textureType = 0;
+BABYLON.RenderTargetTexture.prototype.textureFormat = 5;
+BABYLON.RenderTargetTexture.prototype.readPixels = function () {};
+BABYLON.RenderTargetTexture.prototype.releaseInternalTexture = function () {};
+// BABYLON.RenderTargetTexture.prototype.gammaSpace = undefined;
+BABYLON.RenderTargetTexture.prototype.sphericalPolynomial = null;
+
 
 /** @constructor */
-BABYLON.Texture = function () {
-  this.metadata = null;
-  this.reservedDataStore = null;
-  this.getAlphaFromRGB = false;
-  this.level = 1;
-  this.coordinatesIndex = 0;
-  this.wrapU = 1;
-  this.wrapV = 1;
-  this.wrapR = 1;
-  this.anisotropicFilteringLevel = 4;
-  this.invertZ = false;
-  this.lodLevelInAlpha = false;
-  this.isRenderTarget = false;
-  this.animations = {};
-  this.onDisposeObservable = {};
-  this.delayLoadState = 0;
-  // this.url = undefined;
-  this.uOffset = 0;
-  this.vOffset = 0;
-  this.uScale = 1;
-  this.vScale = 1;
-  this.uAng = 0;
-  this.vAng = 0;
-  this.wAng = 0;
-  this.uRotationCenter = 0.5;
-  this.vRotationCenter = 0.5;
-  this.wRotationCenter = 0.5;
-  this.inspectableCustomProperties = null;
-  this.onLoadObservable = {};
-  this.name = "";
-  this.constructor = function () {};
-  this.noMipmap = false;
-  this.isBlocking = true;
-  this.samplingMode = 3;
-  this.invertY = true;
-  this.updateURL = function () {};
-  this.delayLoad = function () {};
-  this.getTextureMatrix = function () {};
-  this.getReflectionTextureMatrix = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.getClassName = function () {};
-  this.dispose = function () {};
-  this.hasAlpha = false;
-  this.coordinatesMode = 0;
-  this.isCube = false;
-  this.is3D = false;
-  this.is2DArray = false;
-  this.isRGBD = false;
-  this.lodGenerationOffset = 0;
-  this.lodGenerationScale = 0;
-  this.linearSpecularLOD = false;
-  this.irradianceTexture = null;
-  this.uid = "00ffc578-956b-449a-9e78-53bd3b7736a1";
-  this.toString = function () {};
-  // this.onDispose = undefined;
-  this.getScene = function () {};
-  this.getInternalTexture = function () {};
-  this.isReadyOrNotBlocking = function () {};
-  this.isReady = function () {};
-  this.getSize = function () {};
-  this.getBaseSize = function () {};
-  this.updateSamplingMode = function () {};
-  this.scale = function () {};
-  this.canRescale = false;
-  this.textureType = 0;
-  this.textureFormat = 5;
-  this.readPixels = function () {};
-  this.releaseInternalTexture = function () {};
-  this.gammaSpace = true;
-  this.sphericalPolynomial = null;
-  this.Parse = function () {};
-  this.CreateFromBase64String = function () {};
-  this.LoadFromDataString = function () {};
-  this.SerializeBuffers = true;
-  this.NEAREST_SAMPLINGMODE = 1;
-  this.NEAREST_NEAREST_MIPLINEAR = 8;
-  this.BILINEAR_SAMPLINGMODE = 2;
-  this.LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TRILINEAR_SAMPLINGMODE = 3;
-  this.LINEAR_LINEAR_MIPLINEAR = 3;
-  this.NEAREST_NEAREST_MIPNEAREST = 4;
-  this.NEAREST_LINEAR_MIPNEAREST = 5;
-  this.NEAREST_LINEAR_MIPLINEAR = 6;
-  this.NEAREST_LINEAR = 7;
-  this.NEAREST_NEAREST = 1;
-  this.LINEAR_NEAREST_MIPNEAREST = 9;
-  this.LINEAR_NEAREST_MIPLINEAR = 10;
-  this.LINEAR_LINEAR = 2;
-  this.LINEAR_NEAREST = 12;
-  this.EXPLICIT_MODE = 0;
-  this.SPHERICAL_MODE = 1;
-  this.PLANAR_MODE = 2;
-  this.CUBIC_MODE = 3;
-  this.PROJECTION_MODE = 4;
-  this.SKYBOX_MODE = 5;
-  this.INVCUBIC_MODE = 6;
-  this.EQUIRECTANGULAR_MODE = 7;
-  this.FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.CLAMP_ADDRESSMODE = 0;
-  this.WRAP_ADDRESSMODE = 1;
-  this.MIRROR_ADDRESSMODE = 2;
-  this.UseSerializedUrlIfAny = false;
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.Texture = function () {}
+BABYLON.Texture.metadata = null;
+BABYLON.Texture.reservedDataStore = null;
+BABYLON.Texture.getAlphaFromRGB = false;
+BABYLON.Texture.level = 1;
+BABYLON.Texture.coordinatesIndex = 0;
+BABYLON.Texture.wrapU = 1;
+BABYLON.Texture.wrapV = 1;
+BABYLON.Texture.wrapR = 1;
+BABYLON.Texture.anisotropicFilteringLevel = 4;
+BABYLON.Texture.invertZ = false;
+BABYLON.Texture.lodLevelInAlpha = false;
+BABYLON.Texture.isRenderTarget = false;
+BABYLON.Texture.animations = {};
+BABYLON.Texture.onDisposeObservable = {};
+BABYLON.Texture.delayLoadState = 0;
+// BABYLON.Texture.url = undefined;
+BABYLON.Texture.uOffset = 0;
+BABYLON.Texture.vOffset = 0;
+BABYLON.Texture.uScale = 1;
+BABYLON.Texture.vScale = 1;
+BABYLON.Texture.uAng = 0;
+BABYLON.Texture.vAng = 0;
+BABYLON.Texture.wAng = 0;
+BABYLON.Texture.uRotationCenter = 0.5;
+BABYLON.Texture.vRotationCenter = 0.5;
+BABYLON.Texture.wRotationCenter = 0.5;
+BABYLON.Texture.inspectableCustomProperties = null;
+BABYLON.Texture.onLoadObservable = {};
+BABYLON.Texture.name = "";
+BABYLON.Texture.prototype.constructor = function () {};
+// BABYLON.Texture.prototype.noMipmap = undefined;
+// BABYLON.Texture.prototype.isBlocking = undefined;
+// BABYLON.Texture.prototype.samplingMode = undefined;
+// BABYLON.Texture.prototype.invertY = undefined;
+BABYLON.Texture.prototype.updateURL = function () {};
+BABYLON.Texture.prototype.delayLoad = function () {};
+BABYLON.Texture.prototype.getTextureMatrix = function () {};
+BABYLON.Texture.prototype.getReflectionTextureMatrix = function () {};
+BABYLON.Texture.prototype.clone = function () {};
+BABYLON.Texture.prototype.serialize = function () {};
+BABYLON.Texture.prototype.getClassName = function () {};
+BABYLON.Texture.prototype.dispose = function () {};
+// BABYLON.Texture.prototype.hasAlpha = undefined;
+// BABYLON.Texture.prototype.coordinatesMode = undefined;
+BABYLON.Texture.prototype.isCube = false;
+BABYLON.Texture.prototype.is3D = false;
+BABYLON.Texture.prototype.is2DArray = false;
+BABYLON.Texture.prototype.isRGBD = false;
+BABYLON.Texture.prototype.lodGenerationOffset = 0;
+BABYLON.Texture.prototype.lodGenerationScale = 0;
+BABYLON.Texture.prototype.linearSpecularLOD = false;
+BABYLON.Texture.prototype.irradianceTexture = null;
+BABYLON.Texture.prototype.uid = "0fa69376-1fcf-422f-b5d9-12134e2ced93";
+BABYLON.Texture.prototype.toString = function () {};
+// BABYLON.Texture.prototype.onDispose = undefined;
+BABYLON.Texture.prototype.getScene = function () {};
+BABYLON.Texture.prototype.getInternalTexture = function () {};
+BABYLON.Texture.prototype.isReadyOrNotBlocking = function () {};
+BABYLON.Texture.prototype.isReady = function () {};
+BABYLON.Texture.prototype.getSize = function () {};
+BABYLON.Texture.prototype.getBaseSize = function () {};
+BABYLON.Texture.prototype.updateSamplingMode = function () {};
+BABYLON.Texture.prototype.scale = function () {};
+BABYLON.Texture.prototype.canRescale = false;
+BABYLON.Texture.prototype.textureType = 0;
+BABYLON.Texture.prototype.textureFormat = 5;
+BABYLON.Texture.prototype.readPixels = function () {};
+BABYLON.Texture.prototype.releaseInternalTexture = function () {};
+// BABYLON.Texture.prototype.gammaSpace = undefined;
+BABYLON.Texture.prototype.sphericalPolynomial = null;
+
 
 /** @constructor */
-BABYLON.UniformBuffer = function () {
-};
+BABYLON.UniformBuffer = function () {}
+
 
 /** @constructor */
-BABYLON.MaterialFlags = function () {
-  this.DiffuseTextureEnabled = true;
-  this.AmbientTextureEnabled = true;
-  this.OpacityTextureEnabled = true;
-  this.ReflectionTextureEnabled = true;
-  this.EmissiveTextureEnabled = true;
-  this.SpecularTextureEnabled = true;
-  this.BumpTextureEnabled = true;
-  this.LightmapTextureEnabled = true;
-  this.RefractionTextureEnabled = true;
-  this.ColorGradingTextureEnabled = true;
-  this.FresnelEnabled = true;
-  this.ClearCoatTextureEnabled = true;
-  this.ClearCoatBumpTextureEnabled = true;
-  this.ClearCoatTintTextureEnabled = true;
-  this.SheenTextureEnabled = true;
-  this.AnisotropicTextureEnabled = true;
-  this.ThicknessTextureEnabled = true;
-};
+BABYLON.MaterialFlags = function () {}
+
 
 /** @constructor */
-BABYLON.EffectRenderer = function () {
-};
+BABYLON.EffectRenderer = function () {}
+
 
 /** @constructor */
-BABYLON.EffectWrapper = function () {
-};
+BABYLON.EffectWrapper = function () {}
+
 
 /** @constructor */
-BABYLON.BackgroundMaterial = function () {
-  this.Parse = function () {};
-  this.StandardReflectance0 = 0.05;
-  this.StandardReflectance90 = 0.5;
-  this.TriangleFillMode = 0;
-  this.WireFrameFillMode = 1;
-  this.PointFillMode = 2;
-  this.PointListDrawMode = 3;
-  this.LineListDrawMode = 4;
-  this.LineLoopDrawMode = 5;
-  this.LineStripDrawMode = 6;
-  this.TriangleStripDrawMode = 7;
-  this.TriangleFanDrawMode = 8;
-  this.ClockWiseSideOrientation = 0;
-  this.CounterClockWiseSideOrientation = 1;
-  this.TextureDirtyFlag = 1;
-  this.LightDirtyFlag = 2;
-  this.FresnelDirtyFlag = 4;
-  this.AttributesDirtyFlag = 8;
-  this.MiscDirtyFlag = 16;
-  this.AllDirtyFlag = 31;
-};
+BABYLON.BackgroundMaterial = function () {}
+BABYLON.BackgroundMaterial.Parse = function () {};
+BABYLON.BackgroundMaterial.StandardReflectance0 = 0.05;
+BABYLON.BackgroundMaterial.StandardReflectance90 = 0.5;
+BABYLON.BackgroundMaterial.prototype.TriangleFillMode = 0;
+BABYLON.BackgroundMaterial.prototype.WireFrameFillMode = 1;
+BABYLON.BackgroundMaterial.prototype.PointFillMode = 2;
+BABYLON.BackgroundMaterial.prototype.PointListDrawMode = 3;
+BABYLON.BackgroundMaterial.prototype.LineListDrawMode = 4;
+BABYLON.BackgroundMaterial.prototype.LineLoopDrawMode = 5;
+BABYLON.BackgroundMaterial.prototype.LineStripDrawMode = 6;
+BABYLON.BackgroundMaterial.prototype.TriangleStripDrawMode = 7;
+BABYLON.BackgroundMaterial.prototype.TriangleFanDrawMode = 8;
+BABYLON.BackgroundMaterial.prototype.ClockWiseSideOrientation = 0;
+BABYLON.BackgroundMaterial.prototype.CounterClockWiseSideOrientation = 1;
+BABYLON.BackgroundMaterial.prototype.TextureDirtyFlag = 1;
+BABYLON.BackgroundMaterial.prototype.LightDirtyFlag = 2;
+BABYLON.BackgroundMaterial.prototype.FresnelDirtyFlag = 4;
+BABYLON.BackgroundMaterial.prototype.AttributesDirtyFlag = 8;
+BABYLON.BackgroundMaterial.prototype.MiscDirtyFlag = 16;
+BABYLON.BackgroundMaterial.prototype.AllDirtyFlag = 31;
+
 
 /** @constructor */
-BABYLON.PBRMaterialDefines = function () {
-  this.PBR = true;
-  this.MAINUV1 = false;
-  this.MAINUV2 = false;
-  this.UV1 = false;
-  this.UV2 = false;
-  this.ALBEDO = false;
-  this.GAMMAALBEDO = false;
-  this.ALBEDODIRECTUV = 0;
-  this.VERTEXCOLOR = false;
-  this.AMBIENT = false;
-  this.AMBIENTDIRECTUV = 0;
-  this.AMBIENTINGRAYSCALE = false;
-  this.OPACITY = false;
-  this.VERTEXALPHA = false;
-  this.OPACITYDIRECTUV = 0;
-  this.OPACITYRGB = false;
-  this.ALPHATEST = false;
-  this.DEPTHPREPASS = false;
-  this.ALPHABLEND = false;
-  this.ALPHAFROMALBEDO = false;
-  this.ALPHATESTVALUE = "0.5";
-  this.SPECULAROVERALPHA = false;
-  this.RADIANCEOVERALPHA = false;
-  this.ALPHAFRESNEL = false;
-  this.LINEARALPHAFRESNEL = false;
-  this.PREMULTIPLYALPHA = false;
-  this.EMISSIVE = false;
-  this.EMISSIVEDIRECTUV = 0;
-  this.REFLECTIVITY = false;
-  this.REFLECTIVITYDIRECTUV = 0;
-  this.SPECULARTERM = false;
-  this.MICROSURFACEFROMREFLECTIVITYMAP = false;
-  this.MICROSURFACEAUTOMATIC = false;
-  this.LODBASEDMICROSFURACE = false;
-  this.MICROSURFACEMAP = false;
-  this.MICROSURFACEMAPDIRECTUV = 0;
-  this.METALLICWORKFLOW = false;
-  this.ROUGHNESSSTOREINMETALMAPALPHA = false;
-  this.ROUGHNESSSTOREINMETALMAPGREEN = false;
-  this.METALLNESSSTOREINMETALMAPBLUE = false;
-  this.AOSTOREINMETALMAPRED = false;
-  this.METALLICF0FACTORFROMMETALLICMAP = false;
-  this.ENVIRONMENTBRDF = false;
-  this.ENVIRONMENTBRDF_RGBD = false;
-  this.NORMAL = false;
-  this.TANGENT = false;
-  this.BUMP = false;
-  this.BUMPDIRECTUV = 0;
-  this.OBJECTSPACE_NORMALMAP = false;
-  this.PARALLAX = false;
-  this.PARALLAXOCCLUSION = false;
-  this.NORMALXYSCALE = true;
-  this.LIGHTMAP = false;
-  this.LIGHTMAPDIRECTUV = 0;
-  this.USELIGHTMAPASSHADOWMAP = false;
-  this.GAMMALIGHTMAP = false;
-  this.RGBDLIGHTMAP = false;
-  this.REFLECTION = false;
-  this.REFLECTIONMAP_3D = false;
-  this.REFLECTIONMAP_SPHERICAL = false;
-  this.REFLECTIONMAP_PLANAR = false;
-  this.REFLECTIONMAP_CUBIC = false;
-  this.USE_LOCAL_REFLECTIONMAP_CUBIC = false;
-  this.REFLECTIONMAP_PROJECTION = false;
-  this.REFLECTIONMAP_SKYBOX = false;
-  this.REFLECTIONMAP_EXPLICIT = false;
-  this.REFLECTIONMAP_EQUIRECTANGULAR = false;
-  this.REFLECTIONMAP_EQUIRECTANGULAR_FIXED = false;
-  this.REFLECTIONMAP_MIRROREDEQUIRECTANGULAR_FIXED = false;
-  this.INVERTCUBICMAP = false;
-  this.USESPHERICALFROMREFLECTIONMAP = false;
-  this.USEIRRADIANCEMAP = false;
-  this.SPHERICAL_HARMONICS = false;
-  this.USESPHERICALINVERTEX = false;
-  this.REFLECTIONMAP_OPPOSITEZ = false;
-  this.LODINREFLECTIONALPHA = false;
-  this.GAMMAREFLECTION = false;
-  this.RGBDREFLECTION = false;
-  this.LINEARSPECULARREFLECTION = false;
-  this.RADIANCEOCCLUSION = false;
-  this.HORIZONOCCLUSION = false;
-  this.INSTANCES = false;
-  this.NUM_BONE_INFLUENCERS = 0;
-  this.BonesPerMesh = 0;
-  this.BONETEXTURE = false;
-  this.NONUNIFORMSCALING = false;
-  this.MORPHTARGETS = false;
-  this.MORPHTARGETS_NORMAL = false;
-  this.MORPHTARGETS_TANGENT = false;
-  this.MORPHTARGETS_UV = false;
-  this.NUM_MORPH_INFLUENCERS = 0;
-  this.IMAGEPROCESSING = false;
-  this.VIGNETTE = false;
-  this.VIGNETTEBLENDMODEMULTIPLY = false;
-  this.VIGNETTEBLENDMODEOPAQUE = false;
-  this.TONEMAPPING = false;
-  this.TONEMAPPING_ACES = false;
-  this.CONTRAST = false;
-  this.COLORCURVES = false;
-  this.COLORGRADING = false;
-  this.COLORGRADING3D = false;
-  this.SAMPLER3DGREENDEPTH = false;
-  this.SAMPLER3DBGRMAP = false;
-  this.IMAGEPROCESSINGPOSTPROCESS = false;
-  this.EXPOSURE = false;
-  this.MULTIVIEW = false;
-  this.USEPHYSICALLIGHTFALLOFF = false;
-  this.USEGLTFLIGHTFALLOFF = false;
-  this.TWOSIDEDLIGHTING = false;
-  this.SHADOWFLOAT = false;
-  this.CLIPPLANE = false;
-  this.CLIPPLANE2 = false;
-  this.CLIPPLANE3 = false;
-  this.CLIPPLANE4 = false;
-  this.CLIPPLANE5 = false;
-  this.CLIPPLANE6 = false;
-  this.POINTSIZE = false;
-  this.FOG = false;
-  this.LOGARITHMICDEPTH = false;
-  this.FORCENORMALFORWARD = false;
-  this.SPECULARAA = false;
-  this.CLEARCOAT = false;
-  this.CLEARCOAT_DEFAULTIOR = false;
-  this.CLEARCOAT_TEXTURE = false;
-  this.CLEARCOAT_TEXTUREDIRECTUV = 0;
-  this.CLEARCOAT_BUMP = false;
-  this.CLEARCOAT_BUMPDIRECTUV = 0;
-  this.CLEARCOAT_TINT = false;
-  this.CLEARCOAT_TINT_TEXTURE = false;
-  this.CLEARCOAT_TINT_TEXTUREDIRECTUV = 0;
-  this.ANISOTROPIC = false;
-  this.ANISOTROPIC_TEXTURE = false;
-  this.ANISOTROPIC_TEXTUREDIRECTUV = 0;
-  this.BRDF_V_HEIGHT_CORRELATED = false;
-  this.MS_BRDF_ENERGY_CONSERVATION = false;
-  this.SPECULAR_GLOSSINESS_ENERGY_CONSERVATION = false;
-  this.SHEEN = false;
-  this.SHEEN_TEXTURE = false;
-  this.SHEEN_TEXTUREDIRECTUV = 0;
-  this.SHEEN_LINKWITHALBEDO = false;
-  this.SUBSURFACE = false;
-  this.SS_REFRACTION = false;
-  this.SS_TRANSLUCENCY = false;
-  this.SS_SCATERRING = false;
-  this.SS_THICKNESSANDMASK_TEXTURE = false;
-  this.SS_THICKNESSANDMASK_TEXTUREDIRECTUV = 0;
-  this.SS_REFRACTIONMAP_3D = false;
-  this.SS_REFRACTIONMAP_OPPOSITEZ = false;
-  this.SS_LODINREFRACTIONALPHA = false;
-  this.SS_GAMMAREFRACTION = false;
-  this.SS_RGBDREFRACTION = false;
-  this.SS_LINEARSPECULARREFRACTION = false;
-  this.SS_LINKREFRACTIONTOTRANSPARENCY = false;
-  this.SS_MASK_FROM_THICKNESS_TEXTURE = false;
-  this.UNLIT = false;
-  this.DEBUGMODE = 0;
-  this.constructor = function () {};
-  this.reset = function () {};
-  this.isDirty = true;
-  this.markAsProcessed = function () {};
-  this.markAsUnprocessed = function () {};
-  this.markAllAsDirty = function () {};
-  this.markAsImageProcessingDirty = function () {};
-  this.markAsLightDirty = function () {};
-  this.markAsAttributesDirty = function () {};
-  this.markAsTexturesDirty = function () {};
-  this.markAsFresnelDirty = function () {};
-  this.markAsMiscDirty = function () {};
-  this.rebuild = function () {};
-  this.isEqual = function () {};
-  this.cloneTo = function () {};
-  this.toString = function () {};
-};
+BABYLON.PBRMaterialDefines = function () {}
+BABYLON.PBRMaterialDefines.PBR = true;
+BABYLON.PBRMaterialDefines.MAINUV1 = false;
+BABYLON.PBRMaterialDefines.MAINUV2 = false;
+BABYLON.PBRMaterialDefines.UV1 = false;
+BABYLON.PBRMaterialDefines.UV2 = false;
+BABYLON.PBRMaterialDefines.ALBEDO = false;
+BABYLON.PBRMaterialDefines.GAMMAALBEDO = false;
+BABYLON.PBRMaterialDefines.ALBEDODIRECTUV = 0;
+BABYLON.PBRMaterialDefines.VERTEXCOLOR = false;
+BABYLON.PBRMaterialDefines.AMBIENT = false;
+BABYLON.PBRMaterialDefines.AMBIENTDIRECTUV = 0;
+BABYLON.PBRMaterialDefines.AMBIENTINGRAYSCALE = false;
+BABYLON.PBRMaterialDefines.OPACITY = false;
+BABYLON.PBRMaterialDefines.VERTEXALPHA = false;
+BABYLON.PBRMaterialDefines.OPACITYDIRECTUV = 0;
+BABYLON.PBRMaterialDefines.OPACITYRGB = false;
+BABYLON.PBRMaterialDefines.ALPHATEST = false;
+BABYLON.PBRMaterialDefines.DEPTHPREPASS = false;
+BABYLON.PBRMaterialDefines.ALPHABLEND = false;
+BABYLON.PBRMaterialDefines.ALPHAFROMALBEDO = false;
+BABYLON.PBRMaterialDefines.ALPHATESTVALUE = "0.5";
+BABYLON.PBRMaterialDefines.SPECULAROVERALPHA = false;
+BABYLON.PBRMaterialDefines.RADIANCEOVERALPHA = false;
+BABYLON.PBRMaterialDefines.ALPHAFRESNEL = false;
+BABYLON.PBRMaterialDefines.LINEARALPHAFRESNEL = false;
+BABYLON.PBRMaterialDefines.PREMULTIPLYALPHA = false;
+BABYLON.PBRMaterialDefines.EMISSIVE = false;
+BABYLON.PBRMaterialDefines.EMISSIVEDIRECTUV = 0;
+BABYLON.PBRMaterialDefines.REFLECTIVITY = false;
+BABYLON.PBRMaterialDefines.REFLECTIVITYDIRECTUV = 0;
+BABYLON.PBRMaterialDefines.SPECULARTERM = false;
+BABYLON.PBRMaterialDefines.MICROSURFACEFROMREFLECTIVITYMAP = false;
+BABYLON.PBRMaterialDefines.MICROSURFACEAUTOMATIC = false;
+BABYLON.PBRMaterialDefines.LODBASEDMICROSFURACE = false;
+BABYLON.PBRMaterialDefines.MICROSURFACEMAP = false;
+BABYLON.PBRMaterialDefines.MICROSURFACEMAPDIRECTUV = 0;
+BABYLON.PBRMaterialDefines.METALLICWORKFLOW = false;
+BABYLON.PBRMaterialDefines.ROUGHNESSSTOREINMETALMAPALPHA = false;
+BABYLON.PBRMaterialDefines.ROUGHNESSSTOREINMETALMAPGREEN = false;
+BABYLON.PBRMaterialDefines.METALLNESSSTOREINMETALMAPBLUE = false;
+BABYLON.PBRMaterialDefines.AOSTOREINMETALMAPRED = false;
+BABYLON.PBRMaterialDefines.METALLICF0FACTORFROMMETALLICMAP = false;
+BABYLON.PBRMaterialDefines.ENVIRONMENTBRDF = false;
+BABYLON.PBRMaterialDefines.ENVIRONMENTBRDF_RGBD = false;
+BABYLON.PBRMaterialDefines.NORMAL = false;
+BABYLON.PBRMaterialDefines.TANGENT = false;
+BABYLON.PBRMaterialDefines.BUMP = false;
+BABYLON.PBRMaterialDefines.BUMPDIRECTUV = 0;
+BABYLON.PBRMaterialDefines.OBJECTSPACE_NORMALMAP = false;
+BABYLON.PBRMaterialDefines.PARALLAX = false;
+BABYLON.PBRMaterialDefines.PARALLAXOCCLUSION = false;
+BABYLON.PBRMaterialDefines.NORMALXYSCALE = true;
+BABYLON.PBRMaterialDefines.LIGHTMAP = false;
+BABYLON.PBRMaterialDefines.LIGHTMAPDIRECTUV = 0;
+BABYLON.PBRMaterialDefines.USELIGHTMAPASSHADOWMAP = false;
+BABYLON.PBRMaterialDefines.GAMMALIGHTMAP = false;
+BABYLON.PBRMaterialDefines.RGBDLIGHTMAP = false;
+BABYLON.PBRMaterialDefines.REFLECTION = false;
+BABYLON.PBRMaterialDefines.REFLECTIONMAP_3D = false;
+BABYLON.PBRMaterialDefines.REFLECTIONMAP_SPHERICAL = false;
+BABYLON.PBRMaterialDefines.REFLECTIONMAP_PLANAR = false;
+BABYLON.PBRMaterialDefines.REFLECTIONMAP_CUBIC = false;
+BABYLON.PBRMaterialDefines.USE_LOCAL_REFLECTIONMAP_CUBIC = false;
+BABYLON.PBRMaterialDefines.REFLECTIONMAP_PROJECTION = false;
+BABYLON.PBRMaterialDefines.REFLECTIONMAP_SKYBOX = false;
+BABYLON.PBRMaterialDefines.REFLECTIONMAP_EXPLICIT = false;
+BABYLON.PBRMaterialDefines.REFLECTIONMAP_EQUIRECTANGULAR = false;
+BABYLON.PBRMaterialDefines.REFLECTIONMAP_EQUIRECTANGULAR_FIXED = false;
+BABYLON.PBRMaterialDefines.REFLECTIONMAP_MIRROREDEQUIRECTANGULAR_FIXED = false;
+BABYLON.PBRMaterialDefines.INVERTCUBICMAP = false;
+BABYLON.PBRMaterialDefines.USESPHERICALFROMREFLECTIONMAP = false;
+BABYLON.PBRMaterialDefines.USEIRRADIANCEMAP = false;
+BABYLON.PBRMaterialDefines.SPHERICAL_HARMONICS = false;
+BABYLON.PBRMaterialDefines.USESPHERICALINVERTEX = false;
+BABYLON.PBRMaterialDefines.REFLECTIONMAP_OPPOSITEZ = false;
+BABYLON.PBRMaterialDefines.LODINREFLECTIONALPHA = false;
+BABYLON.PBRMaterialDefines.GAMMAREFLECTION = false;
+BABYLON.PBRMaterialDefines.RGBDREFLECTION = false;
+BABYLON.PBRMaterialDefines.LINEARSPECULARREFLECTION = false;
+BABYLON.PBRMaterialDefines.RADIANCEOCCLUSION = false;
+BABYLON.PBRMaterialDefines.HORIZONOCCLUSION = false;
+BABYLON.PBRMaterialDefines.INSTANCES = false;
+BABYLON.PBRMaterialDefines.NUM_BONE_INFLUENCERS = 0;
+BABYLON.PBRMaterialDefines.BonesPerMesh = 0;
+BABYLON.PBRMaterialDefines.BONETEXTURE = false;
+BABYLON.PBRMaterialDefines.NONUNIFORMSCALING = false;
+BABYLON.PBRMaterialDefines.MORPHTARGETS = false;
+BABYLON.PBRMaterialDefines.MORPHTARGETS_NORMAL = false;
+BABYLON.PBRMaterialDefines.MORPHTARGETS_TANGENT = false;
+BABYLON.PBRMaterialDefines.MORPHTARGETS_UV = false;
+BABYLON.PBRMaterialDefines.NUM_MORPH_INFLUENCERS = 0;
+BABYLON.PBRMaterialDefines.IMAGEPROCESSING = false;
+BABYLON.PBRMaterialDefines.VIGNETTE = false;
+BABYLON.PBRMaterialDefines.VIGNETTEBLENDMODEMULTIPLY = false;
+BABYLON.PBRMaterialDefines.VIGNETTEBLENDMODEOPAQUE = false;
+BABYLON.PBRMaterialDefines.TONEMAPPING = false;
+BABYLON.PBRMaterialDefines.TONEMAPPING_ACES = false;
+BABYLON.PBRMaterialDefines.CONTRAST = false;
+BABYLON.PBRMaterialDefines.COLORCURVES = false;
+BABYLON.PBRMaterialDefines.COLORGRADING = false;
+BABYLON.PBRMaterialDefines.COLORGRADING3D = false;
+BABYLON.PBRMaterialDefines.SAMPLER3DGREENDEPTH = false;
+BABYLON.PBRMaterialDefines.SAMPLER3DBGRMAP = false;
+BABYLON.PBRMaterialDefines.IMAGEPROCESSINGPOSTPROCESS = false;
+BABYLON.PBRMaterialDefines.EXPOSURE = false;
+BABYLON.PBRMaterialDefines.MULTIVIEW = false;
+BABYLON.PBRMaterialDefines.USEPHYSICALLIGHTFALLOFF = false;
+BABYLON.PBRMaterialDefines.USEGLTFLIGHTFALLOFF = false;
+BABYLON.PBRMaterialDefines.TWOSIDEDLIGHTING = false;
+BABYLON.PBRMaterialDefines.SHADOWFLOAT = false;
+BABYLON.PBRMaterialDefines.CLIPPLANE = false;
+BABYLON.PBRMaterialDefines.CLIPPLANE2 = false;
+BABYLON.PBRMaterialDefines.CLIPPLANE3 = false;
+BABYLON.PBRMaterialDefines.CLIPPLANE4 = false;
+BABYLON.PBRMaterialDefines.CLIPPLANE5 = false;
+BABYLON.PBRMaterialDefines.CLIPPLANE6 = false;
+BABYLON.PBRMaterialDefines.POINTSIZE = false;
+BABYLON.PBRMaterialDefines.FOG = false;
+BABYLON.PBRMaterialDefines.LOGARITHMICDEPTH = false;
+BABYLON.PBRMaterialDefines.FORCENORMALFORWARD = false;
+BABYLON.PBRMaterialDefines.SPECULARAA = false;
+BABYLON.PBRMaterialDefines.CLEARCOAT = false;
+BABYLON.PBRMaterialDefines.CLEARCOAT_DEFAULTIOR = false;
+BABYLON.PBRMaterialDefines.CLEARCOAT_TEXTURE = false;
+BABYLON.PBRMaterialDefines.CLEARCOAT_TEXTUREDIRECTUV = 0;
+BABYLON.PBRMaterialDefines.CLEARCOAT_BUMP = false;
+BABYLON.PBRMaterialDefines.CLEARCOAT_BUMPDIRECTUV = 0;
+BABYLON.PBRMaterialDefines.CLEARCOAT_TINT = false;
+BABYLON.PBRMaterialDefines.CLEARCOAT_TINT_TEXTURE = false;
+BABYLON.PBRMaterialDefines.CLEARCOAT_TINT_TEXTUREDIRECTUV = 0;
+BABYLON.PBRMaterialDefines.ANISOTROPIC = false;
+BABYLON.PBRMaterialDefines.ANISOTROPIC_TEXTURE = false;
+BABYLON.PBRMaterialDefines.ANISOTROPIC_TEXTUREDIRECTUV = 0;
+BABYLON.PBRMaterialDefines.BRDF_V_HEIGHT_CORRELATED = false;
+BABYLON.PBRMaterialDefines.MS_BRDF_ENERGY_CONSERVATION = false;
+BABYLON.PBRMaterialDefines.SPECULAR_GLOSSINESS_ENERGY_CONSERVATION = false;
+BABYLON.PBRMaterialDefines.SHEEN = false;
+BABYLON.PBRMaterialDefines.SHEEN_TEXTURE = false;
+BABYLON.PBRMaterialDefines.SHEEN_TEXTUREDIRECTUV = 0;
+BABYLON.PBRMaterialDefines.SHEEN_LINKWITHALBEDO = false;
+BABYLON.PBRMaterialDefines.SUBSURFACE = false;
+BABYLON.PBRMaterialDefines.SS_REFRACTION = false;
+BABYLON.PBRMaterialDefines.SS_TRANSLUCENCY = false;
+BABYLON.PBRMaterialDefines.SS_SCATERRING = false;
+BABYLON.PBRMaterialDefines.SS_THICKNESSANDMASK_TEXTURE = false;
+BABYLON.PBRMaterialDefines.SS_THICKNESSANDMASK_TEXTUREDIRECTUV = 0;
+BABYLON.PBRMaterialDefines.SS_REFRACTIONMAP_3D = false;
+BABYLON.PBRMaterialDefines.SS_REFRACTIONMAP_OPPOSITEZ = false;
+BABYLON.PBRMaterialDefines.SS_LODINREFRACTIONALPHA = false;
+BABYLON.PBRMaterialDefines.SS_GAMMAREFRACTION = false;
+BABYLON.PBRMaterialDefines.SS_RGBDREFRACTION = false;
+BABYLON.PBRMaterialDefines.SS_LINEARSPECULARREFRACTION = false;
+BABYLON.PBRMaterialDefines.SS_LINKREFRACTIONTOTRANSPARENCY = false;
+BABYLON.PBRMaterialDefines.SS_MASK_FROM_THICKNESS_TEXTURE = false;
+BABYLON.PBRMaterialDefines.UNLIT = false;
+BABYLON.PBRMaterialDefines.DEBUGMODE = 0;
+BABYLON.PBRMaterialDefines.prototype.constructor = function () {};
+BABYLON.PBRMaterialDefines.prototype.reset = function () {};
+// BABYLON.PBRMaterialDefines.prototype.isDirty = undefined;
+BABYLON.PBRMaterialDefines.prototype.markAsProcessed = function () {};
+BABYLON.PBRMaterialDefines.prototype.markAsUnprocessed = function () {};
+BABYLON.PBRMaterialDefines.prototype.markAllAsDirty = function () {};
+BABYLON.PBRMaterialDefines.prototype.markAsImageProcessingDirty = function () {};
+BABYLON.PBRMaterialDefines.prototype.markAsLightDirty = function () {};
+BABYLON.PBRMaterialDefines.prototype.markAsAttributesDirty = function () {};
+BABYLON.PBRMaterialDefines.prototype.markAsTexturesDirty = function () {};
+BABYLON.PBRMaterialDefines.prototype.markAsFresnelDirty = function () {};
+BABYLON.PBRMaterialDefines.prototype.markAsMiscDirty = function () {};
+BABYLON.PBRMaterialDefines.prototype.rebuild = function () {};
+BABYLON.PBRMaterialDefines.prototype.isEqual = function () {};
+BABYLON.PBRMaterialDefines.prototype.cloneTo = function () {};
+BABYLON.PBRMaterialDefines.prototype.toString = function () {};
+
 
 /** @constructor */
-BABYLON.PBRBaseMaterial = function () {
-  this.PBRMATERIAL_OPAQUE = 0;
-  this.PBRMATERIAL_ALPHATEST = 1;
-  this.PBRMATERIAL_ALPHABLEND = 2;
-  this.PBRMATERIAL_ALPHATESTANDBLEND = 3;
-  this.DEFAULT_AO_ON_ANALYTICAL_LIGHTS = 0;
-  this.LIGHTFALLOFF_PHYSICAL = 0;
-  this.LIGHTFALLOFF_GLTF = 1;
-  this.LIGHTFALLOFF_STANDARD = 2;
-  this.Parse = function () {};
-  this.TriangleFillMode = 0;
-  this.WireFrameFillMode = 1;
-  this.PointFillMode = 2;
-  this.PointListDrawMode = 3;
-  this.LineListDrawMode = 4;
-  this.LineLoopDrawMode = 5;
-  this.LineStripDrawMode = 6;
-  this.TriangleStripDrawMode = 7;
-  this.TriangleFanDrawMode = 8;
-  this.ClockWiseSideOrientation = 0;
-  this.CounterClockWiseSideOrientation = 1;
-  this.TextureDirtyFlag = 1;
-  this.LightDirtyFlag = 2;
-  this.FresnelDirtyFlag = 4;
-  this.AttributesDirtyFlag = 8;
-  this.MiscDirtyFlag = 16;
-  this.AllDirtyFlag = 31;
-};
+BABYLON.PBRBaseMaterial = function () {}
+BABYLON.PBRBaseMaterial.PBRMATERIAL_OPAQUE = 0;
+BABYLON.PBRBaseMaterial.PBRMATERIAL_ALPHATEST = 1;
+BABYLON.PBRBaseMaterial.PBRMATERIAL_ALPHABLEND = 2;
+BABYLON.PBRBaseMaterial.PBRMATERIAL_ALPHATESTANDBLEND = 3;
+BABYLON.PBRBaseMaterial.DEFAULT_AO_ON_ANALYTICAL_LIGHTS = 0;
+BABYLON.PBRBaseMaterial.LIGHTFALLOFF_PHYSICAL = 0;
+BABYLON.PBRBaseMaterial.LIGHTFALLOFF_GLTF = 1;
+BABYLON.PBRBaseMaterial.LIGHTFALLOFF_STANDARD = 2;
+BABYLON.PBRBaseMaterial.prototype.Parse = function () {};
+BABYLON.PBRBaseMaterial.prototype.TriangleFillMode = 0;
+BABYLON.PBRBaseMaterial.prototype.WireFrameFillMode = 1;
+BABYLON.PBRBaseMaterial.prototype.PointFillMode = 2;
+BABYLON.PBRBaseMaterial.prototype.PointListDrawMode = 3;
+BABYLON.PBRBaseMaterial.prototype.LineListDrawMode = 4;
+BABYLON.PBRBaseMaterial.prototype.LineLoopDrawMode = 5;
+BABYLON.PBRBaseMaterial.prototype.LineStripDrawMode = 6;
+BABYLON.PBRBaseMaterial.prototype.TriangleStripDrawMode = 7;
+BABYLON.PBRBaseMaterial.prototype.TriangleFanDrawMode = 8;
+BABYLON.PBRBaseMaterial.prototype.ClockWiseSideOrientation = 0;
+BABYLON.PBRBaseMaterial.prototype.CounterClockWiseSideOrientation = 1;
+BABYLON.PBRBaseMaterial.prototype.TextureDirtyFlag = 1;
+BABYLON.PBRBaseMaterial.prototype.LightDirtyFlag = 2;
+BABYLON.PBRBaseMaterial.prototype.FresnelDirtyFlag = 4;
+BABYLON.PBRBaseMaterial.prototype.AttributesDirtyFlag = 8;
+BABYLON.PBRBaseMaterial.prototype.MiscDirtyFlag = 16;
+BABYLON.PBRBaseMaterial.prototype.AllDirtyFlag = 31;
+
 
 /** @constructor */
-BABYLON.PBRBaseSimpleMaterial = function () {
-  this.PBRMATERIAL_OPAQUE = 0;
-  this.PBRMATERIAL_ALPHATEST = 1;
-  this.PBRMATERIAL_ALPHABLEND = 2;
-  this.PBRMATERIAL_ALPHATESTANDBLEND = 3;
-  this.DEFAULT_AO_ON_ANALYTICAL_LIGHTS = 0;
-  this.LIGHTFALLOFF_PHYSICAL = 0;
-  this.LIGHTFALLOFF_GLTF = 1;
-  this.LIGHTFALLOFF_STANDARD = 2;
-  this.Parse = function () {};
-  this.TriangleFillMode = 0;
-  this.WireFrameFillMode = 1;
-  this.PointFillMode = 2;
-  this.PointListDrawMode = 3;
-  this.LineListDrawMode = 4;
-  this.LineLoopDrawMode = 5;
-  this.LineStripDrawMode = 6;
-  this.TriangleStripDrawMode = 7;
-  this.TriangleFanDrawMode = 8;
-  this.ClockWiseSideOrientation = 0;
-  this.CounterClockWiseSideOrientation = 1;
-  this.TextureDirtyFlag = 1;
-  this.LightDirtyFlag = 2;
-  this.FresnelDirtyFlag = 4;
-  this.AttributesDirtyFlag = 8;
-  this.MiscDirtyFlag = 16;
-  this.AllDirtyFlag = 31;
-};
+BABYLON.PBRBaseSimpleMaterial = function () {}
+BABYLON.PBRBaseSimpleMaterial.prototype.PBRMATERIAL_OPAQUE = 0;
+BABYLON.PBRBaseSimpleMaterial.prototype.PBRMATERIAL_ALPHATEST = 1;
+BABYLON.PBRBaseSimpleMaterial.prototype.PBRMATERIAL_ALPHABLEND = 2;
+BABYLON.PBRBaseSimpleMaterial.prototype.PBRMATERIAL_ALPHATESTANDBLEND = 3;
+BABYLON.PBRBaseSimpleMaterial.prototype.DEFAULT_AO_ON_ANALYTICAL_LIGHTS = 0;
+BABYLON.PBRBaseSimpleMaterial.prototype.LIGHTFALLOFF_PHYSICAL = 0;
+BABYLON.PBRBaseSimpleMaterial.prototype.LIGHTFALLOFF_GLTF = 1;
+BABYLON.PBRBaseSimpleMaterial.prototype.LIGHTFALLOFF_STANDARD = 2;
+BABYLON.PBRBaseSimpleMaterial.prototype.Parse = function () {};
+BABYLON.PBRBaseSimpleMaterial.prototype.TriangleFillMode = 0;
+BABYLON.PBRBaseSimpleMaterial.prototype.WireFrameFillMode = 1;
+BABYLON.PBRBaseSimpleMaterial.prototype.PointFillMode = 2;
+BABYLON.PBRBaseSimpleMaterial.prototype.PointListDrawMode = 3;
+BABYLON.PBRBaseSimpleMaterial.prototype.LineListDrawMode = 4;
+BABYLON.PBRBaseSimpleMaterial.prototype.LineLoopDrawMode = 5;
+BABYLON.PBRBaseSimpleMaterial.prototype.LineStripDrawMode = 6;
+BABYLON.PBRBaseSimpleMaterial.prototype.TriangleStripDrawMode = 7;
+BABYLON.PBRBaseSimpleMaterial.prototype.TriangleFanDrawMode = 8;
+BABYLON.PBRBaseSimpleMaterial.prototype.ClockWiseSideOrientation = 0;
+BABYLON.PBRBaseSimpleMaterial.prototype.CounterClockWiseSideOrientation = 1;
+BABYLON.PBRBaseSimpleMaterial.prototype.TextureDirtyFlag = 1;
+BABYLON.PBRBaseSimpleMaterial.prototype.LightDirtyFlag = 2;
+BABYLON.PBRBaseSimpleMaterial.prototype.FresnelDirtyFlag = 4;
+BABYLON.PBRBaseSimpleMaterial.prototype.AttributesDirtyFlag = 8;
+BABYLON.PBRBaseSimpleMaterial.prototype.MiscDirtyFlag = 16;
+BABYLON.PBRBaseSimpleMaterial.prototype.AllDirtyFlag = 31;
+
 
 /** @constructor */
-BABYLON.PBRMetallicRoughnessMaterial = function () {
-  this.Parse = function () {};
-  this.PBRMATERIAL_OPAQUE = 0;
-  this.PBRMATERIAL_ALPHATEST = 1;
-  this.PBRMATERIAL_ALPHABLEND = 2;
-  this.PBRMATERIAL_ALPHATESTANDBLEND = 3;
-  this.DEFAULT_AO_ON_ANALYTICAL_LIGHTS = 0;
-  this.LIGHTFALLOFF_PHYSICAL = 0;
-  this.LIGHTFALLOFF_GLTF = 1;
-  this.LIGHTFALLOFF_STANDARD = 2;
-  this.TriangleFillMode = 0;
-  this.WireFrameFillMode = 1;
-  this.PointFillMode = 2;
-  this.PointListDrawMode = 3;
-  this.LineListDrawMode = 4;
-  this.LineLoopDrawMode = 5;
-  this.LineStripDrawMode = 6;
-  this.TriangleStripDrawMode = 7;
-  this.TriangleFanDrawMode = 8;
-  this.ClockWiseSideOrientation = 0;
-  this.CounterClockWiseSideOrientation = 1;
-  this.TextureDirtyFlag = 1;
-  this.LightDirtyFlag = 2;
-  this.FresnelDirtyFlag = 4;
-  this.AttributesDirtyFlag = 8;
-  this.MiscDirtyFlag = 16;
-  this.AllDirtyFlag = 31;
-};
+BABYLON.PBRMetallicRoughnessMaterial = function () {}
+BABYLON.PBRMetallicRoughnessMaterial.Parse = function () {};
+BABYLON.PBRMetallicRoughnessMaterial.prototype.PBRMATERIAL_OPAQUE = 0;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.PBRMATERIAL_ALPHATEST = 1;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.PBRMATERIAL_ALPHABLEND = 2;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.PBRMATERIAL_ALPHATESTANDBLEND = 3;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.DEFAULT_AO_ON_ANALYTICAL_LIGHTS = 0;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.LIGHTFALLOFF_PHYSICAL = 0;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.LIGHTFALLOFF_GLTF = 1;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.LIGHTFALLOFF_STANDARD = 2;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.TriangleFillMode = 0;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.WireFrameFillMode = 1;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.PointFillMode = 2;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.PointListDrawMode = 3;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.LineListDrawMode = 4;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.LineLoopDrawMode = 5;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.LineStripDrawMode = 6;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.TriangleStripDrawMode = 7;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.TriangleFanDrawMode = 8;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.ClockWiseSideOrientation = 0;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.CounterClockWiseSideOrientation = 1;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.TextureDirtyFlag = 1;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.LightDirtyFlag = 2;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.FresnelDirtyFlag = 4;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.AttributesDirtyFlag = 8;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.MiscDirtyFlag = 16;
+BABYLON.PBRMetallicRoughnessMaterial.prototype.AllDirtyFlag = 31;
+
 
 /** @constructor */
-BABYLON.PBRSpecularGlossinessMaterial = function () {
-  this.Parse = function () {};
-  this.PBRMATERIAL_OPAQUE = 0;
-  this.PBRMATERIAL_ALPHATEST = 1;
-  this.PBRMATERIAL_ALPHABLEND = 2;
-  this.PBRMATERIAL_ALPHATESTANDBLEND = 3;
-  this.DEFAULT_AO_ON_ANALYTICAL_LIGHTS = 0;
-  this.LIGHTFALLOFF_PHYSICAL = 0;
-  this.LIGHTFALLOFF_GLTF = 1;
-  this.LIGHTFALLOFF_STANDARD = 2;
-  this.TriangleFillMode = 0;
-  this.WireFrameFillMode = 1;
-  this.PointFillMode = 2;
-  this.PointListDrawMode = 3;
-  this.LineListDrawMode = 4;
-  this.LineLoopDrawMode = 5;
-  this.LineStripDrawMode = 6;
-  this.TriangleStripDrawMode = 7;
-  this.TriangleFanDrawMode = 8;
-  this.ClockWiseSideOrientation = 0;
-  this.CounterClockWiseSideOrientation = 1;
-  this.TextureDirtyFlag = 1;
-  this.LightDirtyFlag = 2;
-  this.FresnelDirtyFlag = 4;
-  this.AttributesDirtyFlag = 8;
-  this.MiscDirtyFlag = 16;
-  this.AllDirtyFlag = 31;
-};
+BABYLON.PBRSpecularGlossinessMaterial = function () {}
+BABYLON.PBRSpecularGlossinessMaterial.Parse = function () {};
+BABYLON.PBRSpecularGlossinessMaterial.prototype.PBRMATERIAL_OPAQUE = 0;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.PBRMATERIAL_ALPHATEST = 1;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.PBRMATERIAL_ALPHABLEND = 2;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.PBRMATERIAL_ALPHATESTANDBLEND = 3;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.DEFAULT_AO_ON_ANALYTICAL_LIGHTS = 0;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.LIGHTFALLOFF_PHYSICAL = 0;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.LIGHTFALLOFF_GLTF = 1;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.LIGHTFALLOFF_STANDARD = 2;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.TriangleFillMode = 0;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.WireFrameFillMode = 1;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.PointFillMode = 2;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.PointListDrawMode = 3;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.LineListDrawMode = 4;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.LineLoopDrawMode = 5;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.LineStripDrawMode = 6;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.TriangleStripDrawMode = 7;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.TriangleFanDrawMode = 8;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.ClockWiseSideOrientation = 0;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.CounterClockWiseSideOrientation = 1;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.TextureDirtyFlag = 1;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.LightDirtyFlag = 2;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.FresnelDirtyFlag = 4;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.AttributesDirtyFlag = 8;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.MiscDirtyFlag = 16;
+BABYLON.PBRSpecularGlossinessMaterial.prototype.AllDirtyFlag = 31;
+
 
 /** @constructor */
-BABYLON.ColorGradingTexture = function () {
-  this.metadata = null;
-  this.reservedDataStore = null;
-  this.getAlphaFromRGB = false;
-  this.level = 1;
-  this.coordinatesIndex = 0;
-  this.wrapU = 1;
-  this.wrapV = 1;
-  this.wrapR = 1;
-  this.anisotropicFilteringLevel = 4;
-  this.invertZ = false;
-  this.lodLevelInAlpha = false;
-  this.isRenderTarget = false;
-  this.animations = {};
-  this.onDisposeObservable = {};
-  this.delayLoadState = 0;
-  this.constructor = function () {};
-  this.getTextureMatrix = function () {};
-  this.load3dlTexture = function () {};
-  this.loadTexture = function () {};
-  this.clone = function () {};
-  this.delayLoad = function () {};
-  this.serialize = function () {};
-  this.hasAlpha = false;
-  this.coordinatesMode = 0;
-  this.isCube = false;
-  this.is3D = false;
-  this.is2DArray = false;
-  this.isRGBD = false;
-  this.noMipmap = false;
-  this.lodGenerationOffset = 0;
-  this.lodGenerationScale = 0;
-  this.linearSpecularLOD = false;
-  this.irradianceTexture = null;
-  this.uid = "e92a7299-d3f1-49b2-87e5-ffde905f0d42";
-  this.toString = function () {};
-  this.getClassName = function () {};
-  // this.onDispose = undefined;
-  this.isBlocking = true;
-  this.getScene = function () {};
-  this.getReflectionTextureMatrix = function () {};
-  this.getInternalTexture = function () {};
-  this.isReadyOrNotBlocking = function () {};
-  this.isReady = function () {};
-  this.getSize = function () {};
-  this.getBaseSize = function () {};
-  this.updateSamplingMode = function () {};
-  this.scale = function () {};
-  this.canRescale = false;
-  this.textureType = 0;
-  this.textureFormat = 5;
-  this.readPixels = function () {};
-  this.releaseInternalTexture = function () {};
-  this.dispose = function () {};
-  this.gammaSpace = true;
-  this.sphericalPolynomial = null;
-  this.Parse = function () {};
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.ColorGradingTexture = function () {}
+BABYLON.ColorGradingTexture.metadata = null;
+BABYLON.ColorGradingTexture.reservedDataStore = null;
+BABYLON.ColorGradingTexture.getAlphaFromRGB = false;
+BABYLON.ColorGradingTexture.level = 1;
+BABYLON.ColorGradingTexture.coordinatesIndex = 0;
+BABYLON.ColorGradingTexture.wrapU = 1;
+BABYLON.ColorGradingTexture.wrapV = 1;
+BABYLON.ColorGradingTexture.wrapR = 1;
+BABYLON.ColorGradingTexture.anisotropicFilteringLevel = 4;
+BABYLON.ColorGradingTexture.invertZ = false;
+BABYLON.ColorGradingTexture.lodLevelInAlpha = false;
+BABYLON.ColorGradingTexture.isRenderTarget = false;
+BABYLON.ColorGradingTexture.animations = {};
+BABYLON.ColorGradingTexture.onDisposeObservable = {};
+BABYLON.ColorGradingTexture.delayLoadState = 0;
+BABYLON.ColorGradingTexture.prototype.constructor = function () {};
+BABYLON.ColorGradingTexture.prototype.getTextureMatrix = function () {};
+BABYLON.ColorGradingTexture.prototype.load3dlTexture = function () {};
+BABYLON.ColorGradingTexture.prototype.loadTexture = function () {};
+BABYLON.ColorGradingTexture.prototype.clone = function () {};
+BABYLON.ColorGradingTexture.prototype.delayLoad = function () {};
+BABYLON.ColorGradingTexture.prototype.serialize = function () {};
+// BABYLON.ColorGradingTexture.prototype.hasAlpha = undefined;
+// BABYLON.ColorGradingTexture.prototype.coordinatesMode = undefined;
+BABYLON.ColorGradingTexture.prototype.isCube = false;
+BABYLON.ColorGradingTexture.prototype.is3D = false;
+BABYLON.ColorGradingTexture.prototype.is2DArray = false;
+BABYLON.ColorGradingTexture.prototype.isRGBD = false;
+BABYLON.ColorGradingTexture.prototype.noMipmap = false;
+BABYLON.ColorGradingTexture.prototype.lodGenerationOffset = 0;
+BABYLON.ColorGradingTexture.prototype.lodGenerationScale = 0;
+BABYLON.ColorGradingTexture.prototype.linearSpecularLOD = false;
+BABYLON.ColorGradingTexture.prototype.irradianceTexture = null;
+BABYLON.ColorGradingTexture.prototype.uid = "0fa69376-1fcf-422f-b5d9-12134e2ced93";
+BABYLON.ColorGradingTexture.prototype.toString = function () {};
+BABYLON.ColorGradingTexture.prototype.getClassName = function () {};
+// BABYLON.ColorGradingTexture.prototype.onDispose = undefined;
+BABYLON.ColorGradingTexture.prototype.isBlocking = true;
+BABYLON.ColorGradingTexture.prototype.getScene = function () {};
+BABYLON.ColorGradingTexture.prototype.getReflectionTextureMatrix = function () {};
+BABYLON.ColorGradingTexture.prototype.getInternalTexture = function () {};
+BABYLON.ColorGradingTexture.prototype.isReadyOrNotBlocking = function () {};
+BABYLON.ColorGradingTexture.prototype.isReady = function () {};
+BABYLON.ColorGradingTexture.prototype.getSize = function () {};
+BABYLON.ColorGradingTexture.prototype.getBaseSize = function () {};
+BABYLON.ColorGradingTexture.prototype.updateSamplingMode = function () {};
+BABYLON.ColorGradingTexture.prototype.scale = function () {};
+BABYLON.ColorGradingTexture.prototype.canRescale = false;
+BABYLON.ColorGradingTexture.prototype.textureType = 0;
+BABYLON.ColorGradingTexture.prototype.textureFormat = 5;
+BABYLON.ColorGradingTexture.prototype.readPixels = function () {};
+BABYLON.ColorGradingTexture.prototype.releaseInternalTexture = function () {};
+BABYLON.ColorGradingTexture.prototype.dispose = function () {};
+// BABYLON.ColorGradingTexture.prototype.gammaSpace = undefined;
+BABYLON.ColorGradingTexture.prototype.sphericalPolynomial = null;
+
 
 /** @constructor */
-BABYLON.RawCubeTexture = function () {
-  this.CreateFromImages = function () {};
-  this.CreateFromPrefilteredData = function () {};
-  this.Parse = function () {};
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.RawCubeTexture = function () {}
+BABYLON.RawCubeTexture.prototype.CreateFromImages = function () {};
+BABYLON.RawCubeTexture.prototype.CreateFromPrefilteredData = function () {};
+BABYLON.RawCubeTexture.prototype.Parse = function () {};
+BABYLON.RawCubeTexture.prototype.WhenAllReady = function () {};
+BABYLON.RawCubeTexture.prototype.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
+
 
 /** @constructor */
-BABYLON.RawTexture3D = function () {
-  this.Parse = function () {};
-  this.CreateFromBase64String = function () {};
-  this.LoadFromDataString = function () {};
-  this.SerializeBuffers = true;
-  this.NEAREST_SAMPLINGMODE = 1;
-  this.NEAREST_NEAREST_MIPLINEAR = 8;
-  this.BILINEAR_SAMPLINGMODE = 2;
-  this.LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TRILINEAR_SAMPLINGMODE = 3;
-  this.LINEAR_LINEAR_MIPLINEAR = 3;
-  this.NEAREST_NEAREST_MIPNEAREST = 4;
-  this.NEAREST_LINEAR_MIPNEAREST = 5;
-  this.NEAREST_LINEAR_MIPLINEAR = 6;
-  this.NEAREST_LINEAR = 7;
-  this.NEAREST_NEAREST = 1;
-  this.LINEAR_NEAREST_MIPNEAREST = 9;
-  this.LINEAR_NEAREST_MIPLINEAR = 10;
-  this.LINEAR_LINEAR = 2;
-  this.LINEAR_NEAREST = 12;
-  this.EXPLICIT_MODE = 0;
-  this.SPHERICAL_MODE = 1;
-  this.PLANAR_MODE = 2;
-  this.CUBIC_MODE = 3;
-  this.PROJECTION_MODE = 4;
-  this.SKYBOX_MODE = 5;
-  this.INVCUBIC_MODE = 6;
-  this.EQUIRECTANGULAR_MODE = 7;
-  this.FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.CLAMP_ADDRESSMODE = 0;
-  this.WRAP_ADDRESSMODE = 1;
-  this.MIRROR_ADDRESSMODE = 2;
-  this.UseSerializedUrlIfAny = false;
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.RawTexture3D = function () {}
+BABYLON.RawTexture3D.prototype.Parse = function () {};
+BABYLON.RawTexture3D.prototype.CreateFromBase64String = function () {};
+BABYLON.RawTexture3D.prototype.LoadFromDataString = function () {};
+BABYLON.RawTexture3D.prototype.SerializeBuffers = true;
+BABYLON.RawTexture3D.prototype.NEAREST_SAMPLINGMODE = 1;
+BABYLON.RawTexture3D.prototype.NEAREST_NEAREST_MIPLINEAR = 8;
+BABYLON.RawTexture3D.prototype.BILINEAR_SAMPLINGMODE = 2;
+BABYLON.RawTexture3D.prototype.LINEAR_LINEAR_MIPNEAREST = 11;
+BABYLON.RawTexture3D.prototype.TRILINEAR_SAMPLINGMODE = 3;
+BABYLON.RawTexture3D.prototype.LINEAR_LINEAR_MIPLINEAR = 3;
+BABYLON.RawTexture3D.prototype.NEAREST_NEAREST_MIPNEAREST = 4;
+BABYLON.RawTexture3D.prototype.NEAREST_LINEAR_MIPNEAREST = 5;
+BABYLON.RawTexture3D.prototype.NEAREST_LINEAR_MIPLINEAR = 6;
+BABYLON.RawTexture3D.prototype.NEAREST_LINEAR = 7;
+BABYLON.RawTexture3D.prototype.NEAREST_NEAREST = 1;
+BABYLON.RawTexture3D.prototype.LINEAR_NEAREST_MIPNEAREST = 9;
+BABYLON.RawTexture3D.prototype.LINEAR_NEAREST_MIPLINEAR = 10;
+BABYLON.RawTexture3D.prototype.LINEAR_LINEAR = 2;
+BABYLON.RawTexture3D.prototype.LINEAR_NEAREST = 12;
+BABYLON.RawTexture3D.prototype.EXPLICIT_MODE = 0;
+BABYLON.RawTexture3D.prototype.SPHERICAL_MODE = 1;
+BABYLON.RawTexture3D.prototype.PLANAR_MODE = 2;
+BABYLON.RawTexture3D.prototype.CUBIC_MODE = 3;
+BABYLON.RawTexture3D.prototype.PROJECTION_MODE = 4;
+BABYLON.RawTexture3D.prototype.SKYBOX_MODE = 5;
+BABYLON.RawTexture3D.prototype.INVCUBIC_MODE = 6;
+BABYLON.RawTexture3D.prototype.EQUIRECTANGULAR_MODE = 7;
+BABYLON.RawTexture3D.prototype.FIXED_EQUIRECTANGULAR_MODE = 8;
+BABYLON.RawTexture3D.prototype.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
+BABYLON.RawTexture3D.prototype.CLAMP_ADDRESSMODE = 0;
+BABYLON.RawTexture3D.prototype.WRAP_ADDRESSMODE = 1;
+BABYLON.RawTexture3D.prototype.MIRROR_ADDRESSMODE = 2;
+BABYLON.RawTexture3D.prototype.UseSerializedUrlIfAny = false;
+BABYLON.RawTexture3D.prototype.WhenAllReady = function () {};
+BABYLON.RawTexture3D.prototype.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
+
 
 /** @constructor */
-BABYLON.RawTexture2DArray = function () {
-  this.Parse = function () {};
-  this.CreateFromBase64String = function () {};
-  this.LoadFromDataString = function () {};
-  this.SerializeBuffers = true;
-  this.NEAREST_SAMPLINGMODE = 1;
-  this.NEAREST_NEAREST_MIPLINEAR = 8;
-  this.BILINEAR_SAMPLINGMODE = 2;
-  this.LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TRILINEAR_SAMPLINGMODE = 3;
-  this.LINEAR_LINEAR_MIPLINEAR = 3;
-  this.NEAREST_NEAREST_MIPNEAREST = 4;
-  this.NEAREST_LINEAR_MIPNEAREST = 5;
-  this.NEAREST_LINEAR_MIPLINEAR = 6;
-  this.NEAREST_LINEAR = 7;
-  this.NEAREST_NEAREST = 1;
-  this.LINEAR_NEAREST_MIPNEAREST = 9;
-  this.LINEAR_NEAREST_MIPLINEAR = 10;
-  this.LINEAR_LINEAR = 2;
-  this.LINEAR_NEAREST = 12;
-  this.EXPLICIT_MODE = 0;
-  this.SPHERICAL_MODE = 1;
-  this.PLANAR_MODE = 2;
-  this.CUBIC_MODE = 3;
-  this.PROJECTION_MODE = 4;
-  this.SKYBOX_MODE = 5;
-  this.INVCUBIC_MODE = 6;
-  this.EQUIRECTANGULAR_MODE = 7;
-  this.FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.CLAMP_ADDRESSMODE = 0;
-  this.WRAP_ADDRESSMODE = 1;
-  this.MIRROR_ADDRESSMODE = 2;
-  this.UseSerializedUrlIfAny = false;
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.RawTexture2DArray = function () {}
+BABYLON.RawTexture2DArray.prototype.Parse = function () {};
+BABYLON.RawTexture2DArray.prototype.CreateFromBase64String = function () {};
+BABYLON.RawTexture2DArray.prototype.LoadFromDataString = function () {};
+BABYLON.RawTexture2DArray.prototype.SerializeBuffers = true;
+BABYLON.RawTexture2DArray.prototype.NEAREST_SAMPLINGMODE = 1;
+BABYLON.RawTexture2DArray.prototype.NEAREST_NEAREST_MIPLINEAR = 8;
+BABYLON.RawTexture2DArray.prototype.BILINEAR_SAMPLINGMODE = 2;
+BABYLON.RawTexture2DArray.prototype.LINEAR_LINEAR_MIPNEAREST = 11;
+BABYLON.RawTexture2DArray.prototype.TRILINEAR_SAMPLINGMODE = 3;
+BABYLON.RawTexture2DArray.prototype.LINEAR_LINEAR_MIPLINEAR = 3;
+BABYLON.RawTexture2DArray.prototype.NEAREST_NEAREST_MIPNEAREST = 4;
+BABYLON.RawTexture2DArray.prototype.NEAREST_LINEAR_MIPNEAREST = 5;
+BABYLON.RawTexture2DArray.prototype.NEAREST_LINEAR_MIPLINEAR = 6;
+BABYLON.RawTexture2DArray.prototype.NEAREST_LINEAR = 7;
+BABYLON.RawTexture2DArray.prototype.NEAREST_NEAREST = 1;
+BABYLON.RawTexture2DArray.prototype.LINEAR_NEAREST_MIPNEAREST = 9;
+BABYLON.RawTexture2DArray.prototype.LINEAR_NEAREST_MIPLINEAR = 10;
+BABYLON.RawTexture2DArray.prototype.LINEAR_LINEAR = 2;
+BABYLON.RawTexture2DArray.prototype.LINEAR_NEAREST = 12;
+BABYLON.RawTexture2DArray.prototype.EXPLICIT_MODE = 0;
+BABYLON.RawTexture2DArray.prototype.SPHERICAL_MODE = 1;
+BABYLON.RawTexture2DArray.prototype.PLANAR_MODE = 2;
+BABYLON.RawTexture2DArray.prototype.CUBIC_MODE = 3;
+BABYLON.RawTexture2DArray.prototype.PROJECTION_MODE = 4;
+BABYLON.RawTexture2DArray.prototype.SKYBOX_MODE = 5;
+BABYLON.RawTexture2DArray.prototype.INVCUBIC_MODE = 6;
+BABYLON.RawTexture2DArray.prototype.EQUIRECTANGULAR_MODE = 7;
+BABYLON.RawTexture2DArray.prototype.FIXED_EQUIRECTANGULAR_MODE = 8;
+BABYLON.RawTexture2DArray.prototype.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
+BABYLON.RawTexture2DArray.prototype.CLAMP_ADDRESSMODE = 0;
+BABYLON.RawTexture2DArray.prototype.WRAP_ADDRESSMODE = 1;
+BABYLON.RawTexture2DArray.prototype.MIRROR_ADDRESSMODE = 2;
+BABYLON.RawTexture2DArray.prototype.UseSerializedUrlIfAny = false;
+BABYLON.RawTexture2DArray.prototype.WhenAllReady = function () {};
+BABYLON.RawTexture2DArray.prototype.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
+
 
 /** @constructor */
-BABYLON.RefractionTexture = function () {
-  this.metadata = null;
-  this.reservedDataStore = null;
-  this.getAlphaFromRGB = false;
-  this.level = 1;
-  this.coordinatesIndex = 0;
-  this.wrapU = 1;
-  this.wrapV = 1;
-  this.wrapR = 1;
-  this.anisotropicFilteringLevel = 4;
-  this.invertZ = false;
-  this.lodLevelInAlpha = false;
-  this.isRenderTarget = false;
-  this.animations = {};
-  this.onDisposeObservable = {};
-  this.delayLoadState = 0;
-  this.url = null;
-  this.uOffset = 0;
-  this.vOffset = 0;
-  this.uScale = 1;
-  this.vScale = 1;
-  this.uAng = 0;
-  this.vAng = 0;
-  this.wAng = 0;
-  this.uRotationCenter = 0.5;
-  this.vRotationCenter = 0.5;
-  this.wRotationCenter = 0.5;
-  this.inspectableCustomProperties = null;
-  this.onLoadObservable = {};
-  this.name = "";
-  this.renderParticles = true;
-  this.renderSprites = false;
-  this.ignoreCameraViewport = false;
-  this.onBeforeBindObservable = {};
-  this.onAfterUnbindObservable = {};
-  this.onBeforeRenderObservable = {};
-  this.onAfterRenderObservable = {};
-  this.onClearObservable = {};
-  this.onResizeObservable = {};
-  this.boundingBoxPosition = {};
-  this.refractionPlane = {};
-  this.depth = 2;
-  this.constructor = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  // this.renderList = undefined;
-  // this.onAfterUnbind = undefined;
-  // this.onBeforeRender = undefined;
-  // this.onAfterRender = undefined;
-  // this.onClear = undefined;
-  // this.renderTargetOptions = undefined;
-  // this.boundingBoxSize = undefined;
-  this.depthStencilTexture = null;
-  this.createDepthStencilTexture = function () {};
-  this.samples = 1;
-  this.resetRefreshCounter = function () {};
-  this.refreshRate = 1;
-  this.addPostProcess = function () {};
-  this.clearPostProcesses = function () {};
-  this.removePostProcess = function () {};
-  this.getRenderSize = function () {};
-  this.getRenderWidth = function () {};
-  this.getRenderHeight = function () {};
-  this.getRenderLayers = function () {};
-  this.canRescale = true;
-  this.scale = function () {};
-  this.getReflectionTextureMatrix = function () {};
-  this.resize = function () {};
-  this.render = function () {};
-  this.unbindFrameBuffer = function () {};
-  this.renderToTarget = function () {};
-  this.setRenderingOrder = function () {};
-  this.setRenderingAutoClearDepthStencil = function () {};
-  this.disposeFramebufferObjects = function () {};
-  this.dispose = function () {};
-  this.freeRenderingGroups = function () {};
-  this.getViewCount = function () {};
-  this.noMipmap = true;
-  this.isBlocking = true;
-  this.samplingMode = 3;
-  this.invertY = true;
-  this.updateURL = function () {};
-  this.delayLoad = function () {};
-  this.getTextureMatrix = function () {};
-  this.getClassName = function () {};
-  this.hasAlpha = false;
-  this.coordinatesMode = 4;
-  this.isCube = false;
-  this.is3D = false;
-  this.is2DArray = false;
-  this.isRGBD = false;
-  this.lodGenerationOffset = 0;
-  this.lodGenerationScale = 0;
-  this.linearSpecularLOD = false;
-  this.irradianceTexture = null;
-  this.uid = "914efb34-0a7d-43b8-91f9-4b686b7711ba";
-  this.toString = function () {};
-  // this.onDispose = undefined;
-  this.getScene = function () {};
-  this.getInternalTexture = function () {};
-  this.isReadyOrNotBlocking = function () {};
-  this.isReady = function () {};
-  this.getSize = function () {};
-  this.getBaseSize = function () {};
-  this.updateSamplingMode = function () {};
-  this.textureType = 0;
-  this.textureFormat = 5;
-  this.readPixels = function () {};
-  this.releaseInternalTexture = function () {};
-  this.gammaSpace = true;
-  this.sphericalPolynomial = null;
-  this.REFRESHRATE_RENDER_ONCE = 0;
-  this.REFRESHRATE_RENDER_ONEVERYFRAME = 1;
-  this.REFRESHRATE_RENDER_ONEVERYTWOFRAMES = 2;
-  this.Parse = function () {};
-  this.CreateFromBase64String = function () {};
-  this.LoadFromDataString = function () {};
-  this.SerializeBuffers = true;
-  this.NEAREST_SAMPLINGMODE = 1;
-  this.NEAREST_NEAREST_MIPLINEAR = 8;
-  this.BILINEAR_SAMPLINGMODE = 2;
-  this.LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TRILINEAR_SAMPLINGMODE = 3;
-  this.LINEAR_LINEAR_MIPLINEAR = 3;
-  this.NEAREST_NEAREST_MIPNEAREST = 4;
-  this.NEAREST_LINEAR_MIPNEAREST = 5;
-  this.NEAREST_LINEAR_MIPLINEAR = 6;
-  this.NEAREST_LINEAR = 7;
-  this.NEAREST_NEAREST = 1;
-  this.LINEAR_NEAREST_MIPNEAREST = 9;
-  this.LINEAR_NEAREST_MIPLINEAR = 10;
-  this.LINEAR_LINEAR = 2;
-  this.LINEAR_NEAREST = 12;
-  this.EXPLICIT_MODE = 0;
-  this.SPHERICAL_MODE = 1;
-  this.PLANAR_MODE = 2;
-  this.CUBIC_MODE = 3;
-  this.PROJECTION_MODE = 4;
-  this.SKYBOX_MODE = 5;
-  this.INVCUBIC_MODE = 6;
-  this.EQUIRECTANGULAR_MODE = 7;
-  this.FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.CLAMP_ADDRESSMODE = 0;
-  this.WRAP_ADDRESSMODE = 1;
-  this.MIRROR_ADDRESSMODE = 2;
-  this.UseSerializedUrlIfAny = false;
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.RefractionTexture = function () {}
+BABYLON.RefractionTexture.metadata = null;
+BABYLON.RefractionTexture.reservedDataStore = null;
+BABYLON.RefractionTexture.getAlphaFromRGB = false;
+BABYLON.RefractionTexture.level = 1;
+BABYLON.RefractionTexture.coordinatesIndex = 0;
+BABYLON.RefractionTexture.wrapU = 1;
+BABYLON.RefractionTexture.wrapV = 1;
+BABYLON.RefractionTexture.wrapR = 1;
+BABYLON.RefractionTexture.anisotropicFilteringLevel = 4;
+BABYLON.RefractionTexture.invertZ = false;
+BABYLON.RefractionTexture.lodLevelInAlpha = false;
+BABYLON.RefractionTexture.isRenderTarget = false;
+BABYLON.RefractionTexture.animations = {};
+BABYLON.RefractionTexture.onDisposeObservable = {};
+BABYLON.RefractionTexture.delayLoadState = 0;
+BABYLON.RefractionTexture.url = null;
+BABYLON.RefractionTexture.uOffset = 0;
+BABYLON.RefractionTexture.vOffset = 0;
+BABYLON.RefractionTexture.uScale = 1;
+BABYLON.RefractionTexture.vScale = 1;
+BABYLON.RefractionTexture.uAng = 0;
+BABYLON.RefractionTexture.vAng = 0;
+BABYLON.RefractionTexture.wAng = 0;
+BABYLON.RefractionTexture.uRotationCenter = 0.5;
+BABYLON.RefractionTexture.vRotationCenter = 0.5;
+BABYLON.RefractionTexture.wRotationCenter = 0.5;
+BABYLON.RefractionTexture.inspectableCustomProperties = null;
+BABYLON.RefractionTexture.onLoadObservable = {};
+BABYLON.RefractionTexture.name = "";
+BABYLON.RefractionTexture.renderParticles = true;
+BABYLON.RefractionTexture.renderSprites = false;
+BABYLON.RefractionTexture.ignoreCameraViewport = false;
+BABYLON.RefractionTexture.onBeforeBindObservable = {};
+BABYLON.RefractionTexture.onAfterUnbindObservable = {};
+BABYLON.RefractionTexture.onBeforeRenderObservable = {};
+BABYLON.RefractionTexture.onAfterRenderObservable = {};
+BABYLON.RefractionTexture.onClearObservable = {};
+BABYLON.RefractionTexture.onResizeObservable = {};
+BABYLON.RefractionTexture.boundingBoxPosition = {};
+BABYLON.RefractionTexture.refractionPlane = {};
+BABYLON.RefractionTexture.depth = 2;
+BABYLON.RefractionTexture.prototype.constructor = function () {};
+BABYLON.RefractionTexture.prototype.clone = function () {};
+BABYLON.RefractionTexture.prototype.serialize = function () {};
+// BABYLON.RefractionTexture.prototype.renderList = undefined;
+// BABYLON.RefractionTexture.prototype.onAfterUnbind = undefined;
+// BABYLON.RefractionTexture.prototype.onBeforeRender = undefined;
+// BABYLON.RefractionTexture.prototype.onAfterRender = undefined;
+// BABYLON.RefractionTexture.prototype.onClear = undefined;
+// BABYLON.RefractionTexture.prototype.renderTargetOptions = undefined;
+// BABYLON.RefractionTexture.prototype.boundingBoxSize = undefined;
+BABYLON.RefractionTexture.prototype.depthStencilTexture = null;
+BABYLON.RefractionTexture.prototype.createDepthStencilTexture = function () {};
+// BABYLON.RefractionTexture.prototype.samples = undefined;
+BABYLON.RefractionTexture.prototype.resetRefreshCounter = function () {};
+// BABYLON.RefractionTexture.prototype.refreshRate = undefined;
+BABYLON.RefractionTexture.prototype.addPostProcess = function () {};
+BABYLON.RefractionTexture.prototype.clearPostProcesses = function () {};
+BABYLON.RefractionTexture.prototype.removePostProcess = function () {};
+BABYLON.RefractionTexture.prototype.getRenderSize = function () {};
+BABYLON.RefractionTexture.prototype.getRenderWidth = function () {};
+BABYLON.RefractionTexture.prototype.getRenderHeight = function () {};
+BABYLON.RefractionTexture.prototype.getRenderLayers = function () {};
+BABYLON.RefractionTexture.prototype.canRescale = true;
+BABYLON.RefractionTexture.prototype.scale = function () {};
+BABYLON.RefractionTexture.prototype.getReflectionTextureMatrix = function () {};
+BABYLON.RefractionTexture.prototype.resize = function () {};
+BABYLON.RefractionTexture.prototype.render = function () {};
+BABYLON.RefractionTexture.prototype.unbindFrameBuffer = function () {};
+BABYLON.RefractionTexture.prototype.renderToTarget = function () {};
+BABYLON.RefractionTexture.prototype.setRenderingOrder = function () {};
+BABYLON.RefractionTexture.prototype.setRenderingAutoClearDepthStencil = function () {};
+BABYLON.RefractionTexture.prototype.disposeFramebufferObjects = function () {};
+BABYLON.RefractionTexture.prototype.dispose = function () {};
+BABYLON.RefractionTexture.prototype.freeRenderingGroups = function () {};
+BABYLON.RefractionTexture.prototype.getViewCount = function () {};
+// BABYLON.RefractionTexture.prototype.noMipmap = undefined;
+// BABYLON.RefractionTexture.prototype.isBlocking = undefined;
+// BABYLON.RefractionTexture.prototype.samplingMode = undefined;
+// BABYLON.RefractionTexture.prototype.invertY = undefined;
+BABYLON.RefractionTexture.prototype.updateURL = function () {};
+BABYLON.RefractionTexture.prototype.delayLoad = function () {};
+BABYLON.RefractionTexture.prototype.getTextureMatrix = function () {};
+BABYLON.RefractionTexture.prototype.getClassName = function () {};
+// BABYLON.RefractionTexture.prototype.hasAlpha = undefined;
+// BABYLON.RefractionTexture.prototype.coordinatesMode = undefined;
+BABYLON.RefractionTexture.prototype.isCube = false;
+BABYLON.RefractionTexture.prototype.is3D = false;
+BABYLON.RefractionTexture.prototype.is2DArray = false;
+BABYLON.RefractionTexture.prototype.isRGBD = false;
+BABYLON.RefractionTexture.prototype.lodGenerationOffset = 0;
+BABYLON.RefractionTexture.prototype.lodGenerationScale = 0;
+BABYLON.RefractionTexture.prototype.linearSpecularLOD = false;
+BABYLON.RefractionTexture.prototype.irradianceTexture = null;
+BABYLON.RefractionTexture.prototype.uid = "0fa69376-1fcf-422f-b5d9-12134e2ced93";
+BABYLON.RefractionTexture.prototype.toString = function () {};
+// BABYLON.RefractionTexture.prototype.onDispose = undefined;
+BABYLON.RefractionTexture.prototype.getScene = function () {};
+BABYLON.RefractionTexture.prototype.getInternalTexture = function () {};
+BABYLON.RefractionTexture.prototype.isReadyOrNotBlocking = function () {};
+BABYLON.RefractionTexture.prototype.isReady = function () {};
+BABYLON.RefractionTexture.prototype.getSize = function () {};
+BABYLON.RefractionTexture.prototype.getBaseSize = function () {};
+BABYLON.RefractionTexture.prototype.updateSamplingMode = function () {};
+BABYLON.RefractionTexture.prototype.textureType = 0;
+BABYLON.RefractionTexture.prototype.textureFormat = 5;
+BABYLON.RefractionTexture.prototype.readPixels = function () {};
+BABYLON.RefractionTexture.prototype.releaseInternalTexture = function () {};
+// BABYLON.RefractionTexture.prototype.gammaSpace = undefined;
+BABYLON.RefractionTexture.prototype.sphericalPolynomial = null;
+
 
 /** @constructor */
-BABYLON.VideoTexture = function () {
-  this.CreateFromStreamAsync = function () {};
-  this.CreateFromWebCamAsync = function () {};
-  this.CreateFromWebCam = function () {};
-  this.Parse = function () {};
-  this.CreateFromBase64String = function () {};
-  this.LoadFromDataString = function () {};
-  this.SerializeBuffers = true;
-  this.NEAREST_SAMPLINGMODE = 1;
-  this.NEAREST_NEAREST_MIPLINEAR = 8;
-  this.BILINEAR_SAMPLINGMODE = 2;
-  this.LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TRILINEAR_SAMPLINGMODE = 3;
-  this.LINEAR_LINEAR_MIPLINEAR = 3;
-  this.NEAREST_NEAREST_MIPNEAREST = 4;
-  this.NEAREST_LINEAR_MIPNEAREST = 5;
-  this.NEAREST_LINEAR_MIPLINEAR = 6;
-  this.NEAREST_LINEAR = 7;
-  this.NEAREST_NEAREST = 1;
-  this.LINEAR_NEAREST_MIPNEAREST = 9;
-  this.LINEAR_NEAREST_MIPLINEAR = 10;
-  this.LINEAR_LINEAR = 2;
-  this.LINEAR_NEAREST = 12;
-  this.EXPLICIT_MODE = 0;
-  this.SPHERICAL_MODE = 1;
-  this.PLANAR_MODE = 2;
-  this.CUBIC_MODE = 3;
-  this.PROJECTION_MODE = 4;
-  this.SKYBOX_MODE = 5;
-  this.INVCUBIC_MODE = 6;
-  this.EQUIRECTANGULAR_MODE = 7;
-  this.FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.CLAMP_ADDRESSMODE = 0;
-  this.WRAP_ADDRESSMODE = 1;
-  this.MIRROR_ADDRESSMODE = 2;
-  this.UseSerializedUrlIfAny = false;
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.VideoTexture = function () {}
+BABYLON.VideoTexture.CreateFromStreamAsync = function () {};
+BABYLON.VideoTexture.CreateFromWebCamAsync = function () {};
+BABYLON.VideoTexture.CreateFromWebCam = function () {};
+BABYLON.VideoTexture.prototype.Parse = function () {};
+BABYLON.VideoTexture.prototype.CreateFromBase64String = function () {};
+BABYLON.VideoTexture.prototype.LoadFromDataString = function () {};
+BABYLON.VideoTexture.prototype.SerializeBuffers = true;
+BABYLON.VideoTexture.prototype.NEAREST_SAMPLINGMODE = 1;
+BABYLON.VideoTexture.prototype.NEAREST_NEAREST_MIPLINEAR = 8;
+BABYLON.VideoTexture.prototype.BILINEAR_SAMPLINGMODE = 2;
+BABYLON.VideoTexture.prototype.LINEAR_LINEAR_MIPNEAREST = 11;
+BABYLON.VideoTexture.prototype.TRILINEAR_SAMPLINGMODE = 3;
+BABYLON.VideoTexture.prototype.LINEAR_LINEAR_MIPLINEAR = 3;
+BABYLON.VideoTexture.prototype.NEAREST_NEAREST_MIPNEAREST = 4;
+BABYLON.VideoTexture.prototype.NEAREST_LINEAR_MIPNEAREST = 5;
+BABYLON.VideoTexture.prototype.NEAREST_LINEAR_MIPLINEAR = 6;
+BABYLON.VideoTexture.prototype.NEAREST_LINEAR = 7;
+BABYLON.VideoTexture.prototype.NEAREST_NEAREST = 1;
+BABYLON.VideoTexture.prototype.LINEAR_NEAREST_MIPNEAREST = 9;
+BABYLON.VideoTexture.prototype.LINEAR_NEAREST_MIPLINEAR = 10;
+BABYLON.VideoTexture.prototype.LINEAR_LINEAR = 2;
+BABYLON.VideoTexture.prototype.LINEAR_NEAREST = 12;
+BABYLON.VideoTexture.prototype.EXPLICIT_MODE = 0;
+BABYLON.VideoTexture.prototype.SPHERICAL_MODE = 1;
+BABYLON.VideoTexture.prototype.PLANAR_MODE = 2;
+BABYLON.VideoTexture.prototype.CUBIC_MODE = 3;
+BABYLON.VideoTexture.prototype.PROJECTION_MODE = 4;
+BABYLON.VideoTexture.prototype.SKYBOX_MODE = 5;
+BABYLON.VideoTexture.prototype.INVCUBIC_MODE = 6;
+BABYLON.VideoTexture.prototype.EQUIRECTANGULAR_MODE = 7;
+BABYLON.VideoTexture.prototype.FIXED_EQUIRECTANGULAR_MODE = 8;
+BABYLON.VideoTexture.prototype.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
+BABYLON.VideoTexture.prototype.CLAMP_ADDRESSMODE = 0;
+BABYLON.VideoTexture.prototype.WRAP_ADDRESSMODE = 1;
+BABYLON.VideoTexture.prototype.MIRROR_ADDRESSMODE = 2;
+BABYLON.VideoTexture.prototype.UseSerializedUrlIfAny = false;
+BABYLON.VideoTexture.prototype.WhenAllReady = function () {};
+BABYLON.VideoTexture.prototype.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
+
 
 /** @constructor */
-BABYLON.HtmlElementTexture = function () {
-  this.DefaultOptions = {};
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.HtmlElementTexture = function () {}
+BABYLON.HtmlElementTexture.DefaultOptions = {};
+BABYLON.HtmlElementTexture.prototype.WhenAllReady = function () {};
+BABYLON.HtmlElementTexture.prototype.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
+
 
 BABYLON.NodeMaterialConnectionPointCompatibilityStates = {}
 
 BABYLON.NodeMaterialConnectionPointDirection = {}
 
 /** @constructor */
-BABYLON.NodeMaterialConnectionPoint = function () {
-  this.acceptedConnectionPointTypes = {};
-  this.excludedConnectionPointTypes = {};
-  this.onConnectionObservable = {};
-  // this.name = undefined;
-  // this.direction = undefined;
-};
+BABYLON.NodeMaterialConnectionPoint = function () {}
+BABYLON.NodeMaterialConnectionPoint.acceptedConnectionPointTypes = {};
+BABYLON.NodeMaterialConnectionPoint.excludedConnectionPointTypes = {};
+BABYLON.NodeMaterialConnectionPoint.onConnectionObservable = {};
+// BABYLON.NodeMaterialConnectionPoint.name = undefined;
+// BABYLON.NodeMaterialConnectionPoint.prototype.direction = undefined;
+// BABYLON.NodeMaterialConnectionPoint.prototype.associatedVariableName = undefined;
+// BABYLON.NodeMaterialConnectionPoint.prototype.innerType = undefined;
+// BABYLON.NodeMaterialConnectionPoint.prototype.type = undefined;
+// BABYLON.NodeMaterialConnectionPoint.prototype.target = undefined;
+BABYLON.NodeMaterialConnectionPoint.prototype.isConnected = true;
+// BABYLON.NodeMaterialConnectionPoint.prototype.isConnectedToInputBlock = undefined;
+// BABYLON.NodeMaterialConnectionPoint.prototype.connectInputBlock = undefined;
+// BABYLON.NodeMaterialConnectionPoint.prototype.connectedPoint = undefined;
+// BABYLON.NodeMaterialConnectionPoint.prototype.ownerBlock = undefined;
+BABYLON.NodeMaterialConnectionPoint.prototype.sourceBlock = null;
+// BABYLON.NodeMaterialConnectionPoint.prototype.connectedBlocks = undefined;
+// BABYLON.NodeMaterialConnectionPoint.prototype.endpoints = undefined;
+// BABYLON.NodeMaterialConnectionPoint.prototype.hasEndpoints = undefined;
+BABYLON.NodeMaterialConnectionPoint.prototype.isConnectedInVertexShader = false;
+BABYLON.NodeMaterialConnectionPoint.prototype.isConnectedInFragmentShader = false;
+BABYLON.NodeMaterialConnectionPoint.prototype.getClassName = function () {};
+BABYLON.NodeMaterialConnectionPoint.prototype.canConnectTo = function () {};
+BABYLON.NodeMaterialConnectionPoint.prototype.checkCompatibilityState = function () {};
+BABYLON.NodeMaterialConnectionPoint.prototype.connectTo = function () {};
+BABYLON.NodeMaterialConnectionPoint.prototype.disconnectFrom = function () {};
+BABYLON.NodeMaterialConnectionPoint.prototype.serialize = function () {};
+BABYLON.NodeMaterialConnectionPoint.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.NodeMaterialBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 0;
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 1;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.getClassName = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.NodeMaterialBlock = function () {}
+BABYLON.NodeMaterialBlock.inputsAreExclusive = false;
+BABYLON.NodeMaterialBlock.comments = "";
+// BABYLON.NodeMaterialBlock.name = undefined;
+BABYLON.NodeMaterialBlock.uniqueId = 0;
+// BABYLON.NodeMaterialBlock.prototype.isUnique = undefined;
+// BABYLON.NodeMaterialBlock.prototype.isFinalMerger = undefined;
+// BABYLON.NodeMaterialBlock.prototype.isInput = undefined;
+// BABYLON.NodeMaterialBlock.prototype.buildId = undefined;
+// BABYLON.NodeMaterialBlock.prototype.target = undefined;
+// BABYLON.NodeMaterialBlock.prototype.inputs = undefined;
+// BABYLON.NodeMaterialBlock.prototype.outputs = undefined;
+BABYLON.NodeMaterialBlock.prototype.getInputByName = function () {};
+BABYLON.NodeMaterialBlock.prototype.getOutputByName = function () {};
+BABYLON.NodeMaterialBlock.prototype.initialize = function () {};
+BABYLON.NodeMaterialBlock.prototype.bind = function () {};
+BABYLON.NodeMaterialBlock.prototype.getClassName = function () {};
+BABYLON.NodeMaterialBlock.prototype.registerInput = function () {};
+BABYLON.NodeMaterialBlock.prototype.registerOutput = function () {};
+BABYLON.NodeMaterialBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.NodeMaterialBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.NodeMaterialBlock.prototype.getSiblingOutput = function () {};
+BABYLON.NodeMaterialBlock.prototype.connectTo = function () {};
+BABYLON.NodeMaterialBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.NodeMaterialBlock.prototype.provideFallbacks = function () {};
+BABYLON.NodeMaterialBlock.prototype.initializeDefines = function () {};
+BABYLON.NodeMaterialBlock.prototype.prepareDefines = function () {};
+BABYLON.NodeMaterialBlock.prototype.autoConfigure = function () {};
+BABYLON.NodeMaterialBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.NodeMaterialBlock.prototype.isReady = function () {};
+BABYLON.NodeMaterialBlock.prototype.build = function () {};
+BABYLON.NodeMaterialBlock.prototype.clone = function () {};
+BABYLON.NodeMaterialBlock.prototype.serialize = function () {};
+BABYLON.NodeMaterialBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.NodeMaterialDefines = function () {
-  this.NORMAL = false;
-  this.TANGENT = false;
-  this.UV1 = false;
-  this.NUM_BONE_INFLUENCERS = 0;
-  this.BonesPerMesh = 0;
-  this.BONETEXTURE = false;
-  this.MORPHTARGETS = false;
-  this.MORPHTARGETS_NORMAL = false;
-  this.MORPHTARGETS_TANGENT = false;
-  this.MORPHTARGETS_UV = false;
-  this.NUM_MORPH_INFLUENCERS = 0;
-  this.IMAGEPROCESSING = false;
-  this.VIGNETTE = false;
-  this.VIGNETTEBLENDMODEMULTIPLY = false;
-  this.VIGNETTEBLENDMODEOPAQUE = false;
-  this.TONEMAPPING = false;
-  this.TONEMAPPING_ACES = false;
-  this.CONTRAST = false;
-  this.EXPOSURE = false;
-  this.COLORCURVES = false;
-  this.COLORGRADING = false;
-  this.COLORGRADING3D = false;
-  this.SAMPLER3DGREENDEPTH = false;
-  this.SAMPLER3DBGRMAP = false;
-  this.IMAGEPROCESSINGPOSTPROCESS = false;
-  this.BUMPDIRECTUV = 0;
-  this.constructor = function () {};
-  this.setValue = function () {};
-  this.isDirty = true;
-  this.markAsProcessed = function () {};
-  this.markAsUnprocessed = function () {};
-  this.markAllAsDirty = function () {};
-  this.markAsImageProcessingDirty = function () {};
-  this.markAsLightDirty = function () {};
-  this.markAsAttributesDirty = function () {};
-  this.markAsTexturesDirty = function () {};
-  this.markAsFresnelDirty = function () {};
-  this.markAsMiscDirty = function () {};
-  this.rebuild = function () {};
-  this.isEqual = function () {};
-  this.cloneTo = function () {};
-  this.reset = function () {};
-  this.toString = function () {};
-};
+BABYLON.NodeMaterialDefines = function () {}
+BABYLON.NodeMaterialDefines.NORMAL = false;
+BABYLON.NodeMaterialDefines.TANGENT = false;
+BABYLON.NodeMaterialDefines.UV1 = false;
+BABYLON.NodeMaterialDefines.NUM_BONE_INFLUENCERS = 0;
+BABYLON.NodeMaterialDefines.BonesPerMesh = 0;
+BABYLON.NodeMaterialDefines.BONETEXTURE = false;
+BABYLON.NodeMaterialDefines.MORPHTARGETS = false;
+BABYLON.NodeMaterialDefines.MORPHTARGETS_NORMAL = false;
+BABYLON.NodeMaterialDefines.MORPHTARGETS_TANGENT = false;
+BABYLON.NodeMaterialDefines.MORPHTARGETS_UV = false;
+BABYLON.NodeMaterialDefines.NUM_MORPH_INFLUENCERS = 0;
+BABYLON.NodeMaterialDefines.IMAGEPROCESSING = false;
+BABYLON.NodeMaterialDefines.VIGNETTE = false;
+BABYLON.NodeMaterialDefines.VIGNETTEBLENDMODEMULTIPLY = false;
+BABYLON.NodeMaterialDefines.VIGNETTEBLENDMODEOPAQUE = false;
+BABYLON.NodeMaterialDefines.TONEMAPPING = false;
+BABYLON.NodeMaterialDefines.TONEMAPPING_ACES = false;
+BABYLON.NodeMaterialDefines.CONTRAST = false;
+BABYLON.NodeMaterialDefines.EXPOSURE = false;
+BABYLON.NodeMaterialDefines.COLORCURVES = false;
+BABYLON.NodeMaterialDefines.COLORGRADING = false;
+BABYLON.NodeMaterialDefines.COLORGRADING3D = false;
+BABYLON.NodeMaterialDefines.SAMPLER3DGREENDEPTH = false;
+BABYLON.NodeMaterialDefines.SAMPLER3DBGRMAP = false;
+BABYLON.NodeMaterialDefines.IMAGEPROCESSINGPOSTPROCESS = false;
+BABYLON.NodeMaterialDefines.BUMPDIRECTUV = 0;
+BABYLON.NodeMaterialDefines.prototype.constructor = function () {};
+BABYLON.NodeMaterialDefines.prototype.setValue = function () {};
+// BABYLON.NodeMaterialDefines.prototype.isDirty = undefined;
+BABYLON.NodeMaterialDefines.prototype.markAsProcessed = function () {};
+BABYLON.NodeMaterialDefines.prototype.markAsUnprocessed = function () {};
+BABYLON.NodeMaterialDefines.prototype.markAllAsDirty = function () {};
+BABYLON.NodeMaterialDefines.prototype.markAsImageProcessingDirty = function () {};
+BABYLON.NodeMaterialDefines.prototype.markAsLightDirty = function () {};
+BABYLON.NodeMaterialDefines.prototype.markAsAttributesDirty = function () {};
+BABYLON.NodeMaterialDefines.prototype.markAsTexturesDirty = function () {};
+BABYLON.NodeMaterialDefines.prototype.markAsFresnelDirty = function () {};
+BABYLON.NodeMaterialDefines.prototype.markAsMiscDirty = function () {};
+BABYLON.NodeMaterialDefines.prototype.rebuild = function () {};
+BABYLON.NodeMaterialDefines.prototype.isEqual = function () {};
+BABYLON.NodeMaterialDefines.prototype.cloneTo = function () {};
+BABYLON.NodeMaterialDefines.prototype.reset = function () {};
+BABYLON.NodeMaterialDefines.prototype.toString = function () {};
+
 
 /** @constructor */
-BABYLON.NodeMaterial = function () {
-  this.Parse = function () {};
-  this.ParseFromFileAsync = function () {};
-  this.ParseFromSnippetAsync = function () {};
-  this.CreateDefault = function () {};
-  this.EditorURL = "https://unpkg.com/babylonjs-node-editor@4.1.0/babylon.nodeEditor.js";
-  this.SnippetUrl = "https://snippet.babylonjs.com";
-  this.TriangleFillMode = 0;
-  this.WireFrameFillMode = 1;
-  this.PointFillMode = 2;
-  this.PointListDrawMode = 3;
-  this.LineListDrawMode = 4;
-  this.LineLoopDrawMode = 5;
-  this.LineStripDrawMode = 6;
-  this.TriangleStripDrawMode = 7;
-  this.TriangleFanDrawMode = 8;
-  this.ClockWiseSideOrientation = 0;
-  this.CounterClockWiseSideOrientation = 1;
-  this.TextureDirtyFlag = 1;
-  this.LightDirtyFlag = 2;
-  this.FresnelDirtyFlag = 4;
-  this.AttributesDirtyFlag = 8;
-  this.MiscDirtyFlag = 16;
-  this.AllDirtyFlag = 31;
-};
+BABYLON.NodeMaterial = function () {}
+BABYLON.NodeMaterial.Parse = function () {};
+BABYLON.NodeMaterial.ParseFromFileAsync = function () {};
+BABYLON.NodeMaterial.ParseFromSnippetAsync = function () {};
+BABYLON.NodeMaterial.CreateDefault = function () {};
+BABYLON.NodeMaterial.EditorURL = "https://unpkg.com/babylonjs-node-editor@4.1.0/babylon.nodeEditor.js";
+BABYLON.NodeMaterial.SnippetUrl = "https://snippet.babylonjs.com";
+BABYLON.NodeMaterial.prototype.TriangleFillMode = 0;
+BABYLON.NodeMaterial.prototype.WireFrameFillMode = 1;
+BABYLON.NodeMaterial.prototype.PointFillMode = 2;
+BABYLON.NodeMaterial.prototype.PointListDrawMode = 3;
+BABYLON.NodeMaterial.prototype.LineListDrawMode = 4;
+BABYLON.NodeMaterial.prototype.LineLoopDrawMode = 5;
+BABYLON.NodeMaterial.prototype.LineStripDrawMode = 6;
+BABYLON.NodeMaterial.prototype.TriangleStripDrawMode = 7;
+BABYLON.NodeMaterial.prototype.TriangleFanDrawMode = 8;
+BABYLON.NodeMaterial.prototype.ClockWiseSideOrientation = 0;
+BABYLON.NodeMaterial.prototype.CounterClockWiseSideOrientation = 1;
+BABYLON.NodeMaterial.prototype.TextureDirtyFlag = 1;
+BABYLON.NodeMaterial.prototype.LightDirtyFlag = 2;
+BABYLON.NodeMaterial.prototype.FresnelDirtyFlag = 4;
+BABYLON.NodeMaterial.prototype.AttributesDirtyFlag = 8;
+BABYLON.NodeMaterial.prototype.MiscDirtyFlag = 16;
+BABYLON.NodeMaterial.prototype.AllDirtyFlag = 31;
+
 
 /** @constructor */
-BABYLON.CustomProceduralTexture = function () {
-  this.Parse = function () {};
-  this.CreateFromBase64String = function () {};
-  this.LoadFromDataString = function () {};
-  this.SerializeBuffers = true;
-  this.NEAREST_SAMPLINGMODE = 1;
-  this.NEAREST_NEAREST_MIPLINEAR = 8;
-  this.BILINEAR_SAMPLINGMODE = 2;
-  this.LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TRILINEAR_SAMPLINGMODE = 3;
-  this.LINEAR_LINEAR_MIPLINEAR = 3;
-  this.NEAREST_NEAREST_MIPNEAREST = 4;
-  this.NEAREST_LINEAR_MIPNEAREST = 5;
-  this.NEAREST_LINEAR_MIPLINEAR = 6;
-  this.NEAREST_LINEAR = 7;
-  this.NEAREST_NEAREST = 1;
-  this.LINEAR_NEAREST_MIPNEAREST = 9;
-  this.LINEAR_NEAREST_MIPLINEAR = 10;
-  this.LINEAR_LINEAR = 2;
-  this.LINEAR_NEAREST = 12;
-  this.EXPLICIT_MODE = 0;
-  this.SPHERICAL_MODE = 1;
-  this.PLANAR_MODE = 2;
-  this.CUBIC_MODE = 3;
-  this.PROJECTION_MODE = 4;
-  this.SKYBOX_MODE = 5;
-  this.INVCUBIC_MODE = 6;
-  this.EQUIRECTANGULAR_MODE = 7;
-  this.FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.CLAMP_ADDRESSMODE = 0;
-  this.WRAP_ADDRESSMODE = 1;
-  this.MIRROR_ADDRESSMODE = 2;
-  this.UseSerializedUrlIfAny = false;
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.CustomProceduralTexture = function () {}
+BABYLON.CustomProceduralTexture.prototype.Parse = function () {};
+BABYLON.CustomProceduralTexture.prototype.CreateFromBase64String = function () {};
+BABYLON.CustomProceduralTexture.prototype.LoadFromDataString = function () {};
+BABYLON.CustomProceduralTexture.prototype.SerializeBuffers = true;
+BABYLON.CustomProceduralTexture.prototype.NEAREST_SAMPLINGMODE = 1;
+BABYLON.CustomProceduralTexture.prototype.NEAREST_NEAREST_MIPLINEAR = 8;
+BABYLON.CustomProceduralTexture.prototype.BILINEAR_SAMPLINGMODE = 2;
+BABYLON.CustomProceduralTexture.prototype.LINEAR_LINEAR_MIPNEAREST = 11;
+BABYLON.CustomProceduralTexture.prototype.TRILINEAR_SAMPLINGMODE = 3;
+BABYLON.CustomProceduralTexture.prototype.LINEAR_LINEAR_MIPLINEAR = 3;
+BABYLON.CustomProceduralTexture.prototype.NEAREST_NEAREST_MIPNEAREST = 4;
+BABYLON.CustomProceduralTexture.prototype.NEAREST_LINEAR_MIPNEAREST = 5;
+BABYLON.CustomProceduralTexture.prototype.NEAREST_LINEAR_MIPLINEAR = 6;
+BABYLON.CustomProceduralTexture.prototype.NEAREST_LINEAR = 7;
+BABYLON.CustomProceduralTexture.prototype.NEAREST_NEAREST = 1;
+BABYLON.CustomProceduralTexture.prototype.LINEAR_NEAREST_MIPNEAREST = 9;
+BABYLON.CustomProceduralTexture.prototype.LINEAR_NEAREST_MIPLINEAR = 10;
+BABYLON.CustomProceduralTexture.prototype.LINEAR_LINEAR = 2;
+BABYLON.CustomProceduralTexture.prototype.LINEAR_NEAREST = 12;
+BABYLON.CustomProceduralTexture.prototype.EXPLICIT_MODE = 0;
+BABYLON.CustomProceduralTexture.prototype.SPHERICAL_MODE = 1;
+BABYLON.CustomProceduralTexture.prototype.PLANAR_MODE = 2;
+BABYLON.CustomProceduralTexture.prototype.CUBIC_MODE = 3;
+BABYLON.CustomProceduralTexture.prototype.PROJECTION_MODE = 4;
+BABYLON.CustomProceduralTexture.prototype.SKYBOX_MODE = 5;
+BABYLON.CustomProceduralTexture.prototype.INVCUBIC_MODE = 6;
+BABYLON.CustomProceduralTexture.prototype.EQUIRECTANGULAR_MODE = 7;
+BABYLON.CustomProceduralTexture.prototype.FIXED_EQUIRECTANGULAR_MODE = 8;
+BABYLON.CustomProceduralTexture.prototype.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
+BABYLON.CustomProceduralTexture.prototype.CLAMP_ADDRESSMODE = 0;
+BABYLON.CustomProceduralTexture.prototype.WRAP_ADDRESSMODE = 1;
+BABYLON.CustomProceduralTexture.prototype.MIRROR_ADDRESSMODE = 2;
+BABYLON.CustomProceduralTexture.prototype.UseSerializedUrlIfAny = false;
+BABYLON.CustomProceduralTexture.prototype.WhenAllReady = function () {};
+BABYLON.CustomProceduralTexture.prototype.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
+
 
 /** @constructor */
-BABYLON.NoiseProceduralTexture = function () {
-  this.Parse = function () {};
-  this.CreateFromBase64String = function () {};
-  this.LoadFromDataString = function () {};
-  this.SerializeBuffers = true;
-  this.NEAREST_SAMPLINGMODE = 1;
-  this.NEAREST_NEAREST_MIPLINEAR = 8;
-  this.BILINEAR_SAMPLINGMODE = 2;
-  this.LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TRILINEAR_SAMPLINGMODE = 3;
-  this.LINEAR_LINEAR_MIPLINEAR = 3;
-  this.NEAREST_NEAREST_MIPNEAREST = 4;
-  this.NEAREST_LINEAR_MIPNEAREST = 5;
-  this.NEAREST_LINEAR_MIPLINEAR = 6;
-  this.NEAREST_LINEAR = 7;
-  this.NEAREST_NEAREST = 1;
-  this.LINEAR_NEAREST_MIPNEAREST = 9;
-  this.LINEAR_NEAREST_MIPLINEAR = 10;
-  this.LINEAR_LINEAR = 2;
-  this.LINEAR_NEAREST = 12;
-  this.EXPLICIT_MODE = 0;
-  this.SPHERICAL_MODE = 1;
-  this.PLANAR_MODE = 2;
-  this.CUBIC_MODE = 3;
-  this.PROJECTION_MODE = 4;
-  this.SKYBOX_MODE = 5;
-  this.INVCUBIC_MODE = 6;
-  this.EQUIRECTANGULAR_MODE = 7;
-  this.FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.CLAMP_ADDRESSMODE = 0;
-  this.WRAP_ADDRESSMODE = 1;
-  this.MIRROR_ADDRESSMODE = 2;
-  this.UseSerializedUrlIfAny = false;
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.NoiseProceduralTexture = function () {}
+BABYLON.NoiseProceduralTexture.Parse = function () {};
+BABYLON.NoiseProceduralTexture.prototype.CreateFromBase64String = function () {};
+BABYLON.NoiseProceduralTexture.prototype.LoadFromDataString = function () {};
+BABYLON.NoiseProceduralTexture.prototype.SerializeBuffers = true;
+BABYLON.NoiseProceduralTexture.prototype.NEAREST_SAMPLINGMODE = 1;
+BABYLON.NoiseProceduralTexture.prototype.NEAREST_NEAREST_MIPLINEAR = 8;
+BABYLON.NoiseProceduralTexture.prototype.BILINEAR_SAMPLINGMODE = 2;
+BABYLON.NoiseProceduralTexture.prototype.LINEAR_LINEAR_MIPNEAREST = 11;
+BABYLON.NoiseProceduralTexture.prototype.TRILINEAR_SAMPLINGMODE = 3;
+BABYLON.NoiseProceduralTexture.prototype.LINEAR_LINEAR_MIPLINEAR = 3;
+BABYLON.NoiseProceduralTexture.prototype.NEAREST_NEAREST_MIPNEAREST = 4;
+BABYLON.NoiseProceduralTexture.prototype.NEAREST_LINEAR_MIPNEAREST = 5;
+BABYLON.NoiseProceduralTexture.prototype.NEAREST_LINEAR_MIPLINEAR = 6;
+BABYLON.NoiseProceduralTexture.prototype.NEAREST_LINEAR = 7;
+BABYLON.NoiseProceduralTexture.prototype.NEAREST_NEAREST = 1;
+BABYLON.NoiseProceduralTexture.prototype.LINEAR_NEAREST_MIPNEAREST = 9;
+BABYLON.NoiseProceduralTexture.prototype.LINEAR_NEAREST_MIPLINEAR = 10;
+BABYLON.NoiseProceduralTexture.prototype.LINEAR_LINEAR = 2;
+BABYLON.NoiseProceduralTexture.prototype.LINEAR_NEAREST = 12;
+BABYLON.NoiseProceduralTexture.prototype.EXPLICIT_MODE = 0;
+BABYLON.NoiseProceduralTexture.prototype.SPHERICAL_MODE = 1;
+BABYLON.NoiseProceduralTexture.prototype.PLANAR_MODE = 2;
+BABYLON.NoiseProceduralTexture.prototype.CUBIC_MODE = 3;
+BABYLON.NoiseProceduralTexture.prototype.PROJECTION_MODE = 4;
+BABYLON.NoiseProceduralTexture.prototype.SKYBOX_MODE = 5;
+BABYLON.NoiseProceduralTexture.prototype.INVCUBIC_MODE = 6;
+BABYLON.NoiseProceduralTexture.prototype.EQUIRECTANGULAR_MODE = 7;
+BABYLON.NoiseProceduralTexture.prototype.FIXED_EQUIRECTANGULAR_MODE = 8;
+BABYLON.NoiseProceduralTexture.prototype.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
+BABYLON.NoiseProceduralTexture.prototype.CLAMP_ADDRESSMODE = 0;
+BABYLON.NoiseProceduralTexture.prototype.WRAP_ADDRESSMODE = 1;
+BABYLON.NoiseProceduralTexture.prototype.MIRROR_ADDRESSMODE = 2;
+BABYLON.NoiseProceduralTexture.prototype.UseSerializedUrlIfAny = false;
+BABYLON.NoiseProceduralTexture.prototype.WhenAllReady = function () {};
+BABYLON.NoiseProceduralTexture.prototype.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
+
 
 /** @constructor */
-BABYLON.ProceduralTexture = function () {
-  this.Parse = function () {};
-  this.CreateFromBase64String = function () {};
-  this.LoadFromDataString = function () {};
-  this.SerializeBuffers = true;
-  this.NEAREST_SAMPLINGMODE = 1;
-  this.NEAREST_NEAREST_MIPLINEAR = 8;
-  this.BILINEAR_SAMPLINGMODE = 2;
-  this.LINEAR_LINEAR_MIPNEAREST = 11;
-  this.TRILINEAR_SAMPLINGMODE = 3;
-  this.LINEAR_LINEAR_MIPLINEAR = 3;
-  this.NEAREST_NEAREST_MIPNEAREST = 4;
-  this.NEAREST_LINEAR_MIPNEAREST = 5;
-  this.NEAREST_LINEAR_MIPLINEAR = 6;
-  this.NEAREST_LINEAR = 7;
-  this.NEAREST_NEAREST = 1;
-  this.LINEAR_NEAREST_MIPNEAREST = 9;
-  this.LINEAR_NEAREST_MIPLINEAR = 10;
-  this.LINEAR_LINEAR = 2;
-  this.LINEAR_NEAREST = 12;
-  this.EXPLICIT_MODE = 0;
-  this.SPHERICAL_MODE = 1;
-  this.PLANAR_MODE = 2;
-  this.CUBIC_MODE = 3;
-  this.PROJECTION_MODE = 4;
-  this.SKYBOX_MODE = 5;
-  this.INVCUBIC_MODE = 6;
-  this.EQUIRECTANGULAR_MODE = 7;
-  this.FIXED_EQUIRECTANGULAR_MODE = 8;
-  this.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
-  this.CLAMP_ADDRESSMODE = 0;
-  this.WRAP_ADDRESSMODE = 1;
-  this.MIRROR_ADDRESSMODE = 2;
-  this.UseSerializedUrlIfAny = false;
-  this.WhenAllReady = function () {};
-  this.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
-};
+BABYLON.ProceduralTexture = function () {}
+BABYLON.ProceduralTexture.prototype.Parse = function () {};
+BABYLON.ProceduralTexture.prototype.CreateFromBase64String = function () {};
+BABYLON.ProceduralTexture.prototype.LoadFromDataString = function () {};
+BABYLON.ProceduralTexture.prototype.SerializeBuffers = true;
+BABYLON.ProceduralTexture.prototype.NEAREST_SAMPLINGMODE = 1;
+BABYLON.ProceduralTexture.prototype.NEAREST_NEAREST_MIPLINEAR = 8;
+BABYLON.ProceduralTexture.prototype.BILINEAR_SAMPLINGMODE = 2;
+BABYLON.ProceduralTexture.prototype.LINEAR_LINEAR_MIPNEAREST = 11;
+BABYLON.ProceduralTexture.prototype.TRILINEAR_SAMPLINGMODE = 3;
+BABYLON.ProceduralTexture.prototype.LINEAR_LINEAR_MIPLINEAR = 3;
+BABYLON.ProceduralTexture.prototype.NEAREST_NEAREST_MIPNEAREST = 4;
+BABYLON.ProceduralTexture.prototype.NEAREST_LINEAR_MIPNEAREST = 5;
+BABYLON.ProceduralTexture.prototype.NEAREST_LINEAR_MIPLINEAR = 6;
+BABYLON.ProceduralTexture.prototype.NEAREST_LINEAR = 7;
+BABYLON.ProceduralTexture.prototype.NEAREST_NEAREST = 1;
+BABYLON.ProceduralTexture.prototype.LINEAR_NEAREST_MIPNEAREST = 9;
+BABYLON.ProceduralTexture.prototype.LINEAR_NEAREST_MIPLINEAR = 10;
+BABYLON.ProceduralTexture.prototype.LINEAR_LINEAR = 2;
+BABYLON.ProceduralTexture.prototype.LINEAR_NEAREST = 12;
+BABYLON.ProceduralTexture.prototype.EXPLICIT_MODE = 0;
+BABYLON.ProceduralTexture.prototype.SPHERICAL_MODE = 1;
+BABYLON.ProceduralTexture.prototype.PLANAR_MODE = 2;
+BABYLON.ProceduralTexture.prototype.CUBIC_MODE = 3;
+BABYLON.ProceduralTexture.prototype.PROJECTION_MODE = 4;
+BABYLON.ProceduralTexture.prototype.SKYBOX_MODE = 5;
+BABYLON.ProceduralTexture.prototype.INVCUBIC_MODE = 6;
+BABYLON.ProceduralTexture.prototype.EQUIRECTANGULAR_MODE = 7;
+BABYLON.ProceduralTexture.prototype.FIXED_EQUIRECTANGULAR_MODE = 8;
+BABYLON.ProceduralTexture.prototype.FIXED_EQUIRECTANGULAR_MIRRORED_MODE = 9;
+BABYLON.ProceduralTexture.prototype.CLAMP_ADDRESSMODE = 0;
+BABYLON.ProceduralTexture.prototype.WRAP_ADDRESSMODE = 1;
+BABYLON.ProceduralTexture.prototype.MIRROR_ADDRESSMODE = 2;
+BABYLON.ProceduralTexture.prototype.UseSerializedUrlIfAny = false;
+BABYLON.ProceduralTexture.prototype.WhenAllReady = function () {};
+BABYLON.ProceduralTexture.prototype.DEFAULT_ANISOTROPIC_FILTERING_LEVEL = 4;
+
 
 /** @constructor */
-BABYLON.ProceduralTextureSceneComponent = function () {
-};
+BABYLON.ProceduralTextureSceneComponent = function () {}
+
 
 /** @constructor */
-BABYLON.TexturePacker = function () {
-  this.LAYOUT_STRIP = 0;
-  this.LAYOUT_POWER2 = 1;
-  this.LAYOUT_COLNUM = 2;
-  this.SUBUV_WRAP = 0;
-  this.SUBUV_EXTEND = 1;
-  this.SUBUV_COLOR = 2;
-};
+BABYLON.TexturePacker = function () {}
+BABYLON.TexturePacker.LAYOUT_STRIP = 0;
+BABYLON.TexturePacker.LAYOUT_POWER2 = 1;
+BABYLON.TexturePacker.LAYOUT_COLNUM = 2;
+BABYLON.TexturePacker.SUBUV_WRAP = 0;
+BABYLON.TexturePacker.SUBUV_EXTEND = 1;
+BABYLON.TexturePacker.SUBUV_COLOR = 2;
+
 
 /** @constructor */
-BABYLON.TexturePackerFrame = function () {
-  // this.id = undefined;
-  // this.scale = undefined;
-  // this.offset = undefined;
-};
+BABYLON.TexturePackerFrame = function () {}
+// BABYLON.TexturePackerFrame.id = undefined;
+// BABYLON.TexturePackerFrame.scale = undefined;
+// BABYLON.TexturePackerFrame.offset = undefined;
+
 
 BABYLON.NodeMaterialBlockTargets = {}
 
@@ -5365,2665 +5034,2613 @@ BABYLON.NodeMaterialBlockConnectionPointMode = {}
 BABYLON.NodeMaterialSystemValues = {}
 
 /** @constructor */
-BABYLON.MultiplyBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 1;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.left = {};
-  this.right = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.MultiplyBlock = function () {}
+BABYLON.MultiplyBlock.inputsAreExclusive = false;
+BABYLON.MultiplyBlock.comments = "";
+// BABYLON.MultiplyBlock.name = undefined;
+BABYLON.MultiplyBlock.uniqueId = 1;
+BABYLON.MultiplyBlock.prototype.constructor = function () {};
+BABYLON.MultiplyBlock.prototype.getClassName = function () {};
+// BABYLON.MultiplyBlock.prototype.left = undefined;
+// BABYLON.MultiplyBlock.prototype.right = undefined;
+// BABYLON.MultiplyBlock.prototype.output = undefined;
+// BABYLON.MultiplyBlock.prototype.isUnique = undefined;
+// BABYLON.MultiplyBlock.prototype.isFinalMerger = undefined;
+// BABYLON.MultiplyBlock.prototype.isInput = undefined;
+// BABYLON.MultiplyBlock.prototype.buildId = undefined;
+// BABYLON.MultiplyBlock.prototype.target = undefined;
+// BABYLON.MultiplyBlock.prototype.inputs = undefined;
+// BABYLON.MultiplyBlock.prototype.outputs = undefined;
+BABYLON.MultiplyBlock.prototype.getInputByName = function () {};
+BABYLON.MultiplyBlock.prototype.getOutputByName = function () {};
+BABYLON.MultiplyBlock.prototype.initialize = function () {};
+BABYLON.MultiplyBlock.prototype.bind = function () {};
+BABYLON.MultiplyBlock.prototype.registerInput = function () {};
+BABYLON.MultiplyBlock.prototype.registerOutput = function () {};
+BABYLON.MultiplyBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.MultiplyBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.MultiplyBlock.prototype.getSiblingOutput = function () {};
+BABYLON.MultiplyBlock.prototype.connectTo = function () {};
+BABYLON.MultiplyBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.MultiplyBlock.prototype.provideFallbacks = function () {};
+BABYLON.MultiplyBlock.prototype.initializeDefines = function () {};
+BABYLON.MultiplyBlock.prototype.prepareDefines = function () {};
+BABYLON.MultiplyBlock.prototype.autoConfigure = function () {};
+BABYLON.MultiplyBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.MultiplyBlock.prototype.isReady = function () {};
+BABYLON.MultiplyBlock.prototype.build = function () {};
+BABYLON.MultiplyBlock.prototype.clone = function () {};
+BABYLON.MultiplyBlock.prototype.serialize = function () {};
+BABYLON.MultiplyBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.AddBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 2;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.left = {};
-  this.right = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.AddBlock = function () {}
+BABYLON.AddBlock.inputsAreExclusive = false;
+BABYLON.AddBlock.comments = "";
+// BABYLON.AddBlock.name = undefined;
+BABYLON.AddBlock.uniqueId = 2;
+BABYLON.AddBlock.prototype.constructor = function () {};
+BABYLON.AddBlock.prototype.getClassName = function () {};
+// BABYLON.AddBlock.prototype.left = undefined;
+// BABYLON.AddBlock.prototype.right = undefined;
+// BABYLON.AddBlock.prototype.output = undefined;
+// BABYLON.AddBlock.prototype.isUnique = undefined;
+// BABYLON.AddBlock.prototype.isFinalMerger = undefined;
+// BABYLON.AddBlock.prototype.isInput = undefined;
+// BABYLON.AddBlock.prototype.buildId = undefined;
+// BABYLON.AddBlock.prototype.target = undefined;
+// BABYLON.AddBlock.prototype.inputs = undefined;
+// BABYLON.AddBlock.prototype.outputs = undefined;
+BABYLON.AddBlock.prototype.getInputByName = function () {};
+BABYLON.AddBlock.prototype.getOutputByName = function () {};
+BABYLON.AddBlock.prototype.initialize = function () {};
+BABYLON.AddBlock.prototype.bind = function () {};
+BABYLON.AddBlock.prototype.registerInput = function () {};
+BABYLON.AddBlock.prototype.registerOutput = function () {};
+BABYLON.AddBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.AddBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.AddBlock.prototype.getSiblingOutput = function () {};
+BABYLON.AddBlock.prototype.connectTo = function () {};
+BABYLON.AddBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.AddBlock.prototype.provideFallbacks = function () {};
+BABYLON.AddBlock.prototype.initializeDefines = function () {};
+BABYLON.AddBlock.prototype.prepareDefines = function () {};
+BABYLON.AddBlock.prototype.autoConfigure = function () {};
+BABYLON.AddBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.AddBlock.prototype.isReady = function () {};
+BABYLON.AddBlock.prototype.build = function () {};
+BABYLON.AddBlock.prototype.clone = function () {};
+BABYLON.AddBlock.prototype.serialize = function () {};
+BABYLON.AddBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.ScaleBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 3;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.input = {};
-  this.factor = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.ScaleBlock = function () {}
+BABYLON.ScaleBlock.inputsAreExclusive = false;
+BABYLON.ScaleBlock.comments = "";
+// BABYLON.ScaleBlock.name = undefined;
+BABYLON.ScaleBlock.uniqueId = 3;
+BABYLON.ScaleBlock.prototype.constructor = function () {};
+BABYLON.ScaleBlock.prototype.getClassName = function () {};
+// BABYLON.ScaleBlock.prototype.input = undefined;
+// BABYLON.ScaleBlock.prototype.factor = undefined;
+// BABYLON.ScaleBlock.prototype.output = undefined;
+// BABYLON.ScaleBlock.prototype.isUnique = undefined;
+// BABYLON.ScaleBlock.prototype.isFinalMerger = undefined;
+// BABYLON.ScaleBlock.prototype.isInput = undefined;
+// BABYLON.ScaleBlock.prototype.buildId = undefined;
+// BABYLON.ScaleBlock.prototype.target = undefined;
+// BABYLON.ScaleBlock.prototype.inputs = undefined;
+// BABYLON.ScaleBlock.prototype.outputs = undefined;
+BABYLON.ScaleBlock.prototype.getInputByName = function () {};
+BABYLON.ScaleBlock.prototype.getOutputByName = function () {};
+BABYLON.ScaleBlock.prototype.initialize = function () {};
+BABYLON.ScaleBlock.prototype.bind = function () {};
+BABYLON.ScaleBlock.prototype.registerInput = function () {};
+BABYLON.ScaleBlock.prototype.registerOutput = function () {};
+BABYLON.ScaleBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.ScaleBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.ScaleBlock.prototype.getSiblingOutput = function () {};
+BABYLON.ScaleBlock.prototype.connectTo = function () {};
+BABYLON.ScaleBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.ScaleBlock.prototype.provideFallbacks = function () {};
+BABYLON.ScaleBlock.prototype.initializeDefines = function () {};
+BABYLON.ScaleBlock.prototype.prepareDefines = function () {};
+BABYLON.ScaleBlock.prototype.autoConfigure = function () {};
+BABYLON.ScaleBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.ScaleBlock.prototype.isReady = function () {};
+BABYLON.ScaleBlock.prototype.build = function () {};
+BABYLON.ScaleBlock.prototype.clone = function () {};
+BABYLON.ScaleBlock.prototype.serialize = function () {};
+BABYLON.ScaleBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.ClampBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 4;
-  this.minimum = 0;
-  this.maximum = 1;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.value = {};
-  this.output = {};
-  this.serialize = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.dispose = function () {};
-};
+BABYLON.ClampBlock = function () {}
+BABYLON.ClampBlock.inputsAreExclusive = false;
+BABYLON.ClampBlock.comments = "";
+// BABYLON.ClampBlock.name = undefined;
+BABYLON.ClampBlock.uniqueId = 4;
+BABYLON.ClampBlock.minimum = 0;
+BABYLON.ClampBlock.maximum = 1;
+BABYLON.ClampBlock.prototype.constructor = function () {};
+BABYLON.ClampBlock.prototype.getClassName = function () {};
+// BABYLON.ClampBlock.prototype.value = undefined;
+// BABYLON.ClampBlock.prototype.output = undefined;
+BABYLON.ClampBlock.prototype.serialize = function () {};
+// BABYLON.ClampBlock.prototype.isUnique = undefined;
+// BABYLON.ClampBlock.prototype.isFinalMerger = undefined;
+// BABYLON.ClampBlock.prototype.isInput = undefined;
+// BABYLON.ClampBlock.prototype.buildId = undefined;
+// BABYLON.ClampBlock.prototype.target = undefined;
+// BABYLON.ClampBlock.prototype.inputs = undefined;
+// BABYLON.ClampBlock.prototype.outputs = undefined;
+BABYLON.ClampBlock.prototype.getInputByName = function () {};
+BABYLON.ClampBlock.prototype.getOutputByName = function () {};
+BABYLON.ClampBlock.prototype.initialize = function () {};
+BABYLON.ClampBlock.prototype.bind = function () {};
+BABYLON.ClampBlock.prototype.registerInput = function () {};
+BABYLON.ClampBlock.prototype.registerOutput = function () {};
+BABYLON.ClampBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.ClampBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.ClampBlock.prototype.getSiblingOutput = function () {};
+BABYLON.ClampBlock.prototype.connectTo = function () {};
+BABYLON.ClampBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.ClampBlock.prototype.provideFallbacks = function () {};
+BABYLON.ClampBlock.prototype.initializeDefines = function () {};
+BABYLON.ClampBlock.prototype.prepareDefines = function () {};
+BABYLON.ClampBlock.prototype.autoConfigure = function () {};
+BABYLON.ClampBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.ClampBlock.prototype.isReady = function () {};
+BABYLON.ClampBlock.prototype.build = function () {};
+BABYLON.ClampBlock.prototype.clone = function () {};
+BABYLON.ClampBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.CrossBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 5;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.left = {};
-  this.right = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.CrossBlock = function () {}
+BABYLON.CrossBlock.inputsAreExclusive = false;
+BABYLON.CrossBlock.comments = "";
+// BABYLON.CrossBlock.name = undefined;
+BABYLON.CrossBlock.uniqueId = 5;
+BABYLON.CrossBlock.prototype.constructor = function () {};
+BABYLON.CrossBlock.prototype.getClassName = function () {};
+// BABYLON.CrossBlock.prototype.left = undefined;
+// BABYLON.CrossBlock.prototype.right = undefined;
+// BABYLON.CrossBlock.prototype.output = undefined;
+// BABYLON.CrossBlock.prototype.isUnique = undefined;
+// BABYLON.CrossBlock.prototype.isFinalMerger = undefined;
+// BABYLON.CrossBlock.prototype.isInput = undefined;
+// BABYLON.CrossBlock.prototype.buildId = undefined;
+// BABYLON.CrossBlock.prototype.target = undefined;
+// BABYLON.CrossBlock.prototype.inputs = undefined;
+// BABYLON.CrossBlock.prototype.outputs = undefined;
+BABYLON.CrossBlock.prototype.getInputByName = function () {};
+BABYLON.CrossBlock.prototype.getOutputByName = function () {};
+BABYLON.CrossBlock.prototype.initialize = function () {};
+BABYLON.CrossBlock.prototype.bind = function () {};
+BABYLON.CrossBlock.prototype.registerInput = function () {};
+BABYLON.CrossBlock.prototype.registerOutput = function () {};
+BABYLON.CrossBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.CrossBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.CrossBlock.prototype.getSiblingOutput = function () {};
+BABYLON.CrossBlock.prototype.connectTo = function () {};
+BABYLON.CrossBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.CrossBlock.prototype.provideFallbacks = function () {};
+BABYLON.CrossBlock.prototype.initializeDefines = function () {};
+BABYLON.CrossBlock.prototype.prepareDefines = function () {};
+BABYLON.CrossBlock.prototype.autoConfigure = function () {};
+BABYLON.CrossBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.CrossBlock.prototype.isReady = function () {};
+BABYLON.CrossBlock.prototype.build = function () {};
+BABYLON.CrossBlock.prototype.clone = function () {};
+BABYLON.CrossBlock.prototype.serialize = function () {};
+BABYLON.CrossBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.DotBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 6;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.left = {};
-  this.right = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.DotBlock = function () {}
+BABYLON.DotBlock.inputsAreExclusive = false;
+BABYLON.DotBlock.comments = "";
+// BABYLON.DotBlock.name = undefined;
+BABYLON.DotBlock.uniqueId = 6;
+BABYLON.DotBlock.prototype.constructor = function () {};
+BABYLON.DotBlock.prototype.getClassName = function () {};
+// BABYLON.DotBlock.prototype.left = undefined;
+// BABYLON.DotBlock.prototype.right = undefined;
+// BABYLON.DotBlock.prototype.output = undefined;
+// BABYLON.DotBlock.prototype.isUnique = undefined;
+// BABYLON.DotBlock.prototype.isFinalMerger = undefined;
+// BABYLON.DotBlock.prototype.isInput = undefined;
+// BABYLON.DotBlock.prototype.buildId = undefined;
+// BABYLON.DotBlock.prototype.target = undefined;
+// BABYLON.DotBlock.prototype.inputs = undefined;
+// BABYLON.DotBlock.prototype.outputs = undefined;
+BABYLON.DotBlock.prototype.getInputByName = function () {};
+BABYLON.DotBlock.prototype.getOutputByName = function () {};
+BABYLON.DotBlock.prototype.initialize = function () {};
+BABYLON.DotBlock.prototype.bind = function () {};
+BABYLON.DotBlock.prototype.registerInput = function () {};
+BABYLON.DotBlock.prototype.registerOutput = function () {};
+BABYLON.DotBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.DotBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.DotBlock.prototype.getSiblingOutput = function () {};
+BABYLON.DotBlock.prototype.connectTo = function () {};
+BABYLON.DotBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.DotBlock.prototype.provideFallbacks = function () {};
+BABYLON.DotBlock.prototype.initializeDefines = function () {};
+BABYLON.DotBlock.prototype.prepareDefines = function () {};
+BABYLON.DotBlock.prototype.autoConfigure = function () {};
+BABYLON.DotBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.DotBlock.prototype.isReady = function () {};
+BABYLON.DotBlock.prototype.build = function () {};
+BABYLON.DotBlock.prototype.clone = function () {};
+BABYLON.DotBlock.prototype.serialize = function () {};
+BABYLON.DotBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.TransformBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 7;
-  this.complementW = 1;
-  this.complementZ = 0;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.vector = {};
-  this.output = {};
-  this.xyz = {};
-  this.transform = {};
-  this.serialize = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 1;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.dispose = function () {};
-};
+BABYLON.TransformBlock = function () {}
+BABYLON.TransformBlock.inputsAreExclusive = false;
+BABYLON.TransformBlock.comments = "";
+// BABYLON.TransformBlock.name = undefined;
+BABYLON.TransformBlock.uniqueId = 7;
+BABYLON.TransformBlock.complementW = 1;
+BABYLON.TransformBlock.complementZ = 0;
+BABYLON.TransformBlock.prototype.constructor = function () {};
+BABYLON.TransformBlock.prototype.getClassName = function () {};
+// BABYLON.TransformBlock.prototype.vector = undefined;
+// BABYLON.TransformBlock.prototype.output = undefined;
+// BABYLON.TransformBlock.prototype.xyz = undefined;
+// BABYLON.TransformBlock.prototype.transform = undefined;
+BABYLON.TransformBlock.prototype.serialize = function () {};
+// BABYLON.TransformBlock.prototype.isUnique = undefined;
+// BABYLON.TransformBlock.prototype.isFinalMerger = undefined;
+// BABYLON.TransformBlock.prototype.isInput = undefined;
+// BABYLON.TransformBlock.prototype.buildId = undefined;
+// BABYLON.TransformBlock.prototype.target = undefined;
+// BABYLON.TransformBlock.prototype.inputs = undefined;
+// BABYLON.TransformBlock.prototype.outputs = undefined;
+BABYLON.TransformBlock.prototype.getInputByName = function () {};
+BABYLON.TransformBlock.prototype.getOutputByName = function () {};
+BABYLON.TransformBlock.prototype.initialize = function () {};
+BABYLON.TransformBlock.prototype.bind = function () {};
+BABYLON.TransformBlock.prototype.registerInput = function () {};
+BABYLON.TransformBlock.prototype.registerOutput = function () {};
+BABYLON.TransformBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.TransformBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.TransformBlock.prototype.getSiblingOutput = function () {};
+BABYLON.TransformBlock.prototype.connectTo = function () {};
+BABYLON.TransformBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.TransformBlock.prototype.provideFallbacks = function () {};
+BABYLON.TransformBlock.prototype.initializeDefines = function () {};
+BABYLON.TransformBlock.prototype.prepareDefines = function () {};
+BABYLON.TransformBlock.prototype.autoConfigure = function () {};
+BABYLON.TransformBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.TransformBlock.prototype.isReady = function () {};
+BABYLON.TransformBlock.prototype.build = function () {};
+BABYLON.TransformBlock.prototype.clone = function () {};
+BABYLON.TransformBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.RemapBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 8;
-  this.sourceRange = {};
-  this.targetRange = {};
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.input = {};
-  this.sourceMin = {};
-  this.sourceMax = {};
-  this.targetMin = {};
-  this.targetMax = {};
-  this.output = {};
-  this.serialize = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.dispose = function () {};
-};
+BABYLON.RemapBlock = function () {}
+BABYLON.RemapBlock.inputsAreExclusive = false;
+BABYLON.RemapBlock.comments = "";
+// BABYLON.RemapBlock.name = undefined;
+BABYLON.RemapBlock.uniqueId = 8;
+BABYLON.RemapBlock.sourceRange = {};
+BABYLON.RemapBlock.targetRange = {};
+BABYLON.RemapBlock.prototype.constructor = function () {};
+BABYLON.RemapBlock.prototype.getClassName = function () {};
+// BABYLON.RemapBlock.prototype.input = undefined;
+// BABYLON.RemapBlock.prototype.sourceMin = undefined;
+// BABYLON.RemapBlock.prototype.sourceMax = undefined;
+// BABYLON.RemapBlock.prototype.targetMin = undefined;
+// BABYLON.RemapBlock.prototype.targetMax = undefined;
+// BABYLON.RemapBlock.prototype.output = undefined;
+BABYLON.RemapBlock.prototype.serialize = function () {};
+// BABYLON.RemapBlock.prototype.isUnique = undefined;
+// BABYLON.RemapBlock.prototype.isFinalMerger = undefined;
+// BABYLON.RemapBlock.prototype.isInput = undefined;
+// BABYLON.RemapBlock.prototype.buildId = undefined;
+// BABYLON.RemapBlock.prototype.target = undefined;
+// BABYLON.RemapBlock.prototype.inputs = undefined;
+// BABYLON.RemapBlock.prototype.outputs = undefined;
+BABYLON.RemapBlock.prototype.getInputByName = function () {};
+BABYLON.RemapBlock.prototype.getOutputByName = function () {};
+BABYLON.RemapBlock.prototype.initialize = function () {};
+BABYLON.RemapBlock.prototype.bind = function () {};
+BABYLON.RemapBlock.prototype.registerInput = function () {};
+BABYLON.RemapBlock.prototype.registerOutput = function () {};
+BABYLON.RemapBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.RemapBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.RemapBlock.prototype.getSiblingOutput = function () {};
+BABYLON.RemapBlock.prototype.connectTo = function () {};
+BABYLON.RemapBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.RemapBlock.prototype.provideFallbacks = function () {};
+BABYLON.RemapBlock.prototype.initializeDefines = function () {};
+BABYLON.RemapBlock.prototype.prepareDefines = function () {};
+BABYLON.RemapBlock.prototype.autoConfigure = function () {};
+BABYLON.RemapBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.RemapBlock.prototype.isReady = function () {};
+BABYLON.RemapBlock.prototype.build = function () {};
+BABYLON.RemapBlock.prototype.clone = function () {};
+BABYLON.RemapBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.NormalizeBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 9;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.input = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.NormalizeBlock = function () {}
+BABYLON.NormalizeBlock.inputsAreExclusive = false;
+BABYLON.NormalizeBlock.comments = "";
+// BABYLON.NormalizeBlock.name = undefined;
+BABYLON.NormalizeBlock.uniqueId = 9;
+BABYLON.NormalizeBlock.prototype.constructor = function () {};
+BABYLON.NormalizeBlock.prototype.getClassName = function () {};
+// BABYLON.NormalizeBlock.prototype.input = undefined;
+// BABYLON.NormalizeBlock.prototype.output = undefined;
+// BABYLON.NormalizeBlock.prototype.isUnique = undefined;
+// BABYLON.NormalizeBlock.prototype.isFinalMerger = undefined;
+// BABYLON.NormalizeBlock.prototype.isInput = undefined;
+// BABYLON.NormalizeBlock.prototype.buildId = undefined;
+// BABYLON.NormalizeBlock.prototype.target = undefined;
+// BABYLON.NormalizeBlock.prototype.inputs = undefined;
+// BABYLON.NormalizeBlock.prototype.outputs = undefined;
+BABYLON.NormalizeBlock.prototype.getInputByName = function () {};
+BABYLON.NormalizeBlock.prototype.getOutputByName = function () {};
+BABYLON.NormalizeBlock.prototype.initialize = function () {};
+BABYLON.NormalizeBlock.prototype.bind = function () {};
+BABYLON.NormalizeBlock.prototype.registerInput = function () {};
+BABYLON.NormalizeBlock.prototype.registerOutput = function () {};
+BABYLON.NormalizeBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.NormalizeBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.NormalizeBlock.prototype.getSiblingOutput = function () {};
+BABYLON.NormalizeBlock.prototype.connectTo = function () {};
+BABYLON.NormalizeBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.NormalizeBlock.prototype.provideFallbacks = function () {};
+BABYLON.NormalizeBlock.prototype.initializeDefines = function () {};
+BABYLON.NormalizeBlock.prototype.prepareDefines = function () {};
+BABYLON.NormalizeBlock.prototype.autoConfigure = function () {};
+BABYLON.NormalizeBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.NormalizeBlock.prototype.isReady = function () {};
+BABYLON.NormalizeBlock.prototype.build = function () {};
+BABYLON.NormalizeBlock.prototype.clone = function () {};
+BABYLON.NormalizeBlock.prototype.serialize = function () {};
+BABYLON.NormalizeBlock.prototype.dispose = function () {};
+
 
 BABYLON.TrigonometryBlockOperations = {}
 
 /** @constructor */
-BABYLON.TrigonometryBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 10;
-  this.operation = 0;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.input = {};
-  this.output = {};
-  this.serialize = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.dispose = function () {};
-};
+BABYLON.TrigonometryBlock = function () {}
+BABYLON.TrigonometryBlock.inputsAreExclusive = false;
+BABYLON.TrigonometryBlock.comments = "";
+// BABYLON.TrigonometryBlock.name = undefined;
+BABYLON.TrigonometryBlock.uniqueId = 10;
+BABYLON.TrigonometryBlock.operation = 0;
+BABYLON.TrigonometryBlock.prototype.constructor = function () {};
+BABYLON.TrigonometryBlock.prototype.getClassName = function () {};
+// BABYLON.TrigonometryBlock.prototype.input = undefined;
+// BABYLON.TrigonometryBlock.prototype.output = undefined;
+BABYLON.TrigonometryBlock.prototype.serialize = function () {};
+// BABYLON.TrigonometryBlock.prototype.isUnique = undefined;
+// BABYLON.TrigonometryBlock.prototype.isFinalMerger = undefined;
+// BABYLON.TrigonometryBlock.prototype.isInput = undefined;
+// BABYLON.TrigonometryBlock.prototype.buildId = undefined;
+// BABYLON.TrigonometryBlock.prototype.target = undefined;
+// BABYLON.TrigonometryBlock.prototype.inputs = undefined;
+// BABYLON.TrigonometryBlock.prototype.outputs = undefined;
+BABYLON.TrigonometryBlock.prototype.getInputByName = function () {};
+BABYLON.TrigonometryBlock.prototype.getOutputByName = function () {};
+BABYLON.TrigonometryBlock.prototype.initialize = function () {};
+BABYLON.TrigonometryBlock.prototype.bind = function () {};
+BABYLON.TrigonometryBlock.prototype.registerInput = function () {};
+BABYLON.TrigonometryBlock.prototype.registerOutput = function () {};
+BABYLON.TrigonometryBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.TrigonometryBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.TrigonometryBlock.prototype.getSiblingOutput = function () {};
+BABYLON.TrigonometryBlock.prototype.connectTo = function () {};
+BABYLON.TrigonometryBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.TrigonometryBlock.prototype.provideFallbacks = function () {};
+BABYLON.TrigonometryBlock.prototype.initializeDefines = function () {};
+BABYLON.TrigonometryBlock.prototype.prepareDefines = function () {};
+BABYLON.TrigonometryBlock.prototype.autoConfigure = function () {};
+BABYLON.TrigonometryBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.TrigonometryBlock.prototype.isReady = function () {};
+BABYLON.TrigonometryBlock.prototype.build = function () {};
+BABYLON.TrigonometryBlock.prototype.clone = function () {};
+BABYLON.TrigonometryBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.ColorMergerBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 11;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.rgbIn = {};
-  this.r = {};
-  this.g = {};
-  this.b = {};
-  this.a = {};
-  this.rgba = {};
-  this.rgbOut = {};
-  this.rgb = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.ColorMergerBlock = function () {}
+BABYLON.ColorMergerBlock.inputsAreExclusive = false;
+BABYLON.ColorMergerBlock.comments = "";
+// BABYLON.ColorMergerBlock.name = undefined;
+BABYLON.ColorMergerBlock.uniqueId = 11;
+BABYLON.ColorMergerBlock.prototype.constructor = function () {};
+BABYLON.ColorMergerBlock.prototype.getClassName = function () {};
+// BABYLON.ColorMergerBlock.prototype.rgbIn = undefined;
+// BABYLON.ColorMergerBlock.prototype.r = undefined;
+// BABYLON.ColorMergerBlock.prototype.g = undefined;
+// BABYLON.ColorMergerBlock.prototype.b = undefined;
+// BABYLON.ColorMergerBlock.prototype.a = undefined;
+// BABYLON.ColorMergerBlock.prototype.rgba = undefined;
+// BABYLON.ColorMergerBlock.prototype.rgbOut = undefined;
+// BABYLON.ColorMergerBlock.prototype.rgb = undefined;
+// BABYLON.ColorMergerBlock.prototype.isUnique = undefined;
+// BABYLON.ColorMergerBlock.prototype.isFinalMerger = undefined;
+// BABYLON.ColorMergerBlock.prototype.isInput = undefined;
+// BABYLON.ColorMergerBlock.prototype.buildId = undefined;
+// BABYLON.ColorMergerBlock.prototype.target = undefined;
+// BABYLON.ColorMergerBlock.prototype.inputs = undefined;
+// BABYLON.ColorMergerBlock.prototype.outputs = undefined;
+BABYLON.ColorMergerBlock.prototype.getInputByName = function () {};
+BABYLON.ColorMergerBlock.prototype.getOutputByName = function () {};
+BABYLON.ColorMergerBlock.prototype.initialize = function () {};
+BABYLON.ColorMergerBlock.prototype.bind = function () {};
+BABYLON.ColorMergerBlock.prototype.registerInput = function () {};
+BABYLON.ColorMergerBlock.prototype.registerOutput = function () {};
+BABYLON.ColorMergerBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.ColorMergerBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.ColorMergerBlock.prototype.getSiblingOutput = function () {};
+BABYLON.ColorMergerBlock.prototype.connectTo = function () {};
+BABYLON.ColorMergerBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.ColorMergerBlock.prototype.provideFallbacks = function () {};
+BABYLON.ColorMergerBlock.prototype.initializeDefines = function () {};
+BABYLON.ColorMergerBlock.prototype.prepareDefines = function () {};
+BABYLON.ColorMergerBlock.prototype.autoConfigure = function () {};
+BABYLON.ColorMergerBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.ColorMergerBlock.prototype.isReady = function () {};
+BABYLON.ColorMergerBlock.prototype.build = function () {};
+BABYLON.ColorMergerBlock.prototype.clone = function () {};
+BABYLON.ColorMergerBlock.prototype.serialize = function () {};
+BABYLON.ColorMergerBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.VectorMergerBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 12;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.xyzIn = {};
-  this.xyIn = {};
-  this.x = {};
-  this.y = {};
-  this.z = {};
-  this.w = {};
-  this.xyzw = {};
-  this.xyzOut = {};
-  this.xyOut = {};
-  this.xy = {};
-  this.xyz = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.VectorMergerBlock = function () {}
+BABYLON.VectorMergerBlock.inputsAreExclusive = false;
+BABYLON.VectorMergerBlock.comments = "";
+// BABYLON.VectorMergerBlock.name = undefined;
+BABYLON.VectorMergerBlock.uniqueId = 12;
+BABYLON.VectorMergerBlock.prototype.constructor = function () {};
+BABYLON.VectorMergerBlock.prototype.getClassName = function () {};
+// BABYLON.VectorMergerBlock.prototype.xyzIn = undefined;
+// BABYLON.VectorMergerBlock.prototype.xyIn = undefined;
+// BABYLON.VectorMergerBlock.prototype.x = undefined;
+// BABYLON.VectorMergerBlock.prototype.y = undefined;
+// BABYLON.VectorMergerBlock.prototype.z = undefined;
+// BABYLON.VectorMergerBlock.prototype.w = undefined;
+// BABYLON.VectorMergerBlock.prototype.xyzw = undefined;
+// BABYLON.VectorMergerBlock.prototype.xyzOut = undefined;
+// BABYLON.VectorMergerBlock.prototype.xyOut = undefined;
+// BABYLON.VectorMergerBlock.prototype.xy = undefined;
+// BABYLON.VectorMergerBlock.prototype.xyz = undefined;
+// BABYLON.VectorMergerBlock.prototype.isUnique = undefined;
+// BABYLON.VectorMergerBlock.prototype.isFinalMerger = undefined;
+// BABYLON.VectorMergerBlock.prototype.isInput = undefined;
+// BABYLON.VectorMergerBlock.prototype.buildId = undefined;
+// BABYLON.VectorMergerBlock.prototype.target = undefined;
+// BABYLON.VectorMergerBlock.prototype.inputs = undefined;
+// BABYLON.VectorMergerBlock.prototype.outputs = undefined;
+BABYLON.VectorMergerBlock.prototype.getInputByName = function () {};
+BABYLON.VectorMergerBlock.prototype.getOutputByName = function () {};
+BABYLON.VectorMergerBlock.prototype.initialize = function () {};
+BABYLON.VectorMergerBlock.prototype.bind = function () {};
+BABYLON.VectorMergerBlock.prototype.registerInput = function () {};
+BABYLON.VectorMergerBlock.prototype.registerOutput = function () {};
+BABYLON.VectorMergerBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.VectorMergerBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.VectorMergerBlock.prototype.getSiblingOutput = function () {};
+BABYLON.VectorMergerBlock.prototype.connectTo = function () {};
+BABYLON.VectorMergerBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.VectorMergerBlock.prototype.provideFallbacks = function () {};
+BABYLON.VectorMergerBlock.prototype.initializeDefines = function () {};
+BABYLON.VectorMergerBlock.prototype.prepareDefines = function () {};
+BABYLON.VectorMergerBlock.prototype.autoConfigure = function () {};
+BABYLON.VectorMergerBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.VectorMergerBlock.prototype.isReady = function () {};
+BABYLON.VectorMergerBlock.prototype.build = function () {};
+BABYLON.VectorMergerBlock.prototype.clone = function () {};
+BABYLON.VectorMergerBlock.prototype.serialize = function () {};
+BABYLON.VectorMergerBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.ColorSplitterBlock = function () {
-  this.inputsAreExclusive = true;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 13;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.rgba = {};
-  this.rgbIn = {};
-  this.rgbOut = {};
-  this.r = {};
-  this.g = {};
-  this.b = {};
-  this.a = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.ColorSplitterBlock = function () {}
+BABYLON.ColorSplitterBlock.inputsAreExclusive = true;
+BABYLON.ColorSplitterBlock.comments = "";
+// BABYLON.ColorSplitterBlock.name = undefined;
+BABYLON.ColorSplitterBlock.uniqueId = 13;
+BABYLON.ColorSplitterBlock.prototype.constructor = function () {};
+BABYLON.ColorSplitterBlock.prototype.getClassName = function () {};
+// BABYLON.ColorSplitterBlock.prototype.rgba = undefined;
+// BABYLON.ColorSplitterBlock.prototype.rgbIn = undefined;
+// BABYLON.ColorSplitterBlock.prototype.rgbOut = undefined;
+// BABYLON.ColorSplitterBlock.prototype.r = undefined;
+// BABYLON.ColorSplitterBlock.prototype.g = undefined;
+// BABYLON.ColorSplitterBlock.prototype.b = undefined;
+// BABYLON.ColorSplitterBlock.prototype.a = undefined;
+// BABYLON.ColorSplitterBlock.prototype.isUnique = undefined;
+// BABYLON.ColorSplitterBlock.prototype.isFinalMerger = undefined;
+// BABYLON.ColorSplitterBlock.prototype.isInput = undefined;
+// BABYLON.ColorSplitterBlock.prototype.buildId = undefined;
+// BABYLON.ColorSplitterBlock.prototype.target = undefined;
+// BABYLON.ColorSplitterBlock.prototype.inputs = undefined;
+// BABYLON.ColorSplitterBlock.prototype.outputs = undefined;
+BABYLON.ColorSplitterBlock.prototype.getInputByName = function () {};
+BABYLON.ColorSplitterBlock.prototype.getOutputByName = function () {};
+BABYLON.ColorSplitterBlock.prototype.initialize = function () {};
+BABYLON.ColorSplitterBlock.prototype.bind = function () {};
+BABYLON.ColorSplitterBlock.prototype.registerInput = function () {};
+BABYLON.ColorSplitterBlock.prototype.registerOutput = function () {};
+BABYLON.ColorSplitterBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.ColorSplitterBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.ColorSplitterBlock.prototype.getSiblingOutput = function () {};
+BABYLON.ColorSplitterBlock.prototype.connectTo = function () {};
+BABYLON.ColorSplitterBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.ColorSplitterBlock.prototype.provideFallbacks = function () {};
+BABYLON.ColorSplitterBlock.prototype.initializeDefines = function () {};
+BABYLON.ColorSplitterBlock.prototype.prepareDefines = function () {};
+BABYLON.ColorSplitterBlock.prototype.autoConfigure = function () {};
+BABYLON.ColorSplitterBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.ColorSplitterBlock.prototype.isReady = function () {};
+BABYLON.ColorSplitterBlock.prototype.build = function () {};
+BABYLON.ColorSplitterBlock.prototype.clone = function () {};
+BABYLON.ColorSplitterBlock.prototype.serialize = function () {};
+BABYLON.ColorSplitterBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.VectorSplitterBlock = function () {
-  this.inputsAreExclusive = true;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 14;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.xyzw = {};
-  this.xyzIn = {};
-  this.xyIn = {};
-  this.xyzOut = {};
-  this.xyOut = {};
-  this.x = {};
-  this.y = {};
-  this.z = {};
-  this.w = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.VectorSplitterBlock = function () {}
+BABYLON.VectorSplitterBlock.inputsAreExclusive = true;
+BABYLON.VectorSplitterBlock.comments = "";
+// BABYLON.VectorSplitterBlock.name = undefined;
+BABYLON.VectorSplitterBlock.uniqueId = 14;
+BABYLON.VectorSplitterBlock.prototype.constructor = function () {};
+BABYLON.VectorSplitterBlock.prototype.getClassName = function () {};
+// BABYLON.VectorSplitterBlock.prototype.xyzw = undefined;
+// BABYLON.VectorSplitterBlock.prototype.xyzIn = undefined;
+// BABYLON.VectorSplitterBlock.prototype.xyIn = undefined;
+// BABYLON.VectorSplitterBlock.prototype.xyzOut = undefined;
+// BABYLON.VectorSplitterBlock.prototype.xyOut = undefined;
+// BABYLON.VectorSplitterBlock.prototype.x = undefined;
+// BABYLON.VectorSplitterBlock.prototype.y = undefined;
+// BABYLON.VectorSplitterBlock.prototype.z = undefined;
+// BABYLON.VectorSplitterBlock.prototype.w = undefined;
+// BABYLON.VectorSplitterBlock.prototype.isUnique = undefined;
+// BABYLON.VectorSplitterBlock.prototype.isFinalMerger = undefined;
+// BABYLON.VectorSplitterBlock.prototype.isInput = undefined;
+// BABYLON.VectorSplitterBlock.prototype.buildId = undefined;
+// BABYLON.VectorSplitterBlock.prototype.target = undefined;
+// BABYLON.VectorSplitterBlock.prototype.inputs = undefined;
+// BABYLON.VectorSplitterBlock.prototype.outputs = undefined;
+BABYLON.VectorSplitterBlock.prototype.getInputByName = function () {};
+BABYLON.VectorSplitterBlock.prototype.getOutputByName = function () {};
+BABYLON.VectorSplitterBlock.prototype.initialize = function () {};
+BABYLON.VectorSplitterBlock.prototype.bind = function () {};
+BABYLON.VectorSplitterBlock.prototype.registerInput = function () {};
+BABYLON.VectorSplitterBlock.prototype.registerOutput = function () {};
+BABYLON.VectorSplitterBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.VectorSplitterBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.VectorSplitterBlock.prototype.getSiblingOutput = function () {};
+BABYLON.VectorSplitterBlock.prototype.connectTo = function () {};
+BABYLON.VectorSplitterBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.VectorSplitterBlock.prototype.provideFallbacks = function () {};
+BABYLON.VectorSplitterBlock.prototype.initializeDefines = function () {};
+BABYLON.VectorSplitterBlock.prototype.prepareDefines = function () {};
+BABYLON.VectorSplitterBlock.prototype.autoConfigure = function () {};
+BABYLON.VectorSplitterBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.VectorSplitterBlock.prototype.isReady = function () {};
+BABYLON.VectorSplitterBlock.prototype.build = function () {};
+BABYLON.VectorSplitterBlock.prototype.clone = function () {};
+BABYLON.VectorSplitterBlock.prototype.serialize = function () {};
+BABYLON.VectorSplitterBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.LerpBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 15;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.left = {};
-  this.right = {};
-  this.gradient = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.LerpBlock = function () {}
+BABYLON.LerpBlock.inputsAreExclusive = false;
+BABYLON.LerpBlock.comments = "";
+// BABYLON.LerpBlock.name = undefined;
+BABYLON.LerpBlock.uniqueId = 15;
+BABYLON.LerpBlock.prototype.constructor = function () {};
+BABYLON.LerpBlock.prototype.getClassName = function () {};
+// BABYLON.LerpBlock.prototype.left = undefined;
+// BABYLON.LerpBlock.prototype.right = undefined;
+// BABYLON.LerpBlock.prototype.gradient = undefined;
+// BABYLON.LerpBlock.prototype.output = undefined;
+// BABYLON.LerpBlock.prototype.isUnique = undefined;
+// BABYLON.LerpBlock.prototype.isFinalMerger = undefined;
+// BABYLON.LerpBlock.prototype.isInput = undefined;
+// BABYLON.LerpBlock.prototype.buildId = undefined;
+// BABYLON.LerpBlock.prototype.target = undefined;
+// BABYLON.LerpBlock.prototype.inputs = undefined;
+// BABYLON.LerpBlock.prototype.outputs = undefined;
+BABYLON.LerpBlock.prototype.getInputByName = function () {};
+BABYLON.LerpBlock.prototype.getOutputByName = function () {};
+BABYLON.LerpBlock.prototype.initialize = function () {};
+BABYLON.LerpBlock.prototype.bind = function () {};
+BABYLON.LerpBlock.prototype.registerInput = function () {};
+BABYLON.LerpBlock.prototype.registerOutput = function () {};
+BABYLON.LerpBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.LerpBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.LerpBlock.prototype.getSiblingOutput = function () {};
+BABYLON.LerpBlock.prototype.connectTo = function () {};
+BABYLON.LerpBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.LerpBlock.prototype.provideFallbacks = function () {};
+BABYLON.LerpBlock.prototype.initializeDefines = function () {};
+BABYLON.LerpBlock.prototype.prepareDefines = function () {};
+BABYLON.LerpBlock.prototype.autoConfigure = function () {};
+BABYLON.LerpBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.LerpBlock.prototype.isReady = function () {};
+BABYLON.LerpBlock.prototype.build = function () {};
+BABYLON.LerpBlock.prototype.clone = function () {};
+BABYLON.LerpBlock.prototype.serialize = function () {};
+BABYLON.LerpBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.DivideBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 16;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.left = {};
-  this.right = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.DivideBlock = function () {}
+BABYLON.DivideBlock.inputsAreExclusive = false;
+BABYLON.DivideBlock.comments = "";
+// BABYLON.DivideBlock.name = undefined;
+BABYLON.DivideBlock.uniqueId = 16;
+BABYLON.DivideBlock.prototype.constructor = function () {};
+BABYLON.DivideBlock.prototype.getClassName = function () {};
+// BABYLON.DivideBlock.prototype.left = undefined;
+// BABYLON.DivideBlock.prototype.right = undefined;
+// BABYLON.DivideBlock.prototype.output = undefined;
+// BABYLON.DivideBlock.prototype.isUnique = undefined;
+// BABYLON.DivideBlock.prototype.isFinalMerger = undefined;
+// BABYLON.DivideBlock.prototype.isInput = undefined;
+// BABYLON.DivideBlock.prototype.buildId = undefined;
+// BABYLON.DivideBlock.prototype.target = undefined;
+// BABYLON.DivideBlock.prototype.inputs = undefined;
+// BABYLON.DivideBlock.prototype.outputs = undefined;
+BABYLON.DivideBlock.prototype.getInputByName = function () {};
+BABYLON.DivideBlock.prototype.getOutputByName = function () {};
+BABYLON.DivideBlock.prototype.initialize = function () {};
+BABYLON.DivideBlock.prototype.bind = function () {};
+BABYLON.DivideBlock.prototype.registerInput = function () {};
+BABYLON.DivideBlock.prototype.registerOutput = function () {};
+BABYLON.DivideBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.DivideBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.DivideBlock.prototype.getSiblingOutput = function () {};
+BABYLON.DivideBlock.prototype.connectTo = function () {};
+BABYLON.DivideBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.DivideBlock.prototype.provideFallbacks = function () {};
+BABYLON.DivideBlock.prototype.initializeDefines = function () {};
+BABYLON.DivideBlock.prototype.prepareDefines = function () {};
+BABYLON.DivideBlock.prototype.autoConfigure = function () {};
+BABYLON.DivideBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.DivideBlock.prototype.isReady = function () {};
+BABYLON.DivideBlock.prototype.build = function () {};
+BABYLON.DivideBlock.prototype.clone = function () {};
+BABYLON.DivideBlock.prototype.serialize = function () {};
+BABYLON.DivideBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.SubtractBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 17;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.left = {};
-  this.right = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.SubtractBlock = function () {}
+BABYLON.SubtractBlock.inputsAreExclusive = false;
+BABYLON.SubtractBlock.comments = "";
+// BABYLON.SubtractBlock.name = undefined;
+BABYLON.SubtractBlock.uniqueId = 17;
+BABYLON.SubtractBlock.prototype.constructor = function () {};
+BABYLON.SubtractBlock.prototype.getClassName = function () {};
+// BABYLON.SubtractBlock.prototype.left = undefined;
+// BABYLON.SubtractBlock.prototype.right = undefined;
+// BABYLON.SubtractBlock.prototype.output = undefined;
+// BABYLON.SubtractBlock.prototype.isUnique = undefined;
+// BABYLON.SubtractBlock.prototype.isFinalMerger = undefined;
+// BABYLON.SubtractBlock.prototype.isInput = undefined;
+// BABYLON.SubtractBlock.prototype.buildId = undefined;
+// BABYLON.SubtractBlock.prototype.target = undefined;
+// BABYLON.SubtractBlock.prototype.inputs = undefined;
+// BABYLON.SubtractBlock.prototype.outputs = undefined;
+BABYLON.SubtractBlock.prototype.getInputByName = function () {};
+BABYLON.SubtractBlock.prototype.getOutputByName = function () {};
+BABYLON.SubtractBlock.prototype.initialize = function () {};
+BABYLON.SubtractBlock.prototype.bind = function () {};
+BABYLON.SubtractBlock.prototype.registerInput = function () {};
+BABYLON.SubtractBlock.prototype.registerOutput = function () {};
+BABYLON.SubtractBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.SubtractBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.SubtractBlock.prototype.getSiblingOutput = function () {};
+BABYLON.SubtractBlock.prototype.connectTo = function () {};
+BABYLON.SubtractBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.SubtractBlock.prototype.provideFallbacks = function () {};
+BABYLON.SubtractBlock.prototype.initializeDefines = function () {};
+BABYLON.SubtractBlock.prototype.prepareDefines = function () {};
+BABYLON.SubtractBlock.prototype.autoConfigure = function () {};
+BABYLON.SubtractBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.SubtractBlock.prototype.isReady = function () {};
+BABYLON.SubtractBlock.prototype.build = function () {};
+BABYLON.SubtractBlock.prototype.clone = function () {};
+BABYLON.SubtractBlock.prototype.serialize = function () {};
+BABYLON.SubtractBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.StepBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 18;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.value = {};
-  this.edge = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.StepBlock = function () {}
+BABYLON.StepBlock.inputsAreExclusive = false;
+BABYLON.StepBlock.comments = "";
+// BABYLON.StepBlock.name = undefined;
+BABYLON.StepBlock.uniqueId = 18;
+BABYLON.StepBlock.prototype.constructor = function () {};
+BABYLON.StepBlock.prototype.getClassName = function () {};
+// BABYLON.StepBlock.prototype.value = undefined;
+// BABYLON.StepBlock.prototype.edge = undefined;
+// BABYLON.StepBlock.prototype.output = undefined;
+// BABYLON.StepBlock.prototype.isUnique = undefined;
+// BABYLON.StepBlock.prototype.isFinalMerger = undefined;
+// BABYLON.StepBlock.prototype.isInput = undefined;
+// BABYLON.StepBlock.prototype.buildId = undefined;
+// BABYLON.StepBlock.prototype.target = undefined;
+// BABYLON.StepBlock.prototype.inputs = undefined;
+// BABYLON.StepBlock.prototype.outputs = undefined;
+BABYLON.StepBlock.prototype.getInputByName = function () {};
+BABYLON.StepBlock.prototype.getOutputByName = function () {};
+BABYLON.StepBlock.prototype.initialize = function () {};
+BABYLON.StepBlock.prototype.bind = function () {};
+BABYLON.StepBlock.prototype.registerInput = function () {};
+BABYLON.StepBlock.prototype.registerOutput = function () {};
+BABYLON.StepBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.StepBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.StepBlock.prototype.getSiblingOutput = function () {};
+BABYLON.StepBlock.prototype.connectTo = function () {};
+BABYLON.StepBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.StepBlock.prototype.provideFallbacks = function () {};
+BABYLON.StepBlock.prototype.initializeDefines = function () {};
+BABYLON.StepBlock.prototype.prepareDefines = function () {};
+BABYLON.StepBlock.prototype.autoConfigure = function () {};
+BABYLON.StepBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.StepBlock.prototype.isReady = function () {};
+BABYLON.StepBlock.prototype.build = function () {};
+BABYLON.StepBlock.prototype.clone = function () {};
+BABYLON.StepBlock.prototype.serialize = function () {};
+BABYLON.StepBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.OneMinusBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 19;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.input = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.OneMinusBlock = function () {}
+BABYLON.OneMinusBlock.inputsAreExclusive = false;
+BABYLON.OneMinusBlock.comments = "";
+// BABYLON.OneMinusBlock.name = undefined;
+BABYLON.OneMinusBlock.uniqueId = 19;
+BABYLON.OneMinusBlock.prototype.constructor = function () {};
+BABYLON.OneMinusBlock.prototype.getClassName = function () {};
+// BABYLON.OneMinusBlock.prototype.input = undefined;
+// BABYLON.OneMinusBlock.prototype.output = undefined;
+// BABYLON.OneMinusBlock.prototype.isUnique = undefined;
+// BABYLON.OneMinusBlock.prototype.isFinalMerger = undefined;
+// BABYLON.OneMinusBlock.prototype.isInput = undefined;
+// BABYLON.OneMinusBlock.prototype.buildId = undefined;
+// BABYLON.OneMinusBlock.prototype.target = undefined;
+// BABYLON.OneMinusBlock.prototype.inputs = undefined;
+// BABYLON.OneMinusBlock.prototype.outputs = undefined;
+BABYLON.OneMinusBlock.prototype.getInputByName = function () {};
+BABYLON.OneMinusBlock.prototype.getOutputByName = function () {};
+BABYLON.OneMinusBlock.prototype.initialize = function () {};
+BABYLON.OneMinusBlock.prototype.bind = function () {};
+BABYLON.OneMinusBlock.prototype.registerInput = function () {};
+BABYLON.OneMinusBlock.prototype.registerOutput = function () {};
+BABYLON.OneMinusBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.OneMinusBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.OneMinusBlock.prototype.getSiblingOutput = function () {};
+BABYLON.OneMinusBlock.prototype.connectTo = function () {};
+BABYLON.OneMinusBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.OneMinusBlock.prototype.provideFallbacks = function () {};
+BABYLON.OneMinusBlock.prototype.initializeDefines = function () {};
+BABYLON.OneMinusBlock.prototype.prepareDefines = function () {};
+BABYLON.OneMinusBlock.prototype.autoConfigure = function () {};
+BABYLON.OneMinusBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.OneMinusBlock.prototype.isReady = function () {};
+BABYLON.OneMinusBlock.prototype.build = function () {};
+BABYLON.OneMinusBlock.prototype.clone = function () {};
+BABYLON.OneMinusBlock.prototype.serialize = function () {};
+BABYLON.OneMinusBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.ViewDirectionBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 20;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.worldPosition = {};
-  this.cameraPosition = {};
-  this.output = {};
-  this.autoConfigure = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.ViewDirectionBlock = function () {}
+BABYLON.ViewDirectionBlock.inputsAreExclusive = false;
+BABYLON.ViewDirectionBlock.comments = "";
+// BABYLON.ViewDirectionBlock.name = undefined;
+BABYLON.ViewDirectionBlock.uniqueId = 20;
+BABYLON.ViewDirectionBlock.prototype.constructor = function () {};
+BABYLON.ViewDirectionBlock.prototype.getClassName = function () {};
+// BABYLON.ViewDirectionBlock.prototype.worldPosition = undefined;
+// BABYLON.ViewDirectionBlock.prototype.cameraPosition = undefined;
+// BABYLON.ViewDirectionBlock.prototype.output = undefined;
+BABYLON.ViewDirectionBlock.prototype.autoConfigure = function () {};
+// BABYLON.ViewDirectionBlock.prototype.isUnique = undefined;
+// BABYLON.ViewDirectionBlock.prototype.isFinalMerger = undefined;
+// BABYLON.ViewDirectionBlock.prototype.isInput = undefined;
+// BABYLON.ViewDirectionBlock.prototype.buildId = undefined;
+// BABYLON.ViewDirectionBlock.prototype.target = undefined;
+// BABYLON.ViewDirectionBlock.prototype.inputs = undefined;
+// BABYLON.ViewDirectionBlock.prototype.outputs = undefined;
+BABYLON.ViewDirectionBlock.prototype.getInputByName = function () {};
+BABYLON.ViewDirectionBlock.prototype.getOutputByName = function () {};
+BABYLON.ViewDirectionBlock.prototype.initialize = function () {};
+BABYLON.ViewDirectionBlock.prototype.bind = function () {};
+BABYLON.ViewDirectionBlock.prototype.registerInput = function () {};
+BABYLON.ViewDirectionBlock.prototype.registerOutput = function () {};
+BABYLON.ViewDirectionBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.ViewDirectionBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.ViewDirectionBlock.prototype.getSiblingOutput = function () {};
+BABYLON.ViewDirectionBlock.prototype.connectTo = function () {};
+BABYLON.ViewDirectionBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.ViewDirectionBlock.prototype.provideFallbacks = function () {};
+BABYLON.ViewDirectionBlock.prototype.initializeDefines = function () {};
+BABYLON.ViewDirectionBlock.prototype.prepareDefines = function () {};
+BABYLON.ViewDirectionBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.ViewDirectionBlock.prototype.isReady = function () {};
+BABYLON.ViewDirectionBlock.prototype.build = function () {};
+BABYLON.ViewDirectionBlock.prototype.clone = function () {};
+BABYLON.ViewDirectionBlock.prototype.serialize = function () {};
+BABYLON.ViewDirectionBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.FresnelBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 21;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.worldNormal = {};
-  this.viewDirection = {};
-  this.bias = {};
-  this.power = {};
-  this.fresnel = {};
-  this.autoConfigure = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.FresnelBlock = function () {}
+BABYLON.FresnelBlock.inputsAreExclusive = false;
+BABYLON.FresnelBlock.comments = "";
+// BABYLON.FresnelBlock.name = undefined;
+BABYLON.FresnelBlock.uniqueId = 21;
+BABYLON.FresnelBlock.prototype.constructor = function () {};
+BABYLON.FresnelBlock.prototype.getClassName = function () {};
+// BABYLON.FresnelBlock.prototype.worldNormal = undefined;
+// BABYLON.FresnelBlock.prototype.viewDirection = undefined;
+// BABYLON.FresnelBlock.prototype.bias = undefined;
+// BABYLON.FresnelBlock.prototype.power = undefined;
+// BABYLON.FresnelBlock.prototype.fresnel = undefined;
+BABYLON.FresnelBlock.prototype.autoConfigure = function () {};
+// BABYLON.FresnelBlock.prototype.isUnique = undefined;
+// BABYLON.FresnelBlock.prototype.isFinalMerger = undefined;
+// BABYLON.FresnelBlock.prototype.isInput = undefined;
+// BABYLON.FresnelBlock.prototype.buildId = undefined;
+// BABYLON.FresnelBlock.prototype.target = undefined;
+// BABYLON.FresnelBlock.prototype.inputs = undefined;
+// BABYLON.FresnelBlock.prototype.outputs = undefined;
+BABYLON.FresnelBlock.prototype.getInputByName = function () {};
+BABYLON.FresnelBlock.prototype.getOutputByName = function () {};
+BABYLON.FresnelBlock.prototype.initialize = function () {};
+BABYLON.FresnelBlock.prototype.bind = function () {};
+BABYLON.FresnelBlock.prototype.registerInput = function () {};
+BABYLON.FresnelBlock.prototype.registerOutput = function () {};
+BABYLON.FresnelBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.FresnelBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.FresnelBlock.prototype.getSiblingOutput = function () {};
+BABYLON.FresnelBlock.prototype.connectTo = function () {};
+BABYLON.FresnelBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.FresnelBlock.prototype.provideFallbacks = function () {};
+BABYLON.FresnelBlock.prototype.initializeDefines = function () {};
+BABYLON.FresnelBlock.prototype.prepareDefines = function () {};
+BABYLON.FresnelBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.FresnelBlock.prototype.isReady = function () {};
+BABYLON.FresnelBlock.prototype.build = function () {};
+BABYLON.FresnelBlock.prototype.clone = function () {};
+BABYLON.FresnelBlock.prototype.serialize = function () {};
+BABYLON.FresnelBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.MaxBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 22;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.left = {};
-  this.right = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.MaxBlock = function () {}
+BABYLON.MaxBlock.inputsAreExclusive = false;
+BABYLON.MaxBlock.comments = "";
+// BABYLON.MaxBlock.name = undefined;
+BABYLON.MaxBlock.uniqueId = 22;
+BABYLON.MaxBlock.prototype.constructor = function () {};
+BABYLON.MaxBlock.prototype.getClassName = function () {};
+// BABYLON.MaxBlock.prototype.left = undefined;
+// BABYLON.MaxBlock.prototype.right = undefined;
+// BABYLON.MaxBlock.prototype.output = undefined;
+// BABYLON.MaxBlock.prototype.isUnique = undefined;
+// BABYLON.MaxBlock.prototype.isFinalMerger = undefined;
+// BABYLON.MaxBlock.prototype.isInput = undefined;
+// BABYLON.MaxBlock.prototype.buildId = undefined;
+// BABYLON.MaxBlock.prototype.target = undefined;
+// BABYLON.MaxBlock.prototype.inputs = undefined;
+// BABYLON.MaxBlock.prototype.outputs = undefined;
+BABYLON.MaxBlock.prototype.getInputByName = function () {};
+BABYLON.MaxBlock.prototype.getOutputByName = function () {};
+BABYLON.MaxBlock.prototype.initialize = function () {};
+BABYLON.MaxBlock.prototype.bind = function () {};
+BABYLON.MaxBlock.prototype.registerInput = function () {};
+BABYLON.MaxBlock.prototype.registerOutput = function () {};
+BABYLON.MaxBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.MaxBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.MaxBlock.prototype.getSiblingOutput = function () {};
+BABYLON.MaxBlock.prototype.connectTo = function () {};
+BABYLON.MaxBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.MaxBlock.prototype.provideFallbacks = function () {};
+BABYLON.MaxBlock.prototype.initializeDefines = function () {};
+BABYLON.MaxBlock.prototype.prepareDefines = function () {};
+BABYLON.MaxBlock.prototype.autoConfigure = function () {};
+BABYLON.MaxBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.MaxBlock.prototype.isReady = function () {};
+BABYLON.MaxBlock.prototype.build = function () {};
+BABYLON.MaxBlock.prototype.clone = function () {};
+BABYLON.MaxBlock.prototype.serialize = function () {};
+BABYLON.MaxBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.MinBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 23;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.left = {};
-  this.right = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.MinBlock = function () {}
+BABYLON.MinBlock.inputsAreExclusive = false;
+BABYLON.MinBlock.comments = "";
+// BABYLON.MinBlock.name = undefined;
+BABYLON.MinBlock.uniqueId = 23;
+BABYLON.MinBlock.prototype.constructor = function () {};
+BABYLON.MinBlock.prototype.getClassName = function () {};
+// BABYLON.MinBlock.prototype.left = undefined;
+// BABYLON.MinBlock.prototype.right = undefined;
+// BABYLON.MinBlock.prototype.output = undefined;
+// BABYLON.MinBlock.prototype.isUnique = undefined;
+// BABYLON.MinBlock.prototype.isFinalMerger = undefined;
+// BABYLON.MinBlock.prototype.isInput = undefined;
+// BABYLON.MinBlock.prototype.buildId = undefined;
+// BABYLON.MinBlock.prototype.target = undefined;
+// BABYLON.MinBlock.prototype.inputs = undefined;
+// BABYLON.MinBlock.prototype.outputs = undefined;
+BABYLON.MinBlock.prototype.getInputByName = function () {};
+BABYLON.MinBlock.prototype.getOutputByName = function () {};
+BABYLON.MinBlock.prototype.initialize = function () {};
+BABYLON.MinBlock.prototype.bind = function () {};
+BABYLON.MinBlock.prototype.registerInput = function () {};
+BABYLON.MinBlock.prototype.registerOutput = function () {};
+BABYLON.MinBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.MinBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.MinBlock.prototype.getSiblingOutput = function () {};
+BABYLON.MinBlock.prototype.connectTo = function () {};
+BABYLON.MinBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.MinBlock.prototype.provideFallbacks = function () {};
+BABYLON.MinBlock.prototype.initializeDefines = function () {};
+BABYLON.MinBlock.prototype.prepareDefines = function () {};
+BABYLON.MinBlock.prototype.autoConfigure = function () {};
+BABYLON.MinBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.MinBlock.prototype.isReady = function () {};
+BABYLON.MinBlock.prototype.build = function () {};
+BABYLON.MinBlock.prototype.clone = function () {};
+BABYLON.MinBlock.prototype.serialize = function () {};
+BABYLON.MinBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.DistanceBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 24;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.left = {};
-  this.right = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.DistanceBlock = function () {}
+BABYLON.DistanceBlock.inputsAreExclusive = false;
+BABYLON.DistanceBlock.comments = "";
+// BABYLON.DistanceBlock.name = undefined;
+BABYLON.DistanceBlock.uniqueId = 24;
+BABYLON.DistanceBlock.prototype.constructor = function () {};
+BABYLON.DistanceBlock.prototype.getClassName = function () {};
+// BABYLON.DistanceBlock.prototype.left = undefined;
+// BABYLON.DistanceBlock.prototype.right = undefined;
+// BABYLON.DistanceBlock.prototype.output = undefined;
+// BABYLON.DistanceBlock.prototype.isUnique = undefined;
+// BABYLON.DistanceBlock.prototype.isFinalMerger = undefined;
+// BABYLON.DistanceBlock.prototype.isInput = undefined;
+// BABYLON.DistanceBlock.prototype.buildId = undefined;
+// BABYLON.DistanceBlock.prototype.target = undefined;
+// BABYLON.DistanceBlock.prototype.inputs = undefined;
+// BABYLON.DistanceBlock.prototype.outputs = undefined;
+BABYLON.DistanceBlock.prototype.getInputByName = function () {};
+BABYLON.DistanceBlock.prototype.getOutputByName = function () {};
+BABYLON.DistanceBlock.prototype.initialize = function () {};
+BABYLON.DistanceBlock.prototype.bind = function () {};
+BABYLON.DistanceBlock.prototype.registerInput = function () {};
+BABYLON.DistanceBlock.prototype.registerOutput = function () {};
+BABYLON.DistanceBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.DistanceBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.DistanceBlock.prototype.getSiblingOutput = function () {};
+BABYLON.DistanceBlock.prototype.connectTo = function () {};
+BABYLON.DistanceBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.DistanceBlock.prototype.provideFallbacks = function () {};
+BABYLON.DistanceBlock.prototype.initializeDefines = function () {};
+BABYLON.DistanceBlock.prototype.prepareDefines = function () {};
+BABYLON.DistanceBlock.prototype.autoConfigure = function () {};
+BABYLON.DistanceBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.DistanceBlock.prototype.isReady = function () {};
+BABYLON.DistanceBlock.prototype.build = function () {};
+BABYLON.DistanceBlock.prototype.clone = function () {};
+BABYLON.DistanceBlock.prototype.serialize = function () {};
+BABYLON.DistanceBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.LengthBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 25;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.value = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.LengthBlock = function () {}
+BABYLON.LengthBlock.inputsAreExclusive = false;
+BABYLON.LengthBlock.comments = "";
+// BABYLON.LengthBlock.name = undefined;
+BABYLON.LengthBlock.uniqueId = 25;
+BABYLON.LengthBlock.prototype.constructor = function () {};
+BABYLON.LengthBlock.prototype.getClassName = function () {};
+// BABYLON.LengthBlock.prototype.value = undefined;
+// BABYLON.LengthBlock.prototype.output = undefined;
+// BABYLON.LengthBlock.prototype.isUnique = undefined;
+// BABYLON.LengthBlock.prototype.isFinalMerger = undefined;
+// BABYLON.LengthBlock.prototype.isInput = undefined;
+// BABYLON.LengthBlock.prototype.buildId = undefined;
+// BABYLON.LengthBlock.prototype.target = undefined;
+// BABYLON.LengthBlock.prototype.inputs = undefined;
+// BABYLON.LengthBlock.prototype.outputs = undefined;
+BABYLON.LengthBlock.prototype.getInputByName = function () {};
+BABYLON.LengthBlock.prototype.getOutputByName = function () {};
+BABYLON.LengthBlock.prototype.initialize = function () {};
+BABYLON.LengthBlock.prototype.bind = function () {};
+BABYLON.LengthBlock.prototype.registerInput = function () {};
+BABYLON.LengthBlock.prototype.registerOutput = function () {};
+BABYLON.LengthBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.LengthBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.LengthBlock.prototype.getSiblingOutput = function () {};
+BABYLON.LengthBlock.prototype.connectTo = function () {};
+BABYLON.LengthBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.LengthBlock.prototype.provideFallbacks = function () {};
+BABYLON.LengthBlock.prototype.initializeDefines = function () {};
+BABYLON.LengthBlock.prototype.prepareDefines = function () {};
+BABYLON.LengthBlock.prototype.autoConfigure = function () {};
+BABYLON.LengthBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.LengthBlock.prototype.isReady = function () {};
+BABYLON.LengthBlock.prototype.build = function () {};
+BABYLON.LengthBlock.prototype.clone = function () {};
+BABYLON.LengthBlock.prototype.serialize = function () {};
+BABYLON.LengthBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.NegateBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 26;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.value = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.NegateBlock = function () {}
+BABYLON.NegateBlock.inputsAreExclusive = false;
+BABYLON.NegateBlock.comments = "";
+// BABYLON.NegateBlock.name = undefined;
+BABYLON.NegateBlock.uniqueId = 26;
+BABYLON.NegateBlock.prototype.constructor = function () {};
+BABYLON.NegateBlock.prototype.getClassName = function () {};
+// BABYLON.NegateBlock.prototype.value = undefined;
+// BABYLON.NegateBlock.prototype.output = undefined;
+// BABYLON.NegateBlock.prototype.isUnique = undefined;
+// BABYLON.NegateBlock.prototype.isFinalMerger = undefined;
+// BABYLON.NegateBlock.prototype.isInput = undefined;
+// BABYLON.NegateBlock.prototype.buildId = undefined;
+// BABYLON.NegateBlock.prototype.target = undefined;
+// BABYLON.NegateBlock.prototype.inputs = undefined;
+// BABYLON.NegateBlock.prototype.outputs = undefined;
+BABYLON.NegateBlock.prototype.getInputByName = function () {};
+BABYLON.NegateBlock.prototype.getOutputByName = function () {};
+BABYLON.NegateBlock.prototype.initialize = function () {};
+BABYLON.NegateBlock.prototype.bind = function () {};
+BABYLON.NegateBlock.prototype.registerInput = function () {};
+BABYLON.NegateBlock.prototype.registerOutput = function () {};
+BABYLON.NegateBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.NegateBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.NegateBlock.prototype.getSiblingOutput = function () {};
+BABYLON.NegateBlock.prototype.connectTo = function () {};
+BABYLON.NegateBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.NegateBlock.prototype.provideFallbacks = function () {};
+BABYLON.NegateBlock.prototype.initializeDefines = function () {};
+BABYLON.NegateBlock.prototype.prepareDefines = function () {};
+BABYLON.NegateBlock.prototype.autoConfigure = function () {};
+BABYLON.NegateBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.NegateBlock.prototype.isReady = function () {};
+BABYLON.NegateBlock.prototype.build = function () {};
+BABYLON.NegateBlock.prototype.clone = function () {};
+BABYLON.NegateBlock.prototype.serialize = function () {};
+BABYLON.NegateBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.PowBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 27;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.value = {};
-  this.power = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.PowBlock = function () {}
+BABYLON.PowBlock.inputsAreExclusive = false;
+BABYLON.PowBlock.comments = "";
+// BABYLON.PowBlock.name = undefined;
+BABYLON.PowBlock.uniqueId = 27;
+BABYLON.PowBlock.prototype.constructor = function () {};
+BABYLON.PowBlock.prototype.getClassName = function () {};
+// BABYLON.PowBlock.prototype.value = undefined;
+// BABYLON.PowBlock.prototype.power = undefined;
+// BABYLON.PowBlock.prototype.output = undefined;
+// BABYLON.PowBlock.prototype.isUnique = undefined;
+// BABYLON.PowBlock.prototype.isFinalMerger = undefined;
+// BABYLON.PowBlock.prototype.isInput = undefined;
+// BABYLON.PowBlock.prototype.buildId = undefined;
+// BABYLON.PowBlock.prototype.target = undefined;
+// BABYLON.PowBlock.prototype.inputs = undefined;
+// BABYLON.PowBlock.prototype.outputs = undefined;
+BABYLON.PowBlock.prototype.getInputByName = function () {};
+BABYLON.PowBlock.prototype.getOutputByName = function () {};
+BABYLON.PowBlock.prototype.initialize = function () {};
+BABYLON.PowBlock.prototype.bind = function () {};
+BABYLON.PowBlock.prototype.registerInput = function () {};
+BABYLON.PowBlock.prototype.registerOutput = function () {};
+BABYLON.PowBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.PowBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.PowBlock.prototype.getSiblingOutput = function () {};
+BABYLON.PowBlock.prototype.connectTo = function () {};
+BABYLON.PowBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.PowBlock.prototype.provideFallbacks = function () {};
+BABYLON.PowBlock.prototype.initializeDefines = function () {};
+BABYLON.PowBlock.prototype.prepareDefines = function () {};
+BABYLON.PowBlock.prototype.autoConfigure = function () {};
+BABYLON.PowBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.PowBlock.prototype.isReady = function () {};
+BABYLON.PowBlock.prototype.build = function () {};
+BABYLON.PowBlock.prototype.clone = function () {};
+BABYLON.PowBlock.prototype.serialize = function () {};
+BABYLON.PowBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.RandomNumberBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 28;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.seed = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.RandomNumberBlock = function () {}
+BABYLON.RandomNumberBlock.inputsAreExclusive = false;
+BABYLON.RandomNumberBlock.comments = "";
+// BABYLON.RandomNumberBlock.name = undefined;
+BABYLON.RandomNumberBlock.uniqueId = 28;
+BABYLON.RandomNumberBlock.prototype.constructor = function () {};
+BABYLON.RandomNumberBlock.prototype.getClassName = function () {};
+// BABYLON.RandomNumberBlock.prototype.seed = undefined;
+// BABYLON.RandomNumberBlock.prototype.output = undefined;
+// BABYLON.RandomNumberBlock.prototype.isUnique = undefined;
+// BABYLON.RandomNumberBlock.prototype.isFinalMerger = undefined;
+// BABYLON.RandomNumberBlock.prototype.isInput = undefined;
+// BABYLON.RandomNumberBlock.prototype.buildId = undefined;
+// BABYLON.RandomNumberBlock.prototype.target = undefined;
+// BABYLON.RandomNumberBlock.prototype.inputs = undefined;
+// BABYLON.RandomNumberBlock.prototype.outputs = undefined;
+BABYLON.RandomNumberBlock.prototype.getInputByName = function () {};
+BABYLON.RandomNumberBlock.prototype.getOutputByName = function () {};
+BABYLON.RandomNumberBlock.prototype.initialize = function () {};
+BABYLON.RandomNumberBlock.prototype.bind = function () {};
+BABYLON.RandomNumberBlock.prototype.registerInput = function () {};
+BABYLON.RandomNumberBlock.prototype.registerOutput = function () {};
+BABYLON.RandomNumberBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.RandomNumberBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.RandomNumberBlock.prototype.getSiblingOutput = function () {};
+BABYLON.RandomNumberBlock.prototype.connectTo = function () {};
+BABYLON.RandomNumberBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.RandomNumberBlock.prototype.provideFallbacks = function () {};
+BABYLON.RandomNumberBlock.prototype.initializeDefines = function () {};
+BABYLON.RandomNumberBlock.prototype.prepareDefines = function () {};
+BABYLON.RandomNumberBlock.prototype.autoConfigure = function () {};
+BABYLON.RandomNumberBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.RandomNumberBlock.prototype.isReady = function () {};
+BABYLON.RandomNumberBlock.prototype.build = function () {};
+BABYLON.RandomNumberBlock.prototype.clone = function () {};
+BABYLON.RandomNumberBlock.prototype.serialize = function () {};
+BABYLON.RandomNumberBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.ArcTan2Block = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 29;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.x = {};
-  this.y = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.ArcTan2Block = function () {}
+BABYLON.ArcTan2Block.inputsAreExclusive = false;
+BABYLON.ArcTan2Block.comments = "";
+// BABYLON.ArcTan2Block.name = undefined;
+BABYLON.ArcTan2Block.uniqueId = 29;
+BABYLON.ArcTan2Block.prototype.constructor = function () {};
+BABYLON.ArcTan2Block.prototype.getClassName = function () {};
+// BABYLON.ArcTan2Block.prototype.x = undefined;
+// BABYLON.ArcTan2Block.prototype.y = undefined;
+// BABYLON.ArcTan2Block.prototype.output = undefined;
+// BABYLON.ArcTan2Block.prototype.isUnique = undefined;
+// BABYLON.ArcTan2Block.prototype.isFinalMerger = undefined;
+// BABYLON.ArcTan2Block.prototype.isInput = undefined;
+// BABYLON.ArcTan2Block.prototype.buildId = undefined;
+// BABYLON.ArcTan2Block.prototype.target = undefined;
+// BABYLON.ArcTan2Block.prototype.inputs = undefined;
+// BABYLON.ArcTan2Block.prototype.outputs = undefined;
+BABYLON.ArcTan2Block.prototype.getInputByName = function () {};
+BABYLON.ArcTan2Block.prototype.getOutputByName = function () {};
+BABYLON.ArcTan2Block.prototype.initialize = function () {};
+BABYLON.ArcTan2Block.prototype.bind = function () {};
+BABYLON.ArcTan2Block.prototype.registerInput = function () {};
+BABYLON.ArcTan2Block.prototype.registerOutput = function () {};
+BABYLON.ArcTan2Block.prototype.getFirstAvailableInput = function () {};
+BABYLON.ArcTan2Block.prototype.getFirstAvailableOutput = function () {};
+BABYLON.ArcTan2Block.prototype.getSiblingOutput = function () {};
+BABYLON.ArcTan2Block.prototype.connectTo = function () {};
+BABYLON.ArcTan2Block.prototype.updateUniformsAndSamples = function () {};
+BABYLON.ArcTan2Block.prototype.provideFallbacks = function () {};
+BABYLON.ArcTan2Block.prototype.initializeDefines = function () {};
+BABYLON.ArcTan2Block.prototype.prepareDefines = function () {};
+BABYLON.ArcTan2Block.prototype.autoConfigure = function () {};
+BABYLON.ArcTan2Block.prototype.replaceRepeatableContent = function () {};
+BABYLON.ArcTan2Block.prototype.isReady = function () {};
+BABYLON.ArcTan2Block.prototype.build = function () {};
+BABYLON.ArcTan2Block.prototype.clone = function () {};
+BABYLON.ArcTan2Block.prototype.serialize = function () {};
+BABYLON.ArcTan2Block.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.SmoothStepBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 30;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.value = {};
-  this.edge0 = {};
-  this.edge1 = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.SmoothStepBlock = function () {}
+BABYLON.SmoothStepBlock.inputsAreExclusive = false;
+BABYLON.SmoothStepBlock.comments = "";
+// BABYLON.SmoothStepBlock.name = undefined;
+BABYLON.SmoothStepBlock.uniqueId = 30;
+BABYLON.SmoothStepBlock.prototype.constructor = function () {};
+BABYLON.SmoothStepBlock.prototype.getClassName = function () {};
+// BABYLON.SmoothStepBlock.prototype.value = undefined;
+// BABYLON.SmoothStepBlock.prototype.edge0 = undefined;
+// BABYLON.SmoothStepBlock.prototype.edge1 = undefined;
+// BABYLON.SmoothStepBlock.prototype.output = undefined;
+// BABYLON.SmoothStepBlock.prototype.isUnique = undefined;
+// BABYLON.SmoothStepBlock.prototype.isFinalMerger = undefined;
+// BABYLON.SmoothStepBlock.prototype.isInput = undefined;
+// BABYLON.SmoothStepBlock.prototype.buildId = undefined;
+// BABYLON.SmoothStepBlock.prototype.target = undefined;
+// BABYLON.SmoothStepBlock.prototype.inputs = undefined;
+// BABYLON.SmoothStepBlock.prototype.outputs = undefined;
+BABYLON.SmoothStepBlock.prototype.getInputByName = function () {};
+BABYLON.SmoothStepBlock.prototype.getOutputByName = function () {};
+BABYLON.SmoothStepBlock.prototype.initialize = function () {};
+BABYLON.SmoothStepBlock.prototype.bind = function () {};
+BABYLON.SmoothStepBlock.prototype.registerInput = function () {};
+BABYLON.SmoothStepBlock.prototype.registerOutput = function () {};
+BABYLON.SmoothStepBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.SmoothStepBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.SmoothStepBlock.prototype.getSiblingOutput = function () {};
+BABYLON.SmoothStepBlock.prototype.connectTo = function () {};
+BABYLON.SmoothStepBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.SmoothStepBlock.prototype.provideFallbacks = function () {};
+BABYLON.SmoothStepBlock.prototype.initializeDefines = function () {};
+BABYLON.SmoothStepBlock.prototype.prepareDefines = function () {};
+BABYLON.SmoothStepBlock.prototype.autoConfigure = function () {};
+BABYLON.SmoothStepBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.SmoothStepBlock.prototype.isReady = function () {};
+BABYLON.SmoothStepBlock.prototype.build = function () {};
+BABYLON.SmoothStepBlock.prototype.clone = function () {};
+BABYLON.SmoothStepBlock.prototype.serialize = function () {};
+BABYLON.SmoothStepBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.ReciprocalBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 31;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.input = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.ReciprocalBlock = function () {}
+BABYLON.ReciprocalBlock.inputsAreExclusive = false;
+BABYLON.ReciprocalBlock.comments = "";
+// BABYLON.ReciprocalBlock.name = undefined;
+BABYLON.ReciprocalBlock.uniqueId = 31;
+BABYLON.ReciprocalBlock.prototype.constructor = function () {};
+BABYLON.ReciprocalBlock.prototype.getClassName = function () {};
+// BABYLON.ReciprocalBlock.prototype.input = undefined;
+// BABYLON.ReciprocalBlock.prototype.output = undefined;
+// BABYLON.ReciprocalBlock.prototype.isUnique = undefined;
+// BABYLON.ReciprocalBlock.prototype.isFinalMerger = undefined;
+// BABYLON.ReciprocalBlock.prototype.isInput = undefined;
+// BABYLON.ReciprocalBlock.prototype.buildId = undefined;
+// BABYLON.ReciprocalBlock.prototype.target = undefined;
+// BABYLON.ReciprocalBlock.prototype.inputs = undefined;
+// BABYLON.ReciprocalBlock.prototype.outputs = undefined;
+BABYLON.ReciprocalBlock.prototype.getInputByName = function () {};
+BABYLON.ReciprocalBlock.prototype.getOutputByName = function () {};
+BABYLON.ReciprocalBlock.prototype.initialize = function () {};
+BABYLON.ReciprocalBlock.prototype.bind = function () {};
+BABYLON.ReciprocalBlock.prototype.registerInput = function () {};
+BABYLON.ReciprocalBlock.prototype.registerOutput = function () {};
+BABYLON.ReciprocalBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.ReciprocalBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.ReciprocalBlock.prototype.getSiblingOutput = function () {};
+BABYLON.ReciprocalBlock.prototype.connectTo = function () {};
+BABYLON.ReciprocalBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.ReciprocalBlock.prototype.provideFallbacks = function () {};
+BABYLON.ReciprocalBlock.prototype.initializeDefines = function () {};
+BABYLON.ReciprocalBlock.prototype.prepareDefines = function () {};
+BABYLON.ReciprocalBlock.prototype.autoConfigure = function () {};
+BABYLON.ReciprocalBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.ReciprocalBlock.prototype.isReady = function () {};
+BABYLON.ReciprocalBlock.prototype.build = function () {};
+BABYLON.ReciprocalBlock.prototype.clone = function () {};
+BABYLON.ReciprocalBlock.prototype.serialize = function () {};
+BABYLON.ReciprocalBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.ReplaceColorBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 32;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.value = {};
-  this.reference = {};
-  this.distance = {};
-  this.replacement = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.ReplaceColorBlock = function () {}
+BABYLON.ReplaceColorBlock.inputsAreExclusive = false;
+BABYLON.ReplaceColorBlock.comments = "";
+// BABYLON.ReplaceColorBlock.name = undefined;
+BABYLON.ReplaceColorBlock.uniqueId = 32;
+BABYLON.ReplaceColorBlock.prototype.constructor = function () {};
+BABYLON.ReplaceColorBlock.prototype.getClassName = function () {};
+// BABYLON.ReplaceColorBlock.prototype.value = undefined;
+// BABYLON.ReplaceColorBlock.prototype.reference = undefined;
+// BABYLON.ReplaceColorBlock.prototype.distance = undefined;
+// BABYLON.ReplaceColorBlock.prototype.replacement = undefined;
+// BABYLON.ReplaceColorBlock.prototype.output = undefined;
+// BABYLON.ReplaceColorBlock.prototype.isUnique = undefined;
+// BABYLON.ReplaceColorBlock.prototype.isFinalMerger = undefined;
+// BABYLON.ReplaceColorBlock.prototype.isInput = undefined;
+// BABYLON.ReplaceColorBlock.prototype.buildId = undefined;
+// BABYLON.ReplaceColorBlock.prototype.target = undefined;
+// BABYLON.ReplaceColorBlock.prototype.inputs = undefined;
+// BABYLON.ReplaceColorBlock.prototype.outputs = undefined;
+BABYLON.ReplaceColorBlock.prototype.getInputByName = function () {};
+BABYLON.ReplaceColorBlock.prototype.getOutputByName = function () {};
+BABYLON.ReplaceColorBlock.prototype.initialize = function () {};
+BABYLON.ReplaceColorBlock.prototype.bind = function () {};
+BABYLON.ReplaceColorBlock.prototype.registerInput = function () {};
+BABYLON.ReplaceColorBlock.prototype.registerOutput = function () {};
+BABYLON.ReplaceColorBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.ReplaceColorBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.ReplaceColorBlock.prototype.getSiblingOutput = function () {};
+BABYLON.ReplaceColorBlock.prototype.connectTo = function () {};
+BABYLON.ReplaceColorBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.ReplaceColorBlock.prototype.provideFallbacks = function () {};
+BABYLON.ReplaceColorBlock.prototype.initializeDefines = function () {};
+BABYLON.ReplaceColorBlock.prototype.prepareDefines = function () {};
+BABYLON.ReplaceColorBlock.prototype.autoConfigure = function () {};
+BABYLON.ReplaceColorBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.ReplaceColorBlock.prototype.isReady = function () {};
+BABYLON.ReplaceColorBlock.prototype.build = function () {};
+BABYLON.ReplaceColorBlock.prototype.clone = function () {};
+BABYLON.ReplaceColorBlock.prototype.serialize = function () {};
+BABYLON.ReplaceColorBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.PosterizeBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 33;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.value = {};
-  this.steps = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.PosterizeBlock = function () {}
+BABYLON.PosterizeBlock.inputsAreExclusive = false;
+BABYLON.PosterizeBlock.comments = "";
+// BABYLON.PosterizeBlock.name = undefined;
+BABYLON.PosterizeBlock.uniqueId = 33;
+BABYLON.PosterizeBlock.prototype.constructor = function () {};
+BABYLON.PosterizeBlock.prototype.getClassName = function () {};
+// BABYLON.PosterizeBlock.prototype.value = undefined;
+// BABYLON.PosterizeBlock.prototype.steps = undefined;
+// BABYLON.PosterizeBlock.prototype.output = undefined;
+// BABYLON.PosterizeBlock.prototype.isUnique = undefined;
+// BABYLON.PosterizeBlock.prototype.isFinalMerger = undefined;
+// BABYLON.PosterizeBlock.prototype.isInput = undefined;
+// BABYLON.PosterizeBlock.prototype.buildId = undefined;
+// BABYLON.PosterizeBlock.prototype.target = undefined;
+// BABYLON.PosterizeBlock.prototype.inputs = undefined;
+// BABYLON.PosterizeBlock.prototype.outputs = undefined;
+BABYLON.PosterizeBlock.prototype.getInputByName = function () {};
+BABYLON.PosterizeBlock.prototype.getOutputByName = function () {};
+BABYLON.PosterizeBlock.prototype.initialize = function () {};
+BABYLON.PosterizeBlock.prototype.bind = function () {};
+BABYLON.PosterizeBlock.prototype.registerInput = function () {};
+BABYLON.PosterizeBlock.prototype.registerOutput = function () {};
+BABYLON.PosterizeBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.PosterizeBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.PosterizeBlock.prototype.getSiblingOutput = function () {};
+BABYLON.PosterizeBlock.prototype.connectTo = function () {};
+BABYLON.PosterizeBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.PosterizeBlock.prototype.provideFallbacks = function () {};
+BABYLON.PosterizeBlock.prototype.initializeDefines = function () {};
+BABYLON.PosterizeBlock.prototype.prepareDefines = function () {};
+BABYLON.PosterizeBlock.prototype.autoConfigure = function () {};
+BABYLON.PosterizeBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.PosterizeBlock.prototype.isReady = function () {};
+BABYLON.PosterizeBlock.prototype.build = function () {};
+BABYLON.PosterizeBlock.prototype.clone = function () {};
+BABYLON.PosterizeBlock.prototype.serialize = function () {};
+BABYLON.PosterizeBlock.prototype.dispose = function () {};
+
 
 BABYLON.WaveBlockKind = {}
 
 /** @constructor */
-BABYLON.WaveBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 34;
-  this.kind = 0;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.input = {};
-  this.output = {};
-  this.serialize = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.dispose = function () {};
-};
+BABYLON.WaveBlock = function () {}
+BABYLON.WaveBlock.inputsAreExclusive = false;
+BABYLON.WaveBlock.comments = "";
+// BABYLON.WaveBlock.name = undefined;
+BABYLON.WaveBlock.uniqueId = 34;
+BABYLON.WaveBlock.kind = 0;
+BABYLON.WaveBlock.prototype.constructor = function () {};
+BABYLON.WaveBlock.prototype.getClassName = function () {};
+// BABYLON.WaveBlock.prototype.input = undefined;
+// BABYLON.WaveBlock.prototype.output = undefined;
+BABYLON.WaveBlock.prototype.serialize = function () {};
+// BABYLON.WaveBlock.prototype.isUnique = undefined;
+// BABYLON.WaveBlock.prototype.isFinalMerger = undefined;
+// BABYLON.WaveBlock.prototype.isInput = undefined;
+// BABYLON.WaveBlock.prototype.buildId = undefined;
+// BABYLON.WaveBlock.prototype.target = undefined;
+// BABYLON.WaveBlock.prototype.inputs = undefined;
+// BABYLON.WaveBlock.prototype.outputs = undefined;
+BABYLON.WaveBlock.prototype.getInputByName = function () {};
+BABYLON.WaveBlock.prototype.getOutputByName = function () {};
+BABYLON.WaveBlock.prototype.initialize = function () {};
+BABYLON.WaveBlock.prototype.bind = function () {};
+BABYLON.WaveBlock.prototype.registerInput = function () {};
+BABYLON.WaveBlock.prototype.registerOutput = function () {};
+BABYLON.WaveBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.WaveBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.WaveBlock.prototype.getSiblingOutput = function () {};
+BABYLON.WaveBlock.prototype.connectTo = function () {};
+BABYLON.WaveBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.WaveBlock.prototype.provideFallbacks = function () {};
+BABYLON.WaveBlock.prototype.initializeDefines = function () {};
+BABYLON.WaveBlock.prototype.prepareDefines = function () {};
+BABYLON.WaveBlock.prototype.autoConfigure = function () {};
+BABYLON.WaveBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.WaveBlock.prototype.isReady = function () {};
+BABYLON.WaveBlock.prototype.build = function () {};
+BABYLON.WaveBlock.prototype.clone = function () {};
+BABYLON.WaveBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.GradientBlockColorStep = function () {
-  // this.step = undefined;
-  // this.color = undefined;
-};
+BABYLON.GradientBlockColorStep = function () {}
+// BABYLON.GradientBlockColorStep.step = undefined;
+// BABYLON.GradientBlockColorStep.color = undefined;
+
 
 /** @constructor */
-BABYLON.GradientBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 35;
-  this.colorSteps = {};
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.gradient = {};
-  this.output = {};
-  this.serialize = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.dispose = function () {};
-};
+BABYLON.GradientBlock = function () {}
+BABYLON.GradientBlock.inputsAreExclusive = false;
+BABYLON.GradientBlock.comments = "";
+// BABYLON.GradientBlock.name = undefined;
+BABYLON.GradientBlock.uniqueId = 35;
+BABYLON.GradientBlock.colorSteps = {};
+BABYLON.GradientBlock.prototype.constructor = function () {};
+BABYLON.GradientBlock.prototype.getClassName = function () {};
+// BABYLON.GradientBlock.prototype.gradient = undefined;
+// BABYLON.GradientBlock.prototype.output = undefined;
+BABYLON.GradientBlock.prototype.serialize = function () {};
+// BABYLON.GradientBlock.prototype.isUnique = undefined;
+// BABYLON.GradientBlock.prototype.isFinalMerger = undefined;
+// BABYLON.GradientBlock.prototype.isInput = undefined;
+// BABYLON.GradientBlock.prototype.buildId = undefined;
+// BABYLON.GradientBlock.prototype.target = undefined;
+// BABYLON.GradientBlock.prototype.inputs = undefined;
+// BABYLON.GradientBlock.prototype.outputs = undefined;
+BABYLON.GradientBlock.prototype.getInputByName = function () {};
+BABYLON.GradientBlock.prototype.getOutputByName = function () {};
+BABYLON.GradientBlock.prototype.initialize = function () {};
+BABYLON.GradientBlock.prototype.bind = function () {};
+BABYLON.GradientBlock.prototype.registerInput = function () {};
+BABYLON.GradientBlock.prototype.registerOutput = function () {};
+BABYLON.GradientBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.GradientBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.GradientBlock.prototype.getSiblingOutput = function () {};
+BABYLON.GradientBlock.prototype.connectTo = function () {};
+BABYLON.GradientBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.GradientBlock.prototype.provideFallbacks = function () {};
+BABYLON.GradientBlock.prototype.initializeDefines = function () {};
+BABYLON.GradientBlock.prototype.prepareDefines = function () {};
+BABYLON.GradientBlock.prototype.autoConfigure = function () {};
+BABYLON.GradientBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.GradientBlock.prototype.isReady = function () {};
+BABYLON.GradientBlock.prototype.build = function () {};
+BABYLON.GradientBlock.prototype.clone = function () {};
+BABYLON.GradientBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.NLerpBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 36;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.left = {};
-  this.right = {};
-  this.gradient = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.NLerpBlock = function () {}
+BABYLON.NLerpBlock.inputsAreExclusive = false;
+BABYLON.NLerpBlock.comments = "";
+// BABYLON.NLerpBlock.name = undefined;
+BABYLON.NLerpBlock.uniqueId = 36;
+BABYLON.NLerpBlock.prototype.constructor = function () {};
+BABYLON.NLerpBlock.prototype.getClassName = function () {};
+// BABYLON.NLerpBlock.prototype.left = undefined;
+// BABYLON.NLerpBlock.prototype.right = undefined;
+// BABYLON.NLerpBlock.prototype.gradient = undefined;
+// BABYLON.NLerpBlock.prototype.output = undefined;
+// BABYLON.NLerpBlock.prototype.isUnique = undefined;
+// BABYLON.NLerpBlock.prototype.isFinalMerger = undefined;
+// BABYLON.NLerpBlock.prototype.isInput = undefined;
+// BABYLON.NLerpBlock.prototype.buildId = undefined;
+// BABYLON.NLerpBlock.prototype.target = undefined;
+// BABYLON.NLerpBlock.prototype.inputs = undefined;
+// BABYLON.NLerpBlock.prototype.outputs = undefined;
+BABYLON.NLerpBlock.prototype.getInputByName = function () {};
+BABYLON.NLerpBlock.prototype.getOutputByName = function () {};
+BABYLON.NLerpBlock.prototype.initialize = function () {};
+BABYLON.NLerpBlock.prototype.bind = function () {};
+BABYLON.NLerpBlock.prototype.registerInput = function () {};
+BABYLON.NLerpBlock.prototype.registerOutput = function () {};
+BABYLON.NLerpBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.NLerpBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.NLerpBlock.prototype.getSiblingOutput = function () {};
+BABYLON.NLerpBlock.prototype.connectTo = function () {};
+BABYLON.NLerpBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.NLerpBlock.prototype.provideFallbacks = function () {};
+BABYLON.NLerpBlock.prototype.initializeDefines = function () {};
+BABYLON.NLerpBlock.prototype.prepareDefines = function () {};
+BABYLON.NLerpBlock.prototype.autoConfigure = function () {};
+BABYLON.NLerpBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.NLerpBlock.prototype.isReady = function () {};
+BABYLON.NLerpBlock.prototype.build = function () {};
+BABYLON.NLerpBlock.prototype.clone = function () {};
+BABYLON.NLerpBlock.prototype.serialize = function () {};
+BABYLON.NLerpBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.WorleyNoise3DBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 37;
-  this.manhattanDistance = false;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.seed = {};
-  this.jitter = {};
-  this.output = {};
-  this.serialize = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.dispose = function () {};
-};
+BABYLON.WorleyNoise3DBlock = function () {}
+BABYLON.WorleyNoise3DBlock.inputsAreExclusive = false;
+BABYLON.WorleyNoise3DBlock.comments = "";
+// BABYLON.WorleyNoise3DBlock.name = undefined;
+BABYLON.WorleyNoise3DBlock.uniqueId = 37;
+BABYLON.WorleyNoise3DBlock.manhattanDistance = false;
+BABYLON.WorleyNoise3DBlock.prototype.constructor = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.getClassName = function () {};
+// BABYLON.WorleyNoise3DBlock.prototype.seed = undefined;
+// BABYLON.WorleyNoise3DBlock.prototype.jitter = undefined;
+// BABYLON.WorleyNoise3DBlock.prototype.output = undefined;
+BABYLON.WorleyNoise3DBlock.prototype.serialize = function () {};
+// BABYLON.WorleyNoise3DBlock.prototype.isUnique = undefined;
+// BABYLON.WorleyNoise3DBlock.prototype.isFinalMerger = undefined;
+// BABYLON.WorleyNoise3DBlock.prototype.isInput = undefined;
+// BABYLON.WorleyNoise3DBlock.prototype.buildId = undefined;
+// BABYLON.WorleyNoise3DBlock.prototype.target = undefined;
+// BABYLON.WorleyNoise3DBlock.prototype.inputs = undefined;
+// BABYLON.WorleyNoise3DBlock.prototype.outputs = undefined;
+BABYLON.WorleyNoise3DBlock.prototype.getInputByName = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.getOutputByName = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.initialize = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.bind = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.registerInput = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.registerOutput = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.getSiblingOutput = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.connectTo = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.provideFallbacks = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.initializeDefines = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.prepareDefines = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.autoConfigure = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.isReady = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.build = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.clone = function () {};
+BABYLON.WorleyNoise3DBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.SimplexPerlin3DBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 38;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.seed = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.SimplexPerlin3DBlock = function () {}
+BABYLON.SimplexPerlin3DBlock.inputsAreExclusive = false;
+BABYLON.SimplexPerlin3DBlock.comments = "";
+// BABYLON.SimplexPerlin3DBlock.name = undefined;
+BABYLON.SimplexPerlin3DBlock.uniqueId = 38;
+BABYLON.SimplexPerlin3DBlock.prototype.constructor = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.getClassName = function () {};
+// BABYLON.SimplexPerlin3DBlock.prototype.seed = undefined;
+// BABYLON.SimplexPerlin3DBlock.prototype.output = undefined;
+// BABYLON.SimplexPerlin3DBlock.prototype.isUnique = undefined;
+// BABYLON.SimplexPerlin3DBlock.prototype.isFinalMerger = undefined;
+// BABYLON.SimplexPerlin3DBlock.prototype.isInput = undefined;
+// BABYLON.SimplexPerlin3DBlock.prototype.buildId = undefined;
+// BABYLON.SimplexPerlin3DBlock.prototype.target = undefined;
+// BABYLON.SimplexPerlin3DBlock.prototype.inputs = undefined;
+// BABYLON.SimplexPerlin3DBlock.prototype.outputs = undefined;
+BABYLON.SimplexPerlin3DBlock.prototype.getInputByName = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.getOutputByName = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.initialize = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.bind = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.registerInput = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.registerOutput = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.getSiblingOutput = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.connectTo = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.provideFallbacks = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.initializeDefines = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.prepareDefines = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.autoConfigure = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.isReady = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.build = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.clone = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.serialize = function () {};
+BABYLON.SimplexPerlin3DBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.NormalBlendBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 39;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.normalMap0 = {};
-  this.normalMap1 = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.NormalBlendBlock = function () {}
+BABYLON.NormalBlendBlock.inputsAreExclusive = false;
+BABYLON.NormalBlendBlock.comments = "";
+// BABYLON.NormalBlendBlock.name = undefined;
+BABYLON.NormalBlendBlock.uniqueId = 39;
+BABYLON.NormalBlendBlock.prototype.constructor = function () {};
+BABYLON.NormalBlendBlock.prototype.getClassName = function () {};
+// BABYLON.NormalBlendBlock.prototype.normalMap0 = undefined;
+// BABYLON.NormalBlendBlock.prototype.normalMap1 = undefined;
+// BABYLON.NormalBlendBlock.prototype.output = undefined;
+// BABYLON.NormalBlendBlock.prototype.isUnique = undefined;
+// BABYLON.NormalBlendBlock.prototype.isFinalMerger = undefined;
+// BABYLON.NormalBlendBlock.prototype.isInput = undefined;
+// BABYLON.NormalBlendBlock.prototype.buildId = undefined;
+// BABYLON.NormalBlendBlock.prototype.target = undefined;
+// BABYLON.NormalBlendBlock.prototype.inputs = undefined;
+// BABYLON.NormalBlendBlock.prototype.outputs = undefined;
+BABYLON.NormalBlendBlock.prototype.getInputByName = function () {};
+BABYLON.NormalBlendBlock.prototype.getOutputByName = function () {};
+BABYLON.NormalBlendBlock.prototype.initialize = function () {};
+BABYLON.NormalBlendBlock.prototype.bind = function () {};
+BABYLON.NormalBlendBlock.prototype.registerInput = function () {};
+BABYLON.NormalBlendBlock.prototype.registerOutput = function () {};
+BABYLON.NormalBlendBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.NormalBlendBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.NormalBlendBlock.prototype.getSiblingOutput = function () {};
+BABYLON.NormalBlendBlock.prototype.connectTo = function () {};
+BABYLON.NormalBlendBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.NormalBlendBlock.prototype.provideFallbacks = function () {};
+BABYLON.NormalBlendBlock.prototype.initializeDefines = function () {};
+BABYLON.NormalBlendBlock.prototype.prepareDefines = function () {};
+BABYLON.NormalBlendBlock.prototype.autoConfigure = function () {};
+BABYLON.NormalBlendBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.NormalBlendBlock.prototype.isReady = function () {};
+BABYLON.NormalBlendBlock.prototype.build = function () {};
+BABYLON.NormalBlendBlock.prototype.clone = function () {};
+BABYLON.NormalBlendBlock.prototype.serialize = function () {};
+BABYLON.NormalBlendBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.Rotate2dBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 40;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.input = {};
-  this.angle = {};
-  this.output = {};
-  this.autoConfigure = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.Rotate2dBlock = function () {}
+BABYLON.Rotate2dBlock.inputsAreExclusive = false;
+BABYLON.Rotate2dBlock.comments = "";
+// BABYLON.Rotate2dBlock.name = undefined;
+BABYLON.Rotate2dBlock.uniqueId = 40;
+BABYLON.Rotate2dBlock.prototype.constructor = function () {};
+BABYLON.Rotate2dBlock.prototype.getClassName = function () {};
+// BABYLON.Rotate2dBlock.prototype.input = undefined;
+// BABYLON.Rotate2dBlock.prototype.angle = undefined;
+// BABYLON.Rotate2dBlock.prototype.output = undefined;
+BABYLON.Rotate2dBlock.prototype.autoConfigure = function () {};
+// BABYLON.Rotate2dBlock.prototype.isUnique = undefined;
+// BABYLON.Rotate2dBlock.prototype.isFinalMerger = undefined;
+// BABYLON.Rotate2dBlock.prototype.isInput = undefined;
+// BABYLON.Rotate2dBlock.prototype.buildId = undefined;
+// BABYLON.Rotate2dBlock.prototype.target = undefined;
+// BABYLON.Rotate2dBlock.prototype.inputs = undefined;
+// BABYLON.Rotate2dBlock.prototype.outputs = undefined;
+BABYLON.Rotate2dBlock.prototype.getInputByName = function () {};
+BABYLON.Rotate2dBlock.prototype.getOutputByName = function () {};
+BABYLON.Rotate2dBlock.prototype.initialize = function () {};
+BABYLON.Rotate2dBlock.prototype.bind = function () {};
+BABYLON.Rotate2dBlock.prototype.registerInput = function () {};
+BABYLON.Rotate2dBlock.prototype.registerOutput = function () {};
+BABYLON.Rotate2dBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.Rotate2dBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.Rotate2dBlock.prototype.getSiblingOutput = function () {};
+BABYLON.Rotate2dBlock.prototype.connectTo = function () {};
+BABYLON.Rotate2dBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.Rotate2dBlock.prototype.provideFallbacks = function () {};
+BABYLON.Rotate2dBlock.prototype.initializeDefines = function () {};
+BABYLON.Rotate2dBlock.prototype.prepareDefines = function () {};
+BABYLON.Rotate2dBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.Rotate2dBlock.prototype.isReady = function () {};
+BABYLON.Rotate2dBlock.prototype.build = function () {};
+BABYLON.Rotate2dBlock.prototype.clone = function () {};
+BABYLON.Rotate2dBlock.prototype.serialize = function () {};
+BABYLON.Rotate2dBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.ReflectBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 41;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.incident = {};
-  this.normal = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.ReflectBlock = function () {}
+BABYLON.ReflectBlock.inputsAreExclusive = false;
+BABYLON.ReflectBlock.comments = "";
+// BABYLON.ReflectBlock.name = undefined;
+BABYLON.ReflectBlock.uniqueId = 41;
+BABYLON.ReflectBlock.prototype.constructor = function () {};
+BABYLON.ReflectBlock.prototype.getClassName = function () {};
+// BABYLON.ReflectBlock.prototype.incident = undefined;
+// BABYLON.ReflectBlock.prototype.normal = undefined;
+// BABYLON.ReflectBlock.prototype.output = undefined;
+// BABYLON.ReflectBlock.prototype.isUnique = undefined;
+// BABYLON.ReflectBlock.prototype.isFinalMerger = undefined;
+// BABYLON.ReflectBlock.prototype.isInput = undefined;
+// BABYLON.ReflectBlock.prototype.buildId = undefined;
+// BABYLON.ReflectBlock.prototype.target = undefined;
+// BABYLON.ReflectBlock.prototype.inputs = undefined;
+// BABYLON.ReflectBlock.prototype.outputs = undefined;
+BABYLON.ReflectBlock.prototype.getInputByName = function () {};
+BABYLON.ReflectBlock.prototype.getOutputByName = function () {};
+BABYLON.ReflectBlock.prototype.initialize = function () {};
+BABYLON.ReflectBlock.prototype.bind = function () {};
+BABYLON.ReflectBlock.prototype.registerInput = function () {};
+BABYLON.ReflectBlock.prototype.registerOutput = function () {};
+BABYLON.ReflectBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.ReflectBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.ReflectBlock.prototype.getSiblingOutput = function () {};
+BABYLON.ReflectBlock.prototype.connectTo = function () {};
+BABYLON.ReflectBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.ReflectBlock.prototype.provideFallbacks = function () {};
+BABYLON.ReflectBlock.prototype.initializeDefines = function () {};
+BABYLON.ReflectBlock.prototype.prepareDefines = function () {};
+BABYLON.ReflectBlock.prototype.autoConfigure = function () {};
+BABYLON.ReflectBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.ReflectBlock.prototype.isReady = function () {};
+BABYLON.ReflectBlock.prototype.build = function () {};
+BABYLON.ReflectBlock.prototype.clone = function () {};
+BABYLON.ReflectBlock.prototype.serialize = function () {};
+BABYLON.ReflectBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.RefractBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 42;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.incident = {};
-  this.normal = {};
-  this.ior = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.RefractBlock = function () {}
+BABYLON.RefractBlock.inputsAreExclusive = false;
+BABYLON.RefractBlock.comments = "";
+// BABYLON.RefractBlock.name = undefined;
+BABYLON.RefractBlock.uniqueId = 42;
+BABYLON.RefractBlock.prototype.constructor = function () {};
+BABYLON.RefractBlock.prototype.getClassName = function () {};
+// BABYLON.RefractBlock.prototype.incident = undefined;
+// BABYLON.RefractBlock.prototype.normal = undefined;
+// BABYLON.RefractBlock.prototype.ior = undefined;
+// BABYLON.RefractBlock.prototype.output = undefined;
+// BABYLON.RefractBlock.prototype.isUnique = undefined;
+// BABYLON.RefractBlock.prototype.isFinalMerger = undefined;
+// BABYLON.RefractBlock.prototype.isInput = undefined;
+// BABYLON.RefractBlock.prototype.buildId = undefined;
+// BABYLON.RefractBlock.prototype.target = undefined;
+// BABYLON.RefractBlock.prototype.inputs = undefined;
+// BABYLON.RefractBlock.prototype.outputs = undefined;
+BABYLON.RefractBlock.prototype.getInputByName = function () {};
+BABYLON.RefractBlock.prototype.getOutputByName = function () {};
+BABYLON.RefractBlock.prototype.initialize = function () {};
+BABYLON.RefractBlock.prototype.bind = function () {};
+BABYLON.RefractBlock.prototype.registerInput = function () {};
+BABYLON.RefractBlock.prototype.registerOutput = function () {};
+BABYLON.RefractBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.RefractBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.RefractBlock.prototype.getSiblingOutput = function () {};
+BABYLON.RefractBlock.prototype.connectTo = function () {};
+BABYLON.RefractBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.RefractBlock.prototype.provideFallbacks = function () {};
+BABYLON.RefractBlock.prototype.initializeDefines = function () {};
+BABYLON.RefractBlock.prototype.prepareDefines = function () {};
+BABYLON.RefractBlock.prototype.autoConfigure = function () {};
+BABYLON.RefractBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.RefractBlock.prototype.isReady = function () {};
+BABYLON.RefractBlock.prototype.build = function () {};
+BABYLON.RefractBlock.prototype.clone = function () {};
+BABYLON.RefractBlock.prototype.serialize = function () {};
+BABYLON.RefractBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.DesaturateBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 43;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.color = {};
-  this.level = {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 4;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.DesaturateBlock = function () {}
+BABYLON.DesaturateBlock.inputsAreExclusive = false;
+BABYLON.DesaturateBlock.comments = "";
+// BABYLON.DesaturateBlock.name = undefined;
+BABYLON.DesaturateBlock.uniqueId = 43;
+BABYLON.DesaturateBlock.prototype.constructor = function () {};
+BABYLON.DesaturateBlock.prototype.getClassName = function () {};
+// BABYLON.DesaturateBlock.prototype.color = undefined;
+// BABYLON.DesaturateBlock.prototype.level = undefined;
+// BABYLON.DesaturateBlock.prototype.output = undefined;
+// BABYLON.DesaturateBlock.prototype.isUnique = undefined;
+// BABYLON.DesaturateBlock.prototype.isFinalMerger = undefined;
+// BABYLON.DesaturateBlock.prototype.isInput = undefined;
+// BABYLON.DesaturateBlock.prototype.buildId = undefined;
+// BABYLON.DesaturateBlock.prototype.target = undefined;
+// BABYLON.DesaturateBlock.prototype.inputs = undefined;
+// BABYLON.DesaturateBlock.prototype.outputs = undefined;
+BABYLON.DesaturateBlock.prototype.getInputByName = function () {};
+BABYLON.DesaturateBlock.prototype.getOutputByName = function () {};
+BABYLON.DesaturateBlock.prototype.initialize = function () {};
+BABYLON.DesaturateBlock.prototype.bind = function () {};
+BABYLON.DesaturateBlock.prototype.registerInput = function () {};
+BABYLON.DesaturateBlock.prototype.registerOutput = function () {};
+BABYLON.DesaturateBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.DesaturateBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.DesaturateBlock.prototype.getSiblingOutput = function () {};
+BABYLON.DesaturateBlock.prototype.connectTo = function () {};
+BABYLON.DesaturateBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.DesaturateBlock.prototype.provideFallbacks = function () {};
+BABYLON.DesaturateBlock.prototype.initializeDefines = function () {};
+BABYLON.DesaturateBlock.prototype.prepareDefines = function () {};
+BABYLON.DesaturateBlock.prototype.autoConfigure = function () {};
+BABYLON.DesaturateBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.DesaturateBlock.prototype.isReady = function () {};
+BABYLON.DesaturateBlock.prototype.build = function () {};
+BABYLON.DesaturateBlock.prototype.clone = function () {};
+BABYLON.DesaturateBlock.prototype.serialize = function () {};
+BABYLON.DesaturateBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.NodeMaterialOptimizer = function () {
-  this.optimize = function () {};
-};
+BABYLON.NodeMaterialOptimizer = function () {}
+BABYLON.NodeMaterialOptimizer.prototype.optimize = function () {};
+
 
 /** @constructor */
-BABYLON.VertexOutputBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 44;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.vector = {};
-  this.isUnique = false;
-  this.isFinalMerger = true;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 1;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.VertexOutputBlock = function () {}
+BABYLON.VertexOutputBlock.inputsAreExclusive = false;
+BABYLON.VertexOutputBlock.comments = "";
+// BABYLON.VertexOutputBlock.name = undefined;
+BABYLON.VertexOutputBlock.uniqueId = 44;
+BABYLON.VertexOutputBlock.prototype.constructor = function () {};
+BABYLON.VertexOutputBlock.prototype.getClassName = function () {};
+// BABYLON.VertexOutputBlock.prototype.vector = undefined;
+// BABYLON.VertexOutputBlock.prototype.isUnique = undefined;
+// BABYLON.VertexOutputBlock.prototype.isFinalMerger = undefined;
+// BABYLON.VertexOutputBlock.prototype.isInput = undefined;
+// BABYLON.VertexOutputBlock.prototype.buildId = undefined;
+// BABYLON.VertexOutputBlock.prototype.target = undefined;
+// BABYLON.VertexOutputBlock.prototype.inputs = undefined;
+// BABYLON.VertexOutputBlock.prototype.outputs = undefined;
+BABYLON.VertexOutputBlock.prototype.getInputByName = function () {};
+BABYLON.VertexOutputBlock.prototype.getOutputByName = function () {};
+BABYLON.VertexOutputBlock.prototype.initialize = function () {};
+BABYLON.VertexOutputBlock.prototype.bind = function () {};
+BABYLON.VertexOutputBlock.prototype.registerInput = function () {};
+BABYLON.VertexOutputBlock.prototype.registerOutput = function () {};
+BABYLON.VertexOutputBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.VertexOutputBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.VertexOutputBlock.prototype.getSiblingOutput = function () {};
+BABYLON.VertexOutputBlock.prototype.connectTo = function () {};
+BABYLON.VertexOutputBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.VertexOutputBlock.prototype.provideFallbacks = function () {};
+BABYLON.VertexOutputBlock.prototype.initializeDefines = function () {};
+BABYLON.VertexOutputBlock.prototype.prepareDefines = function () {};
+BABYLON.VertexOutputBlock.prototype.autoConfigure = function () {};
+BABYLON.VertexOutputBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.VertexOutputBlock.prototype.isReady = function () {};
+BABYLON.VertexOutputBlock.prototype.build = function () {};
+BABYLON.VertexOutputBlock.prototype.clone = function () {};
+BABYLON.VertexOutputBlock.prototype.serialize = function () {};
+BABYLON.VertexOutputBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.BonesBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 45;
-  this.constructor = function () {};
-  this.initialize = function () {};
-  this.getClassName = function () {};
-  this.matricesIndices = {};
-  this.matricesWeights = {};
-  this.matricesIndicesExtra = {};
-  this.matricesWeightsExtra = {};
-  this.world = {};
-  this.output = {};
-  this.autoConfigure = function () {};
-  this.provideFallbacks = function () {};
-  this.bind = function () {};
-  this.prepareDefines = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 1;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.initializeDefines = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.BonesBlock = function () {}
+BABYLON.BonesBlock.inputsAreExclusive = false;
+BABYLON.BonesBlock.comments = "";
+// BABYLON.BonesBlock.name = undefined;
+BABYLON.BonesBlock.uniqueId = 45;
+BABYLON.BonesBlock.prototype.constructor = function () {};
+BABYLON.BonesBlock.prototype.initialize = function () {};
+BABYLON.BonesBlock.prototype.getClassName = function () {};
+// BABYLON.BonesBlock.prototype.matricesIndices = undefined;
+// BABYLON.BonesBlock.prototype.matricesWeights = undefined;
+// BABYLON.BonesBlock.prototype.matricesIndicesExtra = undefined;
+// BABYLON.BonesBlock.prototype.matricesWeightsExtra = undefined;
+// BABYLON.BonesBlock.prototype.world = undefined;
+// BABYLON.BonesBlock.prototype.output = undefined;
+BABYLON.BonesBlock.prototype.autoConfigure = function () {};
+BABYLON.BonesBlock.prototype.provideFallbacks = function () {};
+BABYLON.BonesBlock.prototype.bind = function () {};
+BABYLON.BonesBlock.prototype.prepareDefines = function () {};
+// BABYLON.BonesBlock.prototype.isUnique = undefined;
+// BABYLON.BonesBlock.prototype.isFinalMerger = undefined;
+// BABYLON.BonesBlock.prototype.isInput = undefined;
+// BABYLON.BonesBlock.prototype.buildId = undefined;
+// BABYLON.BonesBlock.prototype.target = undefined;
+// BABYLON.BonesBlock.prototype.inputs = undefined;
+// BABYLON.BonesBlock.prototype.outputs = undefined;
+BABYLON.BonesBlock.prototype.getInputByName = function () {};
+BABYLON.BonesBlock.prototype.getOutputByName = function () {};
+BABYLON.BonesBlock.prototype.registerInput = function () {};
+BABYLON.BonesBlock.prototype.registerOutput = function () {};
+BABYLON.BonesBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.BonesBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.BonesBlock.prototype.getSiblingOutput = function () {};
+BABYLON.BonesBlock.prototype.connectTo = function () {};
+BABYLON.BonesBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.BonesBlock.prototype.initializeDefines = function () {};
+BABYLON.BonesBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.BonesBlock.prototype.isReady = function () {};
+BABYLON.BonesBlock.prototype.build = function () {};
+BABYLON.BonesBlock.prototype.clone = function () {};
+BABYLON.BonesBlock.prototype.serialize = function () {};
+BABYLON.BonesBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.InstancesBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 46;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.world0 = {};
-  this.world1 = {};
-  this.world2 = {};
-  this.world3 = {};
-  this.world = {};
-  this.output = {};
-  this.instanceID = {};
-  this.autoConfigure = function () {};
-  this.prepareDefines = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 1;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.InstancesBlock = function () {}
+BABYLON.InstancesBlock.inputsAreExclusive = false;
+BABYLON.InstancesBlock.comments = "";
+// BABYLON.InstancesBlock.name = undefined;
+BABYLON.InstancesBlock.uniqueId = 46;
+BABYLON.InstancesBlock.prototype.constructor = function () {};
+BABYLON.InstancesBlock.prototype.getClassName = function () {};
+// BABYLON.InstancesBlock.prototype.world0 = undefined;
+// BABYLON.InstancesBlock.prototype.world1 = undefined;
+// BABYLON.InstancesBlock.prototype.world2 = undefined;
+// BABYLON.InstancesBlock.prototype.world3 = undefined;
+// BABYLON.InstancesBlock.prototype.world = undefined;
+// BABYLON.InstancesBlock.prototype.output = undefined;
+// BABYLON.InstancesBlock.prototype.instanceID = undefined;
+BABYLON.InstancesBlock.prototype.autoConfigure = function () {};
+BABYLON.InstancesBlock.prototype.prepareDefines = function () {};
+// BABYLON.InstancesBlock.prototype.isUnique = undefined;
+// BABYLON.InstancesBlock.prototype.isFinalMerger = undefined;
+// BABYLON.InstancesBlock.prototype.isInput = undefined;
+// BABYLON.InstancesBlock.prototype.buildId = undefined;
+// BABYLON.InstancesBlock.prototype.target = undefined;
+// BABYLON.InstancesBlock.prototype.inputs = undefined;
+// BABYLON.InstancesBlock.prototype.outputs = undefined;
+BABYLON.InstancesBlock.prototype.getInputByName = function () {};
+BABYLON.InstancesBlock.prototype.getOutputByName = function () {};
+BABYLON.InstancesBlock.prototype.initialize = function () {};
+BABYLON.InstancesBlock.prototype.bind = function () {};
+BABYLON.InstancesBlock.prototype.registerInput = function () {};
+BABYLON.InstancesBlock.prototype.registerOutput = function () {};
+BABYLON.InstancesBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.InstancesBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.InstancesBlock.prototype.getSiblingOutput = function () {};
+BABYLON.InstancesBlock.prototype.connectTo = function () {};
+BABYLON.InstancesBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.InstancesBlock.prototype.provideFallbacks = function () {};
+BABYLON.InstancesBlock.prototype.initializeDefines = function () {};
+BABYLON.InstancesBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.InstancesBlock.prototype.isReady = function () {};
+BABYLON.InstancesBlock.prototype.build = function () {};
+BABYLON.InstancesBlock.prototype.clone = function () {};
+BABYLON.InstancesBlock.prototype.serialize = function () {};
+BABYLON.InstancesBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.MorphTargetsBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 47;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.position = {};
-  this.normal = {};
-  this.tangent = {};
-  this.uv = {};
-  this.positionOutput = {};
-  this.normalOutput = {};
-  this.tangentOutput = {};
-  this.uvOutput = {};
-  this.initialize = function () {};
-  this.autoConfigure = function () {};
-  this.prepareDefines = function () {};
-  this.bind = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 1;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.MorphTargetsBlock = function () {}
+BABYLON.MorphTargetsBlock.inputsAreExclusive = false;
+BABYLON.MorphTargetsBlock.comments = "";
+// BABYLON.MorphTargetsBlock.name = undefined;
+BABYLON.MorphTargetsBlock.uniqueId = 47;
+BABYLON.MorphTargetsBlock.prototype.constructor = function () {};
+BABYLON.MorphTargetsBlock.prototype.getClassName = function () {};
+// BABYLON.MorphTargetsBlock.prototype.position = undefined;
+// BABYLON.MorphTargetsBlock.prototype.normal = undefined;
+// BABYLON.MorphTargetsBlock.prototype.tangent = undefined;
+// BABYLON.MorphTargetsBlock.prototype.uv = undefined;
+// BABYLON.MorphTargetsBlock.prototype.positionOutput = undefined;
+// BABYLON.MorphTargetsBlock.prototype.normalOutput = undefined;
+// BABYLON.MorphTargetsBlock.prototype.tangentOutput = undefined;
+// BABYLON.MorphTargetsBlock.prototype.uvOutput = undefined;
+BABYLON.MorphTargetsBlock.prototype.initialize = function () {};
+BABYLON.MorphTargetsBlock.prototype.autoConfigure = function () {};
+BABYLON.MorphTargetsBlock.prototype.prepareDefines = function () {};
+BABYLON.MorphTargetsBlock.prototype.bind = function () {};
+BABYLON.MorphTargetsBlock.prototype.replaceRepeatableContent = function () {};
+// BABYLON.MorphTargetsBlock.prototype.isUnique = undefined;
+// BABYLON.MorphTargetsBlock.prototype.isFinalMerger = undefined;
+// BABYLON.MorphTargetsBlock.prototype.isInput = undefined;
+// BABYLON.MorphTargetsBlock.prototype.buildId = undefined;
+// BABYLON.MorphTargetsBlock.prototype.target = undefined;
+// BABYLON.MorphTargetsBlock.prototype.inputs = undefined;
+// BABYLON.MorphTargetsBlock.prototype.outputs = undefined;
+BABYLON.MorphTargetsBlock.prototype.getInputByName = function () {};
+BABYLON.MorphTargetsBlock.prototype.getOutputByName = function () {};
+BABYLON.MorphTargetsBlock.prototype.registerInput = function () {};
+BABYLON.MorphTargetsBlock.prototype.registerOutput = function () {};
+BABYLON.MorphTargetsBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.MorphTargetsBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.MorphTargetsBlock.prototype.getSiblingOutput = function () {};
+BABYLON.MorphTargetsBlock.prototype.connectTo = function () {};
+BABYLON.MorphTargetsBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.MorphTargetsBlock.prototype.provideFallbacks = function () {};
+BABYLON.MorphTargetsBlock.prototype.initializeDefines = function () {};
+BABYLON.MorphTargetsBlock.prototype.isReady = function () {};
+BABYLON.MorphTargetsBlock.prototype.build = function () {};
+BABYLON.MorphTargetsBlock.prototype.clone = function () {};
+BABYLON.MorphTargetsBlock.prototype.serialize = function () {};
+BABYLON.MorphTargetsBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.LightInformationBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 48;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.worldPosition = {};
-  this.direction = {};
-  this.color = {};
-  this.intensity = {};
-  this.bind = function () {};
-  this.prepareDefines = function () {};
-  this.serialize = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 1;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.dispose = function () {};
-};
+BABYLON.LightInformationBlock = function () {}
+BABYLON.LightInformationBlock.inputsAreExclusive = false;
+BABYLON.LightInformationBlock.comments = "";
+// BABYLON.LightInformationBlock.name = undefined;
+BABYLON.LightInformationBlock.uniqueId = 48;
+BABYLON.LightInformationBlock.prototype.constructor = function () {};
+BABYLON.LightInformationBlock.prototype.getClassName = function () {};
+// BABYLON.LightInformationBlock.prototype.worldPosition = undefined;
+// BABYLON.LightInformationBlock.prototype.direction = undefined;
+// BABYLON.LightInformationBlock.prototype.color = undefined;
+// BABYLON.LightInformationBlock.prototype.intensity = undefined;
+BABYLON.LightInformationBlock.prototype.bind = function () {};
+BABYLON.LightInformationBlock.prototype.prepareDefines = function () {};
+BABYLON.LightInformationBlock.prototype.serialize = function () {};
+// BABYLON.LightInformationBlock.prototype.isUnique = undefined;
+// BABYLON.LightInformationBlock.prototype.isFinalMerger = undefined;
+// BABYLON.LightInformationBlock.prototype.isInput = undefined;
+// BABYLON.LightInformationBlock.prototype.buildId = undefined;
+// BABYLON.LightInformationBlock.prototype.target = undefined;
+// BABYLON.LightInformationBlock.prototype.inputs = undefined;
+// BABYLON.LightInformationBlock.prototype.outputs = undefined;
+BABYLON.LightInformationBlock.prototype.getInputByName = function () {};
+BABYLON.LightInformationBlock.prototype.getOutputByName = function () {};
+BABYLON.LightInformationBlock.prototype.initialize = function () {};
+BABYLON.LightInformationBlock.prototype.registerInput = function () {};
+BABYLON.LightInformationBlock.prototype.registerOutput = function () {};
+BABYLON.LightInformationBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.LightInformationBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.LightInformationBlock.prototype.getSiblingOutput = function () {};
+BABYLON.LightInformationBlock.prototype.connectTo = function () {};
+BABYLON.LightInformationBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.LightInformationBlock.prototype.provideFallbacks = function () {};
+BABYLON.LightInformationBlock.prototype.initializeDefines = function () {};
+BABYLON.LightInformationBlock.prototype.autoConfigure = function () {};
+BABYLON.LightInformationBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.LightInformationBlock.prototype.isReady = function () {};
+BABYLON.LightInformationBlock.prototype.build = function () {};
+BABYLON.LightInformationBlock.prototype.clone = function () {};
+BABYLON.LightInformationBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.FragmentOutputBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 49;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.rgba = {};
-  this.rgb = {};
-  this.a = {};
-  this.isUnique = false;
-  this.isFinalMerger = true;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 2;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.FragmentOutputBlock = function () {}
+BABYLON.FragmentOutputBlock.inputsAreExclusive = false;
+BABYLON.FragmentOutputBlock.comments = "";
+// BABYLON.FragmentOutputBlock.name = undefined;
+BABYLON.FragmentOutputBlock.uniqueId = 49;
+BABYLON.FragmentOutputBlock.prototype.constructor = function () {};
+BABYLON.FragmentOutputBlock.prototype.getClassName = function () {};
+// BABYLON.FragmentOutputBlock.prototype.rgba = undefined;
+// BABYLON.FragmentOutputBlock.prototype.rgb = undefined;
+// BABYLON.FragmentOutputBlock.prototype.a = undefined;
+// BABYLON.FragmentOutputBlock.prototype.isUnique = undefined;
+// BABYLON.FragmentOutputBlock.prototype.isFinalMerger = undefined;
+// BABYLON.FragmentOutputBlock.prototype.isInput = undefined;
+// BABYLON.FragmentOutputBlock.prototype.buildId = undefined;
+// BABYLON.FragmentOutputBlock.prototype.target = undefined;
+// BABYLON.FragmentOutputBlock.prototype.inputs = undefined;
+// BABYLON.FragmentOutputBlock.prototype.outputs = undefined;
+BABYLON.FragmentOutputBlock.prototype.getInputByName = function () {};
+BABYLON.FragmentOutputBlock.prototype.getOutputByName = function () {};
+BABYLON.FragmentOutputBlock.prototype.initialize = function () {};
+BABYLON.FragmentOutputBlock.prototype.bind = function () {};
+BABYLON.FragmentOutputBlock.prototype.registerInput = function () {};
+BABYLON.FragmentOutputBlock.prototype.registerOutput = function () {};
+BABYLON.FragmentOutputBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.FragmentOutputBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.FragmentOutputBlock.prototype.getSiblingOutput = function () {};
+BABYLON.FragmentOutputBlock.prototype.connectTo = function () {};
+BABYLON.FragmentOutputBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.FragmentOutputBlock.prototype.provideFallbacks = function () {};
+BABYLON.FragmentOutputBlock.prototype.initializeDefines = function () {};
+BABYLON.FragmentOutputBlock.prototype.prepareDefines = function () {};
+BABYLON.FragmentOutputBlock.prototype.autoConfigure = function () {};
+BABYLON.FragmentOutputBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.FragmentOutputBlock.prototype.isReady = function () {};
+BABYLON.FragmentOutputBlock.prototype.build = function () {};
+BABYLON.FragmentOutputBlock.prototype.clone = function () {};
+BABYLON.FragmentOutputBlock.prototype.serialize = function () {};
+BABYLON.FragmentOutputBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.ImageProcessingBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 50;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.color = {};
-  this.output = {};
-  this.initialize = function () {};
-  this.isReady = function () {};
-  this.prepareDefines = function () {};
-  this.bind = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 2;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.ImageProcessingBlock = function () {}
+BABYLON.ImageProcessingBlock.inputsAreExclusive = false;
+BABYLON.ImageProcessingBlock.comments = "";
+// BABYLON.ImageProcessingBlock.name = undefined;
+BABYLON.ImageProcessingBlock.uniqueId = 50;
+BABYLON.ImageProcessingBlock.prototype.constructor = function () {};
+BABYLON.ImageProcessingBlock.prototype.getClassName = function () {};
+// BABYLON.ImageProcessingBlock.prototype.color = undefined;
+// BABYLON.ImageProcessingBlock.prototype.output = undefined;
+BABYLON.ImageProcessingBlock.prototype.initialize = function () {};
+BABYLON.ImageProcessingBlock.prototype.isReady = function () {};
+BABYLON.ImageProcessingBlock.prototype.prepareDefines = function () {};
+BABYLON.ImageProcessingBlock.prototype.bind = function () {};
+// BABYLON.ImageProcessingBlock.prototype.isUnique = undefined;
+// BABYLON.ImageProcessingBlock.prototype.isFinalMerger = undefined;
+// BABYLON.ImageProcessingBlock.prototype.isInput = undefined;
+// BABYLON.ImageProcessingBlock.prototype.buildId = undefined;
+// BABYLON.ImageProcessingBlock.prototype.target = undefined;
+// BABYLON.ImageProcessingBlock.prototype.inputs = undefined;
+// BABYLON.ImageProcessingBlock.prototype.outputs = undefined;
+BABYLON.ImageProcessingBlock.prototype.getInputByName = function () {};
+BABYLON.ImageProcessingBlock.prototype.getOutputByName = function () {};
+BABYLON.ImageProcessingBlock.prototype.registerInput = function () {};
+BABYLON.ImageProcessingBlock.prototype.registerOutput = function () {};
+BABYLON.ImageProcessingBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.ImageProcessingBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.ImageProcessingBlock.prototype.getSiblingOutput = function () {};
+BABYLON.ImageProcessingBlock.prototype.connectTo = function () {};
+BABYLON.ImageProcessingBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.ImageProcessingBlock.prototype.provideFallbacks = function () {};
+BABYLON.ImageProcessingBlock.prototype.initializeDefines = function () {};
+BABYLON.ImageProcessingBlock.prototype.autoConfigure = function () {};
+BABYLON.ImageProcessingBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.ImageProcessingBlock.prototype.build = function () {};
+BABYLON.ImageProcessingBlock.prototype.clone = function () {};
+BABYLON.ImageProcessingBlock.prototype.serialize = function () {};
+BABYLON.ImageProcessingBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.PerturbNormalBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 51;
-  this.invertX = false;
-  this.invertY = false;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.worldPosition = {};
-  this.worldNormal = {};
-  this.worldTangent = {};
-  this.uv = {};
-  this.normalMapColor = {};
-  this.strength = {};
-  this.output = {};
-  this.prepareDefines = function () {};
-  this.bind = function () {};
-  this.autoConfigure = function () {};
-  this.serialize = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 2;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.dispose = function () {};
-};
+BABYLON.PerturbNormalBlock = function () {}
+BABYLON.PerturbNormalBlock.inputsAreExclusive = false;
+BABYLON.PerturbNormalBlock.comments = "";
+// BABYLON.PerturbNormalBlock.name = undefined;
+BABYLON.PerturbNormalBlock.uniqueId = 51;
+BABYLON.PerturbNormalBlock.invertX = false;
+BABYLON.PerturbNormalBlock.invertY = false;
+BABYLON.PerturbNormalBlock.prototype.constructor = function () {};
+BABYLON.PerturbNormalBlock.prototype.getClassName = function () {};
+// BABYLON.PerturbNormalBlock.prototype.worldPosition = undefined;
+// BABYLON.PerturbNormalBlock.prototype.worldNormal = undefined;
+// BABYLON.PerturbNormalBlock.prototype.worldTangent = undefined;
+// BABYLON.PerturbNormalBlock.prototype.uv = undefined;
+// BABYLON.PerturbNormalBlock.prototype.normalMapColor = undefined;
+// BABYLON.PerturbNormalBlock.prototype.strength = undefined;
+// BABYLON.PerturbNormalBlock.prototype.output = undefined;
+BABYLON.PerturbNormalBlock.prototype.prepareDefines = function () {};
+BABYLON.PerturbNormalBlock.prototype.bind = function () {};
+BABYLON.PerturbNormalBlock.prototype.autoConfigure = function () {};
+BABYLON.PerturbNormalBlock.prototype.serialize = function () {};
+// BABYLON.PerturbNormalBlock.prototype.isUnique = undefined;
+// BABYLON.PerturbNormalBlock.prototype.isFinalMerger = undefined;
+// BABYLON.PerturbNormalBlock.prototype.isInput = undefined;
+// BABYLON.PerturbNormalBlock.prototype.buildId = undefined;
+// BABYLON.PerturbNormalBlock.prototype.target = undefined;
+// BABYLON.PerturbNormalBlock.prototype.inputs = undefined;
+// BABYLON.PerturbNormalBlock.prototype.outputs = undefined;
+BABYLON.PerturbNormalBlock.prototype.getInputByName = function () {};
+BABYLON.PerturbNormalBlock.prototype.getOutputByName = function () {};
+BABYLON.PerturbNormalBlock.prototype.initialize = function () {};
+BABYLON.PerturbNormalBlock.prototype.registerInput = function () {};
+BABYLON.PerturbNormalBlock.prototype.registerOutput = function () {};
+BABYLON.PerturbNormalBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.PerturbNormalBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.PerturbNormalBlock.prototype.getSiblingOutput = function () {};
+BABYLON.PerturbNormalBlock.prototype.connectTo = function () {};
+BABYLON.PerturbNormalBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.PerturbNormalBlock.prototype.provideFallbacks = function () {};
+BABYLON.PerturbNormalBlock.prototype.initializeDefines = function () {};
+BABYLON.PerturbNormalBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.PerturbNormalBlock.prototype.isReady = function () {};
+BABYLON.PerturbNormalBlock.prototype.build = function () {};
+BABYLON.PerturbNormalBlock.prototype.clone = function () {};
+BABYLON.PerturbNormalBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.DiscardBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 52;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.value = {};
-  this.cutoff = {};
-  this.isUnique = false;
-  this.isFinalMerger = true;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 2;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.DiscardBlock = function () {}
+BABYLON.DiscardBlock.inputsAreExclusive = false;
+BABYLON.DiscardBlock.comments = "";
+// BABYLON.DiscardBlock.name = undefined;
+BABYLON.DiscardBlock.uniqueId = 52;
+BABYLON.DiscardBlock.prototype.constructor = function () {};
+BABYLON.DiscardBlock.prototype.getClassName = function () {};
+// BABYLON.DiscardBlock.prototype.value = undefined;
+// BABYLON.DiscardBlock.prototype.cutoff = undefined;
+// BABYLON.DiscardBlock.prototype.isUnique = undefined;
+// BABYLON.DiscardBlock.prototype.isFinalMerger = undefined;
+// BABYLON.DiscardBlock.prototype.isInput = undefined;
+// BABYLON.DiscardBlock.prototype.buildId = undefined;
+// BABYLON.DiscardBlock.prototype.target = undefined;
+// BABYLON.DiscardBlock.prototype.inputs = undefined;
+// BABYLON.DiscardBlock.prototype.outputs = undefined;
+BABYLON.DiscardBlock.prototype.getInputByName = function () {};
+BABYLON.DiscardBlock.prototype.getOutputByName = function () {};
+BABYLON.DiscardBlock.prototype.initialize = function () {};
+BABYLON.DiscardBlock.prototype.bind = function () {};
+BABYLON.DiscardBlock.prototype.registerInput = function () {};
+BABYLON.DiscardBlock.prototype.registerOutput = function () {};
+BABYLON.DiscardBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.DiscardBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.DiscardBlock.prototype.getSiblingOutput = function () {};
+BABYLON.DiscardBlock.prototype.connectTo = function () {};
+BABYLON.DiscardBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.DiscardBlock.prototype.provideFallbacks = function () {};
+BABYLON.DiscardBlock.prototype.initializeDefines = function () {};
+BABYLON.DiscardBlock.prototype.prepareDefines = function () {};
+BABYLON.DiscardBlock.prototype.autoConfigure = function () {};
+BABYLON.DiscardBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.DiscardBlock.prototype.isReady = function () {};
+BABYLON.DiscardBlock.prototype.build = function () {};
+BABYLON.DiscardBlock.prototype.clone = function () {};
+BABYLON.DiscardBlock.prototype.serialize = function () {};
+BABYLON.DiscardBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.FrontFacingBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 53;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.output = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 2;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.FrontFacingBlock = function () {}
+BABYLON.FrontFacingBlock.inputsAreExclusive = false;
+BABYLON.FrontFacingBlock.comments = "";
+// BABYLON.FrontFacingBlock.name = undefined;
+BABYLON.FrontFacingBlock.uniqueId = 53;
+BABYLON.FrontFacingBlock.prototype.constructor = function () {};
+BABYLON.FrontFacingBlock.prototype.getClassName = function () {};
+// BABYLON.FrontFacingBlock.prototype.output = undefined;
+// BABYLON.FrontFacingBlock.prototype.isUnique = undefined;
+// BABYLON.FrontFacingBlock.prototype.isFinalMerger = undefined;
+// BABYLON.FrontFacingBlock.prototype.isInput = undefined;
+// BABYLON.FrontFacingBlock.prototype.buildId = undefined;
+// BABYLON.FrontFacingBlock.prototype.target = undefined;
+// BABYLON.FrontFacingBlock.prototype.inputs = undefined;
+// BABYLON.FrontFacingBlock.prototype.outputs = undefined;
+BABYLON.FrontFacingBlock.prototype.getInputByName = function () {};
+BABYLON.FrontFacingBlock.prototype.getOutputByName = function () {};
+BABYLON.FrontFacingBlock.prototype.initialize = function () {};
+BABYLON.FrontFacingBlock.prototype.bind = function () {};
+BABYLON.FrontFacingBlock.prototype.registerInput = function () {};
+BABYLON.FrontFacingBlock.prototype.registerOutput = function () {};
+BABYLON.FrontFacingBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.FrontFacingBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.FrontFacingBlock.prototype.getSiblingOutput = function () {};
+BABYLON.FrontFacingBlock.prototype.connectTo = function () {};
+BABYLON.FrontFacingBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.FrontFacingBlock.prototype.provideFallbacks = function () {};
+BABYLON.FrontFacingBlock.prototype.initializeDefines = function () {};
+BABYLON.FrontFacingBlock.prototype.prepareDefines = function () {};
+BABYLON.FrontFacingBlock.prototype.autoConfigure = function () {};
+BABYLON.FrontFacingBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.FrontFacingBlock.prototype.isReady = function () {};
+BABYLON.FrontFacingBlock.prototype.build = function () {};
+BABYLON.FrontFacingBlock.prototype.clone = function () {};
+BABYLON.FrontFacingBlock.prototype.serialize = function () {};
+BABYLON.FrontFacingBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.DerivativeBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 54;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.input = {};
-  this.dx = {};
-  this.dy = {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 2;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.DerivativeBlock = function () {}
+BABYLON.DerivativeBlock.inputsAreExclusive = false;
+BABYLON.DerivativeBlock.comments = "";
+// BABYLON.DerivativeBlock.name = undefined;
+BABYLON.DerivativeBlock.uniqueId = 54;
+BABYLON.DerivativeBlock.prototype.constructor = function () {};
+BABYLON.DerivativeBlock.prototype.getClassName = function () {};
+// BABYLON.DerivativeBlock.prototype.input = undefined;
+// BABYLON.DerivativeBlock.prototype.dx = undefined;
+// BABYLON.DerivativeBlock.prototype.dy = undefined;
+// BABYLON.DerivativeBlock.prototype.isUnique = undefined;
+// BABYLON.DerivativeBlock.prototype.isFinalMerger = undefined;
+// BABYLON.DerivativeBlock.prototype.isInput = undefined;
+// BABYLON.DerivativeBlock.prototype.buildId = undefined;
+// BABYLON.DerivativeBlock.prototype.target = undefined;
+// BABYLON.DerivativeBlock.prototype.inputs = undefined;
+// BABYLON.DerivativeBlock.prototype.outputs = undefined;
+BABYLON.DerivativeBlock.prototype.getInputByName = function () {};
+BABYLON.DerivativeBlock.prototype.getOutputByName = function () {};
+BABYLON.DerivativeBlock.prototype.initialize = function () {};
+BABYLON.DerivativeBlock.prototype.bind = function () {};
+BABYLON.DerivativeBlock.prototype.registerInput = function () {};
+BABYLON.DerivativeBlock.prototype.registerOutput = function () {};
+BABYLON.DerivativeBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.DerivativeBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.DerivativeBlock.prototype.getSiblingOutput = function () {};
+BABYLON.DerivativeBlock.prototype.connectTo = function () {};
+BABYLON.DerivativeBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.DerivativeBlock.prototype.provideFallbacks = function () {};
+BABYLON.DerivativeBlock.prototype.initializeDefines = function () {};
+BABYLON.DerivativeBlock.prototype.prepareDefines = function () {};
+BABYLON.DerivativeBlock.prototype.autoConfigure = function () {};
+BABYLON.DerivativeBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.DerivativeBlock.prototype.isReady = function () {};
+BABYLON.DerivativeBlock.prototype.build = function () {};
+BABYLON.DerivativeBlock.prototype.clone = function () {};
+BABYLON.DerivativeBlock.prototype.serialize = function () {};
+BABYLON.DerivativeBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.FogBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 55;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.worldPosition = {};
-  this.view = {};
-  this.input = {};
-  this.fogColor = {};
-  this.output = {};
-  this.autoConfigure = function () {};
-  this.prepareDefines = function () {};
-  this.bind = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = true;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 3;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.dispose = function () {};
-};
+BABYLON.FogBlock = function () {}
+BABYLON.FogBlock.inputsAreExclusive = false;
+BABYLON.FogBlock.comments = "";
+// BABYLON.FogBlock.name = undefined;
+BABYLON.FogBlock.uniqueId = 55;
+BABYLON.FogBlock.prototype.constructor = function () {};
+BABYLON.FogBlock.prototype.getClassName = function () {};
+// BABYLON.FogBlock.prototype.worldPosition = undefined;
+// BABYLON.FogBlock.prototype.view = undefined;
+// BABYLON.FogBlock.prototype.input = undefined;
+// BABYLON.FogBlock.prototype.fogColor = undefined;
+// BABYLON.FogBlock.prototype.output = undefined;
+BABYLON.FogBlock.prototype.autoConfigure = function () {};
+BABYLON.FogBlock.prototype.prepareDefines = function () {};
+BABYLON.FogBlock.prototype.bind = function () {};
+// BABYLON.FogBlock.prototype.isUnique = undefined;
+// BABYLON.FogBlock.prototype.isFinalMerger = undefined;
+// BABYLON.FogBlock.prototype.isInput = undefined;
+// BABYLON.FogBlock.prototype.buildId = undefined;
+// BABYLON.FogBlock.prototype.target = undefined;
+// BABYLON.FogBlock.prototype.inputs = undefined;
+// BABYLON.FogBlock.prototype.outputs = undefined;
+BABYLON.FogBlock.prototype.getInputByName = function () {};
+BABYLON.FogBlock.prototype.getOutputByName = function () {};
+BABYLON.FogBlock.prototype.initialize = function () {};
+BABYLON.FogBlock.prototype.registerInput = function () {};
+BABYLON.FogBlock.prototype.registerOutput = function () {};
+BABYLON.FogBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.FogBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.FogBlock.prototype.getSiblingOutput = function () {};
+BABYLON.FogBlock.prototype.connectTo = function () {};
+BABYLON.FogBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.FogBlock.prototype.provideFallbacks = function () {};
+BABYLON.FogBlock.prototype.initializeDefines = function () {};
+BABYLON.FogBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.FogBlock.prototype.isReady = function () {};
+BABYLON.FogBlock.prototype.build = function () {};
+BABYLON.FogBlock.prototype.clone = function () {};
+BABYLON.FogBlock.prototype.serialize = function () {};
+BABYLON.FogBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.LightBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 56;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.worldPosition = {};
-  this.worldNormal = {};
-  this.cameraPosition = {};
-  this.glossiness = {};
-  this.glossPower = {};
-  this.diffuseColor = {};
-  this.specularColor = {};
-  this.diffuseOutput = {};
-  this.specularOutput = {};
-  this.shadow = {};
-  this.autoConfigure = function () {};
-  this.prepareDefines = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.bind = function () {};
-  this.serialize = function () {};
-  this.isUnique = true;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 3;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.dispose = function () {};
-};
+BABYLON.LightBlock = function () {}
+BABYLON.LightBlock.inputsAreExclusive = false;
+BABYLON.LightBlock.comments = "";
+// BABYLON.LightBlock.name = undefined;
+BABYLON.LightBlock.uniqueId = 56;
+BABYLON.LightBlock.prototype.constructor = function () {};
+BABYLON.LightBlock.prototype.getClassName = function () {};
+// BABYLON.LightBlock.prototype.worldPosition = undefined;
+// BABYLON.LightBlock.prototype.worldNormal = undefined;
+// BABYLON.LightBlock.prototype.cameraPosition = undefined;
+// BABYLON.LightBlock.prototype.glossiness = undefined;
+// BABYLON.LightBlock.prototype.glossPower = undefined;
+// BABYLON.LightBlock.prototype.diffuseColor = undefined;
+// BABYLON.LightBlock.prototype.specularColor = undefined;
+// BABYLON.LightBlock.prototype.diffuseOutput = undefined;
+// BABYLON.LightBlock.prototype.specularOutput = undefined;
+// BABYLON.LightBlock.prototype.shadow = undefined;
+BABYLON.LightBlock.prototype.autoConfigure = function () {};
+BABYLON.LightBlock.prototype.prepareDefines = function () {};
+BABYLON.LightBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.LightBlock.prototype.bind = function () {};
+BABYLON.LightBlock.prototype.serialize = function () {};
+// BABYLON.LightBlock.prototype.isUnique = undefined;
+// BABYLON.LightBlock.prototype.isFinalMerger = undefined;
+// BABYLON.LightBlock.prototype.isInput = undefined;
+// BABYLON.LightBlock.prototype.buildId = undefined;
+// BABYLON.LightBlock.prototype.target = undefined;
+// BABYLON.LightBlock.prototype.inputs = undefined;
+// BABYLON.LightBlock.prototype.outputs = undefined;
+BABYLON.LightBlock.prototype.getInputByName = function () {};
+BABYLON.LightBlock.prototype.getOutputByName = function () {};
+BABYLON.LightBlock.prototype.initialize = function () {};
+BABYLON.LightBlock.prototype.registerInput = function () {};
+BABYLON.LightBlock.prototype.registerOutput = function () {};
+BABYLON.LightBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.LightBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.LightBlock.prototype.getSiblingOutput = function () {};
+BABYLON.LightBlock.prototype.connectTo = function () {};
+BABYLON.LightBlock.prototype.provideFallbacks = function () {};
+BABYLON.LightBlock.prototype.initializeDefines = function () {};
+BABYLON.LightBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.LightBlock.prototype.isReady = function () {};
+BABYLON.LightBlock.prototype.build = function () {};
+BABYLON.LightBlock.prototype.clone = function () {};
+BABYLON.LightBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.TextureBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 57;
-  this.convertToGammaSpace = false;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.uv = {};
-  this.rgba = {};
-  this.rgb = {};
-  this.r = {};
-  this.g = {};
-  this.b = {};
-  this.a = {};
-  this.target = 3;
-  this.autoConfigure = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.isReady = function () {};
-  this.bind = function () {};
-  this.serialize = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.dispose = function () {};
-};
+BABYLON.TextureBlock = function () {}
+BABYLON.TextureBlock.inputsAreExclusive = false;
+BABYLON.TextureBlock.comments = "";
+// BABYLON.TextureBlock.name = undefined;
+BABYLON.TextureBlock.uniqueId = 57;
+BABYLON.TextureBlock.convertToGammaSpace = false;
+BABYLON.TextureBlock.prototype.constructor = function () {};
+BABYLON.TextureBlock.prototype.getClassName = function () {};
+// BABYLON.TextureBlock.prototype.uv = undefined;
+// BABYLON.TextureBlock.prototype.rgba = undefined;
+// BABYLON.TextureBlock.prototype.rgb = undefined;
+// BABYLON.TextureBlock.prototype.r = undefined;
+// BABYLON.TextureBlock.prototype.g = undefined;
+// BABYLON.TextureBlock.prototype.b = undefined;
+// BABYLON.TextureBlock.prototype.a = undefined;
+// BABYLON.TextureBlock.prototype.target = undefined;
+BABYLON.TextureBlock.prototype.autoConfigure = function () {};
+BABYLON.TextureBlock.prototype.initializeDefines = function () {};
+BABYLON.TextureBlock.prototype.prepareDefines = function () {};
+BABYLON.TextureBlock.prototype.isReady = function () {};
+BABYLON.TextureBlock.prototype.bind = function () {};
+BABYLON.TextureBlock.prototype.serialize = function () {};
+// BABYLON.TextureBlock.prototype.isUnique = undefined;
+// BABYLON.TextureBlock.prototype.isFinalMerger = undefined;
+// BABYLON.TextureBlock.prototype.isInput = undefined;
+// BABYLON.TextureBlock.prototype.buildId = undefined;
+// BABYLON.TextureBlock.prototype.inputs = undefined;
+// BABYLON.TextureBlock.prototype.outputs = undefined;
+BABYLON.TextureBlock.prototype.getInputByName = function () {};
+BABYLON.TextureBlock.prototype.getOutputByName = function () {};
+BABYLON.TextureBlock.prototype.initialize = function () {};
+BABYLON.TextureBlock.prototype.registerInput = function () {};
+BABYLON.TextureBlock.prototype.registerOutput = function () {};
+BABYLON.TextureBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.TextureBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.TextureBlock.prototype.getSiblingOutput = function () {};
+BABYLON.TextureBlock.prototype.connectTo = function () {};
+BABYLON.TextureBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.TextureBlock.prototype.provideFallbacks = function () {};
+BABYLON.TextureBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.TextureBlock.prototype.build = function () {};
+BABYLON.TextureBlock.prototype.clone = function () {};
+BABYLON.TextureBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.ReflectionTextureBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 58;
-  this.constructor = function () {};
-  this.getClassName = function () {};
-  this.position = {};
-  this.worldPosition = {};
-  this.worldNormal = {};
-  this.world = {};
-  this.cameraPosition = {};
-  this.view = {};
-  this.rgb = {};
-  this.r = {};
-  this.g = {};
-  this.b = {};
-  this.autoConfigure = function () {};
-  this.prepareDefines = function () {};
-  this.isReady = function () {};
-  this.bind = function () {};
-  this.serialize = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = false;
-  // this.buildId = undefined;
-  this.target = 3;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.initialize = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-  this.dispose = function () {};
-};
+BABYLON.ReflectionTextureBlock = function () {}
+BABYLON.ReflectionTextureBlock.inputsAreExclusive = false;
+BABYLON.ReflectionTextureBlock.comments = "";
+// BABYLON.ReflectionTextureBlock.name = undefined;
+BABYLON.ReflectionTextureBlock.uniqueId = 58;
+BABYLON.ReflectionTextureBlock.prototype.constructor = function () {};
+BABYLON.ReflectionTextureBlock.prototype.getClassName = function () {};
+// BABYLON.ReflectionTextureBlock.prototype.position = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.worldPosition = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.worldNormal = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.world = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.cameraPosition = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.view = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.rgb = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.r = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.g = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.b = undefined;
+BABYLON.ReflectionTextureBlock.prototype.autoConfigure = function () {};
+BABYLON.ReflectionTextureBlock.prototype.prepareDefines = function () {};
+BABYLON.ReflectionTextureBlock.prototype.isReady = function () {};
+BABYLON.ReflectionTextureBlock.prototype.bind = function () {};
+BABYLON.ReflectionTextureBlock.prototype.serialize = function () {};
+// BABYLON.ReflectionTextureBlock.prototype.isUnique = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.isFinalMerger = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.isInput = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.buildId = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.target = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.inputs = undefined;
+// BABYLON.ReflectionTextureBlock.prototype.outputs = undefined;
+BABYLON.ReflectionTextureBlock.prototype.getInputByName = function () {};
+BABYLON.ReflectionTextureBlock.prototype.getOutputByName = function () {};
+BABYLON.ReflectionTextureBlock.prototype.initialize = function () {};
+BABYLON.ReflectionTextureBlock.prototype.registerInput = function () {};
+BABYLON.ReflectionTextureBlock.prototype.registerOutput = function () {};
+BABYLON.ReflectionTextureBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.ReflectionTextureBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.ReflectionTextureBlock.prototype.getSiblingOutput = function () {};
+BABYLON.ReflectionTextureBlock.prototype.connectTo = function () {};
+BABYLON.ReflectionTextureBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.ReflectionTextureBlock.prototype.provideFallbacks = function () {};
+BABYLON.ReflectionTextureBlock.prototype.initializeDefines = function () {};
+BABYLON.ReflectionTextureBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.ReflectionTextureBlock.prototype.build = function () {};
+BABYLON.ReflectionTextureBlock.prototype.clone = function () {};
+BABYLON.ReflectionTextureBlock.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.InputBlock = function () {
-  this.inputsAreExclusive = false;
-  this.comments = "";
-  // this.name = undefined;
-  this.uniqueId = 59;
-  this.min = 0;
-  this.max = 0;
-  this.isBoolean = false;
-  this.matrixMode = 0;
-  this.visibleInInspector = false;
-  this.isConstant = false;
-  this.groupInInspector = "";
-  this.onValueChangedObservable = {};
-  this.constructor = function () {};
-  this.type = 1024;
-  this.output = {};
-  this.setAsAttribute = function () {};
-  this.setAsSystemValue = function () {};
-  // this.value = undefined;
-  // this.valueCallback = undefined;
-  // this.associatedVariableName = undefined;
-  this.animationType = 0;
-  this.isUndefined = true;
-  this.isUniform = false;
-  this.isAttribute = false;
-  this.isVarying = false;
-  this.isSystemValue = false;
-  this.systemValue = null;
-  this.getClassName = function () {};
-  this.animate = function () {};
-  this.initialize = function () {};
-  this.setDefaultValue = function () {};
-  this.dispose = function () {};
-  this.serialize = function () {};
-  this.isUnique = false;
-  this.isFinalMerger = false;
-  this.isInput = true;
-  // this.buildId = undefined;
-  this.target = 1;
-  this.inputs = {};
-  this.outputs = {};
-  this.getInputByName = function () {};
-  this.getOutputByName = function () {};
-  this.bind = function () {};
-  this.registerInput = function () {};
-  this.registerOutput = function () {};
-  this.getFirstAvailableInput = function () {};
-  this.getFirstAvailableOutput = function () {};
-  this.getSiblingOutput = function () {};
-  this.connectTo = function () {};
-  this.updateUniformsAndSamples = function () {};
-  this.provideFallbacks = function () {};
-  this.initializeDefines = function () {};
-  this.prepareDefines = function () {};
-  this.autoConfigure = function () {};
-  this.replaceRepeatableContent = function () {};
-  this.isReady = function () {};
-  this.build = function () {};
-  this.clone = function () {};
-};
+BABYLON.InputBlock = function () {}
+BABYLON.InputBlock.inputsAreExclusive = false;
+BABYLON.InputBlock.comments = "";
+// BABYLON.InputBlock.name = undefined;
+BABYLON.InputBlock.uniqueId = 59;
+BABYLON.InputBlock.min = 0;
+BABYLON.InputBlock.max = 0;
+BABYLON.InputBlock.isBoolean = false;
+BABYLON.InputBlock.matrixMode = 0;
+BABYLON.InputBlock.visibleInInspector = false;
+BABYLON.InputBlock.isConstant = false;
+BABYLON.InputBlock.groupInInspector = "";
+BABYLON.InputBlock.onValueChangedObservable = {};
+BABYLON.InputBlock.prototype.constructor = function () {};
+// BABYLON.InputBlock.prototype.type = undefined;
+// BABYLON.InputBlock.prototype.output = undefined;
+BABYLON.InputBlock.prototype.setAsAttribute = function () {};
+BABYLON.InputBlock.prototype.setAsSystemValue = function () {};
+// BABYLON.InputBlock.prototype.value = undefined;
+// BABYLON.InputBlock.prototype.valueCallback = undefined;
+// BABYLON.InputBlock.prototype.associatedVariableName = undefined;
+// BABYLON.InputBlock.prototype.animationType = undefined;
+BABYLON.InputBlock.prototype.isUndefined = false;
+BABYLON.InputBlock.prototype.isUniform = false;
+BABYLON.InputBlock.prototype.isAttribute = false;
+BABYLON.InputBlock.prototype.isVarying = false;
+BABYLON.InputBlock.prototype.isSystemValue = false;
+// BABYLON.InputBlock.prototype.systemValue = undefined;
+BABYLON.InputBlock.prototype.getClassName = function () {};
+BABYLON.InputBlock.prototype.animate = function () {};
+BABYLON.InputBlock.prototype.initialize = function () {};
+BABYLON.InputBlock.prototype.setDefaultValue = function () {};
+BABYLON.InputBlock.prototype.dispose = function () {};
+BABYLON.InputBlock.prototype.serialize = function () {};
+// BABYLON.InputBlock.prototype.isUnique = undefined;
+// BABYLON.InputBlock.prototype.isFinalMerger = undefined;
+// BABYLON.InputBlock.prototype.isInput = undefined;
+// BABYLON.InputBlock.prototype.buildId = undefined;
+// BABYLON.InputBlock.prototype.target = undefined;
+// BABYLON.InputBlock.prototype.inputs = undefined;
+// BABYLON.InputBlock.prototype.outputs = undefined;
+BABYLON.InputBlock.prototype.getInputByName = function () {};
+BABYLON.InputBlock.prototype.getOutputByName = function () {};
+BABYLON.InputBlock.prototype.bind = function () {};
+BABYLON.InputBlock.prototype.registerInput = function () {};
+BABYLON.InputBlock.prototype.registerOutput = function () {};
+BABYLON.InputBlock.prototype.getFirstAvailableInput = function () {};
+BABYLON.InputBlock.prototype.getFirstAvailableOutput = function () {};
+BABYLON.InputBlock.prototype.getSiblingOutput = function () {};
+BABYLON.InputBlock.prototype.connectTo = function () {};
+BABYLON.InputBlock.prototype.updateUniformsAndSamples = function () {};
+BABYLON.InputBlock.prototype.provideFallbacks = function () {};
+BABYLON.InputBlock.prototype.initializeDefines = function () {};
+BABYLON.InputBlock.prototype.prepareDefines = function () {};
+BABYLON.InputBlock.prototype.autoConfigure = function () {};
+BABYLON.InputBlock.prototype.replaceRepeatableContent = function () {};
+BABYLON.InputBlock.prototype.isReady = function () {};
+BABYLON.InputBlock.prototype.build = function () {};
+BABYLON.InputBlock.prototype.clone = function () {};
+
 
 BABYLON.AnimatedInputBlockTypes = {}
 
 /** @constructor */
-BABYLON.Scalar = function () {
-  this.WithinEpsilon = function () {};
-  this.ToHex = function () {};
-  this.Sign = function () {};
-  this.Clamp = function () {};
-  this.Log2 = function () {};
-  this.Repeat = function () {};
-  this.Normalize = function () {};
-  this.Denormalize = function () {};
-  this.DeltaAngle = function () {};
-  this.PingPong = function () {};
-  this.SmoothStep = function () {};
-  this.MoveTowards = function () {};
-  this.MoveTowardsAngle = function () {};
-  this.Lerp = function () {};
-  this.LerpAngle = function () {};
-  this.InverseLerp = function () {};
-  this.Hermite = function () {};
-  this.RandomRange = function () {};
-  this.RangeToPercent = function () {};
-  this.PercentToRange = function () {};
-  this.NormalizeRadians = function () {};
-  this.TwoPi = 6.283185307179586;
-};
+BABYLON.Scalar = function () {}
+
 
 BABYLON.Space = {}
 
 /** @constructor */
-BABYLON.Axis = function () {
-  this.X = {};
-  this.Y = {};
-  this.Z = {};
-};
+BABYLON.Axis = function () {}
+
 
 /** @constructor */
-BABYLON.Color3 = function () {
-  this.r = 0;
-  this.g = 0;
-  this.b = 0;
-  this.toString = function () {};
-  this.getClassName = function () {};
-  this.getHashCode = function () {};
-  this.toArray = function () {};
-  this.toColor4 = function () {};
-  this.asArray = function () {};
-  this.toLuminance = function () {};
-  this.multiply = function () {};
-  this.multiplyToRef = function () {};
-  this.equals = function () {};
-  this.equalsFloats = function () {};
-  this.scale = function () {};
-  this.scaleToRef = function () {};
-  this.scaleAndAddToRef = function () {};
-  this.clampToRef = function () {};
-  this.add = function () {};
-  this.addToRef = function () {};
-  this.subtract = function () {};
-  this.subtractToRef = function () {};
-  this.clone = function () {};
-  this.copyFrom = function () {};
-  this.copyFromFloats = function () {};
-  this.set = function () {};
-  this.toHexString = function () {};
-  this.toLinearSpace = function () {};
-  this.toHSV = function () {};
-  this.toHSVToRef = function () {};
-  this.toLinearSpaceToRef = function () {};
-  this.toGammaSpace = function () {};
-  this.toGammaSpaceToRef = function () {};
-  this.HSVtoRGBToRef = function () {};
-  this.FromHexString = function () {};
-  this.FromArray = function () {};
-  this.FromInts = function () {};
-  this.Lerp = function () {};
-  this.LerpToRef = function () {};
-  this.Red = function () {};
-  this.Green = function () {};
-  this.Blue = function () {};
-  this.Black = function () {};
-  this.BlackReadOnly = {};
-  this.White = function () {};
-  this.Purple = function () {};
-  this.Magenta = function () {};
-  this.Yellow = function () {};
-  this.Gray = function () {};
-  this.Teal = function () {};
-  this.Random = function () {};
-};
+BABYLON.Color3 = function () {}
+BABYLON.Color3.r = 0;
+BABYLON.Color3.g = 0;
+BABYLON.Color3.b = 0;
+BABYLON.Color3.prototype.toString = function () {};
+BABYLON.Color3.prototype.getClassName = function () {};
+BABYLON.Color3.prototype.getHashCode = function () {};
+BABYLON.Color3.prototype.toArray = function () {};
+BABYLON.Color3.prototype.toColor4 = function () {};
+BABYLON.Color3.prototype.asArray = function () {};
+BABYLON.Color3.prototype.toLuminance = function () {};
+BABYLON.Color3.prototype.multiply = function () {};
+BABYLON.Color3.prototype.multiplyToRef = function () {};
+BABYLON.Color3.prototype.equals = function () {};
+BABYLON.Color3.prototype.equalsFloats = function () {};
+BABYLON.Color3.prototype.scale = function () {};
+BABYLON.Color3.prototype.scaleToRef = function () {};
+BABYLON.Color3.prototype.scaleAndAddToRef = function () {};
+BABYLON.Color3.prototype.clampToRef = function () {};
+BABYLON.Color3.prototype.add = function () {};
+BABYLON.Color3.prototype.addToRef = function () {};
+BABYLON.Color3.prototype.subtract = function () {};
+BABYLON.Color3.prototype.subtractToRef = function () {};
+BABYLON.Color3.prototype.clone = function () {};
+BABYLON.Color3.prototype.copyFrom = function () {};
+BABYLON.Color3.prototype.copyFromFloats = function () {};
+BABYLON.Color3.prototype.set = function () {};
+BABYLON.Color3.prototype.toHexString = function () {};
+BABYLON.Color3.prototype.toLinearSpace = function () {};
+BABYLON.Color3.prototype.toHSV = function () {};
+BABYLON.Color3.prototype.toHSVToRef = function () {};
+BABYLON.Color3.prototype.toLinearSpaceToRef = function () {};
+BABYLON.Color3.prototype.toGammaSpace = function () {};
+BABYLON.Color3.prototype.toGammaSpaceToRef = function () {};
+
 
 /** @constructor */
-BABYLON.Color4 = function () {
-  this.r = 0;
-  this.g = 0;
-  this.b = 0;
-  this.a = 1;
-  this.addInPlace = function () {};
-  this.asArray = function () {};
-  this.toArray = function () {};
-  this.equals = function () {};
-  this.add = function () {};
-  this.subtract = function () {};
-  this.subtractToRef = function () {};
-  this.scale = function () {};
-  this.scaleToRef = function () {};
-  this.scaleAndAddToRef = function () {};
-  this.clampToRef = function () {};
-  this.multiply = function () {};
-  this.multiplyToRef = function () {};
-  this.toString = function () {};
-  this.getClassName = function () {};
-  this.getHashCode = function () {};
-  this.clone = function () {};
-  this.copyFrom = function () {};
-  this.copyFromFloats = function () {};
-  this.set = function () {};
-  this.toHexString = function () {};
-  this.toLinearSpace = function () {};
-  this.toLinearSpaceToRef = function () {};
-  this.toGammaSpace = function () {};
-  this.toGammaSpaceToRef = function () {};
-  this.FromHexString = function () {};
-  this.Lerp = function () {};
-  this.LerpToRef = function () {};
-  this.FromColor3 = function () {};
-  this.FromArray = function () {};
-  this.FromInts = function () {};
-  this.CheckColors4 = function () {};
-};
+BABYLON.Color4 = function () {}
+BABYLON.Color4.r = 0;
+BABYLON.Color4.g = 0;
+BABYLON.Color4.b = 0;
+BABYLON.Color4.a = 1;
+BABYLON.Color4.prototype.addInPlace = function () {};
+BABYLON.Color4.prototype.asArray = function () {};
+BABYLON.Color4.prototype.toArray = function () {};
+BABYLON.Color4.prototype.equals = function () {};
+BABYLON.Color4.prototype.add = function () {};
+BABYLON.Color4.prototype.subtract = function () {};
+BABYLON.Color4.prototype.subtractToRef = function () {};
+BABYLON.Color4.prototype.scale = function () {};
+BABYLON.Color4.prototype.scaleToRef = function () {};
+BABYLON.Color4.prototype.scaleAndAddToRef = function () {};
+BABYLON.Color4.prototype.clampToRef = function () {};
+BABYLON.Color4.prototype.multiply = function () {};
+BABYLON.Color4.prototype.multiplyToRef = function () {};
+BABYLON.Color4.prototype.toString = function () {};
+BABYLON.Color4.prototype.getClassName = function () {};
+BABYLON.Color4.prototype.getHashCode = function () {};
+BABYLON.Color4.prototype.clone = function () {};
+BABYLON.Color4.prototype.copyFrom = function () {};
+BABYLON.Color4.prototype.copyFromFloats = function () {};
+BABYLON.Color4.prototype.set = function () {};
+BABYLON.Color4.prototype.toHexString = function () {};
+BABYLON.Color4.prototype.toLinearSpace = function () {};
+BABYLON.Color4.prototype.toLinearSpaceToRef = function () {};
+BABYLON.Color4.prototype.toGammaSpace = function () {};
+BABYLON.Color4.prototype.toGammaSpaceToRef = function () {};
+
 
 /** @constructor */
-BABYLON.TmpColors = function () {
-  this.Color3 = {};
-  this.Color4 = {};
-};
+BABYLON.TmpColors = function () {}
+
 
 BABYLON.ToGammaSpace = 0.45454545454545453;
 
@@ -8032,3972 +7649,3400 @@ BABYLON.ToLinearSpace = 2.2;
 BABYLON.Epsilon = 0.001;
 
 /** @constructor */
-BABYLON.Frustum = function () {
-  this.GetPlanes = function () {};
-  this.GetNearPlaneToRef = function () {};
-  this.GetFarPlaneToRef = function () {};
-  this.GetLeftPlaneToRef = function () {};
-  this.GetRightPlaneToRef = function () {};
-  this.GetTopPlaneToRef = function () {};
-  this.GetBottomPlaneToRef = function () {};
-  this.GetPlanesToRef = function () {};
-};
+BABYLON.Frustum = function () {}
+
 
 /** @constructor */
-BABYLON.Plane = function () {
-  this.normal = {};
-  // this.d = undefined;
-  this.asArray = function () {};
-  this.clone = function () {};
-  this.getClassName = function () {};
-  this.getHashCode = function () {};
-  this.normalize = function () {};
-  this.transform = function () {};
-  this.dotCoordinate = function () {};
-  this.copyFromPoints = function () {};
-  this.isFrontFacingTo = function () {};
-  this.signedDistanceTo = function () {};
-  this.FromArray = function () {};
-  this.FromPoints = function () {};
-  this.FromPositionAndNormal = function () {};
-  this.SignedDistanceToPlaneFromPositionAndNormal = function () {};
-};
+BABYLON.Plane = function () {}
+BABYLON.Plane.normal = {};
+// BABYLON.Plane.d = undefined;
+BABYLON.Plane.prototype.asArray = function () {};
+BABYLON.Plane.prototype.clone = function () {};
+BABYLON.Plane.prototype.getClassName = function () {};
+BABYLON.Plane.prototype.getHashCode = function () {};
+BABYLON.Plane.prototype.normalize = function () {};
+BABYLON.Plane.prototype.transform = function () {};
+BABYLON.Plane.prototype.dotCoordinate = function () {};
+BABYLON.Plane.prototype.copyFromPoints = function () {};
+BABYLON.Plane.prototype.isFrontFacingTo = function () {};
+BABYLON.Plane.prototype.signedDistanceTo = function () {};
+
 
 /** @constructor */
-BABYLON.Size = function () {
-  // this.width = undefined;
-  // this.height = undefined;
-  this.toString = function () {};
-  this.getClassName = function () {};
-  this.getHashCode = function () {};
-  this.copyFrom = function () {};
-  this.copyFromFloats = function () {};
-  this.set = function () {};
-  this.multiplyByFloats = function () {};
-  this.clone = function () {};
-  this.equals = function () {};
-  this.surface = NaN;
-  this.add = function () {};
-  this.subtract = function () {};
-  this.Zero = function () {};
-  this.Lerp = function () {};
-};
+BABYLON.Size = function () {}
+// BABYLON.Size.width = undefined;
+// BABYLON.Size.height = undefined;
+BABYLON.Size.prototype.toString = function () {};
+BABYLON.Size.prototype.getClassName = function () {};
+BABYLON.Size.prototype.getHashCode = function () {};
+BABYLON.Size.prototype.copyFrom = function () {};
+BABYLON.Size.prototype.copyFromFloats = function () {};
+BABYLON.Size.prototype.set = function () {};
+BABYLON.Size.prototype.multiplyByFloats = function () {};
+BABYLON.Size.prototype.clone = function () {};
+BABYLON.Size.prototype.equals = function () {};
+BABYLON.Size.prototype.surface = NaN;
+BABYLON.Size.prototype.add = function () {};
+BABYLON.Size.prototype.subtract = function () {};
+
 
 /** @constructor */
-BABYLON.Vector2 = function () {
-  this.x = 0;
-  this.y = 0;
-  this.toString = function () {};
-  this.getClassName = function () {};
-  this.getHashCode = function () {};
-  this.toArray = function () {};
-  this.asArray = function () {};
-  this.copyFrom = function () {};
-  this.copyFromFloats = function () {};
-  this.set = function () {};
-  this.add = function () {};
-  this.addToRef = function () {};
-  this.addInPlace = function () {};
-  this.addVector3 = function () {};
-  this.subtract = function () {};
-  this.subtractToRef = function () {};
-  this.subtractInPlace = function () {};
-  this.multiplyInPlace = function () {};
-  this.multiply = function () {};
-  this.multiplyToRef = function () {};
-  this.multiplyByFloats = function () {};
-  this.divide = function () {};
-  this.divideToRef = function () {};
-  this.divideInPlace = function () {};
-  this.negate = function () {};
-  this.negateInPlace = function () {};
-  this.negateToRef = function () {};
-  this.scaleInPlace = function () {};
-  this.scale = function () {};
-  this.scaleToRef = function () {};
-  this.scaleAndAddToRef = function () {};
-  this.equals = function () {};
-  this.equalsWithEpsilon = function () {};
-  this.floor = function () {};
-  this.fract = function () {};
-  this.length = function () {};
-  this.lengthSquared = function () {};
-  this.normalize = function () {};
-  this.clone = function () {};
-  this.Zero = function () {};
-  this.One = function () {};
-  this.FromArray = function () {};
-  this.FromArrayToRef = function () {};
-  this.CatmullRom = function () {};
-  this.Clamp = function () {};
-  this.Hermite = function () {};
-  this.Lerp = function () {};
-  this.Dot = function () {};
-  this.Normalize = function () {};
-  this.Minimize = function () {};
-  this.Maximize = function () {};
-  this.Transform = function () {};
-  this.TransformToRef = function () {};
-  this.PointInTriangle = function () {};
-  this.Distance = function () {};
-  this.DistanceSquared = function () {};
-  this.Center = function () {};
-  this.DistanceOfPointFromSegment = function () {};
-};
+BABYLON.Vector2 = function () {}
+BABYLON.Vector2.x = 0;
+BABYLON.Vector2.y = 0;
+BABYLON.Vector2.prototype.toString = function () {};
+BABYLON.Vector2.prototype.getClassName = function () {};
+BABYLON.Vector2.prototype.getHashCode = function () {};
+BABYLON.Vector2.prototype.toArray = function () {};
+BABYLON.Vector2.prototype.asArray = function () {};
+BABYLON.Vector2.prototype.copyFrom = function () {};
+BABYLON.Vector2.prototype.copyFromFloats = function () {};
+BABYLON.Vector2.prototype.set = function () {};
+BABYLON.Vector2.prototype.add = function () {};
+BABYLON.Vector2.prototype.addToRef = function () {};
+BABYLON.Vector2.prototype.addInPlace = function () {};
+BABYLON.Vector2.prototype.addVector3 = function () {};
+BABYLON.Vector2.prototype.subtract = function () {};
+BABYLON.Vector2.prototype.subtractToRef = function () {};
+BABYLON.Vector2.prototype.subtractInPlace = function () {};
+BABYLON.Vector2.prototype.multiplyInPlace = function () {};
+BABYLON.Vector2.prototype.multiply = function () {};
+BABYLON.Vector2.prototype.multiplyToRef = function () {};
+BABYLON.Vector2.prototype.multiplyByFloats = function () {};
+BABYLON.Vector2.prototype.divide = function () {};
+BABYLON.Vector2.prototype.divideToRef = function () {};
+BABYLON.Vector2.prototype.divideInPlace = function () {};
+BABYLON.Vector2.prototype.negate = function () {};
+BABYLON.Vector2.prototype.negateInPlace = function () {};
+BABYLON.Vector2.prototype.negateToRef = function () {};
+BABYLON.Vector2.prototype.scaleInPlace = function () {};
+BABYLON.Vector2.prototype.scale = function () {};
+BABYLON.Vector2.prototype.scaleToRef = function () {};
+BABYLON.Vector2.prototype.scaleAndAddToRef = function () {};
+BABYLON.Vector2.prototype.equals = function () {};
+BABYLON.Vector2.prototype.equalsWithEpsilon = function () {};
+BABYLON.Vector2.prototype.floor = function () {};
+BABYLON.Vector2.prototype.fract = function () {};
+BABYLON.Vector2.prototype.length = function () {};
+BABYLON.Vector2.prototype.lengthSquared = function () {};
+BABYLON.Vector2.prototype.normalize = function () {};
+BABYLON.Vector2.prototype.clone = function () {};
+
 
 /** @constructor */
-BABYLON.Vector3 = function () {
-  this.x = 0;
-  this.y = 0;
-  this.z = 0;
-  this.toString = function () {};
-  this.getClassName = function () {};
-  this.getHashCode = function () {};
-  this.asArray = function () {};
-  this.toArray = function () {};
-  this.toQuaternion = function () {};
-  this.addInPlace = function () {};
-  this.addInPlaceFromFloats = function () {};
-  this.add = function () {};
-  this.addToRef = function () {};
-  this.subtractInPlace = function () {};
-  this.subtract = function () {};
-  this.subtractToRef = function () {};
-  this.subtractFromFloats = function () {};
-  this.subtractFromFloatsToRef = function () {};
-  this.negate = function () {};
-  this.negateInPlace = function () {};
-  this.negateToRef = function () {};
-  this.scaleInPlace = function () {};
-  this.scale = function () {};
-  this.scaleToRef = function () {};
-  this.scaleAndAddToRef = function () {};
-  this.equals = function () {};
-  this.equalsWithEpsilon = function () {};
-  this.equalsToFloats = function () {};
-  this.multiplyInPlace = function () {};
-  this.multiply = function () {};
-  this.multiplyToRef = function () {};
-  this.multiplyByFloats = function () {};
-  this.divide = function () {};
-  this.divideToRef = function () {};
-  this.divideInPlace = function () {};
-  this.minimizeInPlace = function () {};
-  this.maximizeInPlace = function () {};
-  this.minimizeInPlaceFromFloats = function () {};
-  this.maximizeInPlaceFromFloats = function () {};
-  this.isNonUniformWithinEpsilon = function () {};
-  this.isNonUniform = false;
-  this.floor = function () {};
-  this.fract = function () {};
-  this.length = function () {};
-  this.lengthSquared = function () {};
-  this.normalize = function () {};
-  this.reorderInPlace = function () {};
-  this.rotateByQuaternionToRef = function () {};
-  this.rotateByQuaternionAroundPointToRef = function () {};
-  this.cross = function () {};
-  this.normalizeFromLength = function () {};
-  this.normalizeToNew = function () {};
-  this.normalizeToRef = function () {};
-  this.clone = function () {};
-  this.copyFrom = function () {};
-  this.copyFromFloats = function () {};
-  this.set = function () {};
-  this.setAll = function () {};
-  this.GetClipFactor = function () {};
-  this.GetAngleBetweenVectors = function () {};
-  this.FromArray = function () {};
-  this.FromFloatArray = function () {};
-  this.FromArrayToRef = function () {};
-  this.FromFloatArrayToRef = function () {};
-  this.FromFloatsToRef = function () {};
-  this.Zero = function () {};
-  this.One = function () {};
-  this.Up = function () {};
-  this.UpReadOnly = {};
-  this.ZeroReadOnly = {};
-  this.Down = function () {};
-  this.Forward = function () {};
-  this.Backward = function () {};
-  this.Right = function () {};
-  this.Left = function () {};
-  this.TransformCoordinates = function () {};
-  this.TransformCoordinatesToRef = function () {};
-  this.TransformCoordinatesFromFloatsToRef = function () {};
-  this.TransformNormal = function () {};
-  this.TransformNormalToRef = function () {};
-  this.TransformNormalFromFloatsToRef = function () {};
-  this.CatmullRom = function () {};
-  this.Clamp = function () {};
-  this.ClampToRef = function () {};
-  this.CheckExtends = function () {};
-  this.Hermite = function () {};
-  this.Lerp = function () {};
-  this.LerpToRef = function () {};
-  this.Dot = function () {};
-  this.Cross = function () {};
-  this.CrossToRef = function () {};
-  this.Normalize = function () {};
-  this.NormalizeToRef = function () {};
-  this.Project = function () {};
-  this.UnprojectFromTransform = function () {};
-  this.Unproject = function () {};
-  this.UnprojectToRef = function () {};
-  this.UnprojectFloatsToRef = function () {};
-  this.Minimize = function () {};
-  this.Maximize = function () {};
-  this.Distance = function () {};
-  this.DistanceSquared = function () {};
-  this.Center = function () {};
-  this.RotationFromAxis = function () {};
-  this.RotationFromAxisToRef = function () {};
-};
+BABYLON.Vector3 = function () {}
+BABYLON.Vector3.x = 0;
+BABYLON.Vector3.y = 0;
+BABYLON.Vector3.z = 0;
+BABYLON.Vector3.prototype.toString = function () {};
+BABYLON.Vector3.prototype.getClassName = function () {};
+BABYLON.Vector3.prototype.getHashCode = function () {};
+BABYLON.Vector3.prototype.asArray = function () {};
+BABYLON.Vector3.prototype.toArray = function () {};
+BABYLON.Vector3.prototype.toQuaternion = function () {};
+BABYLON.Vector3.prototype.addInPlace = function () {};
+BABYLON.Vector3.prototype.addInPlaceFromFloats = function () {};
+BABYLON.Vector3.prototype.add = function () {};
+BABYLON.Vector3.prototype.addToRef = function () {};
+BABYLON.Vector3.prototype.subtractInPlace = function () {};
+BABYLON.Vector3.prototype.subtract = function () {};
+BABYLON.Vector3.prototype.subtractToRef = function () {};
+BABYLON.Vector3.prototype.subtractFromFloats = function () {};
+BABYLON.Vector3.prototype.subtractFromFloatsToRef = function () {};
+BABYLON.Vector3.prototype.negate = function () {};
+BABYLON.Vector3.prototype.negateInPlace = function () {};
+BABYLON.Vector3.prototype.negateToRef = function () {};
+BABYLON.Vector3.prototype.scaleInPlace = function () {};
+BABYLON.Vector3.prototype.scale = function () {};
+BABYLON.Vector3.prototype.scaleToRef = function () {};
+BABYLON.Vector3.prototype.scaleAndAddToRef = function () {};
+BABYLON.Vector3.prototype.equals = function () {};
+BABYLON.Vector3.prototype.equalsWithEpsilon = function () {};
+BABYLON.Vector3.prototype.equalsToFloats = function () {};
+BABYLON.Vector3.prototype.multiplyInPlace = function () {};
+BABYLON.Vector3.prototype.multiply = function () {};
+BABYLON.Vector3.prototype.multiplyToRef = function () {};
+BABYLON.Vector3.prototype.multiplyByFloats = function () {};
+BABYLON.Vector3.prototype.divide = function () {};
+BABYLON.Vector3.prototype.divideToRef = function () {};
+BABYLON.Vector3.prototype.divideInPlace = function () {};
+BABYLON.Vector3.prototype.minimizeInPlace = function () {};
+BABYLON.Vector3.prototype.maximizeInPlace = function () {};
+BABYLON.Vector3.prototype.minimizeInPlaceFromFloats = function () {};
+BABYLON.Vector3.prototype.maximizeInPlaceFromFloats = function () {};
+BABYLON.Vector3.prototype.isNonUniformWithinEpsilon = function () {};
+BABYLON.Vector3.prototype.isNonUniform = true;
+BABYLON.Vector3.prototype.floor = function () {};
+BABYLON.Vector3.prototype.fract = function () {};
+BABYLON.Vector3.prototype.length = function () {};
+BABYLON.Vector3.prototype.lengthSquared = function () {};
+BABYLON.Vector3.prototype.normalize = function () {};
+BABYLON.Vector3.prototype.reorderInPlace = function () {};
+BABYLON.Vector3.prototype.rotateByQuaternionToRef = function () {};
+BABYLON.Vector3.prototype.rotateByQuaternionAroundPointToRef = function () {};
+BABYLON.Vector3.prototype.cross = function () {};
+BABYLON.Vector3.prototype.normalizeFromLength = function () {};
+BABYLON.Vector3.prototype.normalizeToNew = function () {};
+BABYLON.Vector3.prototype.normalizeToRef = function () {};
+BABYLON.Vector3.prototype.clone = function () {};
+BABYLON.Vector3.prototype.copyFrom = function () {};
+BABYLON.Vector3.prototype.copyFromFloats = function () {};
+BABYLON.Vector3.prototype.set = function () {};
+BABYLON.Vector3.prototype.setAll = function () {};
+
 
 /** @constructor */
-BABYLON.Vector4 = function () {
-  // this.x = undefined;
-  // this.y = undefined;
-  // this.z = undefined;
-  // this.w = undefined;
-  this.toString = function () {};
-  this.getClassName = function () {};
-  this.getHashCode = function () {};
-  this.asArray = function () {};
-  this.toArray = function () {};
-  this.addInPlace = function () {};
-  this.add = function () {};
-  this.addToRef = function () {};
-  this.subtractInPlace = function () {};
-  this.subtract = function () {};
-  this.subtractToRef = function () {};
-  this.subtractFromFloats = function () {};
-  this.subtractFromFloatsToRef = function () {};
-  this.negate = function () {};
-  this.negateInPlace = function () {};
-  this.negateToRef = function () {};
-  this.scaleInPlace = function () {};
-  this.scale = function () {};
-  this.scaleToRef = function () {};
-  this.scaleAndAddToRef = function () {};
-  this.equals = function () {};
-  this.equalsWithEpsilon = function () {};
-  this.equalsToFloats = function () {};
-  this.multiplyInPlace = function () {};
-  this.multiply = function () {};
-  this.multiplyToRef = function () {};
-  this.multiplyByFloats = function () {};
-  this.divide = function () {};
-  this.divideToRef = function () {};
-  this.divideInPlace = function () {};
-  this.minimizeInPlace = function () {};
-  this.maximizeInPlace = function () {};
-  this.floor = function () {};
-  this.fract = function () {};
-  this.length = function () {};
-  this.lengthSquared = function () {};
-  this.normalize = function () {};
-  this.toVector3 = function () {};
-  this.clone = function () {};
-  this.copyFrom = function () {};
-  this.copyFromFloats = function () {};
-  this.set = function () {};
-  this.setAll = function () {};
-  this.FromArray = function () {};
-  this.FromArrayToRef = function () {};
-  this.FromFloatArrayToRef = function () {};
-  this.FromFloatsToRef = function () {};
-  this.Zero = function () {};
-  this.One = function () {};
-  this.Normalize = function () {};
-  this.NormalizeToRef = function () {};
-  this.Minimize = function () {};
-  this.Maximize = function () {};
-  this.Distance = function () {};
-  this.DistanceSquared = function () {};
-  this.Center = function () {};
-  this.TransformNormal = function () {};
-  this.TransformNormalToRef = function () {};
-  this.TransformNormalFromFloatsToRef = function () {};
-  this.FromVector3 = function () {};
-};
+BABYLON.Vector4 = function () {}
+// BABYLON.Vector4.x = undefined;
+// BABYLON.Vector4.y = undefined;
+// BABYLON.Vector4.z = undefined;
+// BABYLON.Vector4.w = undefined;
+BABYLON.Vector4.prototype.toString = function () {};
+BABYLON.Vector4.prototype.getClassName = function () {};
+BABYLON.Vector4.prototype.getHashCode = function () {};
+BABYLON.Vector4.prototype.asArray = function () {};
+BABYLON.Vector4.prototype.toArray = function () {};
+BABYLON.Vector4.prototype.addInPlace = function () {};
+BABYLON.Vector4.prototype.add = function () {};
+BABYLON.Vector4.prototype.addToRef = function () {};
+BABYLON.Vector4.prototype.subtractInPlace = function () {};
+BABYLON.Vector4.prototype.subtract = function () {};
+BABYLON.Vector4.prototype.subtractToRef = function () {};
+BABYLON.Vector4.prototype.subtractFromFloats = function () {};
+BABYLON.Vector4.prototype.subtractFromFloatsToRef = function () {};
+BABYLON.Vector4.prototype.negate = function () {};
+BABYLON.Vector4.prototype.negateInPlace = function () {};
+BABYLON.Vector4.prototype.negateToRef = function () {};
+BABYLON.Vector4.prototype.scaleInPlace = function () {};
+BABYLON.Vector4.prototype.scale = function () {};
+BABYLON.Vector4.prototype.scaleToRef = function () {};
+BABYLON.Vector4.prototype.scaleAndAddToRef = function () {};
+BABYLON.Vector4.prototype.equals = function () {};
+BABYLON.Vector4.prototype.equalsWithEpsilon = function () {};
+BABYLON.Vector4.prototype.equalsToFloats = function () {};
+BABYLON.Vector4.prototype.multiplyInPlace = function () {};
+BABYLON.Vector4.prototype.multiply = function () {};
+BABYLON.Vector4.prototype.multiplyToRef = function () {};
+BABYLON.Vector4.prototype.multiplyByFloats = function () {};
+BABYLON.Vector4.prototype.divide = function () {};
+BABYLON.Vector4.prototype.divideToRef = function () {};
+BABYLON.Vector4.prototype.divideInPlace = function () {};
+BABYLON.Vector4.prototype.minimizeInPlace = function () {};
+BABYLON.Vector4.prototype.maximizeInPlace = function () {};
+BABYLON.Vector4.prototype.floor = function () {};
+BABYLON.Vector4.prototype.fract = function () {};
+BABYLON.Vector4.prototype.length = function () {};
+BABYLON.Vector4.prototype.lengthSquared = function () {};
+BABYLON.Vector4.prototype.normalize = function () {};
+BABYLON.Vector4.prototype.toVector3 = function () {};
+BABYLON.Vector4.prototype.clone = function () {};
+BABYLON.Vector4.prototype.copyFrom = function () {};
+BABYLON.Vector4.prototype.copyFromFloats = function () {};
+BABYLON.Vector4.prototype.set = function () {};
+BABYLON.Vector4.prototype.setAll = function () {};
+
 
 /** @constructor */
-BABYLON.Quaternion = function () {
-  this.x = 0;
-  this.y = 0;
-  this.z = 0;
-  this.w = 1;
-  this.toString = function () {};
-  this.getClassName = function () {};
-  this.getHashCode = function () {};
-  this.asArray = function () {};
-  this.equals = function () {};
-  this.equalsWithEpsilon = function () {};
-  this.clone = function () {};
-  this.copyFrom = function () {};
-  this.copyFromFloats = function () {};
-  this.set = function () {};
-  this.add = function () {};
-  this.addInPlace = function () {};
-  this.subtract = function () {};
-  this.scale = function () {};
-  this.scaleToRef = function () {};
-  this.scaleInPlace = function () {};
-  this.scaleAndAddToRef = function () {};
-  this.multiply = function () {};
-  this.multiplyToRef = function () {};
-  this.multiplyInPlace = function () {};
-  this.conjugateToRef = function () {};
-  this.conjugateInPlace = function () {};
-  this.conjugate = function () {};
-  this.length = function () {};
-  this.normalize = function () {};
-  this.toEulerAngles = function () {};
-  this.toEulerAnglesToRef = function () {};
-  this.toRotationMatrix = function () {};
-  this.fromRotationMatrix = function () {};
-  this.FromRotationMatrix = function () {};
-  this.FromRotationMatrixToRef = function () {};
-  this.Dot = function () {};
-  this.AreClose = function () {};
-  this.Zero = function () {};
-  this.Inverse = function () {};
-  this.InverseToRef = function () {};
-  this.Identity = function () {};
-  this.IsIdentity = function () {};
-  this.RotationAxis = function () {};
-  this.RotationAxisToRef = function () {};
-  this.FromArray = function () {};
-  this.FromEulerAngles = function () {};
-  this.FromEulerAnglesToRef = function () {};
-  this.FromEulerVector = function () {};
-  this.FromEulerVectorToRef = function () {};
-  this.RotationYawPitchRoll = function () {};
-  this.RotationYawPitchRollToRef = function () {};
-  this.RotationAlphaBetaGamma = function () {};
-  this.RotationAlphaBetaGammaToRef = function () {};
-  this.RotationQuaternionFromAxis = function () {};
-  this.RotationQuaternionFromAxisToRef = function () {};
-  this.Slerp = function () {};
-  this.SlerpToRef = function () {};
-  this.Hermite = function () {};
-};
+BABYLON.Quaternion = function () {}
+BABYLON.Quaternion.x = 0;
+BABYLON.Quaternion.y = 0;
+BABYLON.Quaternion.z = 0;
+BABYLON.Quaternion.w = 1;
+BABYLON.Quaternion.prototype.toString = function () {};
+BABYLON.Quaternion.prototype.getClassName = function () {};
+BABYLON.Quaternion.prototype.getHashCode = function () {};
+BABYLON.Quaternion.prototype.asArray = function () {};
+BABYLON.Quaternion.prototype.equals = function () {};
+BABYLON.Quaternion.prototype.equalsWithEpsilon = function () {};
+BABYLON.Quaternion.prototype.clone = function () {};
+BABYLON.Quaternion.prototype.copyFrom = function () {};
+BABYLON.Quaternion.prototype.copyFromFloats = function () {};
+BABYLON.Quaternion.prototype.set = function () {};
+BABYLON.Quaternion.prototype.add = function () {};
+BABYLON.Quaternion.prototype.addInPlace = function () {};
+BABYLON.Quaternion.prototype.subtract = function () {};
+BABYLON.Quaternion.prototype.scale = function () {};
+BABYLON.Quaternion.prototype.scaleToRef = function () {};
+BABYLON.Quaternion.prototype.scaleInPlace = function () {};
+BABYLON.Quaternion.prototype.scaleAndAddToRef = function () {};
+BABYLON.Quaternion.prototype.multiply = function () {};
+BABYLON.Quaternion.prototype.multiplyToRef = function () {};
+BABYLON.Quaternion.prototype.multiplyInPlace = function () {};
+BABYLON.Quaternion.prototype.conjugateToRef = function () {};
+BABYLON.Quaternion.prototype.conjugateInPlace = function () {};
+BABYLON.Quaternion.prototype.conjugate = function () {};
+BABYLON.Quaternion.prototype.length = function () {};
+BABYLON.Quaternion.prototype.normalize = function () {};
+BABYLON.Quaternion.prototype.toEulerAngles = function () {};
+BABYLON.Quaternion.prototype.toEulerAnglesToRef = function () {};
+BABYLON.Quaternion.prototype.toRotationMatrix = function () {};
+BABYLON.Quaternion.prototype.fromRotationMatrix = function () {};
+
 
 /** @constructor */
-BABYLON.Matrix = function () {
-  this.updateFlag = 239;
-  this.m = {};
-  this.isIdentity = function () {};
-  this.isIdentityAs3x2 = function () {};
-  this.determinant = function () {};
-  this.toArray = function () {};
-  this.asArray = function () {};
-  this.invert = function () {};
-  this.reset = function () {};
-  this.add = function () {};
-  this.addToRef = function () {};
-  this.addToSelf = function () {};
-  this.invertToRef = function () {};
-  this.addAtIndex = function () {};
-  this.multiplyAtIndex = function () {};
-  this.setTranslationFromFloats = function () {};
-  this.addTranslationFromFloats = function () {};
-  this.setTranslation = function () {};
-  this.getTranslation = function () {};
-  this.getTranslationToRef = function () {};
-  this.removeRotationAndScaling = function () {};
-  this.multiply = function () {};
-  this.copyFrom = function () {};
-  this.copyToArray = function () {};
-  this.multiplyToRef = function () {};
-  this.multiplyToArray = function () {};
-  this.equals = function () {};
-  this.clone = function () {};
-  this.getClassName = function () {};
-  this.getHashCode = function () {};
-  this.decompose = function () {};
-  this.getRow = function () {};
-  this.setRow = function () {};
-  this.transpose = function () {};
-  this.transposeToRef = function () {};
-  this.setRowFromFloats = function () {};
-  this.scale = function () {};
-  this.scaleToRef = function () {};
-  this.scaleAndAddToRef = function () {};
-  this.toNormalMatrix = function () {};
-  this.getRotationMatrix = function () {};
-  this.getRotationMatrixToRef = function () {};
-  this.toggleModelMatrixHandInPlace = function () {};
-  this.toggleProjectionMatrixHandInPlace = function () {};
-  this.FromArray = function () {};
-  this.FromArrayToRef = function () {};
-  this.FromFloat32ArrayToRefScaled = function () {};
-  this.IdentityReadOnly = {};
-  this.FromValuesToRef = function () {};
-  this.FromValues = function () {};
-  this.Compose = function () {};
-  this.ComposeToRef = function () {};
-  this.Identity = function () {};
-  this.IdentityToRef = function () {};
-  this.Zero = function () {};
-  this.RotationX = function () {};
-  this.Invert = function () {};
-  this.RotationXToRef = function () {};
-  this.RotationY = function () {};
-  this.RotationYToRef = function () {};
-  this.RotationZ = function () {};
-  this.RotationZToRef = function () {};
-  this.RotationAxis = function () {};
-  this.RotationAxisToRef = function () {};
-  this.RotationAlignToRef = function () {};
-  this.RotationYawPitchRoll = function () {};
-  this.RotationYawPitchRollToRef = function () {};
-  this.Scaling = function () {};
-  this.ScalingToRef = function () {};
-  this.Translation = function () {};
-  this.TranslationToRef = function () {};
-  this.Lerp = function () {};
-  this.LerpToRef = function () {};
-  this.DecomposeLerp = function () {};
-  this.DecomposeLerpToRef = function () {};
-  this.LookAtLH = function () {};
-  this.LookAtLHToRef = function () {};
-  this.LookAtRH = function () {};
-  this.LookAtRHToRef = function () {};
-  this.OrthoLH = function () {};
-  this.OrthoLHToRef = function () {};
-  this.OrthoOffCenterLH = function () {};
-  this.OrthoOffCenterLHToRef = function () {};
-  this.OrthoOffCenterRH = function () {};
-  this.OrthoOffCenterRHToRef = function () {};
-  this.PerspectiveLH = function () {};
-  this.PerspectiveFovLH = function () {};
-  this.PerspectiveFovLHToRef = function () {};
-  this.PerspectiveFovReverseLHToRef = function () {};
-  this.PerspectiveFovRH = function () {};
-  this.PerspectiveFovRHToRef = function () {};
-  this.PerspectiveFovReverseRHToRef = function () {};
-  this.PerspectiveFovWebVRToRef = function () {};
-  this.GetFinalMatrix = function () {};
-  this.GetAsMatrix2x2 = function () {};
-  this.GetAsMatrix3x3 = function () {};
-  this.Transpose = function () {};
-  this.TransposeToRef = function () {};
-  this.Reflection = function () {};
-  this.ReflectionToRef = function () {};
-  this.FromXYZAxesToRef = function () {};
-  this.FromQuaternionToRef = function () {};
-};
+BABYLON.Matrix = function () {}
+BABYLON.Matrix.updateFlag = 239;
+// BABYLON.Matrix.prototype.m = undefined;
+BABYLON.Matrix.prototype.isIdentity = function () {};
+BABYLON.Matrix.prototype.isIdentityAs3x2 = function () {};
+BABYLON.Matrix.prototype.determinant = function () {};
+BABYLON.Matrix.prototype.toArray = function () {};
+BABYLON.Matrix.prototype.asArray = function () {};
+BABYLON.Matrix.prototype.invert = function () {};
+BABYLON.Matrix.prototype.reset = function () {};
+BABYLON.Matrix.prototype.add = function () {};
+BABYLON.Matrix.prototype.addToRef = function () {};
+BABYLON.Matrix.prototype.addToSelf = function () {};
+BABYLON.Matrix.prototype.invertToRef = function () {};
+BABYLON.Matrix.prototype.addAtIndex = function () {};
+BABYLON.Matrix.prototype.multiplyAtIndex = function () {};
+BABYLON.Matrix.prototype.setTranslationFromFloats = function () {};
+BABYLON.Matrix.prototype.addTranslationFromFloats = function () {};
+BABYLON.Matrix.prototype.setTranslation = function () {};
+BABYLON.Matrix.prototype.getTranslation = function () {};
+BABYLON.Matrix.prototype.getTranslationToRef = function () {};
+BABYLON.Matrix.prototype.removeRotationAndScaling = function () {};
+BABYLON.Matrix.prototype.multiply = function () {};
+BABYLON.Matrix.prototype.copyFrom = function () {};
+BABYLON.Matrix.prototype.copyToArray = function () {};
+BABYLON.Matrix.prototype.multiplyToRef = function () {};
+BABYLON.Matrix.prototype.multiplyToArray = function () {};
+BABYLON.Matrix.prototype.equals = function () {};
+BABYLON.Matrix.prototype.clone = function () {};
+BABYLON.Matrix.prototype.getClassName = function () {};
+BABYLON.Matrix.prototype.getHashCode = function () {};
+BABYLON.Matrix.prototype.decompose = function () {};
+BABYLON.Matrix.prototype.getRow = function () {};
+BABYLON.Matrix.prototype.setRow = function () {};
+BABYLON.Matrix.prototype.transpose = function () {};
+BABYLON.Matrix.prototype.transposeToRef = function () {};
+BABYLON.Matrix.prototype.setRowFromFloats = function () {};
+BABYLON.Matrix.prototype.scale = function () {};
+BABYLON.Matrix.prototype.scaleToRef = function () {};
+BABYLON.Matrix.prototype.scaleAndAddToRef = function () {};
+BABYLON.Matrix.prototype.toNormalMatrix = function () {};
+BABYLON.Matrix.prototype.getRotationMatrix = function () {};
+BABYLON.Matrix.prototype.getRotationMatrixToRef = function () {};
+BABYLON.Matrix.prototype.toggleModelMatrixHandInPlace = function () {};
+BABYLON.Matrix.prototype.toggleProjectionMatrixHandInPlace = function () {};
+
 
 /** @constructor */
-BABYLON.TmpVectors = function () {
-  this.Vector2 = {};
-  this.Vector3 = {};
-  this.Vector4 = {};
-  this.Quaternion = {};
-  this.Matrix = {};
-};
+BABYLON.TmpVectors = function () {}
+
 
 /** @constructor */
-BABYLON.Viewport = function () {
-  // this.x = undefined;
-  // this.y = undefined;
-  // this.width = undefined;
-  // this.height = undefined;
-  this.toGlobal = function () {};
-  this.toGlobalToRef = function () {};
-  this.clone = function () {};
-};
+BABYLON.Viewport = function () {}
+// BABYLON.Viewport.x = undefined;
+// BABYLON.Viewport.y = undefined;
+// BABYLON.Viewport.width = undefined;
+// BABYLON.Viewport.height = undefined;
+BABYLON.Viewport.prototype.toGlobal = function () {};
+BABYLON.Viewport.prototype.toGlobalToRef = function () {};
+BABYLON.Viewport.prototype.clone = function () {};
+
 
 /** @constructor */
-BABYLON.SphericalHarmonics = function () {
-  this.preScaled = false;
-  this.l00 = {};
-  this.l1_1 = {};
-  this.l10 = {};
-  this.l11 = {};
-  this.l2_2 = {};
-  this.l2_1 = {};
-  this.l20 = {};
-  this.l21 = {};
-  this.l22 = {};
-  this.addLight = function () {};
-  this.scaleInPlace = function () {};
-  this.convertIncidentRadianceToIrradiance = function () {};
-  this.convertIrradianceToLambertianRadiance = function () {};
-  this.preScaleForRendering = function () {};
-  this.FromArray = function () {};
-  this.FromPolynomial = function () {};
-};
+BABYLON.SphericalHarmonics = function () {}
+BABYLON.SphericalHarmonics.preScaled = false;
+BABYLON.SphericalHarmonics.l00 = {};
+BABYLON.SphericalHarmonics.l1_1 = {};
+BABYLON.SphericalHarmonics.l10 = {};
+BABYLON.SphericalHarmonics.l11 = {};
+BABYLON.SphericalHarmonics.l2_2 = {};
+BABYLON.SphericalHarmonics.l2_1 = {};
+BABYLON.SphericalHarmonics.l20 = {};
+BABYLON.SphericalHarmonics.l21 = {};
+BABYLON.SphericalHarmonics.l22 = {};
+BABYLON.SphericalHarmonics.prototype.addLight = function () {};
+BABYLON.SphericalHarmonics.prototype.scaleInPlace = function () {};
+BABYLON.SphericalHarmonics.prototype.convertIncidentRadianceToIrradiance = function () {};
+BABYLON.SphericalHarmonics.prototype.convertIrradianceToLambertianRadiance = function () {};
+BABYLON.SphericalHarmonics.prototype.preScaleForRendering = function () {};
+
 
 /** @constructor */
-BABYLON.SphericalPolynomial = function () {
-  this.x = {};
-  this.y = {};
-  this.z = {};
-  this.xx = {};
-  this.yy = {};
-  this.zz = {};
-  this.xy = {};
-  this.yz = {};
-  this.zx = {};
-  this.preScaledHarmonics = {};
-  this.addAmbient = function () {};
-  this.scaleInPlace = function () {};
-  this.FromHarmonics = function () {};
-  this.FromArray = function () {};
-};
+BABYLON.SphericalPolynomial = function () {}
+BABYLON.SphericalPolynomial.x = {};
+BABYLON.SphericalPolynomial.y = {};
+BABYLON.SphericalPolynomial.z = {};
+BABYLON.SphericalPolynomial.xx = {};
+BABYLON.SphericalPolynomial.yy = {};
+BABYLON.SphericalPolynomial.zz = {};
+BABYLON.SphericalPolynomial.xy = {};
+BABYLON.SphericalPolynomial.yz = {};
+BABYLON.SphericalPolynomial.zx = {};
+// BABYLON.SphericalPolynomial.prototype.preScaledHarmonics = undefined;
+BABYLON.SphericalPolynomial.prototype.addAmbient = function () {};
+BABYLON.SphericalPolynomial.prototype.scaleInPlace = function () {};
+
 
 BABYLON.Orientation = {}
 
 /** @constructor */
-BABYLON.BezierCurve = function () {
-  this.Interpolate = function () {};
-};
+BABYLON.BezierCurve = function () {}
+
 
 /** @constructor */
-BABYLON.Angle = function () {
-  this.degrees = function () {};
-  this.radians = function () {};
-  this.BetweenTwoPoints = function () {};
-  this.FromRadians = function () {};
-  this.FromDegrees = function () {};
-};
+BABYLON.Angle = function () {}
+BABYLON.Angle.prototype.degrees = function () {};
+BABYLON.Angle.prototype.radians = function () {};
+
 
 /** @constructor */
-BABYLON.Arc2 = function () {
-};
+BABYLON.Arc2 = function () {}
+
 
 /** @constructor */
-BABYLON.Path2 = function () {
-  this.closed = false;
-  this.addLineTo = function () {};
-  this.addArcTo = function () {};
-  this.close = function () {};
-  this.length = function () {};
-  this.getPoints = function () {};
-  this.getPointAtLengthPosition = function () {};
-  this.StartingAt = function () {};
-};
+BABYLON.Path2 = function () {}
+BABYLON.Path2.closed = false;
+BABYLON.Path2.prototype.addLineTo = function () {};
+BABYLON.Path2.prototype.addArcTo = function () {};
+BABYLON.Path2.prototype.close = function () {};
+BABYLON.Path2.prototype.length = function () {};
+BABYLON.Path2.prototype.getPoints = function () {};
+BABYLON.Path2.prototype.getPointAtLengthPosition = function () {};
+
 
 /** @constructor */
-BABYLON.Path3D = function () {
-};
+BABYLON.Path3D = function () {}
+
 
 /** @constructor */
-BABYLON.Curve3 = function () {
-  this.CreateQuadraticBezier = function () {};
-  this.CreateCubicBezier = function () {};
-  this.CreateHermiteSpline = function () {};
-  this.CreateCatmullRomSpline = function () {};
-};
+BABYLON.Curve3 = function () {}
+BABYLON.Curve3.CreateQuadraticBezier = function () {};
+BABYLON.Curve3.CreateCubicBezier = function () {};
+BABYLON.Curve3.CreateHermiteSpline = function () {};
+BABYLON.Curve3.CreateCatmullRomSpline = function () {};
+
 
 /** @constructor */
-BABYLON.PositionNormalVertex = function () {
-  this.position = {};
-  this.normal = {};
-  this.clone = function () {};
-};
+BABYLON.PositionNormalVertex = function () {}
+BABYLON.PositionNormalVertex.position = {};
+BABYLON.PositionNormalVertex.normal = {};
+BABYLON.PositionNormalVertex.prototype.clone = function () {};
+
 
 /** @constructor */
-BABYLON.PositionNormalTextureVertex = function () {
-  this.position = {};
-  this.normal = {};
-  this.uv = {};
-  this.clone = function () {};
-};
+BABYLON.PositionNormalTextureVertex = function () {}
+BABYLON.PositionNormalTextureVertex.position = {};
+BABYLON.PositionNormalTextureVertex.normal = {};
+BABYLON.PositionNormalTextureVertex.uv = {};
+BABYLON.PositionNormalTextureVertex.prototype.clone = function () {};
+
 
 /** @constructor */
-BABYLON.AbstractMesh = function () {
-  this.BILLBOARDMODE_NONE = 0;
-  this.BILLBOARDMODE_X = 1;
-  this.BILLBOARDMODE_Y = 2;
-  this.BILLBOARDMODE_Z = 4;
-  this.BILLBOARDMODE_ALL = 7;
-  this.BILLBOARDMODE_USE_POSITION = 128;
-  this.OCCLUSION_TYPE_NONE = 0;
-  this.OCCLUSION_TYPE_OPTIMISTIC = 1;
-  this.OCCLUSION_TYPE_STRICT = 2;
-  this.OCCLUSION_ALGORITHM_TYPE_ACCURATE = 0;
-  this.OCCLUSION_ALGORITHM_TYPE_CONSERVATIVE = 1;
-  this.CULLINGSTRATEGY_STANDARD = 0;
-  this.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
-  this.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
-  this.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
-  this.Parse = function () {};
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.AbstractMesh = function () {}
+BABYLON.AbstractMesh.BILLBOARDMODE_NONE = 0;
+BABYLON.AbstractMesh.BILLBOARDMODE_X = 1;
+BABYLON.AbstractMesh.BILLBOARDMODE_Y = 2;
+BABYLON.AbstractMesh.BILLBOARDMODE_Z = 4;
+BABYLON.AbstractMesh.BILLBOARDMODE_ALL = 7;
+BABYLON.AbstractMesh.BILLBOARDMODE_USE_POSITION = 128;
+BABYLON.AbstractMesh.OCCLUSION_TYPE_NONE = 0;
+BABYLON.AbstractMesh.OCCLUSION_TYPE_OPTIMISTIC = 1;
+BABYLON.AbstractMesh.OCCLUSION_TYPE_STRICT = 2;
+BABYLON.AbstractMesh.OCCLUSION_ALGORITHM_TYPE_ACCURATE = 0;
+BABYLON.AbstractMesh.OCCLUSION_ALGORITHM_TYPE_CONSERVATIVE = 1;
+BABYLON.AbstractMesh.CULLINGSTRATEGY_STANDARD = 0;
+BABYLON.AbstractMesh.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
+BABYLON.AbstractMesh.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
+BABYLON.AbstractMesh.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
+BABYLON.AbstractMesh.prototype.Parse = function () {};
+BABYLON.AbstractMesh.prototype.AddNodeConstructor = function () {};
+BABYLON.AbstractMesh.prototype.Construct = function () {};
+BABYLON.AbstractMesh.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.Buffer = function () {
-};
+BABYLON.Buffer = function () {}
+
 
 /** @constructor */
-BABYLON.VertexBuffer = function () {
-  this.DeduceStride = function () {};
-  this.GetTypeByteLength = function () {};
-  this.ForEach = function () {};
-  this.BYTE = 5120;
-  this.UNSIGNED_BYTE = 5121;
-  this.SHORT = 5122;
-  this.UNSIGNED_SHORT = 5123;
-  this.INT = 5124;
-  this.UNSIGNED_INT = 5125;
-  this.FLOAT = 5126;
-  this.PositionKind = "position";
-  this.NormalKind = "normal";
-  this.TangentKind = "tangent";
-  this.UVKind = "uv";
-  this.UV2Kind = "uv2";
-  this.UV3Kind = "uv3";
-  this.UV4Kind = "uv4";
-  this.UV5Kind = "uv5";
-  this.UV6Kind = "uv6";
-  this.ColorKind = "color";
-  this.MatricesIndicesKind = "matricesIndices";
-  this.MatricesWeightsKind = "matricesWeights";
-  this.MatricesIndicesExtraKind = "matricesIndicesExtra";
-  this.MatricesWeightsExtraKind = "matricesWeightsExtra";
-};
+BABYLON.VertexBuffer = function () {}
+BABYLON.VertexBuffer.DeduceStride = function () {};
+BABYLON.VertexBuffer.GetTypeByteLength = function () {};
+BABYLON.VertexBuffer.ForEach = function () {};
+BABYLON.VertexBuffer.BYTE = 5120;
+BABYLON.VertexBuffer.UNSIGNED_BYTE = 5121;
+BABYLON.VertexBuffer.SHORT = 5122;
+BABYLON.VertexBuffer.UNSIGNED_SHORT = 5123;
+BABYLON.VertexBuffer.INT = 5124;
+BABYLON.VertexBuffer.UNSIGNED_INT = 5125;
+BABYLON.VertexBuffer.FLOAT = 5126;
+BABYLON.VertexBuffer.PositionKind = "position";
+BABYLON.VertexBuffer.NormalKind = "normal";
+BABYLON.VertexBuffer.TangentKind = "tangent";
+BABYLON.VertexBuffer.UVKind = "uv";
+BABYLON.VertexBuffer.UV2Kind = "uv2";
+BABYLON.VertexBuffer.UV3Kind = "uv3";
+BABYLON.VertexBuffer.UV4Kind = "uv4";
+BABYLON.VertexBuffer.UV5Kind = "uv5";
+BABYLON.VertexBuffer.UV6Kind = "uv6";
+BABYLON.VertexBuffer.ColorKind = "color";
+BABYLON.VertexBuffer.MatricesIndicesKind = "matricesIndices";
+BABYLON.VertexBuffer.MatricesWeightsKind = "matricesWeights";
+BABYLON.VertexBuffer.MatricesIndicesExtraKind = "matricesIndicesExtra";
+BABYLON.VertexBuffer.MatricesWeightsExtraKind = "matricesWeightsExtra";
+
 
 /** @constructor */
-BABYLON.CSG = function () {
-  this.polygons = {};
-  this.clone = function () {};
-  this.union = function () {};
-  this.unionInPlace = function () {};
-  this.subtract = function () {};
-  this.subtractInPlace = function () {};
-  this.intersect = function () {};
-  this.intersectInPlace = function () {};
-  this.inverse = function () {};
-  this.inverseInPlace = function () {};
-  this.copyTransformAttributes = function () {};
-  this.buildMeshGeometry = function () {};
-  this.toMesh = function () {};
-  this.FromMesh = function () {};
-  this.FromPolygons = function () {};
-};
+BABYLON.CSG = function () {}
+BABYLON.CSG.polygons = {};
+BABYLON.CSG.prototype.clone = function () {};
+BABYLON.CSG.prototype.union = function () {};
+BABYLON.CSG.prototype.unionInPlace = function () {};
+BABYLON.CSG.prototype.subtract = function () {};
+BABYLON.CSG.prototype.subtractInPlace = function () {};
+BABYLON.CSG.prototype.intersect = function () {};
+BABYLON.CSG.prototype.intersectInPlace = function () {};
+BABYLON.CSG.prototype.inverse = function () {};
+BABYLON.CSG.prototype.inverseInPlace = function () {};
+BABYLON.CSG.prototype.copyTransformAttributes = function () {};
+BABYLON.CSG.prototype.buildMeshGeometry = function () {};
+BABYLON.CSG.prototype.toMesh = function () {};
+
 
 /** @constructor */
-BABYLON.Geometry = function () {
-  this.CreateGeometryForMesh = function () {};
-  this.ExtractFromMesh = function () {};
-  this.RandomId = function () {};
-  this.Parse = function () {};
-};
+BABYLON.Geometry = function () {}
+BABYLON.Geometry.CreateGeometryForMesh = function () {};
+BABYLON.Geometry.ExtractFromMesh = function () {};
+BABYLON.Geometry.RandomId = function () {};
+BABYLON.Geometry.Parse = function () {};
+
 
 /** @constructor */
-BABYLON.GroundMesh = function () {
-  this.Parse = function () {};
-  this.CreateRibbon = function () {};
-  this.CreateDisc = function () {};
-  this.CreateBox = function () {};
-  this.CreateSphere = function () {};
-  this.CreateHemisphere = function () {};
-  this.CreateCylinder = function () {};
-  this.CreateTorus = function () {};
-  this.CreateTorusKnot = function () {};
-  this.CreateLines = function () {};
-  this.CreateDashedLines = function () {};
-  this.CreatePolygon = function () {};
-  this.ExtrudePolygon = function () {};
-  this.ExtrudeShape = function () {};
-  this.ExtrudeShapeCustom = function () {};
-  this.CreateLathe = function () {};
-  this.CreatePlane = function () {};
-  this.CreateGround = function () {};
-  this.CreateTiledGround = function () {};
-  this.CreateGroundFromHeightMap = function () {};
-  this.CreateTube = function () {};
-  this.CreatePolyhedron = function () {};
-  this.CreateIcoSphere = function () {};
-  this.CreateDecal = function () {};
-  this.MinMax = function () {};
-  this.Center = function () {};
-  this.MergeMeshes = function () {};
-  this.FRONTSIDE = 0;
-  this.BACKSIDE = 1;
-  this.DOUBLESIDE = 2;
-  this.DEFAULTSIDE = 0;
-  this.NO_CAP = 0;
-  this.CAP_START = 1;
-  this.CAP_END = 2;
-  this.CAP_ALL = 3;
-  this.NO_FLIP = 0;
-  this.FLIP_TILE = 1;
-  this.ROTATE_TILE = 2;
-  this.FLIP_ROW = 3;
-  this.ROTATE_ROW = 4;
-  this.FLIP_N_ROTATE_TILE = 5;
-  this.FLIP_N_ROTATE_ROW = 6;
-  this.CENTER = 0;
-  this.LEFT = 1;
-  this.RIGHT = 2;
-  this.TOP = 3;
-  this.BOTTOM = 4;
-  this.BILLBOARDMODE_NONE = 0;
-  this.BILLBOARDMODE_X = 1;
-  this.BILLBOARDMODE_Y = 2;
-  this.BILLBOARDMODE_Z = 4;
-  this.BILLBOARDMODE_ALL = 7;
-  this.BILLBOARDMODE_USE_POSITION = 128;
-  this.OCCLUSION_TYPE_NONE = 0;
-  this.OCCLUSION_TYPE_OPTIMISTIC = 1;
-  this.OCCLUSION_TYPE_STRICT = 2;
-  this.OCCLUSION_ALGORITHM_TYPE_ACCURATE = 0;
-  this.OCCLUSION_ALGORITHM_TYPE_CONSERVATIVE = 1;
-  this.CULLINGSTRATEGY_STANDARD = 0;
-  this.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
-  this.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
-  this.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.GroundMesh = function () {}
+BABYLON.GroundMesh.Parse = function () {};
+BABYLON.GroundMesh.prototype.CreateRibbon = function () {};
+BABYLON.GroundMesh.prototype.CreateDisc = function () {};
+BABYLON.GroundMesh.prototype.CreateBox = function () {};
+BABYLON.GroundMesh.prototype.CreateSphere = function () {};
+BABYLON.GroundMesh.prototype.CreateHemisphere = function () {};
+BABYLON.GroundMesh.prototype.CreateCylinder = function () {};
+BABYLON.GroundMesh.prototype.CreateTorus = function () {};
+BABYLON.GroundMesh.prototype.CreateTorusKnot = function () {};
+BABYLON.GroundMesh.prototype.CreateLines = function () {};
+BABYLON.GroundMesh.prototype.CreateDashedLines = function () {};
+BABYLON.GroundMesh.prototype.CreatePolygon = function () {};
+BABYLON.GroundMesh.prototype.ExtrudePolygon = function () {};
+BABYLON.GroundMesh.prototype.ExtrudeShape = function () {};
+BABYLON.GroundMesh.prototype.ExtrudeShapeCustom = function () {};
+BABYLON.GroundMesh.prototype.CreateLathe = function () {};
+BABYLON.GroundMesh.prototype.CreatePlane = function () {};
+BABYLON.GroundMesh.prototype.CreateGround = function () {};
+BABYLON.GroundMesh.prototype.CreateTiledGround = function () {};
+BABYLON.GroundMesh.prototype.CreateGroundFromHeightMap = function () {};
+BABYLON.GroundMesh.prototype.CreateTube = function () {};
+BABYLON.GroundMesh.prototype.CreatePolyhedron = function () {};
+BABYLON.GroundMesh.prototype.CreateIcoSphere = function () {};
+BABYLON.GroundMesh.prototype.CreateDecal = function () {};
+BABYLON.GroundMesh.prototype.MinMax = function () {};
+BABYLON.GroundMesh.prototype.Center = function () {};
+BABYLON.GroundMesh.prototype.MergeMeshes = function () {};
+BABYLON.GroundMesh.prototype.FRONTSIDE = 0;
+BABYLON.GroundMesh.prototype.BACKSIDE = 1;
+BABYLON.GroundMesh.prototype.DOUBLESIDE = 2;
+BABYLON.GroundMesh.prototype.DEFAULTSIDE = 0;
+BABYLON.GroundMesh.prototype.NO_CAP = 0;
+BABYLON.GroundMesh.prototype.CAP_START = 1;
+BABYLON.GroundMesh.prototype.CAP_END = 2;
+BABYLON.GroundMesh.prototype.CAP_ALL = 3;
+BABYLON.GroundMesh.prototype.NO_FLIP = 0;
+BABYLON.GroundMesh.prototype.FLIP_TILE = 1;
+BABYLON.GroundMesh.prototype.ROTATE_TILE = 2;
+BABYLON.GroundMesh.prototype.FLIP_ROW = 3;
+BABYLON.GroundMesh.prototype.ROTATE_ROW = 4;
+BABYLON.GroundMesh.prototype.FLIP_N_ROTATE_TILE = 5;
+BABYLON.GroundMesh.prototype.FLIP_N_ROTATE_ROW = 6;
+BABYLON.GroundMesh.prototype.CENTER = 0;
+BABYLON.GroundMesh.prototype.LEFT = 1;
+BABYLON.GroundMesh.prototype.RIGHT = 2;
+BABYLON.GroundMesh.prototype.TOP = 3;
+BABYLON.GroundMesh.prototype.BOTTOM = 4;
+BABYLON.GroundMesh.prototype.BILLBOARDMODE_NONE = 0;
+BABYLON.GroundMesh.prototype.BILLBOARDMODE_X = 1;
+BABYLON.GroundMesh.prototype.BILLBOARDMODE_Y = 2;
+BABYLON.GroundMesh.prototype.BILLBOARDMODE_Z = 4;
+BABYLON.GroundMesh.prototype.BILLBOARDMODE_ALL = 7;
+BABYLON.GroundMesh.prototype.BILLBOARDMODE_USE_POSITION = 128;
+BABYLON.GroundMesh.prototype.OCCLUSION_TYPE_NONE = 0;
+BABYLON.GroundMesh.prototype.OCCLUSION_TYPE_OPTIMISTIC = 1;
+BABYLON.GroundMesh.prototype.OCCLUSION_TYPE_STRICT = 2;
+BABYLON.GroundMesh.prototype.OCCLUSION_ALGORITHM_TYPE_ACCURATE = 0;
+BABYLON.GroundMesh.prototype.OCCLUSION_ALGORITHM_TYPE_CONSERVATIVE = 1;
+BABYLON.GroundMesh.prototype.CULLINGSTRATEGY_STANDARD = 0;
+BABYLON.GroundMesh.prototype.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
+BABYLON.GroundMesh.prototype.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
+BABYLON.GroundMesh.prototype.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
+BABYLON.GroundMesh.prototype.AddNodeConstructor = function () {};
+BABYLON.GroundMesh.prototype.Construct = function () {};
+BABYLON.GroundMesh.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.TrailMesh = function () {
-  this.Parse = function () {};
-  this.CreateRibbon = function () {};
-  this.CreateDisc = function () {};
-  this.CreateBox = function () {};
-  this.CreateSphere = function () {};
-  this.CreateHemisphere = function () {};
-  this.CreateCylinder = function () {};
-  this.CreateTorus = function () {};
-  this.CreateTorusKnot = function () {};
-  this.CreateLines = function () {};
-  this.CreateDashedLines = function () {};
-  this.CreatePolygon = function () {};
-  this.ExtrudePolygon = function () {};
-  this.ExtrudeShape = function () {};
-  this.ExtrudeShapeCustom = function () {};
-  this.CreateLathe = function () {};
-  this.CreatePlane = function () {};
-  this.CreateGround = function () {};
-  this.CreateTiledGround = function () {};
-  this.CreateGroundFromHeightMap = function () {};
-  this.CreateTube = function () {};
-  this.CreatePolyhedron = function () {};
-  this.CreateIcoSphere = function () {};
-  this.CreateDecal = function () {};
-  this.MinMax = function () {};
-  this.Center = function () {};
-  this.MergeMeshes = function () {};
-  this.FRONTSIDE = 0;
-  this.BACKSIDE = 1;
-  this.DOUBLESIDE = 2;
-  this.DEFAULTSIDE = 0;
-  this.NO_CAP = 0;
-  this.CAP_START = 1;
-  this.CAP_END = 2;
-  this.CAP_ALL = 3;
-  this.NO_FLIP = 0;
-  this.FLIP_TILE = 1;
-  this.ROTATE_TILE = 2;
-  this.FLIP_ROW = 3;
-  this.ROTATE_ROW = 4;
-  this.FLIP_N_ROTATE_TILE = 5;
-  this.FLIP_N_ROTATE_ROW = 6;
-  this.CENTER = 0;
-  this.LEFT = 1;
-  this.RIGHT = 2;
-  this.TOP = 3;
-  this.BOTTOM = 4;
-  this.BILLBOARDMODE_NONE = 0;
-  this.BILLBOARDMODE_X = 1;
-  this.BILLBOARDMODE_Y = 2;
-  this.BILLBOARDMODE_Z = 4;
-  this.BILLBOARDMODE_ALL = 7;
-  this.BILLBOARDMODE_USE_POSITION = 128;
-  this.OCCLUSION_TYPE_NONE = 0;
-  this.OCCLUSION_TYPE_OPTIMISTIC = 1;
-  this.OCCLUSION_TYPE_STRICT = 2;
-  this.OCCLUSION_ALGORITHM_TYPE_ACCURATE = 0;
-  this.OCCLUSION_ALGORITHM_TYPE_CONSERVATIVE = 1;
-  this.CULLINGSTRATEGY_STANDARD = 0;
-  this.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
-  this.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
-  this.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.TrailMesh = function () {}
+BABYLON.TrailMesh.Parse = function () {};
+BABYLON.TrailMesh.prototype.CreateRibbon = function () {};
+BABYLON.TrailMesh.prototype.CreateDisc = function () {};
+BABYLON.TrailMesh.prototype.CreateBox = function () {};
+BABYLON.TrailMesh.prototype.CreateSphere = function () {};
+BABYLON.TrailMesh.prototype.CreateHemisphere = function () {};
+BABYLON.TrailMesh.prototype.CreateCylinder = function () {};
+BABYLON.TrailMesh.prototype.CreateTorus = function () {};
+BABYLON.TrailMesh.prototype.CreateTorusKnot = function () {};
+BABYLON.TrailMesh.prototype.CreateLines = function () {};
+BABYLON.TrailMesh.prototype.CreateDashedLines = function () {};
+BABYLON.TrailMesh.prototype.CreatePolygon = function () {};
+BABYLON.TrailMesh.prototype.ExtrudePolygon = function () {};
+BABYLON.TrailMesh.prototype.ExtrudeShape = function () {};
+BABYLON.TrailMesh.prototype.ExtrudeShapeCustom = function () {};
+BABYLON.TrailMesh.prototype.CreateLathe = function () {};
+BABYLON.TrailMesh.prototype.CreatePlane = function () {};
+BABYLON.TrailMesh.prototype.CreateGround = function () {};
+BABYLON.TrailMesh.prototype.CreateTiledGround = function () {};
+BABYLON.TrailMesh.prototype.CreateGroundFromHeightMap = function () {};
+BABYLON.TrailMesh.prototype.CreateTube = function () {};
+BABYLON.TrailMesh.prototype.CreatePolyhedron = function () {};
+BABYLON.TrailMesh.prototype.CreateIcoSphere = function () {};
+BABYLON.TrailMesh.prototype.CreateDecal = function () {};
+BABYLON.TrailMesh.prototype.MinMax = function () {};
+BABYLON.TrailMesh.prototype.Center = function () {};
+BABYLON.TrailMesh.prototype.MergeMeshes = function () {};
+BABYLON.TrailMesh.prototype.FRONTSIDE = 0;
+BABYLON.TrailMesh.prototype.BACKSIDE = 1;
+BABYLON.TrailMesh.prototype.DOUBLESIDE = 2;
+BABYLON.TrailMesh.prototype.DEFAULTSIDE = 0;
+BABYLON.TrailMesh.prototype.NO_CAP = 0;
+BABYLON.TrailMesh.prototype.CAP_START = 1;
+BABYLON.TrailMesh.prototype.CAP_END = 2;
+BABYLON.TrailMesh.prototype.CAP_ALL = 3;
+BABYLON.TrailMesh.prototype.NO_FLIP = 0;
+BABYLON.TrailMesh.prototype.FLIP_TILE = 1;
+BABYLON.TrailMesh.prototype.ROTATE_TILE = 2;
+BABYLON.TrailMesh.prototype.FLIP_ROW = 3;
+BABYLON.TrailMesh.prototype.ROTATE_ROW = 4;
+BABYLON.TrailMesh.prototype.FLIP_N_ROTATE_TILE = 5;
+BABYLON.TrailMesh.prototype.FLIP_N_ROTATE_ROW = 6;
+BABYLON.TrailMesh.prototype.CENTER = 0;
+BABYLON.TrailMesh.prototype.LEFT = 1;
+BABYLON.TrailMesh.prototype.RIGHT = 2;
+BABYLON.TrailMesh.prototype.TOP = 3;
+BABYLON.TrailMesh.prototype.BOTTOM = 4;
+BABYLON.TrailMesh.prototype.BILLBOARDMODE_NONE = 0;
+BABYLON.TrailMesh.prototype.BILLBOARDMODE_X = 1;
+BABYLON.TrailMesh.prototype.BILLBOARDMODE_Y = 2;
+BABYLON.TrailMesh.prototype.BILLBOARDMODE_Z = 4;
+BABYLON.TrailMesh.prototype.BILLBOARDMODE_ALL = 7;
+BABYLON.TrailMesh.prototype.BILLBOARDMODE_USE_POSITION = 128;
+BABYLON.TrailMesh.prototype.OCCLUSION_TYPE_NONE = 0;
+BABYLON.TrailMesh.prototype.OCCLUSION_TYPE_OPTIMISTIC = 1;
+BABYLON.TrailMesh.prototype.OCCLUSION_TYPE_STRICT = 2;
+BABYLON.TrailMesh.prototype.OCCLUSION_ALGORITHM_TYPE_ACCURATE = 0;
+BABYLON.TrailMesh.prototype.OCCLUSION_ALGORITHM_TYPE_CONSERVATIVE = 1;
+BABYLON.TrailMesh.prototype.CULLINGSTRATEGY_STANDARD = 0;
+BABYLON.TrailMesh.prototype.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
+BABYLON.TrailMesh.prototype.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
+BABYLON.TrailMesh.prototype.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
+BABYLON.TrailMesh.prototype.AddNodeConstructor = function () {};
+BABYLON.TrailMesh.prototype.Construct = function () {};
+BABYLON.TrailMesh.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.InstancedMesh = function () {
-  this.BILLBOARDMODE_NONE = 0;
-  this.BILLBOARDMODE_X = 1;
-  this.BILLBOARDMODE_Y = 2;
-  this.BILLBOARDMODE_Z = 4;
-  this.BILLBOARDMODE_ALL = 7;
-  this.BILLBOARDMODE_USE_POSITION = 128;
-  this.OCCLUSION_TYPE_NONE = 0;
-  this.OCCLUSION_TYPE_OPTIMISTIC = 1;
-  this.OCCLUSION_TYPE_STRICT = 2;
-  this.OCCLUSION_ALGORITHM_TYPE_ACCURATE = 0;
-  this.OCCLUSION_ALGORITHM_TYPE_CONSERVATIVE = 1;
-  this.CULLINGSTRATEGY_STANDARD = 0;
-  this.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
-  this.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
-  this.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
-  this.Parse = function () {};
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.InstancedMesh = function () {}
+BABYLON.InstancedMesh.prototype.BILLBOARDMODE_NONE = 0;
+BABYLON.InstancedMesh.prototype.BILLBOARDMODE_X = 1;
+BABYLON.InstancedMesh.prototype.BILLBOARDMODE_Y = 2;
+BABYLON.InstancedMesh.prototype.BILLBOARDMODE_Z = 4;
+BABYLON.InstancedMesh.prototype.BILLBOARDMODE_ALL = 7;
+BABYLON.InstancedMesh.prototype.BILLBOARDMODE_USE_POSITION = 128;
+BABYLON.InstancedMesh.prototype.OCCLUSION_TYPE_NONE = 0;
+BABYLON.InstancedMesh.prototype.OCCLUSION_TYPE_OPTIMISTIC = 1;
+BABYLON.InstancedMesh.prototype.OCCLUSION_TYPE_STRICT = 2;
+BABYLON.InstancedMesh.prototype.OCCLUSION_ALGORITHM_TYPE_ACCURATE = 0;
+BABYLON.InstancedMesh.prototype.OCCLUSION_ALGORITHM_TYPE_CONSERVATIVE = 1;
+BABYLON.InstancedMesh.prototype.CULLINGSTRATEGY_STANDARD = 0;
+BABYLON.InstancedMesh.prototype.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
+BABYLON.InstancedMesh.prototype.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
+BABYLON.InstancedMesh.prototype.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
+BABYLON.InstancedMesh.prototype.Parse = function () {};
+BABYLON.InstancedMesh.prototype.AddNodeConstructor = function () {};
+BABYLON.InstancedMesh.prototype.Construct = function () {};
+BABYLON.InstancedMesh.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.LinesMesh = function () {
-  this.Parse = function () {};
-  this.CreateRibbon = function () {};
-  this.CreateDisc = function () {};
-  this.CreateBox = function () {};
-  this.CreateSphere = function () {};
-  this.CreateHemisphere = function () {};
-  this.CreateCylinder = function () {};
-  this.CreateTorus = function () {};
-  this.CreateTorusKnot = function () {};
-  this.CreateLines = function () {};
-  this.CreateDashedLines = function () {};
-  this.CreatePolygon = function () {};
-  this.ExtrudePolygon = function () {};
-  this.ExtrudeShape = function () {};
-  this.ExtrudeShapeCustom = function () {};
-  this.CreateLathe = function () {};
-  this.CreatePlane = function () {};
-  this.CreateGround = function () {};
-  this.CreateTiledGround = function () {};
-  this.CreateGroundFromHeightMap = function () {};
-  this.CreateTube = function () {};
-  this.CreatePolyhedron = function () {};
-  this.CreateIcoSphere = function () {};
-  this.CreateDecal = function () {};
-  this.MinMax = function () {};
-  this.Center = function () {};
-  this.MergeMeshes = function () {};
-  this.FRONTSIDE = 0;
-  this.BACKSIDE = 1;
-  this.DOUBLESIDE = 2;
-  this.DEFAULTSIDE = 0;
-  this.NO_CAP = 0;
-  this.CAP_START = 1;
-  this.CAP_END = 2;
-  this.CAP_ALL = 3;
-  this.NO_FLIP = 0;
-  this.FLIP_TILE = 1;
-  this.ROTATE_TILE = 2;
-  this.FLIP_ROW = 3;
-  this.ROTATE_ROW = 4;
-  this.FLIP_N_ROTATE_TILE = 5;
-  this.FLIP_N_ROTATE_ROW = 6;
-  this.CENTER = 0;
-  this.LEFT = 1;
-  this.RIGHT = 2;
-  this.TOP = 3;
-  this.BOTTOM = 4;
-  this.BILLBOARDMODE_NONE = 0;
-  this.BILLBOARDMODE_X = 1;
-  this.BILLBOARDMODE_Y = 2;
-  this.BILLBOARDMODE_Z = 4;
-  this.BILLBOARDMODE_ALL = 7;
-  this.BILLBOARDMODE_USE_POSITION = 128;
-  this.OCCLUSION_TYPE_NONE = 0;
-  this.OCCLUSION_TYPE_OPTIMISTIC = 1;
-  this.OCCLUSION_TYPE_STRICT = 2;
-  this.OCCLUSION_ALGORITHM_TYPE_ACCURATE = 0;
-  this.OCCLUSION_ALGORITHM_TYPE_CONSERVATIVE = 1;
-  this.CULLINGSTRATEGY_STANDARD = 0;
-  this.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
-  this.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
-  this.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.LinesMesh = function () {}
+BABYLON.LinesMesh.prototype.Parse = function () {};
+BABYLON.LinesMesh.prototype.CreateRibbon = function () {};
+BABYLON.LinesMesh.prototype.CreateDisc = function () {};
+BABYLON.LinesMesh.prototype.CreateBox = function () {};
+BABYLON.LinesMesh.prototype.CreateSphere = function () {};
+BABYLON.LinesMesh.prototype.CreateHemisphere = function () {};
+BABYLON.LinesMesh.prototype.CreateCylinder = function () {};
+BABYLON.LinesMesh.prototype.CreateTorus = function () {};
+BABYLON.LinesMesh.prototype.CreateTorusKnot = function () {};
+BABYLON.LinesMesh.prototype.CreateLines = function () {};
+BABYLON.LinesMesh.prototype.CreateDashedLines = function () {};
+BABYLON.LinesMesh.prototype.CreatePolygon = function () {};
+BABYLON.LinesMesh.prototype.ExtrudePolygon = function () {};
+BABYLON.LinesMesh.prototype.ExtrudeShape = function () {};
+BABYLON.LinesMesh.prototype.ExtrudeShapeCustom = function () {};
+BABYLON.LinesMesh.prototype.CreateLathe = function () {};
+BABYLON.LinesMesh.prototype.CreatePlane = function () {};
+BABYLON.LinesMesh.prototype.CreateGround = function () {};
+BABYLON.LinesMesh.prototype.CreateTiledGround = function () {};
+BABYLON.LinesMesh.prototype.CreateGroundFromHeightMap = function () {};
+BABYLON.LinesMesh.prototype.CreateTube = function () {};
+BABYLON.LinesMesh.prototype.CreatePolyhedron = function () {};
+BABYLON.LinesMesh.prototype.CreateIcoSphere = function () {};
+BABYLON.LinesMesh.prototype.CreateDecal = function () {};
+BABYLON.LinesMesh.prototype.MinMax = function () {};
+BABYLON.LinesMesh.prototype.Center = function () {};
+BABYLON.LinesMesh.prototype.MergeMeshes = function () {};
+BABYLON.LinesMesh.prototype.FRONTSIDE = 0;
+BABYLON.LinesMesh.prototype.BACKSIDE = 1;
+BABYLON.LinesMesh.prototype.DOUBLESIDE = 2;
+BABYLON.LinesMesh.prototype.DEFAULTSIDE = 0;
+BABYLON.LinesMesh.prototype.NO_CAP = 0;
+BABYLON.LinesMesh.prototype.CAP_START = 1;
+BABYLON.LinesMesh.prototype.CAP_END = 2;
+BABYLON.LinesMesh.prototype.CAP_ALL = 3;
+BABYLON.LinesMesh.prototype.NO_FLIP = 0;
+BABYLON.LinesMesh.prototype.FLIP_TILE = 1;
+BABYLON.LinesMesh.prototype.ROTATE_TILE = 2;
+BABYLON.LinesMesh.prototype.FLIP_ROW = 3;
+BABYLON.LinesMesh.prototype.ROTATE_ROW = 4;
+BABYLON.LinesMesh.prototype.FLIP_N_ROTATE_TILE = 5;
+BABYLON.LinesMesh.prototype.FLIP_N_ROTATE_ROW = 6;
+BABYLON.LinesMesh.prototype.CENTER = 0;
+BABYLON.LinesMesh.prototype.LEFT = 1;
+BABYLON.LinesMesh.prototype.RIGHT = 2;
+BABYLON.LinesMesh.prototype.TOP = 3;
+BABYLON.LinesMesh.prototype.BOTTOM = 4;
+BABYLON.LinesMesh.prototype.BILLBOARDMODE_NONE = 0;
+BABYLON.LinesMesh.prototype.BILLBOARDMODE_X = 1;
+BABYLON.LinesMesh.prototype.BILLBOARDMODE_Y = 2;
+BABYLON.LinesMesh.prototype.BILLBOARDMODE_Z = 4;
+BABYLON.LinesMesh.prototype.BILLBOARDMODE_ALL = 7;
+BABYLON.LinesMesh.prototype.BILLBOARDMODE_USE_POSITION = 128;
+BABYLON.LinesMesh.prototype.OCCLUSION_TYPE_NONE = 0;
+BABYLON.LinesMesh.prototype.OCCLUSION_TYPE_OPTIMISTIC = 1;
+BABYLON.LinesMesh.prototype.OCCLUSION_TYPE_STRICT = 2;
+BABYLON.LinesMesh.prototype.OCCLUSION_ALGORITHM_TYPE_ACCURATE = 0;
+BABYLON.LinesMesh.prototype.OCCLUSION_ALGORITHM_TYPE_CONSERVATIVE = 1;
+BABYLON.LinesMesh.prototype.CULLINGSTRATEGY_STANDARD = 0;
+BABYLON.LinesMesh.prototype.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
+BABYLON.LinesMesh.prototype.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
+BABYLON.LinesMesh.prototype.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
+BABYLON.LinesMesh.prototype.AddNodeConstructor = function () {};
+BABYLON.LinesMesh.prototype.Construct = function () {};
+BABYLON.LinesMesh.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.InstancedLinesMesh = function () {
-  this.BILLBOARDMODE_NONE = 0;
-  this.BILLBOARDMODE_X = 1;
-  this.BILLBOARDMODE_Y = 2;
-  this.BILLBOARDMODE_Z = 4;
-  this.BILLBOARDMODE_ALL = 7;
-  this.BILLBOARDMODE_USE_POSITION = 128;
-  this.OCCLUSION_TYPE_NONE = 0;
-  this.OCCLUSION_TYPE_OPTIMISTIC = 1;
-  this.OCCLUSION_TYPE_STRICT = 2;
-  this.OCCLUSION_ALGORITHM_TYPE_ACCURATE = 0;
-  this.OCCLUSION_ALGORITHM_TYPE_CONSERVATIVE = 1;
-  this.CULLINGSTRATEGY_STANDARD = 0;
-  this.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
-  this.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
-  this.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
-  this.Parse = function () {};
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.InstancedLinesMesh = function () {}
+BABYLON.InstancedLinesMesh.prototype.BILLBOARDMODE_NONE = 0;
+BABYLON.InstancedLinesMesh.prototype.BILLBOARDMODE_X = 1;
+BABYLON.InstancedLinesMesh.prototype.BILLBOARDMODE_Y = 2;
+BABYLON.InstancedLinesMesh.prototype.BILLBOARDMODE_Z = 4;
+BABYLON.InstancedLinesMesh.prototype.BILLBOARDMODE_ALL = 7;
+BABYLON.InstancedLinesMesh.prototype.BILLBOARDMODE_USE_POSITION = 128;
+BABYLON.InstancedLinesMesh.prototype.OCCLUSION_TYPE_NONE = 0;
+BABYLON.InstancedLinesMesh.prototype.OCCLUSION_TYPE_OPTIMISTIC = 1;
+BABYLON.InstancedLinesMesh.prototype.OCCLUSION_TYPE_STRICT = 2;
+BABYLON.InstancedLinesMesh.prototype.OCCLUSION_ALGORITHM_TYPE_ACCURATE = 0;
+BABYLON.InstancedLinesMesh.prototype.OCCLUSION_ALGORITHM_TYPE_CONSERVATIVE = 1;
+BABYLON.InstancedLinesMesh.prototype.CULLINGSTRATEGY_STANDARD = 0;
+BABYLON.InstancedLinesMesh.prototype.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
+BABYLON.InstancedLinesMesh.prototype.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
+BABYLON.InstancedLinesMesh.prototype.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
+BABYLON.InstancedLinesMesh.prototype.Parse = function () {};
+BABYLON.InstancedLinesMesh.prototype.AddNodeConstructor = function () {};
+BABYLON.InstancedLinesMesh.prototype.Construct = function () {};
+BABYLON.InstancedLinesMesh.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.Mesh = function () {
-  this.Parse = function () {};
-  this.CreateRibbon = function () {};
-  this.CreateDisc = function () {};
-  this.CreateBox = function () {};
-  this.CreateSphere = function () {};
-  this.CreateHemisphere = function () {};
-  this.CreateCylinder = function () {};
-  this.CreateTorus = function () {};
-  this.CreateTorusKnot = function () {};
-  this.CreateLines = function () {};
-  this.CreateDashedLines = function () {};
-  this.CreatePolygon = function () {};
-  this.ExtrudePolygon = function () {};
-  this.ExtrudeShape = function () {};
-  this.ExtrudeShapeCustom = function () {};
-  this.CreateLathe = function () {};
-  this.CreatePlane = function () {};
-  this.CreateGround = function () {};
-  this.CreateTiledGround = function () {};
-  this.CreateGroundFromHeightMap = function () {};
-  this.CreateTube = function () {};
-  this.CreatePolyhedron = function () {};
-  this.CreateIcoSphere = function () {};
-  this.CreateDecal = function () {};
-  this.MinMax = function () {};
-  this.Center = function () {};
-  this.MergeMeshes = function () {};
-  this.FRONTSIDE = 0;
-  this.BACKSIDE = 1;
-  this.DOUBLESIDE = 2;
-  this.DEFAULTSIDE = 0;
-  this.NO_CAP = 0;
-  this.CAP_START = 1;
-  this.CAP_END = 2;
-  this.CAP_ALL = 3;
-  this.NO_FLIP = 0;
-  this.FLIP_TILE = 1;
-  this.ROTATE_TILE = 2;
-  this.FLIP_ROW = 3;
-  this.ROTATE_ROW = 4;
-  this.FLIP_N_ROTATE_TILE = 5;
-  this.FLIP_N_ROTATE_ROW = 6;
-  this.CENTER = 0;
-  this.LEFT = 1;
-  this.RIGHT = 2;
-  this.TOP = 3;
-  this.BOTTOM = 4;
-  this.BILLBOARDMODE_NONE = 0;
-  this.BILLBOARDMODE_X = 1;
-  this.BILLBOARDMODE_Y = 2;
-  this.BILLBOARDMODE_Z = 4;
-  this.BILLBOARDMODE_ALL = 7;
-  this.BILLBOARDMODE_USE_POSITION = 128;
-  this.OCCLUSION_TYPE_NONE = 0;
-  this.OCCLUSION_TYPE_OPTIMISTIC = 1;
-  this.OCCLUSION_TYPE_STRICT = 2;
-  this.OCCLUSION_ALGORITHM_TYPE_ACCURATE = 0;
-  this.OCCLUSION_ALGORITHM_TYPE_CONSERVATIVE = 1;
-  this.CULLINGSTRATEGY_STANDARD = 0;
-  this.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
-  this.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
-  this.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.Mesh = function () {}
+BABYLON.Mesh.Parse = function () {};
+BABYLON.Mesh.CreateRibbon = function () {};
+BABYLON.Mesh.CreateDisc = function () {};
+BABYLON.Mesh.CreateBox = function () {};
+BABYLON.Mesh.CreateSphere = function () {};
+BABYLON.Mesh.CreateHemisphere = function () {};
+BABYLON.Mesh.CreateCylinder = function () {};
+BABYLON.Mesh.CreateTorus = function () {};
+BABYLON.Mesh.CreateTorusKnot = function () {};
+BABYLON.Mesh.CreateLines = function () {};
+BABYLON.Mesh.CreateDashedLines = function () {};
+BABYLON.Mesh.CreatePolygon = function () {};
+BABYLON.Mesh.ExtrudePolygon = function () {};
+BABYLON.Mesh.ExtrudeShape = function () {};
+BABYLON.Mesh.ExtrudeShapeCustom = function () {};
+BABYLON.Mesh.CreateLathe = function () {};
+BABYLON.Mesh.CreatePlane = function () {};
+BABYLON.Mesh.CreateGround = function () {};
+BABYLON.Mesh.CreateTiledGround = function () {};
+BABYLON.Mesh.CreateGroundFromHeightMap = function () {};
+BABYLON.Mesh.CreateTube = function () {};
+BABYLON.Mesh.CreatePolyhedron = function () {};
+BABYLON.Mesh.CreateIcoSphere = function () {};
+BABYLON.Mesh.CreateDecal = function () {};
+BABYLON.Mesh.MinMax = function () {};
+BABYLON.Mesh.Center = function () {};
+BABYLON.Mesh.MergeMeshes = function () {};
+BABYLON.Mesh.FRONTSIDE = 0;
+BABYLON.Mesh.BACKSIDE = 1;
+BABYLON.Mesh.DOUBLESIDE = 2;
+BABYLON.Mesh.DEFAULTSIDE = 0;
+BABYLON.Mesh.NO_CAP = 0;
+BABYLON.Mesh.CAP_START = 1;
+BABYLON.Mesh.CAP_END = 2;
+BABYLON.Mesh.CAP_ALL = 3;
+BABYLON.Mesh.NO_FLIP = 0;
+BABYLON.Mesh.FLIP_TILE = 1;
+BABYLON.Mesh.ROTATE_TILE = 2;
+BABYLON.Mesh.FLIP_ROW = 3;
+BABYLON.Mesh.ROTATE_ROW = 4;
+BABYLON.Mesh.FLIP_N_ROTATE_TILE = 5;
+BABYLON.Mesh.FLIP_N_ROTATE_ROW = 6;
+BABYLON.Mesh.CENTER = 0;
+BABYLON.Mesh.LEFT = 1;
+BABYLON.Mesh.RIGHT = 2;
+BABYLON.Mesh.TOP = 3;
+BABYLON.Mesh.BOTTOM = 4;
+BABYLON.Mesh.prototype.BILLBOARDMODE_NONE = 0;
+BABYLON.Mesh.prototype.BILLBOARDMODE_X = 1;
+BABYLON.Mesh.prototype.BILLBOARDMODE_Y = 2;
+BABYLON.Mesh.prototype.BILLBOARDMODE_Z = 4;
+BABYLON.Mesh.prototype.BILLBOARDMODE_ALL = 7;
+BABYLON.Mesh.prototype.BILLBOARDMODE_USE_POSITION = 128;
+BABYLON.Mesh.prototype.OCCLUSION_TYPE_NONE = 0;
+BABYLON.Mesh.prototype.OCCLUSION_TYPE_OPTIMISTIC = 1;
+BABYLON.Mesh.prototype.OCCLUSION_TYPE_STRICT = 2;
+BABYLON.Mesh.prototype.OCCLUSION_ALGORITHM_TYPE_ACCURATE = 0;
+BABYLON.Mesh.prototype.OCCLUSION_ALGORITHM_TYPE_CONSERVATIVE = 1;
+BABYLON.Mesh.prototype.CULLINGSTRATEGY_STANDARD = 0;
+BABYLON.Mesh.prototype.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY = 1;
+BABYLON.Mesh.prototype.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION = 2;
+BABYLON.Mesh.prototype.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY = 3;
+BABYLON.Mesh.prototype.AddNodeConstructor = function () {};
+BABYLON.Mesh.prototype.Construct = function () {};
+BABYLON.Mesh.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.VertexData = function () {
-  this.set = function () {};
-  this.applyToMesh = function () {};
-  this.applyToGeometry = function () {};
-  this.updateMesh = function () {};
-  this.updateGeometry = function () {};
-  this.transform = function () {};
-  this.merge = function () {};
-  this.serialize = function () {};
-  this.ExtractFromMesh = function () {};
-  this.ExtractFromGeometry = function () {};
-  this.CreateRibbon = function () {};
-  this.CreateBox = function () {};
-  this.CreateTiledBox = function () {};
-  this.CreateTiledPlane = function () {};
-  this.CreateSphere = function () {};
-  this.CreateCylinder = function () {};
-  this.CreateTorus = function () {};
-  this.CreateLineSystem = function () {};
-  this.CreateDashedLines = function () {};
-  this.CreateGround = function () {};
-  this.CreateTiledGround = function () {};
-  this.CreateGroundFromHeightMap = function () {};
-  this.CreatePlane = function () {};
-  this.CreateDisc = function () {};
-  this.CreatePolygon = function () {};
-  this.CreateIcoSphere = function () {};
-  this.CreatePolyhedron = function () {};
-  this.CreateTorusKnot = function () {};
-  this.ComputeNormals = function () {};
-  this.ImportVertexData = function () {};
-  this.FRONTSIDE = 0;
-  this.BACKSIDE = 1;
-  this.DOUBLESIDE = 2;
-  this.DEFAULTSIDE = 0;
-};
+BABYLON.VertexData = function () {}
+BABYLON.VertexData.prototype.set = function () {};
+BABYLON.VertexData.prototype.applyToMesh = function () {};
+BABYLON.VertexData.prototype.applyToGeometry = function () {};
+BABYLON.VertexData.prototype.updateMesh = function () {};
+BABYLON.VertexData.prototype.updateGeometry = function () {};
+BABYLON.VertexData.prototype.transform = function () {};
+BABYLON.VertexData.prototype.merge = function () {};
+BABYLON.VertexData.prototype.serialize = function () {};
+
 
 /** @constructor */
-BABYLON.MeshBuilder = function () {
-  this.CreateBox = function () {};
-  this.CreateTiledBox = function () {};
-  this.CreateSphere = function () {};
-  this.CreateDisc = function () {};
-  this.CreateIcoSphere = function () {};
-  this.CreateRibbon = function () {};
-  this.CreateCylinder = function () {};
-  this.CreateTorus = function () {};
-  this.CreateTorusKnot = function () {};
-  this.CreateLineSystem = function () {};
-  this.CreateLines = function () {};
-  this.CreateDashedLines = function () {};
-  this.ExtrudeShape = function () {};
-  this.ExtrudeShapeCustom = function () {};
-  this.CreateLathe = function () {};
-  this.CreateTiledPlane = function () {};
-  this.CreatePlane = function () {};
-  this.CreateGround = function () {};
-  this.CreateTiledGround = function () {};
-  this.CreateGroundFromHeightMap = function () {};
-  this.CreatePolygon = function () {};
-  this.ExtrudePolygon = function () {};
-  this.CreateTube = function () {};
-  this.CreatePolyhedron = function () {};
-  this.CreateDecal = function () {};
-};
+BABYLON.MeshBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.SimplificationSettings = function () {
-  // this.quality = undefined;
-  // this.distance = undefined;
-  // this.optimizeMesh = undefined;
-};
+BABYLON.SimplificationSettings = function () {}
+// BABYLON.SimplificationSettings.quality = undefined;
+// BABYLON.SimplificationSettings.distance = undefined;
+// BABYLON.SimplificationSettings.optimizeMesh = undefined;
+
 
 /** @constructor */
-BABYLON.SimplificationQueue = function () {
-  this.running = false;
-  this.addTask = function () {};
-  this.executeNext = function () {};
-  this.runSimplification = function () {};
-  this.getSimplifier = function () {};
-};
+BABYLON.SimplificationQueue = function () {}
+BABYLON.SimplificationQueue.running = false;
+BABYLON.SimplificationQueue.prototype.addTask = function () {};
+BABYLON.SimplificationQueue.prototype.executeNext = function () {};
+BABYLON.SimplificationQueue.prototype.runSimplification = function () {};
+BABYLON.SimplificationQueue.prototype.getSimplifier = function () {};
+
 
 BABYLON.SimplificationType = {}
 
 /** @constructor */
-BABYLON.SimplicationQueueSceneComponent = function () {
-  this.name = "SimplificationQueue";
-  // this.scene = undefined;
-  this.register = function () {};
-  this.rebuild = function () {};
-  this.dispose = function () {};
-};
+BABYLON.SimplicationQueueSceneComponent = function () {}
+BABYLON.SimplicationQueueSceneComponent.name = "SimplificationQueue";
+// BABYLON.SimplicationQueueSceneComponent.scene = undefined;
+BABYLON.SimplicationQueueSceneComponent.prototype.register = function () {};
+BABYLON.SimplicationQueueSceneComponent.prototype.rebuild = function () {};
+BABYLON.SimplicationQueueSceneComponent.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.Polygon = function () {
-  this.Rectangle = function () {};
-  this.Circle = function () {};
-  this.Parse = function () {};
-  this.StartingAt = function () {};
-};
+BABYLON.Polygon = function () {}
+
 
 /** @constructor */
-BABYLON.PolygonMeshBuilder = function () {
-};
+BABYLON.PolygonMeshBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.BaseSubMesh = function () {
-  this.materialDefines = null;
-  this.effect = null;
-  this.setEffect = function () {};
-};
+BABYLON.BaseSubMesh = function () {}
+// BABYLON.BaseSubMesh.prototype.materialDefines = undefined;
+// BABYLON.BaseSubMesh.prototype.effect = undefined;
+BABYLON.BaseSubMesh.prototype.setEffect = function () {};
+
 
 /** @constructor */
-BABYLON.SubMesh = function () {
-  this.AddToMesh = function () {};
-  this.CreateFromIndices = function () {};
-};
+BABYLON.SubMesh = function () {}
+BABYLON.SubMesh.AddToMesh = function () {};
+BABYLON.SubMesh.CreateFromIndices = function () {};
+
 
 /** @constructor */
-BABYLON.MeshLODLevel = function () {
-  // this.distance = undefined;
-  // this.mesh = undefined;
-};
+BABYLON.MeshLODLevel = function () {}
+// BABYLON.MeshLODLevel.distance = undefined;
+// BABYLON.MeshLODLevel.mesh = undefined;
+
 
 /** @constructor */
-BABYLON.TransformNode = function () {
-  this.Parse = function () {};
-  this.BILLBOARDMODE_NONE = 0;
-  this.BILLBOARDMODE_X = 1;
-  this.BILLBOARDMODE_Y = 2;
-  this.BILLBOARDMODE_Z = 4;
-  this.BILLBOARDMODE_ALL = 7;
-  this.BILLBOARDMODE_USE_POSITION = 128;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.TransformNode = function () {}
+BABYLON.TransformNode.Parse = function () {};
+BABYLON.TransformNode.BILLBOARDMODE_NONE = 0;
+BABYLON.TransformNode.BILLBOARDMODE_X = 1;
+BABYLON.TransformNode.BILLBOARDMODE_Y = 2;
+BABYLON.TransformNode.BILLBOARDMODE_Z = 4;
+BABYLON.TransformNode.BILLBOARDMODE_ALL = 7;
+BABYLON.TransformNode.BILLBOARDMODE_USE_POSITION = 128;
+BABYLON.TransformNode.prototype.AddNodeConstructor = function () {};
+BABYLON.TransformNode.prototype.Construct = function () {};
+BABYLON.TransformNode.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.BoxBuilder = function () {
-  this.CreateBox = function () {};
-};
+BABYLON.BoxBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.SphereBuilder = function () {
-  this.CreateSphere = function () {};
-};
+BABYLON.SphereBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.CylinderBuilder = function () {
-  this.CreateCylinder = function () {};
-};
+BABYLON.CylinderBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.TorusBuilder = function () {
-  this.CreateTorus = function () {};
-};
+BABYLON.TorusBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.LinesBuilder = function () {
-  this.CreateLineSystem = function () {};
-  this.CreateLines = function () {};
-  this.CreateDashedLines = function () {};
-};
+BABYLON.LinesBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.PlaneBuilder = function () {
-  this.CreatePlane = function () {};
-};
+BABYLON.PlaneBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.GroundBuilder = function () {
-  this.CreateGround = function () {};
-  this.CreateTiledGround = function () {};
-  this.CreateGroundFromHeightMap = function () {};
-};
+BABYLON.GroundBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.DataBuffer = function () {
-  this.references = 0;
-  this.capacity = 0;
-  this.is32Bits = false;
-  this.underlyingResource = null;
-};
+BABYLON.DataBuffer = function () {}
+BABYLON.DataBuffer.references = 0;
+BABYLON.DataBuffer.capacity = 0;
+BABYLON.DataBuffer.is32Bits = false;
+BABYLON.DataBuffer.prototype.underlyingResource = null;
+
 
 /** @constructor */
-BABYLON.WebGLDataBuffer = function () {
-  this.references = 0;
-  this.capacity = 0;
-  this.is32Bits = false;
-  this.constructor = function () {};
-  // this.underlyingResource = undefined;
-};
+BABYLON.WebGLDataBuffer = function () {}
+BABYLON.WebGLDataBuffer.references = 0;
+BABYLON.WebGLDataBuffer.capacity = 0;
+BABYLON.WebGLDataBuffer.is32Bits = false;
+BABYLON.WebGLDataBuffer.prototype.constructor = function () {};
+// BABYLON.WebGLDataBuffer.prototype.underlyingResource = undefined;
+
 
 /** @constructor */
-BABYLON.DracoCompression = function () {
-  this.dispose = function () {};
-  this.whenReadyAsync = function () {};
-  this.decodeMeshAsync = function () {};
-  this.DecoderAvailable = true;
-  this.GetDefaultNumWorkers = function () {};
-  this.Default = {};
-  this.Configuration = {};
-  this.DefaultNumWorkers = 4;
-};
+BABYLON.DracoCompression = function () {}
+BABYLON.DracoCompression.prototype.dispose = function () {};
+BABYLON.DracoCompression.prototype.whenReadyAsync = function () {};
+BABYLON.DracoCompression.prototype.decodeMeshAsync = function () {};
+
 
 /** @constructor */
-BABYLON.TiledBoxBuilder = function () {
-  this.CreateTiledBox = function () {};
-};
+BABYLON.TiledBoxBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.DiscBuilder = function () {
-  this.CreateDisc = function () {};
-};
+BABYLON.DiscBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.RibbonBuilder = function () {
-  this.CreateRibbon = function () {};
-};
+BABYLON.RibbonBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.HemisphereBuilder = function () {
-  this.CreateHemisphere = function () {};
-};
+BABYLON.HemisphereBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.TorusKnotBuilder = function () {
-  this.CreateTorusKnot = function () {};
-};
+BABYLON.TorusKnotBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.PolygonBuilder = function () {
-  this.CreatePolygon = function () {};
-  this.ExtrudePolygon = function () {};
-};
+BABYLON.PolygonBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.ShapeBuilder = function () {
-  this.ExtrudeShape = function () {};
-  this.ExtrudeShapeCustom = function () {};
-};
+BABYLON.ShapeBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.LatheBuilder = function () {
-  this.CreateLathe = function () {};
-};
+BABYLON.LatheBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.TiledPlaneBuilder = function () {
-  this.CreateTiledPlane = function () {};
-};
+BABYLON.TiledPlaneBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.TubeBuilder = function () {
-  this.CreateTube = function () {};
-};
+BABYLON.TubeBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.PolyhedronBuilder = function () {
-  this.CreatePolyhedron = function () {};
-};
+BABYLON.PolyhedronBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.IcoSphereBuilder = function () {
-  this.CreateIcoSphere = function () {};
-};
+BABYLON.IcoSphereBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.DecalBuilder = function () {
-  this.CreateDecal = function () {};
-};
+BABYLON.DecalBuilder = function () {}
+
 
 /** @constructor */
-BABYLON.MorphTarget = function () {
-  // this.name = undefined;
-  this.animations = {};
-  this.onInfluenceChanged = {};
-  this.influence = 0;
-  this.animationPropertiesOverride = null;
-  this.uniqueId = 0;
-  this.hasPositions = false;
-  this.hasNormals = false;
-  this.hasTangents = false;
-  this.hasUVs = false;
-  this.setPositions = function () {};
-  this.getPositions = function () {};
-  this.setNormals = function () {};
-  this.getNormals = function () {};
-  this.setTangents = function () {};
-  this.getTangents = function () {};
-  this.setUVs = function () {};
-  this.getUVs = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.getClassName = function () {};
-  this.Parse = function () {};
-  this.FromMesh = function () {};
-};
+BABYLON.MorphTarget = function () {}
+// BABYLON.MorphTarget.name = undefined;
+BABYLON.MorphTarget.animations = {};
+BABYLON.MorphTarget.onInfluenceChanged = {};
+// BABYLON.MorphTarget.prototype.influence = undefined;
+// BABYLON.MorphTarget.prototype.animationPropertiesOverride = undefined;
+// BABYLON.MorphTarget.prototype.uniqueId = undefined;
+BABYLON.MorphTarget.prototype.hasPositions = false;
+BABYLON.MorphTarget.prototype.hasNormals = false;
+BABYLON.MorphTarget.prototype.hasTangents = false;
+BABYLON.MorphTarget.prototype.hasUVs = false;
+BABYLON.MorphTarget.prototype.setPositions = function () {};
+BABYLON.MorphTarget.prototype.getPositions = function () {};
+BABYLON.MorphTarget.prototype.setNormals = function () {};
+BABYLON.MorphTarget.prototype.getNormals = function () {};
+BABYLON.MorphTarget.prototype.setTangents = function () {};
+BABYLON.MorphTarget.prototype.getTangents = function () {};
+BABYLON.MorphTarget.prototype.setUVs = function () {};
+BABYLON.MorphTarget.prototype.getUVs = function () {};
+BABYLON.MorphTarget.prototype.clone = function () {};
+BABYLON.MorphTarget.prototype.serialize = function () {};
+BABYLON.MorphTarget.prototype.getClassName = function () {};
+
 
 /** @constructor */
-BABYLON.MorphTargetManager = function () {
-  this.enableNormalMorphing = true;
-  this.enableTangentMorphing = true;
-  this.enableUVMorphing = true;
-  this.uniqueId = 0;
-  this.vertexCount = 0;
-  this.supportsNormals = false;
-  this.supportsTangents = false;
-  this.supportsUVs = false;
-  this.numTargets = 0;
-  this.numInfluencers = 0;
-  // this.influences = undefined;
-  this.getActiveTarget = function () {};
-  this.getTarget = function () {};
-  this.addTarget = function () {};
-  this.removeTarget = function () {};
-  this.clone = function () {};
-  this.serialize = function () {};
-  this.synchronize = function () {};
-  this.Parse = function () {};
-};
+BABYLON.MorphTargetManager = function () {}
+BABYLON.MorphTargetManager.enableNormalMorphing = true;
+BABYLON.MorphTargetManager.enableTangentMorphing = true;
+BABYLON.MorphTargetManager.enableUVMorphing = true;
+// BABYLON.MorphTargetManager.prototype.uniqueId = undefined;
+// BABYLON.MorphTargetManager.prototype.vertexCount = undefined;
+// BABYLON.MorphTargetManager.prototype.supportsNormals = undefined;
+// BABYLON.MorphTargetManager.prototype.supportsTangents = undefined;
+// BABYLON.MorphTargetManager.prototype.supportsUVs = undefined;
+// BABYLON.MorphTargetManager.prototype.numTargets = undefined;
+// BABYLON.MorphTargetManager.prototype.numInfluencers = undefined;
+// BABYLON.MorphTargetManager.prototype.influences = undefined;
+BABYLON.MorphTargetManager.prototype.getActiveTarget = function () {};
+BABYLON.MorphTargetManager.prototype.getTarget = function () {};
+BABYLON.MorphTargetManager.prototype.addTarget = function () {};
+BABYLON.MorphTargetManager.prototype.removeTarget = function () {};
+BABYLON.MorphTargetManager.prototype.clone = function () {};
+BABYLON.MorphTargetManager.prototype.serialize = function () {};
+BABYLON.MorphTargetManager.prototype.synchronize = function () {};
+
 
 /** @constructor */
-BABYLON.RecastJSPlugin = function () {
-};
+BABYLON.RecastJSPlugin = function () {}
+
 
 /** @constructor */
-BABYLON.RecastJSCrowd = function () {
-};
+BABYLON.RecastJSCrowd = function () {}
+
 
 /** @constructor */
-BABYLON.Node = function () {
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.Node = function () {}
+BABYLON.Node.AddNodeConstructor = function () {};
+BABYLON.Node.Construct = function () {};
+BABYLON.Node.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.Database = function () {
-  this.IsUASupportingBlobStorage = true;
-  this.IDBStorageEnabled = false;
-};
+BABYLON.Database = function () {}
+BABYLON.Database.IsUASupportingBlobStorage = true;
+BABYLON.Database.IDBStorageEnabled = false;
+
 
 /** @constructor */
-BABYLON.BaseParticleSystem = function () {
-  this.animations = {};
-  this.renderingGroupId = 0;
-  this.emitter = {};
-  this.emitRate = 10;
-  this.manualEmitCount = -1;
-  this.updateSpeed = 0.01;
-  this.targetStopDuration = 0;
-  this.disposeOnStop = false;
-  this.minEmitPower = 1;
-  this.maxEmitPower = 1;
-  this.minLifeTime = 1;
-  this.maxLifeTime = 1;
-  this.minSize = 1;
-  this.maxSize = 1;
-  this.minScaleX = 1;
-  this.maxScaleX = 1;
-  this.minScaleY = 1;
-  this.maxScaleY = 1;
-  this.minInitialRotation = 0;
-  this.maxInitialRotation = 0;
-  this.minAngularSpeed = 0;
-  this.maxAngularSpeed = 0;
-  this.layerMask = 268435455;
-  this.customShader = null;
-  this.preventAutoStart = false;
-  this.noiseStrength = {};
-  this.onAnimationEnd = null;
-  this.blendMode = 0;
-  this.forceDepthWrite = false;
-  this.preWarmCycles = 0;
-  this.preWarmStepOffset = 1;
-  this.spriteCellChangeSpeed = 1;
-  this.startSpriteCellID = 0;
-  this.endSpriteCellID = 0;
-  this.spriteCellWidth = 0;
-  this.spriteCellHeight = 0;
-  this.spriteRandomStartCell = false;
-  this.translationPivot = {};
-  this.beginAnimationOnStart = false;
-  this.beginAnimationFrom = 0;
-  this.beginAnimationTo = 60;
-  this.beginAnimationLoop = false;
-  this.worldOffset = {};
-  this.gravity = {};
-  this.startDelay = 0;
-  this.limitVelocityDamping = 0.4;
-  this.color1 = {};
-  this.color2 = {};
-  this.colorDead = {};
-  this.textureMask = {};
-  this.billboardMode = 7;
-  // this.id = undefined;
-  // this.name = undefined;
-  // this.noiseTexture = undefined;
-  // this.isAnimationSheetEnabled = undefined;
-  this.getScene = function () {};
-  this.getDragGradients = function () {};
-  this.getLimitVelocityGradients = function () {};
-  this.getColorGradients = function () {};
-  this.getSizeGradients = function () {};
-  this.getColorRemapGradients = function () {};
-  this.getAlphaRemapGradients = function () {};
-  this.getLifeTimeGradients = function () {};
-  this.getAngularSpeedGradients = function () {};
-  this.getVelocityGradients = function () {};
-  this.getStartSizeGradients = function () {};
-  this.getEmitRateGradients = function () {};
-  this.BLENDMODE_ONEONE = 0;
-  this.BLENDMODE_STANDARD = 1;
-  this.BLENDMODE_ADD = 2;
-  this.BLENDMODE_MULTIPLY = 3;
-  this.BLENDMODE_MULTIPLYADD = 4;
-};
+BABYLON.BaseParticleSystem = function () {}
+BABYLON.BaseParticleSystem.animations = {};
+BABYLON.BaseParticleSystem.renderingGroupId = 0;
+BABYLON.BaseParticleSystem.emitter = {};
+BABYLON.BaseParticleSystem.emitRate = 10;
+BABYLON.BaseParticleSystem.manualEmitCount = -1;
+BABYLON.BaseParticleSystem.updateSpeed = 0.01;
+BABYLON.BaseParticleSystem.targetStopDuration = 0;
+BABYLON.BaseParticleSystem.disposeOnStop = false;
+BABYLON.BaseParticleSystem.minEmitPower = 1;
+BABYLON.BaseParticleSystem.maxEmitPower = 1;
+BABYLON.BaseParticleSystem.minLifeTime = 1;
+BABYLON.BaseParticleSystem.maxLifeTime = 1;
+BABYLON.BaseParticleSystem.minSize = 1;
+BABYLON.BaseParticleSystem.maxSize = 1;
+BABYLON.BaseParticleSystem.minScaleX = 1;
+BABYLON.BaseParticleSystem.maxScaleX = 1;
+BABYLON.BaseParticleSystem.minScaleY = 1;
+BABYLON.BaseParticleSystem.maxScaleY = 1;
+BABYLON.BaseParticleSystem.minInitialRotation = 0;
+BABYLON.BaseParticleSystem.maxInitialRotation = 0;
+BABYLON.BaseParticleSystem.minAngularSpeed = 0;
+BABYLON.BaseParticleSystem.maxAngularSpeed = 0;
+BABYLON.BaseParticleSystem.layerMask = 268435455;
+BABYLON.BaseParticleSystem.customShader = null;
+BABYLON.BaseParticleSystem.preventAutoStart = false;
+BABYLON.BaseParticleSystem.noiseStrength = {};
+BABYLON.BaseParticleSystem.onAnimationEnd = null;
+BABYLON.BaseParticleSystem.blendMode = 0;
+BABYLON.BaseParticleSystem.forceDepthWrite = false;
+BABYLON.BaseParticleSystem.preWarmCycles = 0;
+BABYLON.BaseParticleSystem.preWarmStepOffset = 1;
+BABYLON.BaseParticleSystem.spriteCellChangeSpeed = 1;
+BABYLON.BaseParticleSystem.startSpriteCellID = 0;
+BABYLON.BaseParticleSystem.endSpriteCellID = 0;
+BABYLON.BaseParticleSystem.spriteCellWidth = 0;
+BABYLON.BaseParticleSystem.spriteCellHeight = 0;
+BABYLON.BaseParticleSystem.spriteRandomStartCell = false;
+BABYLON.BaseParticleSystem.translationPivot = {};
+BABYLON.BaseParticleSystem.beginAnimationOnStart = false;
+BABYLON.BaseParticleSystem.beginAnimationFrom = 0;
+BABYLON.BaseParticleSystem.beginAnimationTo = 60;
+BABYLON.BaseParticleSystem.beginAnimationLoop = false;
+BABYLON.BaseParticleSystem.worldOffset = {};
+BABYLON.BaseParticleSystem.gravity = {};
+BABYLON.BaseParticleSystem.startDelay = 0;
+BABYLON.BaseParticleSystem.limitVelocityDamping = 0.4;
+BABYLON.BaseParticleSystem.color1 = {};
+BABYLON.BaseParticleSystem.color2 = {};
+BABYLON.BaseParticleSystem.colorDead = {};
+BABYLON.BaseParticleSystem.textureMask = {};
+BABYLON.BaseParticleSystem.billboardMode = 7;
+// BABYLON.BaseParticleSystem.id = undefined;
+// BABYLON.BaseParticleSystem.name = undefined;
+// BABYLON.BaseParticleSystem.prototype.noiseTexture = undefined;
+// BABYLON.BaseParticleSystem.prototype.isAnimationSheetEnabled = undefined;
+BABYLON.BaseParticleSystem.prototype.getScene = function () {};
+BABYLON.BaseParticleSystem.prototype.getDragGradients = function () {};
+BABYLON.BaseParticleSystem.prototype.getLimitVelocityGradients = function () {};
+BABYLON.BaseParticleSystem.prototype.getColorGradients = function () {};
+BABYLON.BaseParticleSystem.prototype.getSizeGradients = function () {};
+BABYLON.BaseParticleSystem.prototype.getColorRemapGradients = function () {};
+BABYLON.BaseParticleSystem.prototype.getAlphaRemapGradients = function () {};
+BABYLON.BaseParticleSystem.prototype.getLifeTimeGradients = function () {};
+BABYLON.BaseParticleSystem.prototype.getAngularSpeedGradients = function () {};
+BABYLON.BaseParticleSystem.prototype.getVelocityGradients = function () {};
+BABYLON.BaseParticleSystem.prototype.getStartSizeGradients = function () {};
+BABYLON.BaseParticleSystem.prototype.getEmitRateGradients = function () {};
+// BABYLON.BaseParticleSystem.prototype.direction1 = undefined;
+// BABYLON.BaseParticleSystem.prototype.direction2 = undefined;
+// BABYLON.BaseParticleSystem.prototype.minEmitBox = undefined;
+// BABYLON.BaseParticleSystem.prototype.maxEmitBox = undefined;
+// BABYLON.BaseParticleSystem.prototype.isBillboardBased = undefined;
+// BABYLON.BaseParticleSystem.prototype.imageProcessingConfiguration = undefined;
+BABYLON.BaseParticleSystem.prototype.createPointEmitter = function () {};
+BABYLON.BaseParticleSystem.prototype.createHemisphericEmitter = function () {};
+BABYLON.BaseParticleSystem.prototype.createSphereEmitter = function () {};
+BABYLON.BaseParticleSystem.prototype.createDirectedSphereEmitter = function () {};
+BABYLON.BaseParticleSystem.prototype.createCylinderEmitter = function () {};
+BABYLON.BaseParticleSystem.prototype.createDirectedCylinderEmitter = function () {};
+BABYLON.BaseParticleSystem.prototype.createConeEmitter = function () {};
+BABYLON.BaseParticleSystem.prototype.createBoxEmitter = function () {};
+
 
 /** @constructor */
-BABYLON.GPUParticleSystem = function () {
-  this.IsSupported = false;
-  this.Parse = function () {};
-  this.BLENDMODE_ONEONE = 0;
-  this.BLENDMODE_STANDARD = 1;
-  this.BLENDMODE_ADD = 2;
-  this.BLENDMODE_MULTIPLY = 3;
-  this.BLENDMODE_MULTIPLYADD = 4;
-};
+BABYLON.GPUParticleSystem = function () {}
+BABYLON.GPUParticleSystem.IsSupported = false;
+BABYLON.GPUParticleSystem.Parse = function () {};
+BABYLON.GPUParticleSystem.prototype.BLENDMODE_ONEONE = 0;
+BABYLON.GPUParticleSystem.prototype.BLENDMODE_STANDARD = 1;
+BABYLON.GPUParticleSystem.prototype.BLENDMODE_ADD = 2;
+BABYLON.GPUParticleSystem.prototype.BLENDMODE_MULTIPLY = 3;
+BABYLON.GPUParticleSystem.prototype.BLENDMODE_MULTIPLYADD = 4;
+
 
 /** @constructor */
-BABYLON.Particle = function () {
-};
+BABYLON.Particle = function () {}
+
 
 /** @constructor */
-BABYLON.ParticleHelper = function () {
-  this.CreateDefault = function () {};
-  this.CreateAsync = function () {};
-  this.ExportSet = function () {};
-  this.BaseAssetsUrl = "https://assets.babylonjs.com/particles";
-};
+BABYLON.ParticleHelper = function () {}
+
 
 /** @constructor */
-BABYLON.ParticleSystem = function () {
-  this.Parse = function () {};
-  this.BILLBOARDMODE_Y = 2;
-  this.BILLBOARDMODE_ALL = 7;
-  this.BILLBOARDMODE_STRETCHED = 8;
-  this.BLENDMODE_ONEONE = 0;
-  this.BLENDMODE_STANDARD = 1;
-  this.BLENDMODE_ADD = 2;
-  this.BLENDMODE_MULTIPLY = 3;
-  this.BLENDMODE_MULTIPLYADD = 4;
-};
+BABYLON.ParticleSystem = function () {}
+BABYLON.ParticleSystem.Parse = function () {};
+BABYLON.ParticleSystem.BILLBOARDMODE_Y = 2;
+BABYLON.ParticleSystem.BILLBOARDMODE_ALL = 7;
+BABYLON.ParticleSystem.BILLBOARDMODE_STRETCHED = 8;
+BABYLON.ParticleSystem.prototype.BLENDMODE_ONEONE = 0;
+BABYLON.ParticleSystem.prototype.BLENDMODE_STANDARD = 1;
+BABYLON.ParticleSystem.prototype.BLENDMODE_ADD = 2;
+BABYLON.ParticleSystem.prototype.BLENDMODE_MULTIPLY = 3;
+BABYLON.ParticleSystem.prototype.BLENDMODE_MULTIPLYADD = 4;
+
 
 /** @constructor */
-BABYLON.ParticleSystemSet = function () {
-  this.systems = {};
-  // this.emitterNode = undefined;
-  this.setEmitterAsSphere = function () {};
-  this.start = function () {};
-  this.dispose = function () {};
-  this.serialize = function () {};
-  this.Parse = function () {};
-  this.BaseAssetsUrl = "https://assets.babylonjs.com/particles";
-};
+BABYLON.ParticleSystemSet = function () {}
+BABYLON.ParticleSystemSet.systems = {};
+// BABYLON.ParticleSystemSet.prototype.emitterNode = undefined;
+BABYLON.ParticleSystemSet.prototype.setEmitterAsSphere = function () {};
+BABYLON.ParticleSystemSet.prototype.start = function () {};
+BABYLON.ParticleSystemSet.prototype.dispose = function () {};
+BABYLON.ParticleSystemSet.prototype.serialize = function () {};
+
 
 /** @constructor */
-BABYLON.SolidParticle = function () {
-  // this.idx = undefined;
-  // this.id = undefined;
-  this.color = {};
-  this.position = {};
-  this.rotation = {};
-  this.scaling = {};
-  this.uvs = {};
-  this.velocity = {};
-  this.pivot = {};
-  this.translateFromPivot = false;
-  this.alive = true;
-  this.isVisible = true;
-  // this.shapeId = undefined;
-  // this.idxInShape = undefined;
-  this.parentId = null;
-  this.materialIndex = null;
-  this.cullingStrategy = 1;
-  this.copyToRef = function () {};
-  this.scale = {};
-  // this.quaternion = undefined;
-  this.intersectsMesh = function () {};
-  this.isInFrustum = function () {};
-  this.getRotationMatrix = function () {};
-};
+BABYLON.SolidParticle = function () {}
+// BABYLON.SolidParticle.idx = undefined;
+// BABYLON.SolidParticle.id = undefined;
+BABYLON.SolidParticle.color = {};
+BABYLON.SolidParticle.position = {};
+BABYLON.SolidParticle.rotation = {};
+BABYLON.SolidParticle.scaling = {};
+BABYLON.SolidParticle.uvs = {};
+BABYLON.SolidParticle.velocity = {};
+BABYLON.SolidParticle.pivot = {};
+BABYLON.SolidParticle.translateFromPivot = false;
+BABYLON.SolidParticle.alive = true;
+BABYLON.SolidParticle.isVisible = true;
+// BABYLON.SolidParticle.shapeId = undefined;
+// BABYLON.SolidParticle.idxInShape = undefined;
+BABYLON.SolidParticle.parentId = null;
+BABYLON.SolidParticle.materialIndex = null;
+BABYLON.SolidParticle.cullingStrategy = 1;
+BABYLON.SolidParticle.prototype.copyToRef = function () {};
+// BABYLON.SolidParticle.prototype.scale = undefined;
+// BABYLON.SolidParticle.prototype.quaternion = undefined;
+BABYLON.SolidParticle.prototype.intersectsMesh = function () {};
+BABYLON.SolidParticle.prototype.isInFrustum = function () {};
+BABYLON.SolidParticle.prototype.getRotationMatrix = function () {};
+
 
 /** @constructor */
-BABYLON.ModelShape = function () {
-};
+BABYLON.ModelShape = function () {}
+
 
 /** @constructor */
-BABYLON.DepthSortedParticle = function () {
-  // this.ind = undefined;
-  // this.indicesLength = undefined;
-  this.sqDistance = 0;
-  // this.materialIndex = undefined;
-};
+BABYLON.DepthSortedParticle = function () {}
+// BABYLON.DepthSortedParticle.ind = undefined;
+// BABYLON.DepthSortedParticle.indicesLength = undefined;
+BABYLON.DepthSortedParticle.sqDistance = 0;
+// BABYLON.DepthSortedParticle.materialIndex = undefined;
+
 
 /** @constructor */
-BABYLON.SolidParticleSystem = function () {
-};
+BABYLON.SolidParticleSystem = function () {}
+
 
 /** @constructor */
-BABYLON.CloudPoint = function () {
-  // this.idx = undefined;
-  this.color = {};
-  this.position = {};
-  this.rotation = {};
-  this.uv = {};
-  this.velocity = {};
-  this.pivot = {};
-  this.translateFromPivot = false;
-  // this.groupId = undefined;
-  // this.idxInGroup = undefined;
-  this.parentId = null;
-};
+BABYLON.CloudPoint = function () {}
+// BABYLON.CloudPoint.idx = undefined;
+BABYLON.CloudPoint.color = {};
+BABYLON.CloudPoint.position = {};
+BABYLON.CloudPoint.rotation = {};
+BABYLON.CloudPoint.uv = {};
+BABYLON.CloudPoint.velocity = {};
+BABYLON.CloudPoint.pivot = {};
+BABYLON.CloudPoint.translateFromPivot = false;
+// BABYLON.CloudPoint.groupId = undefined;
+// BABYLON.CloudPoint.idxInGroup = undefined;
+BABYLON.CloudPoint.parentId = null;
+// BABYLON.CloudPoint.prototype.size = undefined;
+// BABYLON.CloudPoint.prototype.quaternion = undefined;
+BABYLON.CloudPoint.prototype.intersectsMesh = function () {};
+BABYLON.CloudPoint.prototype.getRotationMatrix = function () {};
+
 
 /** @constructor */
-BABYLON.PointsGroup = function () {
-  // this.groupID = undefined;
-};
+BABYLON.PointsGroup = function () {}
+// BABYLON.PointsGroup.groupID = undefined;
+
 
 BABYLON.PointColor = {}
 
 /** @constructor */
-BABYLON.PointsCloudSystem = function () {
-  this.particles = {};
-  this.nbParticles = 0;
-  this.counter = 0;
-  this.vars = {};
-  // this.name = undefined;
-  this.buildMeshAsync = function () {};
-  this.addPoints = function () {};
-  this.addSurfacePoints = function () {};
-  this.addVolumePoints = function () {};
-  this.setParticles = function () {};
-  this.dispose = function () {};
-  this.refreshVisibleSize = function () {};
-  this.setVisibilityBox = function () {};
-  this.isAlwaysVisible = false;
-  // this.computeParticleRotation = undefined;
-  this.computeParticleColor = true;
-  this.computeParticleTexture = true;
-  this.computeBoundingBox = false;
-  this.initParticles = function () {};
-  this.recycleParticle = function () {};
-  this.updateParticle = function () {};
-  this.beforeUpdateParticles = function () {};
-  this.afterUpdateParticles = function () {};
-};
+BABYLON.PointsCloudSystem = function () {}
+BABYLON.PointsCloudSystem.particles = {};
+BABYLON.PointsCloudSystem.nbParticles = 0;
+BABYLON.PointsCloudSystem.counter = 0;
+BABYLON.PointsCloudSystem.vars = {};
+// BABYLON.PointsCloudSystem.name = undefined;
+BABYLON.PointsCloudSystem.prototype.buildMeshAsync = function () {};
+BABYLON.PointsCloudSystem.prototype.addPoints = function () {};
+BABYLON.PointsCloudSystem.prototype.addSurfacePoints = function () {};
+BABYLON.PointsCloudSystem.prototype.addVolumePoints = function () {};
+BABYLON.PointsCloudSystem.prototype.setParticles = function () {};
+BABYLON.PointsCloudSystem.prototype.dispose = function () {};
+BABYLON.PointsCloudSystem.prototype.refreshVisibleSize = function () {};
+BABYLON.PointsCloudSystem.prototype.setVisibilityBox = function () {};
+// BABYLON.PointsCloudSystem.prototype.isAlwaysVisible = undefined;
+// BABYLON.PointsCloudSystem.prototype.computeParticleRotation = undefined;
+// BABYLON.PointsCloudSystem.prototype.computeParticleColor = undefined;
+// BABYLON.PointsCloudSystem.prototype.computeParticleTexture = undefined;
+// BABYLON.PointsCloudSystem.prototype.computeBoundingBox = undefined;
+BABYLON.PointsCloudSystem.prototype.initParticles = function () {};
+BABYLON.PointsCloudSystem.prototype.recycleParticle = function () {};
+BABYLON.PointsCloudSystem.prototype.updateParticle = function () {};
+BABYLON.PointsCloudSystem.prototype.beforeUpdateParticles = function () {};
+BABYLON.PointsCloudSystem.prototype.afterUpdateParticles = function () {};
+
 
 BABYLON.SubEmitterType = {}
 
 /** @constructor */
-BABYLON.SubEmitter = function () {
-  this.Parse = function () {};
-};
+BABYLON.SubEmitter = function () {}
+BABYLON.SubEmitter.Parse = function () {};
+
 
 /** @constructor */
-BABYLON.BoxParticleEmitter = function () {
-  this.direction1 = {};
-  this.direction2 = {};
-  this.minEmitBox = {};
-  this.maxEmitBox = {};
-  this.startDirectionFunction = function () {};
-  this.startPositionFunction = function () {};
-  this.clone = function () {};
-  this.applyToShader = function () {};
-  this.getEffectDefines = function () {};
-  this.getClassName = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-};
+BABYLON.BoxParticleEmitter = function () {}
+BABYLON.BoxParticleEmitter.direction1 = {};
+BABYLON.BoxParticleEmitter.direction2 = {};
+BABYLON.BoxParticleEmitter.minEmitBox = {};
+BABYLON.BoxParticleEmitter.maxEmitBox = {};
+BABYLON.BoxParticleEmitter.prototype.startDirectionFunction = function () {};
+BABYLON.BoxParticleEmitter.prototype.startPositionFunction = function () {};
+BABYLON.BoxParticleEmitter.prototype.clone = function () {};
+BABYLON.BoxParticleEmitter.prototype.applyToShader = function () {};
+BABYLON.BoxParticleEmitter.prototype.getEffectDefines = function () {};
+BABYLON.BoxParticleEmitter.prototype.getClassName = function () {};
+BABYLON.BoxParticleEmitter.prototype.serialize = function () {};
+BABYLON.BoxParticleEmitter.prototype.parse = function () {};
+
 
 /** @constructor */
-BABYLON.ConeParticleEmitter = function () {
-  this.directionRandomizer = 0;
-  this.radiusRange = 1;
-  this.heightRange = 1;
-  this.emitFromSpawnPointOnly = false;
-  this.radius = 1;
-  this.angle = 3.141592653589793;
-  this.startDirectionFunction = function () {};
-  this.startPositionFunction = function () {};
-  this.clone = function () {};
-  this.applyToShader = function () {};
-  this.getEffectDefines = function () {};
-  this.getClassName = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-};
+BABYLON.ConeParticleEmitter = function () {}
+BABYLON.ConeParticleEmitter.directionRandomizer = 0;
+BABYLON.ConeParticleEmitter.radiusRange = 1;
+BABYLON.ConeParticleEmitter.heightRange = 1;
+BABYLON.ConeParticleEmitter.emitFromSpawnPointOnly = false;
+// BABYLON.ConeParticleEmitter.prototype.radius = undefined;
+// BABYLON.ConeParticleEmitter.prototype.angle = undefined;
+BABYLON.ConeParticleEmitter.prototype.startDirectionFunction = function () {};
+BABYLON.ConeParticleEmitter.prototype.startPositionFunction = function () {};
+BABYLON.ConeParticleEmitter.prototype.clone = function () {};
+BABYLON.ConeParticleEmitter.prototype.applyToShader = function () {};
+BABYLON.ConeParticleEmitter.prototype.getEffectDefines = function () {};
+BABYLON.ConeParticleEmitter.prototype.getClassName = function () {};
+BABYLON.ConeParticleEmitter.prototype.serialize = function () {};
+BABYLON.ConeParticleEmitter.prototype.parse = function () {};
+
 
 /** @constructor */
-BABYLON.CylinderParticleEmitter = function () {
-  this.radius = 1;
-  this.height = 1;
-  this.radiusRange = 1;
-  this.directionRandomizer = 0;
-  this.startDirectionFunction = function () {};
-  this.startPositionFunction = function () {};
-  this.clone = function () {};
-  this.applyToShader = function () {};
-  this.getEffectDefines = function () {};
-  this.getClassName = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-};
+BABYLON.CylinderParticleEmitter = function () {}
+BABYLON.CylinderParticleEmitter.radius = 1;
+BABYLON.CylinderParticleEmitter.height = 1;
+BABYLON.CylinderParticleEmitter.radiusRange = 1;
+BABYLON.CylinderParticleEmitter.directionRandomizer = 0;
+BABYLON.CylinderParticleEmitter.prototype.startDirectionFunction = function () {};
+BABYLON.CylinderParticleEmitter.prototype.startPositionFunction = function () {};
+BABYLON.CylinderParticleEmitter.prototype.clone = function () {};
+BABYLON.CylinderParticleEmitter.prototype.applyToShader = function () {};
+BABYLON.CylinderParticleEmitter.prototype.getEffectDefines = function () {};
+BABYLON.CylinderParticleEmitter.prototype.getClassName = function () {};
+BABYLON.CylinderParticleEmitter.prototype.serialize = function () {};
+BABYLON.CylinderParticleEmitter.prototype.parse = function () {};
+
 
 /** @constructor */
-BABYLON.CylinderDirectedParticleEmitter = function () {
-  this.radius = 1;
-  this.height = 1;
-  this.radiusRange = 1;
-  this.directionRandomizer = 0;
-  this.direction1 = {};
-  this.direction2 = {};
-  this.constructor = function () {};
-  this.startDirectionFunction = function () {};
-  this.clone = function () {};
-  this.applyToShader = function () {};
-  this.getEffectDefines = function () {};
-  this.getClassName = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-  this.startPositionFunction = function () {};
-};
+BABYLON.CylinderDirectedParticleEmitter = function () {}
+BABYLON.CylinderDirectedParticleEmitter.radius = 1;
+BABYLON.CylinderDirectedParticleEmitter.height = 1;
+BABYLON.CylinderDirectedParticleEmitter.radiusRange = 1;
+BABYLON.CylinderDirectedParticleEmitter.directionRandomizer = 0;
+BABYLON.CylinderDirectedParticleEmitter.direction1 = {};
+BABYLON.CylinderDirectedParticleEmitter.direction2 = {};
+BABYLON.CylinderDirectedParticleEmitter.prototype.constructor = function () {};
+BABYLON.CylinderDirectedParticleEmitter.prototype.startDirectionFunction = function () {};
+BABYLON.CylinderDirectedParticleEmitter.prototype.clone = function () {};
+BABYLON.CylinderDirectedParticleEmitter.prototype.applyToShader = function () {};
+BABYLON.CylinderDirectedParticleEmitter.prototype.getEffectDefines = function () {};
+BABYLON.CylinderDirectedParticleEmitter.prototype.getClassName = function () {};
+BABYLON.CylinderDirectedParticleEmitter.prototype.serialize = function () {};
+BABYLON.CylinderDirectedParticleEmitter.prototype.parse = function () {};
+BABYLON.CylinderDirectedParticleEmitter.prototype.startPositionFunction = function () {};
+
 
 /** @constructor */
-BABYLON.HemisphericParticleEmitter = function () {
-  this.radius = 1;
-  this.radiusRange = 1;
-  this.directionRandomizer = 0;
-  this.startDirectionFunction = function () {};
-  this.startPositionFunction = function () {};
-  this.clone = function () {};
-  this.applyToShader = function () {};
-  this.getEffectDefines = function () {};
-  this.getClassName = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-};
+BABYLON.HemisphericParticleEmitter = function () {}
+BABYLON.HemisphericParticleEmitter.radius = 1;
+BABYLON.HemisphericParticleEmitter.radiusRange = 1;
+BABYLON.HemisphericParticleEmitter.directionRandomizer = 0;
+BABYLON.HemisphericParticleEmitter.prototype.startDirectionFunction = function () {};
+BABYLON.HemisphericParticleEmitter.prototype.startPositionFunction = function () {};
+BABYLON.HemisphericParticleEmitter.prototype.clone = function () {};
+BABYLON.HemisphericParticleEmitter.prototype.applyToShader = function () {};
+BABYLON.HemisphericParticleEmitter.prototype.getEffectDefines = function () {};
+BABYLON.HemisphericParticleEmitter.prototype.getClassName = function () {};
+BABYLON.HemisphericParticleEmitter.prototype.serialize = function () {};
+BABYLON.HemisphericParticleEmitter.prototype.parse = function () {};
+
 
 /** @constructor */
-BABYLON.PointParticleEmitter = function () {
-  this.direction1 = {};
-  this.direction2 = {};
-  this.startDirectionFunction = function () {};
-  this.startPositionFunction = function () {};
-  this.clone = function () {};
-  this.applyToShader = function () {};
-  this.getEffectDefines = function () {};
-  this.getClassName = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-};
+BABYLON.PointParticleEmitter = function () {}
+BABYLON.PointParticleEmitter.direction1 = {};
+BABYLON.PointParticleEmitter.direction2 = {};
+BABYLON.PointParticleEmitter.prototype.startDirectionFunction = function () {};
+BABYLON.PointParticleEmitter.prototype.startPositionFunction = function () {};
+BABYLON.PointParticleEmitter.prototype.clone = function () {};
+BABYLON.PointParticleEmitter.prototype.applyToShader = function () {};
+BABYLON.PointParticleEmitter.prototype.getEffectDefines = function () {};
+BABYLON.PointParticleEmitter.prototype.getClassName = function () {};
+BABYLON.PointParticleEmitter.prototype.serialize = function () {};
+BABYLON.PointParticleEmitter.prototype.parse = function () {};
+
 
 /** @constructor */
-BABYLON.SphereParticleEmitter = function () {
-  this.radius = 1;
-  this.radiusRange = 1;
-  this.directionRandomizer = 0;
-  this.startDirectionFunction = function () {};
-  this.startPositionFunction = function () {};
-  this.clone = function () {};
-  this.applyToShader = function () {};
-  this.getEffectDefines = function () {};
-  this.getClassName = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-};
+BABYLON.SphereParticleEmitter = function () {}
+BABYLON.SphereParticleEmitter.radius = 1;
+BABYLON.SphereParticleEmitter.radiusRange = 1;
+BABYLON.SphereParticleEmitter.directionRandomizer = 0;
+BABYLON.SphereParticleEmitter.prototype.startDirectionFunction = function () {};
+BABYLON.SphereParticleEmitter.prototype.startPositionFunction = function () {};
+BABYLON.SphereParticleEmitter.prototype.clone = function () {};
+BABYLON.SphereParticleEmitter.prototype.applyToShader = function () {};
+BABYLON.SphereParticleEmitter.prototype.getEffectDefines = function () {};
+BABYLON.SphereParticleEmitter.prototype.getClassName = function () {};
+BABYLON.SphereParticleEmitter.prototype.serialize = function () {};
+BABYLON.SphereParticleEmitter.prototype.parse = function () {};
+
 
 /** @constructor */
-BABYLON.SphereDirectedParticleEmitter = function () {
-  this.radius = 1;
-  this.radiusRange = 1;
-  this.directionRandomizer = 0;
-  this.direction1 = {};
-  this.direction2 = {};
-  this.constructor = function () {};
-  this.startDirectionFunction = function () {};
-  this.clone = function () {};
-  this.applyToShader = function () {};
-  this.getEffectDefines = function () {};
-  this.getClassName = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-  this.startPositionFunction = function () {};
-};
+BABYLON.SphereDirectedParticleEmitter = function () {}
+BABYLON.SphereDirectedParticleEmitter.radius = 1;
+BABYLON.SphereDirectedParticleEmitter.radiusRange = 1;
+BABYLON.SphereDirectedParticleEmitter.directionRandomizer = 0;
+BABYLON.SphereDirectedParticleEmitter.direction1 = {};
+BABYLON.SphereDirectedParticleEmitter.direction2 = {};
+BABYLON.SphereDirectedParticleEmitter.prototype.constructor = function () {};
+BABYLON.SphereDirectedParticleEmitter.prototype.startDirectionFunction = function () {};
+BABYLON.SphereDirectedParticleEmitter.prototype.clone = function () {};
+BABYLON.SphereDirectedParticleEmitter.prototype.applyToShader = function () {};
+BABYLON.SphereDirectedParticleEmitter.prototype.getEffectDefines = function () {};
+BABYLON.SphereDirectedParticleEmitter.prototype.getClassName = function () {};
+BABYLON.SphereDirectedParticleEmitter.prototype.serialize = function () {};
+BABYLON.SphereDirectedParticleEmitter.prototype.parse = function () {};
+BABYLON.SphereDirectedParticleEmitter.prototype.startPositionFunction = function () {};
+
 
 /** @constructor */
-BABYLON.CustomParticleEmitter = function () {
-  this.particlePositionGenerator = function () {};
-  this.particleDestinationGenerator = function () {};
-  this.startDirectionFunction = function () {};
-  this.startPositionFunction = function () {};
-  this.clone = function () {};
-  this.applyToShader = function () {};
-  this.getEffectDefines = function () {};
-  this.getClassName = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-};
+BABYLON.CustomParticleEmitter = function () {}
+BABYLON.CustomParticleEmitter.particlePositionGenerator = function () {};
+BABYLON.CustomParticleEmitter.particleDestinationGenerator = function () {};
+BABYLON.CustomParticleEmitter.prototype.startDirectionFunction = function () {};
+BABYLON.CustomParticleEmitter.prototype.startPositionFunction = function () {};
+BABYLON.CustomParticleEmitter.prototype.clone = function () {};
+BABYLON.CustomParticleEmitter.prototype.applyToShader = function () {};
+BABYLON.CustomParticleEmitter.prototype.getEffectDefines = function () {};
+BABYLON.CustomParticleEmitter.prototype.getClassName = function () {};
+BABYLON.CustomParticleEmitter.prototype.serialize = function () {};
+BABYLON.CustomParticleEmitter.prototype.parse = function () {};
+
 
 /** @constructor */
-BABYLON.MeshParticleEmitter = function () {
-  // this.mesh = undefined;
-  this.direction1 = {};
-  this.direction2 = {};
-  this.useMeshNormalsForDirection = true;
-  this.startDirectionFunction = function () {};
-  this.startPositionFunction = function () {};
-  this.clone = function () {};
-  this.applyToShader = function () {};
-  this.getEffectDefines = function () {};
-  this.getClassName = function () {};
-  this.serialize = function () {};
-  this.parse = function () {};
-};
+BABYLON.MeshParticleEmitter = function () {}
+// BABYLON.MeshParticleEmitter.mesh = undefined;
+BABYLON.MeshParticleEmitter.direction1 = {};
+BABYLON.MeshParticleEmitter.direction2 = {};
+BABYLON.MeshParticleEmitter.useMeshNormalsForDirection = true;
+BABYLON.MeshParticleEmitter.prototype.startDirectionFunction = function () {};
+BABYLON.MeshParticleEmitter.prototype.startPositionFunction = function () {};
+BABYLON.MeshParticleEmitter.prototype.clone = function () {};
+BABYLON.MeshParticleEmitter.prototype.applyToShader = function () {};
+BABYLON.MeshParticleEmitter.prototype.getEffectDefines = function () {};
+BABYLON.MeshParticleEmitter.prototype.getClassName = function () {};
+BABYLON.MeshParticleEmitter.prototype.serialize = function () {};
+BABYLON.MeshParticleEmitter.prototype.parse = function () {};
+
 
 /** @constructor */
-BABYLON.PhysicsEngine = function () {
-  this.DefaultPluginFactory = function () {};
-  this.Epsilon = 0.001;
-};
+BABYLON.PhysicsEngine = function () {}
+BABYLON.PhysicsEngine.DefaultPluginFactory = function () {};
+BABYLON.PhysicsEngine.Epsilon = 0.001;
+
 
 /** @constructor */
-BABYLON.PhysicsEngineSceneComponent = function () {
-};
+BABYLON.PhysicsEngineSceneComponent = function () {}
+
 
 /** @constructor */
-BABYLON.PhysicsHelper = function () {
-};
+BABYLON.PhysicsHelper = function () {}
+
 
 /** @constructor */
-BABYLON.PhysicsRadialExplosionEventOptions = function () {
-  this.radius = 5;
-  this.strength = 10;
-  this.falloff = 0;
-  this.sphere = {};
-};
+BABYLON.PhysicsRadialExplosionEventOptions = function () {}
+BABYLON.PhysicsRadialExplosionEventOptions.radius = 5;
+BABYLON.PhysicsRadialExplosionEventOptions.strength = 10;
+BABYLON.PhysicsRadialExplosionEventOptions.falloff = 0;
+BABYLON.PhysicsRadialExplosionEventOptions.sphere = {};
+
 
 /** @constructor */
-BABYLON.PhysicsUpdraftEventOptions = function () {
-  this.radius = 5;
-  this.strength = 10;
-  this.height = 10;
-  this.updraftMode = 0;
-};
+BABYLON.PhysicsUpdraftEventOptions = function () {}
+BABYLON.PhysicsUpdraftEventOptions.radius = 5;
+BABYLON.PhysicsUpdraftEventOptions.strength = 10;
+BABYLON.PhysicsUpdraftEventOptions.height = 10;
+BABYLON.PhysicsUpdraftEventOptions.updraftMode = 0;
+
 
 /** @constructor */
-BABYLON.PhysicsVortexEventOptions = function () {
-  this.radius = 5;
-  this.strength = 10;
-  this.height = 10;
-  this.centripetalForceThreshold = 0.7;
-  this.centripetalForceMultiplier = 5;
-  this.centrifugalForceMultiplier = 0.5;
-  this.updraftForceMultiplier = 0.02;
-};
+BABYLON.PhysicsVortexEventOptions = function () {}
+BABYLON.PhysicsVortexEventOptions.radius = 5;
+BABYLON.PhysicsVortexEventOptions.strength = 10;
+BABYLON.PhysicsVortexEventOptions.height = 10;
+BABYLON.PhysicsVortexEventOptions.centripetalForceThreshold = 0.7;
+BABYLON.PhysicsVortexEventOptions.centripetalForceMultiplier = 5;
+BABYLON.PhysicsVortexEventOptions.centrifugalForceMultiplier = 0.5;
+BABYLON.PhysicsVortexEventOptions.updraftForceMultiplier = 0.02;
+
 
 BABYLON.PhysicsRadialImpulseFalloff = {}
 
 BABYLON.PhysicsUpdraftMode = {}
 
 /** @constructor */
-BABYLON.PhysicsImpostor = function () {
-  // this.object = undefined;
-  // this.type = undefined;
-  this.soft = false;
-  this.segments = 0;
-  this.beforeStep = function () {};
-  this.afterStep = function () {};
-  this.onCollideEvent = null;
-  this.onCollide = function () {};
-  this.isDisposed = false;
-  this.mass = 0;
-  this.friction = 0;
-  this.restitution = 0;
-  this.pressure = 0;
-  this.stiffness = 0;
-  this.velocityIterations = 0;
-  this.positionIterations = 0;
-  this.isBodyInitRequired = function () {};
-  this.setScalingUpdated = function () {};
-  this.forceUpdate = function () {};
-  // this.physicsBody = undefined;
-  this.parent = null;
-  this.resetUpdateFlags = function () {};
-  this.getObjectExtendSize = function () {};
-  this.getObjectCenter = function () {};
-  this.getParam = function () {};
-  this.setParam = function () {};
-  this.setMass = function () {};
-  this.getLinearVelocity = function () {};
-  this.setLinearVelocity = function () {};
-  this.getAngularVelocity = function () {};
-  this.setAngularVelocity = function () {};
-  this.executeNativeFunction = function () {};
-  this.registerBeforePhysicsStep = function () {};
-  this.unregisterBeforePhysicsStep = function () {};
-  this.registerAfterPhysicsStep = function () {};
-  this.unregisterAfterPhysicsStep = function () {};
-  this.registerOnPhysicsCollide = function () {};
-  this.unregisterOnPhysicsCollide = function () {};
-  this.getParentsRotation = function () {};
-  this.applyForce = function () {};
-  this.applyImpulse = function () {};
-  this.createJoint = function () {};
-  this.addJoint = function () {};
-  this.addAnchor = function () {};
-  this.addHook = function () {};
-  this.sleep = function () {};
-  this.wakeUp = function () {};
-  this.clone = function () {};
-  this.dispose = function () {};
-  this.setDeltaPosition = function () {};
-  this.setDeltaRotation = function () {};
-  this.getBoxSizeToRef = function () {};
-  this.getRadius = function () {};
-  this.syncBoneWithImpostor = function () {};
-  this.syncImpostorWithBone = function () {};
-  this.DEFAULT_OBJECT_SIZE = {};
-  this.IDENTITY_QUATERNION = {};
-  this.NoImpostor = 0;
-  this.SphereImpostor = 1;
-  this.BoxImpostor = 2;
-  this.PlaneImpostor = 3;
-  this.MeshImpostor = 4;
-  this.CapsuleImpostor = 6;
-  this.CylinderImpostor = 7;
-  this.ParticleImpostor = 8;
-  this.HeightmapImpostor = 9;
-  this.ConvexHullImpostor = 10;
-  this.CustomImpostor = 100;
-  this.RopeImpostor = 101;
-  this.ClothImpostor = 102;
-  this.SoftbodyImpostor = 103;
-};
+BABYLON.PhysicsImpostor = function () {}
+// BABYLON.PhysicsImpostor.object = undefined;
+// BABYLON.PhysicsImpostor.type = undefined;
+BABYLON.PhysicsImpostor.soft = false;
+BABYLON.PhysicsImpostor.segments = 0;
+BABYLON.PhysicsImpostor.beforeStep = function () {};
+BABYLON.PhysicsImpostor.afterStep = function () {};
+BABYLON.PhysicsImpostor.onCollideEvent = null;
+BABYLON.PhysicsImpostor.onCollide = function () {};
+// BABYLON.PhysicsImpostor.prototype.isDisposed = undefined;
+BABYLON.PhysicsImpostor.prototype.mass = 0;
+BABYLON.PhysicsImpostor.prototype.friction = 0;
+BABYLON.PhysicsImpostor.prototype.restitution = 0;
+BABYLON.PhysicsImpostor.prototype.pressure = 0;
+BABYLON.PhysicsImpostor.prototype.stiffness = 0;
+BABYLON.PhysicsImpostor.prototype.velocityIterations = 0;
+BABYLON.PhysicsImpostor.prototype.positionIterations = 0;
+BABYLON.PhysicsImpostor.prototype.isBodyInitRequired = function () {};
+BABYLON.PhysicsImpostor.prototype.setScalingUpdated = function () {};
+BABYLON.PhysicsImpostor.prototype.forceUpdate = function () {};
+// BABYLON.PhysicsImpostor.prototype.physicsBody = undefined;
+// BABYLON.PhysicsImpostor.prototype.parent = undefined;
+BABYLON.PhysicsImpostor.prototype.resetUpdateFlags = function () {};
+BABYLON.PhysicsImpostor.prototype.getObjectExtendSize = function () {};
+BABYLON.PhysicsImpostor.prototype.getObjectCenter = function () {};
+BABYLON.PhysicsImpostor.prototype.getParam = function () {};
+BABYLON.PhysicsImpostor.prototype.setParam = function () {};
+BABYLON.PhysicsImpostor.prototype.setMass = function () {};
+BABYLON.PhysicsImpostor.prototype.getLinearVelocity = function () {};
+BABYLON.PhysicsImpostor.prototype.setLinearVelocity = function () {};
+BABYLON.PhysicsImpostor.prototype.getAngularVelocity = function () {};
+BABYLON.PhysicsImpostor.prototype.setAngularVelocity = function () {};
+BABYLON.PhysicsImpostor.prototype.executeNativeFunction = function () {};
+BABYLON.PhysicsImpostor.prototype.registerBeforePhysicsStep = function () {};
+BABYLON.PhysicsImpostor.prototype.unregisterBeforePhysicsStep = function () {};
+BABYLON.PhysicsImpostor.prototype.registerAfterPhysicsStep = function () {};
+BABYLON.PhysicsImpostor.prototype.unregisterAfterPhysicsStep = function () {};
+BABYLON.PhysicsImpostor.prototype.registerOnPhysicsCollide = function () {};
+BABYLON.PhysicsImpostor.prototype.unregisterOnPhysicsCollide = function () {};
+BABYLON.PhysicsImpostor.prototype.getParentsRotation = function () {};
+BABYLON.PhysicsImpostor.prototype.applyForce = function () {};
+BABYLON.PhysicsImpostor.prototype.applyImpulse = function () {};
+BABYLON.PhysicsImpostor.prototype.createJoint = function () {};
+BABYLON.PhysicsImpostor.prototype.addJoint = function () {};
+BABYLON.PhysicsImpostor.prototype.addAnchor = function () {};
+BABYLON.PhysicsImpostor.prototype.addHook = function () {};
+BABYLON.PhysicsImpostor.prototype.sleep = function () {};
+BABYLON.PhysicsImpostor.prototype.wakeUp = function () {};
+BABYLON.PhysicsImpostor.prototype.clone = function () {};
+BABYLON.PhysicsImpostor.prototype.dispose = function () {};
+BABYLON.PhysicsImpostor.prototype.setDeltaPosition = function () {};
+BABYLON.PhysicsImpostor.prototype.setDeltaRotation = function () {};
+BABYLON.PhysicsImpostor.prototype.getBoxSizeToRef = function () {};
+BABYLON.PhysicsImpostor.prototype.getRadius = function () {};
+BABYLON.PhysicsImpostor.prototype.syncBoneWithImpostor = function () {};
+BABYLON.PhysicsImpostor.prototype.syncImpostorWithBone = function () {};
+
 
 /** @constructor */
-BABYLON.PhysicsJoint = function () {
-  this.DistanceJoint = 0;
-  this.HingeJoint = 1;
-  this.BallAndSocketJoint = 2;
-  this.WheelJoint = 3;
-  this.SliderJoint = 4;
-  this.PrismaticJoint = 5;
-  this.UniversalJoint = 6;
-  this.Hinge2Joint = 3;
-  this.PointToPointJoint = 8;
-  this.SpringJoint = 9;
-  this.LockJoint = 10;
-};
+BABYLON.PhysicsJoint = function () {}
+BABYLON.PhysicsJoint.DistanceJoint = 0;
+BABYLON.PhysicsJoint.HingeJoint = 1;
+BABYLON.PhysicsJoint.BallAndSocketJoint = 2;
+BABYLON.PhysicsJoint.WheelJoint = 3;
+BABYLON.PhysicsJoint.SliderJoint = 4;
+BABYLON.PhysicsJoint.PrismaticJoint = 5;
+BABYLON.PhysicsJoint.UniversalJoint = 6;
+BABYLON.PhysicsJoint.Hinge2Joint = 3;
+BABYLON.PhysicsJoint.PointToPointJoint = 8;
+BABYLON.PhysicsJoint.SpringJoint = 9;
+BABYLON.PhysicsJoint.LockJoint = 10;
+
 
 /** @constructor */
-BABYLON.DistanceJoint = function () {
-  this.DistanceJoint = 0;
-  this.HingeJoint = 1;
-  this.BallAndSocketJoint = 2;
-  this.WheelJoint = 3;
-  this.SliderJoint = 4;
-  this.PrismaticJoint = 5;
-  this.UniversalJoint = 6;
-  this.Hinge2Joint = 3;
-  this.PointToPointJoint = 8;
-  this.SpringJoint = 9;
-  this.LockJoint = 10;
-};
+BABYLON.DistanceJoint = function () {}
+BABYLON.DistanceJoint.prototype.DistanceJoint = 0;
+BABYLON.DistanceJoint.prototype.HingeJoint = 1;
+BABYLON.DistanceJoint.prototype.BallAndSocketJoint = 2;
+BABYLON.DistanceJoint.prototype.WheelJoint = 3;
+BABYLON.DistanceJoint.prototype.SliderJoint = 4;
+BABYLON.DistanceJoint.prototype.PrismaticJoint = 5;
+BABYLON.DistanceJoint.prototype.UniversalJoint = 6;
+BABYLON.DistanceJoint.prototype.Hinge2Joint = 3;
+BABYLON.DistanceJoint.prototype.PointToPointJoint = 8;
+BABYLON.DistanceJoint.prototype.SpringJoint = 9;
+BABYLON.DistanceJoint.prototype.LockJoint = 10;
+
 
 /** @constructor */
-BABYLON.MotorEnabledJoint = function () {
-  this.DistanceJoint = 0;
-  this.HingeJoint = 1;
-  this.BallAndSocketJoint = 2;
-  this.WheelJoint = 3;
-  this.SliderJoint = 4;
-  this.PrismaticJoint = 5;
-  this.UniversalJoint = 6;
-  this.Hinge2Joint = 3;
-  this.PointToPointJoint = 8;
-  this.SpringJoint = 9;
-  this.LockJoint = 10;
-};
+BABYLON.MotorEnabledJoint = function () {}
+BABYLON.MotorEnabledJoint.prototype.DistanceJoint = 0;
+BABYLON.MotorEnabledJoint.prototype.HingeJoint = 1;
+BABYLON.MotorEnabledJoint.prototype.BallAndSocketJoint = 2;
+BABYLON.MotorEnabledJoint.prototype.WheelJoint = 3;
+BABYLON.MotorEnabledJoint.prototype.SliderJoint = 4;
+BABYLON.MotorEnabledJoint.prototype.PrismaticJoint = 5;
+BABYLON.MotorEnabledJoint.prototype.UniversalJoint = 6;
+BABYLON.MotorEnabledJoint.prototype.Hinge2Joint = 3;
+BABYLON.MotorEnabledJoint.prototype.PointToPointJoint = 8;
+BABYLON.MotorEnabledJoint.prototype.SpringJoint = 9;
+BABYLON.MotorEnabledJoint.prototype.LockJoint = 10;
+
 
 /** @constructor */
-BABYLON.HingeJoint = function () {
-  this.DistanceJoint = 0;
-  this.HingeJoint = 1;
-  this.BallAndSocketJoint = 2;
-  this.WheelJoint = 3;
-  this.SliderJoint = 4;
-  this.PrismaticJoint = 5;
-  this.UniversalJoint = 6;
-  this.Hinge2Joint = 3;
-  this.PointToPointJoint = 8;
-  this.SpringJoint = 9;
-  this.LockJoint = 10;
-};
+BABYLON.HingeJoint = function () {}
+BABYLON.HingeJoint.prototype.DistanceJoint = 0;
+BABYLON.HingeJoint.prototype.HingeJoint = 1;
+BABYLON.HingeJoint.prototype.BallAndSocketJoint = 2;
+BABYLON.HingeJoint.prototype.WheelJoint = 3;
+BABYLON.HingeJoint.prototype.SliderJoint = 4;
+BABYLON.HingeJoint.prototype.PrismaticJoint = 5;
+BABYLON.HingeJoint.prototype.UniversalJoint = 6;
+BABYLON.HingeJoint.prototype.Hinge2Joint = 3;
+BABYLON.HingeJoint.prototype.PointToPointJoint = 8;
+BABYLON.HingeJoint.prototype.SpringJoint = 9;
+BABYLON.HingeJoint.prototype.LockJoint = 10;
+
 
 /** @constructor */
-BABYLON.Hinge2Joint = function () {
-  this.DistanceJoint = 0;
-  this.HingeJoint = 1;
-  this.BallAndSocketJoint = 2;
-  this.WheelJoint = 3;
-  this.SliderJoint = 4;
-  this.PrismaticJoint = 5;
-  this.UniversalJoint = 6;
-  this.Hinge2Joint = 3;
-  this.PointToPointJoint = 8;
-  this.SpringJoint = 9;
-  this.LockJoint = 10;
-};
+BABYLON.Hinge2Joint = function () {}
+BABYLON.Hinge2Joint.prototype.DistanceJoint = 0;
+BABYLON.Hinge2Joint.prototype.HingeJoint = 1;
+BABYLON.Hinge2Joint.prototype.BallAndSocketJoint = 2;
+BABYLON.Hinge2Joint.prototype.WheelJoint = 3;
+BABYLON.Hinge2Joint.prototype.SliderJoint = 4;
+BABYLON.Hinge2Joint.prototype.PrismaticJoint = 5;
+BABYLON.Hinge2Joint.prototype.UniversalJoint = 6;
+BABYLON.Hinge2Joint.prototype.Hinge2Joint = 3;
+BABYLON.Hinge2Joint.prototype.PointToPointJoint = 8;
+BABYLON.Hinge2Joint.prototype.SpringJoint = 9;
+BABYLON.Hinge2Joint.prototype.LockJoint = 10;
+
 
 /** @constructor */
-BABYLON.CannonJSPlugin = function () {
-};
+BABYLON.CannonJSPlugin = function () {}
+
 
 /** @constructor */
-BABYLON.AmmoJSPlugin = function () {
-  this.DISABLE_COLLISION_FLAG = 4;
-  this.KINEMATIC_FLAG = 2;
-  this.DISABLE_DEACTIVATION_FLAG = 4;
-};
+BABYLON.AmmoJSPlugin = function () {}
+BABYLON.AmmoJSPlugin.DISABLE_COLLISION_FLAG = 4;
+BABYLON.AmmoJSPlugin.KINEMATIC_FLAG = 2;
+BABYLON.AmmoJSPlugin.DISABLE_DEACTIVATION_FLAG = 4;
+
 
 /** @constructor */
-BABYLON.OimoJSPlugin = function () {
-};
+BABYLON.OimoJSPlugin = function () {}
+
 
 /** @constructor */
-BABYLON.AnaglyphPostProcess = function () {
-};
+BABYLON.AnaglyphPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.BlackAndWhitePostProcess = function () {
-};
+BABYLON.BlackAndWhitePostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.BloomEffect = function () {
-};
+BABYLON.BloomEffect = function () {}
+
 
 /** @constructor */
-BABYLON.BloomMergePostProcess = function () {
-};
+BABYLON.BloomMergePostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.BlurPostProcess = function () {
-  // this.name = undefined;
-  this.width = -1;
-  this.height = -1;
-  this.autoClear = true;
-  this.alphaMode = 0;
-  this.animations = {};
-  this.enablePixelPerfectMode = false;
-  this.forceFullscreenViewport = true;
-  this.scaleMode = 1;
-  this.alwaysForcePOT = false;
-  this.adaptScaleToCurrentViewport = false;
-  this.onActivateObservable = {};
-  this.onSizeChangedObservable = {};
-  this.onApplyObservable = {};
-  this.onBeforeRenderObservable = {};
-  this.onAfterRenderObservable = {};
-  this.renderTargetSamplingMode = 2;
-  // this.direction = undefined;
-  this.blockCompilation = false;
-  this.constructor = function () {};
-  // this.kernel = undefined;
-  this.packedFloat = false;
-  this.updateEffect = function () {};
-  this.samples = 1;
-  this.getEffectName = function () {};
-  // this.onActivate = undefined;
-  // this.onSizeChanged = undefined;
-  // this.onApply = undefined;
-  // this.onBeforeRender = undefined;
-  // this.onAfterRender = undefined;
-  // this.inputTexture = undefined;
-  this.getCamera = function () {};
-  this.texelSize = {};
-  this.getClassName = function () {};
-  this.getEngine = function () {};
-  this.getEffect = function () {};
-  this.shareOutputWith = function () {};
-  this.useOwnOutput = function () {};
-  this.isReusable = function () {};
-  this.markTextureDirty = function () {};
-  this.activate = function () {};
-};
+BABYLON.BlurPostProcess = function () {}
+// BABYLON.BlurPostProcess.name = undefined;
+BABYLON.BlurPostProcess.width = -1;
+BABYLON.BlurPostProcess.height = -1;
+BABYLON.BlurPostProcess.autoClear = true;
+BABYLON.BlurPostProcess.alphaMode = 0;
+BABYLON.BlurPostProcess.animations = {};
+BABYLON.BlurPostProcess.enablePixelPerfectMode = false;
+BABYLON.BlurPostProcess.forceFullscreenViewport = true;
+BABYLON.BlurPostProcess.scaleMode = 1;
+BABYLON.BlurPostProcess.alwaysForcePOT = false;
+BABYLON.BlurPostProcess.adaptScaleToCurrentViewport = false;
+BABYLON.BlurPostProcess.onActivateObservable = {};
+BABYLON.BlurPostProcess.onSizeChangedObservable = {};
+BABYLON.BlurPostProcess.onApplyObservable = {};
+BABYLON.BlurPostProcess.onBeforeRenderObservable = {};
+BABYLON.BlurPostProcess.onAfterRenderObservable = {};
+BABYLON.BlurPostProcess.renderTargetSamplingMode = 2;
+// BABYLON.BlurPostProcess.direction = undefined;
+BABYLON.BlurPostProcess.blockCompilation = false;
+BABYLON.BlurPostProcess.prototype.constructor = function () {};
+// BABYLON.BlurPostProcess.prototype.kernel = undefined;
+// BABYLON.BlurPostProcess.prototype.packedFloat = undefined;
+BABYLON.BlurPostProcess.prototype.updateEffect = function () {};
+// BABYLON.BlurPostProcess.prototype.samples = undefined;
+BABYLON.BlurPostProcess.prototype.getEffectName = function () {};
+// BABYLON.BlurPostProcess.prototype.onActivate = undefined;
+// BABYLON.BlurPostProcess.prototype.onSizeChanged = undefined;
+// BABYLON.BlurPostProcess.prototype.onApply = undefined;
+// BABYLON.BlurPostProcess.prototype.onBeforeRender = undefined;
+// BABYLON.BlurPostProcess.prototype.onAfterRender = undefined;
+// BABYLON.BlurPostProcess.prototype.inputTexture = undefined;
+BABYLON.BlurPostProcess.prototype.getCamera = function () {};
+// BABYLON.BlurPostProcess.prototype.texelSize = undefined;
+BABYLON.BlurPostProcess.prototype.getClassName = function () {};
+BABYLON.BlurPostProcess.prototype.getEngine = function () {};
+BABYLON.BlurPostProcess.prototype.getEffect = function () {};
+BABYLON.BlurPostProcess.prototype.shareOutputWith = function () {};
+BABYLON.BlurPostProcess.prototype.useOwnOutput = function () {};
+BABYLON.BlurPostProcess.prototype.isReusable = function () {};
+BABYLON.BlurPostProcess.prototype.markTextureDirty = function () {};
+BABYLON.BlurPostProcess.prototype.activate = function () {};
+// BABYLON.BlurPostProcess.prototype.isSupported = undefined;
+BABYLON.BlurPostProcess.prototype.aspectRatio = NaN;
+BABYLON.BlurPostProcess.prototype.isReady = function () {};
+BABYLON.BlurPostProcess.prototype.apply = function () {};
+BABYLON.BlurPostProcess.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.ChromaticAberrationPostProcess = function () {
-};
+BABYLON.ChromaticAberrationPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.CircleOfConfusionPostProcess = function () {
-};
+BABYLON.CircleOfConfusionPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.ColorCorrectionPostProcess = function () {
-};
+BABYLON.ColorCorrectionPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.ConvolutionPostProcess = function () {
-  this.EdgeDetect0Kernel = {};
-  this.EdgeDetect1Kernel = {};
-  this.EdgeDetect2Kernel = {};
-  this.SharpenKernel = {};
-  this.EmbossKernel = {};
-  this.GaussianKernel = {};
-};
+BABYLON.ConvolutionPostProcess = function () {}
+BABYLON.ConvolutionPostProcess.EdgeDetect0Kernel = {};
+BABYLON.ConvolutionPostProcess.EdgeDetect1Kernel = {};
+BABYLON.ConvolutionPostProcess.EdgeDetect2Kernel = {};
+BABYLON.ConvolutionPostProcess.SharpenKernel = {};
+BABYLON.ConvolutionPostProcess.EmbossKernel = {};
+BABYLON.ConvolutionPostProcess.GaussianKernel = {};
+
 
 /** @constructor */
-BABYLON.DepthOfFieldBlurPostProcess = function () {
-  // this.name = undefined;
-  this.width = -1;
-  this.height = -1;
-  this.autoClear = true;
-  this.alphaMode = 0;
-  this.animations = {};
-  this.enablePixelPerfectMode = false;
-  this.forceFullscreenViewport = true;
-  this.scaleMode = 1;
-  this.alwaysForcePOT = false;
-  this.adaptScaleToCurrentViewport = false;
-  this.onActivateObservable = {};
-  this.onSizeChangedObservable = {};
-  this.onApplyObservable = {};
-  this.onBeforeRenderObservable = {};
-  this.onAfterRenderObservable = {};
-  this.renderTargetSamplingMode = 2;
-  // this.direction = undefined;
-  this.blockCompilation = false;
-  this.constructor = function () {};
-  // this.kernel = undefined;
-  this.packedFloat = false;
-  this.updateEffect = function () {};
-  this.samples = 1;
-  this.getEffectName = function () {};
-  // this.onActivate = undefined;
-  // this.onSizeChanged = undefined;
-  // this.onApply = undefined;
-  // this.onBeforeRender = undefined;
-  // this.onAfterRender = undefined;
-  // this.inputTexture = undefined;
-  this.getCamera = function () {};
-  this.texelSize = {};
-  this.getClassName = function () {};
-  this.getEngine = function () {};
-  this.getEffect = function () {};
-  this.shareOutputWith = function () {};
-  this.useOwnOutput = function () {};
-  this.isReusable = function () {};
-  this.markTextureDirty = function () {};
-  this.activate = function () {};
-};
+BABYLON.DepthOfFieldBlurPostProcess = function () {}
+// BABYLON.DepthOfFieldBlurPostProcess.name = undefined;
+BABYLON.DepthOfFieldBlurPostProcess.width = -1;
+BABYLON.DepthOfFieldBlurPostProcess.height = -1;
+BABYLON.DepthOfFieldBlurPostProcess.autoClear = true;
+BABYLON.DepthOfFieldBlurPostProcess.alphaMode = 0;
+BABYLON.DepthOfFieldBlurPostProcess.animations = {};
+BABYLON.DepthOfFieldBlurPostProcess.enablePixelPerfectMode = false;
+BABYLON.DepthOfFieldBlurPostProcess.forceFullscreenViewport = true;
+BABYLON.DepthOfFieldBlurPostProcess.scaleMode = 1;
+BABYLON.DepthOfFieldBlurPostProcess.alwaysForcePOT = false;
+BABYLON.DepthOfFieldBlurPostProcess.adaptScaleToCurrentViewport = false;
+BABYLON.DepthOfFieldBlurPostProcess.onActivateObservable = {};
+BABYLON.DepthOfFieldBlurPostProcess.onSizeChangedObservable = {};
+BABYLON.DepthOfFieldBlurPostProcess.onApplyObservable = {};
+BABYLON.DepthOfFieldBlurPostProcess.onBeforeRenderObservable = {};
+BABYLON.DepthOfFieldBlurPostProcess.onAfterRenderObservable = {};
+BABYLON.DepthOfFieldBlurPostProcess.renderTargetSamplingMode = 2;
+// BABYLON.DepthOfFieldBlurPostProcess.direction = undefined;
+BABYLON.DepthOfFieldBlurPostProcess.blockCompilation = false;
+BABYLON.DepthOfFieldBlurPostProcess.prototype.constructor = function () {};
+// BABYLON.DepthOfFieldBlurPostProcess.prototype.kernel = undefined;
+// BABYLON.DepthOfFieldBlurPostProcess.prototype.packedFloat = undefined;
+BABYLON.DepthOfFieldBlurPostProcess.prototype.updateEffect = function () {};
+// BABYLON.DepthOfFieldBlurPostProcess.prototype.samples = undefined;
+BABYLON.DepthOfFieldBlurPostProcess.prototype.getEffectName = function () {};
+// BABYLON.DepthOfFieldBlurPostProcess.prototype.onActivate = undefined;
+// BABYLON.DepthOfFieldBlurPostProcess.prototype.onSizeChanged = undefined;
+// BABYLON.DepthOfFieldBlurPostProcess.prototype.onApply = undefined;
+// BABYLON.DepthOfFieldBlurPostProcess.prototype.onBeforeRender = undefined;
+// BABYLON.DepthOfFieldBlurPostProcess.prototype.onAfterRender = undefined;
+// BABYLON.DepthOfFieldBlurPostProcess.prototype.inputTexture = undefined;
+BABYLON.DepthOfFieldBlurPostProcess.prototype.getCamera = function () {};
+// BABYLON.DepthOfFieldBlurPostProcess.prototype.texelSize = undefined;
+BABYLON.DepthOfFieldBlurPostProcess.prototype.getClassName = function () {};
+BABYLON.DepthOfFieldBlurPostProcess.prototype.getEngine = function () {};
+BABYLON.DepthOfFieldBlurPostProcess.prototype.getEffect = function () {};
+BABYLON.DepthOfFieldBlurPostProcess.prototype.shareOutputWith = function () {};
+BABYLON.DepthOfFieldBlurPostProcess.prototype.useOwnOutput = function () {};
+BABYLON.DepthOfFieldBlurPostProcess.prototype.isReusable = function () {};
+BABYLON.DepthOfFieldBlurPostProcess.prototype.markTextureDirty = function () {};
+BABYLON.DepthOfFieldBlurPostProcess.prototype.activate = function () {};
+// BABYLON.DepthOfFieldBlurPostProcess.prototype.isSupported = undefined;
+BABYLON.DepthOfFieldBlurPostProcess.prototype.aspectRatio = NaN;
+BABYLON.DepthOfFieldBlurPostProcess.prototype.isReady = function () {};
+BABYLON.DepthOfFieldBlurPostProcess.prototype.apply = function () {};
+BABYLON.DepthOfFieldBlurPostProcess.prototype.dispose = function () {};
+
 
 BABYLON.DepthOfFieldEffectBlurLevel = {}
 
 /** @constructor */
-BABYLON.DepthOfFieldEffect = function () {
-};
+BABYLON.DepthOfFieldEffect = function () {}
+
 
 /** @constructor */
-BABYLON.DepthOfFieldMergePostProcessOptions = function () {
-};
+BABYLON.DepthOfFieldMergePostProcessOptions = function () {}
+
 
 /** @constructor */
-BABYLON.DepthOfFieldMergePostProcess = function () {
-};
+BABYLON.DepthOfFieldMergePostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.DisplayPassPostProcess = function () {
-};
+BABYLON.DisplayPassPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.ExtractHighlightsPostProcess = function () {
-};
+BABYLON.ExtractHighlightsPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.FilterPostProcess = function () {
-};
+BABYLON.FilterPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.FxaaPostProcess = function () {
-};
+BABYLON.FxaaPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.GrainPostProcess = function () {
-};
+BABYLON.GrainPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.HighlightsPostProcess = function () {
-};
+BABYLON.HighlightsPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.ImageProcessingPostProcess = function () {
-};
+BABYLON.ImageProcessingPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.MotionBlurPostProcess = function () {
-};
+BABYLON.MotionBlurPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.PassPostProcess = function () {
-};
+BABYLON.PassPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.PassCubePostProcess = function () {
-};
+BABYLON.PassCubePostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.PostProcess = function () {
-};
+BABYLON.PostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.PostProcessManager = function () {
-  this.directRender = function () {};
-  this.dispose = function () {};
-};
+BABYLON.PostProcessManager = function () {}
+BABYLON.PostProcessManager.prototype.directRender = function () {};
+BABYLON.PostProcessManager.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.RefractionPostProcess = function () {
-};
+BABYLON.RefractionPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.SharpenPostProcess = function () {
-};
+BABYLON.SharpenPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.StereoscopicInterlacePostProcessI = function () {
-};
+BABYLON.StereoscopicInterlacePostProcessI = function () {}
+
 
 /** @constructor */
-BABYLON.StereoscopicInterlacePostProcess = function () {
-};
+BABYLON.StereoscopicInterlacePostProcess = function () {}
+
 
 BABYLON.TonemappingOperator = {}
 
 /** @constructor */
-BABYLON.TonemapPostProcess = function () {
-};
+BABYLON.TonemapPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.VolumetricLightScatteringPostProcess = function () {
-  this.CreateDefaultMesh = function () {};
-};
+BABYLON.VolumetricLightScatteringPostProcess = function () {}
+BABYLON.VolumetricLightScatteringPostProcess.CreateDefaultMesh = function () {};
+
 
 /** @constructor */
-BABYLON.VRDistortionCorrectionPostProcess = function () {
-};
+BABYLON.VRDistortionCorrectionPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.VRMultiviewToSingleviewPostProcess = function () {
-};
+BABYLON.VRMultiviewToSingleviewPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.ScreenSpaceReflectionPostProcess = function () {
-};
+BABYLON.ScreenSpaceReflectionPostProcess = function () {}
+
 
 /** @constructor */
-BABYLON.PostProcessRenderEffect = function () {
-  this.isSupported = true;
-  this.getPostProcesses = function () {};
-};
+BABYLON.PostProcessRenderEffect = function () {}
+BABYLON.PostProcessRenderEffect.prototype.isSupported = true;
+BABYLON.PostProcessRenderEffect.prototype.getPostProcesses = function () {};
+
 
 /** @constructor */
-BABYLON.PostProcessRenderPipeline = function () {
-  // this.engine = undefined;
-  // this.name = undefined;
-  this.cameras = {};
-  this.getClassName = function () {};
-  this.isSupported = true;
-  this.addEffect = function () {};
-  this.dispose = function () {};
-};
+BABYLON.PostProcessRenderPipeline = function () {}
+// BABYLON.PostProcessRenderPipeline.engine = undefined;
+// BABYLON.PostProcessRenderPipeline.prototype.name = undefined;
+// BABYLON.PostProcessRenderPipeline.prototype.cameras = undefined;
+BABYLON.PostProcessRenderPipeline.prototype.getClassName = function () {};
+BABYLON.PostProcessRenderPipeline.prototype.isSupported = true;
+BABYLON.PostProcessRenderPipeline.prototype.addEffect = function () {};
+BABYLON.PostProcessRenderPipeline.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.PostProcessRenderPipelineManager = function () {
-  this.supportedPipelines = {};
-  this.addPipeline = function () {};
-  this.attachCamerasToRenderPipeline = function () {};
-  this.detachCamerasFromRenderPipeline = function () {};
-  this.enableEffectInPipeline = function () {};
-  this.disableEffectInPipeline = function () {};
-  this.update = function () {};
-  this.dispose = function () {};
-};
+BABYLON.PostProcessRenderPipelineManager = function () {}
+BABYLON.PostProcessRenderPipelineManager.prototype.supportedPipelines = {};
+BABYLON.PostProcessRenderPipelineManager.prototype.addPipeline = function () {};
+BABYLON.PostProcessRenderPipelineManager.prototype.attachCamerasToRenderPipeline = function () {};
+BABYLON.PostProcessRenderPipelineManager.prototype.detachCamerasFromRenderPipeline = function () {};
+BABYLON.PostProcessRenderPipelineManager.prototype.enableEffectInPipeline = function () {};
+BABYLON.PostProcessRenderPipelineManager.prototype.disableEffectInPipeline = function () {};
+BABYLON.PostProcessRenderPipelineManager.prototype.update = function () {};
+BABYLON.PostProcessRenderPipelineManager.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.PostProcessRenderPipelineManagerSceneComponent = function () {
-  this.name = "PostProcessRenderPipelineManager";
-  // this.scene = undefined;
-  this.register = function () {};
-  this.rebuild = function () {};
-  this.dispose = function () {};
-};
+BABYLON.PostProcessRenderPipelineManagerSceneComponent = function () {}
+BABYLON.PostProcessRenderPipelineManagerSceneComponent.name = "PostProcessRenderPipelineManager";
+// BABYLON.PostProcessRenderPipelineManagerSceneComponent.scene = undefined;
+BABYLON.PostProcessRenderPipelineManagerSceneComponent.prototype.register = function () {};
+BABYLON.PostProcessRenderPipelineManagerSceneComponent.prototype.rebuild = function () {};
+BABYLON.PostProcessRenderPipelineManagerSceneComponent.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.DefaultRenderingPipeline = function () {
-  this.Parse = function () {};
-};
+BABYLON.DefaultRenderingPipeline = function () {}
+BABYLON.DefaultRenderingPipeline.Parse = function () {};
+
 
 /** @constructor */
-BABYLON.LensRenderingPipeline = function () {
-};
+BABYLON.LensRenderingPipeline = function () {}
+
 
 /** @constructor */
-BABYLON.SSAO2RenderingPipeline = function () {
-  this.IsSupported = false;
-  this.Parse = function () {};
-};
+BABYLON.SSAO2RenderingPipeline = function () {}
+BABYLON.SSAO2RenderingPipeline.IsSupported = false;
+BABYLON.SSAO2RenderingPipeline.Parse = function () {};
+
 
 /** @constructor */
-BABYLON.SSAORenderingPipeline = function () {
-};
+BABYLON.SSAORenderingPipeline = function () {}
+
 
 /** @constructor */
-BABYLON.StandardRenderingPipeline = function () {
-  this.Parse = function () {};
-  this.LuminanceSteps = 6;
-};
+BABYLON.StandardRenderingPipeline = function () {}
+BABYLON.StandardRenderingPipeline.Parse = function () {};
+BABYLON.StandardRenderingPipeline.LuminanceSteps = 6;
+
 
 /** @constructor */
-BABYLON.ReflectionProbe = function () {
-  this.Parse = function () {};
-};
+BABYLON.ReflectionProbe = function () {}
+BABYLON.ReflectionProbe.Parse = function () {};
+
 
 /** @constructor */
-BABYLON.BoundingBoxRenderer = function () {
-};
+BABYLON.BoundingBoxRenderer = function () {}
+
 
 /** @constructor */
-BABYLON.DepthRenderer = function () {
-};
+BABYLON.DepthRenderer = function () {}
+
 
 /** @constructor */
-BABYLON.DepthRendererSceneComponent = function () {
-  this.name = "DepthRenderer";
-  // this.scene = undefined;
-  this.register = function () {};
-  this.rebuild = function () {};
-  this.dispose = function () {};
-};
+BABYLON.DepthRendererSceneComponent = function () {}
+BABYLON.DepthRendererSceneComponent.name = "DepthRenderer";
+// BABYLON.DepthRendererSceneComponent.scene = undefined;
+BABYLON.DepthRendererSceneComponent.prototype.register = function () {};
+BABYLON.DepthRendererSceneComponent.prototype.rebuild = function () {};
+BABYLON.DepthRendererSceneComponent.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.EdgesRenderer = function () {
-};
+BABYLON.EdgesRenderer = function () {}
+
 
 /** @constructor */
-BABYLON.LineEdgesRenderer = function () {
-};
+BABYLON.LineEdgesRenderer = function () {}
+
 
 /** @constructor */
-BABYLON.GeometryBufferRenderer = function () {
-  this.POSITION_TEXTURE_TYPE = 1;
-  this.VELOCITY_TEXTURE_TYPE = 2;
-  this.REFLECTIVITY_TEXTURE_TYPE = 3;
-};
+BABYLON.GeometryBufferRenderer = function () {}
+BABYLON.GeometryBufferRenderer.POSITION_TEXTURE_TYPE = 1;
+BABYLON.GeometryBufferRenderer.VELOCITY_TEXTURE_TYPE = 2;
+BABYLON.GeometryBufferRenderer.REFLECTIVITY_TEXTURE_TYPE = 3;
+
 
 /** @constructor */
-BABYLON.GeometryBufferRendererSceneComponent = function () {
-  this.name = "GeometryBufferRenderer";
-  // this.scene = undefined;
-  this.register = function () {};
-  this.rebuild = function () {};
-  this.dispose = function () {};
-};
+BABYLON.GeometryBufferRendererSceneComponent = function () {}
+BABYLON.GeometryBufferRendererSceneComponent.name = "GeometryBufferRenderer";
+// BABYLON.GeometryBufferRendererSceneComponent.scene = undefined;
+BABYLON.GeometryBufferRendererSceneComponent.prototype.register = function () {};
+BABYLON.GeometryBufferRendererSceneComponent.prototype.rebuild = function () {};
+BABYLON.GeometryBufferRendererSceneComponent.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.OutlineRenderer = function () {
-};
+BABYLON.OutlineRenderer = function () {}
+
 
 /** @constructor */
-BABYLON.RenderingGroup = function () {
-  // this.index = undefined;
-  // this.opaqueSortCompareFn = undefined;
-  // this.alphaTestSortCompareFn = undefined;
-  // this.transparentSortCompareFn = undefined;
-  this.render = function () {};
-  this.renderOpaqueSorted = function () {};
-  this.renderAlphaTestSorted = function () {};
-  this.renderTransparentSorted = function () {};
-  this.prepare = function () {};
-  this.dispose = function () {};
-  this.dispatch = function () {};
-  this.dispatchSprites = function () {};
-  this.dispatchParticles = function () {};
-  this.renderSorted = function () {};
-  this.renderUnsorted = function () {};
-  this.defaultTransparentSortCompare = function () {};
-  this.backToFrontSortCompare = function () {};
-  this.frontToBackSortCompare = function () {};
-};
+BABYLON.RenderingGroup = function () {}
+// BABYLON.RenderingGroup.index = undefined;
+// BABYLON.RenderingGroup.prototype.opaqueSortCompareFn = undefined;
+// BABYLON.RenderingGroup.prototype.alphaTestSortCompareFn = undefined;
+// BABYLON.RenderingGroup.prototype.transparentSortCompareFn = undefined;
+BABYLON.RenderingGroup.prototype.render = function () {};
+BABYLON.RenderingGroup.prototype.renderOpaqueSorted = function () {};
+BABYLON.RenderingGroup.prototype.renderAlphaTestSorted = function () {};
+BABYLON.RenderingGroup.prototype.renderTransparentSorted = function () {};
+BABYLON.RenderingGroup.prototype.prepare = function () {};
+BABYLON.RenderingGroup.prototype.dispose = function () {};
+BABYLON.RenderingGroup.prototype.dispatch = function () {};
+BABYLON.RenderingGroup.prototype.dispatchSprites = function () {};
+BABYLON.RenderingGroup.prototype.dispatchParticles = function () {};
+
 
 /** @constructor */
-BABYLON.RenderingGroupInfo = function () {
-};
+BABYLON.RenderingGroupInfo = function () {}
+
 
 /** @constructor */
-BABYLON.RenderingManager = function () {
-  this.render = function () {};
-  this.reset = function () {};
-  this.dispose = function () {};
-  this.freeRenderingGroups = function () {};
-  this.dispatchSprites = function () {};
-  this.dispatchParticles = function () {};
-  this.dispatch = function () {};
-  this.setRenderingOrder = function () {};
-  this.setRenderingAutoClearDepthStencil = function () {};
-  this.getAutoClearDepthStencilSetup = function () {};
-  this.MAX_RENDERINGGROUPS = 4;
-  this.MIN_RENDERINGGROUPS = 0;
-  this.AUTOCLEAR = true;
-};
+BABYLON.RenderingManager = function () {}
+BABYLON.RenderingManager.prototype.render = function () {};
+BABYLON.RenderingManager.prototype.reset = function () {};
+BABYLON.RenderingManager.prototype.dispose = function () {};
+BABYLON.RenderingManager.prototype.freeRenderingGroups = function () {};
+BABYLON.RenderingManager.prototype.dispatchSprites = function () {};
+BABYLON.RenderingManager.prototype.dispatchParticles = function () {};
+BABYLON.RenderingManager.prototype.dispatch = function () {};
+BABYLON.RenderingManager.prototype.setRenderingOrder = function () {};
+BABYLON.RenderingManager.prototype.setRenderingAutoClearDepthStencil = function () {};
+BABYLON.RenderingManager.prototype.getAutoClearDepthStencilSetup = function () {};
+
 
 /** @constructor */
-BABYLON.UtilityLayerRenderer = function () {
-};
+BABYLON.UtilityLayerRenderer = function () {}
+// BABYLON.UtilityLayerRenderer.DefaultUtilityLayer = undefined;
+// BABYLON.UtilityLayerRenderer.DefaultKeepDepthUtilityLayer = undefined;
+
 
 /** @constructor */
-BABYLON.Scene = function () {
-  this.rootNodes = {};
-  this.cameras = {};
-  this.lights = {};
-  this.meshes = {};
-  this.skeletons = {};
-  this.particleSystems = {};
-  this.animations = {};
-  this.animationGroups = {};
-  this.multiMaterials = {};
-  this.materials = {};
-  this.morphTargetManagers = {};
-  this.geometries = {};
-  this.transformNodes = {};
-  this.actionManagers = {};
-  this.textures = {};
-  this.cameraToUseForPointers = null;
-  this.autoClear = true;
-  this.autoClearDepthAndStencil = true;
-  this.clearColor = {};
-  this.ambientColor = {};
-  this.animationsEnabled = true;
-  this.useConstantAnimationDeltaTime = false;
-  this.constantlyUpdateMeshUnderPointer = false;
-  this.hoverCursor = "pointer";
-  this.defaultCursor = "";
-  this.doNotHandleCursors = false;
-  this.preventDefaultOnPointerDown = true;
-  this.preventDefaultOnPointerUp = true;
-  this.metadata = null;
-  this.reservedDataStore = null;
-  this.disableOfflineSupportExceptionRules = {};
-  this.onDisposeObservable = {};
-  this.onBeforeRenderObservable = {};
-  this.onAfterRenderObservable = {};
-  this.onAfterRenderCameraObservable = {};
-  this.onBeforeAnimationsObservable = {};
-  this.onAfterAnimationsObservable = {};
-  this.onBeforeDrawPhaseObservable = {};
-  this.onAfterDrawPhaseObservable = {};
-  this.onReadyObservable = {};
-  this.onBeforeCameraRenderObservable = {};
-  this.onAfterCameraRenderObservable = {};
-  this.onBeforeActiveMeshesEvaluationObservable = {};
-  this.onAfterActiveMeshesEvaluationObservable = {};
-  this.onBeforeParticlesRenderingObservable = {};
-  this.onAfterParticlesRenderingObservable = {};
-  this.onDataLoadedObservable = {};
-  this.onNewCameraAddedObservable = {};
-  this.onCameraRemovedObservable = {};
-  this.onNewLightAddedObservable = {};
-  this.onLightRemovedObservable = {};
-  this.onNewGeometryAddedObservable = {};
-  this.onGeometryRemovedObservable = {};
-  this.onNewTransformNodeAddedObservable = {};
-  this.onTransformNodeRemovedObservable = {};
-  this.onNewMeshAddedObservable = {};
-  this.onMeshRemovedObservable = {};
-  this.onNewSkeletonAddedObservable = {};
-  this.onSkeletonRemovedObservable = {};
-  this.onNewMaterialAddedObservable = {};
-  this.onMaterialRemovedObservable = {};
-  this.onNewTextureAddedObservable = {};
-  this.onTextureRemovedObservable = {};
-  this.onBeforeRenderTargetsRenderObservable = {};
-  this.onAfterRenderTargetsRenderObservable = {};
-  this.onBeforeStepObservable = {};
-  this.onAfterStepObservable = {};
-  this.onActiveCameraChanged = {};
-  this.onBeforeRenderingGroupObservable = {};
-  this.onAfterRenderingGroupObservable = {};
-  this.onMeshImportedObservable = {};
-  this.onAnimationFileImportedObservable = {};
-  this.onPrePointerObservable = {};
-  this.onPointerObservable = {};
-  this.onPreKeyboardObservable = {};
-  this.onKeyboardObservable = {};
-  this.fogColor = {};
-  this.fogDensity = 0.1;
-  this.fogStart = 0;
-  this.fogEnd = 1000;
-  this.activeCameras = {};
-  this.particlesEnabled = true;
-  this.spritesEnabled = true;
-  this.lensFlaresEnabled = true;
-  this.collisionsEnabled = true;
-  this.gravity = {};
-  this.postProcessesEnabled = true;
-  this.postProcesses = {};
-  this.renderTargetsEnabled = true;
-  this.dumpNextRenderTargets = false;
-  this.customRenderTargets = {};
-  this.importedMeshesFiles = {};
-  this.probesEnabled = true;
-  this.proceduralTexturesEnabled = true;
-  this.animationTimeScale = 1;
-  this.dispatchAllSubMeshesOfActiveMeshes = false;
-  this.requireLightSorting = false;
-  this.geometriesByUniqueId = {};
-  this.getDeterministicFrameTime = function () {};
-  this.postProcessManager = {};
-  this.getActiveMeshCandidates = function () {};
-  this.getActiveSubMeshCandidates = function () {};
-  this.getIntersectingSubMeshCandidates = function () {};
-  this.getCollidingSubMeshCandidates = function () {};
-  this.useMaterialMeshMap = true;
-  this.useClonedMeshMap = true;
-  this.constructor = function () {};
-  this.environmentTexture = null;
-  this.environmentIntensity = 1;
-  this.imageProcessingConfiguration = {};
-  this.forceWireframe = false;
-  this.skipFrustumClipping = false;
-  this.forcePointsCloud = false;
-  this.animationPropertiesOverride = null;
-  // this.onDispose = undefined;
-  // this.beforeRender = undefined;
-  // this.afterRender = undefined;
-  // this.beforeCameraRender = undefined;
-  // this.afterCameraRender = undefined;
-  this.unTranslatedPointer = {};
-  this.useRightHandedSystem = false;
-  this.setStepId = function () {};
-  this.getStepId = function () {};
-  this.getInternalStep = function () {};
-  this.fogEnabled = true;
-  this.fogMode = 0;
-  this.shadowsEnabled = true;
-  this.lightsEnabled = true;
-  // this.activeCamera = undefined;
-  this.defaultMaterial = {};
-  this.texturesEnabled = true;
-  this.skeletonsEnabled = true;
-  this.collisionCoordinator = {};
-  // this.frustumPlanes = undefined;
-  this.getClassName = function () {};
-  this.setDefaultCandidateProviders = function () {};
-  // this.meshUnderPointer = undefined;
-  this.pointerX = 0;
-  this.pointerY = 0;
-  this.getCachedMaterial = function () {};
-  this.getCachedEffect = function () {};
-  this.getCachedVisibility = function () {};
-  this.isCachedMaterialInvalid = function () {};
-  this.getEngine = function () {};
-  this.getTotalVertices = function () {};
-  this.totalVerticesPerfCounter = {};
-  this.getActiveIndices = function () {};
-  this.totalActiveIndicesPerfCounter = {};
-  this.getActiveParticles = function () {};
-  this.activeParticlesPerfCounter = {};
-  this.getActiveBones = function () {};
-  this.activeBonesPerfCounter = {};
-  this.getActiveMeshes = function () {};
-  this.getAnimationRatio = function () {};
-  this.getRenderId = function () {};
-  this.getFrameId = function () {};
-  this.incrementRenderId = function () {};
-  this.simulatePointerMove = function () {};
-  this.simulatePointerDown = function () {};
-  this.simulatePointerUp = function () {};
-  this.isPointerCaptured = function () {};
-  this.attachControl = function () {};
-  this.detachControl = function () {};
-  this.isReady = function () {};
-  this.resetCachedMaterial = function () {};
-  this.registerBeforeRender = function () {};
-  this.unregisterBeforeRender = function () {};
-  this.registerAfterRender = function () {};
-  this.unregisterAfterRender = function () {};
-  this.executeOnceBeforeRender = function () {};
-  this.getWaitingItemsCount = function () {};
-  this.isLoading = false;
-  this.executeWhenReady = function () {};
-  this.whenReadyAsync = function () {};
-  this.animatables = {};
-  this.resetLastAnimationTimeFrame = function () {};
-  this.getViewMatrix = function () {};
-  this.getProjectionMatrix = function () {};
-  this.getTransformMatrix = function () {};
-  this.setTransformMatrix = function () {};
-  this.getSceneUniformBuffer = function () {};
-  this.getUniqueId = function () {};
-  this.addMesh = function () {};
-  this.removeMesh = function () {};
-  this.addTransformNode = function () {};
-  this.removeTransformNode = function () {};
-  this.removeSkeleton = function () {};
-  this.removeMorphTargetManager = function () {};
-  this.removeLight = function () {};
-  this.removeCamera = function () {};
-  this.removeParticleSystem = function () {};
-  this.removeAnimation = function () {};
-  this.stopAnimation = function () {};
-  this.removeAnimationGroup = function () {};
-  this.removeMultiMaterial = function () {};
-  this.removeMaterial = function () {};
-  this.removeActionManager = function () {};
-  this.removeTexture = function () {};
-  this.addLight = function () {};
-  this.sortLightsByPriority = function () {};
-  this.addCamera = function () {};
-  this.addSkeleton = function () {};
-  this.addParticleSystem = function () {};
-  this.addAnimation = function () {};
-  this.addAnimationGroup = function () {};
-  this.addMultiMaterial = function () {};
-  this.addMaterial = function () {};
-  this.addMorphTargetManager = function () {};
-  this.addGeometry = function () {};
-  this.addActionManager = function () {};
-  this.addTexture = function () {};
-  this.switchActiveCamera = function () {};
-  this.setActiveCameraByID = function () {};
-  this.setActiveCameraByName = function () {};
-  this.getAnimationGroupByName = function () {};
-  this.getMaterialByUniqueID = function () {};
-  this.getMaterialByID = function () {};
-  this.getLastMaterialByID = function () {};
-  this.getMaterialByName = function () {};
-  this.getTextureByUniqueID = function () {};
-  this.getCameraByID = function () {};
-  this.getCameraByUniqueID = function () {};
-  this.getCameraByName = function () {};
-  this.getBoneByID = function () {};
-  this.getBoneByName = function () {};
-  this.getLightByName = function () {};
-  this.getLightByID = function () {};
-  this.getLightByUniqueID = function () {};
-  this.getParticleSystemByID = function () {};
-  this.getGeometryByID = function () {};
-  this.pushGeometry = function () {};
-  this.removeGeometry = function () {};
-  this.getGeometries = function () {};
-  this.getMeshByID = function () {};
-  this.getMeshesByID = function () {};
-  this.getTransformNodeByID = function () {};
-  this.getTransformNodeByUniqueID = function () {};
-  this.getTransformNodesByID = function () {};
-  this.getMeshByUniqueID = function () {};
-  this.getLastMeshByID = function () {};
-  this.getLastEntryByID = function () {};
-  this.getNodeByID = function () {};
-  this.getNodeByName = function () {};
-  this.getMeshByName = function () {};
-  this.getTransformNodeByName = function () {};
-  this.getLastSkeletonByID = function () {};
-  this.getSkeletonByUniqueId = function () {};
-  this.getSkeletonById = function () {};
-  this.getSkeletonByName = function () {};
-  this.getMorphTargetManagerById = function () {};
-  this.getMorphTargetById = function () {};
-  this.isActiveMesh = function () {};
-  this.uid = "d76d2ddb-7343-4847-b2a7-a1a235d36994";
-  this.addExternalData = function () {};
-  this.getExternalData = function () {};
-  this.getOrAddExternalDataWithFactory = function () {};
-  this.removeExternalData = function () {};
-  this.freeProcessedMaterials = function () {};
-  this.blockfreeActiveMeshesAndRenderingGroups = false;
-  this.freeActiveMeshes = function () {};
-  this.freeRenderingGroups = function () {};
-  this.freezeActiveMeshes = function () {};
-  this.unfreezeActiveMeshes = function () {};
-  this.updateTransformMatrix = function () {};
-  this.animate = function () {};
-  this.render = function () {};
-  this.freezeMaterials = function () {};
-  this.unfreezeMaterials = function () {};
-  this.dispose = function () {};
-  this.isDisposed = false;
-  this.clearCachedVertexData = function () {};
-  this.cleanCachedTextureBuffer = function () {};
-  this.getWorldExtends = function () {};
-  this.createPickingRay = function () {};
-  this.createPickingRayToRef = function () {};
-  this.createPickingRayInCameraSpace = function () {};
-  this.createPickingRayInCameraSpaceToRef = function () {};
-  this.pick = function () {};
-  this.pickWithRay = function () {};
-  this.multiPick = function () {};
-  this.multiPickWithRay = function () {};
-  this.setPointerOverMesh = function () {};
-  this.getPointerOverMesh = function () {};
-  this.getMeshesByTags = function () {};
-  this.getCamerasByTags = function () {};
-  this.getLightsByTags = function () {};
-  this.getMaterialByTags = function () {};
-  this.setRenderingOrder = function () {};
-  this.setRenderingAutoClearDepthStencil = function () {};
-  this.getAutoClearDepthStencilSetup = function () {};
-  this.blockMaterialDirtyMechanism = false;
-  this.markAllMaterialsAsDirty = function () {};
-  this.beginWeightedAnimation = function () {};
-  this.beginAnimation = function () {};
-  this.beginHierarchyAnimation = function () {};
-  this.beginDirectAnimation = function () {};
-  this.beginDirectHierarchyAnimation = function () {};
-  this.getAnimatableByTarget = function () {};
-  this.getAllAnimatablesByTarget = function () {};
-  this.stopAllAnimations = function () {};
-  this.mainSoundTrack = {};
-  this.getSoundByName = function () {};
-  this.audioEnabled = true;
-  this.headphone = false;
-  this.audioListenerPositionProvider = null;
-  this.audioPositioningRefreshRate = 500;
-  this.gamepadManager = {};
-  this.createOrUpdateSelectionOctree = function () {};
-  // this.selectionOctree = undefined;
-  this.debugLayer = {};
-  this.createDefaultLight = function () {};
-  this.createDefaultCamera = function () {};
-  this.createDefaultCameraOrLight = function () {};
-  this.createDefaultSkybox = function () {};
-  this.createDefaultEnvironment = function () {};
-  this.createDefaultVRExperience = function () {};
-  this.createDefaultXRExperienceAsync = function () {};
-  this.simplificationQueue = {};
-  this.getPhysicsEngine = function () {};
-  this.enablePhysics = function () {};
-  this.disablePhysicsEngine = function () {};
-  this.isPhysicsEnabled = function () {};
-  this.deleteCompoundImpostor = function () {};
-  // this.geometryBufferRenderer = undefined;
-  this.enableGeometryBufferRenderer = function () {};
-  this.disableGeometryBufferRenderer = function () {};
-  this.postProcessRenderPipelineManager = {};
-  this.forceShowBoundingBoxes = false;
-  this.getBoundingBoxRenderer = function () {};
-  this.enableDepthRenderer = function () {};
-  this.disableDepthRenderer = function () {};
-  this.getOutlineRenderer = function () {};
-  this.pickSprite = function () {};
-  this.pickSpriteWithRay = function () {};
-  this.multiPickSprite = function () {};
-  this.multiPickSpriteWithRay = function () {};
-  this.setPointerOverSprite = function () {};
-  this.getPointerOverSprite = function () {};
-  this.getNodes = function () {};
-  this.removeEffectLayer = function () {};
-  this.addEffectLayer = function () {};
-  this.getGlowLayerByName = function () {};
-  this.getHighlightLayerByName = function () {};
-  this.getLensFlareSystemByName = function () {};
-  this.getLensFlareSystemByID = function () {};
-  this.removeLensFlareSystem = function () {};
-  this.addLensFlareSystem = function () {};
-  this.removeReflectionProbe = function () {};
-  this.addReflectionProbe = function () {};
-  this.DefaultMaterialFactory = function () {};
-  this.CollisionCoordinatorFactory = function () {};
-  this.DragMovementThreshold = 10;
-  this.LongPressDelay = 500;
-  this.DoubleClickDelay = 300;
-  this.ExclusiveDoubleClickMode = false;
-  this.FOGMODE_NONE = 0;
-  this.FOGMODE_EXP = 1;
-  this.FOGMODE_EXP2 = 2;
-  this.FOGMODE_LINEAR = 3;
-  this.MinDeltaTime = 1;
-  this.MaxDeltaTime = 1000;
-  this.AddParser = function () {};
-  this.GetParser = function () {};
-  this.AddIndividualParser = function () {};
-  this.GetIndividualParser = function () {};
-  this.Parse = function () {};
-};
+BABYLON.Scene = function () {}
+BABYLON.Scene.rootNodes = {};
+BABYLON.Scene.cameras = {};
+BABYLON.Scene.lights = {};
+BABYLON.Scene.meshes = {};
+BABYLON.Scene.skeletons = {};
+BABYLON.Scene.particleSystems = {};
+BABYLON.Scene.animations = {};
+BABYLON.Scene.animationGroups = {};
+BABYLON.Scene.multiMaterials = {};
+BABYLON.Scene.materials = {};
+BABYLON.Scene.morphTargetManagers = {};
+BABYLON.Scene.geometries = {};
+BABYLON.Scene.transformNodes = {};
+BABYLON.Scene.actionManagers = {};
+BABYLON.Scene.textures = {};
+BABYLON.Scene.cameraToUseForPointers = null;
+BABYLON.Scene.autoClear = true;
+BABYLON.Scene.autoClearDepthAndStencil = true;
+BABYLON.Scene.clearColor = {};
+BABYLON.Scene.ambientColor = {};
+BABYLON.Scene.animationsEnabled = true;
+BABYLON.Scene.useConstantAnimationDeltaTime = false;
+BABYLON.Scene.constantlyUpdateMeshUnderPointer = false;
+BABYLON.Scene.hoverCursor = "pointer";
+BABYLON.Scene.defaultCursor = "";
+BABYLON.Scene.doNotHandleCursors = false;
+BABYLON.Scene.preventDefaultOnPointerDown = true;
+BABYLON.Scene.preventDefaultOnPointerUp = true;
+BABYLON.Scene.metadata = null;
+BABYLON.Scene.reservedDataStore = null;
+BABYLON.Scene.disableOfflineSupportExceptionRules = {};
+BABYLON.Scene.onDisposeObservable = {};
+BABYLON.Scene.onBeforeRenderObservable = {};
+BABYLON.Scene.onAfterRenderObservable = {};
+BABYLON.Scene.onAfterRenderCameraObservable = {};
+BABYLON.Scene.onBeforeAnimationsObservable = {};
+BABYLON.Scene.onAfterAnimationsObservable = {};
+BABYLON.Scene.onBeforeDrawPhaseObservable = {};
+BABYLON.Scene.onAfterDrawPhaseObservable = {};
+BABYLON.Scene.onReadyObservable = {};
+BABYLON.Scene.onBeforeCameraRenderObservable = {};
+BABYLON.Scene.onAfterCameraRenderObservable = {};
+BABYLON.Scene.onBeforeActiveMeshesEvaluationObservable = {};
+BABYLON.Scene.onAfterActiveMeshesEvaluationObservable = {};
+BABYLON.Scene.onBeforeParticlesRenderingObservable = {};
+BABYLON.Scene.onAfterParticlesRenderingObservable = {};
+BABYLON.Scene.onDataLoadedObservable = {};
+BABYLON.Scene.onNewCameraAddedObservable = {};
+BABYLON.Scene.onCameraRemovedObservable = {};
+BABYLON.Scene.onNewLightAddedObservable = {};
+BABYLON.Scene.onLightRemovedObservable = {};
+BABYLON.Scene.onNewGeometryAddedObservable = {};
+BABYLON.Scene.onGeometryRemovedObservable = {};
+BABYLON.Scene.onNewTransformNodeAddedObservable = {};
+BABYLON.Scene.onTransformNodeRemovedObservable = {};
+BABYLON.Scene.onNewMeshAddedObservable = {};
+BABYLON.Scene.onMeshRemovedObservable = {};
+BABYLON.Scene.onNewSkeletonAddedObservable = {};
+BABYLON.Scene.onSkeletonRemovedObservable = {};
+BABYLON.Scene.onNewMaterialAddedObservable = {};
+BABYLON.Scene.onMaterialRemovedObservable = {};
+BABYLON.Scene.onNewTextureAddedObservable = {};
+BABYLON.Scene.onTextureRemovedObservable = {};
+BABYLON.Scene.onBeforeRenderTargetsRenderObservable = {};
+BABYLON.Scene.onAfterRenderTargetsRenderObservable = {};
+BABYLON.Scene.onBeforeStepObservable = {};
+BABYLON.Scene.onAfterStepObservable = {};
+BABYLON.Scene.onActiveCameraChanged = {};
+BABYLON.Scene.onBeforeRenderingGroupObservable = {};
+BABYLON.Scene.onAfterRenderingGroupObservable = {};
+BABYLON.Scene.onMeshImportedObservable = {};
+BABYLON.Scene.onAnimationFileImportedObservable = {};
+BABYLON.Scene.onPrePointerObservable = {};
+BABYLON.Scene.onPointerObservable = {};
+BABYLON.Scene.onPreKeyboardObservable = {};
+BABYLON.Scene.onKeyboardObservable = {};
+BABYLON.Scene.fogColor = {};
+BABYLON.Scene.fogDensity = 0.1;
+BABYLON.Scene.fogStart = 0;
+BABYLON.Scene.fogEnd = 1000;
+BABYLON.Scene.activeCameras = {};
+BABYLON.Scene.particlesEnabled = true;
+BABYLON.Scene.spritesEnabled = true;
+BABYLON.Scene.lensFlaresEnabled = true;
+BABYLON.Scene.collisionsEnabled = true;
+BABYLON.Scene.gravity = {};
+BABYLON.Scene.postProcessesEnabled = true;
+BABYLON.Scene.postProcesses = {};
+BABYLON.Scene.renderTargetsEnabled = true;
+BABYLON.Scene.dumpNextRenderTargets = false;
+BABYLON.Scene.customRenderTargets = {};
+BABYLON.Scene.importedMeshesFiles = {};
+BABYLON.Scene.probesEnabled = true;
+BABYLON.Scene.proceduralTexturesEnabled = true;
+BABYLON.Scene.animationTimeScale = 1;
+BABYLON.Scene.dispatchAllSubMeshesOfActiveMeshes = false;
+BABYLON.Scene.requireLightSorting = false;
+BABYLON.Scene.geometriesByUniqueId = {};
+BABYLON.Scene.getDeterministicFrameTime = function () {};
+BABYLON.Scene.postProcessManager = {};
+BABYLON.Scene.getActiveMeshCandidates = function () {};
+BABYLON.Scene.getActiveSubMeshCandidates = function () {};
+BABYLON.Scene.getIntersectingSubMeshCandidates = function () {};
+BABYLON.Scene.getCollidingSubMeshCandidates = function () {};
+BABYLON.Scene.useMaterialMeshMap = true;
+BABYLON.Scene.useClonedMeshMap = true;
+BABYLON.Scene.prototype.constructor = function () {};
+// BABYLON.Scene.prototype.environmentTexture = undefined;
+// BABYLON.Scene.prototype.environmentIntensity = undefined;
+// BABYLON.Scene.prototype.imageProcessingConfiguration = undefined;
+// BABYLON.Scene.prototype.forceWireframe = undefined;
+// BABYLON.Scene.prototype.skipFrustumClipping = undefined;
+// BABYLON.Scene.prototype.forcePointsCloud = undefined;
+// BABYLON.Scene.prototype.animationPropertiesOverride = undefined;
+// BABYLON.Scene.prototype.onDispose = undefined;
+// BABYLON.Scene.prototype.beforeRender = undefined;
+// BABYLON.Scene.prototype.afterRender = undefined;
+// BABYLON.Scene.prototype.beforeCameraRender = undefined;
+// BABYLON.Scene.prototype.afterCameraRender = undefined;
+// BABYLON.Scene.prototype.unTranslatedPointer = undefined;
+// BABYLON.Scene.prototype.useRightHandedSystem = undefined;
+BABYLON.Scene.prototype.setStepId = function () {};
+BABYLON.Scene.prototype.getStepId = function () {};
+BABYLON.Scene.prototype.getInternalStep = function () {};
+// BABYLON.Scene.prototype.fogEnabled = undefined;
+// BABYLON.Scene.prototype.fogMode = undefined;
+// BABYLON.Scene.prototype.shadowsEnabled = undefined;
+// BABYLON.Scene.prototype.lightsEnabled = undefined;
+// BABYLON.Scene.prototype.activeCamera = undefined;
+// BABYLON.Scene.prototype.defaultMaterial = undefined;
+// BABYLON.Scene.prototype.texturesEnabled = undefined;
+// BABYLON.Scene.prototype.skeletonsEnabled = undefined;
+BABYLON.Scene.prototype.collisionCoordinator = {};
+// BABYLON.Scene.prototype.frustumPlanes = undefined;
+BABYLON.Scene.prototype.getClassName = function () {};
+BABYLON.Scene.prototype.setDefaultCandidateProviders = function () {};
+// BABYLON.Scene.prototype.meshUnderPointer = undefined;
+// BABYLON.Scene.prototype.pointerX = undefined;
+// BABYLON.Scene.prototype.pointerY = undefined;
+BABYLON.Scene.prototype.getCachedMaterial = function () {};
+BABYLON.Scene.prototype.getCachedEffect = function () {};
+BABYLON.Scene.prototype.getCachedVisibility = function () {};
+BABYLON.Scene.prototype.isCachedMaterialInvalid = function () {};
+BABYLON.Scene.prototype.getEngine = function () {};
+BABYLON.Scene.prototype.getTotalVertices = function () {};
+// BABYLON.Scene.prototype.totalVerticesPerfCounter = undefined;
+BABYLON.Scene.prototype.getActiveIndices = function () {};
+// BABYLON.Scene.prototype.totalActiveIndicesPerfCounter = undefined;
+BABYLON.Scene.prototype.getActiveParticles = function () {};
+// BABYLON.Scene.prototype.activeParticlesPerfCounter = undefined;
+BABYLON.Scene.prototype.getActiveBones = function () {};
+// BABYLON.Scene.prototype.activeBonesPerfCounter = undefined;
+BABYLON.Scene.prototype.getActiveMeshes = function () {};
+BABYLON.Scene.prototype.getAnimationRatio = function () {};
+BABYLON.Scene.prototype.getRenderId = function () {};
+BABYLON.Scene.prototype.getFrameId = function () {};
+BABYLON.Scene.prototype.incrementRenderId = function () {};
+BABYLON.Scene.prototype.simulatePointerMove = function () {};
+BABYLON.Scene.prototype.simulatePointerDown = function () {};
+BABYLON.Scene.prototype.simulatePointerUp = function () {};
+BABYLON.Scene.prototype.isPointerCaptured = function () {};
+BABYLON.Scene.prototype.attachControl = function () {};
+BABYLON.Scene.prototype.detachControl = function () {};
+BABYLON.Scene.prototype.isReady = function () {};
+BABYLON.Scene.prototype.resetCachedMaterial = function () {};
+BABYLON.Scene.prototype.registerBeforeRender = function () {};
+BABYLON.Scene.prototype.unregisterBeforeRender = function () {};
+BABYLON.Scene.prototype.registerAfterRender = function () {};
+BABYLON.Scene.prototype.unregisterAfterRender = function () {};
+BABYLON.Scene.prototype.executeOnceBeforeRender = function () {};
+BABYLON.Scene.prototype.getWaitingItemsCount = function () {};
+// BABYLON.Scene.prototype.isLoading = undefined;
+BABYLON.Scene.prototype.executeWhenReady = function () {};
+BABYLON.Scene.prototype.whenReadyAsync = function () {};
+// BABYLON.Scene.prototype.animatables = undefined;
+BABYLON.Scene.prototype.resetLastAnimationTimeFrame = function () {};
+BABYLON.Scene.prototype.getViewMatrix = function () {};
+BABYLON.Scene.prototype.getProjectionMatrix = function () {};
+BABYLON.Scene.prototype.getTransformMatrix = function () {};
+BABYLON.Scene.prototype.setTransformMatrix = function () {};
+BABYLON.Scene.prototype.getSceneUniformBuffer = function () {};
+BABYLON.Scene.prototype.getUniqueId = function () {};
+BABYLON.Scene.prototype.addMesh = function () {};
+BABYLON.Scene.prototype.removeMesh = function () {};
+BABYLON.Scene.prototype.addTransformNode = function () {};
+BABYLON.Scene.prototype.removeTransformNode = function () {};
+BABYLON.Scene.prototype.removeSkeleton = function () {};
+BABYLON.Scene.prototype.removeMorphTargetManager = function () {};
+BABYLON.Scene.prototype.removeLight = function () {};
+BABYLON.Scene.prototype.removeCamera = function () {};
+BABYLON.Scene.prototype.removeParticleSystem = function () {};
+BABYLON.Scene.prototype.removeAnimation = function () {};
+BABYLON.Scene.prototype.stopAnimation = function () {};
+BABYLON.Scene.prototype.removeAnimationGroup = function () {};
+BABYLON.Scene.prototype.removeMultiMaterial = function () {};
+BABYLON.Scene.prototype.removeMaterial = function () {};
+BABYLON.Scene.prototype.removeActionManager = function () {};
+BABYLON.Scene.prototype.removeTexture = function () {};
+BABYLON.Scene.prototype.addLight = function () {};
+BABYLON.Scene.prototype.sortLightsByPriority = function () {};
+BABYLON.Scene.prototype.addCamera = function () {};
+BABYLON.Scene.prototype.addSkeleton = function () {};
+BABYLON.Scene.prototype.addParticleSystem = function () {};
+BABYLON.Scene.prototype.addAnimation = function () {};
+BABYLON.Scene.prototype.addAnimationGroup = function () {};
+BABYLON.Scene.prototype.addMultiMaterial = function () {};
+BABYLON.Scene.prototype.addMaterial = function () {};
+BABYLON.Scene.prototype.addMorphTargetManager = function () {};
+BABYLON.Scene.prototype.addGeometry = function () {};
+BABYLON.Scene.prototype.addActionManager = function () {};
+BABYLON.Scene.prototype.addTexture = function () {};
+BABYLON.Scene.prototype.switchActiveCamera = function () {};
+BABYLON.Scene.prototype.setActiveCameraByID = function () {};
+BABYLON.Scene.prototype.setActiveCameraByName = function () {};
+BABYLON.Scene.prototype.getAnimationGroupByName = function () {};
+BABYLON.Scene.prototype.getMaterialByUniqueID = function () {};
+BABYLON.Scene.prototype.getMaterialByID = function () {};
+BABYLON.Scene.prototype.getLastMaterialByID = function () {};
+BABYLON.Scene.prototype.getMaterialByName = function () {};
+BABYLON.Scene.prototype.getTextureByUniqueID = function () {};
+BABYLON.Scene.prototype.getCameraByID = function () {};
+BABYLON.Scene.prototype.getCameraByUniqueID = function () {};
+BABYLON.Scene.prototype.getCameraByName = function () {};
+BABYLON.Scene.prototype.getBoneByID = function () {};
+BABYLON.Scene.prototype.getBoneByName = function () {};
+BABYLON.Scene.prototype.getLightByName = function () {};
+BABYLON.Scene.prototype.getLightByID = function () {};
+BABYLON.Scene.prototype.getLightByUniqueID = function () {};
+BABYLON.Scene.prototype.getParticleSystemByID = function () {};
+BABYLON.Scene.prototype.getGeometryByID = function () {};
+BABYLON.Scene.prototype.pushGeometry = function () {};
+BABYLON.Scene.prototype.removeGeometry = function () {};
+BABYLON.Scene.prototype.getGeometries = function () {};
+BABYLON.Scene.prototype.getMeshByID = function () {};
+BABYLON.Scene.prototype.getMeshesByID = function () {};
+BABYLON.Scene.prototype.getTransformNodeByID = function () {};
+BABYLON.Scene.prototype.getTransformNodeByUniqueID = function () {};
+BABYLON.Scene.prototype.getTransformNodesByID = function () {};
+BABYLON.Scene.prototype.getMeshByUniqueID = function () {};
+BABYLON.Scene.prototype.getLastMeshByID = function () {};
+BABYLON.Scene.prototype.getLastEntryByID = function () {};
+BABYLON.Scene.prototype.getNodeByID = function () {};
+BABYLON.Scene.prototype.getNodeByName = function () {};
+BABYLON.Scene.prototype.getMeshByName = function () {};
+BABYLON.Scene.prototype.getTransformNodeByName = function () {};
+BABYLON.Scene.prototype.getLastSkeletonByID = function () {};
+BABYLON.Scene.prototype.getSkeletonByUniqueId = function () {};
+BABYLON.Scene.prototype.getSkeletonById = function () {};
+BABYLON.Scene.prototype.getSkeletonByName = function () {};
+BABYLON.Scene.prototype.getMorphTargetManagerById = function () {};
+BABYLON.Scene.prototype.getMorphTargetById = function () {};
+BABYLON.Scene.prototype.isActiveMesh = function () {};
+BABYLON.Scene.prototype.uid = "3386a392-13ae-4bc3-80f0-37d6c891f319";
+BABYLON.Scene.prototype.addExternalData = function () {};
+BABYLON.Scene.prototype.getExternalData = function () {};
+BABYLON.Scene.prototype.getOrAddExternalDataWithFactory = function () {};
+BABYLON.Scene.prototype.removeExternalData = function () {};
+BABYLON.Scene.prototype.freeProcessedMaterials = function () {};
+// BABYLON.Scene.prototype.blockfreeActiveMeshesAndRenderingGroups = undefined;
+BABYLON.Scene.prototype.freeActiveMeshes = function () {};
+BABYLON.Scene.prototype.freeRenderingGroups = function () {};
+BABYLON.Scene.prototype.freezeActiveMeshes = function () {};
+BABYLON.Scene.prototype.unfreezeActiveMeshes = function () {};
+BABYLON.Scene.prototype.updateTransformMatrix = function () {};
+BABYLON.Scene.prototype.animate = function () {};
+BABYLON.Scene.prototype.render = function () {};
+BABYLON.Scene.prototype.freezeMaterials = function () {};
+BABYLON.Scene.prototype.unfreezeMaterials = function () {};
+BABYLON.Scene.prototype.dispose = function () {};
+// BABYLON.Scene.prototype.isDisposed = undefined;
+BABYLON.Scene.prototype.clearCachedVertexData = function () {};
+BABYLON.Scene.prototype.cleanCachedTextureBuffer = function () {};
+BABYLON.Scene.prototype.getWorldExtends = function () {};
+BABYLON.Scene.prototype.createPickingRay = function () {};
+BABYLON.Scene.prototype.createPickingRayToRef = function () {};
+BABYLON.Scene.prototype.createPickingRayInCameraSpace = function () {};
+BABYLON.Scene.prototype.createPickingRayInCameraSpaceToRef = function () {};
+BABYLON.Scene.prototype.pick = function () {};
+BABYLON.Scene.prototype.pickWithRay = function () {};
+BABYLON.Scene.prototype.multiPick = function () {};
+BABYLON.Scene.prototype.multiPickWithRay = function () {};
+BABYLON.Scene.prototype.setPointerOverMesh = function () {};
+BABYLON.Scene.prototype.getPointerOverMesh = function () {};
+BABYLON.Scene.prototype.getMeshesByTags = function () {};
+BABYLON.Scene.prototype.getCamerasByTags = function () {};
+BABYLON.Scene.prototype.getLightsByTags = function () {};
+BABYLON.Scene.prototype.getMaterialByTags = function () {};
+BABYLON.Scene.prototype.setRenderingOrder = function () {};
+BABYLON.Scene.prototype.setRenderingAutoClearDepthStencil = function () {};
+BABYLON.Scene.prototype.getAutoClearDepthStencilSetup = function () {};
+// BABYLON.Scene.prototype.blockMaterialDirtyMechanism = undefined;
+BABYLON.Scene.prototype.markAllMaterialsAsDirty = function () {};
+BABYLON.Scene.prototype.beginWeightedAnimation = function () {};
+BABYLON.Scene.prototype.beginAnimation = function () {};
+BABYLON.Scene.prototype.beginHierarchyAnimation = function () {};
+BABYLON.Scene.prototype.beginDirectAnimation = function () {};
+BABYLON.Scene.prototype.beginDirectHierarchyAnimation = function () {};
+BABYLON.Scene.prototype.getAnimatableByTarget = function () {};
+BABYLON.Scene.prototype.getAllAnimatablesByTarget = function () {};
+BABYLON.Scene.prototype.stopAllAnimations = function () {};
+// BABYLON.Scene.prototype.mainSoundTrack = undefined;
+BABYLON.Scene.prototype.getSoundByName = function () {};
+// BABYLON.Scene.prototype.audioEnabled = undefined;
+// BABYLON.Scene.prototype.headphone = undefined;
+// BABYLON.Scene.prototype.audioListenerPositionProvider = undefined;
+// BABYLON.Scene.prototype.audioPositioningRefreshRate = undefined;
+// BABYLON.Scene.prototype.gamepadManager = undefined;
+BABYLON.Scene.prototype.createOrUpdateSelectionOctree = function () {};
+// BABYLON.Scene.prototype.selectionOctree = undefined;
+// BABYLON.Scene.prototype.debugLayer = undefined;
+BABYLON.Scene.prototype.createDefaultLight = function () {};
+BABYLON.Scene.prototype.createDefaultCamera = function () {};
+BABYLON.Scene.prototype.createDefaultCameraOrLight = function () {};
+BABYLON.Scene.prototype.createDefaultSkybox = function () {};
+BABYLON.Scene.prototype.createDefaultEnvironment = function () {};
+BABYLON.Scene.prototype.createDefaultVRExperience = function () {};
+BABYLON.Scene.prototype.createDefaultXRExperienceAsync = function () {};
+// BABYLON.Scene.prototype.simplificationQueue = undefined;
+BABYLON.Scene.prototype.getPhysicsEngine = function () {};
+BABYLON.Scene.prototype.enablePhysics = function () {};
+BABYLON.Scene.prototype.disablePhysicsEngine = function () {};
+BABYLON.Scene.prototype.isPhysicsEnabled = function () {};
+BABYLON.Scene.prototype.deleteCompoundImpostor = function () {};
+// BABYLON.Scene.prototype.geometryBufferRenderer = undefined;
+BABYLON.Scene.prototype.enableGeometryBufferRenderer = function () {};
+BABYLON.Scene.prototype.disableGeometryBufferRenderer = function () {};
+// BABYLON.Scene.prototype.postProcessRenderPipelineManager = undefined;
+BABYLON.Scene.prototype.forceShowBoundingBoxes = false;
+BABYLON.Scene.prototype.getBoundingBoxRenderer = function () {};
+BABYLON.Scene.prototype.enableDepthRenderer = function () {};
+BABYLON.Scene.prototype.disableDepthRenderer = function () {};
+BABYLON.Scene.prototype.getOutlineRenderer = function () {};
+BABYLON.Scene.prototype.pickSprite = function () {};
+BABYLON.Scene.prototype.pickSpriteWithRay = function () {};
+BABYLON.Scene.prototype.multiPickSprite = function () {};
+BABYLON.Scene.prototype.multiPickSpriteWithRay = function () {};
+BABYLON.Scene.prototype.setPointerOverSprite = function () {};
+BABYLON.Scene.prototype.getPointerOverSprite = function () {};
+BABYLON.Scene.prototype.getNodes = function () {};
+BABYLON.Scene.prototype.removeEffectLayer = function () {};
+BABYLON.Scene.prototype.addEffectLayer = function () {};
+BABYLON.Scene.prototype.getGlowLayerByName = function () {};
+BABYLON.Scene.prototype.getHighlightLayerByName = function () {};
+BABYLON.Scene.prototype.getLensFlareSystemByName = function () {};
+BABYLON.Scene.prototype.getLensFlareSystemByID = function () {};
+BABYLON.Scene.prototype.removeLensFlareSystem = function () {};
+BABYLON.Scene.prototype.addLensFlareSystem = function () {};
+BABYLON.Scene.prototype.removeReflectionProbe = function () {};
+BABYLON.Scene.prototype.addReflectionProbe = function () {};
+
 
 /** @constructor */
-BABYLON.SceneComponentConstants = function () {
-  this.NAME_EFFECTLAYER = "EffectLayer";
-  this.NAME_LAYER = "Layer";
-  this.NAME_LENSFLARESYSTEM = "LensFlareSystem";
-  this.NAME_BOUNDINGBOXRENDERER = "BoundingBoxRenderer";
-  this.NAME_PARTICLESYSTEM = "ParticleSystem";
-  this.NAME_GAMEPAD = "Gamepad";
-  this.NAME_SIMPLIFICATIONQUEUE = "SimplificationQueue";
-  this.NAME_GEOMETRYBUFFERRENDERER = "GeometryBufferRenderer";
-  this.NAME_DEPTHRENDERER = "DepthRenderer";
-  this.NAME_POSTPROCESSRENDERPIPELINEMANAGER = "PostProcessRenderPipelineManager";
-  this.NAME_SPRITE = "Sprite";
-  this.NAME_OUTLINERENDERER = "Outline";
-  this.NAME_PROCEDURALTEXTURE = "ProceduralTexture";
-  this.NAME_SHADOWGENERATOR = "ShadowGenerator";
-  this.NAME_OCTREE = "Octree";
-  this.NAME_PHYSICSENGINE = "PhysicsEngine";
-  this.NAME_AUDIO = "Audio";
-  this.STEP_ISREADYFORMESH_EFFECTLAYER = 0;
-  this.STEP_BEFOREEVALUATEACTIVEMESH_BOUNDINGBOXRENDERER = 0;
-  this.STEP_EVALUATESUBMESH_BOUNDINGBOXRENDERER = 0;
-  this.STEP_ACTIVEMESH_BOUNDINGBOXRENDERER = 0;
-  this.STEP_CAMERADRAWRENDERTARGET_EFFECTLAYER = 1;
-  this.STEP_BEFORECAMERADRAW_EFFECTLAYER = 0;
-  this.STEP_BEFORECAMERADRAW_LAYER = 1;
-  this.STEP_BEFORERENDERTARGETDRAW_LAYER = 0;
-  this.STEP_BEFORERENDERINGMESH_OUTLINE = 0;
-  this.STEP_AFTERRENDERINGMESH_OUTLINE = 0;
-  this.STEP_AFTERRENDERINGGROUPDRAW_EFFECTLAYER_DRAW = 0;
-  this.STEP_AFTERRENDERINGGROUPDRAW_BOUNDINGBOXRENDERER = 1;
-  this.STEP_BEFORECAMERAUPDATE_SIMPLIFICATIONQUEUE = 0;
-  this.STEP_BEFORECAMERAUPDATE_GAMEPAD = 1;
-  this.STEP_BEFORECLEAR_PROCEDURALTEXTURE = 0;
-  this.STEP_AFTERRENDERTARGETDRAW_LAYER = 0;
-  this.STEP_AFTERCAMERADRAW_EFFECTLAYER = 0;
-  this.STEP_AFTERCAMERADRAW_LENSFLARESYSTEM = 1;
-  this.STEP_AFTERCAMERADRAW_EFFECTLAYER_DRAW = 2;
-  this.STEP_AFTERCAMERADRAW_LAYER = 3;
-  this.STEP_AFTERRENDER_AUDIO = 0;
-  this.STEP_GATHERRENDERTARGETS_DEPTHRENDERER = 0;
-  this.STEP_GATHERRENDERTARGETS_GEOMETRYBUFFERRENDERER = 1;
-  this.STEP_GATHERRENDERTARGETS_SHADOWGENERATOR = 2;
-  this.STEP_GATHERRENDERTARGETS_POSTPROCESSRENDERPIPELINEMANAGER = 3;
-  this.STEP_GATHERACTIVECAMERARENDERTARGETS_DEPTHRENDERER = 0;
-  this.STEP_POINTERMOVE_SPRITE = 0;
-  this.STEP_POINTERDOWN_SPRITE = 0;
-  this.STEP_POINTERUP_SPRITE = 0;
-};
+BABYLON.SceneComponentConstants = function () {}
+
 
 /** @constructor */
-BABYLON.Stage = function () {
-  this.Create = function () {};
-};
+BABYLON.Stage = function () {}
+
 
 /** @constructor */
-BABYLON.Sprite = function () {
-};
+BABYLON.Sprite = function () {}
+
 
 /** @constructor */
-BABYLON.SpriteManager = function () {
-};
+BABYLON.SpriteManager = function () {}
+
 
 /** @constructor */
-BABYLON.SpriteMap = function () {
-};
+BABYLON.SpriteMap = function () {}
+
 
 /** @constructor */
-BABYLON.SpritePackedManager = function () {
-};
+BABYLON.SpritePackedManager = function () {}
+
 
 /** @constructor */
-BABYLON.SpriteSceneComponent = function () {
-};
+BABYLON.SpriteSceneComponent = function () {}
+
 
 /** @constructor */
-BABYLON.AlphaState = function () {
-  this.isDirty = true;
-  this.alphaBlend = false;
-  this.setAlphaBlendConstants = function () {};
-  this.setAlphaBlendFunctionParameters = function () {};
-  this.setAlphaEquationParameters = function () {};
-  this.reset = function () {};
-  this.apply = function () {};
-};
+BABYLON.AlphaState = function () {}
+// BABYLON.AlphaState.prototype.isDirty = undefined;
+// BABYLON.AlphaState.prototype.alphaBlend = undefined;
+BABYLON.AlphaState.prototype.setAlphaBlendConstants = function () {};
+BABYLON.AlphaState.prototype.setAlphaBlendFunctionParameters = function () {};
+BABYLON.AlphaState.prototype.setAlphaEquationParameters = function () {};
+BABYLON.AlphaState.prototype.reset = function () {};
+BABYLON.AlphaState.prototype.apply = function () {};
+
 
 /** @constructor */
-BABYLON.DepthCullingState = function () {
-  this.isDirty = true;
-  this.zOffset = 0;
-  this.cullFace = null;
-  this.cull = null;
-  this.depthFunc = null;
-  this.depthMask = true;
-  this.depthTest = true;
-  this.frontFace = null;
-  this.reset = function () {};
-  this.apply = function () {};
-};
+BABYLON.DepthCullingState = function () {}
+// BABYLON.DepthCullingState.prototype.isDirty = undefined;
+// BABYLON.DepthCullingState.prototype.zOffset = undefined;
+// BABYLON.DepthCullingState.prototype.cullFace = undefined;
+// BABYLON.DepthCullingState.prototype.cull = undefined;
+// BABYLON.DepthCullingState.prototype.depthFunc = undefined;
+// BABYLON.DepthCullingState.prototype.depthMask = undefined;
+// BABYLON.DepthCullingState.prototype.depthTest = undefined;
+// BABYLON.DepthCullingState.prototype.frontFace = undefined;
+BABYLON.DepthCullingState.prototype.reset = function () {};
+BABYLON.DepthCullingState.prototype.apply = function () {};
+
 
 /** @constructor */
-BABYLON.StencilState = function () {
-  this.isDirty = true;
-  this.stencilFunc = 519;
-  this.stencilFuncRef = 1;
-  this.stencilFuncMask = 255;
-  this.stencilOpStencilFail = 7680;
-  this.stencilOpDepthFail = 7680;
-  this.stencilOpStencilDepthPass = 7681;
-  this.stencilMask = 255;
-  this.stencilTest = false;
-  this.reset = function () {};
-  this.apply = function () {};
-  this.ALWAYS = 519;
-  this.KEEP = 7680;
-  this.REPLACE = 7681;
-};
+BABYLON.StencilState = function () {}
+// BABYLON.StencilState.prototype.isDirty = undefined;
+// BABYLON.StencilState.prototype.stencilFunc = undefined;
+// BABYLON.StencilState.prototype.stencilFuncRef = undefined;
+// BABYLON.StencilState.prototype.stencilFuncMask = undefined;
+// BABYLON.StencilState.prototype.stencilOpStencilFail = undefined;
+// BABYLON.StencilState.prototype.stencilOpDepthFail = undefined;
+// BABYLON.StencilState.prototype.stencilOpStencilDepthPass = undefined;
+// BABYLON.StencilState.prototype.stencilMask = undefined;
+// BABYLON.StencilState.prototype.stencilTest = undefined;
+BABYLON.StencilState.prototype.reset = function () {};
+BABYLON.StencilState.prototype.apply = function () {};
+
 
 /** @constructor */
-BABYLON.AndOrNotEvaluator = function () {
-  this.Eval = function () {};
-};
+BABYLON.AndOrNotEvaluator = function () {}
+
 
 BABYLON.AssetTaskState = {}
 
 /** @constructor */
-BABYLON.AbstractAssetTask = function () {
-  // this.name = undefined;
-  this.isCompleted = false;
-  this.taskState = 0;
-  // this.errorObject = undefined;
-  this.run = function () {};
-  this.runTask = function () {};
-  this.reset = function () {};
-  this.onErrorCallback = function () {};
-  this.onDoneCallback = function () {};
-};
+BABYLON.AbstractAssetTask = function () {}
+// BABYLON.AbstractAssetTask.name = undefined;
+// BABYLON.AbstractAssetTask.prototype.isCompleted = undefined;
+// BABYLON.AbstractAssetTask.prototype.taskState = undefined;
+// BABYLON.AbstractAssetTask.prototype.errorObject = undefined;
+BABYLON.AbstractAssetTask.prototype.run = function () {};
+BABYLON.AbstractAssetTask.prototype.runTask = function () {};
+BABYLON.AbstractAssetTask.prototype.reset = function () {};
+BABYLON.AbstractAssetTask.prototype.onErrorCallback = function () {};
+BABYLON.AbstractAssetTask.prototype.onDoneCallback = function () {};
+
 
 /** @constructor */
-BABYLON.AssetsProgressEvent = function () {
-  // this.remainingCount = undefined;
-  // this.totalCount = undefined;
-  // this.task = undefined;
-};
+BABYLON.AssetsProgressEvent = function () {}
+// BABYLON.AssetsProgressEvent.remainingCount = undefined;
+// BABYLON.AssetsProgressEvent.totalCount = undefined;
+// BABYLON.AssetsProgressEvent.task = undefined;
+
 
 /** @constructor */
-BABYLON.MeshAssetTask = function () {
-  // this.name = undefined;
-  // this.meshesNames = undefined;
-  // this.rootUrl = undefined;
-  // this.sceneFilename = undefined;
-  this.constructor = function () {};
-  this.runTask = function () {};
-  this.isCompleted = false;
-  this.taskState = 0;
-  // this.errorObject = undefined;
-  this.run = function () {};
-  this.reset = function () {};
-  this.onErrorCallback = function () {};
-  this.onDoneCallback = function () {};
-};
+BABYLON.MeshAssetTask = function () {}
+// BABYLON.MeshAssetTask.name = undefined;
+// BABYLON.MeshAssetTask.meshesNames = undefined;
+// BABYLON.MeshAssetTask.rootUrl = undefined;
+// BABYLON.MeshAssetTask.sceneFilename = undefined;
+BABYLON.MeshAssetTask.prototype.constructor = function () {};
+BABYLON.MeshAssetTask.prototype.runTask = function () {};
+// BABYLON.MeshAssetTask.prototype.isCompleted = undefined;
+// BABYLON.MeshAssetTask.prototype.taskState = undefined;
+// BABYLON.MeshAssetTask.prototype.errorObject = undefined;
+BABYLON.MeshAssetTask.prototype.run = function () {};
+BABYLON.MeshAssetTask.prototype.reset = function () {};
+BABYLON.MeshAssetTask.prototype.onErrorCallback = function () {};
+BABYLON.MeshAssetTask.prototype.onDoneCallback = function () {};
+
 
 /** @constructor */
-BABYLON.TextFileAssetTask = function () {
-  // this.name = undefined;
-  // this.url = undefined;
-  this.constructor = function () {};
-  this.runTask = function () {};
-  this.isCompleted = false;
-  this.taskState = 0;
-  // this.errorObject = undefined;
-  this.run = function () {};
-  this.reset = function () {};
-  this.onErrorCallback = function () {};
-  this.onDoneCallback = function () {};
-};
+BABYLON.TextFileAssetTask = function () {}
+// BABYLON.TextFileAssetTask.name = undefined;
+// BABYLON.TextFileAssetTask.url = undefined;
+BABYLON.TextFileAssetTask.prototype.constructor = function () {};
+BABYLON.TextFileAssetTask.prototype.runTask = function () {};
+// BABYLON.TextFileAssetTask.prototype.isCompleted = undefined;
+// BABYLON.TextFileAssetTask.prototype.taskState = undefined;
+// BABYLON.TextFileAssetTask.prototype.errorObject = undefined;
+BABYLON.TextFileAssetTask.prototype.run = function () {};
+BABYLON.TextFileAssetTask.prototype.reset = function () {};
+BABYLON.TextFileAssetTask.prototype.onErrorCallback = function () {};
+BABYLON.TextFileAssetTask.prototype.onDoneCallback = function () {};
+
 
 /** @constructor */
-BABYLON.BinaryFileAssetTask = function () {
-  // this.name = undefined;
-  // this.url = undefined;
-  this.constructor = function () {};
-  this.runTask = function () {};
-  this.isCompleted = false;
-  this.taskState = 0;
-  // this.errorObject = undefined;
-  this.run = function () {};
-  this.reset = function () {};
-  this.onErrorCallback = function () {};
-  this.onDoneCallback = function () {};
-};
+BABYLON.BinaryFileAssetTask = function () {}
+// BABYLON.BinaryFileAssetTask.name = undefined;
+// BABYLON.BinaryFileAssetTask.url = undefined;
+BABYLON.BinaryFileAssetTask.prototype.constructor = function () {};
+BABYLON.BinaryFileAssetTask.prototype.runTask = function () {};
+// BABYLON.BinaryFileAssetTask.prototype.isCompleted = undefined;
+// BABYLON.BinaryFileAssetTask.prototype.taskState = undefined;
+// BABYLON.BinaryFileAssetTask.prototype.errorObject = undefined;
+BABYLON.BinaryFileAssetTask.prototype.run = function () {};
+BABYLON.BinaryFileAssetTask.prototype.reset = function () {};
+BABYLON.BinaryFileAssetTask.prototype.onErrorCallback = function () {};
+BABYLON.BinaryFileAssetTask.prototype.onDoneCallback = function () {};
+
 
 /** @constructor */
-BABYLON.ImageAssetTask = function () {
-  // this.name = undefined;
-  // this.url = undefined;
-  this.constructor = function () {};
-  this.runTask = function () {};
-  this.isCompleted = false;
-  this.taskState = 0;
-  // this.errorObject = undefined;
-  this.run = function () {};
-  this.reset = function () {};
-  this.onErrorCallback = function () {};
-  this.onDoneCallback = function () {};
-};
+BABYLON.ImageAssetTask = function () {}
+// BABYLON.ImageAssetTask.name = undefined;
+// BABYLON.ImageAssetTask.url = undefined;
+BABYLON.ImageAssetTask.prototype.constructor = function () {};
+BABYLON.ImageAssetTask.prototype.runTask = function () {};
+// BABYLON.ImageAssetTask.prototype.isCompleted = undefined;
+// BABYLON.ImageAssetTask.prototype.taskState = undefined;
+// BABYLON.ImageAssetTask.prototype.errorObject = undefined;
+BABYLON.ImageAssetTask.prototype.run = function () {};
+BABYLON.ImageAssetTask.prototype.reset = function () {};
+BABYLON.ImageAssetTask.prototype.onErrorCallback = function () {};
+BABYLON.ImageAssetTask.prototype.onDoneCallback = function () {};
+
 
 /** @constructor */
-BABYLON.TextureAssetTask = function () {
-  // this.name = undefined;
-  // this.url = undefined;
-  // this.noMipmap = undefined;
-  // this.invertY = undefined;
-  this.samplingMode = 3;
-  this.constructor = function () {};
-  this.runTask = function () {};
-  this.isCompleted = false;
-  this.taskState = 0;
-  // this.errorObject = undefined;
-  this.run = function () {};
-  this.reset = function () {};
-  this.onErrorCallback = function () {};
-  this.onDoneCallback = function () {};
-};
+BABYLON.TextureAssetTask = function () {}
+// BABYLON.TextureAssetTask.name = undefined;
+// BABYLON.TextureAssetTask.url = undefined;
+// BABYLON.TextureAssetTask.noMipmap = undefined;
+// BABYLON.TextureAssetTask.invertY = undefined;
+BABYLON.TextureAssetTask.samplingMode = 3;
+BABYLON.TextureAssetTask.prototype.constructor = function () {};
+BABYLON.TextureAssetTask.prototype.runTask = function () {};
+// BABYLON.TextureAssetTask.prototype.isCompleted = undefined;
+// BABYLON.TextureAssetTask.prototype.taskState = undefined;
+// BABYLON.TextureAssetTask.prototype.errorObject = undefined;
+BABYLON.TextureAssetTask.prototype.run = function () {};
+BABYLON.TextureAssetTask.prototype.reset = function () {};
+BABYLON.TextureAssetTask.prototype.onErrorCallback = function () {};
+BABYLON.TextureAssetTask.prototype.onDoneCallback = function () {};
+
 
 /** @constructor */
-BABYLON.CubeTextureAssetTask = function () {
-  // this.name = undefined;
-  // this.url = undefined;
-  // this.extensions = undefined;
-  // this.noMipmap = undefined;
-  // this.files = undefined;
-  this.constructor = function () {};
-  this.runTask = function () {};
-  this.isCompleted = false;
-  this.taskState = 0;
-  // this.errorObject = undefined;
-  this.run = function () {};
-  this.reset = function () {};
-  this.onErrorCallback = function () {};
-  this.onDoneCallback = function () {};
-};
+BABYLON.CubeTextureAssetTask = function () {}
+// BABYLON.CubeTextureAssetTask.name = undefined;
+// BABYLON.CubeTextureAssetTask.url = undefined;
+// BABYLON.CubeTextureAssetTask.extensions = undefined;
+// BABYLON.CubeTextureAssetTask.noMipmap = undefined;
+// BABYLON.CubeTextureAssetTask.files = undefined;
+BABYLON.CubeTextureAssetTask.prototype.constructor = function () {};
+BABYLON.CubeTextureAssetTask.prototype.runTask = function () {};
+// BABYLON.CubeTextureAssetTask.prototype.isCompleted = undefined;
+// BABYLON.CubeTextureAssetTask.prototype.taskState = undefined;
+// BABYLON.CubeTextureAssetTask.prototype.errorObject = undefined;
+BABYLON.CubeTextureAssetTask.prototype.run = function () {};
+BABYLON.CubeTextureAssetTask.prototype.reset = function () {};
+BABYLON.CubeTextureAssetTask.prototype.onErrorCallback = function () {};
+BABYLON.CubeTextureAssetTask.prototype.onDoneCallback = function () {};
+
 
 /** @constructor */
-BABYLON.HDRCubeTextureAssetTask = function () {
-  // this.name = undefined;
-  // this.url = undefined;
-  // this.size = undefined;
-  this.noMipmap = false;
-  this.generateHarmonics = true;
-  this.gammaSpace = false;
-  this.reserved = false;
-  this.constructor = function () {};
-  this.runTask = function () {};
-  this.isCompleted = false;
-  this.taskState = 0;
-  // this.errorObject = undefined;
-  this.run = function () {};
-  this.reset = function () {};
-  this.onErrorCallback = function () {};
-  this.onDoneCallback = function () {};
-};
+BABYLON.HDRCubeTextureAssetTask = function () {}
+// BABYLON.HDRCubeTextureAssetTask.name = undefined;
+// BABYLON.HDRCubeTextureAssetTask.url = undefined;
+// BABYLON.HDRCubeTextureAssetTask.size = undefined;
+BABYLON.HDRCubeTextureAssetTask.noMipmap = false;
+BABYLON.HDRCubeTextureAssetTask.generateHarmonics = true;
+BABYLON.HDRCubeTextureAssetTask.gammaSpace = false;
+BABYLON.HDRCubeTextureAssetTask.reserved = false;
+BABYLON.HDRCubeTextureAssetTask.prototype.constructor = function () {};
+BABYLON.HDRCubeTextureAssetTask.prototype.runTask = function () {};
+// BABYLON.HDRCubeTextureAssetTask.prototype.isCompleted = undefined;
+// BABYLON.HDRCubeTextureAssetTask.prototype.taskState = undefined;
+// BABYLON.HDRCubeTextureAssetTask.prototype.errorObject = undefined;
+BABYLON.HDRCubeTextureAssetTask.prototype.run = function () {};
+BABYLON.HDRCubeTextureAssetTask.prototype.reset = function () {};
+BABYLON.HDRCubeTextureAssetTask.prototype.onErrorCallback = function () {};
+BABYLON.HDRCubeTextureAssetTask.prototype.onDoneCallback = function () {};
+
 
 /** @constructor */
-BABYLON.EquiRectangularCubeTextureAssetTask = function () {
-  // this.name = undefined;
-  // this.url = undefined;
-  // this.size = undefined;
-  this.noMipmap = false;
-  this.gammaSpace = true;
-  this.constructor = function () {};
-  this.runTask = function () {};
-  this.isCompleted = false;
-  this.taskState = 0;
-  // this.errorObject = undefined;
-  this.run = function () {};
-  this.reset = function () {};
-  this.onErrorCallback = function () {};
-  this.onDoneCallback = function () {};
-};
+BABYLON.EquiRectangularCubeTextureAssetTask = function () {}
+// BABYLON.EquiRectangularCubeTextureAssetTask.name = undefined;
+// BABYLON.EquiRectangularCubeTextureAssetTask.url = undefined;
+// BABYLON.EquiRectangularCubeTextureAssetTask.size = undefined;
+BABYLON.EquiRectangularCubeTextureAssetTask.noMipmap = false;
+BABYLON.EquiRectangularCubeTextureAssetTask.gammaSpace = true;
+BABYLON.EquiRectangularCubeTextureAssetTask.prototype.constructor = function () {};
+BABYLON.EquiRectangularCubeTextureAssetTask.prototype.runTask = function () {};
+// BABYLON.EquiRectangularCubeTextureAssetTask.prototype.isCompleted = undefined;
+// BABYLON.EquiRectangularCubeTextureAssetTask.prototype.taskState = undefined;
+// BABYLON.EquiRectangularCubeTextureAssetTask.prototype.errorObject = undefined;
+BABYLON.EquiRectangularCubeTextureAssetTask.prototype.run = function () {};
+BABYLON.EquiRectangularCubeTextureAssetTask.prototype.reset = function () {};
+BABYLON.EquiRectangularCubeTextureAssetTask.prototype.onErrorCallback = function () {};
+BABYLON.EquiRectangularCubeTextureAssetTask.prototype.onDoneCallback = function () {};
+
 
 /** @constructor */
-BABYLON.AssetsManager = function () {
-  this.onTaskSuccessObservable = {};
-  this.onTaskErrorObservable = {};
-  this.onTasksDoneObservable = {};
-  this.onProgressObservable = {};
-  this.useDefaultLoadingScreen = true;
-  this.autoHideLoadingUI = true;
-  this.addMeshTask = function () {};
-  this.addTextFileTask = function () {};
-  this.addBinaryFileTask = function () {};
-  this.addImageTask = function () {};
-  this.addTextureTask = function () {};
-  this.addCubeTextureTask = function () {};
-  this.addHDRCubeTextureTask = function () {};
-  this.addEquiRectangularCubeTextureAssetTask = function () {};
-  this.removeTask = function () {};
-  this.reset = function () {};
-  this.load = function () {};
-  this.loadAsync = function () {};
-};
+BABYLON.AssetsManager = function () {}
+BABYLON.AssetsManager.onTaskSuccessObservable = {};
+BABYLON.AssetsManager.onTaskErrorObservable = {};
+BABYLON.AssetsManager.onTasksDoneObservable = {};
+BABYLON.AssetsManager.onProgressObservable = {};
+BABYLON.AssetsManager.useDefaultLoadingScreen = true;
+BABYLON.AssetsManager.autoHideLoadingUI = true;
+BABYLON.AssetsManager.prototype.addMeshTask = function () {};
+BABYLON.AssetsManager.prototype.addTextFileTask = function () {};
+BABYLON.AssetsManager.prototype.addBinaryFileTask = function () {};
+BABYLON.AssetsManager.prototype.addImageTask = function () {};
+BABYLON.AssetsManager.prototype.addTextureTask = function () {};
+BABYLON.AssetsManager.prototype.addCubeTextureTask = function () {};
+BABYLON.AssetsManager.prototype.addHDRCubeTextureTask = function () {};
+BABYLON.AssetsManager.prototype.addEquiRectangularCubeTextureAssetTask = function () {};
+BABYLON.AssetsManager.prototype.removeTask = function () {};
+BABYLON.AssetsManager.prototype.reset = function () {};
+BABYLON.AssetsManager.prototype.load = function () {};
+BABYLON.AssetsManager.prototype.loadAsync = function () {};
+
 
 /** @constructor */
-BABYLON.BasisTranscodeConfiguration = function () {
-};
+BABYLON.BasisTranscodeConfiguration = function () {}
+
 
 /** @constructor */
-BABYLON.BasisTools = function () {
-  this.GetInternalFormatFromBasisFormat = function () {};
-  this.TranscodeAsync = function () {};
-  this.LoadTextureFromTranscodeResult = function () {};
-  this.JSModuleURL = "https://preview.babylonjs.com/basisTranscoder/basis_transcoder.js";
-  this.WasmModuleURL = "https://preview.babylonjs.com/basisTranscoder/basis_transcoder.wasm";
-};
+BABYLON.BasisTools = function () {}
+
 
 /** @constructor */
-BABYLON.DDSTools = function () {
-  this.GetDDSInfo = function () {};
-  this.UploadDDSLevels = function () {};
-  this.StoreLODInAlphaChannel = false;
-};
+BABYLON.DDSTools = function () {}
+
 
 /** @constructor */
-BABYLON.expandToProperty = function () {
-};
+BABYLON.expandToProperty = function () {}
+
 
 /** @constructor */
-BABYLON.serialize = function () {
-};
+BABYLON.serialize = function () {}
+
 
 /** @constructor */
-BABYLON.serializeAsTexture = function () {
-};
+BABYLON.serializeAsTexture = function () {}
+
 
 /** @constructor */
-BABYLON.serializeAsColor3 = function () {
-};
+BABYLON.serializeAsColor3 = function () {}
+
 
 /** @constructor */
-BABYLON.serializeAsFresnelParameters = function () {
-};
+BABYLON.serializeAsFresnelParameters = function () {}
+
 
 /** @constructor */
-BABYLON.serializeAsVector2 = function () {
-};
+BABYLON.serializeAsVector2 = function () {}
+
 
 /** @constructor */
-BABYLON.serializeAsVector3 = function () {
-};
+BABYLON.serializeAsVector3 = function () {}
+
 
 /** @constructor */
-BABYLON.serializeAsMeshReference = function () {
-};
+BABYLON.serializeAsMeshReference = function () {}
+
 
 /** @constructor */
-BABYLON.serializeAsColorCurves = function () {
-};
+BABYLON.serializeAsColorCurves = function () {}
+
 
 /** @constructor */
-BABYLON.serializeAsColor4 = function () {
-};
+BABYLON.serializeAsColor4 = function () {}
+
 
 /** @constructor */
-BABYLON.serializeAsImageProcessingConfiguration = function () {
-};
+BABYLON.serializeAsImageProcessingConfiguration = function () {}
+
 
 /** @constructor */
-BABYLON.serializeAsQuaternion = function () {
-};
+BABYLON.serializeAsQuaternion = function () {}
+
 
 /** @constructor */
-BABYLON.serializeAsMatrix = function () {
-};
+BABYLON.serializeAsMatrix = function () {}
+
 
 /** @constructor */
-BABYLON.serializeAsCameraReference = function () {
-};
+BABYLON.serializeAsCameraReference = function () {}
+
 
 /** @constructor */
-BABYLON.SerializationHelper = function () {
-  this.AppendSerializedAnimations = function () {};
-  this.Serialize = function () {};
-  this.Parse = function () {};
-  this.Clone = function () {};
-  this.Instanciate = function () {};
-};
+BABYLON.SerializationHelper = function () {}
+
 
 /** @constructor */
-BABYLON.Deferred = function () {
-  this.promise = {};
-  this.resolve = function () {};
-  this.reject = function () {};
-};
+BABYLON.Deferred = function () {}
+BABYLON.Deferred.promise = {};
+// BABYLON.Deferred.prototype.resolve = undefined;
+// BABYLON.Deferred.prototype.reject = undefined;
+
 
 /** @constructor */
-BABYLON.EnvironmentTextureTools = function () {
-  this.GetEnvInfo = function () {};
-  this.CreateEnvTextureAsync = function () {};
-  this.CreateImageDataArrayBufferViews = function () {};
-  this.UploadEnvLevelsAsync = function () {};
-  this.UploadLevelsAsync = function () {};
-  this.UploadEnvSpherical = function () {};
-};
+BABYLON.EnvironmentTextureTools = function () {}
+
 
 /** @constructor */
-BABYLON.MeshExploder = function () {
-};
+BABYLON.MeshExploder = function () {}
+
 
 /** @constructor */
-BABYLON.FilesInput = function () {
-  this.onProcessFileCallback = function () {};
-  this.monitorElementForDragNDrop = function () {};
-  this.dispose = function () {};
-  this.renderFunction = function () {};
-  this.drag = function () {};
-  this.drop = function () {};
-  this.loadFiles = function () {};
-  this.reload = function () {};
-  this.FilesToLoad = {};
-};
+BABYLON.FilesInput = function () {}
+BABYLON.FilesInput.onProcessFileCallback = function () {};
+BABYLON.FilesInput.prototype.monitorElementForDragNDrop = function () {};
+BABYLON.FilesInput.prototype.dispose = function () {};
+BABYLON.FilesInput.prototype.renderFunction = function () {};
+BABYLON.FilesInput.prototype.drag = function () {};
+BABYLON.FilesInput.prototype.drop = function () {};
+BABYLON.FilesInput.prototype.loadFiles = function () {};
+BABYLON.FilesInput.prototype.reload = function () {};
+
 
 /** @constructor */
-BABYLON.KhronosTextureContainer = function () {
-  this.IsValid = function () {};
-  this.HEADER_LEN = 64;
-  this.COMPRESSED_2D = 0;
-  this.COMPRESSED_3D = 1;
-  this.TEX_2D = 2;
-  this.TEX_3D = 3;
-};
+BABYLON.KhronosTextureContainer = function () {}
+BABYLON.KhronosTextureContainer.IsValid = function () {};
+BABYLON.KhronosTextureContainer.HEADER_LEN = 64;
+BABYLON.KhronosTextureContainer.COMPRESSED_2D = 0;
+BABYLON.KhronosTextureContainer.COMPRESSED_3D = 1;
+BABYLON.KhronosTextureContainer.TEX_2D = 2;
+BABYLON.KhronosTextureContainer.TEX_3D = 3;
+
 
 /** @constructor */
-BABYLON.EventState = function () {
-  // this.mask = undefined;
-  this.skipNextObservers = false;
-  // this.target = undefined;
-  // this.currentTarget = undefined;
-  this.initalize = function () {};
-};
+BABYLON.EventState = function () {}
+// BABYLON.EventState.mask = undefined;
+BABYLON.EventState.skipNextObservers = false;
+// BABYLON.EventState.target = undefined;
+// BABYLON.EventState.currentTarget = undefined;
+BABYLON.EventState.prototype.initalize = function () {};
+
 
 /** @constructor */
-BABYLON.Observer = function () {
-  // this.callback = undefined;
-  // this.mask = undefined;
-  this.scope = null;
-  this.unregisterOnNextCall = false;
-};
+BABYLON.Observer = function () {}
+// BABYLON.Observer.callback = undefined;
+// BABYLON.Observer.mask = undefined;
+BABYLON.Observer.scope = null;
+BABYLON.Observer.unregisterOnNextCall = false;
+
 
 /** @constructor */
-BABYLON.MultiObserver = function () {
-  this.dispose = function () {};
-  this.Watch = function () {};
-};
+BABYLON.MultiObserver = function () {}
+BABYLON.MultiObserver.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.Observable = function () {
-  this.observers = {};
-  this.add = function () {};
-  this.addOnce = function () {};
-  this.remove = function () {};
-  this.removeCallback = function () {};
-  this.makeObserverTopPriority = function () {};
-  this.makeObserverBottomPriority = function () {};
-  this.notifyObservers = function () {};
-  this.notifyObserversWithPromise = function () {};
-  this.notifyObserver = function () {};
-  this.hasObservers = function () {};
-  this.clear = function () {};
-  this.clone = function () {};
-  this.hasSpecificMask = function () {};
-};
+BABYLON.Observable = function () {}
+// BABYLON.Observable.prototype.observers = undefined;
+BABYLON.Observable.prototype.add = function () {};
+BABYLON.Observable.prototype.addOnce = function () {};
+BABYLON.Observable.prototype.remove = function () {};
+BABYLON.Observable.prototype.removeCallback = function () {};
+BABYLON.Observable.prototype.makeObserverTopPriority = function () {};
+BABYLON.Observable.prototype.makeObserverBottomPriority = function () {};
+BABYLON.Observable.prototype.notifyObservers = function () {};
+BABYLON.Observable.prototype.notifyObserversWithPromise = function () {};
+BABYLON.Observable.prototype.notifyObserver = function () {};
+BABYLON.Observable.prototype.hasObservers = function () {};
+BABYLON.Observable.prototype.clear = function () {};
+BABYLON.Observable.prototype.clone = function () {};
+BABYLON.Observable.prototype.hasSpecificMask = function () {};
+
 
 /** @constructor */
-BABYLON.PerformanceMonitor = function () {
-  this.sampleFrame = function () {};
-  this.averageFrameTime = 0;
-  this.averageFrameTimeVariance = 0;
-  this.instantaneousFrameTime = 0;
-  this.averageFPS = Infinity;
-  this.instantaneousFPS = 0;
-  this.isSaturated = false;
-  this.enable = function () {};
-  this.disable = function () {};
-  this.isEnabled = true;
-  this.reset = function () {};
-};
+BABYLON.PerformanceMonitor = function () {}
+BABYLON.PerformanceMonitor.prototype.sampleFrame = function () {};
+// BABYLON.PerformanceMonitor.prototype.averageFrameTime = undefined;
+// BABYLON.PerformanceMonitor.prototype.averageFrameTimeVariance = undefined;
+// BABYLON.PerformanceMonitor.prototype.instantaneousFrameTime = undefined;
+// BABYLON.PerformanceMonitor.prototype.averageFPS = undefined;
+// BABYLON.PerformanceMonitor.prototype.instantaneousFPS = undefined;
+// BABYLON.PerformanceMonitor.prototype.isSaturated = undefined;
+BABYLON.PerformanceMonitor.prototype.enable = function () {};
+BABYLON.PerformanceMonitor.prototype.disable = function () {};
+// BABYLON.PerformanceMonitor.prototype.isEnabled = undefined;
+BABYLON.PerformanceMonitor.prototype.reset = function () {};
+
 
 /** @constructor */
-BABYLON.RollingAverage = function () {
-  this.average = 0;
-  this.variance = 0;
-  this.add = function () {};
-  this.history = function () {};
-  this.isSaturated = function () {};
-  this.reset = function () {};
-};
+BABYLON.RollingAverage = function () {}
+BABYLON.RollingAverage.average = 0;
+BABYLON.RollingAverage.variance = 0;
+BABYLON.RollingAverage.prototype.add = function () {};
+BABYLON.RollingAverage.prototype.history = function () {};
+BABYLON.RollingAverage.prototype.isSaturated = function () {};
+BABYLON.RollingAverage.prototype.reset = function () {};
+
 
 /** @constructor */
-BABYLON.PromisePolyfill = function () {
-  this.Apply = function () {};
-};
+BABYLON.PromisePolyfill = function () {}
+
 
 /** @constructor */
-BABYLON.SceneOptimization = function () {
-  this.priority = 0;
-  this.getDescription = function () {};
-  this.apply = function () {};
-};
+BABYLON.SceneOptimization = function () {}
+BABYLON.SceneOptimization.priority = 0;
+BABYLON.SceneOptimization.prototype.getDescription = function () {};
+BABYLON.SceneOptimization.prototype.apply = function () {};
+
 
 /** @constructor */
-BABYLON.TextureOptimization = function () {
-  this.priority = 0;
-  this.maximumSize = 1024;
-  this.step = 0.5;
-  this.constructor = function () {};
-  this.getDescription = function () {};
-  this.apply = function () {};
-};
+BABYLON.TextureOptimization = function () {}
+BABYLON.TextureOptimization.priority = 0;
+BABYLON.TextureOptimization.maximumSize = 1024;
+BABYLON.TextureOptimization.step = 0.5;
+BABYLON.TextureOptimization.prototype.constructor = function () {};
+BABYLON.TextureOptimization.prototype.getDescription = function () {};
+BABYLON.TextureOptimization.prototype.apply = function () {};
+
 
 /** @constructor */
-BABYLON.HardwareScalingOptimization = function () {
-  this.priority = 0;
-  this.maximumScale = 2;
-  this.step = 0.25;
-  this.constructor = function () {};
-  this.getDescription = function () {};
-  this.apply = function () {};
-};
+BABYLON.HardwareScalingOptimization = function () {}
+BABYLON.HardwareScalingOptimization.priority = 0;
+BABYLON.HardwareScalingOptimization.maximumScale = 2;
+BABYLON.HardwareScalingOptimization.step = 0.25;
+BABYLON.HardwareScalingOptimization.prototype.constructor = function () {};
+BABYLON.HardwareScalingOptimization.prototype.getDescription = function () {};
+BABYLON.HardwareScalingOptimization.prototype.apply = function () {};
+
 
 /** @constructor */
-BABYLON.ShadowsOptimization = function () {
-  this.priority = 0;
-  this.constructor = function () {};
-  this.getDescription = function () {};
-  this.apply = function () {};
-};
+BABYLON.ShadowsOptimization = function () {}
+BABYLON.ShadowsOptimization.priority = 0;
+BABYLON.ShadowsOptimization.prototype.constructor = function () {};
+BABYLON.ShadowsOptimization.prototype.getDescription = function () {};
+BABYLON.ShadowsOptimization.prototype.apply = function () {};
+
 
 /** @constructor */
-BABYLON.PostProcessesOptimization = function () {
-  this.priority = 0;
-  this.constructor = function () {};
-  this.getDescription = function () {};
-  this.apply = function () {};
-};
+BABYLON.PostProcessesOptimization = function () {}
+BABYLON.PostProcessesOptimization.priority = 0;
+BABYLON.PostProcessesOptimization.prototype.constructor = function () {};
+BABYLON.PostProcessesOptimization.prototype.getDescription = function () {};
+BABYLON.PostProcessesOptimization.prototype.apply = function () {};
+
 
 /** @constructor */
-BABYLON.LensFlaresOptimization = function () {
-  this.priority = 0;
-  this.constructor = function () {};
-  this.getDescription = function () {};
-  this.apply = function () {};
-};
+BABYLON.LensFlaresOptimization = function () {}
+BABYLON.LensFlaresOptimization.priority = 0;
+BABYLON.LensFlaresOptimization.prototype.constructor = function () {};
+BABYLON.LensFlaresOptimization.prototype.getDescription = function () {};
+BABYLON.LensFlaresOptimization.prototype.apply = function () {};
+
 
 /** @constructor */
-BABYLON.CustomOptimization = function () {
-  this.priority = 0;
-  this.constructor = function () {};
-  this.getDescription = function () {};
-  this.apply = function () {};
-};
+BABYLON.CustomOptimization = function () {}
+BABYLON.CustomOptimization.priority = 0;
+BABYLON.CustomOptimization.prototype.constructor = function () {};
+BABYLON.CustomOptimization.prototype.getDescription = function () {};
+BABYLON.CustomOptimization.prototype.apply = function () {};
+
 
 /** @constructor */
-BABYLON.ParticlesOptimization = function () {
-  this.priority = 0;
-  this.constructor = function () {};
-  this.getDescription = function () {};
-  this.apply = function () {};
-};
+BABYLON.ParticlesOptimization = function () {}
+BABYLON.ParticlesOptimization.priority = 0;
+BABYLON.ParticlesOptimization.prototype.constructor = function () {};
+BABYLON.ParticlesOptimization.prototype.getDescription = function () {};
+BABYLON.ParticlesOptimization.prototype.apply = function () {};
+
 
 /** @constructor */
-BABYLON.RenderTargetsOptimization = function () {
-  this.priority = 0;
-  this.constructor = function () {};
-  this.getDescription = function () {};
-  this.apply = function () {};
-};
+BABYLON.RenderTargetsOptimization = function () {}
+BABYLON.RenderTargetsOptimization.priority = 0;
+BABYLON.RenderTargetsOptimization.prototype.constructor = function () {};
+BABYLON.RenderTargetsOptimization.prototype.getDescription = function () {};
+BABYLON.RenderTargetsOptimization.prototype.apply = function () {};
+
 
 /** @constructor */
-BABYLON.MergeMeshesOptimization = function () {
-  this.priority = 0;
-  this.constructor = function () {};
-  this.getDescription = function () {};
-  this.apply = function () {};
-  this.UpdateSelectionTree = false;
-};
+BABYLON.MergeMeshesOptimization = function () {}
+BABYLON.MergeMeshesOptimization.priority = 0;
+BABYLON.MergeMeshesOptimization.prototype.constructor = function () {};
+BABYLON.MergeMeshesOptimization.prototype.getDescription = function () {};
+BABYLON.MergeMeshesOptimization.prototype.apply = function () {};
+
 
 /** @constructor */
-BABYLON.SceneOptimizerOptions = function () {
-  this.targetFrameRate = 60;
-  this.trackerDuration = 2000;
-  this.optimizations = {};
-  this.addOptimization = function () {};
-  this.addCustomOptimization = function () {};
-  this.LowDegradationAllowed = function () {};
-  this.ModerateDegradationAllowed = function () {};
-  this.HighDegradationAllowed = function () {};
-};
+BABYLON.SceneOptimizerOptions = function () {}
+BABYLON.SceneOptimizerOptions.targetFrameRate = 60;
+BABYLON.SceneOptimizerOptions.trackerDuration = 2000;
+BABYLON.SceneOptimizerOptions.optimizations = {};
+BABYLON.SceneOptimizerOptions.prototype.addOptimization = function () {};
+BABYLON.SceneOptimizerOptions.prototype.addCustomOptimization = function () {};
+
 
 /** @constructor */
-BABYLON.SceneOptimizer = function () {
-  this.onSuccessObservable = {};
-  this.onNewOptimizationAppliedObservable = {};
-  this.onFailureObservable = {};
-  this.isInImprovementMode = false;
-  this.currentPriorityLevel = 0;
-  this.currentFrameRate = 0;
-  this.targetFrameRate = 60;
-  this.trackerDuration = 2000;
-  this.optimizations = {};
-  this.stop = function () {};
-  this.reset = function () {};
-  this.start = function () {};
-  this.dispose = function () {};
-  this.OptimizeAsync = function () {};
-};
+BABYLON.SceneOptimizer = function () {}
+BABYLON.SceneOptimizer.onSuccessObservable = {};
+BABYLON.SceneOptimizer.onNewOptimizationAppliedObservable = {};
+BABYLON.SceneOptimizer.onFailureObservable = {};
+// BABYLON.SceneOptimizer.prototype.isInImprovementMode = undefined;
+// BABYLON.SceneOptimizer.prototype.currentPriorityLevel = undefined;
+// BABYLON.SceneOptimizer.prototype.currentFrameRate = undefined;
+// BABYLON.SceneOptimizer.prototype.targetFrameRate = undefined;
+// BABYLON.SceneOptimizer.prototype.trackerDuration = undefined;
+// BABYLON.SceneOptimizer.prototype.optimizations = undefined;
+BABYLON.SceneOptimizer.prototype.stop = function () {};
+BABYLON.SceneOptimizer.prototype.reset = function () {};
+BABYLON.SceneOptimizer.prototype.start = function () {};
+BABYLON.SceneOptimizer.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.SceneSerializer = function () {
-  this.ClearCache = function () {};
-  this.Serialize = function () {};
-  this.SerializeMesh = function () {};
-};
+BABYLON.SceneSerializer = function () {}
+
 
 /** @constructor */
-BABYLON.SmartArray = function () {
-  this.length = 0;
-  this.data = {};
-  this.push = function () {};
-  this.forEach = function () {};
-  this.sort = function () {};
-  this.reset = function () {};
-  this.dispose = function () {};
-  this.concat = function () {};
-  this.indexOf = function () {};
-  this.contains = function () {};
-};
+BABYLON.SmartArray = function () {}
+BABYLON.SmartArray.length = 0;
+BABYLON.SmartArray.data = {};
+BABYLON.SmartArray.prototype.push = function () {};
+BABYLON.SmartArray.prototype.forEach = function () {};
+BABYLON.SmartArray.prototype.sort = function () {};
+BABYLON.SmartArray.prototype.reset = function () {};
+BABYLON.SmartArray.prototype.dispose = function () {};
+BABYLON.SmartArray.prototype.concat = function () {};
+BABYLON.SmartArray.prototype.indexOf = function () {};
+BABYLON.SmartArray.prototype.contains = function () {};
+
 
 /** @constructor */
-BABYLON.SmartArrayNoDuplicate = function () {
-  this.length = 0;
-  this.data = {};
-  this.constructor = function () {};
-  this.push = function () {};
-  this.pushNoDuplicate = function () {};
-  this.reset = function () {};
-  this.concatWithNoDuplicate = function () {};
-  this.forEach = function () {};
-  this.sort = function () {};
-  this.dispose = function () {};
-  this.concat = function () {};
-  this.indexOf = function () {};
-  this.contains = function () {};
-};
+BABYLON.SmartArrayNoDuplicate = function () {}
+BABYLON.SmartArrayNoDuplicate.length = 0;
+BABYLON.SmartArrayNoDuplicate.data = {};
+BABYLON.SmartArrayNoDuplicate.prototype.constructor = function () {};
+BABYLON.SmartArrayNoDuplicate.prototype.push = function () {};
+BABYLON.SmartArrayNoDuplicate.prototype.pushNoDuplicate = function () {};
+BABYLON.SmartArrayNoDuplicate.prototype.reset = function () {};
+BABYLON.SmartArrayNoDuplicate.prototype.concatWithNoDuplicate = function () {};
+BABYLON.SmartArrayNoDuplicate.prototype.forEach = function () {};
+BABYLON.SmartArrayNoDuplicate.prototype.sort = function () {};
+BABYLON.SmartArrayNoDuplicate.prototype.dispose = function () {};
+BABYLON.SmartArrayNoDuplicate.prototype.concat = function () {};
+BABYLON.SmartArrayNoDuplicate.prototype.indexOf = function () {};
+BABYLON.SmartArrayNoDuplicate.prototype.contains = function () {};
+
 
 /** @constructor */
-BABYLON.StringDictionary = function () {
-  this.copyFrom = function () {};
-  this.get = function () {};
-  this.getOrAddWithFactory = function () {};
-  this.getOrAdd = function () {};
-  this.contains = function () {};
-  this.add = function () {};
-  this.set = function () {};
-  this.getAndRemove = function () {};
-  this.remove = function () {};
-  this.clear = function () {};
-  this.count = 0;
-  this.forEach = function () {};
-  this.first = function () {};
-};
+BABYLON.StringDictionary = function () {}
+BABYLON.StringDictionary.prototype.copyFrom = function () {};
+BABYLON.StringDictionary.prototype.get = function () {};
+BABYLON.StringDictionary.prototype.getOrAddWithFactory = function () {};
+BABYLON.StringDictionary.prototype.getOrAdd = function () {};
+BABYLON.StringDictionary.prototype.contains = function () {};
+BABYLON.StringDictionary.prototype.add = function () {};
+BABYLON.StringDictionary.prototype.set = function () {};
+BABYLON.StringDictionary.prototype.getAndRemove = function () {};
+BABYLON.StringDictionary.prototype.remove = function () {};
+BABYLON.StringDictionary.prototype.clear = function () {};
+// BABYLON.StringDictionary.prototype.count = undefined;
+BABYLON.StringDictionary.prototype.forEach = function () {};
+BABYLON.StringDictionary.prototype.first = function () {};
+
 
 /** @constructor */
-BABYLON.Tags = function () {
-  this.EnableFor = function () {};
-  this.DisableFor = function () {};
-  this.HasTags = function () {};
-  this.GetTags = function () {};
-  this.AddTagsTo = function () {};
-  this.RemoveTagsFrom = function () {};
-  this.MatchesQuery = function () {};
-};
+BABYLON.Tags = function () {}
+
 
 /** @constructor */
-BABYLON.TextureTools = function () {
-  this.CreateResizedCopy = function () {};
-};
+BABYLON.TextureTools = function () {}
+
 
 /** @constructor */
-BABYLON.TGATools = function () {
-  this.GetTGAHeader = function () {};
-  this.UploadContent = function () {};
-};
+BABYLON.TGATools = function () {}
+
 
 /** @constructor */
-BABYLON.Tools = function () {
-  this.BaseUrl = "";
-  this.DefaultRetryStrategy = function () {};
-  this.UseFallbackTexture = true;
-  this.RegisteredExternalClasses = {};
-  this.fallbackTexture = "data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QBmRXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAAExAAIAAAAQAAAATgAAAAAAAABgAAAAAQAAAGAAAAABcGFpbnQubmV0IDQuMC41AP/bAEMABAIDAwMCBAMDAwQEBAQFCQYFBQUFCwgIBgkNCw0NDQsMDA4QFBEODxMPDAwSGBITFRYXFxcOERkbGRYaFBYXFv/bAEMBBAQEBQUFCgYGChYPDA8WFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFv/AABEIAQABAAMBIgACEQEDEQH/xAAfAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBAAAAX0BAgMABBEFEiExQQYTUWEHInEUMoGRoQgjQrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/APH6KKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FCiiigD6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++gooooA+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gUKKKKAPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76CiiigD5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BQooooA+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/voKKKKAPl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FCiiigD6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++gooooA+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gUKKKKAPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76CiiigD5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BQooooA+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/voKKKKAPl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FCiiigD6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++gooooA+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gUKKKKAPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76Pl+iiivuj+BT6gooor4U/vo+X6KKK+6P4FPqCiiivhT++j5fooor7o/gU+oKKKK+FP76P//Z";
-  this.FetchToRef = function () {};
-  this.Mix = function () {};
-  this.Instantiate = function () {};
-  this.Slice = function () {};
-  this.SetImmediate = function () {};
-  this.IsExponentOfTwo = function () {};
-  this.FloatRound = function () {};
-  this.GetFilename = function () {};
-  this.GetFolderPath = function () {};
-  this.ToDegrees = function () {};
-  this.ToRadians = function () {};
-  this.MakeArray = function () {};
-  this.GetPointerPrefix = function () {};
-  this.SetCorsBehavior = function () {};
-  this.CleanUrl = function () {};
-  this.PreprocessUrl = function () {};
-  this.LoadImage = function () {};
-  this.LoadFile = function () {};
-  this.LoadFileAsync = function () {};
-  this.LoadScript = function () {};
-  this.LoadScriptAsync = function () {};
-  this.ReadFileAsDataURL = function () {};
-  this.ReadFile = function () {};
-  this.FileAsURL = function () {};
-  this.Format = function () {};
-  this.DeepCopy = function () {};
-  this.IsEmpty = function () {};
-  this.RegisterTopRootEvents = function () {};
-  this.UnregisterTopRootEvents = function () {};
-  this.DumpFramebuffer = function () {};
-  this.ToBlob = function () {};
-  this.EncodeScreenshotCanvasData = function () {};
-  this.Download = function () {};
-  this.CreateScreenshot = function () {};
-  this.CreateScreenshotAsync = function () {};
-  this.CreateScreenshotUsingRenderTarget = function () {};
-  this.CreateScreenshotUsingRenderTargetAsync = function () {};
-  this.RandomId = function () {};
-  this.IsBase64 = function () {};
-  this.DecodeBase64 = function () {};
-  this.GetAbsoluteUrl = function () {};
-  this.errorsCount = 1;
-  this.Log = function () {};
-  this.Warn = function () {};
-  this.Error = function () {};
-  this.LogCache = "<div style='color:red'>[09:38:34]: No object was provided. A physics object is obligatory</div><br><div style='color:white'>[09:38:34]: Babylon.js v4.1.0 - Null engine</div><br>";
-  this.ClearLogCache = function () {};
-  // this.LogLevels = undefined;
-  // this.PerformanceLogLevel = undefined;
-  this.Now = 230.087121;
-  this.GetClassName = function () {};
-  this.First = function () {};
-  this.getFullClassName = function () {};
-  this.DelayAsync = function () {};
-  this.IsSafari = function () {};
-  this.UseCustomRequestHeaders = false;
-  this.CustomRequestHeaders = {};
-  this.CorsBehavior = "anonymous";
-  this.GetDOMTextContent = function () {};
-  this.NoneLogLevel = 0;
-  this.MessageLogLevel = 1;
-  this.WarningLogLevel = 2;
-  this.ErrorLogLevel = 4;
-  this.AllLogLevel = 7;
-  this.IsWindowObjectExist = function () {};
-  this.PerformanceNoneLogLevel = 0;
-  this.PerformanceUserMarkLogLevel = 1;
-  this.PerformanceConsoleLogLevel = 2;
-  this.StartPerformanceCounter = function () {};
-  this.EndPerformanceCounter = function () {};
-};
+BABYLON.Tools = function () {}
+
 
 /** @constructor */
-BABYLON.className = function () {
-};
+BABYLON.className = function () {}
+
 
 /** @constructor */
-BABYLON.AsyncLoop = function () {
-  // this.iterations = undefined;
-  this.index = -1;
-  this.executeNext = function () {};
-  this.breakLoop = function () {};
-  this.Run = function () {};
-  this.SyncAsyncForLoop = function () {};
-};
+BABYLON.AsyncLoop = function () {}
+// BABYLON.AsyncLoop.iterations = undefined;
+BABYLON.AsyncLoop.index = -1;
+BABYLON.AsyncLoop.prototype.executeNext = function () {};
+BABYLON.AsyncLoop.prototype.breakLoop = function () {};
+
 
 /** @constructor */
-BABYLON.VideoRecorder = function () {
-  this.IsSupported = function () {};
-};
+BABYLON.VideoRecorder = function () {}
+BABYLON.VideoRecorder.IsSupported = function () {};
+
 
 BABYLON.JoystickAxis = {}
 
 /** @constructor */
-BABYLON.VirtualJoystick = function () {
-  this.Canvas = {};
-  this.vjCanvasWidth = 1024;
-  this.vjCanvasHeight = 768;
-};
+BABYLON.VirtualJoystick = function () {}
+BABYLON.VirtualJoystick.Canvas = {};
+BABYLON.VirtualJoystick.vjCanvasWidth = 1024;
+BABYLON.VirtualJoystick.vjCanvasHeight = 768;
+
 
 /** @constructor */
-BABYLON.WorkerPool = function () {
-};
+BABYLON.WorkerPool = function () {}
+
 
 /** @constructor */
-BABYLON.Logger = function () {
-  this.LogCache = "<div style='color:red'>[09:38:34]: No object was provided. A physics object is obligatory</div><br><div style='color:white'>[09:38:34]: Babylon.js v4.1.0 - Null engine</div><br>";
-  this.ClearLogCache = function () {};
-  // this.LogLevels = undefined;
-  this.NoneLogLevel = 0;
-  this.MessageLogLevel = 1;
-  this.WarningLogLevel = 2;
-  this.ErrorLogLevel = 4;
-  this.AllLogLevel = 7;
-  this.errorsCount = 1;
-  this.Log = function () {};
-  this.Warn = function () {};
-  this.Error = function () {};
-};
+BABYLON.Logger = function () {}
+
 
 /** @constructor */
-BABYLON.FilesInputStore = function () {
-  this.FilesToLoad = {};
-};
+BABYLON.FilesInputStore = function () {}
+
 
 /** @constructor */
-BABYLON.DeepCopier = function () {
-  this.DeepCopy = function () {};
-};
+BABYLON.DeepCopier = function () {}
+
 
 /** @constructor */
-BABYLON.PivotTools = function () {
-};
+BABYLON.PivotTools = function () {}
+
 
 /** @constructor */
-BABYLON.PrecisionDate = function () {
-  this.Now = 236.84591;
-};
+BABYLON.PrecisionDate = function () {}
+
 
 /** @constructor */
-BABYLON.ScreenshotTools = function () {
-  this.CreateScreenshot = function () {};
-  this.CreateScreenshotAsync = function () {};
-  this.CreateScreenshotUsingRenderTarget = function () {};
-  this.CreateScreenshotUsingRenderTargetAsync = function () {};
-};
+BABYLON.ScreenshotTools = function () {}
+
 
 /** @constructor */
-BABYLON.WebRequest = function () {
-  this.onprogress = null;
-  this.readyState = 0;
-  this.status = 0;
-  this.statusText = "";
-  this.response = "";
-  this.responseURL = "";
-  this.responseText = "";
-  this.responseType = "";
-  this.addEventListener = function () {};
-  this.removeEventListener = function () {};
-  this.abort = function () {};
-  this.send = function () {};
-  this.open = function () {};
-  this.setRequestHeader = function () {};
-  this.getResponseHeader = function () {};
-  this.CustomRequestHeaders = {};
-  this.CustomRequestModifiers = {};
-};
+BABYLON.WebRequest = function () {}
+// BABYLON.WebRequest.prototype.onprogress = undefined;
+// BABYLON.WebRequest.prototype.readyState = undefined;
+// BABYLON.WebRequest.prototype.status = undefined;
+// BABYLON.WebRequest.prototype.statusText = undefined;
+// BABYLON.WebRequest.prototype.response = undefined;
+// BABYLON.WebRequest.prototype.responseURL = undefined;
+// BABYLON.WebRequest.prototype.responseText = undefined;
+// BABYLON.WebRequest.prototype.responseType = undefined;
+BABYLON.WebRequest.prototype.addEventListener = function () {};
+BABYLON.WebRequest.prototype.removeEventListener = function () {};
+BABYLON.WebRequest.prototype.abort = function () {};
+BABYLON.WebRequest.prototype.send = function () {};
+BABYLON.WebRequest.prototype.open = function () {};
+BABYLON.WebRequest.prototype.setRequestHeader = function () {};
+BABYLON.WebRequest.prototype.getResponseHeader = function () {};
+
 
 BABYLON.InspectableType = {}
 
 /** @constructor */
-BABYLON.BRDFTextureTools = function () {
-  this.GetEnvironmentBRDFTexture = function () {};
-};
+BABYLON.BRDFTextureTools = function () {}
+
 
 /** @constructor */
-BABYLON.RGBDTextureTools = function () {
-  this.ExpandRGBDTexture = function () {};
-};
+BABYLON.RGBDTextureTools = function () {}
+
 
 /** @constructor */
-BABYLON.ColorGradient = function () {
-  this.getColorToRef = function () {};
-};
+BABYLON.ColorGradient = function () {}
+BABYLON.ColorGradient.prototype.getColorToRef = function () {};
+
 
 /** @constructor */
-BABYLON.Color3Gradient = function () {
-};
+BABYLON.Color3Gradient = function () {}
+
 
 /** @constructor */
-BABYLON.FactorGradient = function () {
-  this.getFactor = function () {};
-};
+BABYLON.FactorGradient = function () {}
+BABYLON.FactorGradient.prototype.getFactor = function () {};
+
 
 /** @constructor */
-BABYLON.GradientHelper = function () {
-  this.GetCurrentGradient = function () {};
-};
+BABYLON.GradientHelper = function () {}
+
 
 /** @constructor */
-BABYLON.PerfCounter = function () {
-  this.min = 0;
-  this.max = 0;
-  this.average = 0;
-  this.lastSecAverage = 0;
-  this.current = 0;
-  this.total = 0;
-  this.count = 0;
-  this.fetchNewFrame = function () {};
-  this.addCount = function () {};
-  this.beginMonitoring = function () {};
-  this.endMonitoring = function () {};
-  this.Enabled = true;
-};
+BABYLON.PerfCounter = function () {}
+// BABYLON.PerfCounter.prototype.min = undefined;
+// BABYLON.PerfCounter.prototype.max = undefined;
+// BABYLON.PerfCounter.prototype.average = undefined;
+// BABYLON.PerfCounter.prototype.lastSecAverage = undefined;
+// BABYLON.PerfCounter.prototype.current = undefined;
+// BABYLON.PerfCounter.prototype.total = undefined;
+// BABYLON.PerfCounter.prototype.count = undefined;
+BABYLON.PerfCounter.prototype.fetchNewFrame = function () {};
+BABYLON.PerfCounter.prototype.addCount = function () {};
+BABYLON.PerfCounter.prototype.beginMonitoring = function () {};
+BABYLON.PerfCounter.prototype.endMonitoring = function () {};
+
 
 /** @constructor */
-BABYLON.RetryStrategy = function () {
-  this.ExponentialBackoff = function () {};
-};
+BABYLON.RetryStrategy = function () {}
+
 
 /** @constructor */
-BABYLON.CanvasGenerator = function () {
-  this.CreateCanvas = function () {};
-};
+BABYLON.CanvasGenerator = function () {}
+
 
 /** @constructor */
-BABYLON.LoadFileError = function () {
-  this.name = "LoadFileError";
-  // this.file = undefined;
-  this.constructor = function () {};
-  this.stackTraceLimit = 10;
-};
+BABYLON.LoadFileError = function () {}
+BABYLON.LoadFileError.name = "LoadFileError";
+// BABYLON.LoadFileError.file = undefined;
+BABYLON.LoadFileError.prototype.constructor = function () {};
+
 
 /** @constructor */
-BABYLON.RequestFileError = function () {
-  // this.request = undefined;
-  this.name = "RequestFileError";
-  this.constructor = function () {};
-  this.stackTraceLimit = 10;
-};
+BABYLON.RequestFileError = function () {}
+// BABYLON.RequestFileError.request = undefined;
+BABYLON.RequestFileError.name = "RequestFileError";
+BABYLON.RequestFileError.prototype.constructor = function () {};
+
 
 /** @constructor */
-BABYLON.ReadFileError = function () {
-  // this.file = undefined;
-  this.name = "ReadFileError";
-  this.constructor = function () {};
-  this.stackTraceLimit = 10;
-};
+BABYLON.ReadFileError = function () {}
+// BABYLON.ReadFileError.file = undefined;
+BABYLON.ReadFileError.name = "ReadFileError";
+BABYLON.ReadFileError.prototype.constructor = function () {};
+
 
 /** @constructor */
-BABYLON.FileTools = function () {
-  this.SetCorsBehavior = function () {};
-  this.LoadImage = function () {};
-  this.ReadFile = function () {};
-  this.LoadFile = function () {};
-  this.RequestFile = function () {};
-  this.IsFileURL = function () {};
-  this.DefaultRetryStrategy = function () {};
-  this.BaseUrl = "";
-  this.CorsBehavior = "anonymous";
-  this.PreprocessUrl = function () {};
-};
+BABYLON.FileTools = function () {}
+
 
 /** @constructor */
-BABYLON.StringTools = function () {
-  this.EndsWith = function () {};
-  this.StartsWith = function () {};
-  this.Decode = function () {};
-  this.EncodeArrayBufferToBase64 = function () {};
-};
+BABYLON.StringTools = function () {}
+
 
 /** @constructor */
-BABYLON.DataReader = function () {
-  this.byteOffset = 0;
-  // this.buffer = undefined;
-  this.loadAsync = function () {};
-  this.readUint32 = function () {};
-  this.readUint8Array = function () {};
-  this.readString = function () {};
-  this.skipBytes = function () {};
-};
+BABYLON.DataReader = function () {}
+BABYLON.DataReader.byteOffset = 0;
+// BABYLON.DataReader.buffer = undefined;
+BABYLON.DataReader.prototype.loadAsync = function () {};
+BABYLON.DataReader.prototype.readUint32 = function () {};
+BABYLON.DataReader.prototype.readUint8Array = function () {};
+BABYLON.DataReader.prototype.readString = function () {};
+BABYLON.DataReader.prototype.skipBytes = function () {};
+
 
 /** @constructor */
-BABYLON.MinMaxReducer = function () {
-};
+BABYLON.MinMaxReducer = function () {}
+
 
 /** @constructor */
-BABYLON.DepthReducer = function () {
-};
+BABYLON.DepthReducer = function () {}
+
 
 /** @constructor */
-BABYLON.CubeMapToSphericalPolynomialTools = function () {
-  this.ConvertCubeMapTextureToSphericalPolynomial = function () {};
-  this.ConvertCubeMapToSphericalPolynomial = function () {};
-  this.FileFaces = {};
-};
+BABYLON.CubeMapToSphericalPolynomialTools = function () {}
+
 
 /** @constructor */
-BABYLON.HDRTools = function () {
-  this.Ldexp = function () {};
-  this.Rgbe2float = function () {};
-  this.readStringLine = function () {};
-  this.RGBE_ReadHeader = function () {};
-  this.GetCubeMapTextureData = function () {};
-  this.RGBE_ReadPixels = function () {};
-  this.RGBE_ReadPixels_RLE = function () {};
-};
+BABYLON.HDRTools = function () {}
+
 
 /** @constructor */
-BABYLON.PanoramaToCubeMapTools = function () {
-  this.ConvertPanoramaToCubemap = function () {};
-  this.CreateCubemapTexture = function () {};
-  this.CalcProjectionSpherical = function () {};
-  this.FACE_FRONT = {};
-  this.FACE_BACK = {};
-  this.FACE_RIGHT = {};
-  this.FACE_LEFT = {};
-  this.FACE_DOWN = {};
-  this.FACE_UP = {};
-};
+BABYLON.PanoramaToCubeMapTools = function () {}
+
 
 /** @constructor */
-BABYLON.WebXRCamera = function () {
-  this.GetConstructorFromName = function () {};
-  this.Parse = function () {};
-  this.PERSPECTIVE_CAMERA = 0;
-  this.ORTHOGRAPHIC_CAMERA = 1;
-  this.FOVMODE_VERTICAL_FIXED = 0;
-  this.FOVMODE_HORIZONTAL_FIXED = 1;
-  this.RIG_MODE_NONE = 0;
-  this.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
-  this.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
-  this.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
-  this.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
-  this.RIG_MODE_VR = 20;
-  this.RIG_MODE_WEBVR = 21;
-  this.RIG_MODE_CUSTOM = 22;
-  this.ForceAttachControlToAlwaysPreventDefault = false;
-  this.AddNodeConstructor = function () {};
-  this.Construct = function () {};
-  this.ParseAnimationRanges = function () {};
-};
+BABYLON.WebXRCamera = function () {}
+BABYLON.WebXRCamera.prototype.GetConstructorFromName = function () {};
+BABYLON.WebXRCamera.prototype.Parse = function () {};
+BABYLON.WebXRCamera.prototype.PERSPECTIVE_CAMERA = 0;
+BABYLON.WebXRCamera.prototype.ORTHOGRAPHIC_CAMERA = 1;
+BABYLON.WebXRCamera.prototype.FOVMODE_VERTICAL_FIXED = 0;
+BABYLON.WebXRCamera.prototype.FOVMODE_HORIZONTAL_FIXED = 1;
+BABYLON.WebXRCamera.prototype.RIG_MODE_NONE = 0;
+BABYLON.WebXRCamera.prototype.RIG_MODE_STEREOSCOPIC_ANAGLYPH = 10;
+BABYLON.WebXRCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_PARALLEL = 11;
+BABYLON.WebXRCamera.prototype.RIG_MODE_STEREOSCOPIC_SIDEBYSIDE_CROSSEYED = 12;
+BABYLON.WebXRCamera.prototype.RIG_MODE_STEREOSCOPIC_OVERUNDER = 13;
+BABYLON.WebXRCamera.prototype.RIG_MODE_STEREOSCOPIC_INTERLACED = 14;
+BABYLON.WebXRCamera.prototype.RIG_MODE_VR = 20;
+BABYLON.WebXRCamera.prototype.RIG_MODE_WEBVR = 21;
+BABYLON.WebXRCamera.prototype.RIG_MODE_CUSTOM = 22;
+BABYLON.WebXRCamera.prototype.ForceAttachControlToAlwaysPreventDefault = false;
+BABYLON.WebXRCamera.prototype.AddNodeConstructor = function () {};
+BABYLON.WebXRCamera.prototype.Construct = function () {};
+BABYLON.WebXRCamera.prototype.ParseAnimationRanges = function () {};
+
 
 /** @constructor */
-BABYLON.WebXREnterExitUIButton = function () {
-  // this.element = undefined;
-  // this.sessionMode = undefined;
-  // this.referenceSpaceType = undefined;
-  this.update = function () {};
-};
+BABYLON.WebXREnterExitUIButton = function () {}
+// BABYLON.WebXREnterExitUIButton.element = undefined;
+// BABYLON.WebXREnterExitUIButton.sessionMode = undefined;
+// BABYLON.WebXREnterExitUIButton.referenceSpaceType = undefined;
+BABYLON.WebXREnterExitUIButton.prototype.update = function () {};
+
 
 /** @constructor */
-BABYLON.WebXREnterExitUIOptions = function () {
-};
+BABYLON.WebXREnterExitUIOptions = function () {}
+
 
 /** @constructor */
-BABYLON.WebXREnterExitUI = function () {
-  this.CreateAsync = function () {};
-};
+BABYLON.WebXREnterExitUI = function () {}
+BABYLON.WebXREnterExitUI.CreateAsync = function () {};
+
 
 /** @constructor */
-BABYLON.WebXRExperienceHelper = function () {
-  this.CreateAsync = function () {};
-};
+BABYLON.WebXRExperienceHelper = function () {}
+BABYLON.WebXRExperienceHelper.CreateAsync = function () {};
+
 
 /** @constructor */
-BABYLON.WebXRInput = function () {
-};
+BABYLON.WebXRInput = function () {}
+
 
 /** @constructor */
-BABYLON.WebXRInputSource = function () {
-};
+BABYLON.WebXRInputSource = function () {}
+
 
 /** @constructor */
-BABYLON.WebXRManagedOutputCanvasOptions = function () {
-  this.GetDefaults = function () {};
-};
+BABYLON.WebXRManagedOutputCanvasOptions = function () {}
+
 
 /** @constructor */
-BABYLON.WebXRManagedOutputCanvas = function () {
-};
+BABYLON.WebXRManagedOutputCanvas = function () {}
+
 
 BABYLON.WebXRState = {}
 
 /** @constructor */
-BABYLON.WebXRSessionManager = function () {
-  // this.scene = undefined;
-  this.baseLayer = null;
-  this.currentTimestamp = -1;
-  this.defaultHeightCompensation = 1.7;
-  this.onXRFrameObservable = {};
-  this.onXRReferenceSpaceChanged = {};
-  this.onXRSessionEnded = {};
-  this.onXRSessionInit = {};
-  // this.referenceSpace = undefined;
-  this.dispose = function () {};
-  this.exitXRAsync = function () {};
-  this.getRenderTargetTextureForEye = function () {};
-  this.getWebXRRenderTarget = function () {};
-  this.initializeAsync = function () {};
-  this.initializeSessionAsync = function () {};
-  this.isSessionSupportedAsync = function () {};
-  this.resetReferenceSpace = function () {};
-  this.runXRRenderLoop = function () {};
-  this.setReferenceSpaceTypeAsync = function () {};
-  this.updateRenderStateAsync = function () {};
-  this.IsSessionSupportedAsync = function () {};
-};
+BABYLON.WebXRSessionManager = function () {}
+// BABYLON.WebXRSessionManager.scene = undefined;
+BABYLON.WebXRSessionManager.baseLayer = null;
+BABYLON.WebXRSessionManager.currentTimestamp = -1;
+BABYLON.WebXRSessionManager.defaultHeightCompensation = 1.7;
+BABYLON.WebXRSessionManager.onXRFrameObservable = {};
+BABYLON.WebXRSessionManager.onXRReferenceSpaceChanged = {};
+BABYLON.WebXRSessionManager.onXRSessionEnded = {};
+BABYLON.WebXRSessionManager.onXRSessionInit = {};
+// BABYLON.WebXRSessionManager.prototype.referenceSpace = undefined;
+BABYLON.WebXRSessionManager.prototype.dispose = function () {};
+BABYLON.WebXRSessionManager.prototype.exitXRAsync = function () {};
+BABYLON.WebXRSessionManager.prototype.getRenderTargetTextureForEye = function () {};
+BABYLON.WebXRSessionManager.prototype.getWebXRRenderTarget = function () {};
+BABYLON.WebXRSessionManager.prototype.initializeAsync = function () {};
+BABYLON.WebXRSessionManager.prototype.initializeSessionAsync = function () {};
+BABYLON.WebXRSessionManager.prototype.isSessionSupportedAsync = function () {};
+BABYLON.WebXRSessionManager.prototype.resetReferenceSpace = function () {};
+BABYLON.WebXRSessionManager.prototype.runXRRenderLoop = function () {};
+BABYLON.WebXRSessionManager.prototype.setReferenceSpaceTypeAsync = function () {};
+BABYLON.WebXRSessionManager.prototype.updateRenderStateAsync = function () {};
+
 
 /** @constructor */
-BABYLON.WebXRDefaultExperienceOptions = function () {
-};
+BABYLON.WebXRDefaultExperienceOptions = function () {}
+
 
 /** @constructor */
-BABYLON.WebXRDefaultExperience = function () {
-  this.dispose = function () {};
-  this.CreateAsync = function () {};
-};
+BABYLON.WebXRDefaultExperience = function () {}
+BABYLON.WebXRDefaultExperience.prototype.dispose = function () {};
+
 
 /** @constructor */
-BABYLON.WebXRFeatureName = function () {
-  this.ANCHOR_SYSTEM = "xr-anchor-system";
-  this.BACKGROUND_REMOVER = "xr-background-remover";
-  this.HIT_TEST = "xr-hit-test";
-  this.PHYSICS_CONTROLLERS = "xr-physics-controller";
-  this.PLANE_DETECTION = "xr-plane-detection";
-  this.POINTER_SELECTION = "xr-controller-pointer-selection";
-  this.TELEPORTATION = "xr-controller-teleportation";
-};
+BABYLON.WebXRFeatureName = function () {}
+
 
 /** @constructor */
-BABYLON.WebXRFeaturesManager = function () {
-  this.AddWebXRFeature = function () {};
-  this.ConstructFeature = function () {};
-  this.GetAvailableFeatures = function () {};
-  this.GetAvailableVersions = function () {};
-  this.GetLatestVersionOfFeature = function () {};
-  this.GetStableVersionOfFeature = function () {};
-};
+BABYLON.WebXRFeaturesManager = function () {}
+BABYLON.WebXRFeaturesManager.AddWebXRFeature = function () {};
+BABYLON.WebXRFeaturesManager.ConstructFeature = function () {};
+BABYLON.WebXRFeaturesManager.GetAvailableFeatures = function () {};
+BABYLON.WebXRFeaturesManager.GetAvailableVersions = function () {};
+BABYLON.WebXRFeaturesManager.GetLatestVersionOfFeature = function () {};
+BABYLON.WebXRFeaturesManager.GetStableVersionOfFeature = function () {};
+
 
 /** @constructor */
-BABYLON.WebXRHitTestLegacy = function () {
-  this.disableAutoAttach = false;
-  this.options = {};
-  this.lastNativeXRHitResults = {};
-  this.onHitTestResultObservable = {};
-  this.constructor = function () {};
-  this.attach = function () {};
-  this.detach = function () {};
-  this.dispose = function () {};
-  this.attached = false;
-  this.XRHitTestWithRay = function () {};
-  this.XRHitTestWithSelectEvent = function () {};
-  this.Name = "xr-hit-test";
-  this.Version = 1;
-};
+BABYLON.WebXRHitTestLegacy = function () {}
+BABYLON.WebXRHitTestLegacy.disableAutoAttach = false;
+BABYLON.WebXRHitTestLegacy.options = {};
+BABYLON.WebXRHitTestLegacy.lastNativeXRHitResults = {};
+BABYLON.WebXRHitTestLegacy.onHitTestResultObservable = {};
+BABYLON.WebXRHitTestLegacy.prototype.constructor = function () {};
+BABYLON.WebXRHitTestLegacy.prototype.attach = function () {};
+BABYLON.WebXRHitTestLegacy.prototype.detach = function () {};
+BABYLON.WebXRHitTestLegacy.prototype.dispose = function () {};
+// BABYLON.WebXRHitTestLegacy.prototype.attached = undefined;
+
 
 /** @constructor */
-BABYLON.WebXRAnchorSystem = function () {
-  this.disableAutoAttach = false;
-  this.onAnchorAddedObservable = {};
-  this.onAnchorRemovedObservable = {};
-  this.onAnchorUpdatedObservable = {};
-  this.constructor = function () {};
-  this.addAnchorAtRigidTransformation = function () {};
-  this.attach = function () {};
-  this.detach = function () {};
-  this.dispose = function () {};
-  this.setHitTestModule = function () {};
-  this.setPlaneDetector = function () {};
-  this.attached = false;
-  this.Name = "xr-anchor-system";
-  this.Version = 1;
-};
+BABYLON.WebXRAnchorSystem = function () {}
+BABYLON.WebXRAnchorSystem.disableAutoAttach = false;
+BABYLON.WebXRAnchorSystem.onAnchorAddedObservable = {};
+BABYLON.WebXRAnchorSystem.onAnchorRemovedObservable = {};
+BABYLON.WebXRAnchorSystem.onAnchorUpdatedObservable = {};
+BABYLON.WebXRAnchorSystem.prototype.constructor = function () {};
+BABYLON.WebXRAnchorSystem.prototype.addAnchorAtRigidTransformation = function () {};
+BABYLON.WebXRAnchorSystem.prototype.attach = function () {};
+BABYLON.WebXRAnchorSystem.prototype.detach = function () {};
+BABYLON.WebXRAnchorSystem.prototype.dispose = function () {};
+BABYLON.WebXRAnchorSystem.prototype.setHitTestModule = function () {};
+BABYLON.WebXRAnchorSystem.prototype.setPlaneDetector = function () {};
+// BABYLON.WebXRAnchorSystem.prototype.attached = undefined;
+
 
 /** @constructor */
-BABYLON.WebXRPlaneDetector = function () {
-  this.Name = "xr-plane-detection";
-  this.Version = 1;
-};
+BABYLON.WebXRPlaneDetector = function () {}
+BABYLON.WebXRPlaneDetector.Name = "xr-plane-detection";
+BABYLON.WebXRPlaneDetector.Version = 1;
+
 
 /** @constructor */
-BABYLON.WebXRBackgroundRemover = function () {
-  this.disableAutoAttach = false;
-  this.options = {};
-  this.onBackgroundStateChangedObservable = {};
-  this.constructor = function () {};
-  this.attach = function () {};
-  this.detach = function () {};
-  this.dispose = function () {};
-  this.attached = false;
-  this.Name = "xr-background-remover";
-  this.Version = 1;
-};
+BABYLON.WebXRBackgroundRemover = function () {}
+BABYLON.WebXRBackgroundRemover.disableAutoAttach = false;
+BABYLON.WebXRBackgroundRemover.options = {};
+BABYLON.WebXRBackgroundRemover.onBackgroundStateChangedObservable = {};
+BABYLON.WebXRBackgroundRemover.prototype.constructor = function () {};
+BABYLON.WebXRBackgroundRemover.prototype.attach = function () {};
+BABYLON.WebXRBackgroundRemover.prototype.detach = function () {};
+BABYLON.WebXRBackgroundRemover.prototype.dispose = function () {};
+// BABYLON.WebXRBackgroundRemover.prototype.attached = undefined;
+
 
 /** @constructor */
-BABYLON.WebXRMotionControllerTeleportation = function () {
-  this.Name = "xr-controller-teleportation";
-  this.Version = 1;
-};
+BABYLON.WebXRMotionControllerTeleportation = function () {}
+BABYLON.WebXRMotionControllerTeleportation.Name = "xr-controller-teleportation";
+BABYLON.WebXRMotionControllerTeleportation.Version = 1;
+
 
 /** @constructor */
-BABYLON.WebXRControllerPointerSelection = function () {
-  this.Name = "xr-controller-pointer-selection";
-  this.Version = 1;
-};
+BABYLON.WebXRControllerPointerSelection = function () {}
+BABYLON.WebXRControllerPointerSelection.Name = "xr-controller-pointer-selection";
+BABYLON.WebXRControllerPointerSelection.Version = 1;
+
 
 /** @constructor */
-BABYLON.IWebXRControllerPhysicsOptions = function () {
-};
+BABYLON.IWebXRControllerPhysicsOptions = function () {}
+
 
 /** @constructor */
-BABYLON.WebXRControllerPhysics = function () {
-  this.Name = "xr-physics-controller";
-  this.Version = 1;
-};
+BABYLON.WebXRControllerPhysics = function () {}
+BABYLON.WebXRControllerPhysics.Name = "xr-physics-controller";
+BABYLON.WebXRControllerPhysics.Version = 1;
+
 
 /** @constructor */
-BABYLON.WebXRAbstractMotionController = function () {
-};
+BABYLON.WebXRAbstractMotionController = function () {}
+
 
 /** @constructor */
-BABYLON.WebXRControllerComponent = function () {
-  // this.id = undefined;
-  // this.type = undefined;
-  this.onAxisValueChangedObservable = {};
-  this.onButtonStateChangedObservable = {};
-  this.axes = {};
-  this.changes = {};
-  this.hasChanges = false;
-  this.pressed = false;
-  this.touched = false;
-  this.value = 0;
-  this.dispose = function () {};
-  this.isAxes = function () {};
-  this.isButton = function () {};
-  this.update = function () {};
-  this.BUTTON_TYPE = "button";
-  this.SQUEEZE_TYPE = "squeeze";
-  this.THUMBSTICK_TYPE = "thumbstick";
-  this.TOUCHPAD_TYPE = "touchpad";
-  this.TRIGGER_TYPE = "trigger";
-};
+BABYLON.WebXRControllerComponent = function () {}
+// BABYLON.WebXRControllerComponent.id = undefined;
+// BABYLON.WebXRControllerComponent.type = undefined;
+BABYLON.WebXRControllerComponent.onAxisValueChangedObservable = {};
+BABYLON.WebXRControllerComponent.onButtonStateChangedObservable = {};
+// BABYLON.WebXRControllerComponent.prototype.axes = undefined;
+// BABYLON.WebXRControllerComponent.prototype.changes = undefined;
+// BABYLON.WebXRControllerComponent.prototype.hasChanges = undefined;
+// BABYLON.WebXRControllerComponent.prototype.pressed = undefined;
+// BABYLON.WebXRControllerComponent.prototype.touched = undefined;
+// BABYLON.WebXRControllerComponent.prototype.value = undefined;
+BABYLON.WebXRControllerComponent.prototype.dispose = function () {};
+BABYLON.WebXRControllerComponent.prototype.isAxes = function () {};
+BABYLON.WebXRControllerComponent.prototype.isButton = function () {};
+BABYLON.WebXRControllerComponent.prototype.update = function () {};
+
 
 /** @constructor */
-BABYLON.WebXRGenericTriggerMotionController = function () {
-  this.ProfileId = "generic-trigger";
-};
+BABYLON.WebXRGenericTriggerMotionController = function () {}
+BABYLON.WebXRGenericTriggerMotionController.ProfileId = "generic-trigger";
+
 
 /** @constructor */
-BABYLON.WebXRMicrosoftMixedRealityController = function () {
-  this.MODEL_BASE_URL = "https://controllers.babylonjs.com/microsoft/";
-  this.MODEL_LEFT_FILENAME = "left.glb";
-  this.MODEL_RIGHT_FILENAME = "right.glb";
-};
+BABYLON.WebXRMicrosoftMixedRealityController = function () {}
+BABYLON.WebXRMicrosoftMixedRealityController.MODEL_BASE_URL = "https://controllers.babylonjs.com/microsoft/";
+BABYLON.WebXRMicrosoftMixedRealityController.MODEL_LEFT_FILENAME = "left.glb";
+BABYLON.WebXRMicrosoftMixedRealityController.MODEL_RIGHT_FILENAME = "right.glb";
+
 
 /** @constructor */
-BABYLON.WebXRMotionControllerManager = function () {
-  this.ClearProfilesCache = function () {};
-  this.DefaultFallbacks = function () {};
-  this.FindFallbackWithProfileId = function () {};
-  this.GetMotionControllerWithXRInput = function () {};
-  this.RegisterController = function () {};
-  this.RegisterFallbacksForProfileId = function () {};
-  this.UpdateProfilesList = function () {};
-  this.BaseRepositoryUrl = "https://immersive-web.github.io/webxr-input-profiles/packages/viewer/dist";
-  this.PrioritizeOnlineRepository = true;
-  this.UseOnlineRepository = true;
-};
+BABYLON.WebXRMotionControllerManager = function () {}
+
 
 /** @constructor */
-BABYLON.WebXROculusTouchMotionController = function () {
-  this.MODEL_BASE_URL = "https://controllers.babylonjs.com/oculus/";
-  this.MODEL_LEFT_FILENAME = "left.babylon";
-  this.MODEL_RIGHT_FILENAME = "right.babylon";
-  this.QUEST_MODEL_BASE_URL = "https://controllers.babylonjs.com/oculusQuest/";
-};
+BABYLON.WebXROculusTouchMotionController = function () {}
+BABYLON.WebXROculusTouchMotionController.MODEL_BASE_URL = "https://controllers.babylonjs.com/oculus/";
+BABYLON.WebXROculusTouchMotionController.MODEL_LEFT_FILENAME = "left.babylon";
+BABYLON.WebXROculusTouchMotionController.MODEL_RIGHT_FILENAME = "right.babylon";
+BABYLON.WebXROculusTouchMotionController.QUEST_MODEL_BASE_URL = "https://controllers.babylonjs.com/oculusQuest/";
+
 
 /** @constructor */
-BABYLON.WebXRHTCViveMotionController = function () {
-  this.MODEL_BASE_URL = "https://controllers.babylonjs.com/vive/";
-  this.MODEL_FILENAME = "wand.babylon";
-};
+BABYLON.WebXRHTCViveMotionController = function () {}
+BABYLON.WebXRHTCViveMotionController.MODEL_BASE_URL = "https://controllers.babylonjs.com/vive/";
+BABYLON.WebXRHTCViveMotionController.MODEL_FILENAME = "wand.babylon";
+
 
 /** @constructor */
-BABYLON.WebXRProfiledMotionController = function () {
-};
+BABYLON.WebXRProfiledMotionController = function () {}

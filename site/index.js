@@ -19,13 +19,15 @@ const message = document.querySelector("#message");
 const modal = document.querySelector("#modal");
 let music;
 
-if (process.env.DEBUG) {
-  startGame();
-} else {
-  init();
-}
+init();
 
+/** @suppress {uselessCode} */
 async function init() {
+  if (process.env.DEBUG) {
+    startGame();
+    return;
+  }
+
   music = await loadMusic();
   if (!music) {
     showLoading();
@@ -62,6 +64,7 @@ function showLoading() {
   }
 }
 
+/** @suppress {uselessCode} */
 function startGame(level = 1) {
   page.classList.add("hidden");
   page.classList.remove("zoom");
@@ -70,6 +73,7 @@ function startGame(level = 1) {
   canvas.classList.remove("hidden");
 
   const world = new World(level);
+
   if (process.env.DEBUG) {
     window.world = world;
   }

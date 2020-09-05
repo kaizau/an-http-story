@@ -39,8 +39,8 @@ function compileDebug() {
   return compile({
     debug: true,
     formatting: "PRETTY_PRINT",
+    warning_level: "VERBOSE",
     // use_types_for_optimization: false,
-    // warning_level: "VERBOSE",
   });
 }
 
@@ -61,26 +61,26 @@ exports.compileProd = series(cleanPublicClosure, copyIndex, compile);
 // Attempt to bundle with Closure instead of Webpack
 //
 
+const bundleSource = [
+  "site/index.js",
+  "site/vendor/zzfx.micro.js",
+  "site/music/player.js",
+  "site/music/soundbox.js",
+  "site/music/wilderness.js",
+  "site/game/*.js",
+];
 function bundle(options = {}) {
   const compilerOptions = Object.assign({}, compilerDefaults, options);
   compilerOptions.module_resolution = "NODE";
-  const source = [
-    "site/index.js",
-    "site/vendor/zzfx.micro.js",
-    "site/music/player.js",
-    "site/music/soundbox.js",
-    "site/music/wilderness.js",
-    "site/game/*.js",
-  ];
   if (options.debug) {
-    return src(source, { base: "." })
+    return src(bundleSource, { base: "." })
       .pipe(sourcemaps.init())
       .pipe(replace("process.env.DEBUG", false))
       .pipe(closureCompiler(compilerOptions))
       .pipe(sourcemaps.write("."))
       .pipe(dest("public-closure"));
   } else {
-    return src(source, { base: "." })
+    return src(bundleSource, { base: "." })
       .pipe(replace("process.env.DEBUG", false))
       .pipe(closureCompiler(compilerOptions))
       .pipe(dest("public-closure"));
@@ -95,7 +95,11 @@ function bundleDebug() {
 }
 
 function bundleWatch() {
-  return watch(externs, { ignoreInitial: false }, bundleDebug);
+  return watch(
+    externs.concat(bundleSource),
+    { ignoreInitial: false },
+    bundleDebug
+  );
 }
 
 exports.bundleDev = series(
@@ -178,33 +182,21 @@ function generateExterns(cb) {
       if (typeof value.constructor === "function") {
         file += `/** @constructor */\n`;
       }
-      file += `BABYLON.${key} = function () {\n`;
+      file += `BABYLON.${key} = function () {}\n`;
 
       try {
         const instance = new value();
-        for (const subKey in instance) {
-          if (subKey[0] === "_") continue;
-          const subValue = instance[subKey];
-          file += parseProps(subKey, subValue);
-        }
+        file += parseClass(key, instance);
       } catch (e) {
-        console.log(`Could not construct BABYLON.${key}.`);
-      }
+        console.log(`Could not construct BABYLON.${key}`);
 
-      for (const subKey in value) {
-        if (subKey[0] === "_") continue;
-        try {
-          const subValue = value[subKey];
-          file += parseProps(subKey, subValue);
-        } catch (e) {
-          console.log(`Could not interate BABYLON.${key}.${subKey}`);
-        }
+        file += parseClass(key, value);
       }
-
-      file += `};`;
     } else if (typeof value === "object" && value !== null) {
       file += `\n\nBABYLON.${key} = {}`;
-    } else if (["object", "number", "boolean"].includes(typeof value)) {
+    } else if (
+      ["object" /* null */, "number", "boolean"].includes(typeof value)
+    ) {
       file += `\n\nBABYLON.${key} = ${value};`;
     } else if (typeof value === "string") {
       file += `\n\nBABYLON.${key} = "${value}";`;
@@ -214,6 +206,64 @@ function generateExterns(cb) {
   }
 
   return fs.writeFile(output, file, cb);
+}
+
+function parseClass(name, obj) {
+  let file = "";
+  for (const key in obj) {
+    if (key[0] === "_") {
+      continue;
+    }
+
+    // Class
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      let value;
+      try {
+        value = obj[key];
+      } catch (e) {
+        console.log(`Could not access BABYLON.${name}.${key}`, e);
+      }
+
+      if (typeof value === "function") {
+        file += `BABYLON.${name}.${key} = function () {};\n`;
+      } else if (typeof value === "object" && value !== null) {
+        file += `BABYLON.${name}.${key} = {};\n`;
+      } else if (
+        ["object" /* null */, "number", "boolean"].includes(typeof value)
+      ) {
+        file += `BABYLON.${name}.${key} = ${value};\n`;
+      } else if (typeof value === "string") {
+        file += `BABYLON.${name}.${key} = "${value}";\n`;
+      } else {
+        file += `// BABYLON.${name}.${key} = ${value};\n`;
+      }
+    }
+    // Inherited
+    else {
+      let value;
+      const proto = Object.getPrototypeOf(obj);
+      try {
+        value = proto[key];
+      } catch (e) {
+        console.log(`Could not interate BABYLON.${name}.prototype.${key}`, e);
+      }
+
+      if (typeof value === "function") {
+        file += `BABYLON.${name}.prototype.${key} = function () {};\n`;
+      } else if (typeof value === "object" && value !== null) {
+        file += `BABYLON.${name}.prototype.${key} = {};\n`;
+      } else if (
+        ["object" /* null */, "number", "boolean"].includes(typeof value)
+      ) {
+        file += `BABYLON.${name}.prototype.${key} = ${value};\n`;
+      } else if (typeof value === "string") {
+        file += `BABYLON.${name}.prototype.${key} = "${value}";\n`;
+      } else {
+        file += `// BABYLON.${name}.prototype.${key} = ${value};\n`;
+      }
+    }
+  }
+  return file;
 }
 
 function parseProps(key, value) {

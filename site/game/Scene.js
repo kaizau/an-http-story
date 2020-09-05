@@ -30,6 +30,7 @@ export class Environment {
   }
 }
 
+/** @constructor */
 export function AmbientLight(scene) {
   // TODO Diffuse and specular colors
   const ambient = new HemisphericLight(
@@ -41,6 +42,7 @@ export function AmbientLight(scene) {
   return ambient;
 }
 
+/** @constructor */
 export function DirectLight(scene) {
   const direct = new DirectionalLight(
     "directLight",
@@ -54,6 +56,7 @@ export function DirectLight(scene) {
 }
 
 // TODO scene is unused
+/** @constructor */
 export function ShadowGen(scene, direct) {
   const shadowGenerator = new ShadowGenerator(96, direct);
   shadowGenerator.usePoissonSampling = true;
@@ -62,6 +65,7 @@ export function ShadowGen(scene, direct) {
 }
 
 // TODO maxZ for performance?
+/** @constructor */
 export function IsoCam(scene) {
   const offset = 5;
   const maxDistance = 10;
@@ -132,7 +136,7 @@ export function initXRHelper(scene) {
 
         // Set camera height
         xrHelper.onInitialXRPoseSetObservable.add((xrCamera) => {
-          xrCamera.y = 5;
+          xrCamera.y = 3;
         });
 
         return xrHelper;
