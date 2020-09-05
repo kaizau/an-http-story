@@ -77,7 +77,7 @@ export class AnimationMixins {
           30,
           10,
           target,
-          new Vector3(0, 0, 0),
+          Vector3.Zero(),
           Animation.ANIMATIONLOOPMODE_CONSTANT,
           easeOutQuad,
           onEnd
@@ -289,13 +289,13 @@ export class AnimationMixins {
   _canWalkTo(current, { x = 0, z = 0 }) {
     const origin = current.clone();
     const destination = current.clone();
-    const direction = new Vector3.Zero();
+    const direction = Vector3.Zero();
     direction.x += x;
     destination.x += x;
     direction.z += z;
     destination.z += z;
     const front = new Ray(origin, direction, 1);
-    const down = new Ray(destination, new Vector3.Down(), 1);
+    const down = new Ray(destination, Vector3.Down(), 1);
     const frontPick = this.scene.pickWithRay(
       front,
       (mesh) => !mesh.isMainCharacter && !mesh.isEnemy
