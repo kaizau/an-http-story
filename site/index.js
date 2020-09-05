@@ -14,10 +14,13 @@ const canvas = qs(".cv");
 const page = qs(".pg");
 const loading = qs(".ld");
 const directory = qs(".dr");
-const start = qs(".st");
+const startTrigger = qs(".st");
+const helpTrigger = qs(".sh");
 const downloadBar = qs(".db");
-const message = qs(".ms");
+const downloadItem = qs(".dl");
+const downloadMessage = qs(".ms");
 const modal = qs(".md");
+const closeModal = document.querySelectorAll(".cm");
 let music;
 
 init();
@@ -40,13 +43,28 @@ async function init() {
   checkEnding();
   loadProgress();
 
-  start.addEventListener("click", () => {
+  closeModal.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.target.parentElement.classList.add("h");
+      downloadBar.classList.add("o");
+      downloadBar.classList.remove("c");
+      modal.classList.add("h");
+    });
+  });
+
+  helpTrigger.addEventListener("click", () => {
+    const help = qs(".hp");
+    modal.classList.remove("h");
+    help.classList.remove("h");
+  });
+
+  startTrigger.addEventListener("click", () => {
     modal.classList.remove("h");
     downloadBar.classList.remove("o");
-    message.textContent = "Preparing download...";
+    downloadMessage.textContent = "Preparing download...";
 
     setTimeout(() => {
-      message.textContent = "Unexpected error";
+      downloadMessage.textContent = "Unexpected error";
       music.play();
 
       setTimeout(() => {
@@ -79,6 +97,10 @@ function startGame(level = 1) {
     window.world = world;
   }
 }
+
+//
+// Saved levels
+//
 
 function loadProgress() {
   const levels = progress.get();
@@ -116,15 +138,8 @@ function checkEnding() {
   if (ending) {
     modal.classList.remove("h");
     downloadBar.classList.remove("o");
-    message.textContent = "Preparing download...";
+    downloadMessage.textContent = "Preparing download...";
     setTimeout(ending, 3000);
-
-    const playAgain = document.querySelectorAll(".pa");
-    playAgain.forEach((el) => {
-      el.addEventListener("click", () => {
-        location.href = location.pathname;
-      });
-    });
 
     if (history) {
       history.replaceState({}, "", location.pathname);
@@ -133,25 +148,24 @@ function checkEnding() {
 }
 
 function endingLose() {
-  const note = qs(".nt");
+  const notification = qs(".nt");
   const ending = qs(".ls");
 
-  message.textContent = "Unexpected error";
-  note.classList.remove("o");
-  note.addEventListener("click", () => {
+  downloadMessage.textContent = "Unexpected error";
+  notification.classList.remove("o");
+  notification.addEventListener("click", () => {
     music.play();
-    note.classList.add("h");
+    notification.classList.add("o");
     ending.classList.remove("h");
   });
 }
 
 function endingWin() {
-  const download = qs(".dl");
   const ending = qs(".wn");
 
-  download.classList.add("c");
-  message.textContent = "Click to open";
-  download.addEventListener("click", () => {
+  downloadMessage.textContent = "Click to open";
+  downloadItem.classList.add("c");
+  downloadItem.addEventListener("click", () => {
     music.play();
     ending.classList.remove("h");
   });

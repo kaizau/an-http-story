@@ -120,17 +120,38 @@
 
       .wi {
         background: #fff;
+        border-top: 40px solid #ccc;
         line-height: 1.4;
         padding: 40px;
+        position: relative;
         max-width: 500px;
         z-index: 2;
       }
 
       .lg {
-        font-size: 80px;
+        font-size: 60px;
       }
 
-      .play-again {
+      .cm {
+        border: 0;
+        background: #aaa;
+        color: #000;
+        cursor: pointer;
+        font-size: 24px;
+        height: 30px;
+        position: absolute;
+        right: 5px;
+        vertical-align: middle;
+        top: -35px;
+        width: 30px;
+      }
+
+      .cm:hover {
+        opacity: 0.8;
+      }
+
+      /*
+      .cm {
         background: #66c;
         border: 0;
         border-radius: 40px;
@@ -140,10 +161,7 @@
         margin-top: 20px;
         padding: 10px 20px;
       }
-
-      .pa:hover {
-        opacity: 0.8;
-      }
+      */
 
       .ic {
         display: inline-block;
@@ -165,12 +183,17 @@
 
       <div class="dr h">
         <h1>Index of /a-http-story</h1>
-        <p>
+        <!--<p>
           ⤴️
           <a target="_blank" href="https://js13kgames.com/">Parent Directory</a>
+        </p>-->
+        <p>
+          ⤴️
+          <a href="#">Parent Directory</a>
         </p>
-        <p>📂<a href="#">credit-cards/</a></p>
-        <p>📂<a href="#">pwnd-emails/</a></p>
+        <p>📂<a href="#">mi6_personnel/</a></p>
+        <p>📂<a href="#">operation_satoshi/</a></p>
+        <p>📕<a href="#" class="sh">INSTRUCTIONS.txt</a></p>
         <p>📦<a href="#" class="st">LEAKED_DOCUMENTS.zip</a></p>
       </div>
 
@@ -187,6 +210,17 @@
       <div class="nt o"><span class="ic">🛡</span> Important Message</div>
 
       <div class="md h">
+        <div class="hp wi h">
+          <div class="lg">🍿</div>
+          <h2>Welcome to <em>A HTTP Story</em></h2>
+          <p>
+            This is an interactive puzzle game, best experienced in VR. You find
+            yourself on an... unofficial part of the internet.
+          </p>
+          <p>Leaked documents? What could those be...?</p>
+          <button class="cm">×</button>
+        </div>
+
         <div class="ls wi h">
           <div class="lg">🛡️</div>
           <h2>
@@ -197,20 +231,20 @@
             ongoing investigation. Thank you for your voluntary participation.
           </p>
           <p><strong>One nation, one mind!</strong></p>
-          <button class="pa">Play Again?</button>
+          <button class="cm">×</button>
         </div>
 
         <div class="wn wi h">
           <div class="lg">🏆</div>
           <h2>Thanks for playing <em>A HTTP Story</em>!</h2>
           <p>
-            I hope you enjoyed this experiment in minimalist storytelling! You
+            I hope you enjoyed this experiment in minimalist storytelling. You
             can view the source code and credits for this game on
             <a href="https://github.com/kaizau/a-http-story">Github</a>.
           </p>
           <p>With much gratitude, <br />— Kai</p>
           <p>P.S. Zyra says hello.</p>
-          <button class="pa">Play Again?</button>
+          <button class="cm">×</button>
         </div>
       </div>
     </div>
