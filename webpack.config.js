@@ -21,32 +21,35 @@ module.exports = (env) => {
   let useTerser = false;
   let useAnalyzer = false;
   switch (env.TARGET) {
-    case "local":
+    case "dev":
       mode = "development";
       debug = true;
       minifyAssets = false;
       useSourceMap = true;
       useLocalBabylon = true;
       break;
-    case "production":
+    case "build":
       useLocalBabylon = true;
       break;
-    case "production-closure":
+    case "build-closure":
       useClosure = true;
       useLocalBabylon = true;
       break;
-    case "production-terser":
+    case "build-terser":
       useSourceMap = true; // debugging
       useTerser = true;
       useLocalBabylon = true;
       break;
+    case "zip":
+      break;
+    case "zip-closure":
+      useClosure = true;
+      break;
+    case "zip-terser":
+      useTerser = true;
+      break;
     case "analyze":
       useAnalyzer = true;
-      break;
-    case "finalize":
-      break;
-    case "finalize-closure":
-      useClosure = true;
       break;
   }
   env.DEBUG = debug;

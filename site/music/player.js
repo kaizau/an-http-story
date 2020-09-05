@@ -1,5 +1,6 @@
 import CPlayer from "./soundbox";
-import song from "./wilderness";
+// import song from "./wilderness";
+import song from "./wilderness-slim";
 
 let db;
 

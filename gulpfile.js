@@ -66,7 +66,8 @@ const bundleSource = [
   "site/vendor/zzfx.micro.js",
   "site/music/player.js",
   "site/music/soundbox.js",
-  "site/music/wilderness.js",
+  // "site/music/wilderness.js",
+  "site/music/wilderness-slim.js",
   "site/game/*.js",
 ];
 function bundle(options = {}) {
