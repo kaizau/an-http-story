@@ -2,21 +2,38 @@ import { friendVoice, foeVoice } from "./voices";
 import { playSound } from "./sounds";
 import { delay } from "./utils";
 
-const { Layer, DynamicTexture } = BABYLON;
+const {
+  MeshBuilder,
+  StandardMaterial,
+  DynamicTexture,
+  Color3,
+  Vector3,
+} = BABYLON;
 
 export class Dialogue {
   constructor(scene) {
     this.scene = scene;
-    this.layer = new Layer("dialogueLayer", "", this.scene, false);
-    this.layer.texture = new DynamicTexture(
-      "dialogueText",
-      {
-        height: this.scene.getEngine().getRenderHeight(),
-        width: this.scene.getEngine().getRenderWidth(),
-      },
-      this.scene,
-      true
-    );
+    this.layerHeight = 2;
+    this.layerWidth = 10;
+    this.layer = MeshBuilder.CreatePlane("dialogue", {
+      height: 5,
+      width: 10,
+    });
+    this.layer.position = new Vector3(5, 0, 8);
+
+    this.texture = new DynamicTexture("dialogue", {
+      height: 256,
+      width: 512,
+    });
+    this.texture.hasAlpha = true;
+    this.show("");
+
+    const material = new StandardMaterial("dialogue");
+    material.diffuseTexture = this.texture;
+    this.layer.material = material;
+
+    // TODO For extra fanciness... attach to camera?
+    // this.layer.parent = this.scene.activeCamera;
   }
 
   async load(lines) {
@@ -52,25 +69,20 @@ export class Dialogue {
 
   show(text) {
     this.clear();
-    this.layer.texture.drawText(
+    this.texture.drawText(
       text,
-      100,
-      this.scene.getEngine().getRenderHeight() - 200,
-      "24px monospace",
+      0,
+      20,
+      "18px monospace",
       "white",
       "transparent"
     );
   }
 
   clear() {
-    const ctx = this.layer.texture.getContext();
-    ctx.clearRect(
-      0,
-      0,
-      this.scene.getEngine().getRenderWidth(),
-      this.scene.getEngine().getRenderHeight()
-    );
-    this.layer.texture.update();
+    const ctx = this.texture.getContext();
+    ctx.clearRect(0, 0, 512, 256);
+    this.texture.update();
   }
 
   speak(text, voice) {
