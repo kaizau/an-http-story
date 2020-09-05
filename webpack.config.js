@@ -3,6 +3,7 @@ const { EnvironmentPlugin } = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 
@@ -15,13 +16,16 @@ module.exports = (env) => {
   let debug = false;
   let useLocalBabylon = false;
   let minifyAssets = true;
+  let useSourceMap = false;
   let useClosure = false;
+  let useTerser = false;
   let useAnalyzer = false;
   switch (env.TARGET) {
     case "local":
       mode = "development";
       debug = true;
       minifyAssets = false;
+      useSourceMap = true;
       useLocalBabylon = true;
       break;
     case "production":
@@ -29,6 +33,11 @@ module.exports = (env) => {
       break;
     case "production-closure":
       useClosure = true;
+      useLocalBabylon = true;
+      break;
+    case "production-terser":
+      useSourceMap = true; // debugging
+      useTerser = true;
       useLocalBabylon = true;
       break;
     case "analyze":
@@ -50,7 +59,7 @@ module.exports = (env) => {
       filename: "game.js",
     },
     stats: "minimal",
-    devtool: debug ? "eval-cheap-source-map" : false,
+    devtool: useSourceMap ? "eval-cheap-source-map" : false,
     plugins: [
       new CleanWebpackPlugin(),
       new EnvironmentPlugin(env),
@@ -112,6 +121,42 @@ module.exports = (env) => {
       //     }
       //   ),
       // ],
+    };
+  }
+
+  if (useTerser) {
+    config.optimization = {
+      minimizer: [
+        new TerserPlugin({
+          sourceMap: true,
+          extractComments: false,
+          test: [/\/site\/.*^(?!babylon)\.js$/],
+          terserOptions: {
+            mangle: {
+              properties: {
+                debug: "",
+              },
+            },
+            ecma: 2019,
+            module: true,
+            toplevel: true,
+            compress: {
+              booleans_as_integers: true,
+              drop_console: true,
+              ecma: 2019,
+              keep_fargs: false,
+              module: true,
+              // passes: 2,
+            },
+            output: {
+              comments: false,
+            },
+            format: {
+              beautify: true,
+            },
+          },
+        }),
+      ],
     };
   }
 

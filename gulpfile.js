@@ -266,20 +266,4 @@ function parseClass(name, obj) {
   return file;
 }
 
-function parseProps(key, value) {
-  let file = "";
-  if (typeof value === "function") {
-    file += `  this.${key} = function () {};\n`;
-  } else if (typeof value === "object" && value !== null) {
-    file += `  this.${key} = {};\n`;
-  } else if (["object", "number", "boolean"].includes(typeof value)) {
-    file += `  this.${key} = ${value};\n`;
-  } else if (typeof value === "string") {
-    file += `  this.${key} = "${value}";\n`;
-  } else {
-    file += `  // this.${key} = ${value};\n`;
-  }
-  return file;
-}
-
 exports.generate = generateExterns;
