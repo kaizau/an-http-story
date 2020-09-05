@@ -252,18 +252,26 @@ export class AnimationMixins {
     keys.forEach((current) => {
       if (previous) {
         node.position = previous.value;
-        const lookAt = node.lookAt(current.value, Math.PI, 0, 0, Space.WORLD);
-        if (lookAt.rotation.y > Math.PI) {
-          lookAt.rotation.y -= Math.PI * 2;
-        } else if (lookAt.rotation.y < 0 - Math.PI) {
-          lookAt.rotation.y += Math.PI * 2;
+        node.lookAt(current.value, Math.PI, 0, 0, Space.WORLD);
+        if (node.rotation.y > Math.PI) {
+          node.rotation.y -= Math.PI * 2;
+          // console.log(
+          //   previous.rotation.clone(),
+          //   current.rotation.clone(),
+          //   "> PI"
+          // );
+        } else if (node.rotation.y < 0 - Math.PI) {
+          node.rotation.y += Math.PI * 2;
+          // console.log(
+          //   previous.rotation.clone(),
+          //   current.rotation.clone(),
+          //   "< -PI"
+          // );
         }
         rotationKeys.push({
           frame: current.frame,
-          value: lookAt.rotation.clone(),
+          value: node.rotation.clone(),
         });
-        // TODO Does node.lookAt create a new node, or return the old one?
-        // lookAt.dispose();
       }
       previous = current;
     });

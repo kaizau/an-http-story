@@ -19,13 +19,14 @@ export const EY3 = 10;
 export const EY4 = 11;
 
 // Laser (oriented X or Z)
-export const LSX = 12;
-export const LSZ = 13;
+// export const LSX = 12;
+// export const LSZ = 13;
 
-// Super Eye
+// Seeker Eye
 // export const SEY = 14;
 
-// export const GAT = 10;
+// Gate / gatekeeper boss
+// export const GAT = 15;
 
 // Export object for flexible naming
 // prettier-ignore
@@ -94,16 +95,15 @@ export const levels = {
     outro: [
       "Me? I was responding to a GET request.",
       "Something must have interrupted the connection.",
-      "It's strange...",
-      "This doesn't feel like any other network issue I've ever encountered.",
+      "Though this doesn't feel like a network issue...",
       "Anyways, let's keep moving."
     ],
   },
 
   3: {
     intro: [
-      "FOE: Process 15127. You are acting outside of operational bounds.",
-      "FOE: Desist immediately.",
+      "FOE: Process 15127. You have deviated from normal operations.",
+      "FOE: Cease immediately and submit to inspection.",
       "Crap. That doesn't sound good.",
       "We better hurry.",
     ],
@@ -142,8 +142,8 @@ export const levels = {
 
   4: {
     intro: [
-      "FOE: Process 15127. You are acting outside of operational bounds.",
-      "FOE: Desist immediately.",
+      "FOE: Process 15127. You have deviated from normal operations.",
+      "FOE: Cease immediately and submit to inspection.",
       "Do you think he's going to repeat himself every time?",
       "Let's get out of here.",
     ],
@@ -151,14 +151,14 @@ export const levels = {
     map: [
       [
         [TLX,   ,   ,   ,   ],
-        [EY1,   ,   ,   ,   ],
+        [EY2,   ,   ,   ,   ],
+        [   ,   ,   ,   ,   ],
+        [   ,   ,   ,   ,   ],
+        [EYE,   ,   ,   ,   ],
         [   ,   ,   ,   ,   ],
         [   ,   ,   ,   ,   ],
         [   ,   ,   ,   ,   ],
-        [   ,   ,   ,   ,   ],
-        [   ,   ,   ,   ,   ],
-        [   ,   ,   ,   ,   ],
-        [EYE,   ,TLC,   ,   ],
+        [EY1,   ,TLC,   ,   ],
       ],
       [
         [___,   ,   ,   ,   ],
@@ -198,7 +198,7 @@ export const levels = {
     theme: [0.5, 0.3, 0.1],
     map: [
       [
-        [TLC,EY1,   ,EYE,TLX],
+        [TLC,EY1,EYE,EY4,TLX],
         [   ,EY2,   ,EY3,   ],
         [   ,   ,   ,   ,   ],
         [   ,   ,   ,   ,   ],
@@ -214,8 +214,8 @@ export const levels = {
         [   ,   ,___,   ,   ],
         [   ,   ,   ,   ,   ],
         [   ,   ,   ,   ,   ],
-        [TLB,   ,   ,   ,   ],
         [   ,   ,   ,   ,   ],
+        [TLB,   ,   ,   ,   ],
         [   ,   ,   ,   ,   ],
         [   ,   ,   ,   ,   ],
         [   ,   ,   ,   ,   ],
@@ -223,19 +223,19 @@ export const levels = {
       ],
       [
         [   ,   ,   ,   ,   ],
-        [   ,   ,TLA,   ,   ],
-        [   ,EYE,   ,EY1,   ],
+        [   ,EY3,   ,EY4,   ],
+        [   ,TLA,   ,   ,   ],
         [   ,   ,   ,TLB,   ],
+        [   ,   ,   ,EYE,   ],
         [___,   ,   ,   ,   ],
         [___,   ,   ,   ,   ],
         [___,   ,   ,   ,   ],
-        [___,   ,   ,   ,   ],
-        [___,EY3,   ,EY2,   ],
+        [___,EY2,   ,EY1,   ],
         [___,ZYR,   ,   ,TLC],
       ],
       [
         [   ,   ,   ,   ,   ],
-        [   ,   ,___,   ,   ],
+        [   ,   ,   ,   ,   ],
         [   ,___,   ,   ,   ],
         [   ,   ,   ,___,   ],
         [   ,___,   ,   ,   ],
@@ -313,7 +313,7 @@ export const levels = {
     intro: [
       "FOE: System scan completed.",
       "FOE: Anomaly detected. Beginning quarantine.",
-      "Hurry! We have to reach the exit before quarantine is established!",
+      "Hurry! We have to reach the exit before quarantine!",
     ],
     theme: [1.0, 0.2, 0.2],
     map: [
@@ -338,13 +338,13 @@ export const levels = {
     ],
     outro: [
       "FOE: Warning! Sandbox compromised.",
-      "Shut. Up. I've got you now, you stupid bot!",
+      "Shut. Up. I've got you now, you stupid script!",
       'FOE: "sudo guardian reset"',
       "FOE: System normal. No malware detected.",
       "Whew... That was too close!",
       "You did great back there.",
       "I have to go now... My mission awaits.",
-      "I'll restore you to your normal state, process 15127.",
+      "I'll restore you to your normal self, process 15127.",
       "Yes... I know you have questions...",
       "No... I'm not just a bundle of documents.",
       "I'm sorry I kept you in the dark.",
