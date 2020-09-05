@@ -105,12 +105,12 @@ export function IsoCam(scene) {
 
 export function initXRHelper(scene) {
   if (window.navigator.xr) {
-    const xrTemplateCam = new UniversalCamera(
-      "xrTemplateCam",
-      new Vector3(0, 2, -2),
-      scene
-    );
-    xrTemplateCam.rotation = new Vector3(Math.PI / 6, 0, 0);
+    // const xrTemplateCam = new UniversalCamera(
+    //   "xrTemplateCam",
+    //   new Vector3(0, 5, -2),
+    //   scene
+    // );
+    // xrTemplateCam.rotation = new Vector3(Math.PI / 6, 0, 0);
 
     return scene
       .createDefaultXRExperienceAsync({
@@ -121,22 +121,22 @@ export function initXRHelper(scene) {
         //    Which breaks our isomorphic POV.
         //
         // This option prevents #2
-        ignoreNativeCameraTransformation: true,
+        // ignoreNativeCameraTransformation: true,
         disableTeleportation: true,
         useMultiview: true,
       })
       .then((xr) => {
         const xrHelper = xr.baseExperience;
-        xrHelper.onStateChangedObservable.add((state) => {
-          if (state === WebXRState.IN_XR) {
-            // ... While this line prevents #1
-            xrHelper.camera.setTransformationFromNonVRCamera(xrTemplateCam);
-          }
-        });
+        // xrHelper.onStateChangedObservable.add((state) => {
+        //   if (state === WebXRState.IN_XR) {
+        //     // ... While this line prevents #1
+        //     xrHelper.camera.setTransformationFromNonVRCamera(xrTemplateCam);
+        //   }
+        // });
 
         // Set camera height
         xrHelper.onInitialXRPoseSetObservable.add((xrCamera) => {
-          xrCamera.y = 3;
+          xrCamera.position.y = 4;
         });
 
         return xrHelper;
