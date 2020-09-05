@@ -47,7 +47,7 @@ module.exports = (env) => {
     entry: "./site/index.js",
     output: {
       path: path.resolve(__dirname, "public"),
-      filename: "game.[hash:8].js",
+      filename: "game.js",
     },
     stats: "minimal",
     devtool: debug ? "eval-cheap-source-map" : false,
@@ -106,7 +106,7 @@ module.exports = (env) => {
       //       debug: true,
       //       renaming: false,
 
-      //       externs: [path.resolve(__dirname, "closure.externs.js")],
+      //       externs: [path.resolve(__dirname, "externs.js")],
       //       compilation_level: "ADVANCED",
       //       languageOut: "ECMASCRIPT_2017",
       //     }

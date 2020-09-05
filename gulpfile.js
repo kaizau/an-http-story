@@ -1,8 +1,7 @@
 const fs = require("fs");
-const path = require("path");
 const { src, dest, series, watch } = require("gulp");
 const sourcemaps = require("gulp-sourcemaps");
-const glob = require("glob");
+const archiver = require("archiver");
 const del = require("del");
 const closureCompiler = require("google-closure-compiler").gulp();
 
@@ -13,27 +12,28 @@ const closureCompiler = require("google-closure-compiler").gulp();
 const externs = ["externs.generated.js", "externs.bespoke.js"];
 
 function compile(options = {}) {
-  const files = glob.sync("public/game.*.js");
-  const output = path.basename(files[0]);
+  const compilerOptions = Object.assign(
+    {
+      externs,
+      js_output_file: "game.js",
+      compilation_level: "ADVANCED_OPTIMIZATIONS",
+      language_in: "ECMASCRIPT_2019",
+      language_out: "ECMASCRIPT_2019",
+    },
+    options
+  );
 
-  return src(files[0], { base: "." })
-    .pipe(sourcemaps.init())
-    .pipe(
-      closureCompiler(
-        Object.assign(
-          {
-            externs,
-            js_output_file: output,
-            compilation_level: "ADVANCED_OPTIMIZATIONS",
-            language_in: "ECMASCRIPT_2019",
-            language_out: "ECMASCRIPT_2019",
-          },
-          options
-        )
-      )
-    )
-    .pipe(sourcemaps.write("."))
-    .pipe(dest("public-closure", { sourcemaps: true }));
+  if (options.debug) {
+    return src("public/game.js", { base: "." })
+      .pipe(sourcemaps.init())
+      .pipe(closureCompiler(compilerOptions))
+      .pipe(sourcemaps.write("."))
+      .pipe(dest("public-closure"));
+  } else {
+    return src("public/game.js", { base: "." })
+      .pipe(closureCompiler(compilerOptions))
+      .pipe(dest("public-closure"));
+  }
 }
 
 // https://stackoverflow.com/questions/14147479/debugging-closure-compiler-compiled-javascript
@@ -47,23 +47,62 @@ function compileDebug() {
 }
 
 function compileWatch() {
-  watch(externs, { ignoreInitial: false }, compileDebug);
+  return watch(externs, { ignoreInitial: false }, compileDebug);
 }
 
-exports.default = series(clean, copy, compileWatch);
+exports.default = series(clean, copyIndex, copyBabylon, compileWatch);
+
+exports.compileProd = series(clean, copyIndex, compile);
+
+//
+// Zip
+//
+
+function zip(input, output) {
+  const out = fs.createWriteStream(output);
+  const archive = archiver("zip", { zlib: { level: 9 } });
+  archive.pipe(out);
+  archive.file(input + "index.html");
+  archive.file(input + "game.js");
+  out.on("close", function onStreamClose() {
+    console.log(output + " is " + archive.pointer() + " total bytes");
+  });
+  return archive.finalize();
+}
+
+function zipClosure() {
+  return zip("public-closure/", "dist/game-closure.zip");
+}
+
+function zipWebpack() {
+  return zip("public/", "dist/game.zip");
+}
+
+function cleanClosure() {
+  return del("dist/game-closure.zip");
+}
+
+function cleanWebpack() {
+  return del("dist/game.zip");
+}
+
+exports.zipClosure = series(cleanClosure, zipClosure);
+exports.zipWebpack = series(cleanWebpack, zipWebpack);
 
 //
 // Utility
 //
 
 function clean() {
-  return del("public-closure/*");
+  return del("public-closure/**");
 }
 
-function copy() {
-  return src(["public/index.html", "site/vendor/babylon.js"]).pipe(
-    dest("./public-closure")
-  );
+function copyIndex() {
+  return src("public/index.html").pipe(dest("./public-closure"));
+}
+
+function copyBabylon() {
+  return src("site/vendor/babylon.js").pipe(dest("./public-closure"));
 }
 
 function generateExterns(cb) {

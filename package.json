@@ -19,8 +19,8 @@
     "analyze": "webpack --env.TARGET=analyze",
     "build": "webpack --env.TARGET=production",
     "build-closure": "webpack --env.TARGET=production-closure",
-    "zip": "rimraf game.zip && zip -rj9 game.zip public && ls -l game.zip | awk '{print $5}'",
-    "finalize": "webpack --env.TARGET=finalize && npm run zip",
+    "finalize": "webpack --env.TARGET=finalize && gulp zipWebpack",
+    "finalize-closure": "webpack --env.TARGET=finalize-closure && gulp compileProd && gulp zipClosure",
     "lint": "prettier --ignore-path .gitignore --write . && eslint --fix .",
     "test": "jest --watch"
   },
@@ -32,17 +32,18 @@
     "del": "^5.1.0",
     "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.11.0",
-    "glob": "^7.1.6",
     "google-closure-compiler": "^20200830.0.0",
     "gulp": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "html-webpack-plugin": "^4.3.0",
     "jest": "^26.4.1",
     "prettier": "^2.0.5",
-    "rimraf": "^3.0.2",
     "webpack": "^4.44.1",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "archiver": "^5.0.0"
   }
 }
