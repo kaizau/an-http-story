@@ -67,7 +67,7 @@ export class MeshMixins {
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
-        if (!this.state.playerControl) return;
+        if (!this.state.playerControl || this.state.drag === mesh) return;
 
         const selected = this.state.selected;
         if (selected && selected.isControllable) {
@@ -85,18 +85,29 @@ export class MeshMixins {
       dragPlaneNormal: new Vector3(0, 1, 0),
     });
     pointerDragBehavior.moveAttached = false;
-    pointerDragBehavior.onDragStartObservable.add(() => {
-      if (this._hasCharacterOnTop(mesh)) {
+    pointerDragBehavior.onDragStartObservable.add(async () => {
+      if (!this.state.playerControl || this._hasCharacterOnTop(mesh)) {
         mesh.outlineColor = errorOutline;
         mesh.renderOutline = true;
         return;
       }
 
-      mesh.renderOutline = true;
-      this.state.dragged = mesh;
+      // Slight delay to accommodate oversensitive VR controllers
+      this.state.dragStart = true;
+      await delay(200);
+      if (this.state.dragStart) {
+        mesh.renderOutline = true;
+        this.state.drag = mesh;
+      }
     });
     pointerDragBehavior.onDragObservable.add((event) => {
-      if (this._hasCharacterOnTop(mesh)) return;
+      if (
+        !this.state.drag ||
+        !this.state.playerControl ||
+        this._hasCharacterOnTop(mesh)
+      ) {
+        return;
+      }
 
       mesh.renderOutline = true;
       mesh.position.x += event.delta.x;
@@ -110,22 +121,23 @@ export class MeshMixins {
         // mesh.computeWorldMatrix();
       } else {
         mesh.outlineColor = primaryOutline;
-        this.state.draggedLastSafePosition = mesh.position.clone();
+        this.state.dragLastSafePosition = mesh.position.clone();
       }
     });
     pointerDragBehavior.onDragEndObservable.add(() => {
       mesh.outlineColor = primaryOutline;
       let snap;
       if (this._hasAnyCollision(mesh)) {
-        snap = this.state.draggedLastSafePosition;
+        snap = this.state.dragLastSafePosition;
       } else {
         snap = mesh.position.clone();
       }
       snap.x = Math.round(snap.x);
       snap.z = Math.round(snap.z);
       this.animationMixins.floatTo(mesh, snap);
-      this.state.dragged = null;
-      this.state.draggedLastSafePosition = null;
+      this.state.drag = null;
+      this.state.dragStart = false;
+      this.state.dragLastSafePosition = null;
       mesh.renderOutline = false;
     });
     mesh.addBehavior(pointerDragBehavior);
@@ -238,7 +250,7 @@ export class MeshMixins {
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPointerOutTrigger, () => {
-        if (this.state.selected !== mesh && this.state.dragged !== mesh) {
+        if (this.state.selected !== mesh && this.state.drag !== mesh) {
           mesh.renderOutline = false;
         }
         // mesh.material.diffuseColor.scale(0.8);

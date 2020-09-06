@@ -28,7 +28,7 @@ init();
 /** @suppress {uselessCode} */
 async function init() {
   if (process.env.DEBUG) {
-    startGame(6);
+    startGame();
     return;
   }
 
