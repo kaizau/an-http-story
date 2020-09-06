@@ -232,42 +232,38 @@ export class AnimationMixins {
   }
 
   // Determine rotations from keyframe positions
-  // TODO Research mesh.calcRotatePOV
   _calcRotationKeys(keys, mesh) {
-    const rotationKeys = [];
-    const node = new TransformNode();
-
     // Start oriented in the initial direction to ensure smooth loop
     // Note, our meshes point "backwards", so the 2nd param is required
     if (mesh.isPatrolling) {
       mesh.lookAt(keys[1].value, Math.PI, 0, 0, Space.WORLD);
     }
 
+    const rotationKeys = [];
     rotationKeys.push({
       frame: 0,
       value: mesh.rotation.clone(),
     });
 
+    const node = new TransformNode();
+    node.rotation = mesh.rotation.clone();
+
     let previous;
     keys.forEach((current) => {
       if (previous) {
+        const previousY = node.rotation.y;
         node.position = previous.value;
+        node.rotation.y = 0; // Reset rotation, otherwise can accumulate
         node.lookAt(current.value, Math.PI, 0, 0, Space.WORLD);
-        if (node.rotation.y > Math.PI) {
+
+        // Translate long turns into short ones
+        const diffY = node.rotation.y - previousY;
+        if (diffY > Math.PI) {
           node.rotation.y -= Math.PI * 2;
-          // console.log(
-          //   previous.rotation.clone(),
-          //   current.rotation.clone(),
-          //   "> PI"
-          // );
-        } else if (node.rotation.y < 0 - Math.PI) {
+        } else if (diffY < 0 - Math.PI) {
           node.rotation.y += Math.PI * 2;
-          // console.log(
-          //   previous.rotation.clone(),
-          //   current.rotation.clone(),
-          //   "< -PI"
-          // );
         }
+
         rotationKeys.push({
           frame: current.frame,
           value: node.rotation.clone(),
