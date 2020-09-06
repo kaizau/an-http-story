@@ -1,4 +1,4 @@
-import { TLX, TLA, TLB, TLC } from "./levels";
+import { TLX, TLA, TLB, TLC, TLD } from "./levels";
 const {
   MeshBuilder,
   Mesh,
@@ -36,6 +36,10 @@ export class MeshFactory {
     this.materialE = new StandardMaterial("materialE");
     this.materialE.diffuseColor = new Color3(1, 0.7, 0.7);
     this.materialE.freeze();
+
+    this.materialF = new StandardMaterial("materialF");
+    this.materialF.diffuseColor = new Color3(0.6, 0.8, 1);
+    this.materialF.freeze();
 
     this.createBlockTemplate();
   }
@@ -169,11 +173,14 @@ export class MeshFactory {
       case TLC:
         mesh.material = this.materialE;
         break;
+      case TLD:
+        mesh.material = this.materialF;
+        break;
     }
 
     // Taller bounding box to allow intersect with player character
-    const min = new Vector3(0, 0, 0);
-    const max = new Vector3(0.5, 0.5, 0.5);
+    const min = new Vector3(-0.25, -0.5, -0.25);
+    const max = new Vector3(0.25, 0.5, 0.25);
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
     this.meshMixins.makeTeleporter(mesh, id);

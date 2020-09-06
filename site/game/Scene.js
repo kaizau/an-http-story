@@ -63,10 +63,9 @@ export function ShadowGen(scene, direct) {
   return shadowGenerator;
 }
 
-// TODO maxZ for performance?
 /** @constructor */
 export function IsoCam(scene) {
-  const offset = 5;
+  const offset = 6;
   const isoCam = new UniversalCamera(
     "isoCam",
     new Vector3(0 - offset, offset, 0 - offset),
@@ -94,8 +93,8 @@ export function IsoCam(scene) {
     }
     if (isoCam.position.z > 2) {
       isoCam.position.z = 2;
-    } else if (isoCam.position.z < -6) {
-      isoCam.position.z = -6;
+    } else if (isoCam.position.z < -10) {
+      isoCam.position.z = -10;
     }
   });
 
@@ -135,7 +134,7 @@ export function initXRHelper(scene) {
 
         // Set camera height
         xrHelper.onInitialXRPoseSetObservable.add((xrCamera) => {
-          xrCamera.position.y = 4;
+          xrCamera.position.y = 6;
         });
 
         return xrHelper;

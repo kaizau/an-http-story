@@ -5,6 +5,7 @@ import {
   TLA,
   TLB,
   TLC,
+  TLD,
   ___,
   __M,
   EYE,
@@ -94,6 +95,7 @@ export class LevelFactory {
                 case TLA:
                 case TLB:
                 case TLC:
+                case TLD:
                   mesh = this.meshFactory.createTeleporter(code);
                   break;
                 case ZYR:
