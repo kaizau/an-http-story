@@ -5,14 +5,13 @@ const {
   DirectionalLight,
   ShadowGenerator,
   UniversalCamera,
-  WebXRState,
+  // WebXRState,
 } = BABYLON;
 
 export class Environment {
   constructor(scene) {
     this.scene = scene;
 
-    // TODO Separate ground for VR player and character / tiles
     this.helper = scene.createDefaultEnvironment({
       skyboxSize: 100,
     });
@@ -58,9 +57,9 @@ export function DirectLight(scene) {
 // TODO scene is unused
 /** @constructor */
 export function ShadowGen(scene, direct) {
-  const shadowGenerator = new ShadowGenerator(96, direct);
+  const shadowGenerator = new ShadowGenerator(256, direct);
   shadowGenerator.usePoissonSampling = true;
-  shadowGenerator.darkness = 0.5;
+  shadowGenerator.darkness = 0.4;
   return shadowGenerator;
 }
 
@@ -68,7 +67,6 @@ export function ShadowGen(scene, direct) {
 /** @constructor */
 export function IsoCam(scene) {
   const offset = 5;
-  const maxDistance = 10;
   const isoCam = new UniversalCamera(
     "isoCam",
     new Vector3(0 - offset, offset, 0 - offset),
@@ -76,6 +74,7 @@ export function IsoCam(scene) {
   );
   isoCam.rotation = new Vector3(Math.PI / 6, Math.PI / 6, 0);
   isoCam.position = new Vector3(-1, offset, -3);
+  isoCam.maxZ = 1000;
   isoCam.speed = 0.5;
   isoCam.inputs.removeByType("FreeCameraMouseInput");
   isoCam.keysUp = [38, 87];
@@ -88,15 +87,15 @@ export function IsoCam(scene) {
     isoCam.position.y = offset;
 
     // Maximum distance
-    if (isoCam.position.x > maxDistance - offset) {
-      isoCam.position.x = maxDistance - offset;
-    } else if (isoCam.position.x < 0 - maxDistance - offset) {
-      isoCam.position.x = 0 - maxDistance - offset;
+    if (isoCam.position.x > 6) {
+      isoCam.position.x = 6;
+    } else if (isoCam.position.x < -4) {
+      isoCam.position.x = -4;
     }
-    if (isoCam.position.z > maxDistance - offset) {
-      isoCam.position.z = maxDistance - offset;
-    } else if (isoCam.position.z < 0 - maxDistance - offset) {
-      isoCam.position.z = 0 - maxDistance - offset;
+    if (isoCam.position.z > 2) {
+      isoCam.position.z = 2;
+    } else if (isoCam.position.z < -6) {
+      isoCam.position.z = -6;
     }
   });
 

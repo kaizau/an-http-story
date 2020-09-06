@@ -80,23 +80,25 @@ export default class World {
 
   load(levelId) {
     this.state.currentLevel = levelId;
-    progress.add(this.state.currentLevel);
     const level = levels[levelId];
     if (level) {
+      progress.add(this.state.currentLevel);
       this.levelFactory.load(level);
     } else {
       const total = Object.keys(levels);
       const completed = progress.get();
       if (total.every((level) => completed.includes(level))) {
+        this.win("ending?=1");
+      } else {
         this.win();
       }
     }
   }
 
-  async win() {
+  async win(ending = "") {
     await this.levelFactory.reset();
     // TODO Fade to white
-    location.href = location.pathname + "?ending=1";
+    location.href = location.pathname + ending;
   }
 
   lose() {
