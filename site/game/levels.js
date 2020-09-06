@@ -186,13 +186,12 @@ export const levels = {
     ],
     outro: [
       "FOE: Process unresponsive. Commencing system scan...",
-      "What does he keep yabbering about?",
     ],
   },
 
   5: {
     intro: [
-      "Woah. This is getting more difficult.",
+      "Well, this escalated quickly.",
       "But you're doing great.",
       "Thanks for helping me.",
     ],
@@ -411,7 +410,7 @@ export const levels = {
     intro: [
       "Whew... That was too close!",
       "FOE: Warning. Sandbox compromised.",
-      "Shut. Up. I've been waiting far too long to do this...",
+      "Shut. Up. Finally, I can take care of this annoyance.",
       'FOE: "sudo guardian reset"',
       "FOE: Guardian system rebooting...",
     ],
