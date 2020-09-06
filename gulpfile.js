@@ -120,8 +120,7 @@ function zip(input, output) {
   const out = fs.createWriteStream(output);
   const archive = archiver("zip", { zlib: { level: 9 } });
   archive.pipe(out);
-  archive.file(input + "index.html");
-  archive.file(input + "game.js");
+  archive.directory(input, false);
   out.on("close", function onStreamClose() {
     console.log(output + " is " + archive.pointer() + " total bytes");
   });
@@ -129,19 +128,19 @@ function zip(input, output) {
 }
 
 function zipClosure() {
-  return zip("public-closure/", "dist/game-closure.zip");
+  return zip("public-closure/", "dist/a-http-story-closure.zip");
 }
 
 function zipWebpack() {
-  return zip("public/", "dist/game.zip");
+  return zip("public/", "dist/a-http-story.zip");
 }
 
 function cleanDistClosure() {
-  return del("dist/game-closure.zip");
+  return del("dist/a-http-story-closure.zip");
 }
 
 function cleanDistWebpack() {
-  return del("dist/game.zip");
+  return del("dist/a-http-story.zip");
 }
 
 exports.zipClosure = series(cleanDistClosure, zipClosure);
