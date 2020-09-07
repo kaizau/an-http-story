@@ -55,15 +55,25 @@ export class MeshFactory {
     mesh.material.diffuseColor = new Color3(0.9, 0.9, 0.9);
     mesh.isVisible = false;
 
-    // Supposedly good for perf
+    // Supposedly good for perf?
     // mesh.convertToUnIndexedMesh();
 
     this.blockTemplate = mesh;
+
+    // Instanced meshes cannot receive outlines, overlays, highlights. So
+    // instead, create a clone, then swap in the clone when needed.
+    this.blockDouble = mesh.clone();
+    this.blockDouble.overlayColor = Color3.White();
+    this.blockDouble.renderOverlay = true;
+    this.meshMixins.makeInstanceDouble(this.blockDouble);
+    // this.meshMixins.makeWalkable(this.blockDouble, true);
   }
 
   createBlock() {
     const mesh = this.blockTemplate.createInstance();
+    mesh.blockDouble = this.blockDouble;
     this.shadows.addShadowCaster(mesh);
+    this.meshMixins.makeHoverable(mesh);
     this.meshMixins.makeWalkable(mesh);
     return mesh;
   }
@@ -89,6 +99,7 @@ export class MeshFactory {
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
     this.shadows.addShadowCaster(mesh);
+    this.meshMixins.makeHoverable(mesh);
     this.meshMixins.makeWalkable(mesh);
     this.meshMixins.makeDraggable(mesh);
     return mesh;
@@ -144,6 +155,7 @@ export class MeshFactory {
 
     // TODO subtle bobbing up and down animation
     this.shadows.addShadowCaster(mesh);
+    this.meshMixins.makeHoverable(mesh);
     this.meshMixins.makeSelectable(mesh);
     this.meshMixins.makeControllable(mesh);
     this.meshMixins.makeMainCharacter(mesh);

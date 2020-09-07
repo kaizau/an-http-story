@@ -23,17 +23,17 @@ const errorOutline = new Color3(1, 1, 0);
 
 // TODO Are action managers automatically disposed when meshes are disposed?
 export class MeshMixins {
-  constructor(scene, state, animationMixins) {
+  constructor(scene, state, highlights, animationMixins) {
     this.scene = scene;
     this.state = state;
+    this.highlights = highlights;
     this.animationMixins = animationMixins;
   }
 
   // TODO Implement as event?
   makeSelectable(mesh) {
-    mesh.outlineColor = primaryOutline;
     this._ensureActionManager(mesh);
-    this.makeHoverable(mesh);
+    mesh.outlineColor = primaryOutline;
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
@@ -59,19 +59,25 @@ export class MeshMixins {
     );
   }
 
-  makeWalkable(mesh) {
-    mesh.isWalkable = true;
-    mesh.outlineColor = secondaryOutline;
+  makeWalkable(mesh, double) {
     this._ensureActionManager(mesh);
-    this.makeHoverable(mesh);
+    mesh.isWalkable = true;
+
+    // TODO Pick is not being triggered on blockDouble...
+    if (double) {
+      mesh.isPickable = true;
+      console.log(mesh);
+    }
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
+        console.log("pick");
         if (!this.state.playerControl || this.state.drag === mesh) return;
 
         const selected = this.state.selected;
         if (selected && selected.isControllable) {
           const target = mesh.position.clone();
+          console.log(target);
           target.y = selected.position.y;
           this.animationMixins.walkTo(selected, target);
         }
@@ -80,6 +86,7 @@ export class MeshMixins {
   }
 
   makeDraggable(mesh) {
+    this._ensureActionManager(mesh);
     mesh.outlineColor = primaryOutline;
     const pointerDragBehavior = new PointerDragBehavior({
       dragPlaneNormal: new Vector3(0, 1, 0),
@@ -238,22 +245,51 @@ export class MeshMixins {
     });
   }
 
+  makeInstanceDouble(mesh) {
+    this._ensureActionManager(mesh);
+    mesh.actionManager.registerAction(
+      new ExecuteCodeAction(OnPointerOutTrigger, () => {
+        if (mesh.onInstancePointerOut) {
+          mesh.onInstancePointerOut();
+        }
+      })
+    );
+  }
+
   makeHoverable(mesh) {
     this._ensureActionManager(mesh);
+    mesh.overlayColor = Color3.White();
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPointerOverTrigger, () => {
-        mesh.renderOutline = true;
-        // mesh.material.diffuseColor.scale(1.25);
+        if (mesh.isAnInstance) {
+          const double = mesh.blockDouble;
+
+          // It's possible to rapidly pointerOver another mesh before
+          // pointerOut fires on the current, which leads to disappearing
+          // blocks. So, call this preemptively.
+          if (double.onInstancePointerOut) {
+            double.onInstancePointerOut();
+          }
+
+          double.position = mesh.position;
+          double.isVisible = true;
+          mesh.isVisible = false;
+          double.onInstancePointerOut = () => {
+            double.isVisible = false;
+            mesh.isVisible = true;
+          };
+        } else {
+          mesh.renderOverlay = true;
+        }
       })
     );
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPointerOutTrigger, () => {
-        if (this.state.selected !== mesh && this.state.drag !== mesh) {
-          mesh.renderOutline = false;
+        if (!mesh.isAnInstance) {
+          mesh.renderOverlay = false;
         }
-        // mesh.material.diffuseColor.scale(0.8);
       })
     );
   }
