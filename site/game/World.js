@@ -3,7 +3,6 @@ import {
   AmbientLight,
   DirectLight,
   ShadowGen,
-  Highlights,
   IsoCam,
   initXRHelper,
 } from "./Scene";
@@ -33,7 +32,6 @@ export default class World {
     this.ambientLight = new AmbientLight(this.scene);
     this.directLight = new DirectLight(this.scene);
     this.shadows = new ShadowGen(this.scene, this.directLight);
-    this.highlights = new Highlights(this.scene);
     this.isoCam = new IsoCam(this.scene);
     this.scene.activeCamera = this.isoCam;
     this.isoCam.attachControl(this.canvas);
@@ -43,7 +41,6 @@ export default class World {
     this.meshMixins = new MeshMixins(
       this.scene,
       this.state,
-      this.highlights,
       this.animationMixins
     );
     this.meshFactory = new MeshFactory(

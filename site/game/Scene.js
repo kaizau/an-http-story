@@ -4,7 +4,6 @@ const {
   HemisphericLight,
   DirectionalLight,
   ShadowGenerator,
-  HighlightLayer,
   UniversalCamera,
   WebXRState,
 } = BABYLON;
@@ -62,12 +61,6 @@ export function ShadowGen(scene, direct) {
   shadowGenerator.usePoissonSampling = true;
   shadowGenerator.darkness = 0.4;
   return shadowGenerator;
-}
-
-// TODO scene is unused
-/** @constructor */
-export function Highlights(scene) {
-  return new HighlightLayer("hover", scene);
 }
 
 /** @constructor */

@@ -18,15 +18,13 @@ const {
 
 // TODO Instead of outlines, maybe glow or mesh.renderOverlay?
 const primaryOutline = new Color3(0, 1, 1);
-const secondaryOutline = new Color3(1, 1, 1);
 const errorOutline = new Color3(1, 1, 0);
 
 // TODO Are action managers automatically disposed when meshes are disposed?
 export class MeshMixins {
-  constructor(scene, state, highlights, animationMixins) {
+  constructor(scene, state, animationMixins) {
     this.scene = scene;
     this.state = state;
-    this.highlights = highlights;
     this.animationMixins = animationMixins;
   }
 
@@ -59,25 +57,17 @@ export class MeshMixins {
     );
   }
 
-  makeWalkable(mesh, double) {
+  makeWalkable(mesh) {
     this._ensureActionManager(mesh);
     mesh.isWalkable = true;
 
-    // TODO Pick is not being triggered on blockDouble...
-    if (double) {
-      mesh.isPickable = true;
-      console.log(mesh);
-    }
-
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
-        console.log("pick");
         if (!this.state.playerControl || this.state.drag === mesh) return;
 
         const selected = this.state.selected;
         if (selected && selected.isControllable) {
           const target = mesh.position.clone();
-          console.log(target);
           target.y = selected.position.y;
           this.animationMixins.walkTo(selected, target);
         }
@@ -86,7 +76,6 @@ export class MeshMixins {
   }
 
   makeDraggable(mesh) {
-    this._ensureActionManager(mesh);
     mesh.outlineColor = primaryOutline;
     const pointerDragBehavior = new PointerDragBehavior({
       dragPlaneNormal: new Vector3(0, 1, 0),
@@ -295,7 +284,7 @@ export class MeshMixins {
   }
 
   _ensureActionManager(mesh) {
-    mesh.actionManager = mesh.actionManger || new ActionManager(this.scene);
+    mesh.actionManager = mesh.actionManager || new ActionManager(this.scene);
   }
 
   _hasCharacterOnTop(mesh) {

@@ -65,8 +65,8 @@ export class MeshFactory {
     this.blockDouble = mesh.clone();
     this.blockDouble.overlayColor = Color3.White();
     this.blockDouble.renderOverlay = true;
+    this.meshMixins.makeWalkable(this.blockDouble);
     this.meshMixins.makeInstanceDouble(this.blockDouble);
-    // this.meshMixins.makeWalkable(this.blockDouble, true);
   }
 
   createBlock() {
