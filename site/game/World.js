@@ -28,7 +28,6 @@ export default class World {
 
     this.scene = new Scene(this.engine);
     this.envHelper = new Environment(this.scene);
-    this.dialogue = new Dialogue(this.scene);
 
     this.ambientLight = new AmbientLight(this.scene);
     this.directLight = new DirectLight(this.scene);
@@ -36,6 +35,7 @@ export default class World {
     this.isoCam = new IsoCam(this.scene);
     this.scene.activeCamera = this.isoCam;
     this.isoCam.attachControl(this.canvas);
+    this.dialogue = new Dialogue(this.scene);
 
     this.animationMixins = new AnimationMixins(this.scene);
     this.meshMixins = new MeshMixins(
@@ -60,7 +60,7 @@ export default class World {
 
     this.xrHelper = {};
 
-    initXRHelper(this.scene).then((xrHelper) => {
+    initXRHelper(this.scene, this.dialogue).then((xrHelper) => {
       this.xrHelper = xrHelper;
     });
 

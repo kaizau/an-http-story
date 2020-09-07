@@ -9,19 +9,27 @@ const {
   Vector3,
 } = BABYLON;
 
-const layerHeight = 1;
-const layerWidth = 10;
-const textRes = 128;
+const layerHeight = 0.05;
+const layerWidth = 1.5;
+const textRes = 512;
+const textSize = 16;
 
 export class Dialogue {
   constructor(scene) {
     this.scene = scene;
+    this.isoCam = this.scene.activeCamera;
+
     this.layer = MeshBuilder.CreatePlane("dialogue", {
       height: layerHeight,
       width: layerWidth,
     });
-    this.layer.position = new Vector3(5, 1, 8);
+    this.layer.parent = this.isoCam;
+    this.layer.position = new Vector3(0, -0.5, 2);
     this.layer.isPickable = false;
+
+    this.bg = this.layer.clone("dialogueBg");
+    this.bg.position.z += 0.01;
+    this.bg.isVisible = false;
 
     this.texture = new DynamicTexture("dialogue", {
       height: layerHeight * textRes,
@@ -32,12 +40,25 @@ export class Dialogue {
 
     const material = new StandardMaterial("dialogue");
     material.specularColor = Color3.Black();
+    const bgMaterial = material.clone();
+
     material.emissiveColor = Color3.White();
     material.diffuseTexture = this.texture;
     this.layer.material = material;
 
-    // TODO For extra fanciness... attach to camera?
-    // this.layer.parent = this.scene.activeCamera;
+    bgMaterial.diffuseColor = Color3.Black();
+    bgMaterial.alpha = 0.6;
+    this.bg.material = bgMaterial;
+  }
+
+  attachCamera(camera) {
+    if (camera) {
+      this.layer.parent = camera;
+      this.bg.parent = camera;
+    } else {
+      this.layer.parent = this.isoCam;
+      this.bg.parent = this.isoCam;
+    }
   }
 
   async load(lines) {
@@ -52,7 +73,7 @@ export class Dialogue {
           line = line.slice(5);
           speaker = "foe";
         }
-        this.show(line);
+        this.show(line, speaker);
         playSound(speaker);
         const duration = line.length < 20 ? 2000 : line.length * 100;
         await delay(duration);
@@ -64,31 +85,40 @@ export class Dialogue {
           line = line.slice(5);
           speaker = foeVoice;
         }
-        setTimeout(() => this.show(line), 400); // Small delay to sync with speech
+        setTimeout(() => this.show(line, speaker), 400); // Small delay to sync with speech
         await this.speak(line, speaker);
       }
     }
     this.clear();
   }
 
-  show(text) {
+  show(text, speaker) {
     this.clear();
+    const textFont = `${textSize}px monospace`;
+    const textColor = speaker === "foe" ? "#f88" : "#fff";
+    const ctx = this.texture.getContext();
+    ctx.font = textFont;
+    const textWidth = ctx.measureText(text).width;
+    const margin = (layerWidth * textRes - textWidth) / 2;
+
     this.texture.drawText(
       text,
-      0,
-      36,
-      "36px monospace",
-      // "#000",
-      // "#fff"
-      "#fff",
+      margin,
+      textSize,
+      textFont,
+      textColor,
       "transparent"
     );
+    if (text) {
+      this.bg.isVisible = true;
+    }
   }
 
   clear() {
     const ctx = this.texture.getContext();
     ctx.clearRect(0, 0, layerWidth * textRes, layerHeight * textRes);
     this.texture.update();
+    this.bg.isVisible = false;
   }
 
   speak(text, voice) {

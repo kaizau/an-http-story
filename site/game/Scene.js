@@ -5,7 +5,7 @@ const {
   DirectionalLight,
   ShadowGenerator,
   UniversalCamera,
-  // WebXRState,
+  WebXRState,
 } = BABYLON;
 
 export class Environment {
@@ -101,36 +101,22 @@ export function IsoCam(scene) {
   return isoCam;
 }
 
-export function initXRHelper(scene) {
+export function initXRHelper(scene, dialogue) {
   if (window.navigator.xr) {
-    // const xrTemplateCam = new UniversalCamera(
-    //   "xrTemplateCam",
-    //   new Vector3(0, 5, -2),
-    //   scene
-    // );
-    // xrTemplateCam.rotation = new Vector3(Math.PI / 6, 0, 0);
-
     return scene
       .createDefaultXRExperienceAsync({
-        // By default, XR wrecks havoc with the camera setup.
-        // 1. Upon entering, xrCam inherits both the position and direction
-        //    of the active camera, which is wrong and hard to reset.
-        // 2. Upon exiting, the active cam's position is set to that of xrCam.
-        //    Which breaks our isomorphic POV.
-        //
-        // This option prevents #2
-        // ignoreNativeCameraTransformation: true,
         disableTeleportation: true,
         useMultiview: true,
       })
       .then((xr) => {
         const xrHelper = xr.baseExperience;
-        // xrHelper.onStateChangedObservable.add((state) => {
-        //   if (state === WebXRState.IN_XR) {
-        //     // ... While this line prevents #1
-        //     xrHelper.camera.setTransformationFromNonVRCamera(xrTemplateCam);
-        //   }
-        // });
+        xrHelper.onStateChangedObservable.add((state) => {
+          if (state === WebXRState.IN_XR) {
+            dialogue.attachCamera(xrHelper.camera);
+          } else if (state === WebXRState.NOT_IN_XR) {
+            dialogue.attachCamera(false);
+          }
+        });
 
         // Set camera height
         xrHelper.onInitialXRPoseSetObservable.add((xrCamera) => {
