@@ -122,7 +122,9 @@ function zip(input, output) {
   archive.pipe(out);
   archive.directory(input, false);
   out.on("close", function onStreamClose() {
-    console.log(output + " is " + archive.pointer() + " total bytes");
+    const size = archive.pointer();
+    const warning = size > 13312 ? "OVER LIMIT: " : "";
+    console.log(`${warning}${output} is ${size} total bytes.`);
   });
   return archive.finalize();
 }
