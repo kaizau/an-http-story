@@ -149,8 +149,8 @@ export class MeshFactory {
     mesh.material = this.materialA;
 
     // Larger bounding box to prevent getting "squashed" by movable block
-    const min = new Vector3(-0.25, -0.25, -0.25);
-    const max = new Vector3(0.25, 0.5, 0.25);
+    const max = new Vector3(0.4, 0.4, 0.4);
+    const min = new Vector3(-0.4, -0.4, -0.4);
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
     // TODO subtle bobbing up and down animation
@@ -188,8 +188,8 @@ export class MeshFactory {
     }
 
     // Taller bounding box to allow intersect with player character
-    const min = new Vector3(-0.25, -0.5, -0.25);
-    const max = new Vector3(0.25, 0.5, 0.25);
+    const min = new Vector3(-0.4, -0.4, -0.4);
+    const max = new Vector3(0.4, 0.4, 0.4);
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
     this.meshMixins.makeTeleporter(mesh, id);

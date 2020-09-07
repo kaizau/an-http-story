@@ -61,38 +61,44 @@ export class MeshMixins {
 
       // Slight delay to accommodate oversensitive VR controllers
       this.state.dragStart = true;
-      await delay(200);
+      await delay(150);
       if (this.state.dragStart) {
         mesh.renderOutline = true;
+        mesh.renderOverlay = false;
         this.state.drag = mesh;
+        this.state.dragLastSafePosition = mesh.position.clone();
       }
     });
     pointerDragBehavior.onDragObservable.add((event) => {
-      if (
-        !this.state.drag ||
-        !this.state.playerControl ||
-        this._hasCharacterOnTop(mesh)
-      ) {
+      if (!this.state.drag || !this.state.playerControl) {
         return;
       }
 
       mesh.renderOutline = true;
       mesh.position.x += event.delta.x;
       mesh.position.z += event.delta.z;
+      // NOTE Hard-stopping drag collisions would be better, if it didn't make
+      // controls annoyingly difficult. So allow "ghosting", but reset to
+      // non-intersecting position on end.
+      //
       // mesh.computeWorldMatrix();
       if (this._hasAnyCollision(mesh)) {
         mesh.outlineColor = errorOutline;
-        // NOTE Now possible to drag through other meshes
         // mesh.position.x -= event.delta.x;
         // mesh.position.z -= event.delta.z;
         // mesh.computeWorldMatrix();
       } else {
         mesh.outlineColor = primaryOutline;
-        this.state.dragLastSafePosition = mesh.position.clone();
+        // NOTE In rare instances, mesh.position could be set to a number that
+        // did not round to safe, causing meshes to overlap. Compensating by
+        // saving the pre-delta position instead.
+        const safe = mesh.position.clone();
+        safe.x -= event.delta.x;
+        safe.z -= event.delta.z;
+        this.state.dragLastSafePosition = safe;
       }
     });
     pointerDragBehavior.onDragEndObservable.add(() => {
-      mesh.outlineColor = primaryOutline;
       let snap;
       if (this._hasAnyCollision(mesh)) {
         snap = this.state.dragLastSafePosition;
@@ -105,6 +111,8 @@ export class MeshMixins {
       this.state.drag = null;
       this.state.dragStart = false;
       this.state.dragLastSafePosition = null;
+
+      mesh.outlineColor = primaryOutline;
       mesh.renderOutline = false;
     });
     mesh.addBehavior(pointerDragBehavior);
@@ -218,6 +226,8 @@ export class MeshMixins {
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPointerOverTrigger, () => {
+        if (this.state.drag) return;
+
         if (mesh.isAnInstance) {
           const double = mesh.blockDouble;
 
@@ -255,7 +265,9 @@ export class MeshMixins {
   }
 
   _hasCharacterOnTop(mesh) {
-    const top = new Ray(mesh.position.clone(), new Vector3(0, 1, 0), 1);
+    const start = mesh.position.clone();
+    start.y += 0.5;
+    const top = new Ray(start, new Vector3(0, 1, 0), 1);
     const topPick = this.scene.pickWithRay(top, (mesh) => mesh.isMainCharacter);
     return topPick.hit;
   }
