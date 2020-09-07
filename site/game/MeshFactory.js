@@ -55,7 +55,7 @@ export class MeshFactory {
     mesh.material.diffuseColor = new Color3(0.9, 0.9, 0.9);
     mesh.isVisible = false;
 
-    // Supposedly good for perf?
+    // TODO Supposedly good for perf? Benchmark this.
     // mesh.convertToUnIndexedMesh();
 
     this.blockTemplate = mesh;

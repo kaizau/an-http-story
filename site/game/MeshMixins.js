@@ -16,7 +16,6 @@ const {
   OnIntersectionEnterTrigger,
 } = ActionManager;
 
-// TODO Instead of outlines, maybe glow or mesh.renderOverlay?
 const primaryOutline = new Color3(0, 1, 1);
 const errorOutline = new Color3(1, 1, 0);
 
@@ -143,18 +142,24 @@ export class MeshMixins {
               mesh.teleporterActivated = true;
               events.emit("levelCompleted");
             } else {
-              // TODO Currently single use only
-              if (mesh.teleporterActivated) return;
-              mesh.teleporterActivated = true;
-
               const paired = this.state.teleporters.find((otherMesh) => {
                 return (
                   mesh !== otherMesh && otherMesh.name === "teleporter-" + id
                 );
               });
+
+              // Arriving
+              if (mesh.teleporterActivated) {
+                mesh.teleporterActivated = false;
+                paired.teleporterActivated = false;
+                return;
+              }
+
+              // Departing
+              mesh.teleporterActivated = true;
               paired.teleporterActivated = true;
 
-              await delay(250); // Allow character to reach center
+              await delay(500); // Allow character to reach center
               this.animationMixins.exitScene(main, () => {
                 const yTarget = paired.position.y;
                 main.position.x = paired.position.x;
