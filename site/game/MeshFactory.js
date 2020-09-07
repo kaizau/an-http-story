@@ -155,9 +155,6 @@ export class MeshFactory {
 
     // TODO subtle bobbing up and down animation
     this.shadows.addShadowCaster(mesh);
-    this.meshMixins.makeHoverable(mesh);
-    this.meshMixins.makeSelectable(mesh);
-    this.meshMixins.makeControllable(mesh);
     this.meshMixins.makeMainCharacter(mesh);
     return mesh;
   }

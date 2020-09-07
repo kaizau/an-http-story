@@ -28,35 +28,6 @@ export class MeshMixins {
     this.animationMixins = animationMixins;
   }
 
-  // TODO Implement as event?
-  makeSelectable(mesh) {
-    this._ensureActionManager(mesh);
-    mesh.outlineColor = primaryOutline;
-
-    mesh.actionManager.registerAction(
-      new ExecuteCodeAction(OnPickTrigger, () => {
-        if (!this.state.playerControl) return;
-
-        // Unselect
-        if (this.state.selected === mesh) {
-          this.state.selected.renderOutline = false;
-          this.state.selected = null;
-        }
-        // Replace selected
-        else if (this.state.selected) {
-          this.state.selected.renderOutline = false;
-          this.state.selected = mesh;
-          this.state.selected.renderOutline = true;
-        }
-        // New selected
-        else {
-          this.state.selected = mesh;
-          this.state.selected.renderOutline = true;
-        }
-      })
-    );
-  }
-
   makeWalkable(mesh) {
     this._ensureActionManager(mesh);
     mesh.isWalkable = true;
@@ -65,11 +36,11 @@ export class MeshMixins {
       new ExecuteCodeAction(OnPickTrigger, () => {
         if (!this.state.playerControl || this.state.drag === mesh) return;
 
-        const selected = this.state.selected;
-        if (selected && selected.isControllable) {
+        const main = this.state.mainCharacter;
+        if (main) {
           const target = mesh.position.clone();
-          target.y = selected.position.y;
-          this.animationMixins.walkTo(selected, target);
+          target.y = main.position.y;
+          this.animationMixins.walkTo(main, target);
         }
       })
     );
@@ -137,10 +108,6 @@ export class MeshMixins {
       mesh.renderOutline = false;
     });
     mesh.addBehavior(pointerDragBehavior);
-  }
-
-  makeControllable(mesh) {
-    mesh.isControllable = true;
   }
 
   makeMainCharacter(mesh) {
