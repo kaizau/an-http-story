@@ -14,7 +14,7 @@ import {
   EY3,
   EY4,
   SEY,
-} from "./levels";
+} from "./meshes";
 const { Vector3 } = BABYLON;
 
 export class LevelFactory {

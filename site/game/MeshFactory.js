@@ -1,4 +1,4 @@
-import { TLX, TLA, TLB, TLC, TLD } from "./levels";
+import { TLX, TLA, TLB, TLC, TLD } from "./meshes";
 const {
   MeshBuilder,
   Mesh,

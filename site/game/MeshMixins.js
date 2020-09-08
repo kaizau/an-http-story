@@ -1,5 +1,5 @@
 import { delay, events } from "./utils";
-import { TLX } from "./levels";
+import { TLX } from "./meshes";
 const {
   ActionManager,
   ExecuteCodeAction,

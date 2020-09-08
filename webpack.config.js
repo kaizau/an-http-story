@@ -94,7 +94,7 @@ module.exports = (env) => {
       minimizer: [
         new TerserPlugin({
           extractComments: false,
-          test: [/(?!vendor\/babylon\.js).+\.js/],
+          exclude: /babylon\.js$/,
           terserOptions: {
             ecma: 2019,
             compress: {
