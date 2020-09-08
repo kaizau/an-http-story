@@ -63,7 +63,7 @@ module.exports = (env) => {
       path: path.resolve(__dirname, output),
       filename: "game.js",
     },
-    stats: "minimal",
+    stats: { preset: "minimal" },
     devtool: useSourceMap ? "eval-cheap-source-map" : false,
     plugins: [
       new CleanWebpackPlugin(),

@@ -54,9 +54,8 @@ export function DirectLight(scene) {
   return direct;
 }
 
-// TODO scene is unused
 /** @constructor */
-export function ShadowGen(scene, direct) {
+export function ShadowGen(direct) {
   const shadowGenerator = new ShadowGenerator(256, direct);
   shadowGenerator.usePoissonSampling = true;
   shadowGenerator.darkness = 0.4;

@@ -31,7 +31,7 @@ export default class World {
 
     this._ambientLight = new AmbientLight(this._scene);
     this._directLight = new DirectLight(this._scene);
-    this._shadows = new ShadowGen(this._scene, this._directLight);
+    this._shadows = new ShadowGen(this._directLight);
     this._isoCam = new IsoCam(this._scene);
     this._scene.activeCamera = this._isoCam;
     this._isoCam.attachControl(this._canvas);

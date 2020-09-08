@@ -43,7 +43,7 @@ export class LevelFactory {
 
   async load(level) {
     await this.reset();
-    // this._level = level;
+    this._level = level;
     this._envHelper.setTheme(level.theme);
     this._levelMeshes = await this._buildLevel(level);
 
