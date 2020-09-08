@@ -64,20 +64,20 @@ export class MeshFactory {
     this.blockDouble = mesh.clone();
     this.blockDouble.overlayColor = Color3.White();
     this.blockDouble.renderOverlay = true;
-    this._meshMixins.makeWalkable(this.blockDouble);
-    this._meshMixins.makeInstanceDouble(this.blockDouble);
+    this._meshMixins.$makeWalkable(this.blockDouble);
+    this._meshMixins.$makeInstanceDouble(this.blockDouble);
   }
 
-  createBlock() {
+  $createBlock() {
     const mesh = this.blockTemplate.createInstance();
     mesh.blockDouble = this.blockDouble;
     this._shadows.addShadowCaster(mesh);
-    this._meshMixins.makeHoverable(mesh);
-    this._meshMixins.makeWalkable(mesh);
+    this._meshMixins.$makeHoverable(mesh);
+    this._meshMixins.$makeWalkable(mesh);
     return mesh;
   }
 
-  createBlockMovable() {
+  $createBlockMovable() {
     const mesh = MeshBuilder.CreateBox("blockMovable", {
       height: 1,
       width: 1,
@@ -98,13 +98,13 @@ export class MeshFactory {
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
     this._shadows.addShadowCaster(mesh);
-    this._meshMixins.makeHoverable(mesh);
-    this._meshMixins.makeWalkable(mesh);
-    this._meshMixins.makeDraggable(mesh);
+    this._meshMixins.$makeHoverable(mesh);
+    this._meshMixins.$makeWalkable(mesh);
+    this._meshMixins.$makeDraggable(mesh);
     return mesh;
   }
 
-  createEye(seeker) {
+  $createEye(seeker) {
     const faceColors = new Array(26);
     if (seeker) {
       for (let i = 0; i < 26; i++) {
@@ -126,16 +126,16 @@ export class MeshFactory {
     mesh.bakeCurrentTransformIntoVertices();
 
     this._shadows.addShadowCaster(mesh);
-    this._meshMixins.makeEnemy(mesh);
+    this._meshMixins.$makeEnemy(mesh);
     if (seeker) {
-      this._meshMixins.makeSeeking(mesh);
+      this._meshMixins.$makeSeeking(mesh);
     } else {
-      this._meshMixins.makePatrolling(mesh);
+      this._meshMixins.$makePatrolling(mesh);
     }
     return mesh;
   }
 
-  createCharacter() {
+  $createCharacter() {
     const body = MeshBuilder.CreatePolyhedron("character", {
       type: 0,
       size: 0.1,
@@ -166,11 +166,11 @@ export class MeshFactory {
 
     // TODO subtle bobbing up and down animation
     this._shadows.addShadowCaster(mesh);
-    this._meshMixins.makeMainCharacter(mesh);
+    this._meshMixins.$makeMainCharacter(mesh);
     return mesh;
   }
 
-  createTeleporter(id) {
+  $createTeleporter(id) {
     const mesh = MeshBuilder.CreateTorus("teleporter-" + id, {
       diameter: 0.8,
       thickness: 0.1,
@@ -203,7 +203,7 @@ export class MeshFactory {
     const max = new Vector3(0.4, 0.4, 0.4);
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
-    this._meshMixins.makeTeleporter(mesh, id);
+    this._meshMixins.$makeTeleporter(mesh, id);
     return mesh;
   }
 }

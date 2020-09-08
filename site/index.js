@@ -25,7 +25,6 @@ let music;
 
 init();
 
-/** @suppress {uselessCode} */
 async function init() {
   music = await loadMusic();
   if (!music) {

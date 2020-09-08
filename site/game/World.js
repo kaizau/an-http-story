@@ -63,12 +63,12 @@ export default class World {
     });
 
     this._scene.executeWhenReady(() => {
-      this._load(initialLevel);
+      this.$load(initialLevel);
     });
 
     events.on("levelNext", () => {
       // TODO Load different level depending on teleporter metadata?
-      this._load(parseInt(this._state.currentLevel) + 1);
+      this.$load(parseInt(this._state.currentLevel) + 1);
     });
 
     events.on("levelLost", () => {
@@ -76,13 +76,13 @@ export default class World {
     });
   }
 
-  _load(levelId) {
+  $load(levelId) {
     this._state.currentLevel = levelId;
     const level = levels[levelId];
     if (level) {
       // TODO Save games as ints, not strings
       ls.pushTo("AHS", this._state.currentLevel.toString());
-      this._levelFactory.load(level);
+      this._levelFactory.$load(level);
     } else {
       const total = Object.keys(levels);
       const completed = ls.get("AHS", []);
@@ -95,7 +95,7 @@ export default class World {
   }
 
   async _win(ending = "") {
-    await this._levelFactory.reset();
+    await this._levelFactory.$reset();
     // TODO Fade to white
     location.href = location.pathname + ending;
   }

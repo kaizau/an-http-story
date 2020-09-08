@@ -26,7 +26,7 @@ export class MeshMixins {
     this._animationMixins = animationMixins;
   }
 
-  makeWalkable(mesh) {
+  $makeWalkable(mesh) {
     this._ensureActionManager(mesh);
     mesh.isWalkable = true;
 
@@ -38,13 +38,13 @@ export class MeshMixins {
         if (main) {
           const target = mesh.position.clone();
           target.y = main.position.y;
-          this._animationMixins.walkTo(main, target);
+          this._animationMixins.$walkTo(main, target);
         }
       })
     );
   }
 
-  makeDraggable(mesh) {
+  $makeDraggable(mesh) {
     mesh.outlineColor = primaryOutline;
     const pointerDragBehavior = new PointerDragBehavior({
       dragPlaneNormal: new Vector3(0, 1, 0),
@@ -105,7 +105,7 @@ export class MeshMixins {
       }
       snap.x = Math.round(snap.x);
       snap.z = Math.round(snap.z);
-      this._animationMixins.floatTo(mesh, snap);
+      this._animationMixins.$floatTo(mesh, snap);
       this._state.drag = null;
       this._state.dragStart = false;
       this._state.dragLastSafePosition = null;
@@ -116,12 +116,12 @@ export class MeshMixins {
     mesh.addBehavior(pointerDragBehavior);
   }
 
-  makeMainCharacter(mesh) {
+  $makeMainCharacter(mesh) {
     mesh.isMainCharacter = true;
     this._state.mainCharacter = mesh;
   }
 
-  makeTeleporter(mesh, id) {
+  $makeTeleporter(mesh, id) {
     this._ensureActionManager(mesh);
     mesh.isTeleporter = true;
     this._state.teleporters.push(mesh);
@@ -160,12 +160,12 @@ export class MeshMixins {
 
               await delay(500); // Allow character to reach center
               this._scene.stopAnimation(main);
-              this._animationMixins.exitScene(main, () => {
+              this._animationMixins.$exitScene(main, () => {
                 const yTarget = paired.position.y;
                 main.position.x = paired.position.x;
                 main.position.y = paired.position.y + 10;
                 main.position.z = paired.position.z;
-                this._animationMixins.enterScene(main, yTarget);
+                this._animationMixins.$enterScene(main, yTarget);
               });
             }
           }
@@ -174,7 +174,7 @@ export class MeshMixins {
     });
   }
 
-  makeEnemy(mesh) {
+  $makeEnemy(mesh) {
     this._ensureActionManager(mesh);
     mesh.isEnemy = true;
 
@@ -188,7 +188,7 @@ export class MeshMixins {
           () => {
             if (!this._state.playerControl) return;
             this._state.playerControl = false;
-            this._animationMixins.swallowedByEye(
+            this._animationMixins.$swallowedByEye(
               mesh,
               this._state.mainCharacter,
               async () => {
@@ -202,14 +202,14 @@ export class MeshMixins {
     });
   }
 
-  makePatrolling(mesh) {
+  $makePatrolling(mesh) {
     mesh.isPatrolling = true;
 
     events.one("levelReady", () => {
       const y = mesh.position.y;
       const path = this._state.eyePatrolPath[y];
       if (path) {
-        this._animationMixins.patrolPath(mesh, path);
+        this._animationMixins.$patrolPath(mesh, path);
       }
     });
   }
@@ -217,12 +217,12 @@ export class MeshMixins {
   // TODO Sometimes, seekers disappear if the page loads in the background. At
   // least on FF. Potentially a race condition where the browser is conserving
   // resources?
-  makeSeeking(mesh) {
+  $makeSeeking(mesh) {
     this._ensureSeekerTimer();
     this._state.seekers.push(mesh);
   }
 
-  makeInstanceDouble(mesh) {
+  $makeInstanceDouble(mesh) {
     this._ensureActionManager(mesh);
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPointerOutTrigger, () => {
@@ -233,7 +233,7 @@ export class MeshMixins {
     );
   }
 
-  makeHoverable(mesh) {
+  $makeHoverable(mesh) {
     this._ensureActionManager(mesh);
     mesh.overlayColor = Color3.White();
 
@@ -306,8 +306,8 @@ export class MeshMixins {
             }
 
             seeker.nextPosition = next;
-            this._animationMixins.rotateTo(seeker, main.position);
-            this._animationMixins.floatTo(seeker, next);
+            this._animationMixins.$rotateTo(seeker, main.position);
+            this._animationMixins.$floatTo(seeker, next);
           }
         });
       }, 2500);

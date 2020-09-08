@@ -17,7 +17,7 @@ export class AnimationMixins {
     this._scene = scene;
   }
 
-  enterScene(mesh, yTarget, onEnd) {
+  $enterScene(mesh, yTarget, onEnd) {
     Animation.CreateAndStartAnimation(
       "enter",
       mesh,
@@ -32,7 +32,7 @@ export class AnimationMixins {
     );
   }
 
-  exitScene(mesh, onEnd) {
+  $exitScene(mesh, onEnd) {
     this._scene.stopAnimation(mesh);
     if (mesh.isMainCharacter) {
       playSound("teleport");
@@ -51,7 +51,7 @@ export class AnimationMixins {
     );
   }
 
-  async swallowedByEye(eye, zyra, onEnd) {
+  async $swallowedByEye(eye, zyra, onEnd) {
     await delay(250);
     playSound("die");
     this._scene.stopAnimation(eye);
@@ -88,7 +88,7 @@ export class AnimationMixins {
     );
   }
 
-  floatTo(mesh, target) {
+  $floatTo(mesh, target) {
     Animation.CreateAndStartAnimation(
       "float",
       mesh,
@@ -102,7 +102,7 @@ export class AnimationMixins {
     );
   }
 
-  rotateTo(mesh, position) {
+  $rotateTo(mesh, position) {
     const start = mesh.rotation.clone();
     const target = this._calcRotation(mesh, position);
     Animation.CreateAndStartAnimation(
@@ -118,7 +118,7 @@ export class AnimationMixins {
     );
   }
 
-  walkTo(mesh, target) {
+  $walkTo(mesh, target) {
     const current = mesh.position.clone();
 
     const points = [];
@@ -204,7 +204,7 @@ export class AnimationMixins {
     }
   }
 
-  patrolPath(mesh, path) {
+  $patrolPath(mesh, path) {
     const speed = 20;
     const points = Object.values(path);
     points.push(mesh.position.clone());

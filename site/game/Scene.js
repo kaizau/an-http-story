@@ -18,10 +18,10 @@ export class Environment {
 
     this._helper.ground.position.y = -3;
 
-    this.setTheme([0.0, 0.1, 0.2]);
+    this.$setTheme([0.0, 0.1, 0.2]);
   }
 
-  setTheme(colors) {
+  $setTheme(colors) {
     const mainColor = new Color3(...colors);
     this._scene.clearColor = mainColor;
     this._scene.ambientColor = mainColor;
@@ -111,9 +111,9 @@ export function initXRHelper(scene, dialogue) {
         const xrHelper = xr.baseExperience;
         xrHelper.onStateChangedObservable.add((state) => {
           if (state === WebXRState.IN_XR) {
-            dialogue.attachCamera(xrHelper.camera);
+            dialogue.$attachCamera(xrHelper.camera);
           } else if (state === WebXRState.NOT_IN_XR) {
-            dialogue.attachCamera(false);
+            dialogue.$attachCamera(false);
           }
         });
 

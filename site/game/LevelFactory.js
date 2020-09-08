@@ -35,21 +35,21 @@ export class LevelFactory {
       }
       this._state.selected = null;
 
-      await this._dialogue.load(this._level.outro);
+      await this._dialogue.$load(this._level.outro);
 
       events.emit("levelNext");
     });
   }
 
-  async load(level) {
-    await this.reset();
+  async $load(level) {
+    await this.$reset();
     this._level = level;
-    this._envHelper.setTheme(level.theme);
+    this._envHelper.$setTheme(level.theme);
     this._levelMeshes = await this._buildLevel(level);
 
     events.emit("levelReady");
     this._state.playerControl = true;
-    await this._dialogue.load(level.intro);
+    await this._dialogue.$load(level.intro);
   }
 
   _buildLevel(level) {
@@ -75,13 +75,13 @@ export class LevelFactory {
               let mesh;
               switch (code) {
                 case ___:
-                  mesh = this._meshFactory.createBlock();
+                  mesh = this._meshFactory.$createBlock();
                   break;
                 case __M:
-                  mesh = this._meshFactory.createBlockMovable();
+                  mesh = this._meshFactory.$createBlockMovable();
                   break;
                 case EYE:
-                  mesh = this._meshFactory.createEye();
+                  mesh = this._meshFactory.$createEye();
                   break;
                 case EY1:
                 case EY2:
@@ -92,17 +92,17 @@ export class LevelFactory {
                   this._state.eyePatrolPath[y][code] = new Vector3(x, y, z);
                   break;
                 case SEY:
-                  mesh = this._meshFactory.createEye(true);
+                  mesh = this._meshFactory.$createEye(true);
                   break;
                 case TLX:
                 case TLA:
                 case TLB:
                 case TLC:
                 case TLD:
-                  mesh = this._meshFactory.createTeleporter(code);
+                  mesh = this._meshFactory.$createTeleporter(code);
                   break;
                 case ZYR:
-                  mesh = this._meshFactory.createCharacter();
+                  mesh = this._meshFactory.$createCharacter();
                   break;
               }
 
@@ -129,7 +129,7 @@ export class LevelFactory {
         const random = Math.round(Math.random() * 600 + delay);
         mesh.position.y += 10;
         setTimeout(() => {
-          this._animationMixins.enterScene(mesh, yTarget, () => {
+          this._animationMixins.$enterScene(mesh, yTarget, () => {
             resolve(mesh);
           });
         }, random);
@@ -139,7 +139,7 @@ export class LevelFactory {
     return Promise.all(meshesReady);
   }
 
-  reset() {
+  $reset() {
     events.emit("levelReset");
 
     const yRange = this._levelMeshes.map((mesh) => mesh.position.y);
@@ -150,7 +150,7 @@ export class LevelFactory {
         const random = Math.round(Math.random() * 600 + delay);
 
         setTimeout(() => {
-          this._animationMixins.exitScene(mesh, () => {
+          this._animationMixins.$exitScene(mesh, () => {
             mesh.dispose();
             resolve();
           });

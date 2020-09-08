@@ -50,7 +50,7 @@ export class Dialogue {
     this._bg.material = bgMaterial;
   }
 
-  attachCamera(camera) {
+  $attachCamera(camera) {
     if (camera) {
       this._layer.parent = camera;
       this._bg.parent = camera;
@@ -60,7 +60,7 @@ export class Dialogue {
     }
   }
 
-  async load(lines) {
+  async $load(lines) {
     if (!lines.length) {
       return Promise.resolve();
     }

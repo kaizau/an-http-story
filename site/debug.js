@@ -1,9 +1,13 @@
 let debugBar;
 let axes;
 
-setTimeout(initDebug, 3000);
+initDebug();
 
 function initDebug() {
+  if (!window.world) {
+    return setTimeout(initDebug, 2000);
+  }
+
   const world = window.world;
 
   debugBar = createDebugBar();
@@ -25,14 +29,14 @@ function initDebug() {
   });
 
   createButton("Show Bounding Boxes", () => {
-    world.levelFactory.levelMeshes.forEach((mesh) => {
+    world._levelFactory._levelMeshes.forEach((mesh) => {
       mesh.showBoundingBox = true;
     });
   });
 
   for (let level = 1; level <= 8; level++) {
     createButton(`Level ${level}`, () => {
-      world.load(level);
+      world.$load(level);
     });
   }
 }
