@@ -1,4 +1,3 @@
-import { playSound } from "./sounds";
 import { delay, events } from "./utils";
 import { TLX } from "./levels";
 const {
@@ -215,10 +214,10 @@ export class MeshMixins {
     });
   }
 
-  // TODO These disappear if screen isn't visible, at least on FF
+  // TODO Sometimes, seekers disappear if the page loads in the background. At
+  // least on FF. Potentially a race condition where the browser is conserving
+  // resources?
   makeSeeking(mesh) {
-    // A single timer for all seekers
-    // Each tick, move 1 step towards player
     this._ensureSeekerTimer();
     this.state.seekers.push(mesh);
   }
@@ -278,6 +277,7 @@ export class MeshMixins {
     mesh.actionManager = mesh.actionManager || new ActionManager(this.scene);
   }
 
+  // Each tick, move 1 step towards player.
   _ensureSeekerTimer() {
     this.state.seekerTimer =
       this.state.seekerTimer ||
@@ -313,10 +313,9 @@ export class MeshMixins {
       }, 2500);
   }
 
-  // To avoid clustering. Unlike walk logic that calculates present collisions,
-  // this needs to know whether there will be a FUTURE collision. So seekers
-  // need to publish their movement intent.
-
+  // Used to avoid clustering. Unlike walk logic that calculates present
+  // collisions, this needs to know whether there will be a FUTURE collision.
+  // So seekers need to publish their movement intent.
   _noSeekerIntent(current, { x = 0, z = 0 }) {
     const destination = current.clone();
     destination.x += x;
