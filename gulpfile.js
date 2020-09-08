@@ -156,7 +156,7 @@ function cleanDistTerser() {
 
 exports.zipClosure = series(cleanDistClosure, zipClosure);
 exports.zipWebpack = series(cleanDistWebpack, zipWebpack);
-exports.zipWebpack = series(cleanDistTerser, zipTerser);
+exports.zipTerser = series(cleanDistTerser, zipTerser);
 
 //
 // Utility

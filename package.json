@@ -25,7 +25,7 @@
     "build-closure": "webpack --env.TARGET=build-closure",
     "build-closure-bundle": "webpack --env.TARGET=build-closure",
     "zip": "webpack --env.TARGET=finalize && gulp zipWebpack",
-    "zip-terser": "webpack --env.TARGET=zip-terser && gulp zipWebpack",
+    "zip-terser": "webpack --env.TARGET=zip-terser && gulp zipTerser",
     "zip-closure": "webpack --env.TARGET=zip-closure && gulp compileProd && gulp zipClosure",
     "zip-closure-bundle": "webpack --env.TARGET=zip-closure && gulp bundleProd && gulp zipClosure",
     "preview": "webpack-dev-server --port 8888 --env.TARGET=build",

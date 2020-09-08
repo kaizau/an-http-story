@@ -12,47 +12,45 @@ const {
 export class MeshFactory {
   constructor(scene, state, meshMixins, shadows) {
     this.scene = scene;
-    this.meshMixins = meshMixins;
-    this.shadows = shadows;
+    this._meshMixins = meshMixins;
+    this._shadows = shadows;
 
-    this.blockTemplate = {};
+    this._matSpecial = new StandardMaterial("matSpecial");
+    this._matSpecial.diffuseColor = new Color3(0.6, 0.6, 1);
+    this._matSpecial.freeze();
 
-    this.matSpecial = new StandardMaterial("matSpecial");
-    this.matSpecial.diffuseColor = new Color3(0.6, 0.6, 1);
-    this.matSpecial.freeze();
+    this._matBlue = new StandardMaterial("matBlue");
+    this._matBlue.diffuseColor = new Color3(0.6, 0.8, 1);
+    this._matBlue.freeze();
 
-    this.matBlue = new StandardMaterial("matBlue");
-    this.matBlue.diffuseColor = new Color3(0.6, 0.8, 1);
-    this.matBlue.freeze();
+    this._matYellow = new StandardMaterial("matYellow");
+    this._matYellow.diffuseColor = new Color3(1, 1, 0.6);
+    this._matYellow.freeze();
 
-    this.matYellow = new StandardMaterial("matYellow");
-    this.matYellow.diffuseColor = new Color3(1, 1, 0.6);
-    this.matYellow.freeze();
+    this._matGreen = new StandardMaterial("matGreen");
+    this._matGreen.diffuseColor = new Color3(0.7, 1, 0.7);
+    this._matGreen.freeze();
 
-    this.matGreen = new StandardMaterial("matGreen");
-    this.matGreen.diffuseColor = new Color3(0.7, 1, 0.7);
-    this.matGreen.freeze();
+    this._matRed = new StandardMaterial("matRed");
+    this._matRed.diffuseColor = new Color3(1, 0.7, 0.7);
+    this._matRed.freeze();
 
-    this.matRed = new StandardMaterial("matRed");
-    this.matRed.diffuseColor = new Color3(1, 0.7, 0.7);
-    this.matRed.freeze();
+    this._matEye = new StandardMaterial("matEye");
+    this._matEye.diffuseColor = Color3.White();
+    this._matEye.emissiveColor = Color3.Gray();
+    this._matEye.freeze();
 
-    this.matEye = new StandardMaterial("matEye");
-    this.matEye.diffuseColor = Color3.White();
-    this.matEye.emissiveColor = Color3.Gray();
-    this.matEye.freeze();
-
-    this.createBlockTemplate();
+    this._createBlockTemplate();
   }
 
-  createBlockTemplate() {
+  _createBlockTemplate() {
     const mesh = MeshBuilder.CreateBox("block", {
       height: 1,
       width: 1,
       depth: 1,
     });
     mesh.receiveShadows = true;
-    mesh.material = new StandardMaterial("blockMaterial");
+    mesh.material = new StandardMaterial("matBlock");
     mesh.material.diffuseColor = new Color3(0.8, 0.8, 0.8);
     mesh.isVisible = false;
     mesh.position = new Vector3(0, -5, 0);
@@ -67,16 +65,16 @@ export class MeshFactory {
     this.blockDouble = mesh.clone();
     this.blockDouble.overlayColor = Color3.White();
     this.blockDouble.renderOverlay = true;
-    this.meshMixins.makeWalkable(this.blockDouble);
-    this.meshMixins.makeInstanceDouble(this.blockDouble);
+    this._meshMixins.makeWalkable(this.blockDouble);
+    this._meshMixins.makeInstanceDouble(this.blockDouble);
   }
 
   createBlock() {
     const mesh = this.blockTemplate.createInstance();
     mesh.blockDouble = this.blockDouble;
-    this.shadows.addShadowCaster(mesh);
-    this.meshMixins.makeHoverable(mesh);
-    this.meshMixins.makeWalkable(mesh);
+    this._shadows.addShadowCaster(mesh);
+    this._meshMixins.makeHoverable(mesh);
+    this._meshMixins.makeWalkable(mesh);
     return mesh;
   }
 
@@ -87,7 +85,7 @@ export class MeshFactory {
       depth: 1,
     });
     mesh.receiveShadows = true;
-    mesh.material = this.matBlue;
+    mesh.material = this._matBlue;
 
     // Smaller bounding box to allow fitting into tight spaces.
     //
@@ -100,10 +98,10 @@ export class MeshFactory {
     max.subtractInPlace(adjustment);
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
-    this.shadows.addShadowCaster(mesh);
-    this.meshMixins.makeHoverable(mesh);
-    this.meshMixins.makeWalkable(mesh);
-    this.meshMixins.makeDraggable(mesh);
+    this._shadows.addShadowCaster(mesh);
+    this._meshMixins.makeHoverable(mesh);
+    this._meshMixins.makeWalkable(mesh);
+    this._meshMixins.makeDraggable(mesh);
     return mesh;
   }
 
@@ -122,18 +120,18 @@ export class MeshFactory {
       size: 0.25,
       faceColors,
     });
-    mesh.material = this.matEye;
+    mesh.material = this._matEye;
     mesh.rotation.x = Math.PI / -9;
     mesh.rotation.y = Math.PI / -9;
     mesh.rotation.z = Math.PI / 18;
     mesh.bakeCurrentTransformIntoVertices();
 
-    this.shadows.addShadowCaster(mesh);
-    this.meshMixins.makeEnemy(mesh);
+    this._shadows.addShadowCaster(mesh);
+    this._meshMixins.makeEnemy(mesh);
     if (seeker) {
-      this.meshMixins.makeSeeking(mesh);
+      this._meshMixins.makeSeeking(mesh);
     } else {
-      this.meshMixins.makePatrolling(mesh);
+      this._meshMixins.makePatrolling(mesh);
     }
     return mesh;
   }
@@ -160,7 +158,7 @@ export class MeshFactory {
     head.rotation.y = Math.PI / 2;
 
     const mesh = Mesh.MergeMeshes([body, head], true);
-    mesh.material = this.matSpecial;
+    mesh.material = this._matSpecial;
 
     // Larger bounding box to prevent getting "squashed" by movable block
     const max = new Vector3(0.3, 0.4, 0.3);
@@ -168,8 +166,8 @@ export class MeshFactory {
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
     // TODO subtle bobbing up and down animation
-    this.shadows.addShadowCaster(mesh);
-    this.meshMixins.makeMainCharacter(mesh);
+    this._shadows.addShadowCaster(mesh);
+    this._meshMixins.makeMainCharacter(mesh);
     return mesh;
   }
 
@@ -185,19 +183,19 @@ export class MeshFactory {
 
     switch (id) {
       case TLX:
-        mesh.material = this.matSpecial;
+        mesh.material = this._matSpecial;
         break;
       case TLA:
-        mesh.material = this.matYellow;
+        mesh.material = this._matYellow;
         break;
       case TLB:
-        mesh.material = this.matGreen;
+        mesh.material = this._matGreen;
         break;
       case TLC:
-        mesh.material = this.matRed;
+        mesh.material = this._matRed;
         break;
       case TLD:
-        mesh.material = this.matBlue;
+        mesh.material = this._matBlue;
         break;
     }
 
@@ -206,7 +204,7 @@ export class MeshFactory {
     const max = new Vector3(0.4, 0.4, 0.4);
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
-    this.meshMixins.makeTeleporter(mesh, id);
+    this._meshMixins.makeTeleporter(mesh, id);
     return mesh;
   }
 }

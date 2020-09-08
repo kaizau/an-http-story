@@ -17,91 +17,91 @@ const { Engine, Scene } = BABYLON;
 
 export default class World {
   constructor(initialLevel) {
-    this.state = {};
+    this._state = {};
 
-    this.canvas = document.querySelector(".cv");
-    this.engine = new Engine(this.canvas, true, { stencil: true });
-    this.engine.runRenderLoop(() => {
-      if (this.scene) this.scene.render();
+    this._canvas = document.querySelector(".cv");
+    this._engine = new Engine(this._canvas, true);
+    this._engine.runRenderLoop(() => {
+      if (this._scene) this._scene.render();
     });
-    window.addEventListener("resize", () => this.engine.resize());
+    window.addEventListener("resize", () => this._engine.resize());
 
-    this.scene = new Scene(this.engine);
-    this.envHelper = new Environment(this.scene);
+    this._scene = new Scene(this._engine);
+    this._envHelper = new Environment(this._scene);
 
-    this.ambientLight = new AmbientLight(this.scene);
-    this.directLight = new DirectLight(this.scene);
-    this.shadows = new ShadowGen(this.scene, this.directLight);
-    this.isoCam = new IsoCam(this.scene);
-    this.scene.activeCamera = this.isoCam;
-    this.isoCam.attachControl(this.canvas);
-    this.dialogue = new Dialogue(this.scene);
+    this._ambientLight = new AmbientLight(this._scene);
+    this._directLight = new DirectLight(this._scene);
+    this._shadows = new ShadowGen(this._scene, this._directLight);
+    this._isoCam = new IsoCam(this._scene);
+    this._scene.activeCamera = this._isoCam;
+    this._isoCam.attachControl(this._canvas);
+    this._dialogue = new Dialogue(this._scene);
 
-    this.animationMixins = new AnimationMixins(this.scene);
-    this.meshMixins = new MeshMixins(
-      this.scene,
-      this.state,
-      this.animationMixins
+    this._animationMixins = new AnimationMixins(this._scene);
+    this._meshMixins = new MeshMixins(
+      this._scene,
+      this._state,
+      this._animationMixins
     );
-    this.meshFactory = new MeshFactory(
-      this.scene,
-      this.state,
-      this.meshMixins,
-      this.shadows
+    this._meshFactory = new MeshFactory(
+      this._scene,
+      this._state,
+      this._meshMixins,
+      this._shadows
     );
-    this.levelFactory = new LevelFactory(
-      this.scene,
-      this.state,
-      this.envHelper,
-      this.meshFactory,
-      this.animationMixins,
-      this.dialogue
+    this._levelFactory = new LevelFactory(
+      this._scene,
+      this._state,
+      this._envHelper,
+      this._meshFactory,
+      this._animationMixins,
+      this._dialogue
     );
 
-    this.xrHelper = {};
+    this._xrHelper = {};
 
-    initXRHelper(this.scene, this.dialogue).then((xrHelper) => {
-      this.xrHelper = xrHelper;
+    initXRHelper(this._scene, this._dialogue).then((xrHelper) => {
+      this._xrHelper = xrHelper;
     });
 
-    this.scene.executeWhenReady(() => {
-      this.load(initialLevel);
+    this._scene.executeWhenReady(() => {
+      this._load(initialLevel);
     });
 
     events.on("levelNext", () => {
       // TODO Load different level depending on teleporter metadata?
-      this.load(parseInt(this.state.currentLevel, 10) + 1);
+      this._load(parseInt(this._state.currentLevel, 10) + 1);
     });
 
     events.on("levelLost", () => {
-      this.lose();
+      this._lose();
     });
   }
 
-  load(levelId) {
-    this.state.currentLevel = levelId;
+  _load(levelId) {
+    this._state.currentLevel = levelId;
     const level = levels[levelId];
     if (level) {
-      progress.add(this.state.currentLevel);
-      this.levelFactory.load(level);
+      progress.add(this._state.currentLevel);
+      this._levelFactory.load(level);
     } else {
       const total = Object.keys(levels);
       const completed = progress.get();
       if (total.every((level) => completed.includes(level))) {
-        this.win("?ending=1");
+        this._win("?ending=1");
       } else {
-        this.win();
+        this._win();
       }
     }
   }
 
-  async win(ending = "") {
-    await this.levelFactory.reset();
+  async _win(ending = "") {
+    await this._levelFactory.reset();
     // TODO Fade to white
     location.href = location.pathname + ending;
   }
 
-  lose() {
+  _lose() {
     // TODO Fade to white
     location.href = location.pathname + "?ending=0";
   }

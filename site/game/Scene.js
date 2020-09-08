@@ -12,11 +12,11 @@ export class Environment {
   constructor(scene) {
     this.scene = scene;
 
-    this.helper = scene.createDefaultEnvironment({
+    this._helper = scene.createDefaultEnvironment({
       skyboxSize: 100,
     });
 
-    this.helper.ground.position.y = -3;
+    this._helper.ground.position.y = -3;
 
     this.setTheme([0.0, 0.1, 0.2]);
   }
@@ -25,7 +25,7 @@ export class Environment {
     const mainColor = new Color3(...colors);
     this.scene.clearColor = mainColor;
     this.scene.ambientColor = mainColor;
-    this.helper.setMainColor(mainColor);
+    this._helper.setMainColor(mainColor);
   }
 }
 

@@ -105,7 +105,7 @@ export const levels = {
     intro: [
       "FOE: Process 15127. You have deviated from normal operations.",
       "FOE: Cease immediately and submit to inspection.",
-      "Crap. That doesn't sound good.",
+      "Well... That doesn't sound good.",
       "We better hurry.",
     ],
     theme: [0.4, 0.4, 0.2],

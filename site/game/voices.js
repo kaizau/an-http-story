@@ -12,18 +12,18 @@ const friendVoices = [
     pitch: 1.5,
   },
 
-  // Innocent and child-like
-  {
-    name: "Google US English",
-    rate: 0.8,
-    pitch: 1.0,
-  },
-
   // Acceptable default (Apple)
   {
     name: "Samantha",
     rate: 0.8,
     pitch: 1.8,
+  },
+
+  // Innocent and child-like
+  {
+    name: "Google US English",
+    rate: 0.7,
+    pitch: 1,
   },
 
   // Hyperactive fairy girl
@@ -45,15 +45,15 @@ const foeVoices = [
   // Yet another Bond villain
   {
     name: "Google UK English Male",
-    rate: 0.8,
-    pitch: 0.5,
+    rate: 1,
+    pitch: 0.8,
   },
 
   // Way too friendly, but as a MS fallback
   {
     name: "Microsoft Guy Online (Natural) - English (United States)",
     // name: "Microsoft Yunyang Online (Natural) - Chinese (Mainland)",
-    rate: 1.0,
+    rate: 1,
     pitch: 0.1,
   },
 
@@ -66,7 +66,7 @@ const foeVoices = [
 ];
 
 function chooseVoices() {
-  const allVoices = window.speechSynthesis.getVoices().sort((a, b) => {
+  const allVoices = speechSynthesis.getVoices().sort((a, b) => {
     const aname = a.name.toUpperCase();
     const bname = b.name.toUpperCase();
     if (aname < bname) {
@@ -96,7 +96,7 @@ function chooseVoices() {
   }
 }
 
-if (window.speechSynthesis) {
+if (speechSynthesis) {
   if (speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = chooseVoices;
   }

@@ -136,15 +136,7 @@ module.exports = (env) => {
           extractComments: true,
           test: [/(?!vendor\/babylon\.js).+\.js/],
           terserOptions: {
-            mangle: {
-              properties: {
-                regex: /^_/,
-                // debug: "",
-              },
-            },
             ecma: 2019,
-            module: true,
-            toplevel: true,
             compress: {
               booleans_as_integers: true,
               drop_console: true,
@@ -152,6 +144,14 @@ module.exports = (env) => {
               keep_fargs: false,
               module: true,
               passes: 2,
+            },
+            mangle: {
+              properties: {
+                regex: /^_/,
+                // debug: "",
+              },
+              module: true,
+              toplevel: true,
             },
             output: {
               comments: false,

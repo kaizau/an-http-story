@@ -23,7 +23,7 @@ export class MeshMixins {
   constructor(scene, state, animationMixins) {
     this.scene = scene;
     this.state = state;
-    this.animationMixins = animationMixins;
+    this._animationMixins = animationMixins;
   }
 
   makeWalkable(mesh) {
@@ -38,7 +38,7 @@ export class MeshMixins {
         if (main) {
           const target = mesh.position.clone();
           target.y = main.position.y;
-          this.animationMixins.walkTo(main, target);
+          this._animationMixins.walkTo(main, target);
         }
       })
     );
@@ -105,7 +105,7 @@ export class MeshMixins {
       }
       snap.x = Math.round(snap.x);
       snap.z = Math.round(snap.z);
-      this.animationMixins.floatTo(mesh, snap);
+      this._animationMixins.floatTo(mesh, snap);
       this.state.drag = null;
       this.state.dragStart = false;
       this.state.dragLastSafePosition = null;
@@ -160,12 +160,12 @@ export class MeshMixins {
 
               await delay(500); // Allow character to reach center
               this.scene.stopAnimation(main);
-              this.animationMixins.exitScene(main, () => {
+              this._animationMixins.exitScene(main, () => {
                 const yTarget = paired.position.y;
                 main.position.x = paired.position.x;
                 main.position.y = paired.position.y + 10;
                 main.position.z = paired.position.z;
-                this.animationMixins.enterScene(main, yTarget);
+                this._animationMixins.enterScene(main, yTarget);
               });
             }
           }
@@ -188,7 +188,7 @@ export class MeshMixins {
           () => {
             if (!this.state.playerControl) return;
             this.state.playerControl = false;
-            this.animationMixins.swallowedByEye(
+            this._animationMixins.swallowedByEye(
               mesh,
               this.state.mainCharacter,
               async () => {
@@ -209,7 +209,7 @@ export class MeshMixins {
       const y = mesh.position.y;
       const path = this.state.eyePatrolPath[y];
       if (path) {
-        this.animationMixins.patrolPath(mesh, path);
+        this._animationMixins.patrolPath(mesh, path);
       }
     });
   }
@@ -306,8 +306,8 @@ export class MeshMixins {
             }
 
             seeker.nextPosition = next;
-            this.animationMixins.rotateTo(seeker, main.position);
-            this.animationMixins.floatTo(seeker, next);
+            this._animationMixins.rotateTo(seeker, main.position);
+            this._animationMixins.floatTo(seeker, next);
           }
         });
       }, 2500);

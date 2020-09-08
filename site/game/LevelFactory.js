@@ -21,13 +21,13 @@ export class LevelFactory {
   constructor(scene, state, envHelper, meshFactory, animationMixins, dialogue) {
     this.scene = scene;
     this.state = state;
-    this.envHelper = envHelper;
-    this.meshFactory = meshFactory;
-    this.animationMixins = animationMixins;
-    this.dialogue = dialogue;
+    this._envHelper = envHelper;
+    this._meshFactory = meshFactory;
+    this._animationMixins = animationMixins;
+    this._dialogue = dialogue;
 
-    this.level = { intro: [], outro: [] };
-    this.levelMeshes = [];
+    // this._level = { intro: [], outro: [] };
+    this._levelMeshes = [];
 
     events.on("levelCompleted", async () => {
       this.state.playerControl = false;
@@ -36,7 +36,7 @@ export class LevelFactory {
       }
       this.state.selected = null;
 
-      await this.dialogue.load(this.level.outro);
+      await this._dialogue.load(this._level.outro);
 
       events.emit("levelNext");
     });
@@ -44,16 +44,16 @@ export class LevelFactory {
 
   async load(level) {
     await this.reset();
-    this.level = level;
-    this.envHelper.setTheme(level.theme);
-    this.levelMeshes = await this.buildLevel(level);
+    // this._level = level;
+    this._envHelper.setTheme(level.theme);
+    this._levelMeshes = await this._buildLevel(level);
 
     events.emit("levelReady");
     this.state.playerControl = true;
-    await this.dialogue.load(level.intro);
+    await this._dialogue.load(level.intro);
   }
 
-  buildLevel(level) {
+  _buildLevel(level) {
     const meshes = [];
 
     // Start from bottom layer
@@ -76,13 +76,13 @@ export class LevelFactory {
               let mesh;
               switch (code) {
                 case ___:
-                  mesh = this.meshFactory.createBlock();
+                  mesh = this._meshFactory.createBlock();
                   break;
                 case __M:
-                  mesh = this.meshFactory.createBlockMovable();
+                  mesh = this._meshFactory.createBlockMovable();
                   break;
                 case EYE:
-                  mesh = this.meshFactory.createEye();
+                  mesh = this._meshFactory.createEye();
                   break;
                 case EY1:
                 case EY2:
@@ -93,17 +93,17 @@ export class LevelFactory {
                   this.state.eyePatrolPath[y][code] = new Vector3(x, y, z);
                   break;
                 case SEY:
-                  mesh = this.meshFactory.createEye(true);
+                  mesh = this._meshFactory.createEye(true);
                   break;
                 case TLX:
                 case TLA:
                 case TLB:
                 case TLC:
                 case TLD:
-                  mesh = this.meshFactory.createTeleporter(code);
+                  mesh = this._meshFactory.createTeleporter(code);
                   break;
                 case ZYR:
-                  mesh = this.meshFactory.createCharacter();
+                  mesh = this._meshFactory.createCharacter();
                   break;
               }
 
@@ -130,7 +130,7 @@ export class LevelFactory {
         const random = Math.round(Math.random() * 600 + delay);
         mesh.position.y += 10;
         setTimeout(() => {
-          this.animationMixins.enterScene(mesh, yTarget, () => {
+          this._animationMixins.enterScene(mesh, yTarget, () => {
             resolve(mesh);
           });
         }, random);
@@ -143,15 +143,15 @@ export class LevelFactory {
   reset() {
     events.emit("levelReset");
 
-    const yRange = this.levelMeshes.map((mesh) => mesh.position.y);
+    const yRange = this._levelMeshes.map((mesh) => mesh.position.y);
     const yMax = Math.max(...yRange);
-    const meshesReady = this.levelMeshes.map((mesh) => {
+    const meshesReady = this._levelMeshes.map((mesh) => {
       return new Promise((resolve) => {
         const delay = (yMax - mesh.position.y) * 600;
         const random = Math.round(Math.random() * 600 + delay);
 
         setTimeout(() => {
-          this.animationMixins.exitScene(mesh, () => {
+          this._animationMixins.exitScene(mesh, () => {
             mesh.dispose();
             resolve();
           });
@@ -159,7 +159,7 @@ export class LevelFactory {
       });
     });
 
-    this.levelMeshes = [];
+    this._levelMeshes = [];
     this.state.seekers = [];
     clearInterval(this.state.seekerTimer);
     this.state.seekerTimer = null;

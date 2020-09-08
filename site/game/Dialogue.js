@@ -16,48 +16,47 @@ const textSize = 16;
 
 export class Dialogue {
   constructor(scene) {
-    this.scene = scene;
-    this.isoCam = this.scene.activeCamera;
+    this._isoCam = scene.activeCamera;
 
-    this.layer = MeshBuilder.CreatePlane("dialogue", {
+    this._layer = MeshBuilder.CreatePlane("dialogue", {
       height: layerHeight,
       width: layerWidth,
     });
-    this.layer.parent = this.isoCam;
-    this.layer.position = new Vector3(0, -0.5, 2);
-    this.layer.isPickable = false;
+    this._layer.parent = this._isoCam;
+    this._layer.position = new Vector3(0, -0.5, 2);
+    this._layer.isPickable = false;
 
-    this.bg = this.layer.clone("dialogueBg");
-    this.bg.position.z += 0.01;
-    this.bg.isVisible = false;
+    this._bg = this._layer.clone("dialogueBg");
+    this._bg.position.z += 0.01;
+    this._bg.isVisible = false;
 
-    this.texture = new DynamicTexture("dialogue", {
+    this._texture = new DynamicTexture("dialogue", {
       height: layerHeight * textRes,
       width: layerWidth * textRes,
     });
-    this.texture.hasAlpha = true;
-    this.show(""); // Required to add to material
+    this._texture.hasAlpha = true;
+    this._show(""); // Required to add to material
 
     const material = new StandardMaterial("dialogue");
     material.specularColor = Color3.Black();
     const bgMaterial = material.clone();
 
     material.emissiveColor = Color3.White();
-    material.diffuseTexture = this.texture;
-    this.layer.material = material;
+    material.diffuseTexture = this._texture;
+    this._layer.material = material;
 
     bgMaterial.diffuseColor = Color3.Black();
     bgMaterial.alpha = 0.6;
-    this.bg.material = bgMaterial;
+    this._bg.material = bgMaterial;
   }
 
   attachCamera(camera) {
     if (camera) {
-      this.layer.parent = camera;
-      this.bg.parent = camera;
+      this._layer.parent = camera;
+      this._bg.parent = camera;
     } else {
-      this.layer.parent = this.isoCam;
-      this.bg.parent = this.isoCam;
+      this._layer.parent = this._isoCam;
+      this._bg.parent = this._isoCam;
     }
   }
 
@@ -66,42 +65,45 @@ export class Dialogue {
       return Promise.resolve();
     }
 
-    if (!window.speechSynthesis || process.env.DEBUG) {
+    if (!speechSynthesis || process.env.DEBUG) {
       for (let line of lines) {
         let speaker = "friend";
         if (line.slice(0, 5) === "FOE: ") {
           line = line.slice(5);
           speaker = "foe";
         }
-        this.show(line, speaker);
+        this._show(line, speaker);
         playSound(speaker);
         const duration = line.length < 20 ? 2000 : line.length * 100;
         await delay(duration);
       }
     } else {
       for (let line of lines) {
-        let speaker = friendVoice;
+        let speaker = "friend";
+        let voice = friendVoice;
         if (line.slice(0, 5) === "FOE: ") {
           line = line.slice(5);
-          speaker = foeVoice;
+          speaker = "foe";
+          voice = foeVoice;
         }
-        setTimeout(() => this.show(line, speaker), 400); // Small delay to sync with speech
-        await this.speak(line, speaker);
+        setTimeout(() => this._show(line, speaker), 400); // Small delay to sync with speech
+        await this._speak(line, voice);
       }
     }
-    this.clear();
+    this._clear();
   }
 
-  show(text, speaker) {
-    this.clear();
+  _show(text, speaker) {
+    this._clear();
     const textFont = `${textSize}px monospace`;
     const textColor = speaker === "foe" ? "#f88" : "#fff";
-    const ctx = this.texture.getContext();
+
+    const ctx = this._texture.getContext();
     ctx.font = textFont;
     const textWidth = ctx.measureText(text).width;
     const margin = (layerWidth * textRes - textWidth) / 2;
 
-    this.texture.drawText(
+    this._texture.drawText(
       text,
       margin,
       textSize,
@@ -110,18 +112,18 @@ export class Dialogue {
       "transparent"
     );
     if (text) {
-      this.bg.isVisible = true;
+      this._bg.isVisible = true;
     }
   }
 
-  clear() {
-    const ctx = this.texture.getContext();
+  _clear() {
+    const ctx = this._texture.getContext();
     ctx.clearRect(0, 0, layerWidth * textRes, layerHeight * textRes);
-    this.texture.update();
-    this.bg.isVisible = false;
+    this._texture.update();
+    this._bg.isVisible = false;
   }
 
-  speak(text, voice) {
+  _speak(text, voice) {
     return new Promise((resolve) => {
       const utterance = new SpeechSynthesisUtterance(text);
       if (voice) {
@@ -130,7 +132,7 @@ export class Dialogue {
         utterance.rate = voice.rate;
       }
       utterance.onend = resolve;
-      window.speechSynthesis.speak(utterance);
+      speechSynthesis.speak(utterance);
     });
   }
 }
