@@ -88,7 +88,7 @@ export default class World {
       const total = Object.keys(levels);
       const completed = progress.get();
       if (total.every((level) => completed.includes(level))) {
-        this.win("ending?=1");
+        this.win("?ending=1");
       } else {
         this.win();
       }
