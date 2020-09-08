@@ -1,0 +1,18 @@
+{
+  "name": "epilogue",
+  "theme": [1, 1, 1],
+  "intro": [
+    "Hey! Good to see you again, 15127.",
+    "I guess you missed me after all.",
+    "This is a different kind of sandbox.",
+    "One where you can build your own story."
+  ],
+  "map": [
+    ["", "", ""],
+    ["", "", ""]
+  ],
+  "outro": [
+    "Well, that's all for now.",
+    "Check out https://github.com/kaizau/a-http-story for more."
+  ]
+}
