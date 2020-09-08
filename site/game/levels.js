@@ -19,15 +19,15 @@ export const EY2 = 10;
 export const EY3 = 11;
 export const EY4 = 12;
 
-// Laser (oriented X or Z)
-// export const LSX = 12;
-// export const LSZ = 13;
-
 // Seeker Eye
-// export const SEY = 14;
+export const SEY = 13;
+
+// Laser (oriented X or Z)
+// export const LSX = 14;
+// export const LSZ = 15;
 
 // Gate / gatekeeper boss
-// export const GAT = 15;
+// export const GAT = 16;
 
 // Export object for flexible naming
 // prettier-ignore
@@ -372,17 +372,17 @@ export const levels = {
       [],
       [
         [TLA,   ,   ,   ,   ,   ,TLC],
-        [   ,   ,   ,EYE,   ,   ,   ],
+        [   ,   ,   ,SEY,   ,   ,   ],
         [   ,   ,   ,   ,   ,   ,   ],
-        [TLB,   ,   ,   ,   ,   ,EYE],
+        [TLB,   ,   ,   ,   ,   ,SEY],
         [   ,   ,   ,   ,   ,   ,   ],
         [   ,   ,   ,   ,   ,   ,   ],
         [   ,   ,   ,ZYR,   ,   ,   ],
         [   ,   ,   ,   ,   ,   ,   ],
         [   ,   ,   ,   ,   ,   ,   ],
-        [TLA,   ,   ,   ,   ,   ,EYE],
+        [TLA,   ,   ,   ,   ,   ,SEY],
         [   ,   ,   ,   ,   ,   ,   ],
-        [   ,   ,   ,EYE,   ,   ,   ],
+        [   ,   ,   ,SEY,   ,   ,   ],
         [TLB,   ,   ,TLC,   ,   ,TLD],
       ],
       [

@@ -214,6 +214,8 @@ export class MeshMixins {
     });
   }
 
+  makeSeeking(mesh) {}
+
   makeInstanceDouble(mesh) {
     this._ensureActionManager(mesh);
     mesh.actionManager.registerAction(

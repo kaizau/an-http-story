@@ -13,6 +13,7 @@ import {
   EY2,
   EY3,
   EY4,
+  SEY,
 } from "./levels";
 const { Vector3 } = BABYLON;
 
@@ -91,6 +92,9 @@ export class LevelFactory {
                     this.state.eyePatrolPath[y] || {};
                   this.state.eyePatrolPath[y][code] = new Vector3(x, y, z);
                   break;
+                case SEY:
+                  mesh = this.meshFactory.createEye(true);
+                  break;
                 case TLX:
                 case TLA:
                 case TLB:
@@ -104,12 +108,13 @@ export class LevelFactory {
               }
 
               if (mesh) {
-                mesh.position.y += y;
-                mesh.position.z += z;
-                mesh.position.x += x;
+                mesh.position.y = y;
+                mesh.position.z = z;
+                mesh.position.x = x;
                 meshes.push(mesh);
 
-                // TODO Do we need to explicitly add meshes to the scene?
+                // NOTE Doesn't seem like we need to explicitly add meshes to
+                // the scene. Perhaps some default logic at work.
                 // this.scene.addMesh(mesh);
               }
             });
