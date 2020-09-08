@@ -1,5 +1,5 @@
 import World from "./game/World";
-import { ls } from "./game/utils";
+import { ls, delay } from "./game/utils";
 import { loadMusic, createMusic } from "./music/player";
 
 const loadingMessages = [
@@ -53,32 +53,31 @@ async function init() {
     help.classList.remove("h");
   });
 
-  startTrigger.addEventListener("click", () => {
+  startTrigger.addEventListener("click", async () => {
     modal.classList.remove("h");
     downloadBar.classList.remove("o");
     downloadMessage.textContent = "Preparing download...";
 
-    setTimeout(() => {
-      downloadMessage.textContent = "Unexpected error";
-      music.play();
+    await delay(3000);
+    downloadMessage.textContent = "Unexpected error";
+    music.play();
 
-      setTimeout(() => {
-        page.classList.add("z");
+    await delay(2000);
+    page.classList.add("z");
 
-        setTimeout(startGame, 4000);
-      }, 2000);
-    }, 3000);
+    await delay(4000);
+    startGame();
   });
 }
 
-function showLoading() {
+async function showLoading() {
   if (loadingMessages.length) {
     loading.textContent = loadingMessages.pop() + "...";
-    setTimeout(showLoading, 1500);
+    await delay(1500);
+    showLoading();
   }
 }
 
-/** @suppress {uselessCode} */
 function startGame(level = 1) {
   page.classList.add("h");
   page.classList.remove("z");
@@ -122,7 +121,7 @@ function createShortcut(level) {
 // Endings
 //
 
-function checkEnding() {
+async function checkEnding() {
   let ending;
   if (location.search.includes("ending=0")) {
     ending = endingLose;
@@ -134,7 +133,8 @@ function checkEnding() {
     modal.classList.remove("h");
     downloadBar.classList.remove("o");
     downloadMessage.textContent = "Preparing download...";
-    setTimeout(ending, 3000);
+    await delay(3000);
+    ending();
 
     if (history) {
       history.replaceState({}, "", location.pathname);

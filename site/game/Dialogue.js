@@ -86,7 +86,8 @@ export class Dialogue {
           speaker = "foe";
           voice = foeVoice;
         }
-        setTimeout(() => this._show(line, speaker), 400); // Small delay to sync with speech
+        await delay(400); // Small delay to sync with speech
+        this._show(line, speaker);
         await this._speak(line, voice);
       }
     }

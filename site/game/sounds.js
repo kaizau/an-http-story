@@ -1,4 +1,5 @@
 import zzfx from "../vendor/zzfx.micro";
+import { delay } from "./utils";
 
 // https://killedbyapixel.github.io/ZzFX/
 const sounds = {
@@ -81,8 +82,9 @@ export function playSound(name) {
     const sound = sounds[name];
     if (sound) {
       const audio = zzfx(...sound);
-      audio.onended = () => {
-        setTimeout(resolve, 500);
+      audio.onended = async () => {
+        await delay(500);
+        resolve();
       };
     } else {
       resolve();
