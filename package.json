@@ -13,10 +13,13 @@
   "browserslist": [
     "last 2 chrome versions, last 2 ff versions"
   ],
+  "source": "site/index.js",
+  "main": "public-micro/game.js",
   "scripts": {
     "start": "webpack-dev-server --port 8888 --env.TARGET=dev",
     "start-closure": "webpack --env.TARGET=build-closure && gulp compileDev",
     "start-closure-bundle": "webpack --env.TARGET=build-closure && gulp bundleDev",
+    "micro": "microbundle --no-sourcemaps",
     "build": "webpack --env.TARGET=build",
     "build-terser": "webpack --env.TARGET=build-terser",
     "build-closure": "webpack --env.TARGET=build-closure",
@@ -44,6 +47,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "html-webpack-plugin": "^4.3.0",
     "jest": "^26.4.1",
+    "microbundle": "^0.12.3",
     "prettier": "^2.0.5",
     "terser-webpack-plugin": "^4.1.0",
     "webpack": "^4.44.1",

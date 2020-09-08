@@ -1,3 +1,5 @@
+const localStorage = {};
+
 BABYLON.Engine = function () {
   this.runRenderLoop = function () {};
 };
@@ -19,6 +21,7 @@ BABYLON.Mesh = function () {
   };
   this.setBoundingInfo = function () {};
   this.bakeCurrentTransformIntoVertices = function () {};
+  this.convertToUnIndexedMesh = function () {};
 };
 
 BABYLON.DynamicTexture = function () {
@@ -36,3 +39,14 @@ BABYLON.ActionManager = function () {
 BABYLON.EventState = function () {
   this.delta = {};
 };
+
+/**
+ * @param {number} x
+ * @param {number} y
+ * @param {number} z
+ */
+BABYLON.Color3 = function (x, y, z) {};
+
+BABYLON.Color3.Black = function () {};
+BABYLON.Color3.Gray = function () {};
+BABYLON.Color3.White = function () {};

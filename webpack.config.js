@@ -14,6 +14,7 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 module.exports = (env) => {
   let mode = "production";
   let debug = false;
+  let output = "public";
   let useLocalBabylon = false;
   let minifyAssets = true;
   let useSourceMap = false;
@@ -36,9 +37,9 @@ module.exports = (env) => {
       useLocalBabylon = true;
       break;
     case "build-terser":
-      useSourceMap = true; // debugging
       useTerser = true;
       useLocalBabylon = true;
+      output = "public-terser";
       break;
     case "zip":
       break;
@@ -47,6 +48,7 @@ module.exports = (env) => {
       break;
     case "zip-terser":
       useTerser = true;
+      output = "public-terser";
       break;
     case "analyze":
       useAnalyzer = true;
@@ -58,7 +60,7 @@ module.exports = (env) => {
     mode,
     entry: "./site/index.js",
     output: {
-      path: path.resolve(__dirname, "public"),
+      path: path.resolve(__dirname, output),
       filename: "game.js",
     },
     stats: "minimal",
@@ -131,13 +133,13 @@ module.exports = (env) => {
     config.optimization = {
       minimizer: [
         new TerserPlugin({
-          sourceMap: true,
-          extractComments: false,
-          test: [/\/site\/.*^(?!babylon)\.js$/],
+          extractComments: true,
+          test: [/(?!vendor\/babylon\.js).+\.js/],
           terserOptions: {
             mangle: {
               properties: {
-                debug: "",
+                regex: /^_/,
+                // debug: "",
               },
             },
             ecma: 2019,
@@ -149,13 +151,10 @@ module.exports = (env) => {
               ecma: 2019,
               keep_fargs: false,
               module: true,
-              // passes: 2,
+              passes: 2,
             },
             output: {
               comments: false,
-            },
-            format: {
-              beautify: true,
             },
           },
         }),

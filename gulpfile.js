@@ -10,11 +10,12 @@ const closureCompiler = require("google-closure-compiler").gulp();
 // Compile
 //
 
-const externs = ["externs.generated.js", "externs.bespoke.js"];
+//const externs = ["externs.generated.js", "externs.bespoke.js"];
+const externs = ["externs.lazy.js"];
 const compilerDefaults = {
-  externs,
+  // externs,
   js_output_file: "game.js",
-  compilation_level: "ADVANCED_OPTIMIZATIONS",
+  compilation_level: "SIMPLE",
   language_in: "ECMASCRIPT_2019",
   language_out: "ECMASCRIPT_2019",
 };
@@ -90,8 +91,8 @@ function bundle(options = {}) {
 
 function bundleDebug() {
   return bundle({
-    debug: true,
-    formatting: "PRETTY_PRINT",
+    // debug: true,
+    // formatting: "PRETTY_PRINT",
   });
 }
 
@@ -137,6 +138,10 @@ function zipWebpack() {
   return zip("public/", "dist/a-http-story.zip");
 }
 
+function zipTerser() {
+  return zip("public-terser/", "dist/a-http-story-terser.zip");
+}
+
 function cleanDistClosure() {
   return del("dist/a-http-story-closure.zip");
 }
@@ -145,8 +150,13 @@ function cleanDistWebpack() {
   return del("dist/a-http-story.zip");
 }
 
+function cleanDistTerser() {
+  return del("dist/a-http-story-terser.zip");
+}
+
 exports.zipClosure = series(cleanDistClosure, zipClosure);
 exports.zipWebpack = series(cleanDistWebpack, zipWebpack);
+exports.zipWebpack = series(cleanDistTerser, zipTerser);
 
 //
 // Utility
@@ -175,15 +185,19 @@ function generateExterns(cb) {
   const output = "externs.generated.js";
   let file = `const BABYLON = {};`;
 
-  for (const key in BABYLON) {
+  const allProps = getAllPropertyNames(BABYLON);
+
+  for (const key of allProps) {
     const value = BABYLON[key];
     if (key[0] === "_") {
       continue;
     } else if (typeof value === "function") {
-      file += `\n\n`;
+      file += `\n\n/**\n`;
       if (typeof value.constructor === "function") {
-        file += `/** @constructor */\n`;
+        file += `  * @constructor\n`;
       }
+      file += `  * @nocollapse\n`;
+      file += `  */\n`;
       file += `BABYLON.${key} = function () {}\n`;
 
       try {
@@ -201,7 +215,7 @@ function generateExterns(cb) {
     ) {
       file += `\n\nBABYLON.${key} = ${value};`;
     } else if (typeof value === "string") {
-      file += `\n\nBABYLON.${key} = "${value}";`;
+      file += `\n\nBABYLON.${key} = "";`;
     } else {
       file += `\n\n// BABYLON.${key} = ${value};`;
     }
@@ -212,7 +226,8 @@ function generateExterns(cb) {
 
 function parseClass(name, obj) {
   let file = "";
-  for (const key in obj) {
+  const allProps = getAllPropertyNames(obj);
+  for (const key of allProps) {
     if (key[0] === "_") {
       continue;
     }
@@ -235,7 +250,7 @@ function parseClass(name, obj) {
       ) {
         file += `BABYLON.${name}.${key} = ${value};\n`;
       } else if (typeof value === "string") {
-        file += `BABYLON.${name}.${key} = "${value}";\n`;
+        file += `BABYLON.${name}.${key} = "";\n`;
       } else {
         file += `// BABYLON.${name}.${key} = ${value};\n`;
       }
@@ -266,6 +281,12 @@ function parseClass(name, obj) {
     }
   }
   return file;
+}
+
+function getAllPropertyNames(obj) {
+  const proto = Object.getPrototypeOf(obj);
+  const inherited = proto ? getAllPropertyNames(proto) : [];
+  return [...new Set(Object.getOwnPropertyNames(obj).concat(inherited))];
 }
 
 exports.generate = generateExterns;
