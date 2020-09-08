@@ -14,12 +14,9 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 module.exports = (env) => {
   let mode = "production";
   let debug = false;
-  let output = "public";
   let useLocalBabylon = false;
   let minifyAssets = true;
   let useSourceMap = false;
-  let useClosure = false;
-  let useTerser = false;
   let useAnalyzer = false;
   switch (env.TARGET) {
     case "dev":
@@ -32,23 +29,7 @@ module.exports = (env) => {
     case "build":
       useLocalBabylon = true;
       break;
-    case "build-closure":
-      useClosure = true;
-      useLocalBabylon = true;
-      break;
-    case "build-terser":
-      useTerser = true;
-      useLocalBabylon = true;
-      output = "public-terser";
-      break;
     case "zip":
-      break;
-    case "zip-closure":
-      useClosure = true;
-      break;
-    case "zip-terser":
-      useTerser = true;
-      output = "public-terser";
       break;
     case "analyze":
       useAnalyzer = true;
@@ -60,7 +41,7 @@ module.exports = (env) => {
     mode,
     entry: "./site/index.js",
     output: {
-      path: path.resolve(__dirname, output),
+      path: path.resolve(__dirname, "public"),
       filename: "game.js",
     },
     stats: { preset: "minimal" },
@@ -108,32 +89,11 @@ module.exports = (env) => {
     config.plugins.push(new BundleAnalyzerPlugin());
   }
 
-  if (useClosure) {
-    config.optimization = {
-      concatenateModules: false,
-      minimize: false,
-      // minimizer: [
-      //   new ClosurePlugin(
-      //     { mode: "AGGRESSIVE_BUNDLE" },
-      //     {
-      //       formatting: "PRETTY_PRINT",
-      //       debug: true,
-      //       renaming: false,
-
-      //       externs: [path.resolve(__dirname, "externs.js")],
-      //       compilation_level: "ADVANCED",
-      //       languageOut: "ECMASCRIPT_2017",
-      //     }
-      //   ),
-      // ],
-    };
-  }
-
-  if (useTerser) {
+  if (minifyAssets) {
     config.optimization = {
       minimizer: [
         new TerserPlugin({
-          extractComments: true,
+          extractComments: false,
           test: [/(?!vendor\/babylon\.js).+\.js/],
           terserOptions: {
             ecma: 2019,

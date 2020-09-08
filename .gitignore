@@ -25,9 +25,6 @@ node_modules/
 
 # Build
 public/
-public-closure/
-public-terser/
-public-micro/
 dist/
 
 # Vercel

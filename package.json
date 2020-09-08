@@ -17,45 +17,25 @@
   "main": "public-micro/game.js",
   "scripts": {
     "start": "webpack-dev-server --port 8888 --env.TARGET=dev",
-    "start-closure": "webpack --env.TARGET=build-closure && gulp compileDev",
-    "start-closure-bundle": "webpack --env.TARGET=build-closure && gulp bundleDev",
-    "micro": "microbundle --no-sourcemaps",
-    "build": "webpack --env.TARGET=build",
-    "build-terser": "webpack --env.TARGET=build-terser",
-    "build-closure": "webpack --env.TARGET=build-closure",
-    "build-closure-bundle": "webpack --env.TARGET=build-closure",
-    "zip": "webpack --env.TARGET=finalize && gulp zipWebpack",
-    "zip-terser": "webpack --env.TARGET=zip-terser && gulp zipTerser",
-    "zip-closure": "webpack --env.TARGET=zip-closure && gulp compileProd && gulp zipClosure",
-    "zip-closure-bundle": "webpack --env.TARGET=zip-closure && gulp bundleProd && gulp zipClosure",
     "preview": "webpack-dev-server --port 8888 --env.TARGET=build",
+    "build": "webpack --env.TARGET=build",
+    "zip": "webpack --env.TARGET=zip && node zip.js",
     "analyze": "webpack --env.TARGET=analyze",
-    "lint": "prettier --ignore-path .gitignore --write . && eslint --fix .",
-    "test": "jest --watch"
+    "lint": "prettier --ignore-path .gitignore --write . && eslint --fix ."
   },
   "devDependencies": {
-    "browser-env": "^3.3.0",
+    "archiver": "^5.0.0",
     "clean-webpack-plugin": "^3.0.0",
-    "closure-webpack-plugin": "^2.3.0",
     "copy-webpack-plugin": "^6.1.0",
     "del": "^5.1.0",
     "eslint": "^7.8.1",
     "eslint-config-prettier": "^6.11.0",
-    "google-closure-compiler": "^20200830.0.0",
-    "gulp": "^4.0.2",
-    "gulp-replace": "^1.0.0",
-    "gulp-sourcemaps": "^2.6.5",
     "html-webpack-plugin": "^4.4.1",
-    "jest": "^26.4.2",
-    "microbundle": "^0.12.3",
     "prettier": "^2.1.1",
     "terser-webpack-plugin": "^4.1.0",
     "webpack": "^5.0.0-beta.29",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
-  },
-  "dependencies": {
-    "archiver": "^5.0.0"
   }
 }
