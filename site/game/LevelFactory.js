@@ -160,6 +160,9 @@ export class LevelFactory {
     });
 
     this.levelMeshes = [];
+    this.state.seekers = [];
+    clearInterval(this.state.seekerTimer);
+    this.state.seekerTimer = null;
     this.state.teleporters = [];
     this.state.eyePatrolPath = {};
     return Promise.all(meshesReady);

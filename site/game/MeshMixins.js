@@ -160,6 +160,7 @@ export class MeshMixins {
               paired.teleporterActivated = true;
 
               await delay(500); // Allow character to reach center
+              this.scene.stopAnimation(main);
               this.animationMixins.exitScene(main, () => {
                 const yTarget = paired.position.y;
                 main.position.x = paired.position.x;
@@ -186,8 +187,8 @@ export class MeshMixins {
             parameter: this.state.mainCharacter,
           },
           () => {
+            if (!this.state.playerControl) return;
             this.state.playerControl = false;
-            playSound("die");
             this.animationMixins.swallowedByEye(
               mesh,
               this.state.mainCharacter,
@@ -214,7 +215,13 @@ export class MeshMixins {
     });
   }
 
-  makeSeeking(mesh) {}
+  // TODO These disappear if screen isn't visible, at least on FF
+  makeSeeking(mesh) {
+    // A single timer for all seekers
+    // Each tick, move 1 step towards player
+    this._ensureSeekerTimer();
+    this.state.seekers.push(mesh);
+  }
 
   makeInstanceDouble(mesh) {
     this._ensureActionManager(mesh);
@@ -269,6 +276,55 @@ export class MeshMixins {
 
   _ensureActionManager(mesh) {
     mesh.actionManager = mesh.actionManager || new ActionManager(this.scene);
+  }
+
+  _ensureSeekerTimer() {
+    this.state.seekerTimer =
+      this.state.seekerTimer ||
+      setInterval(() => {
+        const main = this.state.mainCharacter;
+        this.state.seekers.forEach((seeker) => {
+          if (seeker.position.y === main.position.y) {
+            const next = seeker.position.clone();
+
+            let xDiff = Math.round(main.position.x - next.x);
+            xDiff = xDiff > 0 ? Math.min(xDiff, 1) : Math.max(xDiff, -1);
+            if (
+              Math.abs(xDiff) > 0 &&
+              this._noSeekerIntent(next, { x: xDiff })
+            ) {
+              next.x += xDiff;
+            }
+
+            let zDiff = Math.round(main.position.z - next.z);
+            zDiff = zDiff > 0 ? Math.min(zDiff, 1) : Math.max(zDiff, -1);
+            if (
+              Math.abs(zDiff) > 0 &&
+              this._noSeekerIntent(next, { z: zDiff })
+            ) {
+              next.z += zDiff;
+            }
+
+            seeker.nextPosition = next;
+            this.animationMixins.rotateTo(seeker, main.position);
+            this.animationMixins.floatTo(seeker, next);
+          }
+        });
+      }, 2500);
+  }
+
+  // To avoid clustering. Unlike walk logic that calculates present collisions,
+  // this needs to know whether there will be a FUTURE collision. So seekers
+  // need to publish their movement intent.
+
+  _noSeekerIntent(current, { x = 0, z = 0 }) {
+    const destination = current.clone();
+    destination.x += x;
+    destination.z += z;
+    const occupied = this.state.seekers
+      .map((s) => s.nextPosition)
+      .some((p) => p && p.equals(destination));
+    return !occupied;
   }
 
   _hasCharacterOnTop(mesh) {

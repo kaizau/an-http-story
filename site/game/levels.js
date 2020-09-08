@@ -372,7 +372,7 @@ export const levels = {
       [],
       [
         [TLA,   ,   ,   ,   ,   ,TLC],
-        [   ,   ,   ,SEY,   ,   ,   ],
+        [   ,SEY,   ,   ,   ,   ,   ],
         [   ,   ,   ,   ,   ,   ,   ],
         [TLB,   ,   ,   ,   ,   ,SEY],
         [   ,   ,   ,   ,   ,   ,   ],
@@ -382,7 +382,7 @@ export const levels = {
         [   ,   ,   ,   ,   ,   ,   ],
         [TLA,   ,   ,   ,   ,   ,SEY],
         [   ,   ,   ,   ,   ,   ,   ],
-        [   ,   ,   ,SEY,   ,   ,   ],
+        [   ,SEY,   ,   ,   ,   ,   ],
         [TLB,   ,   ,TLC,   ,   ,TLD],
       ],
       [

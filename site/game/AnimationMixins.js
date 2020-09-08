@@ -7,7 +7,6 @@ const {
   TransformNode,
   Ray,
   Vector3,
-  Space,
 } = BABYLON;
 
 const easeOutQuad = new QuadraticEase();
@@ -52,8 +51,12 @@ export class AnimationMixins {
     );
   }
 
-  swallowedByEye(eye, zyra, onEnd) {
+  async swallowedByEye(eye, zyra, onEnd) {
+    await delay(250);
+    playSound("die");
     this.scene.stopAnimation(eye);
+    this.scene.stopAnimation(zyra);
+
     const initial = eye.scaling.clone();
     const target = new Vector3(2.5, 2.5, 2.5);
     Animation.CreateAndStartAnimation(
@@ -67,7 +70,6 @@ export class AnimationMixins {
       Animation.ANIMATIONLOOPMODE_CONSTANT,
       easeOutQuad,
       async () => {
-        this.scene.stopAnimation(zyra);
         zyra.dispose();
         await delay(500);
         Animation.CreateAndStartAnimation(
@@ -94,6 +96,22 @@ export class AnimationMixins {
       30,
       10,
       mesh.position.clone(),
+      target,
+      Animation.ANIMATIONLOOPMODE_CONSTANT,
+      easeOutQuad
+    );
+  }
+
+  rotateTo(mesh, position) {
+    const start = mesh.rotation.clone();
+    const target = this._calcRotation(mesh, position);
+    Animation.CreateAndStartAnimation(
+      "rotate",
+      mesh,
+      "rotation",
+      30,
+      10,
+      start,
       target,
       Animation.ANIMATIONLOOPMODE_CONSTANT,
       easeOutQuad
@@ -236,7 +254,7 @@ export class AnimationMixins {
     // Start oriented in the initial direction to ensure smooth loop
     // Note, our meshes point "backwards", so the 2nd param is required
     if (mesh.isPatrolling) {
-      mesh.lookAt(keys[1].value, Math.PI, 0, 0, Space.WORLD);
+      mesh.lookAt(keys[1].value, Math.PI);
     }
 
     const rotationKeys = [];
@@ -251,22 +269,11 @@ export class AnimationMixins {
     let previous;
     keys.forEach((current) => {
       if (previous) {
-        const previousY = node.rotation.y;
         node.position = previous.value;
-        node.rotation.y = 0; // Reset rotation, otherwise can accumulate
-        node.lookAt(current.value, Math.PI, 0, 0, Space.WORLD);
-
-        // Translate long turns into short ones
-        const diffY = node.rotation.y - previousY;
-        if (diffY > Math.PI) {
-          node.rotation.y -= Math.PI * 2;
-        } else if (diffY < 0 - Math.PI) {
-          node.rotation.y += Math.PI * 2;
-        }
-
+        const rotation = this._calcRotation(node, current.value);
         rotationKeys.push({
           frame: current.frame,
-          value: node.rotation.clone(),
+          value: rotation,
         });
       }
       previous = current;
@@ -288,6 +295,19 @@ export class AnimationMixins {
     node.dispose();
 
     return rotationKeys;
+  }
+
+  // Translate long turns into short ones
+  _calcRotation(mesh, target) {
+    const previousY = mesh.rotation.y;
+    mesh.lookAt(target, Math.PI);
+    const diffY = mesh.rotation.y - previousY;
+    if (diffY > Math.PI) {
+      mesh.rotation.y -= Math.PI * 2;
+    } else if (diffY < 0 - Math.PI) {
+      mesh.rotation.y += Math.PI * 2;
+    }
+    return mesh.rotation.clone();
   }
 
   _canWalkTo(current, { x = 0, z = 0 }) {
