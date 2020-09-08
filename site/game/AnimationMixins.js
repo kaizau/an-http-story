@@ -14,7 +14,7 @@ easeOutQuad.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
 
 export class AnimationMixins {
   constructor(scene) {
-    this.scene = scene;
+    this._scene = scene;
   }
 
   enterScene(mesh, yTarget, onEnd) {
@@ -33,7 +33,7 @@ export class AnimationMixins {
   }
 
   exitScene(mesh, onEnd) {
-    this.scene.stopAnimation(mesh);
+    this._scene.stopAnimation(mesh);
     if (mesh.isMainCharacter) {
       playSound("teleport");
     }
@@ -54,8 +54,8 @@ export class AnimationMixins {
   async swallowedByEye(eye, zyra, onEnd) {
     await delay(250);
     playSound("die");
-    this.scene.stopAnimation(eye);
-    this.scene.stopAnimation(zyra);
+    this._scene.stopAnimation(eye);
+    this._scene.stopAnimation(zyra);
 
     const initial = eye.scaling.clone();
     const target = new Vector3(2.5, 2.5, 2.5);
@@ -188,7 +188,7 @@ export class AnimationMixins {
       rotationAnimation.setEasingFunction(easeOutQuad);
       mesh.animations.push(rotationAnimation);
 
-      this.scene.beginAnimation(
+      this._scene.beginAnimation(
         mesh,
         0,
         walkKeys[walkKeys.length - 1].frame,
@@ -246,7 +246,7 @@ export class AnimationMixins {
     rotationAnimation.setKeys(rotationKeys);
     mesh.animations.push(rotationAnimation);
 
-    this.scene.beginAnimation(mesh, 0, keys[keys.length - 1].frame, true);
+    this._scene.beginAnimation(mesh, 0, keys[keys.length - 1].frame, true);
   }
 
   // Determine rotations from keyframe positions
@@ -320,11 +320,11 @@ export class AnimationMixins {
     destination.z += z;
     const front = new Ray(origin, direction, 1);
     const down = new Ray(destination, Vector3.Down(), 1);
-    const frontPick = this.scene.pickWithRay(
+    const frontPick = this._scene.pickWithRay(
       front,
       (mesh) => !mesh.isMainCharacter && !mesh.isEnemy
     );
-    const downPick = this.scene.pickWithRay(down, (mesh) => mesh.isWalkable);
+    const downPick = this._scene.pickWithRay(down, (mesh) => mesh.isWalkable);
     return !frontPick.hit && downPick.hit;
   }
 }

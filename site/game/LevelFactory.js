@@ -18,9 +18,8 @@ import {
 const { Vector3 } = BABYLON;
 
 export class LevelFactory {
-  constructor(scene, state, envHelper, meshFactory, animationMixins, dialogue) {
-    this.scene = scene;
-    this.state = state;
+  constructor(state, envHelper, meshFactory, animationMixins, dialogue) {
+    this._state = state;
     this._envHelper = envHelper;
     this._meshFactory = meshFactory;
     this._animationMixins = animationMixins;
@@ -30,11 +29,11 @@ export class LevelFactory {
     this._levelMeshes = [];
 
     events.on("levelCompleted", async () => {
-      this.state.playerControl = false;
-      if (this.state.selected) {
-        this.state.selected.renderOutline = false;
+      this._state.playerControl = false;
+      if (this._state.selected) {
+        this._state.selected.renderOutline = false;
       }
-      this.state.selected = null;
+      this._state.selected = null;
 
       await this._dialogue.load(this._level.outro);
 
@@ -49,7 +48,7 @@ export class LevelFactory {
     this._levelMeshes = await this._buildLevel(level);
 
     events.emit("levelReady");
-    this.state.playerControl = true;
+    this._state.playerControl = true;
     await this._dialogue.load(level.intro);
   }
 
@@ -88,9 +87,9 @@ export class LevelFactory {
                 case EY2:
                 case EY3:
                 case EY4:
-                  this.state.eyePatrolPath[y] =
-                    this.state.eyePatrolPath[y] || {};
-                  this.state.eyePatrolPath[y][code] = new Vector3(x, y, z);
+                  this._state.eyePatrolPath[y] =
+                    this._state.eyePatrolPath[y] || {};
+                  this._state.eyePatrolPath[y][code] = new Vector3(x, y, z);
                   break;
                 case SEY:
                   mesh = this._meshFactory.createEye(true);
@@ -160,11 +159,11 @@ export class LevelFactory {
     });
 
     this._levelMeshes = [];
-    this.state.seekers = [];
-    clearInterval(this.state.seekerTimer);
-    this.state.seekerTimer = null;
-    this.state.teleporters = [];
-    this.state.eyePatrolPath = {};
+    this._state.seekers = [];
+    clearInterval(this._state.seekerTimer);
+    this._state.seekerTimer = null;
+    this._state.teleporters = [];
+    this._state.eyePatrolPath = {};
     return Promise.all(meshesReady);
   }
 }

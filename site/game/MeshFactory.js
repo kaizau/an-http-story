@@ -10,8 +10,7 @@ const {
 } = BABYLON;
 
 export class MeshFactory {
-  constructor(scene, state, meshMixins, shadows) {
-    this.scene = scene;
+  constructor(state, meshMixins, shadows) {
     this._meshMixins = meshMixins;
     this._shadows = shadows;
 

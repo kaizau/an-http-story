@@ -44,13 +44,11 @@ export default class World {
       this._animationMixins
     );
     this._meshFactory = new MeshFactory(
-      this._scene,
       this._state,
       this._meshMixins,
       this._shadows
     );
     this._levelFactory = new LevelFactory(
-      this._scene,
       this._state,
       this._envHelper,
       this._meshFactory,
