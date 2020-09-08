@@ -5,25 +5,28 @@ export function delay(duration) {
   });
 }
 
-// Local storage saved progress
-export const progress = {
-  get() {
-    let progress;
+// Local storage
+export const ls = {
+  get(key, defaultValue) {
+    let value;
     try {
-      progress = JSON.parse(localStorage.AHS);
+      value = JSON.parse(localStorage[key]);
     } catch (e) {
-      // No progress
+      // Nope
     }
-    return progress || [];
+    return value || defaultValue;
   },
 
-  add(levelId) {
-    const data = progress.get();
-    const id = levelId.toString();
-    if (!data.includes(id)) {
-      data.push(id);
+  set(key, value) {
+    localStorage[key] = JSON.stringify(value);
+  },
+
+  pushTo(key, value) {
+    const data = ls.get(key, []);
+    if (!data.includes(value)) {
+      data.push(value);
       data.sort();
-      localStorage.AHS = JSON.stringify(data);
+      ls.set(key, data);
     }
   },
 };

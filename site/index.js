@@ -1,5 +1,5 @@
 import World from "./game/World";
-import { progress } from "./game/utils";
+import { ls } from "./game/utils";
 import { loadMusic, createMusic } from "./music/player";
 
 const loadingMessages = [
@@ -27,11 +27,6 @@ init();
 
 /** @suppress {uselessCode} */
 async function init() {
-  if (process.env.DEBUG) {
-    startGame();
-    return;
-  }
-
   music = await loadMusic();
   if (!music) {
     showLoading();
@@ -103,7 +98,7 @@ function startGame(level = 1) {
 //
 
 function loadProgress() {
-  const levels = progress.get();
+  const levels = ls.get("AHS", []);
   levels.forEach(createShortcut);
 }
 

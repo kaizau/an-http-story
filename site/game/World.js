@@ -12,7 +12,7 @@ import { MeshFactory } from "./MeshFactory";
 import { LevelFactory } from "./LevelFactory";
 import { Dialogue } from "./Dialogue";
 import { levels } from "./levels";
-import { events, progress } from "./utils";
+import { events, ls } from "./utils";
 const { Engine, Scene } = BABYLON;
 
 export default class World {
@@ -68,7 +68,7 @@ export default class World {
 
     events.on("levelNext", () => {
       // TODO Load different level depending on teleporter metadata?
-      this._load(parseInt(this._state.currentLevel, 10) + 1);
+      this._load(parseInt(this._state.currentLevel) + 1);
     });
 
     events.on("levelLost", () => {
@@ -80,11 +80,12 @@ export default class World {
     this._state.currentLevel = levelId;
     const level = levels[levelId];
     if (level) {
-      progress.add(this._state.currentLevel);
+      // TODO Save games as ints, not strings
+      ls.pushTo("AHS", this._state.currentLevel.toString());
       this._levelFactory.load(level);
     } else {
       const total = Object.keys(levels);
-      const completed = progress.get();
+      const completed = ls.get("AHS", []);
       if (total.every((level) => completed.includes(level))) {
         this._win("?ending=1");
       } else {
