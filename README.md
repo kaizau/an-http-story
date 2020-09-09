@@ -2,13 +2,14 @@
 
 > A 3rd-person VR platformer about finding one's way...
 
-Sometimes, the web can be a beautiful place. Other times, it can be a dangerous place.
+Sometimes, the web can be a beautiful place. Other times, it can be a dangerous
+place.
 
 This is one of the latter times...
 
 ## Details 🔍
 
-My first-time entry for the 2020 js13KGames competition, WebXR category.
+A first-time entry for the 2020 js13KGames competition, WebXR category.
 
 Works best on:
 
@@ -20,14 +21,14 @@ Works best on:
 
 ### VR
 
-- Trigger to move Zyra to block
-- Trigger (hold) to drag blocks
+- Trigger to move Zyra to selected block
+- Trigger (hold) to drag selected block
 
 ### Keyboard and Mouse
 
 - Arrow keys to move the camera
-- Click to move Zyra to block
-- Click (hold) to drag blocks
+- Click to move Zyra to selected block
+- Click (hold) to drag selected block
 
 ## Bonus 🍰
 
