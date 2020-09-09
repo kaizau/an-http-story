@@ -96,7 +96,7 @@ function chooseVoices() {
   }
 }
 
-if (speechSynthesis) {
+if (window.speechSynthesis) {
   if (speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = chooseVoices;
   }
