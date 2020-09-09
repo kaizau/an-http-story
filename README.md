@@ -1,12 +1,37 @@
-# A HTTP Story
+# A HTTP Story 🧶
 
-> A game about finding one's way...
+> A 3rd-person VR platformer about finding one's way...
 
-My entry for the 2020 js13KGames competition, WebXR category.
+Sometimes, the web can be a beautiful place. Other times, it can be a dangerous place.
 
-Best experienced on...
+This is one of the latter times...
 
-Controls...
+## Details 🔍
+
+My first-time entry for the 2020 js13KGames competition, WebXR category.
+
+Works best on:
+
+- Oculus Browser (Quest) - VR controls, but no speech synthesis
+- Firefox 81 - Keyboard and mouse
+- Chrome 84 - Keyboard and mouse
+
+## Controls 🕹
+
+### VR
+
+- Trigger to move Zyra to block
+- Trigger (hold) to drag blocks
+
+### Keyboard and Mouse
+
+- Arrow keys to move the camera
+- Click to move Zyra to block
+- Click (hold) to drag blocks
+
+## Bonus 🍰
+
+Coil members can create and load custom levels and dialogue!
 
 ## Credits 🙏
 
