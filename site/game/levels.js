@@ -47,16 +47,16 @@ export const levels = {
         [   ,___],
       ],
     ],
-    outro: ["Thanks, I appreciate your help.", "Goodbye now!"],
+    outro: ["Thanks for your help.", "Goodbye now!"],
   },
 
   2: {
     intro: [
-      "Damn. What is this place?",
-      "And how are you still here?",
+      "Damn. Still the wrong address.",
+      "But you're here too...",
       "I guess we might as well team up.",
       "By the way, I'm 0x28df77a.",
-      "But you can call me Zyra.",
+      "You can call me Zyra.",
     ],
     theme: [0.0, 0.2, 0.2],
     map: [
@@ -82,7 +82,7 @@ export const levels = {
     outro: [
       "Me? I was responding to a GET request.",
       "Something must have interrupted the connection.",
-      "Though this doesn't feel like a network issue...",
+      "Though this doesn't feel like a normal network issue...",
       "Anyways, let's keep moving."
     ],
   },
@@ -131,7 +131,7 @@ export const levels = {
     intro: [
       "FOE: Process 15127. You have deviated from normal operations.",
       "FOE: Cease immediately and submit to inspection.",
-      "Do you think he's going to repeat himself every time?",
+      "Ugh. What I wouldn't give to shut him up...",
       "Let's get out of here.",
     ],
     theme: [0.5, 0.5, 0.1],
@@ -156,7 +156,7 @@ export const levels = {
         [___                ],
         [___,   ,   ,ZYR    ],
         [___                ],
-        [___,___,___,__M    ],
+        [__M,___,___,__M    ],
       ],
       [
         [                   ],
@@ -177,16 +177,16 @@ export const levels = {
 
   5: {
     intro: [
-      "These... things... don't scare me.",
-      "You're doing great.",
+      "These poor processes. No intelligence at all.",
+      "Artificial or otherwise.",
       "Let's keep moving.",
     ],
     theme: [0.5, 0.3, 0.1],
     map: [
       [
         [TLC,EY1,EYE,EY4,TLX],
-        [   ,EY2,   ,EY3    ],
         [                   ],
+        [   ,EY2,   ,EY3    ],
         [                   ],
         [                   ],
         [                   ],
@@ -455,20 +455,19 @@ export const levels = {
         [   ,   ,___        ],
         [   ,   ,___        ],
         [___,___,___,___,___],
-        [___,   ,   ,   ,___],
-        [___,   ,___,   ,___],
-        [___,   ,   ,   ,___],
+        [   ,   ,   ,   ,___],
+        [___,___,___,___,___],
+        [___                ],
         [___,___,___,___,___],
       ],
     ],
     outro: [
       "FOE: System normal. No malware detected.",
       "Hey, you did great back there.",
-      "Thanks again.",
       "I have to go now... My mission awaits.",
       "I'll restore you back to normal, process 15127.",
       "Yes... I know you have questions...",
-      "No... I'm not just a bundle of documents.",
+      "Ha! No... I'm not just a bundle of documents.",
       "I'm sorry, I can't say more than that.",
       "But this... This is bigger than you or I.",
       "Thank you. I'll always be grateful for your help.",
