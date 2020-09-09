@@ -66,51 +66,47 @@ export default class World {
       this.$load(initialLevel);
     });
 
+    // TODO Load different level depending on teleporter metadata?
     events.on("levelNext", () => {
-      // TODO Load different level depending on teleporter metadata?
-      this.$load(parseInt(this._state.$currentLevel) + 1);
+      this.$load(this._state.$currentLevel + 1);
     });
 
     events.on("levelLost", () => {
-      this._lose();
+      const isCustom = !this._state.$currentLevel;
+      this._end(isCustom ? "" : "?ending=0");
     });
   }
 
-  $load(initial) {
-    let level;
-    if (typeof initial === "object") {
-      level = initial;
-      this._levelFactory.$load(level);
-      return;
+  $load(data) {
+    if (typeof data === "object") {
+      return this._levelFactory.$load(data);
     }
 
-    this._state.$currentLevel = initial;
-    level = levels[initial];
+    const level = levels[data];
     if (level) {
-      // TODO Save games as ints, not strings
-      ls.pushTo("AHS", this._state.$currentLevel.toString());
+      this._state.$currentLevel = data;
+      ls.pushTo("AHS", this._state.$currentLevel);
       this._levelFactory.$load(level);
     } else {
-      const total = Object.keys(levels);
+      const total = Object.keys(levels).map((key) => parseInt(key));
       const completed = ls.get("AHS", []);
+      const last = Math.max(...total);
 
-      // TODO Only win if last level
-      if (total.every((level) => completed.includes(level))) {
-        this._win("?ending=1");
+      // Only show ending on campaign mode, not custom level
+      if (
+        this._state.$currentLevel === last ||
+        total.every((level) => completed.includes(level))
+      ) {
+        this._end("?ending=1");
       } else {
-        this._win();
+        this._end();
       }
     }
   }
 
-  async _win(ending = "") {
+  // TODO Fade to white
+  async _end(ending = "") {
     await this._levelFactory.$reset();
-    // TODO Fade to white
     location.href = location.pathname + ending;
-  }
-
-  _lose() {
-    // TODO Fade to white
-    location.href = location.pathname + "?ending=0";
   }
 }
