@@ -38,7 +38,7 @@ Levels are just normal JSON objects that you can edit as you see fit:
   ],
   "outro": [
     "That was just a quick tour.",
-    "Check out https://github.com/kaizau/a-http-story#bonus- for more."
+    "Check out https://github.com/kaizau/a-http-story for more."
   ]
 }
 ```
@@ -50,9 +50,7 @@ try.
 
 ### `theme`
 
-Sets the color of the background. Expects an array of RGB values between 0 and
-
-1.
+Sets the color of the background. Expects an array of RGB values between 0 and 1.
 
 ### `intro`
 
@@ -76,9 +74,9 @@ upper limit.
 
 #### Map codes
 
-`"   "` - Empty space. The spaces (` `) are completely optional and only serve
-to align the grid to make level design easier. A `""` will work just as well.
-You can omit these from the _end_ of any array row.
+`"\ \ \ "` - Empty space. The spaces (` `) are completely optional and only
+serve to align the grid to make level design easier. A `""` will work just as
+well.  You can omit these from the _end_ of any array row.
 
 `"___"` - Plain block. Zyra can "walk" on this, but cannot move through it.
 

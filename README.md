@@ -31,7 +31,7 @@ Works best on:
 - Click to move Zyra to selected block
 - Click (hold) to drag selected block
 
-## Bonus 🍰
+## Extra Levels 🍰
 
 [Coil](https://coil.com/) members can create their own levels or load those
 created by others!
