@@ -90,7 +90,7 @@
         background: #ddd;
         border-radius: 8px;
         cursor: pointer;
-        font-size: 24px;
+        font-size: 20px;
         padding: 10px;
         position: absolute;
         right: 40px;
@@ -112,7 +112,6 @@
       .md {
         align-items: center;
         background: rgba(0, 0, 0, 0.5);
-        display: flex;
         justify-content: center;
       }
 
@@ -155,18 +154,24 @@
 
       .cl {
         font-family: monospace;
-        min-height: 400px;
+        height: 100%;
         width: 100%;
       }
 
       .md,
       .mo {
         bottom: 0;
+        display: flex;
         left: 0;
         max-width: none;
         position: absolute;
         right: 0;
         top: 0;
+      }
+
+      .my,
+      .mn {
+        margin-right: 40px;
       }
 
       .h {
@@ -210,10 +215,10 @@
 
       <div class="md h">
         <div class="hp wi h">
-          <div class="lg">🧶</div>
+          <div class="lg">🎟</div>
           <h2>Welcome to <em>A HTTP Story</em></h2>
           <p>
-            This is an interactive puzzle game, best experienced in VR. You find
+            This is an interactive game, best experienced in VR. You find
             yourself on an... unofficial part of the internet.
           </p>
           <p>Leaked evidence? What could that be...?</p>
@@ -249,7 +254,7 @@
         <form class="mo wi h">
           <div class="mn">
             <div class="lg">🎩</div>
-            <h2>Want more challenges?</h2>
+            <h2>Want more levels?</h2>
             <p>
               <a target="_blank" href="https://coil.com/"
                 >Become a Coil subscriber</a
@@ -271,7 +276,7 @@
 {
   "theme": [0, 0, 0],
   "intro": [
-    "Hey! Good to see you again, 15127.",
+    "Hey! Good to see you again.",
     "I guess you missed me after all."
   ],
   "map": [
@@ -299,8 +304,8 @@
     ]
   ],
   "outro": [
-    "That was just a quick tour.",
-    "Check out https://github.com/kaizau/a-http-story for more."
+    "That was just a quick demo.",
+    "Check out Github for more."
   ]
 }</textarea
           >

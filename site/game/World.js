@@ -56,11 +56,10 @@ export default class World {
       this._dialogue
     );
 
-    this._xrHelper = {};
-
-    initXRHelper(this._scene, this._dialogue).then((xrHelper) => {
-      this._xrHelper = xrHelper;
-    });
+    initXRHelper(this._scene, this._dialogue);
+    // .then((xrHelper) => {
+    //   this._xrHelper = xrHelper;
+    // });
 
     this._scene.executeWhenReady(() => {
       this.$load(initialLevel);

@@ -65,7 +65,7 @@ export class Dialogue {
       return Promise.resolve();
     }
 
-    if (!speechSynthesis || process.env.DEBUG) {
+    if (!window.speechSynthesis || process.env.DEBUG) {
       for (let line of lines) {
         let speaker = "friend";
         if (line[0] === ">") {

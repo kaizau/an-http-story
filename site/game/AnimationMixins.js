@@ -30,7 +30,7 @@ export class AnimationMixins {
       "position.y",
       30,
       30,
-      yTarget + 10,
+      yTarget + 15,
       yTarget,
       ANIMATIONLOOPMODE_CONSTANT,
       easeOutQuad,
@@ -50,7 +50,7 @@ export class AnimationMixins {
       30,
       30,
       mesh.position.y,
-      mesh.position.y + 10,
+      mesh.position.y + 15,
       ANIMATIONLOOPMODE_CONSTANT,
       easeOutQuad,
       onEnd

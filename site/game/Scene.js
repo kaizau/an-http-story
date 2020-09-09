@@ -105,9 +105,9 @@ export function initXRHelper(scene, dialogue) {
           }
         });
 
-        // Set camera height
+        // Set camera height (player's height is added)
         xrHelper.onInitialXRPoseSetObservable.add((xrCamera) => {
-          xrCamera.position.y = 6;
+          xrCamera.position.y = 5;
         });
 
         return xrHelper;
