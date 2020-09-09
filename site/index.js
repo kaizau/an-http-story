@@ -153,6 +153,7 @@ function enableCustomLevels() {
     }
     if (level) {
       level.map = replaceMeshStrings(level.map);
+      music.play();
       startGame(level);
     }
   });
