@@ -43,11 +43,9 @@ export class MeshFactory {
   }
 
   _createBlockTemplate() {
-    const mesh = MeshBuilder.CreateBox(0, {
-      height: 1,
-      width: 1,
-      depth: 1,
-    });
+    // Default blocks are exactly the size we need, but the options object is
+    // required
+    const mesh = MeshBuilder.CreateBox(0, {});
     mesh.receiveShadows = true;
     mesh.material = new StandardMaterial();
     mesh.material.diffuseColor = new Color3(0.8, 0.8, 0.8);
@@ -78,11 +76,7 @@ export class MeshFactory {
   }
 
   $createBlockMovable() {
-    const mesh = MeshBuilder.CreateBox(0, {
-      height: 1,
-      width: 1,
-      depth: 1,
-    });
+    const mesh = MeshBuilder.CreateBox(0, {});
     mesh.receiveShadows = true;
     mesh.material = this._matBlue;
 

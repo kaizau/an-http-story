@@ -27,8 +27,11 @@ const moneyWindow = qs(".mo");
 const closeModal = document.querySelectorAll(".cm");
 let music;
 
-init();
-enableCustomLevels(); // TODO Testing
+if (process.env.DEBUG) {
+  startGame(7);
+} else {
+  init();
+}
 
 async function init() {
   music = await loadMusic();

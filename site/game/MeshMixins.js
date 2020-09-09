@@ -211,12 +211,12 @@ export class MeshMixins {
     });
   }
 
-  // TODO Sometimes, seekers disappear if the page loads in the background. At
-  // least on FF. Potentially a race condition where the browser is conserving
-  // resources?
   $makeSeeking(mesh) {
-    this._ensureSeekerTimer();
     this._state.$seekers.push(mesh);
+    events.one("levelReady", async () => {
+      await delay(2000); // Give the player a bit of breathing room
+      this._ensureSeekerTimer();
+    });
   }
 
   $makeInstanceDouble(mesh) {
@@ -279,35 +279,28 @@ export class MeshMixins {
     this._state.$seekerTimer =
       this._state.$seekerTimer ||
       setInterval(() => {
+        if (!this._state.$playerControl) return;
         const main = this._state.$mainCharacter;
         this._state.$seekers.forEach((seeker) => {
-          if (seeker.position.y === main.position.y) {
-            const next = seeker.position.clone();
+          const next = seeker.position.clone();
 
-            let xDiff = Math.round(main.position.x - next.x);
-            xDiff = xDiff > 0 ? Math.min(xDiff, 1) : Math.max(xDiff, -1);
-            if (
-              Math.abs(xDiff) > 0 &&
-              this._noSeekerIntent(next, { x: xDiff })
-            ) {
-              next.x += xDiff;
-            }
-
-            let zDiff = Math.round(main.position.z - next.z);
-            zDiff = zDiff > 0 ? Math.min(zDiff, 1) : Math.max(zDiff, -1);
-            if (
-              Math.abs(zDiff) > 0 &&
-              this._noSeekerIntent(next, { z: zDiff })
-            ) {
-              next.z += zDiff;
-            }
-
-            seeker.nextPosition = next;
-            this._animationMixins.$rotateTo(seeker, main.position);
-            this._animationMixins.$floatTo(seeker, next);
+          let xDiff = Math.round(main.position.x - next.x);
+          xDiff = xDiff > 0 ? Math.min(xDiff, 1) : Math.max(xDiff, -1);
+          if (Math.abs(xDiff) > 0 && this._noSeekerIntent(next, { x: xDiff })) {
+            next.x += xDiff;
           }
+
+          let zDiff = Math.round(main.position.z - next.z);
+          zDiff = zDiff > 0 ? Math.min(zDiff, 1) : Math.max(zDiff, -1);
+          if (Math.abs(zDiff) > 0 && this._noSeekerIntent(next, { z: zDiff })) {
+            next.z += zDiff;
+          }
+
+          seeker.nextPosition = next;
+          this._animationMixins.$rotateTo(seeker, main.position);
+          this._animationMixins.$floatTo(seeker, next);
         });
-      }, 2500);
+      }, 2000);
   }
 
   // Used to avoid clustering. Unlike walk logic that calculates present
