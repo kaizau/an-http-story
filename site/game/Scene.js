@@ -107,7 +107,7 @@ export function initXRHelper(scene, dialogue) {
 
         // Set camera height (player's height is added)
         xrHelper.onInitialXRPoseSetObservable.add((xrCamera) => {
-          xrCamera.position.y = 5;
+          xrCamera.position.y = 4.5;
         });
 
         return xrHelper;

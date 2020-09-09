@@ -32,6 +32,7 @@ let music;
 // } else {
 //   init();
 // }
+// enableCustomLevels();
 
 init();
 

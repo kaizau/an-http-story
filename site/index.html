@@ -118,7 +118,7 @@
       .wi {
         background: #fff;
         border-top: 40px solid #ccc;
-        line-height: 1.4;
+        line-height: 1.5;
         padding: 40px;
         position: relative;
         max-width: 500px;
@@ -155,6 +155,7 @@
       .cl {
         font-family: monospace;
         height: 100%;
+        margin-left: 40px;
         width: 100%;
       }
 
@@ -167,11 +168,6 @@
         position: absolute;
         right: 0;
         top: 0;
-      }
-
-      .my,
-      .mn {
-        margin-right: 40px;
       }
 
       .h {
@@ -189,23 +185,21 @@
 
       <div class="dr h">
         <h1>Index of /a-http-story</h1>
-        <p>
-          ⤴️
-          <a href="#">Parent Directory</a>
-        </p>
-        <p>📂<a href="#">elvis_coverup/</a></p>
-        <p>📂<a href="#">keyser_soze/</a></p>
-        <p>📂<a href="#">satoshi_revealed/</a></p>
-        <p>📕<a href="#" class="sh">INSTRUCTIONS.txt</a></p>
-        <p>📘<a href="#" class="sm">EXTRAS.txt</a></p>
-        <p>📦<a href="#" class="st">LEAKED_EVIDENCE.zip</a></p>
+        <!--
+        <p>⤴️ <a href="#">Parent Directory</a></p>
+        -->
+        <p>📂 <a href="#">keyser_soze/</a></p>
+        <p>📂 <a href="#">safehouse_locations/</a></p>
+        <p>📦 <a href="#" class="st">WIKIDRIPS_EVIDENCE.zip</a></p>
+        <p>📕 <a href="#" class="sh">instructions.txt</a></p>
+        <p class="my h">📕 <a href="#" class="sm">coil_extras.txt</a></p>
       </div>
 
       <div class="db o">
         <div class="dl">
           <div class="ic">📦</div>
           <div class="text">
-            <div><strong>LEAKED_EVIDENCE.zip</strong></div>
+            <div><strong>WIKIDRIPS_EVIDENCE.zip</strong></div>
             <div class="ms"></div>
           </div>
         </div>
@@ -218,10 +212,18 @@
           <div class="lg">🎟</div>
           <h2>Welcome to <em>A HTTP Story</em></h2>
           <p>
-            This is an interactive game, best experienced in VR. You find
-            yourself on an... unofficial part of the internet.
+            You find yourself on an... unofficial part of the internet.
+            WikiDrips evidence? What could that be...?
           </p>
-          <p>Leaked evidence? What could that be...?</p>
+          <div class="mn">
+            <hr />
+            <p>
+              <a target="_blank" href="https://coil.com/"
+                >Become a Coil subscriber</a
+              >
+              to import community-built levels or create your own!
+            </p>
+          </div>
           <button class="cm">×</button>
         </div>
 
@@ -252,22 +254,15 @@
         </div>
 
         <form class="mo wi h">
-          <div class="mn">
-            <div class="lg">🎩</div>
-            <h2>Want more levels?</h2>
-            <p>
-              <a target="_blank" href="https://coil.com/"
-                >Become a Coil subscriber</a
-              >
-              to import community-built levels or create your own!
-            </p>
-          </div>
-          <div class="my h">
+          <div>
             <div class="lg">🍾</div>
             <h2>Thanks for being a Coil subscriber!</h2>
             <p>
               Load a custom level from
-              <a href="https://github.com/kaizau/a-http-story">Github</a>
+              <a
+                href="https://github.com/kaizau/a-http-story/tree/master/extras"
+                >Github</a
+              >
               OR create your own!
             </p>
             <p><button type="submit">Play</button></p>
