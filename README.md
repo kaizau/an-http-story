@@ -33,7 +33,10 @@ Works best on:
 
 ## Bonus 🍰
 
-Coil members can create and load custom levels and dialogue.
+[Coil](https://coil.com/) members can create their own levels or load those
+created by others!
+
+Learn more [here](https://github.com/kaizau/a-http-story/tree/master/extras).
 
 ## Credits 🙏
 
