@@ -57,7 +57,8 @@ export class MeshMixins {
         return;
       }
 
-      // Slight delay to accommodate oversensitive VR controllers
+      // Slight delay on both ends to accommodate oversensitive VR controllers.
+      // If trigger released before delay, then dragstart is ignored.
       this._state.$dragStart = true;
       await delay(150);
       if (this._state.$dragStart) {
@@ -96,7 +97,7 @@ export class MeshMixins {
         this._state.$dragLastSafePosition = safe;
       }
     });
-    pointerDragBehavior.onDragEndObservable.add(() => {
+    pointerDragBehavior.onDragEndObservable.add(async () => {
       let snap;
       if (this._hasAnyCollision(mesh)) {
         snap = this._state.$dragLastSafePosition;
@@ -106,12 +107,15 @@ export class MeshMixins {
       snap.x = Math.round(snap.x);
       snap.z = Math.round(snap.z);
       this._animationMixins.$floatTo(mesh, snap);
-      this._state.$drag = null;
+
       this._state.$dragStart = false;
       this._state.$dragLastSafePosition = null;
-
       mesh.outlineColor = primaryOutline;
       mesh.renderOutline = false;
+
+      // Prevent dragend from becoming pick
+      await delay(150);
+      this._state.$drag = null;
     });
     mesh.addBehavior(pointerDragBehavior);
   }
@@ -236,8 +240,6 @@ export class MeshMixins {
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPointerOverTrigger, () => {
-        if (this._state.$drag) return;
-
         if (mesh.isAnInstance) {
           const double = mesh.blockDouble;
 
