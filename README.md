@@ -1,15 +1,15 @@
 # A HTTP Story 🧶
 
-> A 3rd-person VR platformer about finding one's way...
+> A 13kb\* VR platformer about finding one's way...
 
 Sometimes, the web can be a beautiful place. Other times, it can be a dangerous
 place.
 
-This is one of the latter times...
+This story is about one of the latter times...
 
 ## Details 🔍
 
-A first-time entry for the 2020 js13KGames competition, WebXR category.
+This is my entry for the 2020 js13KGames competition, WebXR category.
 
 Works best on:
 
@@ -23,6 +23,7 @@ Works best on:
 
 - Trigger to move Zyra to selected block
 - Trigger (hold) to drag selected block
+- Standing or sitting, no need for a large play area
 
 ### Keyboard and Mouse
 
@@ -32,14 +33,14 @@ Works best on:
 
 ## Bonus 🍰
 
-Coil members can create and load custom levels and dialogue!
+Coil members can create and load custom levels and dialogue.
 
 ## Credits 🙏
 
 A huge thank you to...
 
 - [js13kGames](https://js13kgames.com/) for the spark of inspiration.
-- [Babylon.js](https://www.babylonjs.com/) for the game engine, detailed
+- [Babylon.js](https://www.babylonjs.com/) for the framework, detailed
   documentation, and absurdly useful code sandbox.
 - [SoundBox](https://sb.bitsnbites.eu/) for the tiny music player.
 - [m@Bits'n'Bytes](https://www.pouet.net/prod.php?which=64246) for the epic
@@ -48,3 +49,8 @@ A huge thank you to...
 
 And [the hard-working many](https://xkcd.com/2347/) who maintain all the open
 technologies we take for granted.
+
+---
+
+\* Less than 13312 bytes minified and zipped, excluding _one_ allowed external
+VR / WebGL framework (babylon.js).
