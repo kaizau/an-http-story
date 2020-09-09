@@ -45,6 +45,7 @@ async function init() {
 
   closeModal.forEach((el) => {
     el.addEventListener("click", (e) => {
+      e.preventDefault();
       e.target.parentElement.classList.add("h");
       downloadBar.classList.add("o");
       downloadBar.classList.remove("c");
