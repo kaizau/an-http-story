@@ -45,8 +45,8 @@ Learn more [here](https://github.com/kaizau/a-http-story/tree/master/extras#read
 A huge thank you to...
 
 - [js13kGames](https://js13kgames.com/) for the spark of inspiration.
-- [Babylon.js](https://www.babylonjs.com/) for the framework, detailed
-  documentation, and absurdly useful code sandbox.
+- [Babylon.js](https://www.babylonjs.com/) for the detailed documentation and
+  absurdly useful code sandbox.
 - [SoundBox](https://sb.bitsnbites.eu/) for the tiny music player.
 - [m@Bits'n'Bytes](https://www.pouet.net/prod.php?which=64246) for the epic
   sountrack _Wilderness_.
@@ -58,4 +58,4 @@ technologies we take for granted.
 ---
 
 \* Competition rules stipulate a game that's less than 13312 bytes minified and
-zipped, excluding one allowed external VR / WebGL framework.
+zipped, excluding one allowed external VR / WebGL library.
