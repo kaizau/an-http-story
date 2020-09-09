@@ -1,6 +1,6 @@
 # A HTTP Story 🧶
 
-> A 13kb\* VR platformer about finding one's way...
+> A 13kb\* VR-enabled game about trust and finding one's way...
 
 Sometimes, the web can be a beautiful place. Other times, it can be a dangerous
 place.
@@ -9,13 +9,15 @@ This story is about one of the latter times...
 
 ## Details 🔍
 
-This is my entry for the 2020 js13KGames competition, WebXR category.
+This is my entry for the 2020 js13KGames competition, [WebXR
+category](https://js13kgames.com/webxr).
 
-Works best on:
+Given the use of experimental WebXR APIs, it's only intended for modern
+browsers:
 
 - Oculus Browser (Quest) - VR controls, but no speech synthesis
-- Firefox 81 - Keyboard and mouse
-- Chrome 84 - Keyboard and mouse
+- Firefox 81+ - Keyboard and mouse
+- Chrome 84+ - Keyboard and mouse
 
 ## Controls 🕹
 
@@ -36,7 +38,7 @@ Works best on:
 [Coil](https://coil.com/) members can create their own levels or load those
 created by others!
 
-Learn more [here](https://github.com/kaizau/a-http-story/tree/master/extras).
+Learn more [here](https://github.com/kaizau/a-http-story/tree/master/extras#readme).
 
 ## Credits 🙏
 
@@ -55,5 +57,5 @@ technologies we take for granted.
 
 ---
 
-\* Less than 13312 bytes minified and zipped, excluding _one_ allowed external
-VR / WebGL framework (babylon.js).
+\* Competition rules stipulate a game that's less than 13312 bytes minified and
+zipped, excluding one allowed external VR / WebGL framework.

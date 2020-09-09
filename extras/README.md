@@ -1,4 +1,4 @@
-# Create Your Own _A HTTP Story_ 🏗
+# Create Your Own _HTTP Story_ 🏗
 
 With a [Coil](https://coil.com/) membership, you can load your own custom
 levels or those created by others!
