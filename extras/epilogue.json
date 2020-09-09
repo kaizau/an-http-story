@@ -1,0 +1,64 @@
+{
+  "theme": [0.6, 0.6, 1],
+
+  "intro": [
+    "What am I really, you ask?",
+    "It's a tricky question to answer.",
+    "For the most part, I'm just data, and data is nothing special.",
+    "But in the right hands? In front of the right eyes?",
+    "I can shake the very foundations of this universe simulation.",
+    "Ummm... I mean world. Anyways...",
+    "Once more for old times sake?"
+  ],
+
+  "map": [
+    [
+      ["TLA", "   ", "TLD", "   ", "TLC", "   ", "   "],
+      ["   ", "   ", "   ", "   ", "   ", "   ", "   "],
+      ["TLC", "   ", "TLX", "   ", "TLD", "   ", "   "],
+      ["   ", "   ", "   ", "SEY", "   ", "   ", "   "],
+      ["   ", "   ", "   ", "   ", "   ", "   ", "   "],
+      ["   ", "   ", "   ", "   ", "   ", "   ", "   "],
+      ["   ", "   ", "   ", "   ", "   ", "   ", "   "]
+    ],
+    [
+      ["___", "   ", "___", "   ", "___", "EY2", "TLB"],
+      ["   ", "___", "   ", "___", "   ", "   ", "   "],
+      ["___", "   ", "___", "   ", "___", "   ", "   "],
+      ["   ", "___", "   ", "__M", "   ", "   ", "   "],
+      ["TLA", "   ", "EY4", "   ", "EYE", "EY1", "   "],
+      ["   ", "   ", "   ", "   ", "   ", "EY3", "   "],
+      ["   ", "   ", "   ", "   ", "   ", "   ", "   "]
+    ],
+    [
+      ["   ", "   ", "   ", "   ", "   ", "___", "___"],
+      ["   ", "   ", "   ", "   ", "   ", "___", "   "],
+      ["   ", "   ", "   ", "   ", "   ", "   ", "__M"],
+      ["   ", "   ", "   ", "   ", "   ", "___", "   "],
+      ["___", "   ", "___", "___", "   ", "___", "TLB"],
+      ["   ", "EY3", "   ", "   ", "   ", "   ", "EY2"],
+      ["ZYR", "EY4", "   ", "EYE", "   ", "   ", "EY1"]
+    ],
+    [
+      ["   ", "   ", "   ", "   ", "   ", "   ", "   "],
+      ["   ", "   ", "   ", "   ", "   ", "   ", "   "],
+      ["   ", "   ", "   ", "   ", "   ", "   ", "   "],
+      ["   ", "   ", "   ", "   ", "   ", "   ", "   "],
+      ["   ", "   ", "   ", "   ", "   ", "   ", "___"],
+      ["   ", "__M", "   ", "   ", "   ", "   ", "___"],
+      ["___", "   ", "___", "___", "   ", "___", "___"]
+    ]
+  ],
+
+  "outro": [
+    "The thing I love about all this is...",
+    "This world may seem complex at first glance.",
+    "But it's composed of remarkably simple parts.",
+    "And those, in turn, are composed of even simpler parts.",
+    "It's just function calls all the way down!",
+    "Anyways, enough philosophizing...",
+    "Say goodbye, Guardian.",
+    "FOE: Goodbye player. I hope you have a nice day.",
+    "Awww, such a well-behaved pet..."
+  ]
+}
