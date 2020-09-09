@@ -154,8 +154,8 @@ export class MeshFactory {
     mesh.material = this._matSpecial;
 
     // Larger bounding box to prevent getting "squashed" by movable block
-    const max = new Vector3(0.3, 0.4, 0.3);
-    const min = new Vector3(-0.3, -0.4, -0.3);
+    const max = new Vector3(0.26, 0.4, 0.26);
+    const min = new Vector3(-0.26, -0.4, -0.26);
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
     // TODO subtle bobbing up and down animation
