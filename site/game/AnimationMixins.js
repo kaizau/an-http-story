@@ -1,24 +1,30 @@
 import { playSound } from "./sounds";
 import { delay } from "./utils";
-const {
+import {
   Animation,
   QuadraticEase,
   EasingFunction,
   TransformNode,
   Ray,
   Vector3,
-} = BABYLON;
+} from "BABYLON";
+const {
+  CreateAndStartAnimation,
+  ANIMATIONLOOPMODE_CONSTANT,
+  ANIMATIONTYPE_VECTOR3,
+} = Animation;
 
 const easeOutQuad = new QuadraticEase();
 easeOutQuad.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
 
 export class AnimationMixins {
-  constructor(scene) {
+  constructor(scene, state) {
     this._scene = scene;
+    this._state = state;
   }
 
   $enterScene(mesh, yTarget, onEnd) {
-    Animation.CreateAndStartAnimation(
+    CreateAndStartAnimation(
       "enter",
       mesh,
       "position.y",
@@ -26,7 +32,7 @@ export class AnimationMixins {
       30,
       yTarget + 10,
       yTarget,
-      Animation.ANIMATIONLOOPMODE_CONSTANT,
+      ANIMATIONLOOPMODE_CONSTANT,
       easeOutQuad,
       onEnd
     );
@@ -34,10 +40,10 @@ export class AnimationMixins {
 
   $exitScene(mesh, onEnd) {
     this._scene.stopAnimation(mesh);
-    if (mesh.isMainCharacter) {
+    if (mesh === this._state.$mainCharacter) {
       playSound("teleport");
     }
-    Animation.CreateAndStartAnimation(
+    CreateAndStartAnimation(
       "exit",
       mesh,
       "position.y",
@@ -45,7 +51,7 @@ export class AnimationMixins {
       30,
       mesh.position.y,
       mesh.position.y + 10,
-      Animation.ANIMATIONLOOPMODE_CONSTANT,
+      ANIMATIONLOOPMODE_CONSTANT,
       easeOutQuad,
       onEnd
     );
@@ -59,7 +65,7 @@ export class AnimationMixins {
 
     const initial = eye.scaling.clone();
     const target = new Vector3(2.5, 2.5, 2.5);
-    Animation.CreateAndStartAnimation(
+    CreateAndStartAnimation(
       "swallow",
       eye,
       "scaling",
@@ -67,12 +73,12 @@ export class AnimationMixins {
       10,
       initial,
       target,
-      Animation.ANIMATIONLOOPMODE_CONSTANT,
+      ANIMATIONLOOPMODE_CONSTANT,
       easeOutQuad,
       async () => {
         zyra.dispose();
         await delay(500);
-        Animation.CreateAndStartAnimation(
+        CreateAndStartAnimation(
           "poof",
           eye,
           "scaling",
@@ -80,7 +86,7 @@ export class AnimationMixins {
           10,
           target,
           Vector3.Zero(),
-          Animation.ANIMATIONLOOPMODE_CONSTANT,
+          ANIMATIONLOOPMODE_CONSTANT,
           easeOutQuad,
           onEnd
         );
@@ -89,7 +95,7 @@ export class AnimationMixins {
   }
 
   $floatTo(mesh, target) {
-    Animation.CreateAndStartAnimation(
+    CreateAndStartAnimation(
       "float",
       mesh,
       "position",
@@ -97,7 +103,7 @@ export class AnimationMixins {
       10,
       mesh.position.clone(),
       target,
-      Animation.ANIMATIONLOOPMODE_CONSTANT,
+      ANIMATIONLOOPMODE_CONSTANT,
       easeOutQuad
     );
   }
@@ -105,7 +111,7 @@ export class AnimationMixins {
   $rotateTo(mesh, position) {
     const start = mesh.rotation.clone();
     const target = this._calcRotation(mesh, position);
-    Animation.CreateAndStartAnimation(
+    CreateAndStartAnimation(
       "rotate",
       mesh,
       "rotation",
@@ -113,7 +119,7 @@ export class AnimationMixins {
       10,
       start,
       target,
-      Animation.ANIMATIONLOOPMODE_CONSTANT,
+      ANIMATIONLOOPMODE_CONSTANT,
       easeOutQuad
     );
   }
@@ -170,8 +176,8 @@ export class AnimationMixins {
         "walk",
         "position",
         30,
-        Animation.ANIMATIONTYPE_VECTOR3,
-        Animation.ANIMATIONLOOPMODE_CONSTANT
+        ANIMATIONTYPE_VECTOR3,
+        ANIMATIONLOOPMODE_CONSTANT
       );
       walkAnimation.setKeys(walkKeys);
       walkAnimation.setEasingFunction(easeOutQuad);
@@ -181,8 +187,8 @@ export class AnimationMixins {
         "walkRotation",
         "rotation",
         30,
-        Animation.ANIMATIONTYPE_VECTOR3,
-        Animation.ANIMATIONLOOPMODE_CONSTANT
+        ANIMATIONTYPE_VECTOR3,
+        ANIMATIONLOOPMODE_CONSTANT
       );
       rotationAnimation.setKeys(rotationKeys);
       rotationAnimation.setEasingFunction(easeOutQuad);
@@ -230,7 +236,7 @@ export class AnimationMixins {
       "patrol",
       "position",
       30,
-      Animation.ANIMATIONTYPE_VECTOR3,
+      ANIMATIONTYPE_VECTOR3,
       Animation.ANIMATIONLOOPMODE_CYCLE
     );
     animation.setKeys(keys);
@@ -240,7 +246,7 @@ export class AnimationMixins {
       "patrolRotation",
       "rotation",
       30,
-      Animation.ANIMATIONTYPE_VECTOR3,
+      ANIMATIONTYPE_VECTOR3,
       Animation.ANIMATIONLOOPMODE_CYCLE
     );
     rotationAnimation.setKeys(rotationKeys);
@@ -322,7 +328,7 @@ export class AnimationMixins {
     const down = new Ray(destination, Vector3.Down(), 1);
     const frontPick = this._scene.pickWithRay(
       front,
-      (mesh) => !mesh.isMainCharacter && !mesh.isEnemy
+      (mesh) => mesh !== this._state.$mainCharacter && !mesh.isEnemy
     );
     const downPick = this._scene.pickWithRay(down, (mesh) => mesh.isWalkable);
     return !frontPick.hit && downPick.hit;

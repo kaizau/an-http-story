@@ -13,7 +13,7 @@ import { LevelFactory } from "./LevelFactory";
 import { Dialogue } from "./Dialogue";
 import { levels } from "./levels";
 import { events, ls } from "./utils";
-const { Engine, Scene } = BABYLON;
+import { Engine, Scene } from "BABYLON";
 
 export default class World {
   constructor(initialLevel) {
@@ -37,7 +37,7 @@ export default class World {
     this._isoCam.attachControl(this._canvas);
     this._dialogue = new Dialogue(this._scene);
 
-    this._animationMixins = new AnimationMixins(this._scene);
+    this._animationMixins = new AnimationMixins(this._scene, this._state);
     this._meshMixins = new MeshMixins(
       this._scene,
       this._state,
@@ -68,7 +68,7 @@ export default class World {
 
     events.on("levelNext", () => {
       // TODO Load different level depending on teleporter metadata?
-      this.$load(parseInt(this._state.currentLevel) + 1);
+      this.$load(parseInt(this._state.$currentLevel) + 1);
     });
 
     events.on("levelLost", () => {
@@ -84,11 +84,11 @@ export default class World {
       return;
     }
 
-    this._state.currentLevel = initial;
+    this._state.$currentLevel = initial;
     level = levels[initial];
     if (level) {
       // TODO Save games as ints, not strings
-      ls.pushTo("AHS", this._state.currentLevel.toString());
+      ls.pushTo("AHS", this._state.$currentLevel.toString());
       this._levelFactory.$load(level);
     } else {
       const total = Object.keys(levels);

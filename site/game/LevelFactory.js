@@ -15,7 +15,7 @@ import {
   EY4,
   SEY,
 } from "./meshes";
-const { Vector3 } = BABYLON;
+import { Vector3 } from "BABYLON";
 
 export class LevelFactory {
   constructor(state, envHelper, meshFactory, animationMixins, dialogue) {
@@ -29,12 +29,7 @@ export class LevelFactory {
     this._levelMeshes = [];
 
     events.on("levelCompleted", async () => {
-      this._state.playerControl = false;
-      if (this._state.selected) {
-        this._state.selected.renderOutline = false;
-      }
-      this._state.selected = null;
-
+      this._state.$playerControl = false;
       await this._dialogue.$load(this._level.outro);
 
       events.emit("levelNext");
@@ -48,7 +43,7 @@ export class LevelFactory {
     this._levelMeshes = await this._buildLevel(level);
 
     events.emit("levelReady");
-    this._state.playerControl = true;
+    this._state.$playerControl = true;
     await this._dialogue.$load(level.intro);
   }
 
@@ -87,9 +82,9 @@ export class LevelFactory {
                 case EY2:
                 case EY3:
                 case EY4:
-                  this._state.eyePatrolPath[y] =
-                    this._state.eyePatrolPath[y] || {};
-                  this._state.eyePatrolPath[y][code] = new Vector3(x, y, z);
+                  this._state.$eyePatrolPath[y] =
+                    this._state.$eyePatrolPath[y] || {};
+                  this._state.$eyePatrolPath[y][code] = new Vector3(x, y, z);
                   break;
                 case SEY:
                   mesh = this._meshFactory.$createEye(true);
@@ -159,11 +154,11 @@ export class LevelFactory {
     });
 
     this._levelMeshes = [];
-    this._state.seekers = [];
-    clearInterval(this._state.seekerTimer);
-    this._state.seekerTimer = null;
-    this._state.teleporters = [];
-    this._state.eyePatrolPath = {};
+    this._state.$seekers = [];
+    clearInterval(this._state.$seekerTimer);
+    this._state.$seekerTimer = null;
+    this._state.$teleporters = [];
+    this._state.$eyePatrolPath = {};
     return Promise.all(meshesReady);
   }
 }

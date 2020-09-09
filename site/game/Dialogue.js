@@ -1,13 +1,13 @@
 import { friendVoice, foeVoice } from "./voices";
 import { playSound } from "./sounds";
 import { delay } from "./utils";
-const {
+import {
   MeshBuilder,
   StandardMaterial,
   DynamicTexture,
   Color3,
   Vector3,
-} = BABYLON;
+} from "BABYLON";
 
 const layerHeight = 0.05;
 const layerWidth = 1.5;
@@ -18,7 +18,7 @@ export class Dialogue {
   constructor(scene) {
     this._isoCam = scene.activeCamera;
 
-    this._layer = MeshBuilder.CreatePlane("dialogue", {
+    this._layer = MeshBuilder.CreatePlane(0, {
       height: layerHeight,
       width: layerWidth,
     });
@@ -26,18 +26,18 @@ export class Dialogue {
     this._layer.position = new Vector3(0, -0.5, 2);
     this._layer.isPickable = false;
 
-    this._bg = this._layer.clone("dialogueBg");
+    this._bg = this._layer.clone();
     this._bg.position.z += 0.01;
     this._bg.isVisible = false;
 
-    this._texture = new DynamicTexture("dialogue", {
+    this._texture = new DynamicTexture(0, {
       height: layerHeight * textRes,
       width: layerWidth * textRes,
     });
     this._texture.hasAlpha = true;
     this._show(""); // Required to add to material
 
-    const material = new StandardMaterial("dialogue");
+    const material = new StandardMaterial();
     material.specularColor = Color3.Black();
     const bgMaterial = material.clone();
 

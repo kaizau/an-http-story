@@ -1,13 +1,13 @@
 import { delay, events } from "./utils";
 import { TLX } from "./meshes";
-const {
+import {
   ActionManager,
   ExecuteCodeAction,
   PointerDragBehavior,
   Color3,
   Vector3,
   Ray,
-} = BABYLON;
+} from "BABYLON";
 const {
   OnPickTrigger,
   OnPointerOverTrigger,
@@ -32,9 +32,9 @@ export class MeshMixins {
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
-        if (!this._state.playerControl || this._state.drag === mesh) return;
+        if (!this._state.$playerControl || this._state.$drag === mesh) return;
 
-        const main = this._state.mainCharacter;
+        const main = this._state.$mainCharacter;
         if (main) {
           const target = mesh.position.clone();
           target.y = main.position.y;
@@ -51,24 +51,24 @@ export class MeshMixins {
     });
     pointerDragBehavior.moveAttached = false;
     pointerDragBehavior.onDragStartObservable.add(async () => {
-      if (!this._state.playerControl || this._hasCharacterOnTop(mesh)) {
+      if (!this._state.$playerControl || this._hasCharacterOnTop(mesh)) {
         mesh.outlineColor = errorOutline;
         mesh.renderOutline = true;
         return;
       }
 
       // Slight delay to accommodate oversensitive VR controllers
-      this._state.dragStart = true;
+      this._state.$dragStart = true;
       await delay(150);
-      if (this._state.dragStart) {
+      if (this._state.$dragStart) {
         mesh.renderOutline = true;
         mesh.renderOverlay = false;
-        this._state.drag = mesh;
-        this._state.dragLastSafePosition = mesh.position.clone();
+        this._state.$drag = mesh;
+        this._state.$dragLastSafePosition = mesh.position.clone();
       }
     });
     pointerDragBehavior.onDragObservable.add((event) => {
-      if (!this._state.drag || !this._state.playerControl) {
+      if (!this._state.$drag || !this._state.$playerControl) {
         return;
       }
 
@@ -93,22 +93,22 @@ export class MeshMixins {
         const safe = mesh.position.clone();
         safe.x -= event.delta.x;
         safe.z -= event.delta.z;
-        this._state.dragLastSafePosition = safe;
+        this._state.$dragLastSafePosition = safe;
       }
     });
     pointerDragBehavior.onDragEndObservable.add(() => {
       let snap;
       if (this._hasAnyCollision(mesh)) {
-        snap = this._state.dragLastSafePosition;
+        snap = this._state.$dragLastSafePosition;
       } else {
         snap = mesh.position.clone();
       }
       snap.x = Math.round(snap.x);
       snap.z = Math.round(snap.z);
       this._animationMixins.$floatTo(mesh, snap);
-      this._state.drag = null;
-      this._state.dragStart = false;
-      this._state.dragLastSafePosition = null;
+      this._state.$drag = null;
+      this._state.$dragStart = false;
+      this._state.$dragLastSafePosition = null;
 
       mesh.outlineColor = primaryOutline;
       mesh.renderOutline = false;
@@ -117,17 +117,16 @@ export class MeshMixins {
   }
 
   $makeMainCharacter(mesh) {
-    mesh.isMainCharacter = true;
-    this._state.mainCharacter = mesh;
+    this._state.$mainCharacter = mesh;
   }
 
   $makeTeleporter(mesh, id) {
     this._ensureActionManager(mesh);
     mesh.isTeleporter = true;
-    this._state.teleporters.push(mesh);
+    this._state.$teleporters.push(mesh);
 
     events.one("levelReady", () => {
-      const main = this._state.mainCharacter;
+      const main = this._state.$mainCharacter;
 
       mesh.actionManager.registerAction(
         new ExecuteCodeAction(
@@ -141,10 +140,8 @@ export class MeshMixins {
               mesh.teleporterActivated = true;
               events.emit("levelCompleted");
             } else {
-              const paired = this._state.teleporters.find((otherMesh) => {
-                return (
-                  mesh !== otherMesh && otherMesh.name === "teleporter-" + id
-                );
+              const paired = this._state.$teleporters.find((otherMesh) => {
+                return mesh !== otherMesh && otherMesh.name === "t-" + id;
               });
 
               // Arriving
@@ -183,14 +180,14 @@ export class MeshMixins {
         new ExecuteCodeAction(
           {
             trigger: OnIntersectionEnterTrigger,
-            parameter: this._state.mainCharacter,
+            parameter: this._state.$mainCharacter,
           },
           () => {
-            if (!this._state.playerControl) return;
-            this._state.playerControl = false;
+            if (!this._state.$playerControl) return;
+            this._state.$playerControl = false;
             this._animationMixins.$swallowedByEye(
               mesh,
-              this._state.mainCharacter,
+              this._state.$mainCharacter,
               async () => {
                 await delay(500);
                 events.emit("levelLost");
@@ -207,7 +204,7 @@ export class MeshMixins {
 
     events.one("levelReady", () => {
       const y = mesh.position.y;
-      const path = this._state.eyePatrolPath[y];
+      const path = this._state.$eyePatrolPath[y];
       if (path) {
         this._animationMixins.$patrolPath(mesh, path);
       }
@@ -219,7 +216,7 @@ export class MeshMixins {
   // resources?
   $makeSeeking(mesh) {
     this._ensureSeekerTimer();
-    this._state.seekers.push(mesh);
+    this._state.$seekers.push(mesh);
   }
 
   $makeInstanceDouble(mesh) {
@@ -239,7 +236,7 @@ export class MeshMixins {
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPointerOverTrigger, () => {
-        if (this._state.drag) return;
+        if (this._state.$drag) return;
 
         if (mesh.isAnInstance) {
           const double = mesh.blockDouble;
@@ -279,11 +276,11 @@ export class MeshMixins {
 
   // Each tick, move 1 step towards player.
   _ensureSeekerTimer() {
-    this._state.seekerTimer =
-      this._state.seekerTimer ||
+    this._state.$seekerTimer =
+      this._state.$seekerTimer ||
       setInterval(() => {
-        const main = this._state.mainCharacter;
-        this._state.seekers.forEach((seeker) => {
+        const main = this._state.$mainCharacter;
+        this._state.$seekers.forEach((seeker) => {
           if (seeker.position.y === main.position.y) {
             const next = seeker.position.clone();
 
@@ -320,7 +317,7 @@ export class MeshMixins {
     const destination = current.clone();
     destination.x += x;
     destination.z += z;
-    const occupied = this._state.seekers
+    const occupied = this._state.$seekers
       .map((s) => s.nextPosition)
       .some((p) => p && p.equals(destination));
     return !occupied;
@@ -332,7 +329,7 @@ export class MeshMixins {
     const top = new Ray(start, new Vector3(0, 1, 0), 1);
     const topPick = this._scene.pickWithRay(
       top,
-      (mesh) => mesh.isMainCharacter
+      (mesh) => mesh === this._state.$mainCharacter
     );
     return topPick.hit;
   }

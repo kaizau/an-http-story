@@ -1,5 +1,5 @@
 import { TLX, TLA, TLB, TLC, TLD } from "./meshes";
-const {
+import {
   MeshBuilder,
   Mesh,
   StandardMaterial,
@@ -7,34 +7,34 @@ const {
   Color4,
   Vector3,
   BoundingInfo,
-} = BABYLON;
+} from "BABYLON";
 
 export class MeshFactory {
   constructor(state, meshMixins, shadows) {
     this._meshMixins = meshMixins;
     this._shadows = shadows;
 
-    this._matSpecial = new StandardMaterial("matSpecial");
+    this._matSpecial = new StandardMaterial();
     this._matSpecial.diffuseColor = new Color3(0.6, 0.6, 1);
     this._matSpecial.freeze();
 
-    this._matBlue = new StandardMaterial("matBlue");
+    this._matBlue = new StandardMaterial();
     this._matBlue.diffuseColor = new Color3(0.6, 0.8, 1);
     this._matBlue.freeze();
 
-    this._matYellow = new StandardMaterial("matYellow");
+    this._matYellow = new StandardMaterial();
     this._matYellow.diffuseColor = new Color3(1, 1, 0.6);
     this._matYellow.freeze();
 
-    this._matGreen = new StandardMaterial("matGreen");
+    this._matGreen = new StandardMaterial();
     this._matGreen.diffuseColor = new Color3(0.7, 1, 0.7);
     this._matGreen.freeze();
 
-    this._matRed = new StandardMaterial("matRed");
+    this._matRed = new StandardMaterial();
     this._matRed.diffuseColor = new Color3(1, 0.7, 0.7);
     this._matRed.freeze();
 
-    this._matEye = new StandardMaterial("matEye");
+    this._matEye = new StandardMaterial();
     this._matEye.diffuseColor = Color3.White();
     this._matEye.emissiveColor = Color3.Gray();
     this._matEye.freeze();
@@ -43,13 +43,13 @@ export class MeshFactory {
   }
 
   _createBlockTemplate() {
-    const mesh = MeshBuilder.CreateBox("block", {
+    const mesh = MeshBuilder.CreateBox(0, {
       height: 1,
       width: 1,
       depth: 1,
     });
     mesh.receiveShadows = true;
-    mesh.material = new StandardMaterial("matBlock");
+    mesh.material = new StandardMaterial();
     mesh.material.diffuseColor = new Color3(0.8, 0.8, 0.8);
     mesh.isVisible = false;
     mesh.position = new Vector3(0, -5, 0);
@@ -78,7 +78,7 @@ export class MeshFactory {
   }
 
   $createBlockMovable() {
-    const mesh = MeshBuilder.CreateBox("blockMovable", {
+    const mesh = MeshBuilder.CreateBox(0, {
       height: 1,
       width: 1,
       depth: 1,
@@ -114,7 +114,7 @@ export class MeshFactory {
     } else {
       faceColors[24] = new Color4(1, 0, 0, 1);
     }
-    const mesh = MeshBuilder.CreatePolyhedron("eyeball", {
+    const mesh = MeshBuilder.CreatePolyhedron(0, {
       type: 4,
       size: 0.25,
       faceColors,
@@ -136,7 +136,7 @@ export class MeshFactory {
   }
 
   $createCharacter() {
-    const body = MeshBuilder.CreatePolyhedron("character", {
+    const body = MeshBuilder.CreatePolyhedron(0, {
       type: 0,
       size: 0.1,
     });
@@ -147,7 +147,7 @@ export class MeshFactory {
     body.scaling.y = 2.5;
     body.bakeCurrentTransformIntoVertices();
 
-    const head = MeshBuilder.CreatePolyhedron("head", {
+    const head = MeshBuilder.CreatePolyhedron(0, {
       type: 0,
       size: 0.06,
     });
@@ -171,7 +171,7 @@ export class MeshFactory {
   }
 
   $createTeleporter(id) {
-    const mesh = MeshBuilder.CreateTorus("teleporter-" + id, {
+    const mesh = MeshBuilder.CreateTorus("t-" + id, {
       diameter: 0.8,
       thickness: 0.1,
       tessellation: 8,

@@ -30,7 +30,7 @@
 
       .ld {
         color: #777;
-        font-size: 50px;
+        font-size: 40px;
         padding: 40px;
         text-align: center;
       }
@@ -50,7 +50,7 @@
       .db {
         background: #ddd;
         bottom: 0;
-        padding: 5px;
+        padding: 4px;
         position: absolute;
         transform: translateY(0);
         transition: all 1s;
@@ -65,7 +65,7 @@
       .dl {
         border: 1px solid #aaa;
         border-radius: 4px;
-        box-shadow: inset 0 1px #fff;
+        /* box-shadow: inset 0 1px #fff; */
         color: #444;
         display: inline-flex;
         font-size: 14px;
@@ -90,13 +90,14 @@
         background: #ddd;
         border-radius: 8px;
         cursor: pointer;
+        font-size: 24px;
         padding: 10px;
         position: absolute;
-        right: 20px;
-        top: 20px;
+        right: 40px;
+        top: 40px;
         transform: translateX(0);
         transition: all 1s;
-        max-width: 300px;
+        max-width: 250px;
         z-index: 2;
       }
 
@@ -159,7 +160,7 @@
       }
 
       .md,
-      .f {
+      .mo {
         bottom: 0;
         left: 0;
         max-width: none;
@@ -179,7 +180,7 @@
     <canvas class="cv h"></canvas>
 
     <div class="pg">
-      <div class="ld h"></div>
+      <div class="ld h">Reticulating splines...</div>
 
       <div class="dr h">
         <h1>Index of /a-http-story</h1>
@@ -245,7 +246,7 @@
           <button class="cm">×</button>
         </div>
 
-        <div class="mo wi h">
+        <form class="mo wi h">
           <div class="mn">
             <div class="lg">🎩</div>
             <h2>Want more challenges?</h2>
@@ -256,11 +257,13 @@
               to import community-built levels or create your own!
             </p>
           </div>
-          <form class="my h">
+          <div class="my h">
             <div class="lg">🍾</div>
             <h2>Thanks for being a Coil subscriber!</h2>
             <p>Copy and paste level data below to play!</p>
-            <textarea class="cl">
+            <p><button type="submit">Play</button></p>
+          </div>
+          <textarea class="cl">
 {
   "name": "epilogue",
   "theme": [1, 1, 1],
@@ -297,11 +300,9 @@
     "Check out https://github.com/kaizau/a-http-story for more."
   ]
 }</textarea
-            >
-            <p><button type="submit">Play</button></p>
-          </form>
+          >
           <button class="cm">×</button>
-        </div>
+        </form>
       </div>
     </div>
   </body>

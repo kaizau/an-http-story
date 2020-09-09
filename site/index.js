@@ -3,12 +3,13 @@ import { ls, delay } from "./game/utils";
 import { replaceMeshStrings } from "./game/meshes";
 import { loadMusic, createMusic } from "./music/player";
 
-const loadingMessages = [
-  "Rebooting universe simulation",
-  "Fine tuning cosmological constant",
-  "Reticulating splines",
-  "Calibrating flux capacitor",
-];
+// NOTE Golfed away
+// const loadingMessages = [
+//   "Rebooting universe simulation",
+//   "Fine tuning cosmological constant",
+//   "Reticulating splines",
+//   "Calibrating flux capacitor",
+// ];
 
 const qs = (q) => document.querySelector(q);
 const canvas = qs(".cv");
@@ -27,11 +28,12 @@ const closeModal = document.querySelectorAll(".cm");
 let music;
 
 init();
+enableCustomLevels(); // TODO Testing
 
 async function init() {
   music = await loadMusic();
   if (!music) {
-    showLoading();
+    // showLoading();
     loading.classList.remove("h");
     music = await createMusic();
     loading.classList.add("h");
@@ -78,13 +80,13 @@ async function init() {
   });
 }
 
-async function showLoading() {
-  if (loadingMessages.length) {
-    loading.textContent = loadingMessages.pop() + "...";
-    await delay(1500);
-    showLoading();
-  }
-}
+// async function showLoading() {
+//   if (loadingMessages.length) {
+//     loading.textContent = loadingMessages.pop() + "...";
+//     await delay(1500);
+//     showLoading();
+//   }
+// }
 
 function startGame(level = 1) {
   page.classList.add("h");
@@ -137,12 +139,10 @@ function checkMonetization() {
 }
 
 function enableCustomLevels() {
-  moneyWindow.classList.add("f");
   qs(".mn").classList.add("h");
-  const form = qs(".my");
+  qs(".my").classList.remove("h");
   const field = qs(".cl");
-  form.classList.remove("h");
-  form.addEventListener("submit", (e) => {
+  moneyWindow.addEventListener("submit", (e) => {
     e.preventDefault();
     let level;
     try {
@@ -153,14 +153,10 @@ function enableCustomLevels() {
     }
     if (level) {
       level.map = replaceMeshStrings(level.map);
-      console.log(level);
       startGame(level);
     }
   });
 }
-
-// TODO Testing
-enableCustomLevels();
 
 //
 // Endings
@@ -175,15 +171,15 @@ async function checkEnding() {
   }
 
   if (ending) {
+    if (history) {
+      history.replaceState({}, "", location.pathname);
+    }
+
     modal.classList.remove("h");
     downloadBar.classList.remove("o");
     downloadMessage.textContent = "Preparing download...";
     await delay(3000);
     ending();
-
-    if (history) {
-      history.replaceState({}, "", location.pathname);
-    }
   }
 }
 

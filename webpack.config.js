@@ -46,6 +46,7 @@ module.exports = (env) => {
     },
     stats: { preset: "minimal" },
     devtool: useSourceMap ? "eval-cheap-source-map" : false,
+    externals: { BABYLON: "BABYLON" },
     plugins: [
       new CleanWebpackPlugin(),
       new EnvironmentPlugin(env),

@@ -1,4 +1,4 @@
-const {
+import {
   Color3,
   Vector3,
   HemisphericLight,
@@ -6,7 +6,7 @@ const {
   ShadowGenerator,
   UniversalCamera,
   WebXRState,
-} = BABYLON;
+} from "BABYLON";
 
 export class Environment {
   constructor(scene) {
@@ -31,21 +31,13 @@ export class Environment {
 
 export function AmbientLight(scene) {
   // TODO Diffuse and specular colors
-  const ambient = new HemisphericLight(
-    "ambientLight",
-    new Vector3(0, 1, 0),
-    scene
-  );
+  const ambient = new HemisphericLight(0, new Vector3(0, 1, 0), scene);
   ambient.intensity = 0.5;
   return ambient;
 }
 
 export function DirectLight(scene) {
-  const direct = new DirectionalLight(
-    "directLight",
-    new Vector3(1, -10, 4),
-    scene
-  );
+  const direct = new DirectionalLight(0, new Vector3(1, -10, 4), scene);
   direct.intensity = 0.8;
   direct.position.z = 0;
   direct.position.x = 0;
@@ -62,7 +54,7 @@ export function ShadowGen(direct) {
 export function IsoCam(scene) {
   const offset = 6;
   const isoCam = new UniversalCamera(
-    "isoCam",
+    0,
     new Vector3(0 - offset, offset, 0 - offset),
     scene
   );
@@ -70,11 +62,11 @@ export function IsoCam(scene) {
   isoCam.position = new Vector3(-1, offset, -3);
   isoCam.maxZ = 1000;
   isoCam.speed = 0.5;
-  isoCam.inputs.removeByType("FreeCameraMouseInput");
-  isoCam.keysUp = [38, 87];
-  isoCam.keysDown = [40, 83];
-  isoCam.keysLeft = [37, 65];
-  isoCam.keysRight = [39, 68];
+  // isoCam.inputs.removeByType("FreeCameraMouseInput");
+  // isoCam.keysUp = [38, 87];
+  // isoCam.keysDown = [40, 83];
+  // isoCam.keysLeft = [37, 65];
+  // isoCam.keysRight = [39, 68];
 
   scene.onBeforeRenderObservable.add(() => {
     // Keep on isometric plane

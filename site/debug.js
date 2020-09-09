@@ -13,19 +13,19 @@ function initDebug() {
   debugBar = createDebugBar();
 
   createButton("Scene Debugger", () => {
-    if (!world.scene) return;
-    if (world.scene.debugLayer.isVisible()) {
-      world.scene.debugLayer.hide();
+    if (!world._scene) return;
+    if (world._scene.debugLayer.isVisible()) {
+      world._scene.debugLayer.hide();
     } else {
-      world.scene.debugLayer.show();
+      world._scene.debugLayer.show();
     }
   });
 
   createButton("Show Axes", () => {
     if (axes) return;
     axes = true;
-    createWorldAxes(world.scene, 5);
-    showLocalAxes(world.state.mainCharacter);
+    createWorldAxes(world._scene, 5);
+    showLocalAxes(world._state.$mainCharacter);
   });
 
   createButton("Show Bounding Boxes", () => {
