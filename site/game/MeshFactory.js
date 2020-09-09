@@ -134,7 +134,7 @@ export class MeshFactory {
       type: 0,
       size: 0.1,
     });
-    body.rotation.x = Math.PI / 8;
+    body.rotation.x = Math.PI / 9;
     body.rotation.z = Math.PI / -6;
     body.bakeCurrentTransformIntoVertices();
     body.rotation.y = Math.PI / 3;

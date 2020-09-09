@@ -27,11 +27,13 @@ const moneyWindow = qs(".mo");
 const closeModal = document.querySelectorAll(".cm");
 let music;
 
-if (process.env.DEBUG) {
-  startGame(7);
-} else {
-  init();
-}
+// if (process.env.DEBUG) {
+//   startGame();
+// } else {
+//   init();
+// }
+
+init();
 
 async function init() {
   music = await loadMusic();

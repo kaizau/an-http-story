@@ -1,4 +1,5 @@
 let debugBar;
+let debugCam;
 let axes;
 
 initDebug();
@@ -19,6 +20,21 @@ function initDebug() {
     } else {
       world._scene.debugLayer.show();
     }
+  });
+
+  createButton("Debug Cam", () => {
+    debugCam =
+      debugCam ||
+      new BABYLON.UniversalCamera(
+        "debugCam",
+        new BABYLON.Vector3.Zero(),
+        world._scene
+      );
+    debugCam.speed = 0.25;
+    debugCam.maxZ = 1000;
+
+    world._scene.activeCamera = debugCam;
+    debugCam.attachControl(world._canvas);
   });
 
   createButton("Show Axes", () => {
