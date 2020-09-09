@@ -8,8 +8,14 @@
     "One where you can build your own story."
   ],
   "map": [
-    ["", "", ""],
-    ["", "", ""]
+    [
+      ["", "", ""],
+      ["", "", ""]
+    ],
+    [
+      ["", "", ""],
+      ["", "", ""]
+    ]
   ],
   "outro": [
     "Well, that's all for now.",

@@ -29,7 +29,6 @@ export class Environment {
   }
 }
 
-/** @constructor */
 export function AmbientLight(scene) {
   // TODO Diffuse and specular colors
   const ambient = new HemisphericLight(
@@ -41,7 +40,6 @@ export function AmbientLight(scene) {
   return ambient;
 }
 
-/** @constructor */
 export function DirectLight(scene) {
   const direct = new DirectionalLight(
     "directLight",
@@ -54,7 +52,6 @@ export function DirectLight(scene) {
   return direct;
 }
 
-/** @constructor */
 export function ShadowGen(direct) {
   const shadowGenerator = new ShadowGenerator(256, direct);
   shadowGenerator.usePoissonSampling = true;
@@ -62,7 +59,6 @@ export function ShadowGen(direct) {
   return shadowGenerator;
 }
 
-/** @constructor */
 export function IsoCam(scene) {
   const offset = 6;
   const isoCam = new UniversalCamera(

@@ -111,13 +111,8 @@
       .md {
         align-items: center;
         background: rgba(0, 0, 0, 0.5);
-        bottom: 0;
         display: flex;
         justify-content: center;
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
       }
 
       .wi {
@@ -152,22 +147,25 @@
         opacity: 0.8;
       }
 
-      /*
-      .cm {
-        background: #66c;
-        border: 0;
-        border-radius: 40px;
-        color: #fff;
-        cursor: pointer;
-        font-size: 16px;
-        margin-top: 20px;
-        padding: 10px 20px;
-      }
-      */
-
       .ic {
         display: inline-block;
         margin-right: 8px;
+      }
+
+      .cl {
+        font-family: monospace;
+        min-height: 400px;
+        width: 100%;
+      }
+
+      .md,
+      .f {
+        bottom: 0;
+        left: 0;
+        max-width: none;
+        position: absolute;
+        right: 0;
+        top: 0;
       }
 
       .h {
@@ -185,10 +183,6 @@
 
       <div class="dr h">
         <h1>Index of /a-http-story</h1>
-        <!--<p>
-          ⤴️
-          <a target="_blank" href="https://js13kgames.com/">Parent Directory</a>
-        </p>-->
         <p>
           ⤴️
           <a href="#">Parent Directory</a>
@@ -197,7 +191,7 @@
         <p>📂<a href="#">kaiser_soze/</a></p>
         <p>📂<a href="#">satoshi_revealed/</a></p>
         <p>📕<a href="#" class="sh">INSTRUCTIONS.txt</a></p>
-        <p>📘<a href="#" class="sm">COIL_MEMBERS.txt</a></p>
+        <p>📘<a href="#" class="sm">EXTRAS.txt</a></p>
         <p>📦<a href="#" class="st">LEAKED_EVIDENCE.zip</a></p>
       </div>
 
@@ -215,7 +209,7 @@
 
       <div class="md h">
         <div class="hp wi h">
-          <div class="lg">🍿</div>
+          <div class="lg">🧶</div>
           <h2>Welcome to <em>A HTTP Story</em></h2>
           <p>
             This is an interactive puzzle game, best experienced in VR. You find
@@ -251,17 +245,61 @@
           <button class="cm">×</button>
         </div>
 
-        <div class="wn mn h">
-          <div class="lg">🎩</div>
-          <h2>Become a Coil subscriber to enable custom levels!</h2>
-          <p></p>
-          <button class="cm">×</button>
-        </div>
-
-        <div class="wn my h">
-          <div class="lg">🍾</div>
-          <h2>Thanks for being a Coil subscriber!</h2>
-          <p><a href="https://github.com/kaizau/a-http-story">Github</a>.</p>
+        <div class="mo wi h">
+          <div class="mn">
+            <div class="lg">🎩</div>
+            <h2>Want more challenges?</h2>
+            <p>
+              <a target="_blank" href="https://coil.com/"
+                >Become a Coil subscriber</a
+              >
+              to import community-built levels or create your own!
+            </p>
+          </div>
+          <form class="my h">
+            <div class="lg">🍾</div>
+            <h2>Thanks for being a Coil subscriber!</h2>
+            <p>Copy and paste level data below to play!</p>
+            <textarea class="cl">
+{
+  "name": "epilogue",
+  "theme": [1, 1, 1],
+  "intro": [
+    "Hey! Good to see you again, 15127.",
+    "I guess you missed me after all."
+  ],
+  "map": [
+    [
+      ["", "TLX"],
+      [],
+      [],
+      [],
+      ["EY1", "EYE", "EY4"],
+      [],
+      ["EY2", "", "EY3"],
+      [],
+      ["", "ZYR"]
+    ],
+    [
+      ["", "___"],
+      ["", "___"],
+      ["", "___"],
+      ["", "___"],
+      ["", "___"],
+      ["", "___"],
+      ["", "___"],
+      ["", "___"],
+      ["", "___"]
+    ]
+  ],
+  "outro": [
+    "Well, that was just a quick tour.",
+    "Check out https://github.com/kaizau/a-http-story for more."
+  ]
+}</textarea
+            >
+            <p><button type="submit">Play</button></p>
+          </form>
           <button class="cm">×</button>
         </div>
       </div>

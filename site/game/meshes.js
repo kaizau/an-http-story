@@ -28,3 +28,30 @@ export const SEY = 13;
 
 // Gate / gatekeeper boss
 // export const GAT = 16;
+
+const dict = {
+  ZYR,
+  TLX,
+  TLA,
+  TLB,
+  TLC,
+  TLD,
+  ___,
+  __M,
+  EYE,
+  EY1,
+  EY2,
+  EY3,
+  EY4,
+  SEY,
+};
+
+export function replaceMeshStrings(matrix) {
+  return matrix.map((layer) => {
+    return layer.map((row) => {
+      return row.map((col) => {
+        return dict[col];
+      });
+    });
+  });
+}

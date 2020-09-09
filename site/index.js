@@ -1,5 +1,6 @@
 import World from "./game/World";
 import { ls, delay } from "./game/utils";
+import { replaceMeshStrings } from "./game/meshes";
 import { loadMusic, createMusic } from "./music/player";
 
 const loadingMessages = [
@@ -14,12 +15,14 @@ const canvas = qs(".cv");
 const page = qs(".pg");
 const loading = qs(".ld");
 const directory = qs(".dr");
-const startTrigger = qs(".st");
 const helpTrigger = qs(".sh");
+const moneyTrigger = qs(".sm");
+const startTrigger = qs(".st");
 const downloadBar = qs(".db");
 const downloadItem = qs(".dl");
 const downloadMessage = qs(".ms");
 const modal = qs(".md");
+const moneyWindow = qs(".mo");
 const closeModal = document.querySelectorAll(".cm");
 let music;
 
@@ -34,8 +37,9 @@ async function init() {
     loading.classList.add("h");
   }
   directory.classList.remove("h");
-  checkEnding();
   loadProgress();
+  checkEnding();
+  checkMonetization();
 
   closeModal.forEach((el) => {
     el.addEventListener("click", (e) => {
@@ -47,9 +51,14 @@ async function init() {
   });
 
   helpTrigger.addEventListener("click", () => {
-    const help = qs(".hp");
+    const helpWindow = qs(".hp");
     modal.classList.remove("h");
-    help.classList.remove("h");
+    helpWindow.classList.remove("h");
+  });
+
+  moneyTrigger.addEventListener("click", () => {
+    modal.classList.remove("h");
+    moneyWindow.classList.remove("h");
   });
 
   startTrigger.addEventListener("click", async () => {
@@ -115,6 +124,43 @@ function createShortcut(level) {
   item.appendChild(link);
   directory.appendChild(item);
 }
+
+//
+// Subscribers
+//
+
+function checkMonetization() {
+  const monetization = document.monetization;
+  if (monetization) {
+    monetization.addEventListener("monetizationstart", enableCustomLevels);
+  }
+}
+
+function enableCustomLevels() {
+  moneyWindow.classList.add("f");
+  qs(".mn").classList.add("h");
+  const form = qs(".my");
+  const field = qs(".cl");
+  form.classList.remove("h");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let level;
+    try {
+      level = JSON.parse(field.value);
+    } catch (e) {
+      console.log(e);
+      // Failed
+    }
+    if (level) {
+      level.map = replaceMeshStrings(level.map);
+      console.log(level);
+      startGame(level);
+    }
+  });
+}
+
+// TODO Testing
+enableCustomLevels();
 
 //
 // Endings

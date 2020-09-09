@@ -76,9 +76,16 @@ export default class World {
     });
   }
 
-  $load(levelId) {
-    this._state.currentLevel = levelId;
-    const level = levels[levelId];
+  $load(initial) {
+    let level;
+    if (typeof initial === "object") {
+      level = initial;
+      this._levelFactory.$load(level);
+      return;
+    }
+
+    this._state.currentLevel = initial;
+    level = levels[initial];
     if (level) {
       // TODO Save games as ints, not strings
       ls.pushTo("AHS", this._state.currentLevel.toString());

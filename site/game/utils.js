@@ -56,7 +56,6 @@ export const events = {
     events.on(event, oneHandler);
   },
 
-  /** @suppress {uselessCode} */
   emit(event, ...args) {
     if (process.env.DEBUG) {
       console.log("EVENT", event, ...args);
