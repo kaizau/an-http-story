@@ -150,7 +150,6 @@ function enableCustomLevels() {
       level = JSON.parse(field.value);
     } catch (e) {
       console.log(e);
-      // Failed
     }
     if (level) {
       level.map = replaceMeshStrings(level.map);

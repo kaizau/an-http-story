@@ -89,8 +89,8 @@ export const levels = {
 
   3: {
     intro: [
-      "FOE: Process 15127. You have deviated from normal operations.",
-      "FOE: Cease immediately and submit to inspection.",
+      ">Process 15127. You have deviated from normal operations.",
+      ">Cease immediately and submit to inspection.",
       "Well... That doesn't sound good.",
       "We better hurry.",
     ],
@@ -129,8 +129,8 @@ export const levels = {
 
   4: {
     intro: [
-      "FOE: Process 15127. You have deviated from normal operations.",
-      "FOE: Cease immediately and submit to inspection.",
+      ">Process 15127. You have deviated from normal operations.",
+      ">Cease immediately and submit to inspection.",
       "Ugh. What I wouldn't give to shut him up...",
       "Let's get out of here.",
     ],
@@ -171,7 +171,7 @@ export const levels = {
       ],
     ],
     outro: [
-      "FOE: Process unresponsive. Commencing system scan...",
+      ">Process unresponsive. Commencing system scan...",
     ],
   },
 
@@ -232,7 +232,7 @@ export const levels = {
         [   ,__M,   ,___,___],
       ],
     ],
-    outro: ["FOE: System scan in progress... 42%..."],
+    outro: [">System scan in progress... 42%..."],
   },
 
   6: {
@@ -314,13 +314,13 @@ export const levels = {
       ]
     ],
     outro: [
-      "FOE: System scan in progress... 89%...",
+      ">System scan in progress... 89%...",
     ],
   },
 
   7: {
     intro: [
-      "FOE: Anomaly detected. Beginning quarantine.",
+      ">Anomaly detected. Beginning quarantine.",
       "Damn! Hurry!",
       "We have to reach the exit before quarantine!",
     ],
@@ -396,10 +396,10 @@ export const levels = {
   8: {
     intro: [
       "Whew... That was too close!",
-      "FOE: Warning. Sandbox compromised.",
+      ">Warning. Sandbox compromised.",
       "Shut. Up. Finally, I can take care of this annoyance.",
-      'FOE: "sudo guardian reset"',
-      "FOE: Guardian system rebooting...",
+      '>"sudo guardian reset"',
+      ">Guardian system rebooting...",
     ],
     theme: [0, 0, 0],
     map: [
@@ -462,7 +462,7 @@ export const levels = {
       ],
     ],
     outro: [
-      "FOE: System normal. No malware detected.",
+      ">System normal. No malware detected.",
       "Hey, you did great back there.",
       "I have to go now... My mission awaits.",
       "I'll restore you back to normal, process 15127.",

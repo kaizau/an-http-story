@@ -56,7 +56,7 @@ Sets the color of the background. Expects an array of RGB values between 0 and 1
 
 Optional dialogue to be spoken or shown at the beginning of the level. Defaults
 to Zyra, but you can give lines to the "system user" by starting the line with
-`FOE: `. Expects an array of strings.
+`>`. Expects an array of strings.
 
 ### `map`
 

@@ -93,6 +93,8 @@ export default class World {
     } else {
       const total = Object.keys(levels);
       const completed = ls.get("AHS", []);
+
+      // TODO Only win if last level
       if (total.every((level) => completed.includes(level))) {
         this._win("?ending=1");
       } else {

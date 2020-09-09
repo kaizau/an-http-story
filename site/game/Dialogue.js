@@ -68,8 +68,8 @@ export class Dialogue {
     if (!speechSynthesis || process.env.DEBUG) {
       for (let line of lines) {
         let speaker = "friend";
-        if (line.slice(0, 5) === "FOE: ") {
-          line = line.slice(5);
+        if (line[0] === ">") {
+          line = line.slice(1);
           speaker = "foe";
         }
         this._show(line, speaker);
@@ -81,8 +81,8 @@ export class Dialogue {
       for (let line of lines) {
         let speaker = "friend";
         let voice = friendVoice;
-        if (line.slice(0, 5) === "FOE: ") {
-          line = line.slice(5);
+        if (line[0] === ">") {
+          line = line.slice(1);
           speaker = "foe";
           voice = foeVoice;
         }

@@ -62,7 +62,7 @@ export function IsoCam(scene) {
   isoCam.position = new Vector3(-1, offset, -3);
   isoCam.maxZ = 1000;
   isoCam.speed = 0.5;
-  // isoCam.inputs.removeByType("FreeCameraMouseInput");
+  isoCam.inputs.removeByType("FreeCameraMouseInput");
   // isoCam.keysUp = [38, 87];
   // isoCam.keysDown = [40, 83];
   // isoCam.keysLeft = [37, 65];
