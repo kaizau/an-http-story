@@ -74,9 +74,9 @@ upper limit.
 
 #### Map codes
 
-`"\ \ \ "` - Empty space. The spaces (` `) are completely optional and only
+<code>" "</code> - Empty space. The spaces (` `) are completely optional and only
 serve to align the grid to make level design easier. A `""` will work just as
-well.  You can omit these from the _end_ of any array row.
+well. You can omit these from the _end_ of any array row.
 
 `"___"` - Plain block. Zyra can "walk" on this, but cannot move through it.
 
