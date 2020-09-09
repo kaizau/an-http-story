@@ -109,6 +109,7 @@ module.exports = (env) => {
             mangle: {
               properties: {
                 regex: /^[_$]/,
+                reserved: ["___", "__M"],
                 // debug: "",
               },
               module: true,
