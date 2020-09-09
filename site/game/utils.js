@@ -31,6 +31,20 @@ export const ls = {
   },
 };
 
+//
+// Eliminated. Code actually larger after zip.
+//
+
+// document.querySelector
+// export function qs(selector) {
+//   return document.querySelector(selector);
+// }
+
+// Click
+// export function click(el, handler) {
+//   el.addEventListener("click", handler);
+// }
+
 // Event Bus
 const _events = Object.create(null);
 export const events = {

@@ -1,7 +1,7 @@
 import World from "./game/World";
-import { ls, delay } from "./game/utils";
+import { delay, ls } from "./game/utils";
 import { replaceMeshStrings } from "./game/meshes";
-import { loadMusic, createMusic } from "./music/player";
+import { createMusic, loadMusic } from "./music/player";
 
 // NOTE Golfed away
 // const loadingMessages = [
