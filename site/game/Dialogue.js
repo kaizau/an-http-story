@@ -9,10 +9,10 @@ import {
   Vector3,
 } from "BABYLON";
 
-const layerHeight = 0.06;
-const layerWidth = 1.5;
+const layerHeight = 0.07;
+const layerWidth = 1.4;
 const textRes = 1024;
-const textSize = 42;
+const textSize = 48;
 
 export class Dialogue {
   constructor(scene) {
@@ -23,7 +23,7 @@ export class Dialogue {
       width: layerWidth,
     });
     this._layer.parent = this._isoCam;
-    this._layer.position = new Vector3(0, -0.5, 1.6);
+    this._layer.position = new Vector3(0, -0.5, 1.5);
     this._layer.isPickable = false;
 
     this._bg = this._layer.clone();

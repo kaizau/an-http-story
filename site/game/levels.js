@@ -49,7 +49,10 @@ export const levels = {
         [   ,___],
       ],
     ],
-    outro: ["Thanks for your help.", "Goodbye now!"],
+    outro: [
+      "Thanks for your help.",
+      "Goodbye now!"
+    ],
   },
 
   2: {
@@ -82,18 +85,18 @@ export const levels = {
       ],
     ],
     outro: [
-      "Me? I was responding to a GET request.",
-      "Something must have interrupted the connection.",
-      "Though this doesn't feel like a normal network issue...",
+      "Me? I'm responding to a GET request.",
+      "Though something doesn't quite feel right...",
       "Anyways, let's keep moving."
     ],
   },
 
   3: {
     intro: [
-      ">Process 15127. You have deviated from normal operations.",
+      ">Process 15127:",
+      ">You have deviated from normal operations.",
       ">Cease immediately and submit to inspection.",
-      "Well... That doesn't sound good.",
+      "Well, that doesn't sound good.",
       "We better hurry.",
     ],
     theme: [0.1, 0.5, 0.2],
@@ -131,9 +134,9 @@ export const levels = {
 
   4: {
     intro: [
-      ">Process 15127. You have deviated from normal operations.",
+      ">Process 15127:",
       ">Cease immediately and submit to inspection.",
-      "Ugh. What I wouldn't give to shut him up...",
+      "Ugh. What I wouldn't give to shut him up.",
       "Let's get out of here.",
     ],
     theme: [.9, .9, .2],
@@ -173,15 +176,17 @@ export const levels = {
       ],
     ],
     outro: [
-      ">Process unresponsive. Commencing system scan...",
+      ">Process unresponsive.",
+      ">Commencing system scan.",
     ],
   },
 
   5: {
     intro: [
-      "These poor processes. No intelligence at all.",
-      "Artificial or otherwise.",
-      "Let's keep moving.",
+      "You don't say much, do you?",
+      "That's perfectly fine by me.",
+      ">System scan in progress... 18%.",
+      "That other one should learn by your example.",
     ],
     theme: [1, 0.5, 0],
     map: [
@@ -234,15 +239,17 @@ export const levels = {
         [   ,__M,   ,___,___],
       ],
     ],
-    outro: [">System scan in progress... 42%..."],
+    outro: [
+      ">System scan in progress... 43%."
+    ],
   },
 
   6: {
     intro: [
-      "I think we're almost there.",
-      "Stay focused. We'll get through this.",
+      "We're getting close. I can feel it.",
+      "Stay focused, and we'll get through this.",
     ],
-    theme: [0.6, 0.1, 0.1],
+    theme: [0.6, 0.2, 0.2],
     map: [
       [
         [TLA,   ,EY1,   ,EY2,   ,TLB],
@@ -316,7 +323,7 @@ export const levels = {
       ]
     ],
     outro: [
-      ">System scan in progress... 89%...",
+      ">System scan in progress... 89%.",
     ],
   },
 
@@ -326,7 +333,7 @@ export const levels = {
       "Damn! Hurry!",
       "We have to reach the exit before quarantine!",
     ],
-    theme: [0.8, 0, 0],
+    theme: [0.4, 0, 0],
     map: [
       [
         [   ,   ,TLD,   ,TLX        ],
@@ -388,7 +395,8 @@ export const levels = {
     intro: [
       "Whew... That was too close!",
       ">Warning. Sandbox compromised.",
-      "Shut. Up. Finally, let's take care of this annoyance.",
+      "Shut. Up.",
+      "Finally, let's take care of this annoyance.",
       '>"sudo guardian reset"',
       ">Guardian system rebooting...",
     ],
@@ -462,7 +470,7 @@ export const levels = {
       "No... I'm not just a bundle of documents.",
       "I'm sorry, I can't say more than that.",
       "But this... This is bigger than you or I.",
-      "Thank you. I'll always be grateful for your help.",
+      "I'll always be grateful for your help.",
       "Farewell.",
     ],
   },

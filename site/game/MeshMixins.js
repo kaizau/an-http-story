@@ -223,8 +223,7 @@ export class MeshMixins {
 
   $makeSeeking(mesh) {
     this._state.$seekers.push(mesh);
-    events.one("ready", async () => {
-      await delay(1000); // Give the player a tiny bit of breathing room
+    events.one("ready", () => {
       this._ensureSeekerTimer();
     });
   }
