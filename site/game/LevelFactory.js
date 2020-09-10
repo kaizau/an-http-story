@@ -27,11 +27,11 @@ export class LevelFactory {
 
     this._levelMeshes = [];
 
-    events.on("levelCompleted", async () => {
+    events.on("completed", async () => {
       this._state.$playerControl = false;
       await this._dialogue.$load(this._level.outro);
 
-      events.emit("levelNext");
+      events.emit("next");
     });
   }
 
@@ -41,7 +41,7 @@ export class LevelFactory {
     this._envHelper.$setTheme(level.theme);
     this._levelMeshes = await this._buildLevel(level);
 
-    events.emit("levelReady");
+    events.emit("ready");
     this._state.$playerControl = true;
     await this._dialogue.$load(level.intro);
   }
@@ -134,7 +134,7 @@ export class LevelFactory {
   }
 
   $reset() {
-    events.emit("levelReset");
+    events.emit("reset");
 
     const yRange = this._levelMeshes.map((mesh) => mesh.position.y);
     const yMax = Math.max(...yRange);

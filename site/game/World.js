@@ -66,12 +66,11 @@ export default class World {
       this.$load(initialLevel);
     });
 
-    // TODO Load different level depending on teleporter metadata?
-    events.on("levelNext", () => {
+    events.on("next", () => {
       this.$load(this._state.$currentLevel + 1);
     });
 
-    events.on("levelLost", () => {
+    events.on("lost", () => {
       const isCustom = !this._state.$currentLevel;
       this._end(isCustom ? "" : "?ending=0");
     });
@@ -91,7 +90,7 @@ export default class World {
       ls.pushTo("AHS", this._state.$currentLevel);
 
       if (data === last) {
-        events.one("levelReady", music.$stop);
+        events.one("ready", music.$stop);
       }
 
       this._levelFactory.$load(level);

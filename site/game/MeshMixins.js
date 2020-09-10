@@ -129,7 +129,7 @@ export class MeshMixins {
     mesh.isTeleporter = true;
     this._state.$teleporters.push(mesh);
 
-    events.one("levelReady", () => {
+    events.one("ready", () => {
       const main = this._state.$mainCharacter;
 
       mesh.actionManager.registerAction(
@@ -142,7 +142,7 @@ export class MeshMixins {
             if (id === TLX) {
               if (mesh.teleporterActivated) return;
               mesh.teleporterActivated = true;
-              events.emit("levelCompleted");
+              events.emit("completed");
             } else {
               const paired = this._state.$teleporters.find((otherMesh) => {
                 return mesh !== otherMesh && otherMesh.name === "t-" + id;
@@ -181,7 +181,7 @@ export class MeshMixins {
     this._ensureActionManager(mesh);
     mesh.isEnemy = true;
 
-    events.one("levelReady", () => {
+    events.one("ready", () => {
       mesh.actionManager.registerAction(
         new ExecuteCodeAction(
           {
@@ -196,7 +196,7 @@ export class MeshMixins {
               this._state.$mainCharacter,
               async () => {
                 await delay(500);
-                events.emit("levelLost");
+                events.emit("lost");
               }
             );
           }
@@ -208,7 +208,7 @@ export class MeshMixins {
   $makePatrolling(mesh) {
     mesh.isPatrolling = true;
 
-    events.one("levelReady", () => {
+    events.one("ready", () => {
       const y = mesh.position.y;
       const path = this._state.$eyePatrolPath[y];
       if (path) {
@@ -219,7 +219,7 @@ export class MeshMixins {
 
   $makeSeeking(mesh) {
     this._state.$seekers.push(mesh);
-    events.one("levelReady", async () => {
+    events.one("ready", async () => {
       await delay(2000); // Give the player a bit of breathing room
       this._ensureSeekerTimer();
     });
