@@ -25,7 +25,7 @@ export class AnimationMixins {
 
   $enterScene(mesh, yTarget, onEnd) {
     CreateAndStartAnimation(
-      "enter",
+      0,
       mesh,
       "position.y",
       30,
@@ -44,7 +44,7 @@ export class AnimationMixins {
       playSound("teleport");
     }
     CreateAndStartAnimation(
-      "exit",
+      0,
       mesh,
       "position.y",
       30,
@@ -79,7 +79,7 @@ export class AnimationMixins {
         zyra.dispose();
         await delay(500);
         CreateAndStartAnimation(
-          "poof",
+          0,
           eye,
           "scaling",
           30,
@@ -96,7 +96,7 @@ export class AnimationMixins {
 
   $floatTo(mesh, target) {
     CreateAndStartAnimation(
-      "float",
+      0,
       mesh,
       "position",
       30,
@@ -112,7 +112,7 @@ export class AnimationMixins {
     const start = mesh.rotation.clone();
     const target = this._calcRotation(mesh, position);
     CreateAndStartAnimation(
-      "rotate",
+      0,
       mesh,
       "rotation",
       30,
@@ -173,7 +173,7 @@ export class AnimationMixins {
       const rotationKeys = this._calcRotationKeys(walkKeys, mesh);
 
       const walkAnimation = new Animation(
-        "walk",
+        0,
         "position",
         30,
         ANIMATIONTYPE_VECTOR3,
@@ -184,7 +184,7 @@ export class AnimationMixins {
       mesh.animations.push(walkAnimation);
 
       const rotationAnimation = new Animation(
-        "walkRotation",
+        0,
         "rotation",
         30,
         ANIMATIONTYPE_VECTOR3,
