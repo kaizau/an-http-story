@@ -186,7 +186,7 @@ export const levels = {
       "You don't say much, do you?",
       "That's perfectly fine by me.",
       ">System scan in progress... 18%.",
-      "That other one should learn by your example.",
+      "That other one should follow your example.",
     ],
     theme: [1, 0.5, 0],
     map: [

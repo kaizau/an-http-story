@@ -23,15 +23,16 @@ const downloadBar = qs(".db");
 const downloadItem = qs(".dl");
 const downloadMessage = qs(".ms");
 const modal = qs(".md");
+const helpWindow = qs(".hp");
 const moneyWindow = qs(".mo");
 const closeModal = document.querySelectorAll(".cm");
 
 // if (process.env.DEBUG) {
 //   startGame();
+//   enableCustomLevels();
 // } else {
 //   init();
 // }
-// enableCustomLevels();
 
 init();
 
@@ -40,6 +41,8 @@ async function init() {
   if (!ready) {
     // showLoading();
     loading.classList.remove("h");
+    modal.classList.remove("h");
+    helpWindow.classList.remove("h");
     await music.$load();
     loading.classList.add("h");
   }
@@ -59,7 +62,6 @@ async function init() {
   });
 
   helpTrigger.addEventListener("click", () => {
-    const helpWindow = qs(".hp");
     modal.classList.remove("h");
     helpWindow.classList.remove("h");
   });
