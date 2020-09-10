@@ -13,6 +13,7 @@ import { LevelFactory } from "./LevelFactory";
 import { Dialogue } from "./Dialogue";
 import { levels } from "./levels";
 import { events, ls } from "./utils";
+import { music } from "./music";
 import { Engine, Scene } from "BABYLON";
 
 export default class World {
@@ -81,21 +82,21 @@ export default class World {
       return this._levelFactory.$load(data);
     }
 
+    const total = Object.keys(levels).map((key) => parseInt(key));
+    const last = Math.max(...total);
     const level = levels[data];
+
     if (level) {
       this._state.$currentLevel = data;
       ls.pushTo("AHS", this._state.$currentLevel);
+
+      if (data === last) {
+        events.one("levelReady", music.$stop);
+      }
+
       this._levelFactory.$load(level);
     } else {
-      const total = Object.keys(levels).map((key) => parseInt(key));
-      const completed = ls.get("AHS", []);
-      const last = Math.max(...total);
-
-      // Only show ending on campaign mode, not custom level
-      if (
-        this._state.$currentLevel === last ||
-        total.every((level) => completed.includes(level))
-      ) {
+      if (this._state.$currentLevel === last) {
         this._end("?ending=1");
       } else {
         this._end();

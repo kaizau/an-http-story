@@ -25,7 +25,6 @@ export class LevelFactory {
     this._animationMixins = animationMixins;
     this._dialogue = dialogue;
 
-    // this._level = { intro: [], outro: [] };
     this._levelMeshes = [];
 
     events.on("levelCompleted", async () => {

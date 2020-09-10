@@ -150,12 +150,14 @@ export class MeshMixins {
 
               // Arriving
               if (mesh.teleporterActivated) {
+                this._state.$playerControl = true;
                 mesh.teleporterActivated = false;
                 paired.teleporterActivated = false;
                 return;
               }
 
               // Departing
+              this._state.$playerControl = false;
               mesh.teleporterActivated = true;
               paired.teleporterActivated = true;
 

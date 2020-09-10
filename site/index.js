@@ -1,7 +1,7 @@
 import World from "./game/World";
 import { delay, ls } from "./game/utils";
 import { replaceMeshStrings } from "./game/meshes";
-import { createMusic, loadMusic } from "./music/player";
+import { music } from "./game/music";
 
 // NOTE Golfed away
 // const loadingMessages = [
@@ -25,7 +25,6 @@ const downloadMessage = qs(".ms");
 const modal = qs(".md");
 const moneyWindow = qs(".mo");
 const closeModal = document.querySelectorAll(".cm");
-let music;
 
 // if (process.env.DEBUG) {
 //   startGame();
@@ -37,11 +36,11 @@ let music;
 init();
 
 async function init() {
-  music = await loadMusic();
-  if (!music) {
+  const ready = await music.$ready();
+  if (!ready) {
     // showLoading();
     loading.classList.remove("h");
-    music = await createMusic();
+    await music.$load();
     loading.classList.add("h");
   }
   directory.classList.remove("h");
@@ -77,7 +76,7 @@ async function init() {
 
     await delay(3000);
     downloadMessage.textContent = "Unexpected error";
-    music.play();
+    music.$play();
 
     await delay(2000);
     page.classList.add("z");
@@ -126,7 +125,7 @@ function createShortcut(level) {
   link.textContent = `level_${level}.log`;
   link.href = "#";
   link.addEventListener("click", () => {
-    music.play();
+    music.$play();
     startGame(level);
   });
 
@@ -159,7 +158,7 @@ function enableCustomLevels() {
     }
     if (level) {
       level.map = replaceMeshStrings(level.map);
-      music.play();
+      music.$play();
       startGame(level);
     }
   });
@@ -197,7 +196,7 @@ function endingLose() {
   downloadMessage.textContent = "Unexpected error";
   notification.classList.remove("o");
   notification.addEventListener("click", () => {
-    music.play();
+    music.$play();
     notification.classList.add("o");
     ending.classList.remove("h");
   });
@@ -209,7 +208,7 @@ function endingWin() {
   downloadMessage.textContent = "Click to open";
   downloadItem.classList.add("c");
   downloadItem.addEventListener("click", () => {
-    music.play();
+    music.$play();
     ending.classList.remove("h");
   });
 }

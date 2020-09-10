@@ -1,42 +1,60 @@
 import CPlayer from "./soundbox";
-// import song from "./wilderness";
 import song from "./wilderness-slim";
+import { delay } from "../utils";
 
 let db;
 
-export async function loadMusic() {
-  if (!db) db = await getDB();
+export const music = {
+  async $ready() {
+    if (!db) db = await getDB();
 
-  const music = await db.get("mainTheme");
-  if (music) {
-    return createPlayer(music);
-  }
-}
+    const songData = await db.get("mainTheme");
+    if (songData) {
+      music.audio = createAudio(songData);
+    }
+    return !!songData;
+  },
 
-export async function createMusic() {
-  if (!db) db = await getDB();
+  async $load() {
+    // if (!db) db = await getDB();
 
-  return new Promise((resolve) => {
-    let done;
-    const player = new CPlayer();
-    player.init(song);
+    return new Promise((resolve) => {
+      let done;
+      const generator = new CPlayer();
+      generator.init(song);
 
-    const generate = setInterval(() => {
-      if (!done) {
-        done = player.generate() >= 1;
-      } else {
-        clearInterval(generate);
-        const wave = player.createWave();
-        const blob = new Blob([wave], { type: "audio/wav" });
+      const generate = setInterval(() => {
+        if (!done) {
+          done = generator.generate() >= 1;
+        } else {
+          clearInterval(generate);
+          const wave = generator.createWave();
+          const blob = new Blob([wave], { type: "audio/wav" });
 
-        db.set("mainTheme", blob);
-        resolve(createPlayer(blob));
-      }
-    }, 0);
-  });
-}
+          db.set("mainTheme", blob);
+          music.audio = createAudio(blob);
+          resolve();
+        }
+      }, 0);
+    });
+  },
 
-function createPlayer(music) {
+  $play() {
+    music.audio.play();
+  },
+
+  async $stop() {
+    let volume = music.audio.volume;
+    while (volume > 0) {
+      volume -= 0.05;
+      music.audio.volume = volume > 0 ? volume : 0;
+      await delay(100);
+    }
+    music.audio.pause();
+  },
+};
+
+function createAudio(music) {
   const audio = document.createElement("audio");
   audio.src = URL.createObjectURL(music);
   audio.loop = true;
