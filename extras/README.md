@@ -1,17 +1,14 @@
 # Create Your Own _HTTP Story_ 🏗
 
-With a [Coil](https://coil.com/) membership, you can load your own custom
-levels or those created by others!
+With a [Coil membership](https://coil.com/), you can load your own custom
+levels or play those created by others!
 
-Levels are just normal JSON objects that you can edit as you see fit:
+Levels are just JSON objects that you can edit as you see fit:
 
 ```json
 {
   "theme": [0, 0, 0],
-  "intro": [
-    "Hey! Good to see you again, 15127.",
-    "I guess you missed me after all."
-  ],
+  "intro": ["Hey! Good to see you again.", "I guess you missed me after all."],
   "map": [
     [
       ["   ", "TLX", "   "],
@@ -36,12 +33,12 @@ Levels are just normal JSON objects that you can edit as you see fit:
       ["   ", "___", "   "]
     ]
   ],
-  "outro": [
-    "That was just a quick tour.",
-    "Check out https://github.com/kaizau/a-http-story for more."
-  ]
+  "outro": ["That was just a quick tour.", "Check out Github for more."]
 }
 ```
+
+For inspiration, check out "epilogue.json" above and the game's
+[levels.js](https://github.com/kaizau/a-http-story/blob/master/site/game/levels.js).
 
 Paste this into the text area under "EXTRAS.txt" and press "Play" to give it a
 try.
