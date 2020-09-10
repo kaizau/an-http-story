@@ -23,7 +23,7 @@ export class Dialogue {
       width: layerWidth,
     });
     this._layer.parent = this._isoCam;
-    this._layer.position = new Vector3(0, -0.5, 1.75);
+    this._layer.position = new Vector3(0, -0.5, 1.6);
     this._layer.isPickable = false;
 
     this._bg = this._layer.clone();

@@ -57,7 +57,7 @@ export class MeshMixins {
     // pointerDragBehavior.moveAttached = false;
 
     pointerDragBehavior.onDragStartObservable.add(async () => {
-      if (!this._state.$playerControl || this._hasCharacterOnTop(mesh)) {
+      if (this._hasCharacterOnTop(mesh)) {
         mesh.outlineColor = errorOutline;
         mesh.renderOutline = true;
         pointerDragBehavior.moveAttached = false;
@@ -78,11 +78,8 @@ export class MeshMixins {
     });
 
     pointerDragBehavior.onDragObservable.add((event) => {
-      if (!this._state.$dragging || !this._state.$playerControl) {
-        return;
-      }
+      if (!this._state.$dragging) return;
 
-      mesh.renderOutline = true;
       // mesh.position.x += event.delta.x;
       // mesh.position.z += event.delta.z;
       // mesh.computeWorldMatrix();

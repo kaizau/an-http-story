@@ -45,9 +45,8 @@ export function DirectLight(scene) {
 }
 
 export function ShadowGen(direct) {
-  const shadowGenerator = new ShadowGenerator(256, direct);
+  const shadowGenerator = new ShadowGenerator(512, direct);
   shadowGenerator.usePoissonSampling = true;
-  shadowGenerator.darkness = 0.4;
   return shadowGenerator;
 }
 
