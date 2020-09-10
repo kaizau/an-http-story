@@ -60,7 +60,7 @@ export const levels = {
       "By the way, I'm 0x28df77a.",
       "You can call me Zyra.",
     ],
-    theme: [0.0, 0.2, 0.2],
+    theme: [0.0, 0.3, 0.3],
     map: [
       [
         [TLX            ],
@@ -96,7 +96,7 @@ export const levels = {
       "Well... That doesn't sound good.",
       "We better hurry.",
     ],
-    theme: [0.4, 0.4, 0.2],
+    theme: [0.1, 0.5, 0.2],
     map: [
       [
         [TLX                ],
@@ -136,7 +136,7 @@ export const levels = {
       "Ugh. What I wouldn't give to shut him up...",
       "Let's get out of here.",
     ],
-    theme: [0.5, 0.5, 0.1],
+    theme: [.9, .9, .2],
     map: [
       [
         [TLX                ],
@@ -183,7 +183,7 @@ export const levels = {
       "Artificial or otherwise.",
       "Let's keep moving.",
     ],
-    theme: [0.5, 0.3, 0.1],
+    theme: [1, 0.5, 0],
     map: [
       [
         [TLC,EY1,EYE,EY4,TLX],
@@ -242,7 +242,7 @@ export const levels = {
       "I think we're almost there.",
       "Stay focused. We'll get through this.",
     ],
-    theme: [0.6, 0.2, 0.1],
+    theme: [0.6, 0.1, 0.1],
     map: [
       [
         [TLA,   ,EY1,   ,EY2,   ,TLB],
@@ -326,7 +326,7 @@ export const levels = {
       "Damn! Hurry!",
       "We have to reach the exit before quarantine!",
     ],
-    theme: [0.7, 0.2, 0.1],
+    theme: [0.8, 0, 0],
     map: [
       [
         [   ,   ,TLD,   ,TLX        ],
@@ -339,9 +339,11 @@ export const levels = {
         [                           ],
         [                           ],
         [                           ],
+        [                           ],
       ],
       [
         [   ,   ,___,___,___        ],
+        [                           ],
         [                           ],
         [                           ],
         [                           ],
