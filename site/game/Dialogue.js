@@ -9,10 +9,10 @@ import {
   Vector3,
 } from "BABYLON";
 
-const layerHeight = 0.055;
+const layerHeight = 0.06;
 const layerWidth = 1.5;
 const textRes = 1024;
-const textSize = 36;
+const textSize = 42;
 
 export class Dialogue {
   constructor(scene) {
