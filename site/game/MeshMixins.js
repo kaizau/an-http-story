@@ -32,7 +32,8 @@ export class MeshMixins {
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
-        if (!this._state.$playerControl || this._state.$drag === mesh) return;
+        if (!this._state.$playerControl || this._state.$dragging === mesh)
+          return;
 
         const main = this._state.$mainCharacter;
         if (main) {
@@ -49,7 +50,12 @@ export class MeshMixins {
     const pointerDragBehavior = new PointerDragBehavior({
       dragPlaneNormal: new Vector3(0, 1, 0),
     });
-    pointerDragBehavior.moveAttached = false;
+
+    // NOTE Hard-stopping drag collisions would be better, but it makes
+    // controls more difficult. So allow "ghosting", but reset to
+    // non-intersecting position on end.
+    // pointerDragBehavior.moveAttached = false;
+
     pointerDragBehavior.onDragStartObservable.add(async () => {
       if (!this._state.$playerControl || this._hasCharacterOnTop(mesh)) {
         mesh.outlineColor = errorOutline;
@@ -64,22 +70,18 @@ export class MeshMixins {
       if (this._state.$dragStart) {
         mesh.renderOutline = true;
         mesh.renderOverlay = false;
-        this._state.$drag = mesh;
+        this._state.$dragging = mesh;
         this._state.$dragLastSafePosition = mesh.position.clone();
       }
     });
     pointerDragBehavior.onDragObservable.add((event) => {
-      if (!this._state.$drag || !this._state.$playerControl) {
+      if (!this._state.$dragging || !this._state.$playerControl) {
         return;
       }
 
       mesh.renderOutline = true;
-      mesh.position.x += event.delta.x;
-      mesh.position.z += event.delta.z;
-      // NOTE Hard-stopping drag collisions would be better, if it didn't make
-      // controls annoyingly difficult. So allow "ghosting", but reset to
-      // non-intersecting position on end.
-      //
+      // mesh.position.x += event.delta.x;
+      // mesh.position.z += event.delta.z;
       // mesh.computeWorldMatrix();
       if (this._hasAnyCollision(mesh)) {
         mesh.outlineColor = errorOutline;
@@ -88,9 +90,9 @@ export class MeshMixins {
         // mesh.computeWorldMatrix();
       } else {
         mesh.outlineColor = primaryOutline;
-        // NOTE In rare instances, mesh.position could be set to a number that
-        // did not round to safe, causing meshes to overlap. Compensating by
-        // saving the pre-delta position instead.
+        // In rare instances, mesh.position can be set to a number that does
+        // not round to safe, causing meshes to overlap. Compensating by saving
+        // the pre-delta position instead.
         const safe = mesh.position.clone();
         safe.x -= event.delta.x;
         safe.z -= event.delta.z;
@@ -115,7 +117,7 @@ export class MeshMixins {
 
       // Prevent dragend from becoming pick
       await delay(150);
-      this._state.$drag = null;
+      this._state.$dragging = null;
     });
     mesh.addBehavior(pointerDragBehavior);
   }
@@ -242,6 +244,10 @@ export class MeshMixins {
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPointerOverTrigger, () => {
+        // Prevent brief "flashes of non-collision" when dragged block
+        // intersects with a block and the instance is swapped.
+        if (this._state.$dragging !== mesh) return;
+
         if (mesh.isAnInstance) {
           const double = mesh.blockDouble;
 
@@ -336,8 +342,9 @@ export class MeshMixins {
     const active = this._scene.getActiveMeshes().data;
     const samePlane = active.filter((otherMesh) => {
       return (
-        mesh.position.y === otherMesh.position.y &&
         otherMesh !== mesh &&
+        // Dragging can cause decimals, even on a restricted plane
+        Math.round(mesh.position.y) === Math.round(otherMesh.position.y) &&
         otherMesh.id !== "BackgroundHelper" &&
         otherMesh.id !== "BackgroundPlane" &&
         otherMesh.id !== "BackgroundSkybox"

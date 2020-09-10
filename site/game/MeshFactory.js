@@ -197,6 +197,7 @@ export class MeshFactory {
     const max = new Vector3(0.4, 0.4, 0.4);
     mesh.setBoundingInfo(new BoundingInfo(min, max));
 
+    mesh.isPickable = false;
     this._meshMixins.$makeTeleporter(mesh, id);
     return mesh;
   }
