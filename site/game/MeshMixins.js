@@ -246,7 +246,7 @@ export class MeshMixins {
       new ExecuteCodeAction(OnPointerOverTrigger, () => {
         // Prevent brief "flashes of non-collision" when dragged block
         // intersects with a block and the instance is swapped.
-        if (this._state.$dragging !== mesh) return;
+        if (this._state.$dragging) return;
 
         if (mesh.isAnInstance) {
           const double = mesh.blockDouble;

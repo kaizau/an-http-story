@@ -324,12 +324,21 @@ export class AnimationMixins {
     destination.x += x;
     direction.z += z;
     destination.z += z;
+
     const front = new Ray(origin, direction, 1);
     const down = new Ray(destination, Vector3.Down(), 1);
-    const frontPick = this._scene.pickWithRay(
-      front,
-      (mesh) => mesh !== this._state.$mainCharacter && !mesh.isEnemy
-    );
+    // BABYLON.RayHelper.CreateAndShow(
+    //   down,
+    //   this._scene,
+    //   new BABYLON.Color3(1, 1, 0.1)
+    // );
+    // BABYLON.RayHelper.CreateAndShow(
+    //   front,
+    //   this._scene,
+    //   new BABYLON.Color3(1, 1, 0.1)
+    // );
+
+    const frontPick = this._scene.pickWithRay(front);
     const downPick = this._scene.pickWithRay(down, (mesh) => mesh.isWalkable);
     return !frontPick.hit && downPick.hit;
   }

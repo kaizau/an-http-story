@@ -78,18 +78,17 @@ export class MeshFactory {
   $createBlockMovable() {
     const mesh = MeshBuilder.CreateBox(0, {});
     mesh.receiveShadows = true;
-    mesh.material = this._matBlue;
 
-    // Smaller bounding box to allow fitting into tight spaces.
-    //
-    // TODO Also reduces draggable area, so a better alternative might be to
-    // create a smaller internal box for collisions.
+    // Smaller bounding box for movable blocks to allow fitting into tight spaces.
+    // Also reduces pickable / draggable area, so an alternative might be to create
+    // an invisible internal box for collisions.
     const min = mesh.getBoundingInfo().boundingBox.minimum;
     const max = mesh.getBoundingInfo().boundingBox.maximum;
     const adjustment = new Vector3(0.15, 0.15, 0.15);
     min.addInPlace(adjustment);
     max.subtractInPlace(adjustment);
     mesh.setBoundingInfo(new BoundingInfo(min, max));
+    mesh.material = this._matBlue;
 
     this._shadows.addShadowCaster(mesh);
     this._meshMixins.$makeHoverable(mesh);
@@ -113,11 +112,12 @@ export class MeshFactory {
       size: 0.25,
       faceColors,
     });
-    mesh.material = this._matEye;
     mesh.rotation.x = Math.PI / -9;
     mesh.rotation.y = Math.PI / -9;
     mesh.rotation.z = Math.PI / 18;
     mesh.bakeCurrentTransformIntoVertices();
+    mesh.material = this._matEye;
+    mesh.isPickable = false;
 
     this._shadows.addShadowCaster(mesh);
     this._meshMixins.$makeEnemy(mesh);
@@ -139,6 +139,7 @@ export class MeshFactory {
     body.bakeCurrentTransformIntoVertices();
     body.rotation.y = Math.PI / 3;
     body.scaling.y = 2.5;
+    body.position.y = -0.1;
     body.bakeCurrentTransformIntoVertices();
 
     const head = MeshBuilder.CreatePolyhedron(0, {
@@ -146,17 +147,22 @@ export class MeshFactory {
       size: 0.06,
     });
     head.parent = body;
-    head.position.y = 0.5;
+    head.position.y = 0.4;
     head.rotation.x = Math.PI / 2;
     head.rotation.y = Math.PI / 2;
 
     const mesh = Mesh.MergeMeshes([body, head], true);
-    mesh.material = this._matSpecial;
 
-    // Larger bounding box to prevent getting "squashed" by movable block
-    const max = new Vector3(0.26, 0.4, 0.26);
-    const min = new Vector3(-0.26, -0.4, -0.26);
-    mesh.setBoundingInfo(new BoundingInfo(min, max));
+    // Larger bounding box used by character and teleporters to:
+    // 1. Prevent getting "squashed" by movable block
+    // 2. Intersect between player and teleporter
+    const bounds = new BoundingInfo(
+      new Vector3(0.16, 0.4, 0.16),
+      new Vector3(-0.16, -0.4, -0.16)
+    );
+    mesh.setBoundingInfo(bounds);
+    mesh.material = this._matSpecial;
+    mesh.isPickable = false;
 
     // TODO subtle bobbing up and down animation
     this._shadows.addShadowCaster(mesh);
@@ -173,6 +179,12 @@ export class MeshFactory {
     mesh.position.y = -0.4;
     mesh.scaling.y = 0.75;
     mesh.bakeCurrentTransformIntoVertices();
+
+    const bounds = new BoundingInfo(
+      new Vector3(0.16, 0.4, 0.16),
+      new Vector3(-0.16, -0.4, -0.16)
+    );
+    mesh.setBoundingInfo(bounds);
 
     switch (id) {
       case TLX:
@@ -191,11 +203,6 @@ export class MeshFactory {
         mesh.material = this._matBlue;
         break;
     }
-
-    // Taller bounding box to allow intersect with player character
-    const min = new Vector3(-0.4, -0.4, -0.4);
-    const max = new Vector3(0.4, 0.4, 0.4);
-    mesh.setBoundingInfo(new BoundingInfo(min, max));
 
     mesh.isPickable = false;
     this._meshMixins.$makeTeleporter(mesh, id);
