@@ -32,8 +32,7 @@ export class MeshMixins {
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
-        if (!this._state.$playerControl || this._state.$dragging === mesh)
-          return;
+        if (!this._state.$playerControl || this._state.$dragging) return;
 
         const main = this._state.$mainCharacter;
         if (main) {
@@ -50,21 +49,24 @@ export class MeshMixins {
     const pointerDragBehavior = new PointerDragBehavior({
       dragPlaneNormal: new Vector3(0, 1, 0),
     });
+    pointerDragBehavior.updateDragPlane = false;
 
-    // NOTE Hard-stopping drag collisions would be better, but it makes
-    // controls more difficult. So allow "ghosting", but reset to
-    // non-intersecting position on end.
+    // NOTE Hard-stopping drag collisions would be nice, but it makes controls
+    // more difficult. So allow "ghosting", but reset to a non-colliding
+    // position on end.
     // pointerDragBehavior.moveAttached = false;
 
     pointerDragBehavior.onDragStartObservable.add(async () => {
       if (!this._state.$playerControl || this._hasCharacterOnTop(mesh)) {
         mesh.outlineColor = errorOutline;
         mesh.renderOutline = true;
+        pointerDragBehavior.moveAttached = false;
         return;
       }
 
       // Slight delay on both ends to accommodate oversensitive VR controllers.
-      // If trigger released before delay, then dragstart is ignored.
+      // Prevents pick from getting overridden by dragstart. If trigger
+      // released before delay, then dragstart is ignored.
       this._state.$dragStart = true;
       await delay(150);
       if (this._state.$dragStart) {
@@ -74,6 +76,7 @@ export class MeshMixins {
         this._state.$dragLastSafePosition = mesh.position.clone();
       }
     });
+
     pointerDragBehavior.onDragObservable.add((event) => {
       if (!this._state.$dragging || !this._state.$playerControl) {
         return;
@@ -99,6 +102,7 @@ export class MeshMixins {
         this._state.$dragLastSafePosition = safe;
       }
     });
+
     pointerDragBehavior.onDragEndObservable.add(async () => {
       let snap;
       if (this._hasAnyCollision(mesh)) {
@@ -114,6 +118,7 @@ export class MeshMixins {
       this._state.$dragLastSafePosition = null;
       mesh.outlineColor = primaryOutline;
       mesh.renderOutline = false;
+      pointerDragBehavior.moveAttached = true;
 
       // Prevent dragend from becoming pick
       await delay(150);
@@ -330,6 +335,12 @@ export class MeshMixins {
     const start = mesh.position.clone();
     start.y += 0.5;
     const top = new Ray(start, new Vector3(0, 1, 0), 1);
+    // BABYLON.RayHelper.CreateAndShow(
+    //   top,
+    //   this._scene,
+    //   new BABYLON.Color3(1, 1, 0.1)
+    // );
+
     const topPick = this._scene.pickWithRay(
       top,
       (mesh) => mesh === this._state.$mainCharacter

@@ -152,15 +152,6 @@ export class MeshFactory {
     head.rotation.y = Math.PI / 2;
 
     const mesh = Mesh.MergeMeshes([body, head], true);
-
-    // Larger bounding box used by character and teleporters to:
-    // 1. Prevent getting "squashed" by movable block
-    // 2. Intersect between player and teleporter
-    const bounds = new BoundingInfo(
-      new Vector3(0.16, 0.4, 0.16),
-      new Vector3(-0.16, -0.4, -0.16)
-    );
-    mesh.setBoundingInfo(bounds);
     mesh.material = this._matSpecial;
     mesh.isPickable = false;
 
@@ -181,8 +172,8 @@ export class MeshFactory {
     mesh.bakeCurrentTransformIntoVertices();
 
     const bounds = new BoundingInfo(
-      new Vector3(0.16, 0.4, 0.16),
-      new Vector3(-0.16, -0.4, -0.16)
+      new Vector3(0.2, 0.4, 0.2),
+      new Vector3(-0.2, -0.4, -0.2)
     );
     mesh.setBoundingInfo(bounds);
 
