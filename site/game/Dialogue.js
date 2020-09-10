@@ -61,7 +61,7 @@ export class Dialogue {
   }
 
   async $load(lines) {
-    if (!lines.length) {
+    if (!lines || !lines.length) {
       return Promise.resolve();
     }
 
