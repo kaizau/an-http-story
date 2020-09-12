@@ -37,7 +37,7 @@ export function AmbientLight(scene) {
 }
 
 export function DirectLight(scene) {
-  const direct = new DirectionalLight(0, new Vector3(1, -10, 4), scene);
+  const direct = new DirectionalLight(0, new Vector3(-2, -10, 4), scene);
   direct.intensity = 0.8;
   direct.position.z = 0;
   direct.position.x = 0;
