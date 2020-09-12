@@ -90,16 +90,21 @@ export default class World {
       this._state.$currentLevel = id;
       ls.pushTo("AHS", this._state.$currentLevel);
 
-      if (id === last) {
-        events.one("ready", stopMusic);
-      } else {
-        if (id < 3) {
-          playMusic("404", 110);
-        } else if (id < 5) {
-          playMusic("401", 130);
-        } else {
-          playMusic("403", 150);
-        }
+      // 1, 2
+      if (id < 3) {
+        playMusic("404", 100);
+      }
+      // 3, 4, 5
+      else if (id < 6) {
+        playMusic("401", 125);
+      }
+      // 6, 7
+      else if (id < last) {
+        playMusic("403", 150);
+      }
+      // 8
+      else {
+        stopMusic();
       }
 
       this._levelFactory.$load(level);
