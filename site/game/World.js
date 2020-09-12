@@ -72,12 +72,20 @@ export default class World {
 
     events.on("lost", () => {
       const isCustom = !this._state.$currentLevel;
+      ls.set(
+        "OS13kTrophy,👁,An HTTP Story,2 + 2 = 5",
+        "Your reeducation will begin immediately."
+      );
       this._end(isCustom ? "" : "?ending=0");
     });
   }
 
   $load(data) {
     if (typeof data === "object") {
+      ls.set(
+        "OS13kTrophy,🌍,An HTTP Story,Builder of Worlds",
+        "90% consume, 9% comment, 1% create. You are the 1%."
+      );
       return this._levelFactory.$load(data);
     }
 
@@ -92,15 +100,15 @@ export default class World {
 
       // 1, 2
       if (id < 3) {
-        playMusic("404", 100);
+        playMusic("404");
       }
       // 3, 4, 5
       else if (id < 6) {
-        playMusic("401", 125);
+        playMusic("401");
       }
       // 6, 7
       else if (id < last) {
-        playMusic("403", 150);
+        playMusic("403");
       }
       // 8
       else {
@@ -110,6 +118,10 @@ export default class World {
       this._levelFactory.$load(level);
     } else {
       if (this._state.$currentLevel === last) {
+        ls.set(
+          "OS13kTrophy,🏖,An HTTP Story,Out of the Sandbox",
+          "Um... Zyra isn't a full-blown AGI... right?"
+        );
         this._end("?ending=1");
       } else {
         this._end();
