@@ -5,6 +5,7 @@ import {
   QuadraticEase,
   EasingFunction,
   TransformNode,
+  MeshBuilder,
   Ray,
   Vector3,
 } from "BABYLON";
@@ -156,6 +157,8 @@ export class AnimationMixins {
     }
 
     if (points.length > 1) {
+      const walkPath = this._createWalkPath(points);
+
       const walkLength = 15;
       const walkKeys = points
         .map((point, index) => {
@@ -201,6 +204,7 @@ export class AnimationMixins {
         false,
         1,
         () => {
+          walkPath.dispose();
           const walkIndex = mesh.animations.indexOf(walkAnimation);
           mesh.animations.splice(walkIndex, 1);
           const rotationIndex = mesh.animations.indexOf(rotationAnimation);
@@ -341,5 +345,13 @@ export class AnimationMixins {
     const frontPick = this._scene.pickWithRay(front);
     const downPick = this._scene.pickWithRay(down, (mesh) => mesh.isWalkable);
     return !frontPick.hit && downPick.hit;
+  }
+
+  _createWalkPath(points) {
+    const line = MeshBuilder.CreateLines(0, { points });
+    line.isVisible = false;
+    line.isPickable = false;
+    line.isWalkPath = true;
+    return line;
   }
 }

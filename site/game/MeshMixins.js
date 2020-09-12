@@ -339,7 +339,7 @@ export class MeshMixins {
 
     const topPick = this._scene.pickWithRay(
       top,
-      (mesh) => mesh === this._state.$mainCharacter
+      (mesh) => mesh.isWalkPath || mesh === this._state.$mainCharacter
     );
     return topPick.hit;
   }
