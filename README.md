@@ -1,6 +1,6 @@
-# A HTTP Story 🧶
+# An HTTP Story 🧶
 
-> A 13kb\* VR-enabled game about trust and finding one's way...
+> A sub-13kb\* VR-enabled game about finding one's way.
 
 Sometimes, the web can be a beautiful place. Other times, it can be a dangerous
 place.
@@ -9,10 +9,11 @@ This story is about one of the latter times...
 
 ## Details 🔍
 
-This is my entry for the 2020 js13KGames competition, [WebXR
-category](https://js13kgames.com/webxr).
+This is my entry for the 2020 js13KGames competition —
+[WebXR](https://js13kgames.com/webxr) and [Web
+Monetization](https://js13kgames.com/webmonetization) categories.
 
-Given the use of experimental WebXR APIs, it's only intended for modern
+Given the use of experimental APIs, it's only intended for desktop and VR
 browsers:
 
 - Oculus Browser (Quest) - VR controls, but no speech synthesis
@@ -23,15 +24,17 @@ browsers:
 
 ### VR
 
+**At least one input controller with a trigger required.** Standing or sitting,
+no need for a large play area.
+
 - Trigger to move Zyra to selected block
-- Trigger (hold) to drag selected block
-- Standing or sitting, no need for a large play area
+- Trigger (held down) to drag selected blue block
 
 ### Keyboard and Mouse
 
 - Arrow keys to move the camera
 - Click to move Zyra to selected block
-- Click (hold) to drag selected block
+- Click (and hold) to drag selected blue block
 
 ## Extra Levels 🍰
 
