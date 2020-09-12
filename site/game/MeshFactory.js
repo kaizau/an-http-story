@@ -82,12 +82,13 @@ export class MeshFactory {
     // Smaller bounding box for movable blocks to allow fitting into tight spaces.
     // Also reduces pickable / draggable area, so an alternative might be to create
     // an invisible internal box for collisions.
-    const min = mesh.getBoundingInfo().boundingBox.minimum;
-    const max = mesh.getBoundingInfo().boundingBox.maximum;
-    const adjustment = new Vector3(0.15, 0.15, 0.15);
-    min.addInPlace(adjustment);
-    max.subtractInPlace(adjustment);
-    mesh.setBoundingInfo(new BoundingInfo(min, max));
+    // const min = mesh.getBoundingInfo().boundingBox.minimum;
+    // const max = mesh.getBoundingInfo().boundingBox.maximum;
+    // const adjustment = new Vector3(0.15, 0.15, 0.15);
+    // min.addInPlace(adjustment);
+    // max.subtractInPlace(adjustment);
+    // mesh.setBoundingInfo(new BoundingInfo(min, max));
+
     mesh.material = this._matBlue;
 
     this._shadows.addShadowCaster(mesh);

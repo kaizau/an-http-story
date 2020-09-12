@@ -67,13 +67,14 @@ export class MeshMixins {
       // Slight delay on both ends to accommodate oversensitive VR controllers.
       // Prevents pick from getting overridden by dragstart. If trigger
       // released before delay, then dragstart is ignored.
-      this._state.$dragStart = true;
+      this._state.$dragStart = mesh.position.clone();
       await delay(150);
       if (this._state.$dragStart) {
         mesh.renderOutline = true;
         mesh.renderOverlay = false;
         this._state.$dragging = mesh;
-        this._state.$dragLastSafePosition = mesh.position.clone();
+        this._state.$dragStart.x = Math.round(this._state.$dragStart.x);
+        this._state.$dragStart.y = Math.round(this._state.$dragStart.y);
       }
     });
 
@@ -93,26 +94,20 @@ export class MeshMixins {
         // In rare instances, mesh.position can be set to a number that does
         // not round to safe, causing meshes to overlap. Compensating by saving
         // the pre-delta position instead.
-        const safe = mesh.position.clone();
-        safe.x -= event.delta.x;
-        safe.z -= event.delta.z;
-        this._state.$dragLastSafePosition = safe;
+        // const safe = mesh.position.clone();
+        // safe.x -= event.delta.x;
+        // safe.z -= event.delta.z;
+        // this._state.$dragLastSafePosition = safe;
       }
     });
 
     pointerDragBehavior.onDragEndObservable.add(async () => {
-      let snap;
-      if (this._hasAnyCollision(mesh)) {
-        snap = this._state.$dragLastSafePosition;
-      } else {
-        snap = mesh.position.clone();
+      if (this._state.$dragging) {
+        const snap = this._getSafePosition(mesh) || this._state.$dragStart;
+        this._animationMixins.$floatTo(mesh, snap);
       }
-      snap.x = Math.round(snap.x);
-      snap.z = Math.round(snap.z);
-      this._animationMixins.$floatTo(mesh, snap);
 
-      this._state.$dragStart = false;
-      this._state.$dragLastSafePosition = null;
+      this._state.$dragStart = null;
       mesh.outlineColor = primaryOutline;
       mesh.renderOutline = false;
       pointerDragBehavior.moveAttached = true;
@@ -247,7 +242,7 @@ export class MeshMixins {
       new ExecuteCodeAction(OnPointerOverTrigger, () => {
         // Prevent brief "flashes of non-collision" when dragged block
         // intersects with a block and the instance is swapped.
-        if (this._state.$dragging) return;
+        if (this._state.$dragStart) return;
 
         if (mesh.isAnInstance) {
           const double = mesh.blockDouble;
@@ -358,5 +353,45 @@ export class MeshMixins {
       );
     });
     return samePlane.some((otherMesh) => mesh.intersectsMesh(otherMesh));
+  }
+
+  // TODO Could be cleaned up
+  _getSafePosition(mesh) {
+    const snap = mesh.position.clone();
+    snap.x = Math.round(snap.x);
+    snap.z = Math.round(snap.z);
+
+    const xDiff = mesh.position.x - snap.x;
+    const zDiff = mesh.position.z - snap.z;
+    const snapX = snap.clone();
+    const snapZ = snap.clone();
+    snapX.x += xDiff > 0 ? Math.round(xDiff + 0.5) : Math.round(xDiff - 0.5);
+    snapZ.z += zDiff > 0 ? Math.round(zDiff + 0.5) : Math.round(zDiff - 0.5);
+    const testPositions = [snap];
+    if (Math.abs(xDiff) > Math.abs(zDiff)) {
+      testPositions.push(snapX);
+      testPositions.push(snapZ);
+    } else {
+      testPositions.push(snapZ);
+      testPositions.push(snapX);
+    }
+
+    const safe = testPositions.find((pos) => {
+      const origin = pos.clone();
+      origin.y -= 0.5;
+      const ray = new Ray(origin, Vector3.Up(), 1);
+      // BABYLON.RayHelper.CreateAndShow(
+      //   ray,
+      //   this._scene,
+      //   new BABYLON.Color3(1, 1, 0.1)
+      // );
+      const pick = this._scene.pickWithRay(
+        ray,
+        (otherMesh) => otherMesh !== mesh
+      );
+      return !pick.hit;
+    });
+
+    return safe;
   }
 }
