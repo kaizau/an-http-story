@@ -4,20 +4,11 @@ import "./vendor/zzfxm";
 import World from "./game/World";
 import { delay, ls } from "./game/utils";
 import { replaceMeshStrings } from "./game/meshes";
-import { music } from "./game/music";
-
-// NOTE Golfed away
-// const loadingMessages = [
-//   "Rebooting universe simulation",
-//   "Fine tuning cosmological constant",
-//   "Reticulating splines",
-//   "Calibrating flux capacitor",
-// ];
+import { playMusic } from "./game/music";
 
 const qs = (q) => document.querySelector(q);
 const canvas = qs(".cv");
 const page = qs(".pg");
-const loading = qs(".ld");
 const directory = qs(".dr");
 const helpTrigger = qs(".sh");
 const moneyTrigger = qs(".sm");
@@ -40,16 +31,11 @@ const closeModal = document.querySelectorAll(".cm");
 init();
 
 async function init() {
-  const ready = await music.$ready();
-  if (!ready) {
-    // showLoading();
-    loading.classList.remove("h");
+  if (!ls.get("AHS")) {
     modal.classList.remove("h");
     helpWindow.classList.remove("h");
-    await music.$load();
-    loading.classList.add("h");
   }
-  directory.classList.remove("h");
+
   loadProgress();
   checkEnding();
   checkMonetization();
@@ -81,7 +67,7 @@ async function init() {
 
     await delay(3000);
     downloadMessage.textContent = "Unexpected error";
-    music.$play();
+    playMusic();
 
     await delay(2000);
     page.classList.add("z");
@@ -90,14 +76,6 @@ async function init() {
     startGame();
   });
 }
-
-// async function showLoading() {
-//   if (loadingMessages.length) {
-//     loading.textContent = loadingMessages.pop() + "...";
-//     await delay(1500);
-//     showLoading();
-//   }
-// }
 
 function startGame(level = 1) {
   page.classList.add("h");
@@ -130,7 +108,7 @@ function createShortcut(level) {
   link.textContent = `level_${level}.log`;
   link.href = "#";
   link.addEventListener("click", () => {
-    music.$play();
+    playMusic(); // TODO Load level's song here!
     startGame(level);
   });
 
@@ -163,7 +141,7 @@ function enableCustomLevels() {
     }
     if (level) {
       level.map = replaceMeshStrings(level.map);
-      music.$play();
+      playMusic();
       startGame(level);
     }
   });
@@ -201,7 +179,7 @@ function endingLose() {
   downloadMessage.textContent = "Unexpected error";
   notification.classList.remove("o");
   notification.addEventListener("click", () => {
-    music.$play();
+    playMusic();
     notification.classList.add("o");
     ending.classList.remove("h");
   });
@@ -213,7 +191,7 @@ function endingWin() {
   downloadMessage.textContent = "Click to open";
   downloadItem.classList.add("c");
   downloadItem.addEventListener("click", () => {
-    music.$play();
+    playMusic();
     ending.classList.remove("h");
   });
 }

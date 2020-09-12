@@ -13,7 +13,7 @@ import { LevelFactory } from "./LevelFactory";
 import { Dialogue } from "./Dialogue";
 import { levels } from "./levels";
 import { events, ls } from "./utils";
-import { music } from "./music";
+import { stopMusic } from "./music";
 import { Engine, Scene } from "BABYLON";
 
 export default class World {
@@ -90,7 +90,7 @@ export default class World {
       ls.pushTo("AHS", this._state.$currentLevel);
 
       if (data === last) {
-        events.one("ready", music.$stop);
+        events.one("ready", stopMusic);
       }
 
       this._levelFactory.$load(level);
