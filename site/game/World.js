@@ -94,9 +94,11 @@ export default class World {
         events.one("ready", stopMusic);
       } else {
         if (id < 3) {
-          playMusic("404", 100 + id * 20);
+          playMusic("404", 110);
+        } else if (id < 5) {
+          playMusic("401", 130);
         } else {
-          playMusic("401", 100 + id * 10);
+          playMusic("403", 150);
         }
       }
 
