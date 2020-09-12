@@ -13,7 +13,7 @@ import { LevelFactory } from "./LevelFactory";
 import { Dialogue } from "./Dialogue";
 import { levels } from "./levels";
 import { events, ls } from "./utils";
-import { stopMusic } from "./music";
+import { playMusic, stopMusic } from "./music";
 import { Engine, Scene } from "BABYLON";
 
 export default class World {
@@ -81,16 +81,23 @@ export default class World {
       return this._levelFactory.$load(data);
     }
 
+    const id = data;
     const total = Object.keys(levels).map((key) => parseInt(key));
     const last = Math.max(...total);
-    const level = levels[data];
+    const level = levels[id];
 
     if (level) {
-      this._state.$currentLevel = data;
+      this._state.$currentLevel = id;
       ls.pushTo("AHS", this._state.$currentLevel);
 
-      if (data === last) {
+      if (id === last) {
         events.one("ready", stopMusic);
+      } else {
+        if (id < 3) {
+          playMusic("404", 100 + id * 20);
+        } else {
+          playMusic("401", 100 + id * 10);
+        }
       }
 
       this._levelFactory.$load(level);

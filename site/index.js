@@ -108,7 +108,6 @@ function createShortcut(level) {
   link.textContent = `level_${level}.log`;
   link.href = "#";
   link.addEventListener("click", () => {
-    playMusic(); // TODO Load level's song here!
     startGame(level);
   });
 
@@ -141,7 +140,6 @@ function enableCustomLevels() {
     }
     if (level) {
       level.map = replaceMeshStrings(level.map);
-      playMusic();
       startGame(level);
     }
   });
