@@ -2,6 +2,7 @@ import { playSound } from "./sounds";
 import { delay } from "./utils";
 import {
   Animation,
+  AnimationEvent,
   QuadraticEase,
   EasingFunction,
   TransformNode,
@@ -157,7 +158,10 @@ export class AnimationMixins {
     }
 
     if (points.length > 1) {
-      const walkPath = this._createWalkPath(points);
+      const walkPath = MeshBuilder.CreateLines(0, { points, updatable: true });
+      walkPath.isVisible = false;
+      walkPath.isPickable = false;
+      walkPath.isWalkPath = true;
 
       const walkLength = 15;
       const walkKeys = points
@@ -184,6 +188,23 @@ export class AnimationMixins {
       );
       walkAnimation.setKeys(walkKeys);
       walkAnimation.setEasingFunction(easeOutQuad);
+
+      const updated = points.slice();
+      points.slice().forEach((point, index) => {
+        const event = new AnimationEvent(
+          index * walkLength,
+          () => {
+            // Cannot update number of points, so remove the first and
+            // duplicate the last to shorten the line.
+            updated.push(updated[updated.length - 1]);
+            updated.shift();
+            MeshBuilder.CreateLines(0, { points: updated, instance: walkPath });
+          },
+          true
+        );
+        walkAnimation.addEvent(event);
+      });
+
       mesh.animations.push(walkAnimation);
 
       const rotationAnimation = new Animation(

@@ -78,7 +78,7 @@ export class MeshMixins {
       }
     });
 
-    pointerDragBehavior.onDragObservable.add((event) => {
+    pointerDragBehavior.onDragObservable.add(() => {
       if (!this._state.$dragging) return;
 
       // mesh.position.x += event.delta.x;
