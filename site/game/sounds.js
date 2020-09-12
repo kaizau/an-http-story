@@ -1,4 +1,4 @@
-import zzfx from "../vendor/zzfx.micro";
+// import zzfx from "../vendor/zzfx.micro";
 import { delay } from "./utils";
 
 // https://killedbyapixel.github.io/ZzFX/

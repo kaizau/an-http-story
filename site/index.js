@@ -1,3 +1,6 @@
+import "./vendor/zzfx";
+import "./vendor/zzfxm";
+
 import World from "./game/World";
 import { delay, ls } from "./game/utils";
 import { replaceMeshStrings } from "./game/meshes";
