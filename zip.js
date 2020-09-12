@@ -16,4 +16,4 @@ async function zip(input, output) {
   return archive.finalize();
 }
 
-zip("public/", "dist/a-http-story.zip");
+zip("public/", "dist/an-http-story.zip");

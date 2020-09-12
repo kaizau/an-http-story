@@ -6,6 +6,8 @@
   "globals": {
     "BABYLON": "readonly",
     "process": "readonly",
-    "zzfx": "readonly"
+    "zzfx": "readonly",
+    "zzfxM": "readonly",
+    "zzfxP": "readonly"
   }
 }

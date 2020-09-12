@@ -1,13 +1,13 @@
 {
-  "name": "a-http-story",
+  "name": "an-http-story",
   "version": "0.0.1",
-  "description": "Entry for js13kGames - 2020 WebXR",
+  "description": "A 13kb VR game. Entry for 2020 js13kGames competition.",
   "author": {
     "name": "Kai Zau",
     "email": "k@kaizau.com",
     "url": "https://kaizau.com"
   },
-  "repository": "github:kaizau/a-http-story",
+  "repository": "github:kaizau/an-http-story",
   "license": "MIT",
   "private": true,
   "browserslist": [

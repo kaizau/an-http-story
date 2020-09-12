@@ -38,7 +38,7 @@ Levels are just JSON objects that you can edit as you see fit:
 ```
 
 For inspiration, check out "epilogue.json" above and the game's
-[levels.js](https://github.com/kaizau/a-http-story/blob/master/site/game/levels.js).
+[levels.js](https://github.com/kaizau/an-http-story/blob/master/site/game/levels.js).
 
 Paste this into the text area under "EXTRAS.txt" and press "Play" to give it a
 try.
