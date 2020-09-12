@@ -61,7 +61,7 @@ export const levels = {
       "But you're here too...",
       "I guess we might as well team up.",
       "By the way, I'm 0x28df77a.",
-      "You can call me Zyra.",
+      "But you can call me Zyra.",
     ],
     theme: [0.0, 0.3, 0.3],
     map: [
