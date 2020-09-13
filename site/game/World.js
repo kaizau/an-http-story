@@ -28,12 +28,13 @@ export default class World {
     window.addEventListener("resize", () => this._engine.resize());
 
     this._scene = new Scene(this._engine);
-    this._envHelper = new Environment(this._scene);
 
     this._ambientLight = new AmbientLight(this._scene);
     this._directLight = new DirectLight(this._scene);
     this._shadows = new ShadowGen(this._directLight);
     this._isoCam = new IsoCam(this._scene);
+    this._envHelper = new Environment(this._scene);
+
     this._scene.activeCamera = this._isoCam;
     this._isoCam.attachControl(this._canvas);
     this._dialogue = new Dialogue(this._scene);

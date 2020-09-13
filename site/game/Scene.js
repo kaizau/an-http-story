@@ -16,7 +16,7 @@ export class Environment {
       skyboxSize: 100,
     });
 
-    this._helper.ground.position.y = -3;
+    this._helper.ground.position.y = -2;
 
     this.$setTheme([0.0, 0.1, 0.2]);
   }
@@ -25,13 +25,14 @@ export class Environment {
     const mainColor = new Color3(...colors);
     this._scene.clearColor = mainColor;
     this._scene.ambientColor = mainColor;
+    const light = this._scene.getLightByID("ambient");
+    light.groundColor = mainColor;
     this._helper.setMainColor(mainColor);
   }
 }
 
 export function AmbientLight(scene) {
-  // TODO Diffuse and specular colors
-  const ambient = new HemisphericLight(0, new Vector3(0, 1, 0), scene);
+  const ambient = new HemisphericLight("ambient", new Vector3(0, 1, 0), scene);
   ambient.intensity = 0.5;
   return ambient;
 }
@@ -59,7 +60,7 @@ export function IsoCam(scene) {
   );
   isoCam.rotation = new Vector3(Math.PI / 6, Math.PI / 6, 0);
   isoCam.position = new Vector3(-1, offset, -3);
-  isoCam.maxZ = 1000;
+  isoCam.maxZ = 1500;
   isoCam.speed = 0.5;
   isoCam.inputs.removeByType("FreeCameraMouseInput");
   isoCam.keysUp = [38, 87];

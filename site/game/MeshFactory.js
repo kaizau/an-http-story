@@ -167,7 +167,6 @@ export class MeshFactory {
     mesh.material = this._matSpecial;
     mesh.isPickable = false;
 
-    // TODO subtle bobbing up and down animation
     this._shadows.addShadowCaster(mesh);
     this._meshMixins.$makeMainCharacter(mesh);
     return mesh;
