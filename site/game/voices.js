@@ -40,6 +40,7 @@ const foeVoices = [
     name: "Daniel",
     rate: 0.8,
     pitch: 0.5,
+    volume: 0.7,
   },
 
   // Yet another Bond villain

@@ -131,6 +131,7 @@ export class Dialogue {
         utterance.voice = voice.voice;
         utterance.pitch = voice.pitch;
         utterance.rate = voice.rate;
+        utterance.volume = voice.volume || 1;
       }
       utterance.onend = resolve;
       speechSynthesis.speak(utterance);
