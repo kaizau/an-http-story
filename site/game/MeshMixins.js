@@ -68,7 +68,7 @@ export class MeshMixins {
       // trigger. Prevents pick from getting overridden by dragstart. If
       // trigger released before delay, then the event is ignored.
       this._state.$dragStart = mesh.position.clone();
-      await delay(150);
+      await delay(200);
       if (this._state.$dragStart) {
         mesh.renderOutline = true;
         mesh.renderOverlay = false;
