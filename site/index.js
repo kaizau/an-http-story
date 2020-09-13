@@ -177,7 +177,7 @@ function endingLose() {
   downloadMessage.textContent = "Unexpected error";
   notification.classList.remove("o");
   notification.addEventListener("click", () => {
-    playMusic();
+    playMusic("401");
     notification.classList.add("o");
     ending.classList.remove("h");
   });
