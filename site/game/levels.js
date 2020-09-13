@@ -370,7 +370,7 @@ export const levels = {
         [                                   ],
         [   ,   ,   ,   ,TLE                ],
         [   ,TLC,   ,   ,   ,   ,   ,TLA    ],
-        [   ,   ,   ,   ,ZYR,   ,   ,   ,   ],
+        [   ,   ,   ,   ,ZYR                ],
         [   ,TLA,   ,   ,   ,   ,   ,TLD    ],
         [   ,   ,   ,   ,TLB                ],
         [                                   ],

@@ -379,9 +379,12 @@ export class MeshMixins {
     }
 
     const safe = testPositions.find((pos) => {
+      // NOTE Ray must intersect a bounding box to register a hit. A short ray
+      // would fall _inside_ blocks. So we need to position these rays to hit
+      // the edge without also intersecting blocks below.
       const origin = pos.clone();
-      origin.y -= 0.5;
-      const ray = new Ray(origin, Vector3.Up(), 1);
+      origin.y -= 0.49;
+      const ray = new Ray(origin, Vector3.Up(), 0.99);
       // BABYLON.RayHelper.CreateAndShow(
       //   ray,
       //   this._scene,
