@@ -1,7 +1,7 @@
 {
   "name": "an-http-story",
   "version": "0.0.1",
-  "description": "A 13kb VR game. Entry for 2020 js13kGames competition.",
+  "description": "A 13kb VR game for the 2020 js13kGames competition.",
   "author": {
     "name": "Kai Zau",
     "email": "k@kaizau.com",
