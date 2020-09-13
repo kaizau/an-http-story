@@ -134,9 +134,8 @@ export default class World {
     }
   }
 
-  // TODO Fade to white
-  // NOTE Oculus browser freezes when page is refreshed with a query string.
-  // Using localStorage instead.
+  // Oculus browser freezes when page is refreshed with a query string. Using
+  // localStorage instead.
   async _end(ending) {
     if (ending) {
       ls.set("AHS-ending", ending);

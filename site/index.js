@@ -162,7 +162,9 @@ async function checkEnding() {
     ls.del("AHS-ending");
   }
 
-  // NOTE Workaroud Oculus Browser refresh bug
+  // Workaroud Oculus Browser refresh bug, where assigning query strings via
+  // location.href seems to always get stuck in loading screen.
+  //
   // if (location.search.includes("ending=0")) {
   //   ending = endingLose;
   // } else if (location.search.includes("ending=1")) {

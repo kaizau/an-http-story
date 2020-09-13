@@ -18,7 +18,6 @@ const {
 const primaryOutline = new Color3(0, 1, 1);
 const errorOutline = new Color3(1, 1, 0);
 
-// TODO Are action managers automatically disposed when meshes are disposed?
 export class MeshMixins {
   constructor(scene, state, animationMixins) {
     this._scene = scene;
@@ -51,9 +50,9 @@ export class MeshMixins {
     });
     pointerDragBehavior.updateDragPlane = false;
 
-    // NOTE Hard-stopping drag collisions would be nice, but it makes controls
-    // more difficult. So allow "ghosting", but reset to a non-colliding
-    // position on end.
+    // Hard-stopping drag collisions would be nice, but it makes controls more
+    // difficult. So allow "ghosting", but snap to a non-colliding position on
+    // dragend.
     // pointerDragBehavior.moveAttached = false;
 
     pointerDragBehavior.onDragStartObservable.add(async () => {
@@ -356,7 +355,8 @@ export class MeshMixins {
     return samePlane.some((otherMesh) => mesh.intersectsMesh(otherMesh));
   }
 
-  // TODO Could be cleaned up
+  // TODO Could be cleaned up. Does more calculations than needed, plus the ray
+  // repositioning hack doesn't seem ideal.
   _getSafePosition(mesh) {
     const snap = mesh.position.clone();
     snap.x = Math.round(snap.x);
@@ -379,9 +379,9 @@ export class MeshMixins {
     }
 
     const safe = testPositions.find((pos) => {
-      // NOTE Ray must intersect a bounding box to register a hit. A short ray
-      // would fall _inside_ blocks. So we need to position these rays to hit
-      // the edge without also intersecting blocks below.
+      // Ray must intersect a bounding box to register a hit. A short ray would
+      // fall _inside_ blocks. So we need to position these rays to hit the
+      // edge without also intersecting blocks below.
       const origin = pos.clone();
       origin.y -= 0.49;
       const ray = new Ray(origin, Vector3.Up(), 0.99);
