@@ -1,4 +1,4 @@
-import { TLX, TLA, TLB, TLC, TLD } from "./meshes";
+import { TLX, TLA, TLB, TLC, TLD, TLE, TLF } from "./meshes";
 import {
   MeshBuilder,
   Mesh,
@@ -33,6 +33,14 @@ export class MeshFactory {
     this._matRed = new StandardMaterial();
     this._matRed.diffuseColor = new Color3(1, 0.7, 0.7);
     this._matRed.freeze();
+
+    this._matGray = new StandardMaterial();
+    this._matGray.diffuseColor = new Color3(0.5, 0.5, 0.5);
+    this._matGray.freeze();
+
+    this._matBlack = new StandardMaterial();
+    this._matBlack.diffuseColor = new Color3(0.3, 0.3, 0.3);
+    this._matBlack.freeze();
 
     this._matEye = new StandardMaterial();
     this._matEye.diffuseColor = Color3.White();
@@ -193,6 +201,12 @@ export class MeshFactory {
         break;
       case TLD:
         mesh.material = this._matBlue;
+        break;
+      case TLE:
+        mesh.material = this._matGray;
+        break;
+      case TLF:
+        mesh.material = this._matBlack;
         break;
     }
 
