@@ -65,7 +65,7 @@ async function init() {
     downloadBar.classList.remove("o");
     downloadMessage.textContent = "Preparing download...";
 
-    await delay(3000);
+    await delay(2000);
     downloadMessage.textContent = "Unexpected error";
     playMusic();
 
@@ -165,7 +165,7 @@ async function checkEnding() {
     modal.classList.remove("h");
     downloadBar.classList.remove("o");
     downloadMessage.textContent = "Preparing download...";
-    await delay(3000);
+    await delay(2000);
     ending();
   }
 }
@@ -177,9 +177,9 @@ function endingLose() {
   downloadMessage.textContent = "Unexpected error";
   notification.classList.remove("o");
   notification.addEventListener("click", () => {
-    playMusic("401");
     notification.classList.add("o");
     ending.classList.remove("h");
+    playMusic("401");
   });
 }
 
@@ -189,7 +189,7 @@ function endingWin() {
   downloadMessage.textContent = "Click to open";
   downloadItem.classList.add("c");
   downloadItem.addEventListener("click", () => {
-    playMusic();
     ending.classList.remove("h");
+    playMusic();
   });
 }
