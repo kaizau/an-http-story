@@ -1,6 +1,6 @@
-# An HTTP Story 🧶
+![An HTTP Story](./images/an-http-story-400.png)
 
-> A sub-13kb\* VR-enabled game about finding one's way.
+> A 13kb\* VR-enabled game about finding one's way.
 
 Sometimes, the web can be a beautiful place. Other times, it can be a dangerous
 place.
