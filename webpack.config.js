@@ -100,7 +100,7 @@ module.exports = (env) => {
             ecma: 2019,
             compress: {
               booleans_as_integers: true,
-              drop_console: true,
+              // drop_console: true,
               ecma: 2019,
               keep_fargs: false,
               module: true,
