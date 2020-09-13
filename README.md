@@ -5,7 +5,7 @@
 Sometimes, the web can be a beautiful place. Other times, it can be a dangerous
 place.
 
-This story is about one of the latter times...
+This game is about one of the latter times...
 
 ## Details 🔍
 
@@ -14,9 +14,9 @@ This is my entry for the 2020 js13KGames competition —
 Monetization](https://js13kgames.com/webmonetization) categories.
 
 Given the use of experimental APIs, it's only intended for desktop and VR
-browsers:
+browsers. Confirmed to work on:
 
-- Oculus Browser (Quest) - VR controls, but no speech synthesis
+- Oculus Browser, Firefox Reality (Quest) - VR controls, but no speech synthesis
 - Firefox 81+ - Keyboard and mouse
 - Chrome 84+ - Keyboard and mouse
 
