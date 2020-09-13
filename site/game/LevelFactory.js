@@ -50,23 +50,24 @@ export class LevelFactory {
 
   _buildLevel(level) {
     const meshes = [];
+    const widestRow = Math.max(...level.map.flat(1).map((row) => row.length));
 
     // Start from bottom layer
     level.map
       .slice()
       .reverse()
       .forEach((layer, layerIndex) => {
-        const y = -1 + layerIndex;
+        const y = layerIndex;
 
         // And bottom row
         layer
           .slice()
           .reverse()
           .forEach((row, rowIndex) => {
-            const x = 0 + rowIndex;
+            const x = rowIndex;
 
             row.forEach((code, colIndex) => {
-              const z = 5 - colIndex;
+              const z = 1 + widestRow - colIndex;
 
               let mesh;
               switch (code) {
