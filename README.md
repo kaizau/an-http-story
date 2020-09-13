@@ -32,7 +32,7 @@ no need for a large play area.
 
 ### Keyboard and Mouse
 
-- Arrow keys to move the camera
+- Arrow keys or ASDW to move the camera
 - Click to move Zyra to selected block
 - Click (and hold) to drag selected blue block
 
