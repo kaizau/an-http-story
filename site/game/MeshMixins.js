@@ -75,6 +75,7 @@ export class MeshMixins {
         this._state.$dragging = mesh;
         this._state.$dragStart.x = Math.round(this._state.$dragStart.x);
         this._state.$dragStart.y = Math.round(this._state.$dragStart.y);
+        this._state.$dragStart.z = Math.round(this._state.$dragStart.z);
       }
     });
 
@@ -359,6 +360,7 @@ export class MeshMixins {
   _getSafePosition(mesh) {
     const snap = mesh.position.clone();
     snap.x = Math.round(snap.x);
+    snap.y = Math.round(snap.y);
     snap.z = Math.round(snap.z);
 
     const xDiff = mesh.position.x - snap.x;
