@@ -19,10 +19,12 @@ const primaryOutline = new Color3(0, 1, 1);
 const errorOutline = new Color3(1, 1, 0);
 
 export class MeshMixins {
-  constructor(scene, state, animationMixins) {
+  constructor(scene, state, animationMixins, shadows) {
     this._scene = scene;
     this._state = state;
+    this._state.$dragging = [];
     this._animationMixins = animationMixins;
+    this._shadows = shadows;
   }
 
   $makeWalkable(mesh) {
@@ -31,7 +33,7 @@ export class MeshMixins {
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPickTrigger, () => {
-        if (!this._state.$playerControl || this._state.$dragging) return;
+        if (!this._state.$playerControl || this._state.$dragging.length) return;
 
         const main = this._state.$mainCharacter;
         if (main) {
@@ -43,6 +45,9 @@ export class MeshMixins {
     );
   }
 
+  // Hard-stopping drag collisions would be nice, but it makes controls more
+  // difficult. So allow "ghosting", but snap to a non-colliding position on
+  // dragend.
   $makeDraggable(mesh) {
     mesh.outlineColor = primaryOutline;
     const pointerDragBehavior = new PointerDragBehavior({
@@ -50,28 +55,25 @@ export class MeshMixins {
     });
     pointerDragBehavior.updateDragPlane = false;
 
-    // Hard-stopping drag collisions would be nice, but it makes controls more
-    // difficult. So allow "ghosting", but snap to a non-colliding position on
-    // dragend.
-    // pointerDragBehavior.moveAttached = false;
+    pointerDragBehavior.moveAttached = false;
 
     pointerDragBehavior.onDragStartObservable.add(async () => {
       if (this._hasCharacterOnTop(mesh)) {
         mesh.outlineColor = errorOutline;
         mesh.renderOutline = true;
-        pointerDragBehavior.moveAttached = false;
         return;
       }
 
-      // Slight delay on both ends to accommodate oversensitive VR controllers.
-      // Prevents pick from getting overridden by dragstart. If trigger
-      // released before delay, then dragstart is ignored.
+      // Slight delay on dragstart to accommodate oversensitive VR controller
+      // trigger. Prevents pick from getting overridden by dragstart. If
+      // trigger released before delay, then the event is ignored.
       this._state.$dragStart = mesh.position.clone();
       await delay(150);
       if (this._state.$dragStart) {
         mesh.renderOutline = true;
         mesh.renderOverlay = false;
-        this._state.$dragging = mesh;
+        pointerDragBehavior.moveAttached = true;
+        this._state.$dragging.push(mesh);
         this._state.$dragStart.x = Math.round(this._state.$dragStart.x);
         this._state.$dragStart.y = Math.round(this._state.$dragStart.y);
         this._state.$dragStart.z = Math.round(this._state.$dragStart.z);
@@ -79,7 +81,7 @@ export class MeshMixins {
     });
 
     pointerDragBehavior.onDragObservable.add(() => {
-      if (!this._state.$dragging) return;
+      if (!this._state.$dragging.includes(mesh)) return;
 
       // mesh.position.x += event.delta.x;
       // mesh.position.z += event.delta.z;
@@ -101,8 +103,8 @@ export class MeshMixins {
       }
     });
 
-    pointerDragBehavior.onDragEndObservable.add(async () => {
-      if (this._state.$dragging) {
+    pointerDragBehavior.onDragEndObservable.add(() => {
+      if (this._state.$dragging.includes(mesh)) {
         const snap = this._getSafePosition(mesh) || this._state.$dragStart;
         this._animationMixins.$floatTo(mesh, snap);
       }
@@ -110,11 +112,10 @@ export class MeshMixins {
       this._state.$dragStart = null;
       mesh.outlineColor = primaryOutline;
       mesh.renderOutline = false;
-      pointerDragBehavior.moveAttached = true;
+      pointerDragBehavior.moveAttached = false;
 
-      // Prevent dragend from becoming pick
-      await delay(150);
-      this._state.$dragging = null;
+      const index = this._state.$dragging.indexOf(mesh);
+      this._state.$dragging.splice(index, 1);
     });
     mesh.addBehavior(pointerDragBehavior);
   }
@@ -223,43 +224,43 @@ export class MeshMixins {
     });
   }
 
-  $makeInstanceDouble(mesh) {
-    this._ensureActionManager(mesh);
-    mesh.actionManager.registerAction(
-      new ExecuteCodeAction(OnPointerOutTrigger, () => {
-        if (mesh.onInstancePointerOut) {
-          mesh.onInstancePointerOut();
-        }
-      })
-    );
-  }
-
   $makeHoverable(mesh) {
     this._ensureActionManager(mesh);
     mesh.overlayColor = Color3.White();
 
     mesh.actionManager.registerAction(
       new ExecuteCodeAction(OnPointerOverTrigger, () => {
-        // Prevent brief "flashes of non-collision" when dragged block
-        // intersects with a block and the instance is swapped.
-        if (this._state.$dragStart) return;
+        // Prevent brief "flashes of non-collision" when a dragged block
+        // intersects with a hoverable block and the hover instance is
+        // swapped for a double.
+        if (!this._state.$playerControl || this._state.$dragStart) return;
 
         if (mesh.isAnInstance) {
-          const double = mesh.blockDouble;
-
-          // It's possible to rapidly pointerOver another mesh before
-          // pointerOut fires on the current, which leads to disappearing
-          // blocks. So, call this preemptively.
-          if (double.onInstancePointerOut) {
-            double.onInstancePointerOut();
-          }
-
+          const double = mesh.sourceMesh.clone();
+          double.overlayColor = Color3.White();
+          double.renderOverlay = true;
           double.position = mesh.position;
           double.isVisible = true;
           mesh.isVisible = false;
+          this.$makeWalkable(double);
+          this._makeInstanceDouble(double);
+
+          // It's easy to rapidly pointerOver another mesh before pointerOut
+          // fires on the current, which leads to lots of orphaned doubles.
+          // So doubles clean up after themselves.
+          double._pointerOutInterval = setInterval(() => {
+            // Babylon XR mode allows multiple pointers, and it's unclear how
+            // this prop changes when multiple meshes are hovered. This seems
+            // to work okay without additional logic.
+            if (this._scene.meshUnderPointer !== double) {
+              double.onInstancePointerOut();
+            }
+          }, 500);
+
           double.onInstancePointerOut = () => {
-            double.isVisible = false;
             mesh.isVisible = true;
+            clearInterval(double._pointerOutInterval);
+            double.dispose();
           };
         } else {
           mesh.renderOverlay = true;
@@ -278,6 +279,18 @@ export class MeshMixins {
 
   _ensureActionManager(mesh) {
     mesh.actionManager = mesh.actionManager || new ActionManager(this._scene);
+  }
+
+  _makeInstanceDouble(mesh) {
+    this._ensureActionManager(mesh);
+    this._shadows.addShadowCaster(mesh);
+    mesh.actionManager.registerAction(
+      new ExecuteCodeAction(OnPointerOutTrigger, () => {
+        if (mesh.onInstancePointerOut) {
+          mesh.onInstancePointerOut();
+        }
+      })
+    );
   }
 
   // Each tick, move 1 step towards player.

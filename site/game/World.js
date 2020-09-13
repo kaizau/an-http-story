@@ -42,7 +42,8 @@ export default class World {
     this._meshMixins = new MeshMixins(
       this._scene,
       this._state,
-      this._animationMixins
+      this._animationMixins,
+      this._shadows
     );
     this._meshFactory = new MeshFactory(
       this._state,

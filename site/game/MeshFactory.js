@@ -63,20 +63,23 @@ export class MeshFactory {
     // Supposedly good for perf
     mesh.convertToUnIndexedMesh();
 
-    this.blockTemplate = mesh;
+    this._blockTemplate = mesh;
 
+    // EDIT: Clone block template instead, since VR controllers can hover over
+    // multiple blocks
+    //
     // Instanced meshes cannot receive outlines, overlays, highlights. So
     // instead, create a clone, then swap in the clone when needed.
-    this.blockDouble = mesh.clone();
-    this.blockDouble.overlayColor = Color3.White();
-    this.blockDouble.renderOverlay = true;
-    this._meshMixins.$makeWalkable(this.blockDouble);
-    this._meshMixins.$makeInstanceDouble(this.blockDouble);
+    // this.blockDouble = mesh.clone();
+    // this.blockDouble.overlayColor = Color3.White();
+    // this.blockDouble.renderOverlay = true;
+    // this._meshMixins.$makeWalkable(this.blockDouble);
+    // this._meshMixins.$makeInstanceDouble(this.blockDouble);
   }
 
   $createBlock() {
-    const mesh = this.blockTemplate.createInstance();
-    mesh.blockDouble = this.blockDouble;
+    const mesh = this._blockTemplate.createInstance();
+    // mesh.blockDouble = this.blockDouble;
     this._shadows.addShadowCaster(mesh);
     this._meshMixins.$makeHoverable(mesh);
     this._meshMixins.$makeWalkable(mesh);
