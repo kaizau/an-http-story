@@ -127,7 +127,7 @@ function checkMonetization() {
 }
 
 function enableCustomLevels() {
-  qs(".mn").classList.add("h");
+  document.querySelectorAll(".mn").forEach((el) => el.classList.add("h"));
   qs(".my").classList.remove("h");
   const field = qs(".cl");
   moneyWindow.addEventListener("submit", (e) => {
