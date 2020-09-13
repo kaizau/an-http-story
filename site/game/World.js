@@ -86,6 +86,7 @@ export default class World {
         "OS13kTrophy,🌍,An HTTP Story,Builder of Worlds",
         "90% consume, 9% comment, 1% create. You are the 1%."
       );
+      playMusic("404");
       return this._levelFactory.$load(data);
     }
 
