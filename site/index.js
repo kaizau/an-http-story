@@ -151,16 +151,28 @@ function enableCustomLevels() {
 
 async function checkEnding() {
   let ending;
-  if (location.search.includes("ending=0")) {
-    ending = endingLose;
-  } else if (location.search.includes("ending=1")) {
-    ending = endingWin;
+
+  const endingType = ls.get("AHS-ending");
+  if (endingType) {
+    if (endingType === "win") {
+      ending = endingWin;
+    } else if (endingType === "lose") {
+      ending = endingLose;
+    }
+    ls.del("AHS-ending");
   }
 
+  // NOTE Workaroud Oculus Browser refresh bug
+  // if (location.search.includes("ending=0")) {
+  //   ending = endingLose;
+  // } else if (location.search.includes("ending=1")) {
+  //   ending = endingWin;
+  // }
+
   if (ending) {
-    if (history) {
-      history.replaceState({}, "", location.pathname);
-    }
+    // if (history) {
+    //   history.replaceState({}, "", location.pathname);
+    // }
 
     modal.classList.remove("h");
     downloadBar.classList.remove("o");

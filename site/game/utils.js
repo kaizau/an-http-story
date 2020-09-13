@@ -21,6 +21,10 @@ export const ls = {
     localStorage[key] = JSON.stringify(value);
   },
 
+  del(key) {
+    localStorage.removeItem(key);
+  },
+
   pushTo(key, value) {
     const data = ls.get(key, []);
     if (!data.includes(value)) {

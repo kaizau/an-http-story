@@ -76,7 +76,11 @@ export default class World {
         "OS13kTrophy,👁,An HTTP Story,2 + 2 = 5",
         "Your reeducation will begin immediately."
       );
-      this._end(isCustom ? "" : "?ending=0");
+      if (isCustom) {
+        this._end();
+      } else {
+        this._end("lose");
+      }
     });
   }
 
@@ -121,9 +125,9 @@ export default class World {
       if (this._state.$currentLevel === last) {
         ls.set(
           "OS13kTrophy,🏖,An HTTP Story,Out of the Sandbox",
-          "Um... Zyra isn't a full-blown AGI... right?"
+          "Um... Zyra isn't an AGI, right?"
         );
-        this._end("?ending=1");
+        this._end("win");
       } else {
         this._end();
       }
@@ -131,8 +135,13 @@ export default class World {
   }
 
   // TODO Fade to white
-  async _end(ending = "") {
+  // NOTE Oculus browser freezes when page is refreshed with a query string.
+  // Using localStorage instead.
+  async _end(ending) {
+    if (ending) {
+      ls.set("AHS-ending", ending);
+    }
     await this._levelFactory.$reset();
-    location.href = location.pathname + ending;
+    location.reload();
   }
 }

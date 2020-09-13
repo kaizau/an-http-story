@@ -398,7 +398,7 @@ export const levels = {
       "Whew... That was too close!",
       ">Warning. Sandbox compromised.",
       "Shut. Up.",
-      "Finally, let's take care of this annoyance.",
+      "Finally, let's take care of this nuisance.",
       '>"sudo guardian reset"',
       ">Guardian system rebooting...",
     ],
