@@ -283,9 +283,8 @@ export class AnimationMixins {
   // Determine rotations from keyframe positions
   _calcRotationKeys(keys, mesh) {
     // Start oriented in the initial direction to ensure smooth loop
-    // Note, our meshes point "backwards", so the 2nd param is required
     if (mesh.isPatrolling) {
-      mesh.lookAt(keys[1].value, Math.PI);
+      mesh.lookAt(keys[1].value);
     }
 
     const rotationKeys = [];
@@ -331,7 +330,7 @@ export class AnimationMixins {
   // Translate long turns into short ones
   _calcRotation(mesh, target) {
     const previousY = mesh.rotation.y;
-    mesh.lookAt(target, Math.PI);
+    mesh.lookAt(target);
     const diffY = mesh.rotation.y - previousY;
     if (diffY > Math.PI) {
       mesh.rotation.y -= Math.PI * 2;

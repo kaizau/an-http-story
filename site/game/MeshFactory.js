@@ -65,8 +65,8 @@ export class MeshFactory {
 
     this._blockTemplate = mesh;
 
-    // EDIT: Clone block template instead, since VR controllers can hover over
-    // multiple blocks
+    // EDIT Using a cloned block template instead, since VR controllers can
+    // pickOver multiple blocks.
     //
     // Instanced meshes cannot receive outlines, overlays, highlights. So
     // instead, create a clone, then swap in the clone when needed.
@@ -90,6 +90,8 @@ export class MeshFactory {
     const mesh = MeshBuilder.CreateBox(0, {});
     mesh.receiveShadows = true;
 
+    // EDIT Replaced with ray cast picking
+    //
     // Smaller bounding box for movable blocks to allow fitting into tight spaces.
     // Also reduces pickable / draggable area, so an alternative might be to create
     // an invisible internal box for collisions.
@@ -119,6 +121,9 @@ export class MeshFactory {
     } else {
       faceColors[24] = new Color4(1, 0, 0, 1);
     }
+
+    // Babylon Polyhedrons are created in very odd rotations. So we apply
+    // transformations and "bake" them into the mesh vertices.
     const mesh = MeshBuilder.CreatePolyhedron(0, {
       type: 4,
       size: 0.25,
@@ -127,6 +132,7 @@ export class MeshFactory {
     mesh.rotation.x = Math.PI / -9;
     mesh.rotation.y = Math.PI / -9;
     mesh.rotation.z = Math.PI / 18;
+    mesh.rotation.y += Math.PI;
     mesh.bakeCurrentTransformIntoVertices();
     mesh.material = this._matEye;
     mesh.isPickable = false;
@@ -164,6 +170,8 @@ export class MeshFactory {
     head.rotation.y = Math.PI / 2;
 
     const mesh = Mesh.MergeMeshes([body, head], true);
+    mesh.rotation.y = Math.PI;
+    mesh.bakeCurrentTransformIntoVertices();
     mesh.material = this._matSpecial;
     mesh.isPickable = false;
 
