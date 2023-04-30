@@ -2,16 +2,19 @@
 
 > A 13kb\* VR-enabled game about finding one's way.
 
+### [**Play the Game! 👾**](https://an-http-story.vercel.app/)
+
 Sometimes, the web can be a beautiful place. Other times, it can be a dangerous
 place.
 
 This game is about one of the latter times...
 
+
 ## Details 🔍
 
-This is my entry for the 2020 js13KGames competition —
+This is [my entry](https://js13kgames.com/entries/an-http-story) for the 2020 js13KGames competition —
 [WebXR](https://js13kgames.com/webxr) and [Web
-Monetization](https://js13kgames.com/webmonetization) categories.
+Monetization](https://js13kgames.com/webmonetization) categories. 
 
 Given the use of experimental APIs, it's only intended for desktop and VR
 browsers. Confirmed to work on:
