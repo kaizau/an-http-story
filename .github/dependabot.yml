@@ -1,0 +1,28 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 14
+    groups:
+      prod-major:
+        dependency-type: production
+        update-types:
+          - major
+      prod-minor:
+        dependency-type: production
+        update-types:
+          - minor
+          - patch
+      dev-major:
+        dependency-type: development
+        update-types:
+          - major
+      dev-minor:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
