@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       babylonjs:
-        specifier: ^6.49.0
-        version: 6.49.0
+        specifier: ^9.1.0
+        version: 9.1.0
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -554,8 +554,8 @@ packages:
       react-native-b4a:
         optional: true
 
-  babylonjs@6.49.0:
-    resolution: {integrity: sha512-KYGpELn2osBvB8UqGuk6gfJBrriojwisw/egXaiBZNQaNuURjjogI1mgwAz4/KJB14JJwELNw3JNB4sp3Rh5Ng==}
+  babylonjs@9.1.0:
+    resolution: {integrity: sha512-SmFEBAaoq4WWkMig7Ue4xiAPsz2nWBmVZ1kZ18kKtC1+R1fpBdNa+sh4Mi6kO4biy5EwzjwAQ61ncXaSxQA7Hw==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -2749,7 +2749,7 @@ snapshots:
 
   b4a@1.8.0: {}
 
-  babylonjs@6.49.0: {}
+  babylonjs@9.1.0: {}
 
   balanced-match@1.0.2: {}
 
